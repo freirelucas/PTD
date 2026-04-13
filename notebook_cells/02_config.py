@@ -120,7 +120,7 @@ ORGAN_GROUPS: Dict[str, List[str]] = {
     "MMA":  ["MMA", "IBAMA", "ICMBIO", "SFB", "JBRJ"],
     "MT":   ["MT", "ANTT", "DNIT"],
     "MIDR": ["MIDR", "CODEVASF", "SUDAM", "SUDECO", "SUDENE"],
-    "MDA":  ["MDA", "CONAB", "INCRA"],
+    "MDA":  ["MDA", "CONAB"],
 }
 # Reverso: sigla membro → sigla cabeça do grupo
 MEMBER_TO_GROUP = {}

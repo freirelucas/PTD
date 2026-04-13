@@ -44,7 +44,7 @@ def _parse_sigla_nome(raw_text: str) -> List[Tuple[str, str]]:
     # Pode haver múltiplas siglas: "SIGLA1 / SIGLA2"
     siglas = [s.strip() for s in re.split(r"\s*/\s*", sigla_part) if s.strip()]
     # Validação: siglas são uppercase e curtas
-    siglas = [s for s in siglas if re.match(r"^[A-ZÁÉÍÓÚÂÊÔÃÕÇ]{2,12}$", s)]
+    siglas = [s for s in siglas if re.match(r"^[A-ZÁÉÍÓÚÂÊÔÃÕÇ][A-ZÁÉÍÓÚÂÊÔÃÕÇ\-]{1,14}$", s)]
 
     if not siglas:
         return []
