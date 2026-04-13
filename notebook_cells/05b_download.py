@@ -109,36 +109,15 @@ def download_all_pdfs(organs: List[OrganInfo]) -> List[ProcessingError]:
 
 
 # ---- Execução ----
-_ckpt_downloads = load_checkpoint("downloads_done")
-if _ckpt_downloads is not None:
-    # Restaura caminhos locais a partir do checkpoint
-    _path_map = _ckpt_downloads  # Dict[sigla, {"diretivo": path, "entregas": path}]
-    _restored = 0
-    for organ in all_organs:
-        if organ.sigla in _path_map:
-            paths = _path_map[organ.sigla]
-            if paths.get("diretivo") and os.path.exists(paths["diretivo"]):
-                organ.pdf_path_diretivo = paths["diretivo"]
-                _restored += 1
-            if paths.get("entregas") and os.path.exists(paths["entregas"]):
-                organ.pdf_path_entregas = paths["entregas"]
-                _restored += 1
-    print(f"Checkpoint restaurado: {_restored} caminhos de PDF recarregados")
-    download_errors = []
-else:
-    print("Iniciando download dos PDFs...")
+# Download já faz skip automático de PDFs existentes (resume embutido no _download_single_pdf)
+if all_organs:
+    print(f"Iniciando download de PDFs para {len(all_organs)} órgãos...")
+    print("(PDFs já baixados serão reutilizados automaticamente)")
     download_errors = download_all_pdfs(all_organs)
     all_errors.extend(download_errors)
-
-    # Salva checkpoint com mapa de caminhos
-    _path_map = {}
-    for organ in all_organs:
-        _path_map[organ.sigla] = {
-            "diretivo": organ.pdf_path_diretivo,
-            "entregas": organ.pdf_path_entregas,
-        }
-    save_checkpoint(_path_map, "downloads_done")
-    save_checkpoint(all_organs, "organ_listing")   # atualiza com caminhos
+else:
+    print("ERRO: Nenhum órgão encontrado. Verifique a célula de scraping.")
+    download_errors = []
 
 # ---- Resumo ----
 _n_dir_ok = sum(1 for o in all_organs if o.pdf_path_diretivo and os.path.exists(o.pdf_path_diretivo))

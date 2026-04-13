@@ -250,9 +250,9 @@ def extract_all_risks() -> None:
     """Extrai tabelas de risco de todos os órgãos com Documento Diretivo."""
     global all_risks, all_errors
 
-    # Tentar carregar checkpoint
+    # Tentar carregar checkpoint (só usa se tiver dados reais)
     cached = load_checkpoint("risks_raw")
-    if cached is not None:
+    if cached is not None and len(cached[0]) > 0:
         cached_risks, cached_errors, processed_siglas = cached
         all_risks.extend(cached_risks)
         all_errors.extend(cached_errors)

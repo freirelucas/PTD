@@ -180,15 +180,9 @@ def scrape_organ_listing(url: str) -> List[OrganInfo]:
     return organs
 
 
-# ---- Execução ----
-_cached = load_checkpoint("organ_listing")
-if _cached is not None and len(_cached) > 50:
-    all_organs = _cached
-    print(f"Carregado do checkpoint: {len(all_organs)} órgãos")
-else:
-    print("Fazendo scraping da página principal...")
-    all_organs = scrape_organ_listing(BASE_URL)
-    save_checkpoint(all_organs, "organ_listing")
+# ---- Execução (sempre faz scraping fresco — leva ~3s) ----
+print("Fazendo scraping da página principal...")
+all_organs = scrape_organ_listing(BASE_URL)
 
 # ---- Validação e Resumo ----
 _n_total = len(all_organs)

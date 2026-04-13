@@ -339,9 +339,9 @@ def extract_all_deliveries() -> None:
     """Extrai tabelas de entregas de todos os órgãos com Anexo de Entregas."""
     global all_deliveries, all_errors
 
-    # Tentar carregar checkpoint
+    # Tentar carregar checkpoint (só usa se tiver dados reais)
     cached = load_checkpoint("deliveries_raw")
-    if cached is not None:
+    if cached is not None and len(cached[0]) > 0:
         cached_deliveries, cached_errors, processed_siglas = cached
         all_deliveries.extend(cached_deliveries)
         all_errors.extend(cached_errors)
