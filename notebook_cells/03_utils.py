@@ -69,9 +69,30 @@ def fuzzy_match(original: str, candidates: list,
     return (best, best_score)   # retorna melhor mesmo abaixo do threshold
 
 def fuzzy_match_produto(original: str) -> Tuple[str, float]:
+    """Match produto com: aliases determinísticos → canônicos+legados → fuzzy."""
+    if not original:
+        return ("", 0.0)
+    norm = normalize_text(original)
+    # Camada 0: alias determinístico (variações conhecidas)
+    for alias_key, canonical_val in PRODUTO_ALIASES.items():
+        if normalize_text(alias_key).lower() == norm.lower():
+            return (canonical_val, 1.0)
+        if strip_accents(normalize_text(alias_key).lower()) == strip_accents(norm.lower()):
+            return (canonical_val, 0.98)
+    # Camada 1+: match fuzzy contra lista completa (canônicos + legados)
     return fuzzy_match(original, ALL_PRODUTOS, threshold=0.80)
 
 def fuzzy_match_eixo(original: str) -> Tuple[str, float]:
+    """Match eixo com: aliases legados → canônicos → fuzzy."""
+    if not original:
+        return ("", 0.0)
+    norm = normalize_text(original)
+    # Camada 0: alias legado (eixos EGD 2020-2022 → EFGD 2024)
+    for alias_key, canonical_val in EIXO_ALIASES.items():
+        if normalize_text(alias_key).lower() == norm.lower():
+            return (canonical_val, 0.95)
+        if strip_accents(normalize_text(alias_key).lower()) == strip_accents(norm.lower()):
+            return (canonical_val, 0.93)
     return fuzzy_match(original, CANONICAL_EIXOS, threshold=0.80)
 
 def fuzzy_match_scale(original: str, scale: list) -> Tuple[str, float]:

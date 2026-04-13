@@ -1,7 +1,7 @@
 # ============================================================
 # CÉLULA 2 — Configuração, Constantes e Estruturas de Dados
 # ============================================================
-import time, pickle, unicodedata, re, json, logging, difflib
+import os, sys, time, pickle, unicodedata, re, json, logging, difflib
 from dataclasses import dataclass, field, asdict
 from typing import Optional, List, Tuple, Dict, Any
 from pathlib import Path
@@ -93,12 +93,109 @@ CANONICAL_PRODUTOS: Dict[str, List[str]] = {
     ],
 }
 
-# Lista flat de todos os produtos para busca
-ALL_PRODUTOS = [p for prods in CANONICAL_PRODUTOS.values() for p in prods]
+# ---------- Produtos de templates anteriores (v1.x, v2.x) -----
+# Produtos que aparecem em PTDs mais antigos e não estão no template v4.0
+# Mapeados ao canônico mais próximo ou mantidos como produto válido extra
+LEGACY_PRODUTOS: Dict[str, List[str]] = {
+    "Segurança e Privacidade": [
+        "Implementação do PPSI",                             # template v2.x
+        "Adequação ao PPSI",                                 # variante
+        "Auto-avaliação, análise de lacunas e planejamento do PPSI",
+    ],
+    "Governança e Gestão de Dados": [
+        "Integração à base de dados",                        # template v2.x genérico
+        "Interoperabilidade de Sistemas",                    # eixo antigo EGD 2020
+        "Compartilhamento de dados via Conecta Gov.br",      # variante
+    ],
+    "Serviços Digitais e Melhoria da Qualidade": [
+        "Digitalização de Serviço",                          # EGD 2020-2022
+        "Publicação de Serviço no Portal Gov.br",            # EGD 2020-2022
+        "Transformação Digital de Serviço",                   # EGD 2020-2022
+    ],
+    "Projetos Especiais": [
+        "Ação estratégica de transformação digital",         # variante
+    ],
+}
 
-# Mapa reverso: produto → eixo canônico
+# ---------- Aliases: texto variante → canônico exato ----------
+# Mapeamento determinístico de variações conhecidas
+PRODUTO_ALIASES: Dict[str, str] = {
+    # Truncamentos e variações de acentuação
+    "Integração à ferramenta de avaliação da satisfação dos usuários dos serviços":
+        "Integração à ferramenta de avaliação da satisfação dos usuários",
+    "Evolução do Serviço Digital":
+        "Evolução do Serviço",
+    "Integração ao Login Único Gov.Br":
+        "Integração ao Login Único",
+    "Integração ao Login Unico":
+        "Integração ao Login Único",
+    "Implementação do VLibras":
+        "Implementação do VLIBRAS",
+    "Implementacao do VLIBRAS":
+        "Implementação do VLIBRAS",
+    "Implantação da Area Logada Gov.Br":
+        "Implantação da Área Logada Gov.Br",
+    "Migração de Serviço para Plataforma Unificada Gov.br":
+        "Migração de Serviço para Plataforma Unificada",
+    "Migração do Portal Institucional":
+        "Migração de Portal Institucional",
+    "Adequação à Lei Geral de Proteção de Dados":
+        "Adequação à LGPD",
+    "Elaboração do Plano Diretor de TIC":
+        "Elaboração do PDTIC",
+    "Elaboração da POSIC":
+        "Elaboração/Revisão da POSIC",
+    "Revisão da POSIC":
+        "Elaboração/Revisão da POSIC",
+    "Integração à ferramenta de acompanhamento de solicitações":
+        "Integração à ferramenta de acompanhamento das solicitações",
+    "Disponibilização em acesso digital":
+        "Disponibilização em Acesso Digital",
+    "Revisão da descrição de serviços":
+        "Revisão da descrição dos serviços",
+    # Legacy / EGD 2020 mappings
+    "Digitalização de Serviço":
+        "Disponibilização em Acesso Digital",
+    "Publicação de Serviço no Portal Gov.br":
+        "Disponibilização em Acesso Digital",
+    "Transformação Digital de Serviço":
+        "Disponibilização em Acesso Digital",
+}
+
+# ---------- Eixos legados (EGD 2020-2022) → canônico ----------
+EIXO_ALIASES: Dict[str, str] = {
+    "Transformação Digital de Serviços Públicos":
+        "Serviços Digitais e Melhoria da Qualidade",
+    "Transformação Digital dos Serviços":
+        "Serviços Digitais e Melhoria da Qualidade",
+    "Unificação de Canais Digitais e Plataformas":
+        "Unificação de Canais Digitais",
+    "Governo como Plataforma":
+        "Unificação de Canais Digitais",
+    "Governo Aberto e Transparência":
+        "Governança e Gestão de Dados",
+    "Infraestrutura de TIC e Governança de Dados":
+        "Governança e Gestão de Dados",
+    "Interoperabilidade de Sistemas":
+        "Governança e Gestão de Dados",
+    "Dados para o Desenvolvimento":
+        "Governança e Gestão de Dados",
+    "Identidade Digital do Cidadão":
+        "Unificação de Canais Digitais",
+    "Governo Inteligente":
+        "Projetos Especiais",
+}
+
+# Lista flat de todos os produtos (canônicos + legados)
+ALL_PRODUTOS = [p for prods in CANONICAL_PRODUTOS.values() for p in prods]
+ALL_PRODUTOS += [p for prods in LEGACY_PRODUTOS.values() for p in prods]
+
+# Mapa reverso: produto → eixo canônico (canônicos + legados)
 PRODUTO_TO_EIXO = {}
 for eixo, prods in CANONICAL_PRODUTOS.items():
+    for p in prods:
+        PRODUTO_TO_EIXO[p] = eixo
+for eixo, prods in LEGACY_PRODUTOS.items():
     for p in prods:
         PRODUTO_TO_EIXO[p] = eixo
 

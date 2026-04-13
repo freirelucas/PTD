@@ -85,6 +85,19 @@ def extract_risk_table(
     def _try_extract(conv: DocumentConverter) -> Tuple[List[RiskEntry], bool]:
         """Tenta extrair com um conversor. Retorna (entries, found_risk_table)."""
         result = conv.convert(pdf_path)
+
+        # Detectar formato legado (EGD 2020-2022)
+        legacy = detect_legacy_format(result)
+        if legacy:
+            logger.info(f"[{sigla}] Formato legado detectado ({legacy}) — tabela de risco pode diferir do padrão")
+            errors.append(ProcessingError(
+                orgao_sigla=sigla,
+                document_type="diretivo",
+                stage="extraction",
+                error_type="legacy_format",
+                error_message=f"Formato legado {legacy}: estrutura de tabela pode diferir do template atual",
+            ))
+
         local_entries: List[RiskEntry] = []
         found = False
 

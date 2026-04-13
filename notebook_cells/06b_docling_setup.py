@@ -176,9 +176,50 @@ def classify_entregas_table(df: pd.DataFrame) -> str:
     return "unknown"
 
 
+# --------------- Detecção de formato legado ---------------------
+
+def detect_legacy_format(result) -> Optional[str]:
+    """Detecta se um PDF convertido usa formato legado (pré-EFGD 2024).
+
+    Heurísticas:
+      - Presença de seções numeradas como '1 – PUBLICAÇÃO DE SERVIÇOS'
+      - Ausência de tabelas com headers padrão (Servico/Acao, Produto, Eixo)
+      - Menção a 'EGD', 'SGD/ME', 'formalizado no SEI'
+
+    Returns:
+        'legacy_egd2020' se formato antigo detectado, None se formato atual.
+    """
+    try:
+        doc_text = result.document.export_to_markdown()[:5000].lower()
+    except Exception:
+        return None
+
+    legacy_signals = [
+        "publicação de serviços no portal gov.br",
+        "transformação digital dos serviços no portal gov.br",
+        "quantitativo de serviços por solução tecnológica",
+        "formalizado no sei",
+        "sgd/me",
+        "egd 2020",
+        "ações do plano anterior",
+    ]
+    hits = sum(1 for s in legacy_signals if s in doc_text)
+
+    # Se encontrou 2+ sinais legados E não tem headers padrão de tabela
+    standard_signals = ["servico/acao", "produto", "dtpactuada", "anexo de entregas"]
+    std_hits = sum(1 for s in standard_signals if s in doc_text)
+
+    if hits >= 2 and std_hits < 2:
+        return "legacy_egd2020"
+    return None
+
+
 # --------------- Instância default ----------------------------
 
 converter_accurate = create_converter(accurate=True, ocr=True)
 
 print("Docling configurado (modo ACCURATE + OCR).")
 print("Classificadores de tabelas carregados.")
+print(f"Produtos no vocabulário: {len(ALL_PRODUTOS)} ({len(CANONICAL_PRODUTOS)} canônicos + {len(LEGACY_PRODUTOS)} eixos legados)")
+print(f"Aliases de produto: {len(PRODUTO_ALIASES)}")
+print(f"Aliases de eixo: {len(EIXO_ALIASES)}")
