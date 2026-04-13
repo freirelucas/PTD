@@ -139,10 +139,6 @@ def extract_risk_table(
                     acoes_raw = normalize_text(str(row[col_map["acoes"]]))
 
                 # Limpar valores "nan"
-                for var_name in ["risco_raw", "prob_raw", "imp_raw", "trat_raw", "acoes_raw"]:
-                    val = locals()[var_name] if var_name in locals() else ""
-                    if val.lower() in ("nan", "none", ""):
-                        pass  # será tratado abaixo
                 risco_raw = "" if risco_raw.lower() in ("nan", "none") else risco_raw
                 prob_raw = "" if prob_raw.lower() in ("nan", "none") else prob_raw
                 imp_raw = "" if imp_raw.lower() in ("nan", "none") else imp_raw

@@ -27,9 +27,12 @@ def create_converter(accurate: bool = True, ocr: bool = True) -> DocumentConvert
     # OCR
     pipeline_opts.do_ocr = ocr
 
-    # Desabilita features desnecessárias
-    pipeline_opts.generate_picture_images = False
-    pipeline_opts.images_scale = 1.0
+    # Desabilita features desnecessárias (compatível com diferentes versões do docling)
+    for attr in ["generate_picture_images", "do_picture_description",
+                 "do_picture_classification", "do_code_enrichment",
+                 "do_formula_enrichment"]:
+        if hasattr(pipeline_opts, attr):
+            setattr(pipeline_opts, attr, False)
 
     format_options = {
         InputFormat.PDF: PdfFormatOption(pipeline_options=pipeline_opts),
