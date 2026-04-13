@@ -7,12 +7,10 @@ def _classify_pdf_link(anchor_text: str) -> Optional[str]:
     text = normalize_text(anchor_text).lower()
     text_no_accents = strip_accents(text)
 
-    # Documento Diretivo
     diretivo_kw = ["diretivo", "documento diretivo"]
     if any(kw in text_no_accents for kw in diretivo_kw):
         return "diretivo"
 
-    # Anexo de Entregas
     entregas_kw = ["entregas", "anexo de entregas", "anexo entregas"]
     if any(kw in text_no_accents for kw in entregas_kw):
         return "entregas"
@@ -20,48 +18,50 @@ def _classify_pdf_link(anchor_text: str) -> Optional[str]:
     return None
 
 
-def _parse_sigla_nome(raw_text: str) -> List[Tuple[str, str]]:
+def _extract_siglas_from_header(header_text: str) -> List[str]:
     """
-    Extrai pares (sigla, nome_completo) de um texto de cabeçalho de órgão.
+    Extrai siglas de um cabeçalho como:
+      'Plano de Transformação Digital SIGLA:'
+      'Plano de Transformação Digital SIGLA1 / SIGLA2 / SIGLA3:'
+      'Plano de Transformação Digital CVM -'
+    """
+    text = normalize_text(header_text)
 
-    Formatos comuns:
-      "SIGLA - Nome Completo"
-      "SIGLA1 / SIGLA2 - Nome Completo"   (órgãos agrupados)
-      "SIGLA – Nome Completo"              (meia-risca)
-    """
-    text = normalize_text(raw_text)
+    # Remove o prefixo "Plano de Transformação Digital"
+    prefix_pattern = re.compile(
+        r"Plano\s+de\s+Transforma[çc][ãa]o\s+Digital\s*", re.IGNORECASE
+    )
+    text = prefix_pattern.sub("", text).strip()
+
+    # Remove trailing : ou -
+    text = re.sub(r"[\s:–\-]+$", "", text).strip()
+
     if not text:
         return []
 
-    # Separa sigla(s) do nome pelo primeiro traço (- ou –)
-    match = re.match(r"^(.+?)\s*[-–]\s*(.+)$", text)
-    if not match:
-        return []
+    # Divide por " / " para múltiplas siglas
+    parts = [p.strip() for p in re.split(r"\s*/\s*", text) if p.strip()]
 
-    sigla_part = match.group(1).strip()
-    nome_part = match.group(2).strip()
+    # Filtra: siglas são uppercase (permitem hífen para SG-PR), 2-14 chars
+    siglas = []
+    for p in parts:
+        # Limpa possíveis sufixos ("(NOVO)")
+        p = re.sub(r"\s*\(.*?\)\s*", "", p).strip()
+        if re.match(r"^[A-ZÁÉÍÓÚÂÊÔÃÕÇ][A-ZÁÉÍÓÚÂÊÔÃÕÇ0-9\-]{1,14}$", p):
+            siglas.append(p)
 
-    # Pode haver múltiplas siglas: "SIGLA1 / SIGLA2"
-    siglas = [s.strip() for s in re.split(r"\s*/\s*", sigla_part) if s.strip()]
-    # Validação: siglas são uppercase e curtas
-    siglas = [s for s in siglas if re.match(r"^[A-ZÁÉÍÓÚÂÊÔÃÕÇ][A-ZÁÉÍÓÚÂÊÔÃÕÇ\-]{1,14}$", s)]
-
-    if not siglas:
-        return []
-
-    return [(s, nome_part) for s in siglas]
+    return siglas
 
 
 def scrape_organ_listing(url: str) -> List[OrganInfo]:
     """
-    Faz o scraping da página principal do gov.br para extrair a lista
-    de órgãos signatários e seus links de PDFs.
+    Faz o scraping da página gov.br para extrair órgãos e links de PDFs.
 
-    Estratégia:
-      1. Encontra todos os links que apontam para PDFs em 'ptds-vigentes/'
-      2. Para cada link, localiza o cabeçalho do órgão mais próximo acima
-      3. Classifica o link como 'diretivo' ou 'entregas' pelo texto da âncora
-      4. Agrupa por sigla, expandindo órgãos que compartilham PDFs
+    Estrutura real da página:
+      Cada órgão é um <td> contendo:
+        <strong>Plano de Transformação Digital SIGLA:</strong>
+        <a href="...diretivo.pdf">Documento Diretivo</a> /
+        <a href="...entregas.pdf">Anexo de Entregas</a>
     """
     resp = safe_request(url)
     if resp is None:
@@ -69,115 +69,83 @@ def scrape_organ_listing(url: str) -> List[OrganInfo]:
 
     soup = BeautifulSoup(resp.content, "html.parser")
 
-    # Encontra a área de conteúdo principal
-    content = (
-        soup.find("article")
-        or soup.find("div", {"id": "content-core"})
-        or soup.find("div", class_=re.compile(r"(content|texto|article)", re.I))
-        or soup.body
-    )
-    if content is None:
-        raise RuntimeError("Não encontrou área de conteúdo na página")
-
-    # ---- Fase 1: coletar todos os cabeçalhos de órgãos ----
-    # Procuramos <strong> ou <b> que contenham padrão "SIGLA - Nome"
-    organ_headers = []   # [(element, [(sigla, nome)])]
-    for tag in content.find_all(["strong", "b"]):
-        raw = tag.get_text(separator=" ", strip=True)
-        parsed = _parse_sigla_nome(raw)
-        if parsed:
-            organ_headers.append((tag, parsed))
-
-    # ---- Fase 2: coletar todos os links de PDF ----
-    pdf_links = []   # [(element, href, doc_type)]
-    for a_tag in content.find_all("a", href=True):
-        href = a_tag["href"]
-        if "ptds-vigentes/" not in href:
-            continue
-        if not href.lower().endswith(".pdf"):
-            continue
-        anchor_text = a_tag.get_text(separator=" ", strip=True)
-        doc_type = _classify_pdf_link(anchor_text)
-        if doc_type is None:
-            # Tentativa pelo nome do arquivo
-            fname_lower = href.rsplit("/", 1)[-1].lower()
-            if "diretivo" in fname_lower:
-                doc_type = "diretivo"
-            elif "entregas" in fname_lower or "anexo" in fname_lower:
-                doc_type = "entregas"
-            else:
-                # Default heuristic: primeiro link = diretivo, segundo = entregas
-                doc_type = "unknown"
-        # Converte URL relativa para absoluta
-        if href.startswith("/"):
-            href = "https://www.gov.br" + href
-        pdf_links.append((a_tag, href, doc_type))
-
-    logger.info(f"Encontrados {len(organ_headers)} cabeçalhos de órgãos e {len(pdf_links)} links de PDF")
-
-    # ---- Fase 3: associar cada PDF ao órgão mais próximo acima ----
-    # Obtemos posição de cada elemento na árvore linearizada
-    all_elements = list(content.descendants)
-
-    def _element_index(el):
-        """Retorna o índice do elemento na lista linearizada de descendentes."""
-        try:
-            # Percorre para cima até encontrar o próprio elemento ou um ancestral direto
-            for idx, node in enumerate(all_elements):
-                if node is el:
-                    return idx
-        except Exception:
-            pass
-        return -1
-
-    # Cache de posições
-    header_positions = []
-    for tag, parsed in organ_headers:
-        idx = _element_index(tag)
-        header_positions.append((idx, parsed))
-
-    # Ordena por posição
-    header_positions.sort(key=lambda x: x[0])
-
-    # Para cada link PDF, encontra o cabeçalho imediatamente anterior
+    # Encontrar todos os <strong> que contêm "Plano de Transformação Digital"
     organ_data: Dict[str, Dict[str, Optional[str]]] = {}
-    # sigla → {"nome": ..., "url_diretivo": ..., "url_entregas": ...}
+    seen_sigla_sets = set()  # evitar duplicatas
 
-    for a_tag, href, doc_type in pdf_links:
-        link_idx = _element_index(a_tag)
-
-        # Encontra o cabeçalho mais próximo antes deste link
-        best_header = None
-        for h_idx, parsed in header_positions:
-            if h_idx <= link_idx:
-                best_header = parsed
-            else:
-                break
-
-        if best_header is None:
-            logger.warning(f"PDF sem órgão associado: {href}")
+    for strong_tag in soup.find_all(["strong", "b"]):
+        raw_text = strong_tag.get_text(separator=" ", strip=True)
+        if "transformação digital" not in raw_text.lower() and "transformacao digital" not in raw_text.lower():
             continue
 
-        # Registra para todas as siglas desse cabeçalho
-        for sigla, nome in best_header:
-            if sigla not in organ_data:
-                organ_data[sigla] = {"nome": nome, "url_diretivo": None, "url_entregas": None}
+        siglas = _extract_siglas_from_header(raw_text)
+        if not siglas:
+            continue
 
-            if doc_type == "diretivo":
-                organ_data[sigla]["url_diretivo"] = href
-            elif doc_type == "entregas":
-                organ_data[sigla]["url_entregas"] = href
+        # Evitar processar duplicatas do mesmo grupo
+        sigla_key = tuple(sorted(siglas))
+        if sigla_key in seen_sigla_sets:
+            continue
+        seen_sigla_sets.add(sigla_key)
+
+        # Encontrar links PDF no mesmo container (td, p, div, etc.)
+        container = strong_tag.parent
+        if container is None:
+            continue
+
+        pdf_links_in_container = []
+        for a_tag in container.find_all("a", href=True):
+            href = a_tag["href"]
+            if not href.lower().endswith(".pdf"):
+                continue
+            if "ptds-vigentes/" not in href and "planos-de-transformacao-digital" not in href:
+                continue
+            anchor_text = a_tag.get_text(separator=" ", strip=True)
+            doc_type = _classify_pdf_link(anchor_text)
+
+            # Fallback: classificar pelo nome do arquivo
+            if doc_type is None:
+                fname = href.rsplit("/", 1)[-1].lower()
+                if "diretivo" in fname or "diretiv" in fname:
+                    doc_type = "diretivo"
+                elif "entregas" in fname or "anexo" in fname:
+                    doc_type = "entregas"
+                else:
+                    doc_type = "unknown"
+
+            # Converter URL relativa para absoluta
+            if href.startswith("/"):
+                href = "https://www.gov.br" + href
+
+            pdf_links_in_container.append((href, doc_type))
+
+        # Atribuir URLs por tipo
+        url_diretivo = None
+        url_entregas = None
+        for href, doc_type in pdf_links_in_container:
+            if doc_type == "diretivo" and url_diretivo is None:
+                url_diretivo = href
+            elif doc_type == "entregas" and url_entregas is None:
+                url_entregas = href
             elif doc_type == "unknown":
-                # Primeiro desconhecido vai para diretivo, segundo para entregas
-                if organ_data[sigla]["url_diretivo"] is None:
-                    organ_data[sigla]["url_diretivo"] = href
-                elif organ_data[sigla]["url_entregas"] is None:
-                    organ_data[sigla]["url_entregas"] = href
+                if url_diretivo is None:
+                    url_diretivo = href
+                elif url_entregas is None:
+                    url_entregas = href
 
-    # ---- Fase 4: expandir órgãos agrupados ----
-    # Órgãos membros de um grupo herdam os PDFs da sigla-cabeça
-    expanded: Dict[str, Dict[str, Optional[str]]] = dict(organ_data)
+        # Registrar para todas as siglas neste header
+        for sigla in siglas:
+            if sigla not in organ_data:
+                organ_data[sigla] = {
+                    "nome": raw_text,
+                    "url_diretivo": url_diretivo,
+                    "url_entregas": url_entregas,
+                }
 
+    logger.info(f"Scraping direto: {len(organ_data)} siglas encontradas")
+
+    # Expandir grupos: membros herdam PDFs do cabeça se não tiverem próprios
+    expanded = dict(organ_data)
     for head_sigla, members in ORGAN_GROUPS.items():
         if head_sigla in organ_data:
             head_info = organ_data[head_sigla]
@@ -191,13 +159,12 @@ def scrape_organ_listing(url: str) -> List[OrganInfo]:
                         "url_entregas": head_info["url_entregas"],
                     }
                 else:
-                    # Preenche URLs ausentes com as do cabeça do grupo
                     if expanded[member]["url_diretivo"] is None:
                         expanded[member]["url_diretivo"] = head_info["url_diretivo"]
                     if expanded[member]["url_entregas"] is None:
                         expanded[member]["url_entregas"] = head_info["url_entregas"]
 
-    # ---- Fase 5: construir lista de OrganInfo ----
+    # Construir lista final
     organs: List[OrganInfo] = []
     for sigla in sorted(expanded.keys()):
         info = expanded[sigla]
@@ -215,7 +182,7 @@ def scrape_organ_listing(url: str) -> List[OrganInfo]:
 
 # ---- Execução ----
 _cached = load_checkpoint("organ_listing")
-if _cached is not None:
+if _cached is not None and len(_cached) > 50:
     all_organs = _cached
     print(f"Carregado do checkpoint: {len(all_organs)} órgãos")
 else:
@@ -234,9 +201,9 @@ _n_grupos = sum(1 for o in all_organs if o.grupo is not None)
 print(f"\n{'='*50}")
 print(f"Total de órgãos encontrados: {_n_total}")
 if _n_total < 80 or _n_total > 110:
-    print(f"  ATENÇÃO: esperados ~91 órgãos, encontrados {_n_total}")
+    print(f"  ⚠ ATENÇÃO: esperados ~91 órgãos, encontrados {_n_total}")
 else:
-    print(f"  Contagem dentro do esperado (~91)")
+    print(f"  ✓ Contagem dentro do esperado (~91)")
 print(f"  Com Documento Diretivo:    {_n_diretivo}")
 print(f"  Com Anexo de Entregas:     {_n_entregas}")
 print(f"  Com ambos:                 {_n_ambos}")
@@ -244,16 +211,14 @@ print(f"  Sem nenhum PDF:            {_n_nenhum}")
 print(f"  Membros de grupo:          {_n_grupos}")
 print(f"{'='*50}")
 
-# Lista órgãos sem PDFs para revisão
 if _n_nenhum > 0:
     print("\nÓrgãos SEM nenhum PDF:")
     for o in all_organs:
         if not o.url_diretivo and not o.url_entregas:
-            print(f"  - {o.sigla} ({o.nome_completo})")
+            print(f"  - {o.sigla}")
 
-# Amostra
-print("\nAmostra (primeiros 5):")
-for o in all_organs[:5]:
+print("\nAmostra (primeiros 10):")
+for o in all_organs[:10]:
     print(f"  {o.sigla:12s} | dir={'Sim' if o.url_diretivo else '---'} "
           f"| ent={'Sim' if o.url_entregas else '---'} "
           f"| grupo={o.grupo or '—'}")
