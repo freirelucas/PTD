@@ -123,8 +123,8 @@ tr:hover td{background:var(--light)}
 <aside class="sidebar">
   <h1>PTD<span>Transformação Digital</span></h1>
   <nav>
-    <a href="#ptd-method" class="active" onclick="showSection('ptd-method')"><span class="icon">&#9776;</span><span>O que é o PTD</span></a>
-    <a href="#overview" onclick="showSection('overview')"><span class="icon">&#9632;</span><span>Visão Geral</span></a>
+    <a href="#overview" class="active" onclick="showSection('overview')"><span class="icon">&#9632;</span><span>Visão Geral</span></a>
+    <a href="#ptd-method" onclick="showSection('ptd-method')"><span class="icon">&#9776;</span><span>O que é o PTD</span></a>
     <a href="#deliveries" onclick="showSection('deliveries')"><span class="icon">&#9654;</span><span>Entregas</span></a>
     <a href="#risks" onclick="showSection('risks')"><span class="icon">&#9888;</span><span>Riscos</span></a>
     <a href="#organs" onclick="showSection('organs')"><span class="icon">&#9733;</span><span>Órgãos</span></a>
@@ -138,7 +138,7 @@ tr:hover td{background:var(--light)}
 <main class="main">
 
 <!-- ===== VISÃO GERAL ===== -->
-<div id="overview" class="section">
+<div id="overview" class="section active">
   <h2>Visão Geral</h2>
   <p class="desc">Panorama dos <strong>Planos de Transformação Digital (PTDs)</strong> de 91 órgãos da administração pública federal, conforme publicados no portal gov.br. Os dados foram extraídos automaticamente dos PDFs oficiais (Documento Diretivo e Anexo de Entregas) e padronizados conforme a taxonomia da <strong>EFGD 2024-2027</strong> (Decreto nº 12.198/2024).</p>
   <div class="kpi-row" id="kpi-cards"></div>
@@ -149,7 +149,7 @@ tr:hover td{background:var(--light)}
   </div>
   <div class="chart-container" id="gaps-section"><h3>Órgãos sem Dados — Motivos</h3><div id="gaps-content"></div></div>
   <div class="chart-container"><h3>Top 10 Produtos</h3><div class="table-wrap" id="top-produtos-table"></div></div>
-  <div class="chart-container"><h3>Figuras Pré-Geradas</h3><div class="figures-grid" id="figures-grid"></div></div>
+  <div class="chart-container"><h3>Explorar o Corpus</h3><p class="desc" style="margin-bottom:12px">Clique para navegar às análises detalhadas.</p><div class="figures-grid" id="figures-grid"></div></div>
 </div>
 
 <!-- ===== ENTREGAS ===== -->
@@ -239,7 +239,7 @@ tr:hover td{background:var(--light)}
 </div>
 
 <!-- ===== O QUE É O PTD ===== -->
-<div id="ptd-method" class="section active">
+<div id="ptd-method" class="section">
   <h2>O que é o Plano de Transformação Digital</h2>
   <div class="prose">
     <h3>1. Marco Legal e Institucional</h3>
@@ -565,8 +565,15 @@ function initOverview(){
   document.getElementById('gaps-content').innerHTML = gapHtml;
 
   // Figures
-  const figs=[{f:'01_entregas_por_eixo.png',c:'Entregas por Eixo'},{f:'02_top20_produtos.png',c:'Top 20 Produtos'},{f:'03_top30_orgaos_entregas.png',c:'Top 30 Órgãos'},{f:'04_matriz_riscos.png',c:'Matriz de Riscos'},{f:'05_tratamento_riscos.png',c:'Tratamento'},{f:'06_prob_impacto_dist.png',c:'Probabilidade × Impacto'},{f:'07_cobertura.png',c:'Cobertura'}];
-  document.getElementById('figures-grid').innerHTML=figs.map(f=>`<a href="output/figures/${f.f}" target="_blank"><img src="output/figures/${f.f}" alt="${f.c}" loading="lazy"><div class="caption">${f.c}</div></a>`).join('');
+  const figs=[
+    {f:'01_entregas_por_eixo.png',c:'Entregas por Eixo',nav:'deliveries',desc:'Explorar entregas pactuadas por eixo estratégico'},
+    {f:'02_top20_produtos.png',c:'Top 20 Produtos',nav:'deliveries',desc:'Ver distribuição de produtos nas pactuações'},
+    {f:'04_matriz_riscos.png',c:'Matriz de Riscos',nav:'risks',desc:'Navegar a matriz probabilidade × impacto'},
+    {f:'03_top30_orgaos_entregas.png',c:'Ranking de Órgãos',nav:'organs',desc:'Comparar órgãos por volume de entregas'},
+    {f:'05_tratamento_riscos.png',c:'Tratamento de Riscos',nav:'risks',desc:'Análise das estratégias de mitigação'},
+    {f:'07_cobertura.png',c:'Cobertura do Corpus',nav:'ptd-method',desc:'Entender a metodologia e limitações'},
+  ];
+  document.getElementById('figures-grid').innerHTML=figs.map(f=>`<a href="#${f.nav}" onclick="showSection('${f.nav}');return false;" style="cursor:pointer"><img src="output/figures/${f.f}" alt="${f.c}" loading="lazy"><div class="caption"><strong>${f.c}</strong><br><span style="color:var(--muted);font-size:.75rem">${f.desc}</span></div></a>`).join('');
 }
 
 // ==================== 2. ENTREGAS ====================
@@ -1093,6 +1100,7 @@ function showSection(id) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   document.querySelectorAll('.sidebar nav a').forEach(a => a.classList.toggle('active', a.getAttribute('href')==='#'+id));
+  window.scrollTo({top:0,behavior:'smooth'});
   if(id==='overview') initOverview();
   if(id==='deliveries') initDeliveries();
   if(id==='risks') initRisks();
@@ -1103,7 +1111,7 @@ function showSection(id) {
 
 document.addEventListener('DOMContentLoaded',()=>{
   const h=location.hash.replace('#','');
-  showSection(h||'ptd-method');
+  showSection(h||'overview');
 });
 </script>
 </body>
