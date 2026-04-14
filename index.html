@@ -241,8 +241,43 @@ tr:hover td{background:var(--light)}
   <div class="prose">
     <h3>1. Marco Legal e Institucional</h3>
     <p>O Plano de Transformação Digital (PTD) é um instrumento de planejamento e pactuação instituído pelo <strong>Decreto nº 12.198, de 24 de setembro de 2024</strong>, que estabelece a <strong>Estratégia Federal de Governo Digital (EFGD) 2024-2027</strong>. A regulamentação operacional é dada pela <strong>Portaria SGD/MGI nº 6.618/2024</strong>.</p>
-    <p>Cada órgão e entidade da administração pública federal direta e indireta autárquica e fundacional deve elaborar seu PTD em parceria com a <strong>Secretaria de Governo Digital (SGD)</strong> do Ministério da Gestão e da Inovação em Serviços Públicos (MGI).</p>
-    <p>Referência: <a href="https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital" target="_blank">Portal Gov.br — Planos de Transformação Digital</a></p>
+    <p>Referências: <a href="https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/EFGD" target="_blank">EFGD 2024-2027</a> · <a href="https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital" target="_blank">Portal PTDs</a></p>
+
+    <h3>2. Os 6 Princípios da EFGD (Decreto 12.198/2024)</h3>
+    <p>A EFGD é estruturada em <strong>6 princípios fundamentais</strong>, com 16 objetivos estratégicos e 100 iniciativas:</p>
+    <table style="margin:12px 0">
+      <thead><tr><th style="width:40px">#</th><th>Princípio</th><th>Descrição (Art. 1º)</th></tr></thead>
+      <tbody>
+        <tr><td>I</td><td><strong>Centrado no Cidadão e Inclusivo</strong></td><td>Experiência agradável, simples e ágil; acesso universal aos serviços independente de situação socioeconômica</td></tr>
+        <tr><td>II</td><td><strong>Integrado e Colaborativo</strong></td><td>Atuação coordenada, interoperabilidade de dados, integração de plataformas e serviços entre União, estados e municípios</td></tr>
+        <tr><td>III</td><td><strong>Inteligente e Inovador</strong></td><td>Tecnologia e dados como ferramentas de otimização; postura proativa e aberta a novas ideias</td></tr>
+        <tr><td>IV</td><td><strong>Confiável e Seguro</strong></td><td>Confiança pública, interação segura, proteção de direitos, dados e informações</td></tr>
+        <tr><td>V</td><td><strong>Transparente, Aberto e Participativo</strong></td><td>Participação social, transparência, acompanhamento de políticas públicas e serviços</td></tr>
+        <tr><td>VI</td><td><strong>Eficiente e Sustentável</strong></td><td>Plataformas compartilhadas, otimização de processos, sustentabilidade ambiental e social</td></tr>
+      </tbody>
+    </table>
+
+    <h3>3. Os 5 Eixos Operacionais do Template PTD</h3>
+    <p>A SGD traduziu os princípios da EFGD em <strong>5 eixos operacionais</strong> no template de pactuação (xlsx v4.0), com 44 produtos canônicos. Note que são camadas diferentes: o Decreto define princípios estratégicos, o template define eixos de execução.</p>
+    <p>Clique em um eixo para ver seus produtos canônicos:</p>
+    <div id="eixos-accordion"></div>
+
+    <h3>4. Cruzamento: 6 Princípios × 5 Eixos</h3>
+    <p>A tabela abaixo mostra como os eixos operacionais do template cobrem (ou não) os princípios do Decreto. Células marcadas indicam alinhamento direto; células vazias indicam lacunas.</p>
+    <div class="table-wrap">
+    <table style="margin:12px 0;font-size:.82rem">
+      <thead><tr><th style="width:200px">Eixo ↓ / Princípio →</th><th>I. Cidadão</th><th>II. Integrado</th><th>III. Inteligente</th><th>IV. Seguro</th><th>V. Transparente</th><th>VI. Eficiente</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Serviços Digitais</strong></td><td style="background:#E8EEF4;text-align:center">&#10003;</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td><strong>Unificação de Canais</strong></td><td style="background:#E8EEF4;text-align:center">&#10003;</td><td style="background:#E8EEF4;text-align:center">&#10003;</td><td></td><td></td><td></td><td style="background:#E8EEF4;text-align:center">&#10003;</td></tr>
+        <tr><td><strong>Governança de Dados</strong></td><td></td><td style="background:#E8EEF4;text-align:center">&#10003;</td><td style="background:#E8EEF4;text-align:center">&#10003;</td><td></td><td style="background:#E8EEF4;text-align:center">&#10003;</td><td></td></tr>
+        <tr><td><strong>Segurança e Privacidade</strong></td><td></td><td></td><td></td><td style="background:#E8EEF4;text-align:center">&#10003;</td><td></td><td></td></tr>
+        <tr><td><strong>Projetos Especiais</strong></td><td></td><td></td><td style="background:#E8EEF4;text-align:center">&#10003;</td><td></td><td></td><td style="background:#E8EEF4;text-align:center">&#10003;</td></tr>
+        <tr style="background:#fff3e0"><td><em>Cobertura do princípio</em></td><td style="text-align:center"><strong>2 eixos</strong></td><td style="text-align:center"><strong>2 eixos</strong></td><td style="text-align:center"><strong>2 eixos</strong></td><td style="text-align:center"><strong>1 eixo</strong></td><td style="text-align:center;color:var(--red)"><strong>1 eixo*</strong></td><td style="text-align:center;color:var(--red)"><strong>2 eixos*</strong></td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p style="font-size:.82rem;color:var(--muted)">* Os princípios V (Transparente/Participativo) e VI (Eficiente/Sustentável) têm cobertura teórica mas <strong>zero entregas pactuadas</strong> nos produtos correspondentes (Dados Abertos, Participação Social, Plataformas Compartilhadas). Na prática, esses princípios não se materializam nos PTDs.</p>
 
     <h3>2. Metodologia de Elaboração — Guia 10 Passos</h3>
     <p>A SGD disponibiliza o <a href="https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/kit-de-elaboracao-ptd" target="_blank">Kit de Elaboração do PTD</a>, que inclui templates e um guia referencial. O processo segue aproximadamente 10 etapas:</p>
@@ -314,9 +349,6 @@ tr:hover td{background:var(--light)}
       <strong>Órgãos agrupados</strong>: 7 grupos ministeriais compartilham PDFs entre múltiplos órgãos, nem sempre com separação clara de qual entrega pertence a qual entidade.
     </p></div>
 
-    <h3>6. Os 5 Eixos da EFGD 2024-2027</h3>
-    <p>Clique em um eixo para ver seus produtos canônicos:</p>
-    <div id="eixos-accordion"></div>
   </div>
 </div>
 
@@ -346,7 +378,7 @@ tr:hover td{background:var(--light)}
     </ul>
 
     <h3>4. Taxonomia e Vocabulário</h3>
-    <p>A EFGD define <strong>5 eixos estratégicos</strong> e <strong>44 produtos canônicos</strong>. Foram adicionados 10 produtos legados (templates v1.x/v2.x), 19 aliases de produto e 10 aliases de eixo para compatibilidade com PTDs de diferentes períodos.</p>
+    <p>A EFGD define 6 princípios (Decreto 12.198/2024) que a SGD operacionaliza em <strong>5 eixos</strong> e <strong>44 produtos canônicos</strong> no template PTD. Foram adicionados 10 produtos legados (templates v1.x/v2.x), 19 aliases de produto e 10 aliases de eixo para compatibilidade com PTDs de diferentes períodos.</p>
     <p>Escalas de risco: <em>Probabilidade</em> (raro, pouco provável, provável, muito provável, praticamente certo) e <em>Impacto</em> (muito baixo, baixo, médio, alto, muito alto), conforme orientação SGD.</p>
 
     <h3>5. Cobertura e Limitações</h3>
@@ -995,6 +1027,14 @@ function initInsights(){
   <strong>1. Governança e Gestão de Dados</strong> (${govPct.toFixed(0)}% das entregas) — a interoperabilidade de dados entre órgãos pode eliminar redundâncias, melhorar políticas públicas baseadas em evidência, e habilitar o uso de IA em escala.<br>
   <strong>2. Projetos Especiais</strong> — espaço formal para inovação que pode catalisar a modernização transversal.<br>
   <strong>3. Unificação de Canais</strong> — a migração para plataforma unificada Gov.br cria a infraestrutura para experiências digitais integradas e personalização via IA.</p></div>`;
+
+  // === DISCREPÂNCIA ESTRUTURAL 6 PRINCÍPIOS × 5 EIXOS ===
+  html+=`<div class="insight-card" style="border-left-color:#264A7F"><h4>6 Princípios, 5 Eixos: A Tradução Incompleta</h4><p>
+    O Decreto 12.198/2024 estabelece <span class="num">6</span> princípios para a EFGD. A SGD os traduz em <span class="num">5</span> eixos operacionais no template PTD. Mas a tradução não é 1:1:<br><br>
+    <strong>Princípio V — "Transparente, Aberto e Participativo"</strong>: deveria se materializar em produtos como "Publicação de dados no Portal de Dados Abertos" e "Elaboração de Plano de Dados Abertos" (eixo Governança) — porém nenhum desses produtos foi pactuado por qualquer órgão.<br>
+    <strong>Princípio VI — "Eficiente e Sustentável"</strong>: plataformas compartilhadas e sustentabilidade não têm eixo dedicado nem produtos com pactuação.<br><br>
+    Na prática, o governo digital federal opera sobre <strong>3 princípios efetivos</strong>: digitalização de serviços (I), integração/unificação (II) e segurança (IV). Inteligência/inovação (III), transparência (V) e eficiência sustentável (VI) ficam sem expressão operacional nos PTDs.
+  </p></div>`;
 
   // === NOVOS INSIGHTS — RISCOS E MITIGAÇÕES ===
 
