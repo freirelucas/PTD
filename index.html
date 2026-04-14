@@ -6,7 +6,7 @@
 <title>PTD Dashboard — Planos de Transformação Digital</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
-:root{--primary:#1351B4;--dark:#071D41;--accent:#2670E8;--light:#E8F0FE;--bg:#F5F7FA;--card:#fff;--text:#333;--muted:#666;--border:#DEE2E6;--green:#2E7D32;--yellow:#F9A825;--red:#C62828;--radius:8px}
+:root{--primary:#015f96;--dark:#1a1a2e;--accent:#2b7bba;--light:#f0f5fa;--bg:#f7f9fb;--card:#fff;--text:#2d2d2d;--muted:#5a6a7a;--border:#d4dbe3;--green:#168821;--yellow:#e87722;--red:#cc1a1a;--radius:6px}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);display:flex;min-height:100vh}
 /* Sidebar */
@@ -131,7 +131,7 @@ tr:hover td{background:var(--light)}
     <a href="#ptd-method" onclick="showSection('ptd-method')"><span class="icon">&#9776;</span><span>O que é o PTD</span></a>
     <a href="#methodology" onclick="showSection('methodology')"><span class="icon">&#9998;</span><span>Nota Técnica</span></a>
   </nav>
-  <div class="info">Dados: gov.br/governodigital<br>Atualizado: 2026-04-14</div>
+  <div class="info">Direito, D.; Silva, L.; Queiroz, S.<br>Ipea · 2026<br><br>Dados: gov.br/governodigital</div>
 </aside>
 
 <main class="main">
@@ -355,7 +355,7 @@ tr:hover td{background:var(--light)}
 
     <h3>7. Citação Sugerida</h3>
     <p style="background:var(--light);padding:12px;border-radius:var(--radius);font-size:.85rem">
-      FREIRE, Lucas. <em>Corpus dos Planos de Transformação Digital: extração, padronização e análise dos PTDs de 91 órgãos federais brasileiros</em>. 2026. Disponível em: <a href="https://github.com/freirelucas/PTD" target="_blank">github.com/freirelucas/PTD</a>.
+      DIREITO, Denise; SILVA, Lucas; QUEIROZ, Sérgio. <em>Corpus dos Planos de Transformação Digital: extração, padronização e análise dos PTDs de 91 órgãos federais brasileiros</em>. Ipea, 2026. Disponível em: <a href="https://github.com/freirelucas/PTD" target="_blank">github.com/freirelucas/PTD</a>.
     </p>
   </div>
 </div>
@@ -378,7 +378,8 @@ const EIXOS = ["Serviços Digitais e Melhoria da Qualidade","Unificação de Can
 const PROB_ORDER = ["raro","pouco provável","provável","muito provável","praticamente certo"];
 const IMP_ORDER = ["muito baixo","baixo","médio","alto","muito alto"];
 const TRAT = ["mitigar","eliminar","transferir","aceitar"];
-const COLORS = ["#1351B4","#2670E8","#0C326F","#3F8EFC","#71A7FF","#F9A825","#C62828","#2E7D32","#FF6D00","#6A1B9A"];
+// Paleta ipeaplot-inspired
+const COLORS = ["#015f96","#168821","#e87722","#cc1a1a","#6a3d9a","#2b7bba","#33a02c","#ff7f00","#e31a1c","#8856a7"];
 
 // Build action index: parse acoes_resolvidas to extract numbered actions
 const ACTION_INDEX = {}; // action_id -> {text, risks: [risk objects]}
@@ -431,13 +432,13 @@ function initOverview(){
   // Eixo chart
   const eixoData = PTD_STATS.entregas_por_eixo;
   const eixoLabels = Object.keys(eixoData);
-  charts.eixo = new Chart(document.getElementById('chart-eixo'),{type:'bar',data:{labels:eixoLabels.map(l=>l.length>30?l.substring(0,30)+'...':l),datasets:[{data:eixoLabels.map(l=>eixoData[l]),backgroundColor:COLORS.slice(0,eixoLabels.length),borderRadius:4}]},options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{beginAtZero:true}}}});
+  charts.eixo = new Chart(document.getElementById('chart-eixo'),{type:'bar',data:{labels:eixoLabels.map(l=>l.length>35?l.substring(0,35)+'...':l),datasets:[{label:'Entregas',data:eixoLabels.map(l=>eixoData[l]),backgroundColor:COLORS.slice(0,eixoLabels.length),borderRadius:6,barPercentage:0.7}]},options:{indexAxis:'y',animation:{duration:800},plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${ctx.raw.toLocaleString('pt-BR')} entregas (${(ctx.raw/allDel.length*100).toFixed(1)}%)`}}},scales:{x:{beginAtZero:true,grid:{display:false}},y:{grid:{display:false}}}}});
 
   // Coverage donut
   const covOk=PTD_ORGANS.filter(o=>o.status_entregas==='ok').length;
   const covScan=PTD_ORGANS.filter(o=>o.status_entregas==='scan_ou_formato').length;
   const covNone=PTD_ORGANS.filter(o=>o.status_entregas==='sem_pdf').length;
-  charts.cov = new Chart(document.getElementById('chart-coverage'),{type:'doughnut',data:{labels:['Extraídos','Scan/Formato','Sem PDF'],datasets:[{data:[covOk,covScan,covNone],backgroundColor:['#2E7D32','#F9A825','#C62828']}]},options:{aspectRatio:1.6,plugins:{legend:{position:'bottom'}}}});
+  charts.cov = new Chart(document.getElementById('chart-coverage'),{type:'doughnut',data:{labels:['Dados extraídos','PDF escaneado (OCR pendente)','Sem PDF publicado'],datasets:[{data:[covOk,covScan,covNone],backgroundColor:['#168821','#e87722','#cc1a1a'],borderWidth:2,borderColor:'#fff'}]},options:{aspectRatio:1.8,cutout:'55%',animation:{animateRotate:true,duration:1000},plugins:{legend:{position:'bottom',labels:{padding:12,usePointStyle:true,pointStyle:'circle'}},tooltip:{callbacks:{label:ctx=>`${ctx.label}: ${ctx.raw} órgãos (${(ctx.raw/PTD_STATS.orgaos_total*100).toFixed(0)}%)`}}}}});
 
   // Top produtos table
   const prodCounts = {};
@@ -878,7 +879,7 @@ function initInsights(){
 
   html+=`<div class="insight-card" style="border-left-color:#2E7D32"><h4>Disparidade entre Órgãos</h4><p>Existe grande variação no volume de entregas: <strong>${maxOrg?.[0]}</strong> lidera com <span class="num">${maxOrg?.[1]}</span> entregas, enquanto <strong>${minOrg?.[0]}</strong> tem apenas <span class="num">${minOrg?.[1]}</span>. A média é ${PTD_STATS.media_entregas_por_orgao} e a mediana ${PTD_STATS.mediana_entregas_por_orgao}, indicando distribuição assimétrica com poucos órgãos concentrando muitas entregas.</p></div>`;
 
-  html+=`<div class="insight-card" style="border-left-color:#6A1B9A"><h4>Governança de Dados Sub-representada</h4><p>O eixo "Governança e Gestão de Dados" tem apenas <span class="num">${govPct.toFixed(1)}%</span> das entregas (${govDados}), apesar de conter <strong>20 dos 44 produtos canônicos</strong> (45% do catálogo). Abertura de dados, LGPD, inventário de bases e interoperabilidade aparecem raramente nas pactuações efetivas.</p></div>`;
+  html+=`<div class="insight-card" style="border-left-color:#6A1B9A"><h4>Governança de Dados: Eixo Fantasma</h4><p>O eixo "Governança e Gestão de Dados" tem <span class="num">0</span> entregas pactuadas — zero — apesar de conter <strong>20 dos 44 produtos canônicos</strong> (45% do catálogo da EFGD). Varredura completa dos 91 PDFs confirmou: <strong>nenhum órgão registrou um único produto deste eixo</strong>. Produtos como "Adequação à LGPD", "Elaboração do PDTIC", "Abertura de bases de dados" e "Implementação da interoperabilidade de dados" simplesmente não são pactuados. Quando órgãos executam ações de governança de dados, as registram sob outros produtos (ex: "Implementação do PPSI" em Segurança). Este é possivelmente o achado mais relevante do corpus: <em>o eixo mais ambicioso da EFGD não existe na prática das pactuações</em>.</p></div>`;
 
   html+=`<div class="insight-card" style="border-left-color:#00695C"><h4>Segurança: PPSI é Prioridade na Prática</h4><p>A "Implementação do PPSI" aparece <span class="num">${ppsiCount}</span> vezes e "Auto-avaliação do PPSI" <span class="num">${ppsiAutoCount}</span> vezes — juntos representam ${((ppsiCount+ppsiAutoCount)/totalDel*100).toFixed(0)}% das entregas. Esses produtos não existiam no template v4.0 original (são legados do v2.x), mas dominam o eixo Segurança e Privacidade na prática.</p></div>`;
 
