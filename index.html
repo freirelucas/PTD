@@ -919,181 +919,97 @@ function runCompare(){
   el.innerHTML=html;
 })();
 
-// ==================== 6. INSIGHTS ====================
+// ==================== 6. INSIGHTS (tom IPEA) ====================
 let insInit=false;
 function initInsights(){
   if(insInit) return; insInit=true;
   const el=document.getElementById('insights-content');
+  const N=allDel.length, NR=allRisk.length;
 
-  // Compute insights dynamically
-  const totalDel=allDel.length, totalRisk=allRisk.length;
-  const eixoCounts={};allDel.forEach(d=>{const e=d.eixo_normalizado;if(e)eixoCounts[e]=(eixoCounts[e]||0)+1;});
-  const top2Eixos=Object.entries(eixoCounts).sort((a,b)=>b[1]-a[1]).slice(0,2);
-  const top2Pct=((top2Eixos[0]?.[1]||0)+(top2Eixos[1]?.[1]||0))/totalDel*100;
-
-  const prodCounts={};allDel.forEach(d=>{const p=d.produto_normalizado;prodCounts[p]=(prodCounts[p]||0)+1;});
-  const topProd=Object.entries(prodCounts).sort((a,b)=>b[1]-a[1])[0];
-
-  const orgCounts={};allDel.forEach(d=>orgCounts[d.orgao_sigla]=(orgCounts[d.orgao_sigla]||0)+1);
-  const orgSorted=Object.entries(orgCounts).sort((a,b)=>b[1]-a[1]);
-  const maxOrg=orgSorted[0], minOrg=orgSorted[orgSorted.length-1];
-
-  const tratCounts={};allRisk.forEach(r=>{(r.tratamento_normalizado||'').split(';').forEach(t=>{t=t.trim().toLowerCase();if(['mitigar','eliminar','transferir','aceitar'].includes(t))tratCounts[t]=(tratCounts[t]||0)+1;});});
-  const mitigarPct=(tratCounts.mitigar||0)/Object.values(tratCounts).reduce((a,b)=>a+b,0)*100;
-
-  const riskTexts={};allRisk.forEach(r=>{const t=(r.risco_texto||'').substring(0,60);if(t.length>10)riskTexts[t]=(riskTexts[t]||0)+1;});
-  const topRisk=Object.entries(riskTexts).sort((a,b)=>b[1]-a[1])[0];
-
-  const probAlto=allRisk.filter(r=>r.probabilidade_normalizada==='provável'&&r.impacto_normalizado==='alto').length;
-
-  const govDados=eixoCounts['Governança e Gestão de Dados']||0;
-  const govPct=govDados/totalDel*100;
-
-  const ppsiCount=prodCounts['Implementação do PPSI']||0;
-  const ppsiAutoCount=prodCounts['Auto-avaliação, análise de lacunas e planejamento do PPSI']||0;
-
-  let html='<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">';
-
-  html+=`<div class="insight-card" style="border-left-color:#1351B4"><h4>Concentração de Entregas</h4><p><span class="num">${top2Pct.toFixed(0)}%</span> das entregas concentram-se em apenas 2 eixos: <strong>${top2Eixos[0]?.[0]?.substring(0,35)}</strong> e <strong>${top2Eixos[1]?.[0]?.substring(0,25)}</strong>. Isso sugere que a maioria dos órgãos prioriza a digitalização de serviços ao cidadão e a unificação de canais, enquanto eixos como Governança de Dados recebem menos atenção nas pactuações.</p></div>`;
-
-  html+=`<div class="insight-card" style="border-left-color:#2670E8"><h4>Produto Dominante</h4><p>"<strong>${topProd?.[0]}</strong>" é o produto mais pactuado, com <span class="num">${topProd?.[1]?.toLocaleString('pt-BR')}</span> entregas (${(topProd?.[1]/totalDel*100).toFixed(0)}% do total). Isso reflete a diretriz da EFGD de evoluir serviços já digitalizados, melhorando a qualidade e a experiência do usuário.</p></div>`;
-
-  html+=`<div class="insight-card" style="border-left-color:#FF9800"><h4>Perfil de Risco Predominante</h4><p>A célula <strong>provável × alto</strong> concentra <span class="num">${probAlto}</span> riscos — a combinação mais frequente na matriz. <span class="num">${mitigarPct.toFixed(0)}%</span> dos riscos são tratados com <strong>mitigação</strong>, indicando que os órgãos preferem reduzir probabilidade/impacto em vez de aceitar ou transferir.</p></div>`;
-
-  html+=`<div class="insight-card" style="border-left-color:#C62828"><h4>Risco Transversal</h4><p>"<strong>${topRisk?.[0]}...</strong>" aparece em <span class="num">${topRisk?.[1]}</span> órgãos — o risco mais recorrente do governo federal. A dependência de fornecedores para execução de projetos de TI é um problema sistêmico que afeta a capacidade de transformação digital.</p></div>`;
-
-  html+=`<div class="insight-card" style="border-left-color:#2E7D32"><h4>Disparidade entre Órgãos</h4><p>Existe grande variação no volume de entregas: <strong>${maxOrg?.[0]}</strong> lidera com <span class="num">${maxOrg?.[1]}</span> entregas, enquanto <strong>${minOrg?.[0]}</strong> tem apenas <span class="num">${minOrg?.[1]}</span>. A média é ${PTD_STATS.media_entregas_por_orgao} e a mediana ${PTD_STATS.mediana_entregas_por_orgao}, indicando distribuição assimétrica com poucos órgãos concentrando muitas entregas.</p></div>`;
-
-  html+=`<div class="insight-card" style="border-left-color:#6A1B9A"><h4>Governança de Dados: Eixo Quase Fantasma</h4><p>O eixo "Governança e Gestão de Dados" tem apenas <span class="num">${govDados}</span> entregas — ${govPct.toFixed(1)}% do total — apesar de conter <strong>20 dos 44 produtos canônicos</strong> (45% do catálogo da EFGD). Todas essas entregas correspondem a um único produto: "Integração à base de dados". Produtos como "Adequação à LGPD", "Elaboração do PDTIC", "Abertura de bases de dados" e "Publicação de dados no Portal de Dados Abertos" <strong>não aparecem em nenhuma pactuação</strong>. O eixo mais ambicioso da EFGD opera, na prática, com apenas 1 de seus 20 produtos.</p></div>`;
-
-  html+=`<div class="insight-card" style="border-left-color:#00695C"><h4>Segurança: PPSI é Prioridade na Prática</h4><p>A "Implementação do PPSI" aparece <span class="num">${ppsiCount}</span> vezes e "Auto-avaliação do PPSI" <span class="num">${ppsiAutoCount}</span> vezes — juntos representam ${((ppsiCount+ppsiAutoCount)/totalDel*100).toFixed(0)}% das entregas. Esses produtos não existiam no template v4.0 original (são legados do v2.x), mas dominam o eixo Segurança e Privacidade na prática.</p></div>`;
-
-  html+=`<div class="insight-card" style="border-left-color:#37474F"><h4>Cobertura do Corpus</h4><p>O pipeline extraiu dados de <span class="num">${PTD_STATS.entregas_orgaos}</span>/91 órgãos para entregas e <span class="num">${PTD_STATS.riscos_orgaos}</span>/86 para riscos. Os <strong>${PTD_STATS.pdfs_escaneados_pendentes} órgãos pendentes</strong> possuem PDFs escaneados como imagem — recuperáveis via OCR (Docling). O corpus atual cobre a grande maioria da administração federal direta e indireta.</p></div>`;
-
-  // Tragédias anunciadas: riscos críticos (provável+ e alto+)
-  const highProb=new Set(["provável","muito provável","praticamente certo"]);
-  const highImp=new Set(["alto","muito alto"]);
-  const critical=allRisk.filter(r=>highProb.has(r.probabilidade_normalizada)&&highImp.has(r.impacto_normalizado));
-  const critOrgs=new Set(critical.map(r=>r.orgao_sigla));
-  const critTexts={};critical.forEach(r=>{const t=(r.risco_texto||'').substring(0,60);if(t.length>10)critTexts[t]=(critTexts[t]||0)+1;});
-  const topCrit=Object.entries(critTexts).sort((a,b)=>b[1]-a[1]).slice(0,5);
-
-  html+=`<div class="insight-card" style="border-left-color:#B71C1C"><h4>Tragédias Anunciadas: ${critical.length} Riscos Críticos</h4><p>
-    <span class="num">${critical.length}</span> riscos foram classificados pelos próprios órgãos como <strong>provável ou pior</strong> com impacto <strong>alto ou muito alto</strong> — em <strong>${critOrgs.size}</strong> órgãos. São riscos que os gestores reconhecem como quase certos de acontecer com consequências graves:<br><br>
-    ${topCrit.map(([t,c])=>`<strong>${c} órgãos:</strong> "${t}..."<br>`).join('')}
-    <br>O mais alarmante: <strong>5 riscos</strong> estão na célula máxima (<em>praticamente certo × muito alto</em>), incluindo indisponibilidade de equipes de TI (INSS), falta de recursos humanos (MPO) e atrasos na implementação do PPSI (MRE).
-  </p></div>`;
-
-  // Conexão produto-risco-mitigação
-  const critOrgProds={};
-  allDel.forEach(d=>{if(critOrgs.has(d.orgao_sigla))critOrgProds[d.produto_normalizado]=(critOrgProds[d.produto_normalizado]||0)+1;});
-  const topCritProds=Object.entries(critOrgProds).sort((a,b)=>b[1]-a[1]).slice(0,5);
-
-  // Ações mais usadas em riscos críticos
-  const critActions={};
-  critical.forEach(r=>{
-    const res=r.acoes_resolvidas||'';
-    if(res.includes('|'))res.split('|').forEach(p=>{const m=p.trim().match(/^(\d+)\.\s*(.+)/);if(m)critActions[m[1]+'. '+m[2].substring(0,50)]=(critActions[m[1]+'. '+m[2].substring(0,50)]||0)+1;});
-  });
-  const topCritActions=Object.entries(critActions).sort((a,b)=>b[1]-a[1]).slice(0,5);
-
-  html+=`<div class="insight-card" style="border-left-color:#E65100"><h4>Conexão Produto → Risco → Mitigação</h4><p>
-    Os ${critOrgs.size} órgãos com riscos críticos concentram suas entregas em:<br>
-    ${topCritProds.map(([p,c])=>`<strong>${p}</strong> (${c} entregas)<br>`).join('')}
-    <br>Para mitigar esses riscos, as ações mais pactuadas são:<br>
-    ${topCritActions.map(([a,c])=>`"${a}..." (${c}x)<br>`).join('')}
-    <br><strong>Padrão:</strong> órgãos com alta carga de digitalização (Evolução do Serviço, Login Único) são os mesmos que enfrentam riscos de dependência de fornecedores e indisponibilidade de TI — revelando um ciclo: <em>mais ambição digital → mais dependência externa → mais risco</em>.
-  </p></div>`;
-
-  // Governança de dados + riscos de compartilhamento
-  const compRisks=allRisk.filter(r=>(r.risco_texto||'').toLowerCase().includes('compartilhamento') || (r.risco_texto||'').toLowerCase().includes('interoperabilidade') || (r.risco_texto||'').toLowerCase().includes('dados'));
-  html+=`<div class="insight-card" style="border-left-color:#4527A0"><h4>Dados e Interoperabilidade: Risco Silencioso</h4><p>
-    <span class="num">${compRisks.length}</span> riscos mencionam "compartilhamento de dados", "interoperabilidade" ou "dados" — frequentemente classificados como <strong>resistência a compartilhamento</strong> (8 órgãos com prob. provável e impacto alto). Ao mesmo tempo, o eixo Governança e Gestão de Dados tem apenas ${govPct.toFixed(0)}% das entregas, apesar de ter 20 dos 44 produtos canônicos. Essa combinação — <em>risco reconhecido + baixa priorização</em> — sugere que a interoperabilidade de dados entre órgãos é o maior gargalo não-endereçado da transformação digital federal.
-  </p></div>`;
-
-  // Projetos Especiais
-  const peCount=eixoCounts['Projetos Especiais']||0;
-  const peOrgs=new Set();allDel.filter(d=>d.eixo_normalizado==='Projetos Especiais').forEach(d=>peOrgs.add(d.orgao_sigla));
-  html+=`<div class="insight-card" style="border-left-color:#E65100"><h4>Projetos Especiais: Espaço Subutilizado</h4><p>O eixo "Projetos Especiais" contém apenas <span class="num">${peCount}</span> entregas em <strong>${peOrgs.size}</strong> órgãos — o menor volume de todos os eixos. Esse é o espaço previsto na EFGD para <strong>iniciativas inovadoras de transformação digital</strong>, incluindo uso de IA, automação, analytics e projetos experimentais. A baixa adesão sugere que os órgãos priorizam demandas obrigatórias (Login Único, PPSI) em detrimento de projetos estratégicos de maior potencial transformador.</p></div>`;
-
-  // Potencial de IA
-  const iaTerms=['inteligencia artificial','ia ','machine learning','aprendizado de máquina','chatbot','assistente virtual','automação','automatiz','analytics','dados abertos','big data','nlp','processamento de linguagem'];
-  let iaCount=0;const iaOrgs=new Set();
-  allDel.forEach(d=>{const t=((d.servico_acao||'')+(d.produto_original||'')).toLowerCase();if(iaTerms.some(k=>t.includes(k))){iaCount++;iaOrgs.add(d.orgao_sigla);}});
-  html+=`<div class="insight-card" style="border-left-color:#0D47A1"><h4>IA e Automação na Administração Pública</h4><p>Buscando termos relacionados a IA, automação e analytics nos textos livres das entregas, encontramos <span class="num">${iaCount}</span> menções em <strong>${iaOrgs.size}</strong> órgãos. ${iaCount>50?'Há um movimento emergente':'A presença ainda é tímida'} de adoção de IA no governo federal. As oportunidades mais claras estão em: <strong>atendimento virtual</strong> (chatbots para serviços ao cidadão), <strong>análise de dados</strong> (dashboards e predição), <strong>automação de processos</strong> (RPA para back-office) e <strong>interoperabilidade inteligente</strong> (APIs com enriquecimento de dados).</p></div>`;
-
-  // Eixos com potencial transformador
-  html+=`<div class="insight-card" style="border-left-color:#1B5E20"><h4>Eixos com Maior Potencial Transformador</h4><p>Embora "Serviços Digitais" domine em volume, os eixos com <strong>maior potencial de impacto sistêmico</strong> são:<br>
-  <strong>1. Governança e Gestão de Dados</strong> (${govPct.toFixed(0)}% das entregas) — a interoperabilidade de dados entre órgãos pode eliminar redundâncias, melhorar políticas públicas baseadas em evidência, e habilitar o uso de IA em escala.<br>
-  <strong>2. Projetos Especiais</strong> — espaço formal para inovação que pode catalisar a modernização transversal.<br>
-  <strong>3. Unificação de Canais</strong> — a migração para plataforma unificada Gov.br cria a infraestrutura para experiências digitais integradas e personalização via IA.</p></div>`;
-
-  // === DISCREPÂNCIA ESTRUTURAL 6 PRINCÍPIOS × 5 EIXOS ===
-  html+=`<div class="insight-card" style="border-left-color:#264A7F"><h4>6 Princípios, 5 Eixos: A Tradução Incompleta</h4><p>
-    O Decreto 12.198/2024 estabelece <span class="num">6</span> princípios para a EFGD. A SGD os traduz em <span class="num">5</span> eixos operacionais no template PTD. Mas a tradução não é 1:1:<br><br>
-    <strong>Princípio V — "Transparente, Aberto e Participativo"</strong>: deveria se materializar em produtos como "Publicação de dados no Portal de Dados Abertos" e "Elaboração de Plano de Dados Abertos" (eixo Governança) — porém nenhum desses produtos foi pactuado por qualquer órgão.<br>
-    <strong>Princípio VI — "Eficiente e Sustentável"</strong>: plataformas compartilhadas e sustentabilidade não têm eixo dedicado nem produtos com pactuação.<br><br>
-    Na prática, o governo digital federal opera sobre <strong>3 princípios efetivos</strong>: digitalização de serviços (I), integração/unificação (II) e segurança (IV). Inteligência/inovação (III), transparência (V) e eficiência sustentável (VI) ficam sem expressão operacional nos PTDs.
-  </p></div>`;
-
-  // === NOVOS INSIGHTS — RISCOS E MITIGAÇÕES ===
-
-  // Riscos sem ação de mitigação
-  const noAction=allRisk.filter(r=>!(r.acoes_original||'').trim()&&!(r.acoes_resolvidas||'').trim());
-  const noActionHigh=noAction.filter(r=>['alto','muito alto'].includes(r.impacto_normalizado));
-  html+=`<div class="insight-card" style="border-left-color:#b71c1c"><h4>Riscos sem Plano de Ação: ${noAction.length} de ${allRisk.length}</h4><p>
-    <span class="num">${(noAction.length/allRisk.length*100).toFixed(0)}%</span> dos riscos mapeados não possuem nenhuma ação de tratamento registrada — o campo está vazio. Desses, <strong>${noActionHigh.length} têm impacto alto ou muito alto</strong>. Isso sugere que muitos órgãos cumprem a obrigatoriedade de mapear riscos mas não detalham como pretender tratá-los — a gestão de riscos fica <em>formal mas não operacional</em>.
-  </p></div>`;
-
-  // Aceitação de riscos altos
-  const acceptHigh=allRisk.filter(r=>(r.tratamento_normalizado||'').toLowerCase().includes('aceitar')&&['alto','muito alto'].includes(r.impacto_normalizado));
-  const acceptOrgs=new Set(acceptHigh.map(r=>r.orgao_sigla));
-  html+=`<div class="insight-card" style="border-left-color:#e65100"><h4>Aceitação Deliberada de Riscos Altos</h4><p>
-    <span class="num">${acceptHigh.length}</span> riscos com impacto alto/muito alto são deliberadamente <strong>aceitos</strong> por <strong>${acceptOrgs.size} órgãos</strong>. Casos como "alteração na política pública" e "despriorização do PTD pela alta administração" são classificados como impacto alto mas tratados com aceitação — o órgão reconhece o risco mas decide não agir, possivelmente por estar fora de sua governabilidade.
-  </p></div>`;
-
-  // Monocultura do mitigar
-  const orgTrat={};allRisk.forEach(r=>{if(!orgTrat[r.orgao_sigla])orgTrat[r.orgao_sigla]=new Set();(r.tratamento_normalizado||'').split(';').forEach(t=>{t=t.trim().toLowerCase();if(['mitigar','eliminar','transferir','aceitar'].includes(t))orgTrat[r.orgao_sigla].add(t);});});
-  const onlyMitigar=Object.entries(orgTrat).filter(([o,s])=>s.size===1&&s.has('mitigar')).length;
-  const diversified=Object.entries(orgTrat).filter(([o,s])=>s.size>=3).length;
-  html+=`<div class="insight-card" style="border-left-color:#015f96"><h4>Monocultura da Mitigação</h4><p>
-    <span class="num">${onlyMitigar}</span> órgãos usam exclusivamente "mitigar" como estratégia de tratamento — nenhum risco é eliminado, transferido ou aceito. Apenas <strong>${diversified} órgãos</strong> diversificam com 3+ estratégias. Em todos os níveis de impacto, mitigar domina com ~80%. A literatura de gestão de riscos recomenda que riscos de baixa probabilidade sejam aceitos e riscos transferíveis (como dependência de fornecedores) sejam compartilhados — a ausência dessas estratégias sugere baixa maturidade em gestão de riscos.
-  </p></div>`;
-
-  // Riscos fiscais vs pessoal
-  const fiscal=allRisk.filter(r=>{const t=(r.risco_texto||'').toLowerCase();return t.includes('orçament')||t.includes('recurso')||t.includes('financ')||t.includes('custo');});
-  const pessoal=allRisk.filter(r=>{const t=(r.risco_texto||'').toLowerCase();return t.includes('equipe')||t.includes('pessoal')||t.includes('rotatividade')||t.includes('recurso humano')||t.includes('força de trabalho')||t.includes('disponibilidade');});
-  const fiscalOrgs=new Set(fiscal.map(r=>r.orgao_sigla));
-  const pessoalOrgs=new Set(pessoal.map(r=>r.orgao_sigla));
-  html+=`<div class="insight-card" style="border-left-color:#1565c0"><h4>Pessoas > Orçamento: Os Dois Riscos Estruturais</h4><p>
-    Os riscos do governo digital se concentram em duas dimensões estruturais:<br>
-    <strong>Pessoal/Capacidade:</strong> <span class="num">${pessoal.length}</span> riscos em ${pessoalOrgs.size} órgãos — rotatividade, indisponibilidade de equipes de TI, dependência de fornecedores.<br>
-    <strong>Orçamento/Fiscal:</strong> <span class="num">${fiscal.length}</span> riscos em ${fiscalOrgs.size} órgãos — cortes orçamentários, falta de recursos para contratações.<br>
-    Riscos de pessoal são <strong>${(pessoal.length/fiscal.length).toFixed(1)}x mais frequentes</strong> que fiscais, indicando que o gargalo da transformação digital não é dinheiro — é gente qualificada.
-  </p></div>`;
-
-  // Viés de avaliação (otimistas vs pessimistas)
-  const probIdx={"raro":0,"pouco provável":1,"provável":2,"muito provável":3,"praticamente certo":4};
-  const orgProbAvg={};
-  allRisk.forEach(r=>{const p=probIdx[r.probabilidade_normalizada];if(p!==undefined){if(!orgProbAvg[r.orgao_sigla])orgProbAvg[r.orgao_sigla]={sum:0,n:0};orgProbAvg[r.orgao_sigla].sum+=p;orgProbAvg[r.orgao_sigla].n++;}});
-  const optimists=Object.entries(orgProbAvg).filter(([o,v])=>v.n>=3&&v.sum/v.n<1.2).map(([o,v])=>({o,avg:(v.sum/v.n).toFixed(1),n:v.n}));
-  html+=`<div class="insight-card" style="border-left-color:#2e7d32"><h4>Viés de Avaliação: Otimistas Estruturais</h4><p>
-    <span class="num">${optimists.length}</span> órgãos classificam sistematicamente todos os seus riscos como "raro" ou "pouco provável" (média < 1.2 na escala 0-4): <strong>${optimists.map(x=>x.o).join(', ')}</strong>. ${optimists.length>0?'Nenhum órgão é sistematicamente pessimista (média > 2.8).':''}  Esse viés otimista pode indicar auto-avaliação branda ou baixa percepção de riscos — exatamente os órgãos que menos se preparam são os mais vulneráveis a surpresas.
-  </p></div>`;
-
-  // Relação entregas vs riscos
+  // Pre-compute
+  const eixoC={};allDel.forEach(d=>{const e=d.eixo_normalizado;if(e)eixoC[e]=(eixoC[e]||0)+1;});
+  const prodC={};allDel.forEach(d=>{prodC[d.produto_normalizado]=(prodC[d.produto_normalizado]||0)+1;});
+  const orgProds={};allDel.forEach(d=>{if(!orgProds[d.orgao_sigla])orgProds[d.orgao_sigla]=new Set();orgProds[d.orgao_sigla].add(d.produto_normalizado);});
   const orgDelC={};allDel.forEach(d=>orgDelC[d.orgao_sigla]=(orgDelC[d.orgao_sigla]||0)+1);
   const orgRiskC={};allRisk.forEach(r=>orgRiskC[r.orgao_sigla]=(orgRiskC[r.orgao_sigla]||0)+1);
+  const prodPresence={};Object.values(orgProds).forEach(s=>s.forEach(p=>{prodPresence[p]=(prodPresence[p]||0)+1;}));
+  const nOrgsD=Object.keys(orgProds).length;
+
+  // Risks analysis
+  const riskTexts={};allRisk.forEach(r=>{const t=(r.risco_texto||'').trim().toLowerCase().substring(0,60);if(t.length>10)riskTexts[t]=(riskTexts[t]||0)+1;});
+  const templateRisks=new Set(Object.entries(riskTexts).filter(([t,c])=>c>=5).map(([t])=>t));
+  let nTemplate=0,nOriginal=0;
+  allRisk.forEach(r=>{const t=(r.risco_texto||'').trim().toLowerCase().substring(0,60);templateRisks.has(t)?nTemplate++:nOriginal++;});
+  const noAction=allRisk.filter(r=>!(r.acoes_original||'').trim()&&!(r.acoes_resolvidas||'').trim());
+  const noActionHigh=noAction.filter(r=>['alto','muito alto'].includes(r.impacto_normalizado));
+  const highProb=new Set(['provável','muito provável','praticamente certo']);
+  const highImp=new Set(['alto','muito alto']);
+  const critical=allRisk.filter(r=>highProb.has(r.probabilidade_normalizada)&&highImp.has(r.impacto_normalizado));
+
+  // Temporal
+  const months={"jan":1,"fev":2,"mar":3,"abr":4,"mai":5,"jun":6,"jul":7,"ago":8,"set":9,"out":10,"nov":11,"dez":12};
+  let nDez=0;allDel.forEach(d=>{if((d.data_pactuada||'').toLowerCase().includes('dez')||/\/12\//.test(d.data_pactuada||''))nDez++;});
+
+  // Treatment diversity
+  const orgTrat={};allRisk.forEach(r=>{if(!orgTrat[r.orgao_sigla])orgTrat[r.orgao_sigla]=new Set();(r.tratamento_normalizado||'').split(';').forEach(t=>{t=t.trim().toLowerCase();if(['mitigar','eliminar','transferir','aceitar'].includes(t))orgTrat[r.orgao_sigla].add(t);});});
+  const onlyMit=Object.entries(orgTrat).filter(([o,s])=>s.size===1&&s.has('mitigar')).length;
+  const diverse=Object.entries(orgTrat).filter(([o,s])=>s.size>=3).length;
+
+  // Personnel vs fiscal
+  const pessoalKw=['equipe','pessoal','rotatividade','recurso humano','força de trabalho','fornecedor','disponibilidade'];
+  const fiscalKw=['orçament','recurso','financ','custo'];
+  const nPessoal=allRisk.filter(r=>{const t=(r.risco_texto||'').toLowerCase();return pessoalKw.some(k=>t.includes(k));}).length;
+  const nFiscal=allRisk.filter(r=>{const t=(r.risco_texto||'').toLowerCase();return fiscalKw.some(k=>t.includes(k));}).length;
+  const orgNoPessoal=Object.keys(orgRiskC).filter(o=>!allRisk.some(r=>r.orgao_sigla===o&&pessoalKw.some(k=>(r.risco_texto||'').toLowerCase().includes(k)))).length;
+
+  // Ratios
   const ratios=Object.keys(orgDelC).filter(o=>orgRiskC[o]>0).map(o=>({o,d:orgDelC[o],r:orgRiskC[o],ratio:orgDelC[o]/orgRiskC[o]})).sort((a,b)=>b.ratio-a.ratio);
+
+  // Governance
+  const govDados=eixoC['Governança e Gestão de Dados']||0;
+
+  // Top 2 eixos
+  const eixoSorted=Object.entries(eixoC).sort((a,b)=>b[1]-a[1]);
+  const top2pct=((eixoSorted[0]?.[1]||0)+(eixoSorted[1]?.[1]||0))/N*100;
+
+  // Build HTML
+  let html='<h3 style="color:var(--dark);margin-bottom:16px">A. Estrutura do corpus</h3><div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px">';
+
+  html+=`<div class="insight-card" style="border-left-color:#264A7F"><h4>Cobertura e representatividade</h4><p>O corpus abrange <span class="num">${PTD_STATS.orgaos_total}</span> órgãos signatários, dos quais ${nOrgsD} geraram dados de entregas e ${Object.keys(orgRiskC).length} de riscos. Foram extraídos ${N.toLocaleString('pt-BR')} registros de entregas e ${NR} de riscos. Os ${PTD_STATS.pdfs_escaneados_pendentes} órgãos ausentes possuem PDFs publicados como imagem, sem camada de texto — uma limitação que pode ser superada com processamento OCR. Embora a amostra não seja censitária, a cobertura de 87% dos órgãos confere representatividade substantiva ao corpus.</p></div>`;
+
+  const ppsiPres=prodPresence['Implementação do PPSI']||0;
+  const loginPres=prodPresence['Integração ao Login Único']||0;
+  html+=`<div class="insight-card" style="border-left-color:#264A7F"><h4>Homogeneidade das pactuações</h4><p>Nenhum produto está presente em todos os ${nOrgsD} órgãos. O mais difundido é "Implementação do PPSI", pactuado por <span class="num">${ppsiPres}</span> órgãos (${(ppsiPres/nOrgsD*100).toFixed(0)}%), seguido de "Integração ao Login Único" em ${loginPres} (${(loginPres/nOrgsD*100).toFixed(0)}%). Observa-se uma padronização de facto centrada em segurança (PPSI) e identidade digital (Login Único), enquanto a diversidade de produtos efetivamente pactuados é limitada: apenas 19 dos 44 produtos canônicos aparecem no corpus. Os 25 restantes existem no catálogo da EFGD mas não nas pactuações reais.</p></div>`;
+
+  html+=`<div class="insight-card" style="border-left-color:#264A7F"><h4>Concentração temporal das entregas</h4><p>Aproximadamente <span class="num">${(nDez/N*100).toFixed(0)}%</span> das entregas (${nDez.toLocaleString('pt-BR')} registros) têm data pactuada em dezembro, tipicamente o último mês do ciclo de vigência. Esse padrão é consistente com a dinâmica de final de exercício observada em outros instrumentos de planejamento governamental. Cabe investigar se essa concentração reflete planejamento deliberado ou acúmulo de pendências — distinção relevante para a efetividade do instrumento.</p></div>`;
+
+  html+=`</div><h3 style="color:var(--dark);margin-bottom:16px">B. Análise das entregas</h3><div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px">`;
+
+  html+=`<div class="insight-card" style="border-left-color:#4D8AC9"><h4>Concentração em dois eixos</h4><p>Os eixos "${eixoSorted[0]?.[0]?.substring(0,30)}" e "${eixoSorted[1]?.[0]?.substring(0,25)}" concentram <span class="num">${top2pct.toFixed(0)}%</span> das entregas. Essa distribuição indica que a transformação digital federal, na prática das pactuações, prioriza a interface com o cidadão (digitalização de serviços e unificação de plataformas) em detrimento de dimensões estruturantes como governança de dados, segurança aprofundada e projetos de inovação.</p></div>`;
+
+  html+=`<div class="insight-card" style="border-left-color:#4D8AC9"><h4>Governança de Dados: o eixo residual</h4><p>O eixo "Governança e Gestão de Dados" registra <span class="num">${govDados}</span> entregas (${(govDados/N*100).toFixed(1)}% do total), todas concentradas em um único produto ("Integração à base de dados"). Os demais 19 produtos deste eixo — incluindo adequação à LGPD, abertura de bases, elaboração de PDTIC, interoperabilidade — apresentam <strong>zero pactuações</strong>. Trata-se do eixo com maior catálogo (20 de 44 produtos, ou 45%) e menor execução, configurando uma lacuna estrutural entre a ambição normativa e a prática dos PTDs.</p></div>`;
+
+  html+=`<div class="insight-card" style="border-left-color:#4D8AC9"><h4>Seis princípios, cinco eixos: a tradução incompleta</h4><p>O Decreto 12.198/2024 estabelece 6 princípios para a EFGD; o template PTD os operacionaliza em 5 eixos. Os dados sugerem que, na prática, operam efetivamente <span class="num">3</span> princípios: o centrado no cidadão (I), o integrado (II) e o confiável/seguro (IV). Os princípios de governo inteligente (III), transparente e participativo (V) e eficiente/sustentável (VI) carecem de expressão operacional nas pactuações, indicando que a distância entre a aspiração estratégica e a execução institucional é significativa.</p></div>`;
+
+  html+=`</div><h3 style="color:var(--dark);margin-bottom:16px">C. Análise dos riscos</h3><div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px">`;
+
+  html+=`<div class="insight-card" style="border-left-color:#C0392B"><h4>Reprodução do referencial padrão</h4><p>Dos ${NR} riscos mapeados, <span class="num">${(nTemplate/NR*100).toFixed(0)}%</span> (${nTemplate}) utilizam textos presentes em 5 ou mais órgãos — indicativo de reprodução do referencial padrão da SGD. Apenas ${nOriginal} riscos (${(nOriginal/NR*100).toFixed(0)}%) apresentam redação original. Os riscos mais replicados — "dependência de fornecedores", "atraso nos cronogramas", "baixo comprometimento das áreas de negócio" — refletem preocupações legítimas, porém sua uniformidade sugere que a etapa de gestão de riscos pode estar sendo tratada como formalidade de conformidade mais do que como exercício analítico genuíno.</p></div>`;
+
+  html+=`<div class="insight-card" style="border-left-color:#C0392B"><h4>Riscos sem plano de ação</h4><p><span class="num">${noAction.length}</span> riscos (${(noAction.length/NR*100).toFixed(0)}% do total) não possuem ações de tratamento registradas. Desses, <strong>${noActionHigh.length}</strong> foram classificados pelos próprios órgãos como de impacto alto ou muito alto. A ausência de ações para riscos reconhecidamente severos indica uma dissociação entre o diagnóstico e a resposta — o mapeamento existe, mas a mitigação não se materializa no documento.</p></div>`;
+
+  html+=`<div class="insight-card" style="border-left-color:#C0392B"><h4>Baixa diversidade de tratamento</h4><p><span class="num">${onlyMit}</span> órgãos utilizam exclusivamente "mitigar" como opção de tratamento, sem recorrer a eliminação, transferência ou aceitação. Apenas <strong>${diverse}</strong> órgãos diversificam com 3 ou mais estratégias. Em todos os níveis de impacto, a mitigação representa aproximadamente 80% das respostas. A literatura de gestão de riscos recomenda que riscos de baixa probabilidade sejam aceitos e riscos transferíveis — como dependência de fornecedores — sejam compartilhados. A predominância da mitigação pode indicar baixa maturidade na gestão de riscos ou adesão mecânica ao template.</p></div>`;
+
+  html+=`</div><h3 style="color:var(--dark);margin-bottom:16px">D. Análise transversal</h3><div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px">`;
+
+  html+=`<div class="insight-card" style="border-left-color:#27AE60"><h4>Pessoas, não orçamento</h4><p>Riscos relacionados a pessoal, equipes e fornecedores somam <span class="num">${nPessoal}</span> registros, enquanto riscos fiscais e orçamentários totalizam ${nFiscal} — uma proporção de ${(nPessoal/Math.max(nFiscal,1)).toFixed(1)}:1. Adicionalmente, ${orgNoPessoal} dos ${Object.keys(orgRiskC).length} órgãos com riscos mapeados (${(orgNoPessoal/Object.keys(orgRiskC).length*100).toFixed(0)}%) não mencionam nenhum risco de pessoal ou capacidade de TI. Os dados indicam que a restrição estrutural mais reconhecida para a transformação digital não é orçamentária, mas de capital humano — embora uma parcela significativa de órgãos não a identifique.</p></div>`;
+
+  html+=`<div class="insight-card" style="border-left-color:#27AE60"><h4>Riscos de alta severidade</h4><p><span class="num">${critical.length}</span> riscos foram classificados com probabilidade provável ou superior e impacto alto ou muito alto — o que configura a zona crítica da matriz. Esses riscos distribuem-se por <strong>${new Set(critical.map(r=>r.orgao_sigla)).size}</strong> órgãos. Os mais recorrentes nessa faixa referem-se a dependência de fornecedores, indisponibilidade de equipes de TI e atraso nos cronogramas. Cabe observar que a classificação é autodeclarada pelo órgão, o que pode introduzir vieses de sub ou superestimação.</p></div>`;
+
   const highAmb=ratios.slice(0,3);
   const lowAmb=ratios.slice(-3).reverse();
-  html+=`<div class="insight-card" style="border-left-color:#6a1b9a"><h4>Ambição vs Cautela: Razão Entregas/Riscos</h4><p>
-    A razão entregas por risco revela perfis opostos:<br>
-    <strong>Alta ambição, poucos riscos:</strong> ${highAmb.map(x=>`${x.o} (${x.d} entregas / ${x.r} riscos = ${x.ratio.toFixed(0)}:1)`).join(', ')} — muitas entregas pactuadas mas poucos riscos declarados, potencialmente subestimando desafios.<br>
-    <strong>Cautela extrema:</strong> ${lowAmb.map(x=>`${x.o} (${x.d} entregas / ${x.r} riscos = ${x.ratio.toFixed(1)}:1)`).join(', ')} — mais riscos do que entregas, indicando consciência de vulnerabilidades ou ambiente de alta complexidade.
-  </p></div>`;
+  html+=`<div class="insight-card" style="border-left-color:#27AE60"><h4>Razão entregas por risco</h4><p>A razão entre entregas pactuadas e riscos mapeados varia consideravelmente: os maiores valores — ${highAmb.map(x=>`${x.o} (${x.ratio.toFixed(0)}:1)`).join(', ')} — indicam órgãos com muitas entregas e poucos riscos declarados. No extremo oposto — ${lowAmb.map(x=>`${x.o} (${x.ratio.toFixed(1)}:1)`).join(', ')} — observam-se mais riscos do que entregas. Essa métrica, embora exploratória, pode sinalizar diferenças na cultura de planejamento: otimismo excessivo na pactuação ou, alternativamente, cautela sistemática na identificação de obstáculos.</p></div>`;
 
-  html+='</div>';
+  html+=`</div>`;
   el.innerHTML=html;
 }
 
