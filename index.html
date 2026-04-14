@@ -142,6 +142,7 @@ tr:hover td{background:var(--light)}
   <h2>Visão Geral</h2>
   <p class="desc">Panorama dos <strong>Planos de Transformação Digital (PTDs)</strong> de 91 órgãos da administração pública federal, conforme publicados no portal gov.br. Os dados foram extraídos automaticamente dos PDFs oficiais (Documento Diretivo e Anexo de Entregas) e padronizados conforme a taxonomia da <strong>EFGD 2024-2027</strong> (Decreto nº 12.198/2024).</p>
   <div class="kpi-row" id="kpi-cards"></div>
+  <div class="chart-container"><h3>Cronologia das Assinaturas dos PTDs</h3><p class="desc" style="margin-bottom:8px">Data de criação do PDF como proxy da assinatura. Barras mostram o volume de entregas pactuadas pelos órgãos que assinaram em cada mês.</p><canvas id="chart-timeline"></canvas><div id="timeline-insight" style="margin-top:12px"></div></div>
   <div class="chart-row">
     <div class="chart-container"><h3>Entregas por Eixo Estratégico</h3><canvas id="chart-eixo"></canvas></div>
     <div class="chart-container chart-sm"><h3>Cobertura de Extração</h3><canvas id="chart-coverage"></canvas></div>
@@ -475,6 +476,24 @@ function initOverview(){
     {l:'Cobertura',v:Math.round(cov/PTD_STATS.orgaos_total*100)+'%',s:cov+'/'+PTD_STATS.orgaos_total+' órgãos'},
   ].map(k=>`<div class="kpi"><div class="label">${k.l}</div><div class="value">${k.v}</div><div class="sub">${k.s}</div></div>`).join('');
 
+  // Timeline chart
+  if(typeof PTD_TIMELINE !== 'undefined'){
+    const tlMonths=Object.keys(PTD_TIMELINE).sort();
+    const tlEntregas=tlMonths.map(m=>PTD_TIMELINE[m]);
+    const tlOrgans=tlMonths.map(m=>(typeof PTD_TIMELINE_ORGANS!=='undefined'?PTD_TIMELINE_ORGANS[m]:0)||0);
+    const tlLabels=tlMonths.map(m=>{const [y,mo]=m.split('-');const nomes=['','jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];return nomes[parseInt(mo)]+'/'+y.substring(2);});
+    charts.timeline=new Chart(document.getElementById('chart-timeline'),{type:'bar',data:{labels:tlLabels,datasets:[
+      {label:'Entregas pactuadas',data:tlEntregas,backgroundColor:'#264A7F',borderRadius:4,yAxisID:'y'},
+      {label:'Órgãos signatários',data:tlOrgans,backgroundColor:'#C0392B',borderRadius:4,yAxisID:'y1'}
+    ]},options:{animation:{duration:800},plugins:{legend:{position:'bottom',labels:{usePointStyle:true,pointStyle:'rect'}},tooltip:{callbacks:{label:ctx=>ctx.dataset.label+': '+ctx.raw.toLocaleString('pt-BR')}}},scales:{y:{beginAtZero:true,position:'left',title:{display:true,text:'Entregas'},grid:{display:false}},y1:{beginAtZero:true,position:'right',title:{display:true,text:'Órgãos'},grid:{drawOnChartArea:false}},x:{grid:{display:false}}}}});
+    // Insight sobre padrões temporais
+    const peakMonth=tlMonths[tlEntregas.indexOf(Math.max(...tlEntregas))];
+    const peakLabel=tlLabels[tlMonths.indexOf(peakMonth)];
+    const earlyOrgs=Object.entries(typeof PTD_DATES!=='undefined'?PTD_DATES:{}).filter(([s,d])=>d<'2025-04').length;
+    const lateOrgs=Object.entries(typeof PTD_DATES!=='undefined'?PTD_DATES:{}).filter(([s,d])=>d>='2025-10').length;
+    document.getElementById('timeline-insight').innerHTML=`<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px"><div class="kpi" style="padding:12px;border-top:3px solid #264A7F"><div class="label">Pico de assinaturas</div><div class="value" style="font-size:1.3rem">${peakLabel}</div><div class="sub">${PTD_TIMELINE[peakMonth].toLocaleString('pt-BR')} entregas pactuadas</div></div><div class="kpi" style="padding:12px;border-top:3px solid #27AE60"><div class="label">Primeiros adotantes</div><div class="value" style="font-size:1.3rem">${earlyOrgs}</div><div class="sub">órgãos até mar/2025</div></div><div class="kpi" style="padding:12px;border-top:3px solid #E67E22"><div class="label">Adotantes tardios</div><div class="value" style="font-size:1.3rem">${lateOrgs}</div><div class="sub">órgãos a partir de out/2025</div></div></div>`;
+  }
+
   // Eixo chart
   const eixoData = PTD_STATS.entregas_por_eixo;
   const eixoLabels = Object.keys(eixoData);
@@ -770,6 +789,8 @@ function openOrganModal(sigla){
   let html=`<h2>${sigla}</h2><div class="meta">`;
   if(o.grupo) html+=`<span>Grupo: <b>${o.grupo}</b></span>`;
   html+=`<span>Entregas: <b>${o.n_entregas}</b></span><span>Riscos: <b>${o.n_riscos}</b></span>`;
+  const orgDate=typeof PTD_DATES!=='undefined'?PTD_DATES[sigla]:'';
+  if(orgDate) html+=`<span>Assinatura: <b>${orgDate}</b></span>`;
   if(o.url_diretivo) html+=`<a href="${o.url_diretivo}" target="_blank">PDF Diretivo</a>`;
   if(o.url_entregas) html+=`<a href="${o.url_entregas}" target="_blank">PDF Entregas</a>`;
   html+=`</div>`;
