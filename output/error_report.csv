@@ -1,0 +1,34 @@
+﻿orgao,doc,status,motivo
+ABIN,diretivo,sem_pdf,Órgão não publica Documento Diretivo no site gov.br (só Anexo de Entregas)
+ANTT,diretivo,sem_pdf,Órgão não publica Documento Diretivo no site gov.br (só Anexo de Entregas)
+DNIT,diretivo,sem_pdf,Órgão não publica Documento Diretivo no site gov.br (só Anexo de Entregas)
+MDIC,diretivo,sem_pdf,Órgão não publica Documento Diretivo no site gov.br (só Anexo de Entregas)
+MT,diretivo,sem_pdf,Órgão não publica Documento Diretivo no site gov.br (só Anexo de Entregas)
+AGU,entregas,scan_sem_texto,PDF escaneado/imagem — PyMuPDF não extrai texto. Docling com OCR resolverá.
+FUNAI,entregas,scan_sem_texto,PDF escaneado/imagem — PyMuPDF não extrai texto. Docling com OCR resolverá.
+FUNDACENTRO,entregas,scan_sem_texto,PDF escaneado/imagem — PyMuPDF não extrai texto. Docling com OCR resolverá.
+INCRA,entregas,scan_sem_texto,PDF escaneado/imagem — PyMuPDF não extrai texto. Docling com OCR resolverá.
+ITI,entregas,scan_sem_texto,PDF escaneado/imagem — PyMuPDF não extrai texto. Docling com OCR resolverá.
+MCOM,entregas,scan_sem_texto,PDF escaneado/imagem — PyMuPDF não extrai texto. Docling com OCR resolverá.
+SGPR,entregas,scan_sem_texto,PDF escaneado/imagem — PyMuPDF não extrai texto. Docling com OCR resolverá.
+CODEVASF,entregas,formato_diferente,"PDF MIDR compartilhado com 27pg, texto presente mas produtos não detectados pelo matcher. Formato de tabela pode diferir. Docling com table extraction resolverá."
+MIDR,entregas,formato_diferente,"PDF MIDR compartilhado com 27pg, texto presente mas produtos não detectados pelo matcher. Formato de tabela pode diferir. Docling com table extraction resolverá."
+SUDAM,entregas,formato_diferente,"PDF MIDR compartilhado com 27pg, texto presente mas produtos não detectados pelo matcher. Formato de tabela pode diferir. Docling com table extraction resolverá."
+SUDECO,entregas,formato_diferente,"PDF MIDR compartilhado com 27pg, texto presente mas produtos não detectados pelo matcher. Formato de tabela pode diferir. Docling com table extraction resolverá."
+SUDENE,entregas,formato_diferente,"PDF MIDR compartilhado com 27pg, texto presente mas produtos não detectados pelo matcher. Formato de tabela pode diferir. Docling com table extraction resolverá."
+*,diretivo,limitacao_pymupdf,72/86 diretivos têm seção de riscos mas PyMuPDF não consegue parsear tabelas PDF. Docling (Colab) extrai tabelas estruturadas corretamente. Estimativa: >80% dos riscos serão extraídos com Docling.
+AGU,diretivo,scan_sem_texto,PDF escaneado — precisa de OCR (Docling no Colab)
+CODEVASF,diretivo,scan_sem_texto,PDF escaneado — precisa de OCR (Docling no Colab)
+FBN,diretivo,scan_sem_texto,PDF escaneado — precisa de OCR (Docling no Colab)
+FCP,diretivo,scan_sem_texto,PDF escaneado — precisa de OCR (Docling no Colab)
+FUNAI,diretivo,scan_sem_texto,PDF escaneado — precisa de OCR (Docling no Colab)
+MAPA,diretivo,scan_sem_texto,PDF escaneado — precisa de OCR (Docling no Colab)
+MIDR,diretivo,scan_sem_texto,PDF escaneado — precisa de OCR (Docling no Colab)
+SUDAM,diretivo,scan_sem_texto,PDF escaneado — precisa de OCR (Docling no Colab)
+SUDECO,diretivo,scan_sem_texto,PDF escaneado — precisa de OCR (Docling no Colab)
+SUDENE,diretivo,scan_sem_texto,PDF escaneado — precisa de OCR (Docling no Colab)
+ANVISA,diretivo,formato_diferente,Sem seção de riscos detectável — pode ser tabela como imagem ou formato não-padrão
+INCRA,diretivo,formato_diferente,Sem seção de riscos detectável — pode ser tabela como imagem ou formato não-padrão
+ITI,diretivo,formato_diferente,Sem seção de riscos detectável — pode ser tabela como imagem ou formato não-padrão
+MCOM,diretivo,formato_diferente,Sem seção de riscos detectável — pode ser tabela como imagem ou formato não-padrão
+PREVIC,diretivo,formato_diferente,Sem seção de riscos detectável — pode ser tabela como imagem ou formato não-padrão
