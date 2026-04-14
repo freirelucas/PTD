@@ -1,409 +1,671 @@
-﻿orgao_sigla,risco_texto,probabilidade,impacto,tratamento
-ANA,5.1 Perda de confiança,pouco provável,alto,mitigar
-ANA,das partes interessadas,pouco provável,alto,mitigar
-ANA,Pouco,pouco provável,alto,mitigar
-ANA,provável,provável,alto,mitigar
-ANA,Alto,,alto,mitigar
-ANA,Plano e entregas realizadas.,pouco provável,,
-ANA,5.2 Indisponibilidade,pouco provável,,
-ANA,dos sistemas e soluções,pouco provável,alto,
-ANA,providos pela SGD,pouco provável,alto,transferir
-ANA,Pouco,pouco provável,alto,transferir
-ANA,provável,provável,alto,transferir
-ANA,Muito,,alto,transferir
-ANA,alto,,alto,transferir
-ANA,digitais priorizadas.,provável,,
-ANA,5.3 Capacidade,provável,,
-ANA,institucional de,provável,alto,
-ANA,execução do plano de,provável,alto,mitigar
-ANA,transformação digital,provável,alto,mitigar
-ANA,Muito provável,provável,alto,mitigar
-ANA,Muito,,alto,mitigar
-ANA,alto,,alto,mitigar
-ANA,A8 - Projeto atualizado mesmo,provável,,
-ANA,com a substituição de membro,provável,,
-ANA,da equipe.,provável,alto,
-ANA,5.4 Dependência de,provável,alto,mitigar
-ANA,fornecedores,provável,alto,mitigar
-ANA,Muito provável,provável,alto,mitigar
-ANA,Muito,,alto,mitigar
-ANA,alto,,alto,mitigar
-ANAC,Restrições,provável,alto,mitigar
-ANAC,Orçamentá,provável,alto,mitigar
-ANAC,rias,provável,alto,mitigar
-ANAC,Muito provável,provável,alto,mitigar
-ANAC,Muito Alto,,alto,mitigar
-ANAC,profissionai,provável,,
-ANAC,quadro,provável,alto,mitigar
-ANAC,efetivo,provável,alto,mitigar
-ANAC,Provável,provável,alto,mitigar
-ANAC,Alto,,alto,mitigar
-ANAC,mudanças,pouco provável,,
-ANAC,significativa,pouco provável,médio,
-ANAC,s no plano,pouco provável,médio,
-ANAC,de trabalho,pouco provável,médio,
-ANAC,Pouco,pouco provável,médio,
-ANAC,provável,provável,médio,
-ANAC,Médio,,médio,
-ANAC,design,pouco provável,,
-ANAC,soluções,pouco provável,médio,mitigar
-ANAC,digitais,pouco provável,médio,mitigar
-ANAC,Pouco,pouco provável,médio,mitigar
-ANAC,provável,provável,médio,mitigar
-ANAC,Médio,,médio,mitigar
-ANAC,software que robusteça a,provável,médio,
-ANAC,fase de design;,provável,médio,mitigar
-ANAC,Atraso nos,provável,médio,mitigar
-ANAC,cronogram,provável,médio,mitigar
-ANAC,Provável,provável,médio,mitigar
-ANAC,Médio,,médio,mitigar
-ANS,tratamen,,baixo,
-ANS,[escolher,,baixo,
-ANS,muito,raro,baixo,
-ANS,entre:,raro,baixo,
-ANS,baixo;,raro,baixo,
-ANS,[escolher,raro,baixo,
-ANS,raro; pouco,raro,baixo,mitigar
-ANS,baixo;,provável,baixo,mitigar
-ANS,entre:,provável,médio,mitigar
-ANS,provável ;,provável,médio,mitigar
-ANS,médio; alto;,provável,médio,mitigar
-ANS,mitigar;,provável,alto,mitigar
-ANS,provável;,provável,alto,eliminar
-ANS,muito alto ],provável,alto,eliminar
-ANS,eliminar;,provável,,eliminar
-ANS,muito,provável,,transferir
-ANS,transferir;,provável,,transferir
-ANS,provável;,provável,,aceitar
-BCB,Indisponibilidade das,provável,alto,
-BCB,equipes de TI para,provável,alto,mitigar
-BCB,executar a,provável,alto,mitigar
-BCB,transformação digital,provável,alto,mitigar
-BCB,Provável,provável,alto,mitigar
-BCB,Alto,,alto,mitigar
-BCB,"recurso, prazo e escopo.",raro,,
-BCB,Diminuição da,raro,alto,
-BCB,priorização do PTD,raro,alto,mitigar
-BCB,pela alta,raro,alto,mitigar
-BCB,administração,raro,alto,mitigar
-BCB,Raro,raro,alto,mitigar
-BCB,Alto,,alto,mitigar
-BCB,reportar continuamente a,provável,,
-BCB,alta gestão.,provável,médio,
-BCB,Atraso nos,provável,médio,mitigar
-BCB,cronogramas,provável,médio,mitigar
-BCB,pactuados,provável,médio,mitigar
-BCB,Provável,provável,médio,mitigar
-BCB,Médio,,médio,mitigar
-BCB,"recurso, prazo e escopo.",pouco provável,,
-BCB,Rotatividade de,pouco provável,alto,
-BCB,equipes ou,pouco provável,alto,mitigar
-BCB,paralisação de,pouco provável,alto,mitigar
-BCB,atividades,pouco provável,alto,mitigar
-BCB,Pouco provável,pouco provável,alto,mitigar
-BCB,Alto,,alto,mitigar
-BCB,Utilizar melhores práticas,provável,,
-BCB,de gerenciamento de,provável,médio,
-BCB,"projetos, negociando",provável,médio,mitigar
-BCB,"recurso, prazo e escopo.",provável,médio,mitigar
-BCB,Corte orçamentário,provável,médio,mitigar
-BCB,Provável,provável,médio,mitigar
-BCB,Médio,,médio,mitigar
-CADE,Baixo,,baixo,
-CADE,comprometimento,,baixo,
-CADE,unidades do Cade em,,baixo,mitigar
-CADE,relação  ao  Plano  de,,baixo,mitigar
-CADE,Transformação Digital,,baixo,mitigar
-CADE,Baixo,,baixo,mitigar
-CADE,Alto,,alto,mitigar
-CADE,equipe,,alto,mitigar
-CADE,CGTI/DAP/Cade,,alto,mitigar
-CADE,Alta,,alto,mitigar
-CADE,Alto,,baixo,mitigar
-CADE,Mitigar,,baixo,mitigar
-CADE,Fazer gestão junto a SGD,,baixo,
-CADE,para ter uma força de trabalho,,baixo,
-CADE,adequada.,,baixo,
-CADE,Baixo,,baixo,
-CADE,empresas,,médio,
-CADE,contratadas,,médio,
-CADE,relacionadas,,médio,transferir
-CADE,Transformação Digital,,médio,transferir
-CADE,Médio,,médio,transferir
-CADE,Alto,,alto,transferir
-CADE,compras centralizadas que são,,médio,
-CADE,feitas pela SGD.,,médio,
-CADE,Falta de acesso as bases,,médio,mitigar
-CADE,e API de outros órgãos,,médio,mitigar
-CADE,públicos,,médio,mitigar
-CADE,Médio,,médio,mitigar
-CADE,Médio,,médio,mitigar
-CNPQ,operacional,pouco provável,,
-CNPQ,eficiência dos processos.,pouco provável,alto,mitigar
-CNPQ,Pouco,pouco provável,alto,mitigar
-CNPQ,provável,provável,alto,mitigar
-CNPQ,Alto,,alto,mitigar
-COAF,Risco,raro,,
-COAF,Probabilidade,raro,,
-COAF,de Ocorrer,raro,,
-COAF,[escolher entre:,raro,,
-COAF,raro; pouco,raro,,
-COAF,provável; muito,provável,,
-COAF,provável;,provável,,
-COAF,praticamente,praticamente certo,,
-COAF,certo],,muito baixo,
-COAF,Impacto,,muito baixo,
-COAF,[escolher,,muito baixo,
-COAF,entre:,,muito baixo,
-COAF,muito,,muito baixo,
-COAF,baixo;,,baixo,
-COAF,baixo.,,baixo,
-COAF,Médio;,,médio,
-COAF,alto; muito,,alto,
-COAF,alto],,alto,mitigar
-COAF,tratamento,pouco provável,,
-COAF,do risco,pouco provável,alto,
-COAF,Alteração na política,pouco provável,alto,aceitar
-COAF,pública,pouco provável,alto,aceitar
-COAF,Pouco provável,pouco provável,alto,aceitar
-COAF,Muito alto,,alto,aceitar
-COAF,"1,10",pouco provável,,
-COAF,Indisponibilidade dos,pouco provável,alto,
-COAF,sistemas de acesso para,pouco provável,alto,mitigar
-COAF,o cidadão,pouco provável,alto,mitigar
-COAF,Pouco provável,pouco provável,alto,mitigar
-COAF,Muito alto,,alto,mitigar
-COAF,"1,3,8,10,12",pouco provável,,
-COAF,Indisponibilidade dos,pouco provável,alto,
-COAF,Sistemas relacionados,pouco provável,alto,mitigar
-COAF,aos serviços,pouco provável,alto,mitigar
-COAF,Pouco provável,pouco provável,alto,mitigar
-COAF,Muito alto,,alto,mitigar
-COAF,"8,12",pouco provável,,
-COAF,Problemas com perda e,pouco provável,alto,
-COAF,/ ou integridade de,pouco provável,alto,mitigar
-COAF,dados,pouco provável,alto,mitigar
-COAF,Pouco provável,pouco provável,alto,mitigar
-COAF,Muito alto,,alto,mitigar
-COAF,Indisponibilidade das,provável,médio,
-COAF,equipes de TI para,provável,médio,
-COAF,executar a,provável,médio,mitigar
-COAF,transformação digital,provável,médio,mitigar
-COAF,Provável,provável,médio,mitigar
-COAF,Médio,,médio,mitigar
-COAF,"4,5,12",pouco provável,,
-COAF,Falta de prioridade do,pouco provável,alto,aceitar
-COAF,PTD pela alta,pouco provável,alto,aceitar
-CVM,Disponibilidade dos donos de,provável,alto,mitigar
-CVM,serviço para atuação na,provável,alto,mitigar
-CVM,transformação,provável,alto,mitigar
-CVM,Muito provável,provável,alto,mitigar
-CVM,Alto,,alto,mitigar
-CVM,divulgação de informações,provável,,
-CVM,do Plano e entregas,provável,alto,
-CVM,realizadas.,provável,alto,mitigar
-CVM,Capacidade de execução,provável,alto,mitigar
-CVM,da transformação digital,provável,alto,mitigar
-CVM,Provável,provável,alto,mitigar
-CVM,Muito Alto,,alto,mitigar
-CVM,Atraso nos cronogramas,provável,alto,mitigar
-CVM,pactuados,provável,alto,mitigar
-CVM,Provável,provável,alto,mitigar
-CVM,Alto,,alto,mitigar
-CVM,alterações estratégicas.,provável,,
-CVM,Incompatibilidade entre o,provável,alto,
-CVM,tempo da transformação do,provável,alto,mitigar
-CVM,serviço e necessidade de,provável,alto,mitigar
-CVM,alteração normativa,provável,alto,mitigar
-CVM,Provável,provável,alto,mitigar
-CVM,Alto,,alto,mitigar
-IPHAN,Perda de confiança das partes,pouco provável,médio,mitigar
-IPHAN,interessadas,pouco provável,médio,mitigar
-IPHAN,Pouco provável,pouco provável,médio,mitigar
-IPHAN,médio,,médio,mitigar
-IPHAN,mudanças,provável,,
-IPHAN,gestão,provável,médio,mitigar
-IPHAN,descontinuidade de projetos,provável,médio,mitigar
-IPHAN,Provável,provável,médio,mitigar
-IPHAN,médio,provável,médio,mitigar
-IPHAN,mitigar,provável,alto,mitigar
-IPHAN,"6, 7, 11",provável,alto,mitigar
-IPHAN,Disponibilidade dos sistemas de,provável,alto,mitigar
-IPHAN,acesso para o cidadão,provável,alto,mitigar
-IPHAN,Provável,provável,alto,mitigar
-IPHAN,muito alto,provável,alto,mitigar
-IPHAN,mitigar,provável,alto,mitigar
-IPHAN,Perda de integridade de dados,provável,alto,mitigar
-IPHAN,Provável,provável,alto,mitigar
-IPHAN,muito alto,provável,alto,mitigar
-IPHAN,mitigar,provável,alto,mitigar
-IPHAN,"12,13",provável,alto,mitigar
-IPHAN,Dependência de fornecedores,provável,alto,mitigar
-IPHAN,Provável,provável,alto,mitigar
-IPHAN,alto,,alto,mitigar
-IPHAN,serviço,pouco provável,,
-IPHAN,para,pouco provável,alto,
-IPHAN,atuação,pouco provável,alto,mitigar
-IPHAN,transformação,pouco provável,alto,mitigar
-IPHAN,Pouco provável,pouco provável,alto,mitigar
-IPHAN,alto,,alto,mitigar
-IPHAN,Disponibilidade das equipes de TI,provável,,
-IPHAN,para executar a transformação,provável,alto,
-IPHAN,digital insuficiência de recursos,provável,alto,mitigar
-IPHAN,humanos para gestão e execução,provável,alto,mitigar
-IPHAN,do plano,provável,alto,mitigar
-IPHAN,Provável,provável,alto,mitigar
-IPHAN,alto,,alto,mitigar
-IPHAN,"administração,",provável,,
-IPHAN,demandas,provável,alto,
-IPHAN,operacionais se sobrepõem a,provável,alto,mitigar
-IPHAN,pauta estratégica e a gestão do,provável,alto,mitigar
-IPHAN,plano,provável,baixo,mitigar
-IPHAN,Provável,provável,baixo,mitigar
-IPHAN,alto,,baixo,mitigar
-IPHAN,mitigar,,baixo,mitigar
-IPHAN,"1,3,9,11",,baixo,
-IPHAN,Baixo,provável,baixo,
-IPHAN,comprometimento,provável,alto,
-IPHAN,áreas de negócio com as ações,provável,alto,mitigar
-IPHAN,pactuadas,provável,alto,mitigar
-IPHAN,Muito provável,provável,alto,mitigar
-MESP,Ocorrer,,muito baixo,
-MESP,muito baixo;,,muito baixo,
-MESP,[escolher,,baixo,
-MESP,[escolher,,baixo,mitigar
-MESP,baixo; médio;,raro,baixo,mitigar
-MESP,entre:,raro,alto,mitigar
-MESP,entre:,raro,alto,mitigar
-MESP,alto; muito alto ],raro,alto,mitigar
-MESP,mitigar;,raro,,mitigar
-MESP,raro; pouco,raro,,eliminar
-MESP,eliminar;,provável,,eliminar
-MESP,provável ;,provável,,transferir
-MESP,transferir;,provável,,transferir
-MESP,provável;,provável,,aceitar
-MESP,aceitar;],provável,baixo,aceitar
-MESP,muito,provável,baixo,
-MESP,provável;,provável,baixo,
-MESP,praticamente,praticamente certo,baixo,
-MESP,certo ],,baixo,
-MESP,Baixo,pouco provável,baixo,
-MESP,engajamento,pouco provável,médio,
-MESP,alta gestão,pouco provável,médio,mitigar
-MESP,Pouco,pouco provável,médio,mitigar
-MESP,provável,provável,médio,mitigar
-MESP,médio,,médio,mitigar
-MME,terceirizado de,pouco provável,,
-MME,desenvolvimento e,pouco provável,alto,
-MME,manutenção de,pouco provável,alto,mitigar
-MME,softwares,pouco provável,alto,mitigar
-MME,Pouco,pouco provável,alto,mitigar
-MME,provável,provável,alto,mitigar
-MME,Alto,,alto,mitigar
-MMULHERES,Falta de adesão das,pouco provável,alto,
-MMULHERES,partes interessadas às,pouco provável,alto,mitigar
-MMULHERES,iniciativas digitais,pouco provável,alto,mitigar
-MMULHERES,Pouco,pouco provável,alto,mitigar
-MMULHERES,Provável,provável,alto,mitigar
-MMULHERES,Alto,,alto,mitigar
-MMULHERES,- Alinhamento contínuo com as diretrizes do governo.,provável,,
-MMULHERES,Mudanças em políticas,provável,alto,mitigar
-MMULHERES,públicas que impactam os,provável,alto,mitigar
-MMULHERES,serviços digitais,provável,alto,mitigar
-MMULHERES,Provável,provável,alto,mitigar
-MMULHERES,Alto,,alto,mitigar
-MMULHERES,Baixa adesão dos,provável,,
-MMULHERES,beneficiários aos serviços,provável,alto,
-MMULHERES,digitais,provável,alto,mitigar
-MMULHERES,Muito,provável,alto,mitigar
-MMULHERES,provável,provável,alto,mitigar
-MMULHERES,Muito,,alto,mitigar
-MMULHERES,alto,,alto,mitigar
-MMULHERES,Problemas na segurança,pouco provável,,
-MMULHERES,e privacidade de dados,pouco provável,alto,
-MMULHERES,sensíveis,pouco provável,alto,mitigar
-MMULHERES,Pouco,pouco provável,alto,mitigar
-MMULHERES,Provável,provável,alto,mitigar
-MMULHERES,Muito,,alto,mitigar
-MMULHERES,alto,,alto,mitigar
-MMULHERES,- Adoção de protocolos de segurança cibernética.,provável,,
-MMULHERES,Falta de equipe,provável,alto,mitigar
-MMULHERES,qualificada para execução,provável,alto,mitigar
-MMULHERES,da transformação digital,provável,alto,mitigar
-MMULHERES,Provável,provável,alto,mitigar
-MMULHERES,Alto,,alto,mitigar
-MMULHERES,Dependência excessiva,provável,médio,
-MMULHERES,de fornecedores de,provável,médio,mitigar
-MMULHERES,tecnologia,provável,médio,mitigar
-MMULHERES,Muito,provável,médio,mitigar
-MMULHERES,provável,provável,médio,mitigar
-MMULHERES,Médio,,médio,mitigar
-MMULHERES,Baixa priorização da,pouco provável,alto,
-MMULHERES,transformação digital pela,pouco provável,alto,mitigar
-MMULHERES,gestão,pouco provável,alto,mitigar
-MMULHERES,Pouco,pouco provável,alto,mitigar
-MMULHERES,provável,provável,alto,mitigar
-MMULHERES,Alto,,alto,mitigar
-MMULHERES,das iniciativas.,provável,,
-MMULHERES,Desafios na,provável,alto,mitigar
-MMULHERES,interoperabilidade dos,provável,alto,mitigar
-MMULHERES,sistemas governamentais,provável,alto,mitigar
-MMULHERES,Provável,provável,alto,mitigar
-MMULHERES,Alto,,alto,mitigar
-MMULHERES,Descontinuidade de,pouco provável,alto,
-MPI,Restrições,provável,alto,mitigar
-MPI,Orçamentárias,provável,alto,mitigar
-MPI,Provável,provável,alto,mitigar
-MPI,Alto,,alto,mitigar
-MPI,do projeto,provável,,
-MPI,Indisponibilidade,provável,alto,
-MPI,Recursos,provável,alto,mitigar
-MPI,Humanos,provável,alto,mitigar
-MPI,Muito provável,provável,alto,mitigar
-MPI,Muito alto,,alto,mitigar
-MPI,demandas,provável,,
-MPI,previstas,provável,médio,mitigar
-MPI,PDTIC,provável,médio,mitigar
-MPI,Provável,provável,médio,mitigar
-MPI,Médio,,médio,mitigar
-MPI,atualizações/revisões,provável,,
-MPI,no PDTIC,provável,alto,
-MPI,Alterações,provável,alto,mitigar
-MPI,legislação,provável,alto,mitigar
-MPI,Provavel,provável,alto,mitigar
-MPI,Alto,,alto,mitigar
-MPI,Falhas,provável,,
-MPI,Segurança,provável,alto,mitigar
-MPI,Informação,provável,alto,mitigar
-MPI,Provavel,provável,alto,mitigar
-MPI,Muito alto,,alto,mitigar
-PRF,PROBABILIDADE IMPACTO TRATAMENTO,raro,,
-PRF,AÇÕES DE,raro,,
-PRF,TRATAMENTO,raro,alto,
-PRF,Alteração na Política Pública.,raro,alto,mitigar
-PRF,RARO,raro,alto,mitigar
-PRF,MUITO,,alto,mitigar
-PRF,ALTO,,alto,mitigar
-PRF,"1, 2, 4, 21",pouco provável,,
-PRF,Despriorização do PTD pela alta,pouco provável,alto,mitigar
-PRF,administração.,pouco provável,alto,mitigar
-PRF,POUCO,pouco provável,alto,mitigar
-PRF,PROVÁVEL,provável,alto,mitigar
-PRF,ALTO,,alto,mitigar
-PRF,Baixa priorização do PTD para,pouco provável,médio,
-PRF,áreas de negócio com as ações,pouco provável,médio,mitigar
-PRF,pactuadas.,pouco provável,médio,mitigar
-PRF,POUCO,pouco provável,médio,mitigar
-PRF,PROVÁVEL,provável,médio,mitigar
-PRF,MÉDIO,,médio,mitigar
-PRF,"2, 3, 4, 5, 6, 7",pouco provável,,
-PRF,Baixa priorização das ações do,pouco provável,alto,mitigar
-PRF,PTD para equipes de TI.,pouco provável,alto,mitigar
-PRF,POUCO,pouco provável,alto,mitigar
-PRF,PROVÁVEL,provável,alto,mitigar
-PRF,ALTO,,alto,mitigar
-PRF,Sobrecarga,provável,,
-PRF,equipe,provável,alto,mitigar
-PRF,execução da transformação digital.,provável,alto,mitigar
-PRF,PROVÁVEL,provável,alto,mitigar
-PRF,ALTO,,alto,mitigar
+﻿orgao_sigla,id_risco,risco_texto,probabilidade_original,probabilidade_normalizada,impacto_original,impacto_normalizado,tratamento_original,tratamento_normalizado,acoes_original,acoes_resolvidas
+AEB,A,Perda de confiança das partes interessadas,Pouco provável,pouco provável,Médio,médio,Mitigar,mitigar,,
+AEB,B,Alteração na política pública,Pouco provável,pouco provável,Alto,alto,Aceitar,aceitar,,
+AEB,C,Disponibilidade dos sistemas de acesso para o cidadão,Pouco provável,pouco provável,Alto,alto,Mitigar/Tra nsferir,mitigar; transferir,,
+AEB,D,Perda de integridade de dados,Pouco provável,pouco provável,Médio,médio,Mitigar/Tra nsferir,mitigar; transferir,,
+AEB,E,Dependência de fornecedores,Raro,raro,Baixo,baixo,Mitigar,mitigar,,
+AEB,F,Disponibilidade dos donos de serviço para atuação na transformação,Pouco provável,pouco provável,Média,médio,Aceitar,aceitar,,
+AEB,G,Disponibilidade das equipes de TI para executar a transformação digital,Pouco provável,pouco provável,Alta,alto,Mitigar,mitigar,,
+AEB,H,Despriorização do PTD pela alta administração,Pouco provável,pouco provável,Alto,alto,Aceitar,aceitar,,
+AEB,I,Atraso nos cronogramas pactuados,Pouco provável,pouco provável,Médio,médio,Mitigar,mitigar,,
+AEB,J,Rotatividades das equipes envolvidas na transformação digital,Pouco provável,pouco provável,Média,médio,Aceitar,aceitar,,
+AEB,K,A transformação digital de um serviço não gerar o resultado esperado,Raro,raro,Média,médio,Transferir,transferir,,
+AEB,L,A transformação digital de um serviço público não ser uma transformação propriamente dita,Raro,raro,Baixo,baixo,Mitigar,mitigar,,
+ANAC,,Restrições Orçamentá rias,Muito provável,muito provável,Muito Alto,muito alto,Mitigar,mitigar,1. Repriorizar as principais contratações junto ao Comitê de TIC; 2. Restringir despesas de contratos firmados em prol de investimentos essenciais; 3. Manter o alinhamento do orçamento do PDTIC e Plano de Gestão Anual;,1. Repriorizar as principais contratações junto ao Comitê de TIC; 2. Restringir despesas de contratos firmados em prol de investimentos essenciais; 3. Manter o alinhamento do orçamento do PDTIC e Plano de Gestão Anual;
+ANAC,,Perda de profissionai s do quadro efetivo,Provável,provável,Alto,alto,Mitigar,mitigar,4. Construção do PTD da Agência alinhado a uma capacidade produtiva compatível com o histórico de execução; 5. Promover ações formais para atração e reforço da equipe de TIC: processo seletivo interno e externo;,4. Construção do PTD da Agência alinhado a uma capacidade produtiva compatível com o histórico de execução; 5. Promover ações formais para atração e reforço da equipe de TIC: processo seletivo interno e externo;
+ANAC,,Novos normativos e atualizaçõe s de normativos relacionado s a TI que exijam mudanças significativa s no plano de trabalho,Pouco provável,pouco provável,Médio,médio,Monitorar,Monitorar,"6.Monitorar as propostas normativas, quando possível;","6.Monitorar as propostas normativas, quando possível;"
+ANAC,,Pouca maturidade na etapa de design das soluções digitais,Pouco provável,pouco provável,Médio,médio,Mitigar,mitigar,7.Definir nova metodologia de desenvolvimento de software que robusteça a fase de design;,7.Definir nova metodologia de desenvolvimento de software que robusteça a fase de design;
+ANAC,,Atraso nos cronogram,Provável,provável,Médio,médio,Mitigar,mitigar,8. Reduzir a sobrecarga da equipe de TI em atividades,8. Reduzir a sobrecarga da equipe de TI em atividades
+ANATEL,,Gerenciamento inadequado das demandas pela empresa de serviço terceirizado de desenvolvimento e manutenção de software,Pouco provável,pouco provável,Médio,médio,Mitigar,mitigar,"Notificar tempestiva mente a prestadora de serviço sobre descumpri mento de SLA ou falhas na prestação; Realizar reuniões de ponto de controle com a Contratada e área de negócio Priorizar e replanejar escopo de demandas, caso necessário","Notificar tempestiva mente a prestadora de serviço sobre descumpri mento de SLA ou falhas na prestação; Realizar reuniões de ponto de controle com a Contratada e área de negócio Priorizar e replanejar escopo de demandas, caso necessário"
+ANATEL,,Capacidade técnica inadequada empresa de serviço terceirizado de desenvolvimento e manutenção de software,Pouco provável,pouco provável,Médio,médio,Mitigar,mitigar,Contratar profissional capacitado; Cobrar da contratada o forneciment o da expertise especificad a no contrato; Solicitar substituiçã,Contratar profissional capacitado; Cobrar da contratada o forneciment o da expertise especificad a no contrato; Solicitar substituiçã
+ANATEL,,Falta de recursos orçamentários,Provável,provável,Muito alto,muito alto,Mitigar,mitigar,"Priorizar os serviços essenciais; Redimensi onar a prestação do serviço, se possível","Priorizar os serviços essenciais; Redimensi onar a prestação do serviço, se possível"
+ANA,,5.1 Perda de confiança das partes interessadas,Pouco provável,pouco provável,Alto,alto,Mitigar,mitigar,"A1 - Governança bem definida, com alinhamento estratégico, tático e operacional; A2 - Sensibilização das áreas de negócio para a importância do plano digital; A3 - Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão; e A9 - Reuniões periódicas de divulgação de informações do Plano e entregas realizadas.","A1 - Governança bem definida, com alinhamento estratégico, tático e operacional; A2 - Sensibilização das áreas de negócio para a importância do plano digital; A3 - Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão; e A9 - Reuniões periódicas de divulgação de informações do Plano e entregas realizadas."
+ANA,,5.2 Indisponibilidade dos sistemas e soluções providos pela SGD,Pouco provável,pouco provável,Muito alto,muito alto,Transferir/ Compartilhar,transferir; Compartilhar,A22 - Monitoramento e manutenção preventiva junto à SGD do funcionamento das soluções tecnológicas utilizadas na oferta de serviços digitais priorizadas.,A22 - Monitoramento e manutenção preventiva junto à SGD do funcionamento das soluções tecnológicas utilizadas na oferta de serviços digitais priorizadas.
+ANA,,5.3 Capacidade institucional de execução do plano de transformação digital,Muito provável,muito provável,Muito alto,muito alto,Mitigar,mitigar,"A1 - Governança bem definida, com alinhamento estratégico, tático e operacional; A3 - Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão; A4 - Prospecção de formas alternativas para a composição da força de trabalho; A5 - Utilizar melhores práticas de gerenciamento de projetos registrando as etapas; e A8 - Projeto atualizado mesmo com a substituição de membro da equipe.","A1 - Governança bem definida, com alinhamento estratégico, tático e operacional; A3 - Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão; A4 - Prospecção de formas alternativas para a composição da força de trabalho; A5 - Utilizar melhores práticas de gerenciamento de projetos registrando as etapas; e A8 - Projeto atualizado mesmo com a substituição de membro da equipe."
+ANA,,5.4 Dependência de fornecedores,Muito provável,muito provável,Muito alto,muito alto,Mitigar,mitigar,"A1 - Governança bem definida, com alinhamento estratégico, tático e operacional; A11 - Reporte a alta administração para alinhamento de eventuais alterações estratégicas; e A14 - Identificação de dependências com fornecedores para o","A1 - Governança bem definida, com alinhamento estratégico, tático e operacional; A11 - Reporte a alta administração para alinhamento de eventuais alterações estratégicas; e A14 - Identificação de dependências com fornecedores para o"
+ANCINE,,Perda de confiança das partes interessadas,Pouco provável,pouco provável,médio,médio,mitigar,mitigar,"1, 2, 9","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 2. Sensibilização das áreas de negócio para a importância do plano digital. | 9. Reuniões periódicas de divulgação de informações do Plano e entregas realizadas. organização."
+ANCINE,,Alteração na política pública,Provável,provável,alto,alto,transferir,transferir,"6, 7, 11",6. Alinhamento interno quanto a critérios para simplificação e priorização no rito regulatório para os serviços constantes do plano digital. | 7. Alinhamento com as estratégias e planos de Governo. | 11. Reporte a alta administração para alinhamento de eventuais alterações estratégicas.
+ANCINE,,Disponibilidade dos sistemas de acesso para o cidadão,Pouco provável,pouco provável,baixo,baixo,mitigar,mitigar,14,14. Identificação de dependências com fornecedores para o planejamento preventivo para a contratação ou migração de
+ANCINE,,Perda de integridade de dados,Pouco provável,pouco provável,alto,alto,eliminar,eliminar,"12, 13",12. Fortalecer a conformidade com a LGPD e a melhoria contínua do fluxo de tratamento dos dados. | 13. Estabelecer uma estratégia efetiva de governança de dados que reconheça o valor dos ativos de dados da
+ANCINE,,Capacidade de execução da transformação digital,Raro,raro,baixo,baixo,mitigar,mitigar,"1, 3, 4, 5, 8","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. | 4. Prospecção de formas alternativas para a composição da força de trabalho. | 5. Utilizar melhores práticas de gerenciamento de projetos registrando as etapas. | 8. Projeto atualizado mesmo com a substituição de membro da equipe."
+ANCINE,,Dependência de fornecedores,Pouco provável,pouco provável,médio,médio,mitigar,mitigar,"1, 14","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 14. Identificação de dependências com fornecedores para o planejamento preventivo para a contratação ou migração de"
+ANCINE,,Disponibilidade dos donos de serviço para atuação na transformação,Pouco provável,pouco provável,baixo,baixo,transferir,transferir,"1, 2, 3, 9, 10","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 2. Sensibilização das áreas de negócio para a importância do plano digital. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. | 9. Reuniões periódicas de divulgação de informações do Plano e entregas realizadas. organização. | 10. Acompanhamento quinzenal do Plano, conforme monitoramento interno."
+ANCINE,,Disponibilidade das equipes de TI para executar a transformação digital,Provável,provável,médio,médio,mitigar,mitigar,"4, 5",4. Prospecção de formas alternativas para a composição da força de trabalho. | 5. Utilizar melhores práticas de gerenciamento de projetos registrando as etapas.
+ANCINE,,Despriorização do PTD pela alta administração,Pouco provável,pouco provável,baixo,baixo,transferir,transferir,"1, 3, 9, 11","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. | 9. Reuniões periódicas de divulgação de informações do Plano e entregas realizadas. organização. | 11. Reporte a alta administração para alinhamento de eventuais alterações estratégicas."
+ANCINE,,Baixo comprometimento das áreas de negócio com as ações pactuadas,Pouco provável,pouco provável,médio,médio,mitigar,mitigar,"1, 2, 3, 9","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 2. Sensibilização das áreas de negócio para a importância do plano digital. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. | 9. Reuniões periódicas de divulgação de informações do Plano e entregas realizadas. organização."
+ANCINE,,Atraso nos cronogramas pactuados,Pouco provável,pouco provável,baixo,baixo,mitigar,mitigar,"1, 3, 5, 10, 11","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. | 5. Utilizar melhores práticas de gerenciamento de projetos registrando as etapas. | 10. Acompanhamento quinzenal do Plano, conforme monitoramento interno. | 11. Reporte a alta administração para alinhamento de eventuais alterações estratégicas."
+ANEEL,,Alteração na política pública,provável,provável,alto,alto,aceitar,aceitar,,
+ANEEL,,Falta de capacidade de execução da transformação digital,provável,provável,muito alto,muito alto,mitigar,mitigar,4,4. Prospecção de formas alternativas para a composição da força de trabalho.
+ANEEL,,Falta de disponibilidade dos donos de serviço para atuação na transformação,provável,provável,muito alto,muito alto,mitigar,mitigar,2,2. Sensibilização das áreas de negócio para a importância do plano digital.
+ANEEL,,Indisponibilidade das equipes de TI para executar a transformação digital,provável,provável,muito alto,muito alto,mitigar,mitigar,"4, 16","4. Prospecção de formas alternativas para a composição da força de trabalho. | 16. Planejamento e digitalização de todas as etapas digitalizáveis do serviço, com uso de todas as"
+ANM,,Perda de confiança das partes interessadas,pouco provável,pouco provável,alto,alto,mitigar,mitigar,"1, 2, 9","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 2. Sensibilização das áreas de negócio para a importância do plano digital. | 9. Reuniões periódicas de divulgação de informações do Plano e entregas realizadas. soluções visando a continuidade do negócio. disponíveis para maior eficiência no atendimento às demandas dos usuários. digitais priorizadas junto à TI do órgão. serviços públicos. Resposta a Incidentes do Governo Federal (CTIR Gov). Continuidade de Negócios, Plano de Recuperação de Desastres. Órgão Proponente: Agência Nacional de Mineração – ANM  Definir diretrizes de atuação do seu PTD alinhado com suas políticas públicas, voltada para o cidadão, sempre que couber;  Propor e submeter para pactuação o Plano de Transformação Digital e deliberar sobre recursos e riscos estruturantes;  Observar os prazos previstos no Decreto EFGD;  Apoiar e acompanhar a execução das entregas pactuadas no respectivo PTD;  Indicar o Líder do Plano de Transformação Digital;"
+ANM,,Alteração na política pública,pouco provável,pouco provável,médio,médio,mitigar,mitigar,"6, 7, 11",6. 1 ÓRGÃOS COMPONENTES | 7. Alinhamento com as estratégias e planos de Governo. | 11. Reporte a alta administração para alinhamento de eventuais alterações estratégicas.
+ANM,,Disponibilidade dos sistemas de acesso para o cidadão,pouco provável,pouco provável,alto,alto,mitigar,mitigar,14,14. Identificação de dependências com fornecedores para o planejamento preventivo para a contratação ou migração de
+ANM,,Perda de integridad d dados e e,raro,raro,alto,alto,mitigar,mitigar,"12, 13",12. Fortalecimento da conformidade com a LGPD e a melhoria contínua do fluxo de tratamento dos dados. | 13. Estabelecimento de uma estratégia efetiva de governança de dados que reconheça o valor dos ativos de dados da organização.
+ANM,,Capacidade de execução da transformação digital,pouco provável,pouco provável,alto,alto,mitigar,mitigar,"1, 3, 4, 5, 8","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. | 4. Prospecção de formas alternativas para a composição da força de trabalho. | 5. Utilizar melhores práticas de gerenciamento de projetos registrando as etapas. | 8. Projeto atualizado mesmo com a substituição de membro da equipe."
+ANM,,Disponibilidade dos donos de serviço para atuação n a transformação,pouco provável,pouco provável,médio,médio,mitigar,mitigar,"1, 2, 3, 9, 10","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 2. Sensibilização das áreas de negócio para a importância do plano digital. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. | 9. Reuniões periódicas de divulgação de informações do Plano e entregas realizadas. soluções visando a continuidade do negócio. disponíveis para maior eficiência no atendimento às demandas dos usuários. digitais priorizadas junto à TI do órgão. serviços públicos. Resposta a Incidentes do Governo Federal (CTIR Gov). Continuidade de Negócios, Plano de Recuperação de Desastres. Órgão Proponente: Agência Nacional de Mineração – ANM  Definir diretrizes de atuação do seu PTD alinhado com suas políticas públicas, voltada para o cidadão, sempre que couber;  Propor e submeter para pactuação o Plano de Transformação Digital e deliberar sobre recursos e riscos estruturantes;  Observar os prazos previstos no Decreto EFGD;  Apoiar e acompanhar a execução das entregas pactuadas no respectivo PTD;  Indicar o Líder do Plano de Transformação Digital; | 10. Acompanhamento quinzenal do Plano, conforme monitoramento interno."
+ANM,,Disponibilidade das equipes de TI para executar a transformação digital,provável,provável,alto,alto,mitigar,mitigar,"4, 5",4. Prospecção de formas alternativas para a composição da força de trabalho. | 5. Utilizar melhores práticas de gerenciamento de projetos registrando as etapas.
+ANM,,Dependência de fornecedores,pouco provável,pouco provável,médio,médio,mitigar,mitigar,"1, 14","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 14. Identificação de dependências com fornecedores para o planejamento preventivo para a contratação ou migração de"
+ANM,,Descontinuidade do serviço terceirizado de desenvolvimento e manutenção de software (fábrica de software),pouco provável,pouco provável,muito alto,muito alto,mitigar,mitigar,"1, 4, 22","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 4. Prospecção de formas alternativas para a composição da força de trabalho. | 22. Priorizar a instrução processual para nova contratação; realizar contratação emergencial."
+ANM,,Incapacidade de entrega pela fábrica de software,pouco provável,pouco provável,muito alto,muito alto,,,,
+ANM,,Despriorização do PTD pela alta administração,pouco provável,pouco provável,alto,alto,mitigar,mitigar,"1, 3, 9, 11","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. | 9. Reuniões periódicas de divulgação de informações do Plano e entregas realizadas. soluções visando a continuidade do negócio. disponíveis para maior eficiência no atendimento às demandas dos usuários. digitais priorizadas junto à TI do órgão. serviços públicos. Resposta a Incidentes do Governo Federal (CTIR Gov). Continuidade de Negócios, Plano de Recuperação de Desastres. Órgão Proponente: Agência Nacional de Mineração – ANM  Definir diretrizes de atuação do seu PTD alinhado com suas políticas públicas, voltada para o cidadão, sempre que couber;  Propor e submeter para pactuação o Plano de Transformação Digital e deliberar sobre recursos e riscos estruturantes;  Observar os prazos previstos no Decreto EFGD;  Apoiar e acompanhar a execução das entregas pactuadas no respectivo PTD;  Indicar o Líder do Plano de Transformação Digital; | 11. Reporte a alta administração para alinhamento de eventuais alterações estratégicas."
+ANM,,Baixo comprometimento das áreas de negócio com as ações pactuadas,pouco provável,pouco provável,alto,alto,mitigar,mitigar,"1, 2, 3, 9","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 2. Sensibilização das áreas de negócio para a importância do plano digital. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. | 9. Reuniões periódicas de divulgação de informações do Plano e entregas realizadas. soluções visando a continuidade do negócio. disponíveis para maior eficiência no atendimento às demandas dos usuários. digitais priorizadas junto à TI do órgão. serviços públicos. Resposta a Incidentes do Governo Federal (CTIR Gov). Continuidade de Negócios, Plano de Recuperação de Desastres. Órgão Proponente: Agência Nacional de Mineração – ANM  Definir diretrizes de atuação do seu PTD alinhado com suas políticas públicas, voltada para o cidadão, sempre que couber;  Propor e submeter para pactuação o Plano de Transformação Digital e deliberar sobre recursos e riscos estruturantes;  Observar os prazos previstos no Decreto EFGD;  Apoiar e acompanhar a execução das entregas pactuadas no respectivo PTD;  Indicar o Líder do Plano de Transformação Digital;"
+ANM,,Atraso nos cronogramas pactuados,provável,provável,baixo,baixo,mitigar,mitigar,"1, 3, 5, 10, 11","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. | 5. Utilizar melhores práticas de gerenciamento de projetos registrando as etapas. | 10. Acompanhamento quinzenal do Plano, conforme monitoramento interno. | 11. Reporte a alta administração para alinhamento de eventuais alterações estratégicas."
+ANM,,Rotatividades das equipes envolvidas na transformação digital,provável,provável,baixo,baixo,mitigar,mitigar,"4, 5, 8",4. Prospecção de formas alternativas para a composição da força de trabalho. | 5. Utilizar melhores práticas de gerenciamento de projetos registrando as etapas. | 8. Projeto atualizado mesmo com a substituição de membro da equipe.
+ANM,,Incompatibilidade entre o tempo da transformação do serviço e necessidade de alteração normativa,provável,provável,médio,médio,mitigar,mitigar,"1, 5, 6, 11","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 5. Utilizar melhores práticas de gerenciamento de projetos registrando as etapas. | 6. 1 ÓRGÃOS COMPONENTES | 11. Reporte a alta administração para alinhamento de eventuais alterações estratégicas."
+ANM,,Corte no orçamento,pouco provável,pouco provável,médio,médio,mitigar,mitigar,"1, 11","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 11. Reporte a alta administração para alinhamento de eventuais alterações estratégicas."
+ANM,,Falta de apoio da SGD,pouco provável,pouco provável,alto,alto,mitigar,mitigar,"1, 3, 9","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. | 9. Reuniões periódicas de divulgação de informações do Plano e entregas realizadas. soluções visando a continuidade do negócio. disponíveis para maior eficiência no atendimento às demandas dos usuários. digitais priorizadas junto à TI do órgão. serviços públicos. Resposta a Incidentes do Governo Federal (CTIR Gov). Continuidade de Negócios, Plano de Recuperação de Desastres. Órgão Proponente: Agência Nacional de Mineração – ANM  Definir diretrizes de atuação do seu PTD alinhado com suas políticas públicas, voltada para o cidadão, sempre que couber;  Propor e submeter para pactuação o Plano de Transformação Digital e deliberar sobre recursos e riscos estruturantes;  Observar os prazos previstos no Decreto EFGD;  Apoiar e acompanhar a execução das entregas pactuadas no respectivo PTD;  Indicar o Líder do Plano de Transformação Digital;"
+ANM,,A transformação digital de um serviço não gerar o resultado,pouco provável,pouco provável,médio,médio,mitigar,mitigar,"15, 16, 21","15. Participação de especialistas em processos de negócios e em experiência do usuário no desenho de serviços digitais. | 16. Planejamento e digitização de todas as etapas digitalizáveis do serviço, com uso de todas as ferramentas tecnológicas | 21. Alinhamento com os princípios, objetivos e iniciativas da EFGD e com a legislação relativa ao atendimento aos usuários dos"
+ANPD,,Alteração na política pública,Provável,provável,Muito alto,muito alto,Aceitar ou tolerar o risco,Aceitar ou tolerar o risco,"1,10","1. Governança bem definida, com alinhamento estratégico, tático e operacional."
+ANPD,,Indisponibilidade dos sistemas de acesso para o cidadão,Pouco provável,pouco provável,Muito alto,muito alto,Reduzir ou mitigar o risco,Reduzir ou mitigar o risco,"1,3,8,10,12","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 3. Realização de reuniões periódicas de acompanhamento do plano. | 8. Reuniões periódicas de divulgação de informações do Plano e entregas realizadas."
+ANPD,,Indisponibilidade dos Sistemas relacionados aos serviços,Provável,provável,Muito alto,muito alto,Reduzir ou mitigar o risco,Reduzir ou mitigar o risco,"8,12",8. Reuniões periódicas de divulgação de informações do Plano e entregas realizadas.
+ANPD,,Problemas com perda e / ou integridade de dados,Pouco provável,pouco provável,Muito alto,muito alto,Reduzir ou mitigar o risco,Reduzir ou mitigar o risco,"1,3,11","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 3. Realização de reuniões periódicas de acompanhamento do plano."
+ANPD,,Indisponibilidade das equipes de TI para executar a transformação digital,Pouco provável,pouco provável,Muito alto,muito alto,Reduzir ou mitigar o risco,Reduzir ou mitigar o risco,"4,5,12","4. Prospecção de formas alternativas para a composição da força de trabalho. | 5. Utilização das melhores práticas de gerenciamento de projetos, registrando as etapas."
+ANPD,,Falta de prioridade do PTD pela alta administração,Pouco provável,pouco provável,Muito alto,muito alto,Aceitar ou tolerar o risco,Aceitar ou tolerar o risco,"1,2,3,6,8,1 0","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 2. Sensibilização das áreas de negócio para a importância do plano digital. | 3. Realização de reuniões periódicas de acompanhamento do plano. | 6. Alinhamento interno quanto a critérios para simplificação e priorização no rito regulatório para os serviços constantes do plano digital. | 8. Reuniões periódicas de divulgação de informações do Plano e entregas realizadas. | 1. Governança bem definida, com alinhamento estratégico, tático e operacional."
+ANPD,,Baixo comprometimento das áreas de negócio com as ações pactuadas,Pouco provável,pouco provável,Muito alto,muito alto,Reduzir ou mitigar o risco,Reduzir ou mitigar o risco,"1,4,5,6,7,8, 9","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 4. Prospecção de formas alternativas para a composição da força de trabalho. | 5. Utilização das melhores práticas de gerenciamento de projetos, registrando as etapas. | 6. Alinhamento interno quanto a critérios para simplificação e priorização no rito regulatório para os serviços constantes do plano digital. | 7. Adequação dos prazos do projeto considerando a saída ou substituição de membro da equipe. | 8. Reuniões periódicas de divulgação de informações do Plano e entregas realizadas."
+ANPD,,Atraso nos cronogramas pactuados,Provável,provável,Médio,médio,Reduzir ou mitigar o risco,Reduzir ou mitigar o risco,"1,4,5,6,7,8, 9","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 4. Prospecção de formas alternativas para a composição da força de trabalho. | 5. Utilização das melhores práticas de gerenciamento de projetos, registrando as etapas. | 6. Alinhamento interno quanto a critérios para simplificação e priorização no rito regulatório para os serviços constantes do plano digital. | 7. Adequação dos prazos do projeto considerando a saída ou substituição de membro da equipe. | 8. Reuniões periódicas de divulgação de informações do Plano e entregas realizadas."
+ANPD,,Corte no orçamento,Provável,provável,Alto,alto,Reduzir ou mitigar o risco,Reduzir ou mitigar o risco,"1,12","1. Governança bem definida, com alinhamento estratégico, tático e operacional."
+ANPD,,Mudança da estratégica da área de negócio responsável pelo serviço,Provável,provável,Alto,alto,Aceitar,aceitar,"2,10",2. Sensibilização das áreas de negócio para a importância do plano digital.
+ANPD,,Falta de recursos humanos para implementação do PTD,Muito Provável,muito provável,Alto,alto,Mitigar,mitigar,"3,4,7",3. Realização de reuniões periódicas de acompanhamento do plano. | 4. Prospecção de formas alternativas para a composição da força de trabalho. | 7. Adequação dos prazos do projeto considerando a saída ou substituição de membro da equipe.
+ANPD,,Falta de recursos computacionais suficientes para implementação do PTD,Provável,provável,Alto,alto,Mitigar,mitigar,"1,3,12","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 3. Realização de reuniões periódicas de acompanhamento do plano."
+ANS,,Perda de confiança das partes interessadas,,,provável,provável,,,muito alto,muito alto
+ANS,,Alteração na política pública,,,pouco provável,pouco provável,,,muito alto,muito alto
+ANS,,Indisponibilidade dos sistemas de acesso para o cidadão,,,pouco provável,pouco provável,,,muito alto,muito alto
+ANS,,Perda de integridade de dados,,,raro,raro,,,alto,alto
+ANS,,Incapacidade de execução da transformação digital,,,pouco provável,pouco provável,,,muito alto,muito alto
+ANS,,Dependência de fornecedores,,,pouco provável,pouco provável,,,médio,médio
+ANS,,Indisponibilidade dos donos de serviço para atuação na transformação,,,provável,provável,,,muito alto,muito alto
+ANS,,Indisponibilidade das equipes de TI para executar a transformação digital,,,pouco provável,pouco provável,,,muito alto,muito alto
+ANS,,Falta de priorização do PTD pela alta administração,,,pouco provável,pouco provável,,,muito alto,muito alto
+ANS,,Baixo comprometimento das áreas de negócio com as ações pactuadas,,,pouco provável,pouco provável,,,alto,alto
+ANS,,Atraso nos cronogramas pactuados,,,muito provável,muito provável,,,alto,alto
+ANS,,Incompatibilidade entre o tempo da transformação do serviço e necessidade de alteração normativa,,,provável,provável,,,alto,alto
+ANS,,Corte no orçamento,,,provável,provável,,,alto,alto
+ANTAQ,,Inobservância das instruções normativas relacionadas à aquisição de bens e serviços de TI,Baixa,Baixa,Médio,médio,Aceitar,aceitar,-,-
+ANTAQ,,Perda de prazo processual dos contratos de TI,Baixa,Baixa,Alto,alto,Tratar,Tratar,Documentar a antecedência necessária para iniciar os processos de contratação,Documentar a antecedência necessária para iniciar os processos de contratação
+ANTAQ,,Homologação do pagamento dos serviços prestados sem o devido ateste,Muito baixa,Muito baixa,Baixo,baixo,Aceitar,aceitar,-,-
+ANTAQ,,Inoperância dos canais de abertura de chamado,Muito baixa,Muito baixa,Baixo,baixo,Aceitar,aceitar,-,-
+ANTAQ,,Projeto não atende as necessidades da Antaq,Muito baixa,Muito baixa,Baixo,baixo,Aceitar,aceitar,-,-
+ANTAQ,,Atender as demandas do projeto fora do prazo incialmente estabelecido,Baixa,Baixa,Médio,médio,Tratar,Tratar,Documento formal determinando o Número máximo de aprovação de projetos em execução,Documento formal determinando o Número máximo de aprovação de projetos em execução
+ANTAQ,,Acesso indevido à rede e/ou sistemas da Agência,Alta,Alta,Crítico,Crítico,Tratar,Tratar,Documento formalizando a obrigação do antigo setor do usuário de solicitar a remoção dos acessos,Documento formalizando a obrigação do antigo setor do usuário de solicitar a remoção dos acessos
+ANTAQ,,Parque tecnológico não atende às necessidades da Agência,Baixa,Baixa,Alto,alto,Tratar,Tratar,Cronograma de reuniões de integrantes da,Cronograma de reuniões de integrantes da
+BCB,,Indisponibilidade das equipes de TI para executar a transformação digital,Provável,provável,Alto,alto,Mitigar,mitigar,"Utilizar melhores práticas de gerenciamento de projetos, negociando recurso, prazo e escopo.","Utilizar melhores práticas de gerenciamento de projetos, negociando recurso, prazo e escopo."
+BCB,,Diminuição da priorização do PTD pela alta administração,Raro,raro,Alto,alto,Mitigar,mitigar,Realizar reuniões periódicas de acompanhamento e reportar continuamente a alta gestão.,Realizar reuniões periódicas de acompanhamento e reportar continuamente a alta gestão.
+BCB,,Atraso nos cronogramas pactuados,Provável,provável,Médio,médio,Mitigar,mitigar,"Utilizar melhores práticas de gerenciamento de projetos, negociando recurso, prazo e escopo.","Utilizar melhores práticas de gerenciamento de projetos, negociando recurso, prazo e escopo."
+BCB,,Rotatividade de equipes ou paralisação de atividades,Pouco provável,pouco provável,Alto,alto,Mitigar,mitigar,"Utilizar melhores práticas de gerenciamento de projetos, negociando recurso, prazo e escopo.","Utilizar melhores práticas de gerenciamento de projetos, negociando recurso, prazo e escopo."
+BCB,,Corte orçamentário,Provável,provável,Médio,médio,Mitigar,mitigar,"Utilizar melhores práticas de gerenciamento de projetos, negociando recurso, prazo e escopo.","Utilizar melhores práticas de gerenciamento de projetos, negociando recurso, prazo e escopo."
+CADE,,,de ocorrer,de ocorrer,,,,,,
+CADE,,Baixo alinhamento e comprometimento das unidades do Cade em relação ao Plano de Transformação Digital,Baixo,Baixo,Alto,alto,,,,
+CADE,,Alta rotatividade e falta de ATI na equipe da CGTI/DAP/Cade,Alta,Alta,Alto,alto,,,,
+CADE,,Baixo resultado das empresas contratadas relacionadas à Transformação Digital,Médio,Médio,Alto,alto,,,,
+CADE,,Falta de acesso as bases e API de outros órgãos públicos,Médio,Médio,Médio,médio,,,,
+CAPES,,Problemas de coordenação das ações entre as Secretarias finalísticas do MEC,Muito provável,muito provável,Alto,alto,Mitigar,mitigar,"Governança bem definida, com alinhamento estratégico, tático e operacional.","Governança bem definida, com alinhamento estratégico, tático e operacional."
+CAPES,,Resistências a processos de compartilhamento de dados,Muito provável,muito provável,Alto,alto,Eliminar,eliminar,"Estabelecer no modelo de governança de dados da educação as bases de referência e as responsabilidades por estas bases, com mecanismos de compartilhamento que evitem replicação e garantam segurança e privacidade.","Estabelecer no modelo de governança de dados da educação as bases de referência e as responsabilidades por estas bases, com mecanismos de compartilhamento que evitem replicação e garantam segurança e privacidade."
+CAPES,,Sistemas legados pouco confiáveis e com,Provável,provável,Médio,médio,Eliminar,eliminar,Realizar diagnóstico e estabelecer um programa de atualização tecnológica dos sistemas legados,Realizar diagnóstico e estabelecer um programa de atualização tecnológica dos sistemas legados
+CENSIPAM,,Alteração da política pública relacionada ao PTD,,,Alto,alto,xxx,xxx,,
+CENSIPAM,,Despriorização do PTD pela alta administração,,,Alto,alto,1-2-4-10-15,1-2-4-10-15,,
+CENSIPAM,,Corte/contingenciamento orçamentário,,,Alto,alto,1-2-4-5-10,1-2-4-5-10,,
+CENSIPAM,,Falta de apoio da SGD/MGI,,,Médio,médio,1-2-4,1-2-4,,
+CENSIPAM,,"Não aceitação dos demais atores envolvidos (Polícia Federal, AGU, Cartórios, entre outros) pelo modelo de serviços estabelecido",,,Alto,alto,2-13,2-13,,
+CENSIPAM,,Não conseguir articular integração com bases de dados de órgãos parceiros,,,Médio,médio,1-2-19,1-2-19,,
+CENSIPAM,,Indisponibilidade dos donos de serviço para atuação na transformação digital,,,Médio,médio,14 -15-18-22,14 -15-18-22,,
+CENSIPAM,,Mudança da estratégia da área de negócio responsável pelo serviço,,,Médio,médio,1-2-3-5-9,1-2-3-5-9,,
+CENSIPAM,,Baixo comprometimento das áreas de negócio com as ações pactuadas,,,Alto,alto,14-15-17-18-22,14-15-17-18-22,,
+CENSIPAM,,"Alteração do escopo inicial do projeto para adaptá-lo às necessidades específicas de um ou demais atores externos, levando ao atraso de entregas",,,Médio,médio,1-2-17-18-22,1-2-17-18-22,,
+CENSIPAM,,Atraso no processo administrativo de contratação,,,Médio,médio,1-5-11,1-5-11,,
+CENSIPAM,,Dependência de fornecedores,,,Alto,alto,11-17,11-17,,
+CENSIPAM,,Falta de capacidade do fornecedor em cumprir as entregas no prazo desejado,,,Alto,alto,11-12,11-12,,
+CENSIPAM,,Atraso nos cronogramas pactuados,,,Médio,médio,12-14-15-17-18- 22,12-14-15-17-18- 22,,
+CENSIPAM,,Baixa adesão de uso do formulário de avaliação do serviço por parte dos usuários,,,Médio,médio,14-20,14-20,,
+CENSIPAM,,Incompatibilidade entre o tempo da transformação do serviço e necessidade de alteração normativa,,,Médio,médio,17-21,17-21,,
+CENSIPAM,,Carência de recursos humanos nas equipes de TI para executar a transformação digital,,,Alto,alto,16 -17,16 -17,,
+CENSIPAM,,Rotatividade de recursos humanos na área de TI do órgão e órgãos vinculados,,,Médio,médio,1-14-16-17,1-14-16-17,,
+CENSIPAM,,Rotatividades das equipes envolvidas na transformação digital,,,Alto,alto,14-16-17,14-16-17,,
+CENSIPAM,,Problemas com perda e/ou integridade de dados,,,Alto,alto,6-7-8-23,6-7-8-23,,
+CENSIPAM,,Indisponibilidade dos sistemas de acesso para o cidadão,,,Médio,médio,23,23,,
+CENSIPAM,,Indisponibilidade dos sistemas,,,Médio,médio,23,23,,
+CENSIPAM,,relacionados ao serviço,,,,,,,,
+CENSIPAM,,Velocidade insuficiente do link usado para a transferência dos dados,,,Médio,médio,11-23,11-23,,
+CENSIPAM,,Necessidade de rever os serviços automatizados para adequação aos preceitos da LGPD,,,Alto,alto,"1, 6, 7, 15",1; 6; 7; 15,,
+CENSIPAM,,Dificuldade em atender aos direitos dos titulares cujos dados estejam armazenados em serviços digitais com bases hospedadas fora do MD,,,Alto,alto,"6, 7",6; 7,,
+CEX,,Alteração da política pública relacionada ao PTD,,,Alto,alto,xxx,xxx,,
+CEX,,Despriorização do PTD pela alta administração,,,Alto,alto,1-2-4-10-15,1-2-4-10-15,,
+CEX,,Corte/contingenciamento orçamentário,,,Alto,alto,1-2-4-5-10,1-2-4-5-10,,
+CEX,,Falta de apoio da SGD/MGI,,,Médio,médio,1-2-4,1-2-4,,
+CEX,,"Não aceitação dos demais atores envolvidos (Polícia Federal, AGU, Cartórios, entre outros) pelo modelo de serviços estabelecido",,,Alto,alto,2-13,2-13,,
+CEX,,Não conseguir articular integração com bases de dados de órgãos parceiros,,,Médio,médio,1-2-19,1-2-19,,
+CEX,,Indisponibilidade dos donos de serviço para atuação na transformação digital,,,Médio,médio,14 -15-18-22,14 -15-18-22,,
+CEX,,Mudança da estratégia da área de negócio responsável pelo serviço,,,Médio,médio,1-2-3-5-9,1-2-3-5-9,,
+CEX,,Baixo comprometimento das áreas de negócio com as ações pactuadas,,,Alto,alto,14-15-17-18-22,14-15-17-18-22,,
+CEX,,"Alteração do escopo inicial do projeto para adaptá-lo às necessidades específicas de um ou demais atores externos, levando ao atraso de entregas",,,Médio,médio,1-2-17-18-22,1-2-17-18-22,,
+CEX,,Atraso no processo administrativo de contratação,,,Médio,médio,1-5-11,1-5-11,,
+CEX,,Dependência de fornecedores,,,Alto,alto,11-17,11-17,,
+CEX,,Falta de capacidade do fornecedor em cumprir as entregas no prazo desejado,,,Alto,alto,11-12,11-12,,
+CEX,,Atraso nos cronogramas pactuados,,,Médio,médio,12-14-15-17-18- 22,12-14-15-17-18- 22,,
+CEX,,Baixa adesão de uso do formulário de avaliação do serviço por parte dos usuários,,,Médio,médio,14-20,14-20,,
+CEX,,Incompatibilidade entre o tempo da transformação do serviço e necessidade de alteração normativa,,,Médio,médio,17-21,17-21,,
+CEX,,Carência de recursos humanos nas equipes de TI para executar a transformação digital,,,Alto,alto,16 -17,16 -17,,
+CEX,,Rotatividade de recursos humanos na área de TI do órgão e órgãos vinculados,,,Médio,médio,1-14-16-17,1-14-16-17,,
+CEX,,Rotatividades das equipes envolvidas na transformação digital,,,Alto,alto,14-16-17,14-16-17,,
+CEX,,Problemas com perda e/ou integridade de dados,,,Alto,alto,6-7-8-23,6-7-8-23,,
+CEX,,Indisponibilidade dos sistemas de acesso para o cidadão,,,Médio,médio,23,23,,
+CEX,,Indisponibilidade dos sistemas,,,Médio,médio,23,23,,
+CEX,,relacionados ao serviço,,,,,,,,
+CEX,,Velocidade insuficiente do link usado para a transferência dos dados,,,Médio,médio,11-23,11-23,,
+CEX,,Necessidade de rever os serviços automatizados para adequação aos preceitos da LGPD,,,Alto,alto,"1, 6, 7, 15",1; 6; 7; 15,,
+CEX,,Dificuldade em atender aos direitos dos titulares cujos dados estejam armazenados em serviços digitais com bases hospedadas fora do MD,,,Alto,alto,"6, 7",6; 7,,
+CGU,,Indisponibilidade dos sistemas de acesso para o cidadão,Pouco provável,pouco provável,Muito alto,muito alto,Mitigar,mitigar,"1, 4, 8, 14","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 4. Prospecção de formas alternativas para a composição da força de trabalho. | 8. Projeto atualizado mesmo com a substituição de membro da equipe. | 14. Identificação de dependências com fornecedores para o planejamento preventivo para a contratação ou migração de"
+CGU,,Indisponibilidade dos Sistemas relacionados aos serviços,Pouco provável,pouco provável,Muito alto,muito alto,Mitigar,mitigar,"1, 4, 8, 14","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 4. Prospecção de formas alternativas para a composição da força de trabalho. | 8. Projeto atualizado mesmo com a substituição de membro da equipe. | 14. Identificação de dependências com fornecedores para o planejamento preventivo para a contratação ou migração de"
+CGU,,Problemas com perda e / ou integridade de dados,Raro,raro,Alto,alto,Mitigar,mitigar,"12, 13",12. Fortalecer a conformidade com a LGPD e a melhoria contínua do fluxo de tratamento dos dados. | 13. Estabelecer uma estratégia efetiva de governança de dados que reconheça o valor dos ativos de dados da
+CGU,,Indisponibilidade das equipes de TI para executar a transformação digital,Pouco provável,pouco provável,Alto,alto,Mitigar,mitigar,"1, 3, 11","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. | 11. Reporte a alta administração para alinhamento de eventuais alterações estratégicas."
+CGU,,Falta de prioridade do PTD pela alta administração,Pouco provável,pouco provável,Muito Alto,muito alto,Mitigar,mitigar,1,"1. Governança bem definida, com alinhamento estratégico, tático e operacional."
+CGU,,Baixo comprometimento das áreas de negócio com as ações pactuadas,Provável,provável,Alto,alto,Mitigar,mitigar,"5, 7, 8, 9","5. Utilizar melhores práticas de gerenciamento de projetos registrando as etapas. | 7. Alinhamento com as estratégias e planos de Governo. | 8. Projeto atualizado mesmo com a substituição de membro da equipe. | 9. Reuniões periódicas de divulgação de informações do Plano e entregas realizadas. organização. soluções visando a continuidade do negócio. Controladoria-Geral da União (CGU)  Definir diretrizes de atuação do seu PTD alinhado com suas políticas públicas, voltada para o cidadão, sempre que couber."
+CGU,,Atraso nos cronogramas pactuados,Provável,provável,Alto,alto,Mitigar,mitigar,"3, 8, 9","3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. | 8. Projeto atualizado mesmo com a substituição de membro da equipe. | 9. Reuniões periódicas de divulgação de informações do Plano e entregas realizadas. organização. soluções visando a continuidade do negócio. Controladoria-Geral da União (CGU)  Definir diretrizes de atuação do seu PTD alinhado com suas políticas públicas, voltada para o cidadão, sempre que couber."
+CGU,,Corte no orçamento,Provável,provável,Alto,alto,Mitigar,mitigar,"1, 4","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 4. Prospecção de formas alternativas para a composição da força de trabalho."
+CGU,,Mudança da estratégica da área de negócio responsável pelo serviço,Provável,provável,Muito Alto,muito alto,Mitigar,mitigar,"1, 2, 11","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 2. Sensibilização das áreas de negócio para a importância do plano digital. | 11. Reporte a alta administração para alinhamento de eventuais alterações estratégicas."
+CM,,Alteração da política pública relacionada ao PTD,,,Alto,alto,xxx,xxx,,
+CM,,Despriorização do PTD pela alta administração,,,Alto,alto,1-2-4-10-15,1-2-4-10-15,,
+CM,,Corte/contingenciamento orçamentário,,,Alto,alto,1-2-4-5-10,1-2-4-5-10,,
+CM,,Falta de apoio da SGD/MGI,,,Médio,médio,1-2-4,1-2-4,,
+CM,,"Não aceitação dos demais atores envolvidos (Polícia Federal, AGU, Cartórios, entre outros) pelo modelo de serviços estabelecido",,,Alto,alto,2-13,2-13,,
+CM,,Não conseguir articular integração com bases de dados de órgãos parceiros,,,Médio,médio,1-2-19,1-2-19,,
+CM,,Indisponibilidade dos donos de serviço para atuação na transformação digital,,,Médio,médio,14 -15-18-22,14 -15-18-22,,
+CM,,Mudança da estratégia da área de negócio responsável pelo serviço,,,Médio,médio,1-2-3-5-9,1-2-3-5-9,,
+CM,,Baixo comprometimento das áreas de negócio com as ações pactuadas,,,Alto,alto,14-15-17-18-22,14-15-17-18-22,,
+CM,,"Alteração do escopo inicial do projeto para adaptá-lo às necessidades específicas de um ou demais atores externos, levando ao atraso de entregas",,,Médio,médio,1-2-17-18-22,1-2-17-18-22,,
+CM,,Atraso no processo administrativo de contratação,,,Médio,médio,1-5-11,1-5-11,,
+CM,,Dependência de fornecedores,,,Alto,alto,11-17,11-17,,
+CM,,Falta de capacidade do fornecedor em cumprir as entregas no prazo desejado,,,Alto,alto,11-12,11-12,,
+CM,,Atraso nos cronogramas pactuados,,,Médio,médio,12-14-15-17-18- 22,12-14-15-17-18- 22,,
+CM,,Baixa adesão de uso do formulário de avaliação do serviço por parte dos usuários,,,Médio,médio,14-20,14-20,,
+CM,,Incompatibilidade entre o tempo da transformação do serviço e necessidade de alteração normativa,,,Médio,médio,17-21,17-21,,
+CM,,Carência de recursos humanos nas equipes de TI para executar a transformação digital,,,Alto,alto,16 -17,16 -17,,
+CM,,Rotatividade de recursos humanos na área de TI do órgão e órgãos vinculados,,,Médio,médio,1-14-16-17,1-14-16-17,,
+CM,,Rotatividades das equipes envolvidas na transformação digital,,,Alto,alto,14-16-17,14-16-17,,
+CM,,Problemas com perda e/ou integridade de dados,,,Alto,alto,6-7-8-23,6-7-8-23,,
+CM,,Indisponibilidade dos sistemas de acesso para o cidadão,,,Médio,médio,23,23,,
+CM,,Indisponibilidade dos sistemas,,,Médio,médio,23,23,,
+CM,,relacionados ao serviço,,,,,,,,
+CM,,Velocidade insuficiente do link usado para a transferência dos dados,,,Médio,médio,11-23,11-23,,
+CM,,Necessidade de rever os serviços automatizados para adequação aos preceitos da LGPD,,,Alto,alto,"1, 6, 7, 15",1; 6; 7; 15,,
+CM,,Dificuldade em atender aos direitos dos titulares cujos dados estejam armazenados em serviços digitais com bases hospedadas fora do MD,,,Alto,alto,"6, 7",6; 7,,
+CNPQ,,"Possibilidade de atrasos, interrupções ou não entrega dos serviços contratados relacionados a suporte técnico e soluções de tecnologia, comprometendo a continuidade operacional e a eficiência dos processos.",,,Alto,alto,Mitigar,mitigar,"Estabelecer prazos, indicadores de qualidade e penalidades em caso de descumprimento contratual.","Estabelecer prazos, indicadores de qualidade e penalidades em caso de descumprimento contratual."
+COAF,A,Alteração na política pública,Pouco provável,pouco provável,Muito alto,muito alto,Aceitar ou tolerar o risco,Aceitar ou tolerar o risco,"1,10","1,10"
+COAF,B,Indisponibilidade dos sistemas de acesso para o cidadão,Pouco provável,pouco provável,Muito alto,muito alto,Reduzir ou mitigar o risco,Reduzir ou mitigar o risco,"1,3,8,10,12","1,3,8,10,12"
+COAF,C,Indisponibilidade dos Sistemas relacionados aos serviços,Pouco provável,pouco provável,Muito alto,muito alto,Reduzir ou mitigar o risco,Reduzir ou mitigar o risco,"8,12","8,12"
+COAF,D,Problemas com perda e / ou integridade de dados,Pouco provável,pouco provável,Muito alto,muito alto,Reduzir ou mitigar o risco,Reduzir ou mitigar o risco,"1,3,11","1,3,11"
+COAF,E,Indisponibilidade das equipes de TI para executar a transformação digital,Provável,provável,Médio,médio,Reduzir ou mitigar o risco,Reduzir ou mitigar o risco,"4,5,12","4,5,12"
+COAF,F,Falta de prioridade do PTD pela alta administração,Pouco provável,pouco provável,Muito alto,muito alto,Aceitar ou tolerar o risco,Aceitar ou tolerar o risco,"1,2,3,6,8,10","1,2,3,6,8,10"
+COAF,G,Baixo comprometimento das áreas de negócio com as ações pactuadas,Pouco provável,pouco provável,Muito alto,muito alto,Reduzir ou mitigar o risco,Reduzir ou mitigar o risco,"1,4,5,6,7,8,9","1,4,5,6,7,8,9"
+COAF,H,Atraso nos cronogramas pactuados,Provável,provável,Médio,médio,Reduzir ou mitigar o risco,Reduzir ou mitigar o risco,"1,4,5,6,7,8,9","1,4,5,6,7,8,9"
+COAF,I,Corte no orçamento,Provável,provável,Alto,alto,Reduzir ou mitigar o risco,Reduzir ou mitigar o risco,"1,12","1,12"
+COAF,J,Mudança da estratégia da área de negócio responsável pelo serviço,Pouco provável,pouco provável,Alto,alto,aceitar,aceitar,"2,10","2,10"
+COAF,K,Falta de recursos humanos para implementação,Pouco provável,pouco provável,Alto,alto,Mitigar,mitigar,"3,4,7","3,4,7"
+COMAER,,Alteração da política pública relacionada ao PTD,,,Alto,alto,xxx,xxx,,
+COMAER,,Despriorização do PTD pela alta administração,,,Alto,alto,1-2-4-10-15,1-2-4-10-15,,
+COMAER,,Corte/contingenciamento orçamentário,,,Alto,alto,1-2-4-5-10,1-2-4-5-10,,
+COMAER,,Falta de apoio da SGD/MGI,,,Médio,médio,1-2-4,1-2-4,,
+COMAER,,"Não aceitação dos demais atores envolvidos (Polícia Federal, AGU, Cartórios, entre outros) pelo modelo de serviços estabelecido",,,Alto,alto,2-13,2-13,,
+COMAER,,Não conseguir articular integração com bases de dados de órgãos parceiros,,,Médio,médio,1-2-19,1-2-19,,
+COMAER,,Indisponibilidade dos donos de serviço para atuação na transformação digital,,,Médio,médio,14 -15-18-22,14 -15-18-22,,
+COMAER,,Mudança da estratégia da área de negócio responsável pelo serviço,,,Médio,médio,1-2-3-5-9,1-2-3-5-9,,
+COMAER,,Baixo comprometimento das áreas de negócio com as ações pactuadas,,,Alto,alto,14-15-17-18-22,14-15-17-18-22,,
+COMAER,,"Alteração do escopo inicial do projeto para adaptá-lo às necessidades específicas de um ou demais atores externos, levando ao atraso de entregas",,,Médio,médio,1-2-17-18-22,1-2-17-18-22,,
+COMAER,,Atraso no processo administrativo de contratação,,,Médio,médio,1-5-11,1-5-11,,
+COMAER,,Dependência de fornecedores,,,Alto,alto,11-17,11-17,,
+COMAER,,Falta de capacidade do fornecedor em cumprir as entregas no prazo desejado,,,Alto,alto,11-12,11-12,,
+COMAER,,Atraso nos cronogramas pactuados,,,Médio,médio,12-14-15-17-18- 22,12-14-15-17-18- 22,,
+COMAER,,Baixa adesão de uso do formulário de avaliação do serviço por parte dos usuários,,,Médio,médio,14-20,14-20,,
+COMAER,,Incompatibilidade entre o tempo da transformação do serviço e necessidade de alteração normativa,,,Médio,médio,17-21,17-21,,
+COMAER,,Carência de recursos humanos nas equipes de TI para executar a transformação digital,,,Alto,alto,16 -17,16 -17,,
+COMAER,,Rotatividade de recursos humanos na área de TI do órgão e órgãos vinculados,,,Médio,médio,1-14-16-17,1-14-16-17,,
+COMAER,,Rotatividades das equipes envolvidas na transformação digital,,,Alto,alto,14-16-17,14-16-17,,
+COMAER,,Problemas com perda e/ou integridade de dados,,,Alto,alto,6-7-8-23,6-7-8-23,,
+COMAER,,Indisponibilidade dos sistemas de acesso para o cidadão,,,Médio,médio,23,23,,
+COMAER,,Indisponibilidade dos sistemas,,,Médio,médio,23,23,,
+COMAER,,relacionados ao serviço,,,,,,,,
+COMAER,,Velocidade insuficiente do link usado para a transferência dos dados,,,Médio,médio,11-23,11-23,,
+COMAER,,Necessidade de rever os serviços automatizados para adequação aos preceitos da LGPD,,,Alto,alto,"1, 6, 7, 15",1; 6; 7; 15,,
+COMAER,,Dificuldade em atender aos direitos dos titulares cujos dados estejam armazenados em serviços digitais com bases hospedadas fora do MD,,,Alto,alto,"6, 7",6; 7,,
+CONAB,,"Atraso ou inexecução de contrapartida da SGD no suporte às ações de transformação digital, no que couber.",Pouco provável,pouco provável,Alto,alto,Mitigar,mitigar,Reunião interministerial periódica,Reunião interministerial periódica
+CONAB,,Mudança de Escopo do Plano,Pouco provável,pouco provável,Alto,alto,Mitigar,mitigar,1. Acompanhar as iniciativas ao Conecta.Gov e fazer gestão junto à SGD para garantir a disponibilidade e atualização das APIs utilizadas pela CONAB; 2. A Companhia deve formalizar a pactuação do seu Plano de Transformação Digital; 3. Priorização das ações que envolvem a TI no Plano de Transformação Digital e reorganização da equipe técnica.,1. Acompanhar as iniciativas ao Conecta.Gov e fazer gestão junto à SGD para garantir a disponibilidade e atualização das APIs utilizadas pela CONAB; 2. A Companhia deve formalizar a pactuação do seu Plano de Transformação Digital; 3. Priorização das ações que envolvem a TI no Plano de Transformação Digital e reorganização da equipe técnica.
+CONAB,,Falha no Requisito Funcional (Operacional),Pouco provável,pouco provável,Médio,médio,Mitigar,mitigar,1. Participação de técnicos experientes e com visão global de cada processo que envolve operações transacionais; 2. Plano de Comunicação e Divulgação ao Cidadão para as entregas realizadas na,1. Participação de técnicos experientes e com visão global de cada processo que envolve operações transacionais; 2. Plano de Comunicação e Divulgação ao Cidadão para as entregas realizadas na
+CVM,,,de Ocorrer,de Ocorrer,,,,,,
+CVM,,Disponibilidade dos donos de serviço para atuação na transformação,,,Alto,alto,Mitigar,mitigar,"1. Governança bem definida, com alinhamento estratégico, tático e operacional. 2. Sensibilização das áreas de negócio para a importância do plano digital. 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. 9. Reuniões periódicas de divulgação de informações do Plano e entregas realizadas.","1. Governança bem definida, com alinhamento estratégico, tático e operacional. 2. Sensibilização das áreas de negócio para a importância do plano digital. 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. 9. Reuniões periódicas de divulgação de informações do Plano e entregas realizadas."
+CVM,,Capacidade de execução da transformação digital,,,Muito Alto,muito alto,Mitigar,mitigar,"1. Governança bem definida, com alinhamento estratégico, tático e operacional. 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. 5. Utilizar melhores práticas de gerenciamento de projetos registrando as etapas. 8. Projeto atualizado mesmo com a substituição de membro da equipe.","1. Governança bem definida, com alinhamento estratégico, tático e operacional. 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. 5. Utilizar melhores práticas de gerenciamento de projetos registrando as etapas. 8. Projeto atualizado mesmo com a substituição de membro da equipe."
+CVM,,,de Ocorrer,de Ocorrer,,,,,,
+CVM,,Atraso nos cronogramas pactuados,,,Alto,alto,Mitigar,mitigar,"1. Governança bem definida, com alinhamento estratégico, tático e operacional. 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. 5. Utilizar melhores práticas de gerenciamento de projetos registrando as etapas. 11. Reporte a alta administração para alinhamento de eventuais alterações estratégicas.","1. Governança bem definida, com alinhamento estratégico, tático e operacional. 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. 5. Utilizar melhores práticas de gerenciamento de projetos registrando as etapas. 11. Reporte a alta administração para alinhamento de eventuais alterações estratégicas."
+CVM,,Incompatibilidade entre o tempo da transformação do serviço e necessidade de alteração normativa,,,Alto,alto,Mitigar,mitigar,"1. Governança bem definida, com alinhamento estratégico, tático e operacional. 5. Utilizar melhores práticas de gerenciamento de projetos registrando as etapas. 6. Alinhamento interno quanto a critérios para simplificação e priorização no rito regulatório para os serviços constantes do plano digital. 11. Reporte a alta administração para alinhamento de eventuais alterações estratégicas.","1. Governança bem definida, com alinhamento estratégico, tático e operacional. 5. Utilizar melhores práticas de gerenciamento de projetos registrando as etapas. 6. Alinhamento interno quanto a critérios para simplificação e priorização no rito regulatório para os serviços constantes do plano digital. 11. Reporte a alta administração para alinhamento de eventuais alterações estratégicas."
+DNOCS,,Alteração da política pública relacionada ao PTD,Pouco provável,pouco provável,Alto,alto,,,Avaliar o impacto de cada cenário no Plano de,Avaliar o impacto de cada cenário no Plano de
+EBSERH,,Problemas de coordenação das ações entre as Secretarias finalísticas do MEC,Muito provável,muito provável,Alto,alto,Mitigar,mitigar,"Governança bem definida, com alinhamento estratégico, tático e operacional.","Governança bem definida, com alinhamento estratégico, tático e operacional."
+EBSERH,,Resistências a processos de compartilhamento de dados,Muito provável,muito provável,Alto,alto,Eliminar,eliminar,"Estabelecer no modelo de governança de dados da educação as bases de referência e as responsabilidades por estas bases, com mecanismos de compartilhamento que evitem replicação e garantam segurança e privacidade.","Estabelecer no modelo de governança de dados da educação as bases de referência e as responsabilidades por estas bases, com mecanismos de compartilhamento que evitem replicação e garantam segurança e privacidade."
+EBSERH,,Sistemas legados pouco confiáveis e com,Provável,provável,Médio,médio,Eliminar,eliminar,Realizar diagnóstico e estabelecer um programa de atualização tecnológica dos sistemas legados,Realizar diagnóstico e estabelecer um programa de atualização tecnológica dos sistemas legados
+FCRB,,Perda de confiança das partes interessadas,Pouco provável,pouco provável,Muito alto,muito alto,Mitigar o risco,Mitigar o risco,"1, 2, 9","1, 2, 9"
+FCRB,,Alteração na política pública,Pouco provável,pouco provável,Muito alto,muito alto,Mitigar o risco,Mitigar o risco,"6, 7, 11","6, 7, 11"
+FCRB,,Indisponibilidade dos sistemas de acesso para o cidadão,Pouco provável,pouco provável,Muito alto,muito alto,Mitigar o risco,Mitigar o risco,14,14
+FCRB,,Perda e/ou integridade de dados,Pouco provável,pouco provável,Muito alto,muito alto,Mitigar o risco,Mitigar o risco,"12, 13","12, 13"
+FCRB,,Incapacidade de execução da transformação digital,Pouco provável,pouco provável,Alto,alto,Mitigar o risco,Mitigar o risco,"1, 3, 4, 5, 8","1, 3, 4, 5, 8"
+FCRB,,Dependência de fornecedores,Provável,provável,Muito alto,muito alto,Mitigar o risco,Mitigar o risco,"1, 14","1, 14"
+FCRB,,Indisponibilidade dos donos de serviço para atuação na transformação,Pouco provável,pouco provável,Alto,alto,Mitigar o risco,Mitigar o risco,"1, 2, 3, 9, 10","1, 2, 3, 9, 10"
+FCRB,,Indisponibilidade da equipe de TI para executar a transformação digital,Provável,provável,Muito alto,muito alto,Mitigar o risco,Mitigar o risco,"4, 5","4, 5"
+FCRB,,Despriorização do PTD pela alta administração,Raro,raro,Muito alto,muito alto,Mitigar o risco,Mitigar o risco,"1, 3, 9, 11","1, 3, 9, 11"
+FCRB,,Baixo comprometimento das áreas de negócio com as ações pactuadas,Pouco provável,pouco provável,Muito alto,muito alto,Mitigar o risco,Mitigar o risco,"1, 2, 3, 9","1, 2, 3, 9"
+FCRB,,Atraso no cronograma pactuado,Provável,provável,Médio,médio,Mitigar o risco,Mitigar o risco,"1,3, 5, 10, 11","1,3, 5, 10, 11"
+FCRB,,Rotatividade da equipe envolvida na transformação digital,Provável,provável,Alto,alto,Mitigar o risco,Mitigar o risco,"4, 5, 8","4, 5, 8"
+FCRB,,Incompatibilidade entre tempo da transformação do serviço e necessidade de alteração normativa,Pouco provável,pouco provável,Médio,médio,Mitigar o risco,Mitigar o risco,"1, 5, 6, 11","1, 5, 6, 11"
+FCRB,,Corte no orçamento,Provável,provável,Alto,alto,Mitigar o risco,Mitigar o risco,"1, 11","1, 11"
+FIOCRUZ,,Não implantar os controles em todas as unidades,,,Alto,alto,Mitigar,mitigar, Reuniões de alinhamentos com as unidades;  Apresentações que demonstrem a importância dos controles e impactos institucionais;  Deliberação do CGSI;  Deliberação do CGovTic;, Reuniões de alinhamentos com as unidades;  Apresentações que demonstrem a importância dos controles e impactos institucionais;  Deliberação do CGSI;  Deliberação do CGovTic;
+FIOCRUZ,,Atraso na implantação dos controles devido à complexidade institucional,,,Alto,alto,Mitigar,mitigar, Priorização de controles (Mais críticos e menos complexos).  Padronização de controles e processos.  Reuniões periódicas com as áreas e unidades envolvidas;, Priorização de controles (Mais críticos e menos complexos).  Padronização de controles e processos.  Reuniões periódicas com as áreas e unidades envolvidas;
+FIOCRUZ,,Atraso na implantação dos controles devido à complexidade tecnológica institucional,,,Alto,alto,Mitigar,mitigar, Priorização de controles (Mais críticos e menos complexos).  Padronização de controles e processos.  Reuniões estratégicas e periódicas com as áreas de TIC;, Priorização de controles (Mais críticos e menos complexos).  Padronização de controles e processos.  Reuniões estratégicas e periódicas com as áreas de TIC;
+FIOCRUZ,,Baixo engajamento das unidades na implantação dos controles,,,Alto,alto,Mitigar,mitigar, Reuniões de alinhamentos com as unidades;  Apresentações que demonstrem a importância dos controles e impactos institucionais;  Deliberação do CGSI; Deliberação do CGovTic;, Reuniões de alinhamentos com as unidades;  Apresentações que demonstrem a importância dos controles e impactos institucionais;  Deliberação do CGSI; Deliberação do CGovTic;
+FIOCRUZ,,Não engajamento dos usuários na utilização dos controles,,,Média,médio,Mitigar,mitigar, Apresentações de conscientização;, Apresentações de conscientização;
+FIOCRUZ,,Atraso das demais áreas de TIC nos acordos estabelecidos para implantação dos controles;,,,Média,médio,Mitigar,mitigar, Priorização de controles (Mais críticos e menos complexos).  Reuniões estratégicas e periódicas com as áreas de TIC;  Priorizar ações e controles que podem ser automatizados;, Priorização de controles (Mais críticos e menos complexos).  Reuniões estratégicas e periódicas com as áreas de TIC;  Priorizar ações e controles que podem ser automatizados;
+FNDE,,Problemas de coordenação das ações entre as Secretarias finalísticas do MEC,Muito provável,muito provável,Alto,alto,Mitigar,mitigar,"Governança bem definida, com alinhamento estratégico, tático e operacional.","Governança bem definida, com alinhamento estratégico, tático e operacional."
+FNDE,,Resistências a processos de compartilhamento de dados,Muito provável,muito provável,Alto,alto,Eliminar,eliminar,"Estabelecer no modelo de governança de dados da educação as bases de referência e as responsabilidades por estas bases, com mecanismos de compartilhamento que evitem replicação e garantam segurança e privacidade.","Estabelecer no modelo de governança de dados da educação as bases de referência e as responsabilidades por estas bases, com mecanismos de compartilhamento que evitem replicação e garantam segurança e privacidade."
+FNDE,,Sistemas legados pouco confiáveis e com,Provável,provável,Médio,médio,Eliminar,eliminar,Realizar diagnóstico e estabelecer um programa de atualização tecnológica dos sistemas legados,Realizar diagnóstico e estabelecer um programa de atualização tecnológica dos sistemas legados
+FOSORIO,,Alteração da política pública relacionada ao PTD,,,Alto,alto,xxx,xxx,,
+FOSORIO,,Despriorização do PTD pela alta administração,,,Alto,alto,1-2-4-10-15,1-2-4-10-15,,
+FOSORIO,,Corte/contingenciamento orçamentário,,,Alto,alto,1-2-4-5-10,1-2-4-5-10,,
+FOSORIO,,Falta de apoio da SGD/MGI,,,Médio,médio,1-2-4,1-2-4,,
+FOSORIO,,"Não aceitação dos demais atores envolvidos (Polícia Federal, AGU, Cartórios, entre outros) pelo modelo de serviços estabelecido",,,Alto,alto,2-13,2-13,,
+FOSORIO,,Não conseguir articular integração com bases de dados de órgãos parceiros,,,Médio,médio,1-2-19,1-2-19,,
+FOSORIO,,Indisponibilidade dos donos de serviço para atuação na transformação digital,,,Médio,médio,14 -15-18-22,14 -15-18-22,,
+FOSORIO,,Mudança da estratégia da área de negócio responsável pelo serviço,,,Médio,médio,1-2-3-5-9,1-2-3-5-9,,
+FOSORIO,,Baixo comprometimento das áreas de negócio com as ações pactuadas,,,Alto,alto,14-15-17-18-22,14-15-17-18-22,,
+FOSORIO,,"Alteração do escopo inicial do projeto para adaptá-lo às necessidades específicas de um ou demais atores externos, levando ao atraso de entregas",,,Médio,médio,1-2-17-18-22,1-2-17-18-22,,
+FOSORIO,,Atraso no processo administrativo de contratação,,,Médio,médio,1-5-11,1-5-11,,
+FOSORIO,,Dependência de fornecedores,,,Alto,alto,11-17,11-17,,
+FOSORIO,,Falta de capacidade do fornecedor em cumprir as entregas no prazo desejado,,,Alto,alto,11-12,11-12,,
+FOSORIO,,Atraso nos cronogramas pactuados,,,Médio,médio,12-14-15-17-18- 22,12-14-15-17-18- 22,,
+FOSORIO,,Baixa adesão de uso do formulário de avaliação do serviço por parte dos usuários,,,Médio,médio,14-20,14-20,,
+FOSORIO,,Incompatibilidade entre o tempo da transformação do serviço e necessidade de alteração normativa,,,Médio,médio,17-21,17-21,,
+FOSORIO,,Carência de recursos humanos nas equipes de TI para executar a transformação digital,,,Alto,alto,16 -17,16 -17,,
+FOSORIO,,Rotatividade de recursos humanos na área de TI do órgão e órgãos vinculados,,,Médio,médio,1-14-16-17,1-14-16-17,,
+FOSORIO,,Rotatividades das equipes envolvidas na transformação digital,,,Alto,alto,14-16-17,14-16-17,,
+FOSORIO,,Problemas com perda e/ou integridade de dados,,,Alto,alto,6-7-8-23,6-7-8-23,,
+FOSORIO,,Indisponibilidade dos sistemas de acesso para o cidadão,,,Médio,médio,23,23,,
+FOSORIO,,Indisponibilidade dos sistemas,,,Médio,médio,23,23,,
+FOSORIO,,relacionados ao serviço,,,,,,,,
+FOSORIO,,Velocidade insuficiente do link usado para a transferência dos dados,,,Médio,médio,11-23,11-23,,
+FOSORIO,,Necessidade de rever os serviços automatizados para adequação aos preceitos da LGPD,,,Alto,alto,"1, 6, 7, 15",1; 6; 7; 15,,
+FOSORIO,,Dificuldade em atender aos direitos dos titulares cujos dados estejam armazenados em serviços digitais com bases hospedadas fora do MD,,,Alto,alto,"6, 7",6; 7,,
+FUNARTE,,Alteração na política pública.,Provável,provável,Muito alto,muito alto,Aceitar,aceitar,"1,11,13","1,11,13"
+FUNARTE,,Indisponibilidade dos sistemas de acesso para o cidadão.,Pouco provável,pouco provável,Muito alto,muito alto,Mitigar,mitigar,"7,9,11,14","7,9,11,14"
+FUNARTE,,Indisponibilidade dos Sistemas relacionados aos serviços.,Provável,provável,Muito alto,muito alto,Mitigar,mitigar,"9,14","9,14"
+FUNARTE,,Problemas com perda e / ou integridade de dados.,Pouco provável,pouco provável,Muito alto,muito alto,Mitigar,mitigar,"7,12","7,12"
+FUNARTE,,Indisponibilidade das equipes de TI para executar a transformação digital.,Muito provável,muito provável,Muito alto,muito alto,Mitigar,mitigar,"4,5,14","4,5,14"
+FUNARTE,,Falta de prioridade do PTD pela alta administração.,Pouco provável,pouco provável,Muito alto,muito alto,Aceitar,aceitar,"1,2,6,7,9,11,13","6. 1 ÓRGÃOS COMPONENTES Órgão Proponente Fundação Nacional de Artes  Definir diretrizes de atuação do seu PTD alinhado com suas políticas públicas, voltada"
+FUNARTE,,Baixo comprometimento das áreas de negócio com as ações pactuadas.,Pouco provável,pouco provável,Muito alto,muito alto,Mitigar,mitigar,"1,2,4, 5,6,7,9,11,13","6. 1 ÓRGÃOS COMPONENTES Órgão Proponente Fundação Nacional de Artes  Definir diretrizes de atuação do seu PTD alinhado com suas políticas públicas, voltada"
+FUNARTE,,Atraso nos cronogramas pactuados.,Provável,provável,Médio,médio,Mitigar,mitigar,"1,4,5,6,8,9, 10,13","6. 1 ÓRGÃOS COMPONENTES Órgão Proponente Fundação Nacional de Artes  Definir diretrizes de atuação do seu PTD alinhado com suas políticas públicas, voltada"
+FUNARTE,,Corte no orçamento.,Provável,provável,Alto,alto,Mitigar,mitigar,"1, 14","1, 14"
+FUNDACENTRO,,Falta de comunicação entre as partes para ajustes nos serviços,Baixa,Baixa,Alto,alto,Mitigar,mitigar,Comunicaç ões mensais para acompanha mento,Comunicaç ões mensais para acompanha mento
+FUNDACENTRO,,Não entrega,Baixa,Baixa,Alto,alto,Mitigar,mitigar,Formalizar plano em conjunto com áreas,Formalizar plano em conjunto com áreas
+FUNDAJ,,Problemas de coordenação das ações entre as Secretarias finalísticas do MEC,Muito provável,muito provável,Alto,alto,Mitigar,mitigar,"Governança bem definida, com alinhamento estratégico, tático e operacional.","Governança bem definida, com alinhamento estratégico, tático e operacional."
+FUNDAJ,,Resistências a processos de compartilhamento de dados,Muito provável,muito provável,Alto,alto,Eliminar,eliminar,"Estabelecer no modelo de governança de dados da educação as bases de referência e as responsabilidades por estas bases, com mecanismos de compartilhamento que evitem replicação e garantam segurança e privacidade.","Estabelecer no modelo de governança de dados da educação as bases de referência e as responsabilidades por estas bases, com mecanismos de compartilhamento que evitem replicação e garantam segurança e privacidade."
+FUNDAJ,,Sistemas legados pouco confiáveis e com,Provável,provável,Médio,médio,Eliminar,eliminar,Realizar diagnóstico e estabelecer um programa de atualização tecnológica dos sistemas legados,Realizar diagnóstico e estabelecer um programa de atualização tecnológica dos sistemas legados
+HFA,,Alteração da política pública relacionada ao PTD,,,Alto,alto,xxx,xxx,,
+HFA,,Despriorização do PTD pela alta administração,,,Alto,alto,1-2-4-10-15,1-2-4-10-15,,
+HFA,,Corte/contingenciamento orçamentário,,,Alto,alto,1-2-4-5-10,1-2-4-5-10,,
+HFA,,Falta de apoio da SGD/MGI,,,Médio,médio,1-2-4,1-2-4,,
+HFA,,"Não aceitação dos demais atores envolvidos (Polícia Federal, AGU, Cartórios, entre outros) pelo modelo de serviços estabelecido",,,Alto,alto,2-13,2-13,,
+HFA,,Não conseguir articular integração com bases de dados de órgãos parceiros,,,Médio,médio,1-2-19,1-2-19,,
+HFA,,Indisponibilidade dos donos de serviço para atuação na transformação digital,,,Médio,médio,14 -15-18-22,14 -15-18-22,,
+HFA,,Mudança da estratégia da área de negócio responsável pelo serviço,,,Médio,médio,1-2-3-5-9,1-2-3-5-9,,
+HFA,,Baixo comprometimento das áreas de negócio com as ações pactuadas,,,Alto,alto,14-15-17-18-22,14-15-17-18-22,,
+HFA,,"Alteração do escopo inicial do projeto para adaptá-lo às necessidades específicas de um ou demais atores externos, levando ao atraso de entregas",,,Médio,médio,1-2-17-18-22,1-2-17-18-22,,
+HFA,,Atraso no processo administrativo de contratação,,,Médio,médio,1-5-11,1-5-11,,
+HFA,,Dependência de fornecedores,,,Alto,alto,11-17,11-17,,
+HFA,,Falta de capacidade do fornecedor em cumprir as entregas no prazo desejado,,,Alto,alto,11-12,11-12,,
+HFA,,Atraso nos cronogramas pactuados,,,Médio,médio,12-14-15-17-18- 22,12-14-15-17-18- 22,,
+HFA,,Baixa adesão de uso do formulário de avaliação do serviço por parte dos usuários,,,Médio,médio,14-20,14-20,,
+HFA,,Incompatibilidade entre o tempo da transformação do serviço e necessidade de alteração normativa,,,Médio,médio,17-21,17-21,,
+HFA,,Carência de recursos humanos nas equipes de TI para executar a transformação digital,,,Alto,alto,16 -17,16 -17,,
+HFA,,Rotatividade de recursos humanos na área de TI do órgão e órgãos vinculados,,,Médio,médio,1-14-16-17,1-14-16-17,,
+HFA,,Rotatividades das equipes envolvidas na transformação digital,,,Alto,alto,14-16-17,14-16-17,,
+HFA,,Problemas com perda e/ou integridade de dados,,,Alto,alto,6-7-8-23,6-7-8-23,,
+HFA,,Indisponibilidade dos sistemas de acesso para o cidadão,,,Médio,médio,23,23,,
+HFA,,Indisponibilidade dos sistemas,,,Médio,médio,23,23,,
+HFA,,relacionados ao serviço,,,,,,,,
+HFA,,Velocidade insuficiente do link usado para a transferência dos dados,,,Médio,médio,11-23,11-23,,
+HFA,,Necessidade de rever os serviços automatizados para adequação aos preceitos da LGPD,,,Alto,alto,"1, 6, 7, 15",1; 6; 7; 15,,
+HFA,,Dificuldade em atender aos direitos dos titulares cujos dados estejam armazenados em serviços digitais com bases hospedadas fora do MD,,,Alto,alto,"6, 7",6; 7,,
+IBAMA,,O Monitoramento do PTD do MMA e vinculadas não ser patrocinado pelo Conselho de Governança do MMA e das entidades Vinculadas – CG-MMA,Pouco Provável,pouco provável,Muito Alto,muito alto,Eliminar,eliminar,15,15
+IBAMA,,Dependência de fornecedores,Provável,provável,Alto,alto,Mitigar,mitigar,14,14. Identificação de dependências com fornecedores para o planejamento preventivo para a contratação ou migração de
+IBAMA,,Indisponibilidade dos donos de serviço para atuação na transformação,Provável,provável,Alto,alto,Evitar,aceitar,2,2. Sensibilização das áreas de negócio para a importância do plano digital.
+IBAMA,,Indisponibilidade das equipes de TI para executar a transformação digital,Praticamente certo,praticamente certo,Alto,alto,Mitigar,mitigar,4,4. Prospecção de formas alternativas para a composição da força de trabalho.
+IBAMA,,Despriorização do PTD pela alta administração,Provável,provável,Alto,alto,Mitigar,mitigar,"1, 11","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 11. Reporte a alta administração para alinhamento de eventuais alterações estratégicas."
+IBAMA,,Baixo comprometimento das áreas,Provável,provável,Alto,alto,Mitigar,mitigar,2,2. Sensibilização das áreas de negócio para a importância do plano digital.
+IBC,,Problemas de coordenação das ações entre as Secretarias finalísticas do MEC,Muito provável,muito provável,Alto,alto,Mitigar,mitigar,"Governança bem definida, com alinhamento estratégico, tático e operacional.","Governança bem definida, com alinhamento estratégico, tático e operacional."
+IBC,,Resistências a processos de compartilhamento de dados,Muito provável,muito provável,Alto,alto,Eliminar,eliminar,"Estabelecer no modelo de governança de dados da educação as bases de referência e as responsabilidades por estas bases, com mecanismos de compartilhamento que evitem replicação e garantam segurança e privacidade.","Estabelecer no modelo de governança de dados da educação as bases de referência e as responsabilidades por estas bases, com mecanismos de compartilhamento que evitem replicação e garantam segurança e privacidade."
+IBC,,Sistemas legados pouco confiáveis e com,Provável,provável,Médio,médio,Eliminar,eliminar,Realizar diagnóstico e estabelecer um programa de atualização tecnológica dos sistemas legados,Realizar diagnóstico e estabelecer um programa de atualização tecnológica dos sistemas legados
+IBGE,B,Alteração na política pública,Pouco provável,pouco provável,Muito alto,muito alto,Aceitar,aceitar,"6, 7, 11","6, 7, 11"
+IBGE,C,Disponibilidade dos sistemas de acesso para o cidadão,,,baixo,baixo,Mitigar,mitigar,14,14
+IBGE,D,Perda de integridade de dados,Pouco provável,pouco provável,Alto,alto,Mitigar,mitigar,"12,13","12,13"
+IBGE,E,Capacidade de execução da transformação digital,Provável,provável,Muito alto,muito alto,Mitigar,mitigar,"1, 3, 4, 5, 8","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. | 4. Prospecção de formas alternativas para a composição da força de trabalho. | 5. Utilizar melhores práticas de gerenciamento de projetos registrando as etapas."
+IBGE,F,Dependência de fornecedores,Provável,provável,Baixo,baixo,Mitigar,mitigar,"1, 14","1. Governança bem definida, com alinhamento estratégico, tático e operacional."
+IBGE,G,Disponibilidade dos donos de serviço para atuação na transformação,Pouco provável,pouco provável,Alto,alto,Mitigar,mitigar,"1, 2, 3, 9, 10","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 2. Sensibilização das áreas de negócio para a importância do plano digital. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão."
+IBGE,H,Disponibilidade das equipes de TI para executar a transformação digital,Provável,provável,Muito alto,muito alto,Mitigar,mitigar,"4, 5",4. Prospecção de formas alternativas para a composição da força de trabalho. | 5. Utilizar melhores práticas de gerenciamento de projetos registrando as etapas.
+IBGE,I,Despriorização do PTD pela alta administração,Raro,raro,Muito alto,muito alto,Mitigar,mitigar,"1, 3, 9, 11","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão."
+IBGE,J,Baixo comprometimento das áreas de negócio com as ações pactuadas,Pouco provável,pouco provável,Muito alto,muito alto,Mitigar,mitigar,"1, 2, 3, 9","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 2. Sensibilização das áreas de negócio para a importância do plano digital. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão."
+IBGE,K,Atraso nos cronogramas pactuados,Provável,provável,baixo,baixo,Mitigar,mitigar,"1, 3, 5, 10, 11","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. | 5. Utilizar melhores práticas de gerenciamento de projetos registrando as etapas."
+IBGE,L,Rotatividades das equipes envolvidas na transformação digital,Pouco provável,pouco provável,Alto,alto,Aceitar,aceitar,"4, 5, 8",4. Prospecção de formas alternativas para a composição da força de trabalho. | 5. Utilizar melhores práticas de gerenciamento de projetos registrando as etapas.
+IBGE,M,Incompatibilidade entre o tempo da transformação do serviço e necessidade de alteração normativa,Pouco provável,pouco provável,Baixo,baixo,Aceitar,aceitar,"1, 5, 6, 11","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 5. Utilizar melhores práticas de gerenciamento de projetos registrando as etapas."
+IBGE,N,Corte no orçamento,Provável,provável,Alto,alto,Aceitar,aceitar,"1, 11","1. Governança bem definida, com alinhamento estratégico, tático e operacional."
+IBGE,O,Falta de apoio da SGD,Raro,raro,Muito alto,muito alto,Mitigar,mitigar,"1, 3, 9","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão."
+IBGE,P,A transformação digital de um serviço não gerar o resultado esperado,Pouco provável,pouco provável,Baixo,baixo,Mitigar,mitigar,"15, 16, 21","15, 16, 21"
+IBGE,Q,A transformação digital de um serviço público não ser uma transformação propriamente dita,Pouco provável,pouco provável,Baixo,baixo,Mitigar,mitigar,"15, 16","15, 16"
+IBGE,R,O serviço público terminar sendo oferecido somente pela via digital (digital only),Provável,provável,Baixo,baixo,Mitigar,mitigar,"6, 7, 17, 21","6, 7, 17, 21"
+IBGE,S,Ocorrência de problemas de funcionamento do serviço público transformado digitalmente,Raro,raro,Médio,médio,,,18,18
+IBGE,T,Ataques cibernéticos,Provável,provável,Muito alto,muito alto,,,"20, 21","20, 21"
+ICMBIO,,O Monitoramento do PTD do MMA e vinculadas não ser patrocinado pelo Conselho de Governança do MMA e das entidades Vinculadas – CG-MMA,Pouco Provável,pouco provável,Muito Alto,muito alto,Eliminar,eliminar,15,15
+ICMBIO,,Dependência de fornecedores,Provável,provável,Alto,alto,Mitigar,mitigar,14,14. Identificação de dependências com fornecedores para o planejamento preventivo para a contratação ou migração de
+ICMBIO,,Indisponibilidade dos donos de serviço para atuação na transformação,Provável,provável,Alto,alto,Evitar,aceitar,2,2. Sensibilização das áreas de negócio para a importância do plano digital.
+ICMBIO,,Indisponibilidade das equipes de TI para executar a transformação digital,Praticamente certo,praticamente certo,Alto,alto,Mitigar,mitigar,4,4. Prospecção de formas alternativas para a composição da força de trabalho.
+ICMBIO,,Despriorização do PTD pela alta administração,Provável,provável,Alto,alto,Mitigar,mitigar,"1, 11","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 11. Reporte a alta administração para alinhamento de eventuais alterações estratégicas."
+ICMBIO,,Baixo comprometimento das áreas,Provável,provável,Alto,alto,Mitigar,mitigar,2,2. Sensibilização das áreas de negócio para a importância do plano digital.
+INEP,,Problemas de coordenação das ações entre as Secretarias finalísticas do MEC,Muito provável,muito provável,Alto,alto,Mitigar,mitigar,"Governança bem definida, com alinhamento estratégico, tático e operacional.","Governança bem definida, com alinhamento estratégico, tático e operacional."
+INEP,,Resistências a processos de compartilhamento de dados,Muito provável,muito provável,Alto,alto,Eliminar,eliminar,"Estabelecer no modelo de governança de dados da educação as bases de referência e as responsabilidades por estas bases, com mecanismos de compartilhamento que evitem replicação e garantam segurança e privacidade.","Estabelecer no modelo de governança de dados da educação as bases de referência e as responsabilidades por estas bases, com mecanismos de compartilhamento que evitem replicação e garantam segurança e privacidade."
+INEP,,Sistemas legados pouco confiáveis e com,Provável,provável,Médio,médio,Eliminar,eliminar,Realizar diagnóstico e estabelecer um programa de atualização tecnológica dos sistemas legados,Realizar diagnóstico e estabelecer um programa de atualização tecnológica dos sistemas legados
+INES,,Problemas de coordenação das ações entre as Secretarias finalísticas do MEC,Muito provável,muito provável,Alto,alto,Mitigar,mitigar,"Governança bem definida, com alinhamento estratégico, tático e operacional.","Governança bem definida, com alinhamento estratégico, tático e operacional."
+INES,,Resistências a processos de compartilhamento de dados,Muito provável,muito provável,Alto,alto,Eliminar,eliminar,"Estabelecer no modelo de governança de dados da educação as bases de referência e as responsabilidades por estas bases, com mecanismos de compartilhamento que evitem replicação e garantam segurança e privacidade.","Estabelecer no modelo de governança de dados da educação as bases de referência e as responsabilidades por estas bases, com mecanismos de compartilhamento que evitem replicação e garantam segurança e privacidade."
+INES,,Sistemas legados pouco confiáveis e com,Provável,provável,Médio,médio,Eliminar,eliminar,Realizar diagnóstico e estabelecer um programa de atualização tecnológica dos sistemas legados,Realizar diagnóstico e estabelecer um programa de atualização tecnológica dos sistemas legados
+INPI,,Incapacidade de entrega da fábrica de software (Dependência de fornecedores),Muito provável,muito provável,Alto,alto,,,Reuniões periódicas de acompanhamento com a empresa contratada. Buscar priorização das demandas deste plano junto ao Comitê de Governança Digital. Planejamento preventivo para nova contratação ou migração de soluções visando a continuidade do negócio.,Reuniões periódicas de acompanhamento com a empresa contratada. Buscar priorização das demandas deste plano junto ao Comitê de Governança Digital. Planejamento preventivo para nova contratação ou migração de soluções visando a continuidade do negócio.
+INPI,,Insuficiência de recursos humanos - servidores analistas de TI (Disponibilidade das equipes de TI para executar a transformação digital),Pouco provável,pouco provável,Médio,médio,,,Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão.,Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão.
+INSS,A,Perda de confiança das partes interessadas,pouco provável,pouco provável,alto,alto,aceitar,aceitar,,
+INSS,B,Alteração na política pública,provável,provável,médio,médio,aceitar,aceitar,,
+INSS,C,Disponibilidade dos sistemas de acesso para o cidadão,raro,raro,baixo,baixo,mitigar,mitigar,,
+INSS,D,Perda de integridade de dados,raro,raro,baixo,baixo,mitigar,mitigar,,
+INSS,E,Capacidade de execução da transformação digital,pouco provável,pouco provável,médio,médio,transferir,transferir,,
+INSS,F,Dependência de fornecedores,praticamente certo,praticamente certo,alto,alto,mitigar,mitigar,,
+INSS,G,Disponibilidade dos donos de serviço para atuação na transformação,provável,provável,alto,alto,transferir,transferir,,
+INSS,H,Disponibilidade das equipes de TI para executar a transformação digital,praticamente certo,praticamente certo,muito alto,muito alto,mitigar,mitigar,,
+INSS,I,Despriorização do PTD pela alta administração,raro,raro,baixo,baixo,transferir,transferir,,
+INSS,J,Baixo comprometimento das áreas de negócio com as ações pactuadas,pouco provável,pouco provável,alto,alto,transferir,transferir,,
+INSS,K,Atraso nos cronogramas pactuados,provável,provável,médio,médio,mitigar,mitigar,,
+INSS,L,Rotatividades das equipes envolvidas na transformação digital,muito provável,muito provável,alto,alto,mitigar,mitigar,,
+INSS,M,Incompatibilidade entre o tempo da transformação do serviço e necessidade de alteração normativa,provável,provável,baixo,baixo,transferir,transferir,,
+INSS,N,Corte no orçamento,muito provável,muito provável,muito alto,muito alto,transferir,transferir,,
+INSS,O,Falta de apoio da SGD,raro,raro,baixo,baixo,transferir,transferir,,
+INSS,P,A transformação digital de um serviço não gerar o resultado esperado,raro,raro,baixo,baixo,mitigar,mitigar,,
+INSS,Q,A transformação digital de um serviço público não ser uma transformação propriamente dita,raro,raro,baixo,baixo,mitigar,mitigar,,
+INSS,R,O serviço público terminar sendo oferecido somente pela via digital (digital only),provável,provável,médio,médio,aceitar,aceitar,,
+INSS,S,Ocorrência de problemas de funcionamento do serviço público transformado digitalmente,pouco provável,pouco provável,baixo,baixo,transferir,transferir,,
+INSS,T,Ataques cibernéticos,Provável,provável,médio,médio,mitigar,mitigar,,
+IPHAN,,Perda de confiança das partes interessadas,Pouco provável,pouco provável,médio,médio,mitigar,mitigar,"1, 2, 9","1. Governança bem definida, com alinhamento estratégico, tático e operacional."
+IPHAN,,Alteração na política pública mudanças de gestão e descontinuidade de projetos,Provável,provável,médio,médio,mitigar,mitigar,"6, 7, 11","6, 7, 11"
+IPHAN,,Disponibilidade dos sistemas de acesso para o cidadão,Provável,provável,muito alto,muito alto,mitigar,mitigar,14,14
+IPHAN,,Perda de integridade de dados,Provável,provável,muito alto,muito alto,mitigar,mitigar,"12,13","12,13"
+IPHAN,,Dependência de fornecedores,Provável,provável,alto,alto,mitigar,mitigar,"1, 14","1. Governança bem definida, com alinhamento estratégico, tático e operacional."
+IPHAN,,Disponibilidade dos donos de serviço para atuação na transformação,Pouco provável,pouco provável,alto,alto,mitigar,mitigar,"1, 2, 3, 9, 10","1. Governança bem definida, com alinhamento estratégico, tático e operacional."
+IPHAN,,Disponibilidade das equipes de TI para executar a transformação digital insuficiência de recursos humanos para gestão e execução do plano,Provável,provável,alto,alto,mitigar,mitigar,"4, 5","4, 5"
+IPHAN,,"Despriorização do PDT pela alta administração, demandas operacionais se sobrepõem a pauta estratégica e a gestão do plano",Provável,provável,alto,alto,mitigar,mitigar,"1,3,9,11","1. Governança bem definida, com alinhamento estratégico, tático e operacional."
+IPHAN,,Baixo comprometimento das áreas de negócio com as ações pactuadas,Muito provável,muito provável,alto,alto,mitigar,mitigar,"1,2,3,9","1. Governança bem definida, com alinhamento estratégico, tático e operacional."
+IPHAN,,Atraso nos cronogramas pactuados,Provável,provável,médio,médio,mitigar,mitigar,"1, 3, 5, 10, 11","1. Governança bem definida, com alinhamento estratégico, tático e operacional."
+IPHAN,,Rotatividades das equipes envolvidas na transformação digital,Provável,provável,médio,médio,mitigar,mitigar,"4, 5, 8","4, 5, 8"
+IPHAN,,Incompatibilidade entre o tempo da transformação do serviço e necessidade de alteração normativa,Provável,provável,médio,médio,mitigar,mitigar,"1, 5, 6, 11","1. Governança bem definida, com alinhamento estratégico, tático e operacional."
+IPHAN,,Corte no orçamento,Muito provável,muito provável,alto,alto,mitigar,mitigar,"1, 11","1. Governança bem definida, com alinhamento estratégico, tático e operacional."
+IPHAN,,Falta de apoio da SGD,Pouco provável,pouco provável,alto,alto,mitigar,mitigar,"1,3,9","1. Governança bem definida, com alinhamento estratégico, tático e operacional."
+JBRJ,,O Monitoramento do PTD do MMA e vinculadas não ser patrocinado pelo Conselho de Governança do MMA e das entidades Vinculadas – CG-MMA,Pouco Provável,pouco provável,Muito Alto,muito alto,Eliminar,eliminar,15,15
+JBRJ,,Dependência de fornecedores,Provável,provável,Alto,alto,Mitigar,mitigar,14,14. Identificação de dependências com fornecedores para o planejamento preventivo para a contratação ou migração de
+JBRJ,,Indisponibilidade dos donos de serviço para atuação na transformação,Provável,provável,Alto,alto,Evitar,aceitar,2,2. Sensibilização das áreas de negócio para a importância do plano digital.
+JBRJ,,Indisponibilidade das equipes de TI para executar a transformação digital,Praticamente certo,praticamente certo,Alto,alto,Mitigar,mitigar,4,4. Prospecção de formas alternativas para a composição da força de trabalho.
+JBRJ,,Despriorização do PTD pela alta administração,Provável,provável,Alto,alto,Mitigar,mitigar,"1, 11","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 11. Reporte a alta administração para alinhamento de eventuais alterações estratégicas."
+JBRJ,,Baixo comprometimento das áreas,Provável,provável,Alto,alto,Mitigar,mitigar,2,2. Sensibilização das áreas de negócio para a importância do plano digital.
+MCTI,,Perda de confiança das partes interessadas,Provável,provável,Alto,alto,Mitigar,mitigar,"1,2,9","1,2,9"
+MCTI,,Alteração na política pública,Pouco provável,pouco provável,Alto,alto,Aceitar,aceitar,"6,7,11","6,7,11"
+MCTI,,Disponibilidade dos sistemas de acesso para o cidadão,Pouco provável,pouco provável,Muito alto,muito alto,Mitigar,mitigar,14,14
+MCTI,,Perda de integridade de dados,Pouco provável,pouco provável,Alto,alto,Mitigar,mitigar,"12,13","12,13"
+MCTI,,Incapacidade de execução da transformação digital,Pouco provável,pouco provável,Muito alto,muito alto,Mitigar,mitigar,"1, 3, 4, 5, 8","1, 3, 4, 5, 8"
+MCTI,,Dependência de fornecedores,Muito provável,muito provável,Alto,alto,Mitigar,mitigar,"1,14","1,14"
+MCTI,,Disponibilidade dos donos de serviço para atuação na transformação,Muito provável,muito provável,Alto,alto,Mitigar,mitigar,"1, 2, 3, 9, 10","1, 2, 3, 9, 10"
+MCTI,,Disponibilidade das equipes de TI para executar a transformação digital,Pouco provável,pouco provável,Muito alto,muito alto,Mitigar,mitigar,"4,5","4,5"
+MCTI,,Despriorização do PTD pela alta administração,Pouco provável,pouco provável,Alto,alto,Mitigar,mitigar,"1, 3, 9, 11","1, 3, 9, 11"
+MCTI,,Baixo comprometimento das áreas de negócio com as ações pactuadas,Provável,provável,Alto,alto,Mitigar,mitigar,"1, 2, 3, 9","1, 2, 3, 9"
+MCTI,,Atraso nos cronogramas pactuados,Provável,provável,Muito alto,muito alto,Mitigar,mitigar,"1, 3, 5, 10, 11","1, 3, 5, 10, 11"
+MCTI,,Rotatividades das equipes envolvidas na transformação digital,Provável,provável,Muito alto,muito alto,Mitigar,mitigar,"4, 5, 8","4, 5, 8"
+MCTI,,Incompatibilidade entre o tempo da transformação do serviço e necessidade de alteração normativa,Pouco provável,pouco provável,Médio,médio,Mitigar,mitigar,"1, 5, 6, 11","1, 5, 6, 11"
+MCTI,,Corte no orçamento,Pouco provável,pouco provável,Alto,alto,Aceitar,aceitar,"1, 11","1, 11"
+MCTI,,Falta de apoio da SGD,Pouco provável,pouco provável,Médio,médio,Mitigar,mitigar,"1, 3, 9","1, 3, 9"
+MDA,,"Atraso ou inexecução de contrapartida da SGD no suporte às ações de transformação digital, no que couber.",Pouco provável,pouco provável,Alto,alto,Mitigar,mitigar,Reunião interministerial periódica,Reunião interministerial periódica
+MDA,,Mudança de Escopo do Plano,Pouco provável,pouco provável,Alto,alto,Mitigar,mitigar,1. Acompanhar as iniciativas ao Conecta.Gov e fazer gestão junto à SGD para garantir a disponibilidade e atualização das APIs utilizadas pela CONAB; 2. A Companhia deve formalizar a pactuação do seu Plano de Transformação Digital; 3. Priorização das ações que envolvem a TI no Plano de Transformação Digital e reorganização da equipe técnica.,1. Acompanhar as iniciativas ao Conecta.Gov e fazer gestão junto à SGD para garantir a disponibilidade e atualização das APIs utilizadas pela CONAB; 2. A Companhia deve formalizar a pactuação do seu Plano de Transformação Digital; 3. Priorização das ações que envolvem a TI no Plano de Transformação Digital e reorganização da equipe técnica.
+MDA,,Falha no Requisito Funcional (Operacional),Pouco provável,pouco provável,Médio,médio,Mitigar,mitigar,1. Participação de técnicos experientes e com visão global de cada processo que envolve operações transacionais; 2. Plano de Comunicação e Divulgação ao Cidadão para as entregas realizadas na,1. Participação de técnicos experientes e com visão global de cada processo que envolve operações transacionais; 2. Plano de Comunicação e Divulgação ao Cidadão para as entregas realizadas na
+MDHC,A,Perda de confiança das partes interessadas,provável,provável,alto,alto,mitigar,mitigar,"1. Definir governança clara com alinhamento estratégico, tático e operacional. 2. Sensibilizar áreas de negócio. 9. Divulgar o Plano.","1. Definir governança clara com alinhamento estratégico, tático e operacional. 2. Sensibilizar áreas de negócio. 9. Divulgar o Plano."
+MDHC,B,Alteração na política pública,pouco provável,pouco provável,alto,alto,aceitar,aceitar,6. Estabelecer alinhamento interno sobre critérios de priorização regulatória. 7. Alinhar com estratégias e planos de governo.,6. Estabelecer alinhamento interno sobre critérios de priorização regulatória. 7. Alinhar com estratégias e planos de governo.
+MD,,Alteração da política pública relacionada ao PTD,,,Alto,alto,xxx,xxx,,
+MD,,Despriorização do PTD pela alta administração,,,Alto,alto,1-2-4-10-15,1-2-4-10-15,,
+MD,,Corte/contingenciamento orçamentário,,,Alto,alto,1-2-4-5-10,1-2-4-5-10,,
+MD,,Falta de apoio da SGD/MGI,,,Médio,médio,1-2-4,1-2-4,,
+MD,,"Não aceitação dos demais atores envolvidos (Polícia Federal, AGU, Cartórios, entre outros) pelo modelo de serviços estabelecido",,,Alto,alto,2-13,2-13,,
+MD,,Não conseguir articular integração com bases de dados de órgãos parceiros,,,Médio,médio,1-2-19,1-2-19,,
+MD,,Indisponibilidade dos donos de serviço para atuação na transformação digital,,,Médio,médio,14 -15-18-22,14 -15-18-22,,
+MD,,Mudança da estratégia da área de negócio responsável pelo serviço,,,Médio,médio,1-2-3-5-9,1-2-3-5-9,,
+MD,,Baixo comprometimento das áreas de negócio com as ações pactuadas,,,Alto,alto,14-15-17-18-22,14-15-17-18-22,,
+MD,,"Alteração do escopo inicial do projeto para adaptá-lo às necessidades específicas de um ou demais atores externos, levando ao atraso de entregas",,,Médio,médio,1-2-17-18-22,1-2-17-18-22,,
+MD,,Atraso no processo administrativo de contratação,,,Médio,médio,1-5-11,1-5-11,,
+MD,,Dependência de fornecedores,,,Alto,alto,11-17,11-17,,
+MD,,Falta de capacidade do fornecedor em cumprir as entregas no prazo desejado,,,Alto,alto,11-12,11-12,,
+MD,,Atraso nos cronogramas pactuados,,,Médio,médio,12-14-15-17-18- 22,12-14-15-17-18- 22,,
+MD,,Baixa adesão de uso do formulário de avaliação do serviço por parte dos usuários,,,Médio,médio,14-20,14-20,,
+MD,,Incompatibilidade entre o tempo da transformação do serviço e necessidade de alteração normativa,,,Médio,médio,17-21,17-21,,
+MD,,Carência de recursos humanos nas equipes de TI para executar a transformação digital,,,Alto,alto,16 -17,16 -17,,
+MD,,Rotatividade de recursos humanos na área de TI do órgão e órgãos vinculados,,,Médio,médio,1-14-16-17,1-14-16-17,,
+MD,,Rotatividades das equipes envolvidas na transformação digital,,,Alto,alto,14-16-17,14-16-17,,
+MD,,Problemas com perda e/ou integridade de dados,,,Alto,alto,6-7-8-23,6-7-8-23,,
+MD,,Indisponibilidade dos sistemas de acesso para o cidadão,,,Médio,médio,23,23,,
+MD,,Indisponibilidade dos sistemas,,,Médio,médio,23,23,,
+MD,,relacionados ao serviço,,,,,,,,
+MD,,Velocidade insuficiente do link usado para a transferência dos dados,,,Médio,médio,11-23,11-23,,
+MD,,Necessidade de rever os serviços automatizados para adequação aos preceitos da LGPD,,,Alto,alto,"1, 6, 7, 15",1; 6; 7; 15,,
+MD,,Dificuldade em atender aos direitos dos titulares cujos dados estejam armazenados em serviços digitais com bases hospedadas fora do MD,,,Alto,alto,"6, 7",6; 7,,
+MEC,,Problemas de coordenação das ações entre as Secretarias finalísticas do MEC,Muito provável,muito provável,Alto,alto,Mitigar,mitigar,"Governança bem definida, com alinhamento estratégico, tático e operacional.","Governança bem definida, com alinhamento estratégico, tático e operacional."
+MEC,,Resistências a processos de compartilhamento de dados,Muito provável,muito provável,Alto,alto,Eliminar,eliminar,"Estabelecer no modelo de governança de dados da educação as bases de referência e as responsabilidades por estas bases, com mecanismos de compartilhamento que evitem replicação e garantam segurança e privacidade.","Estabelecer no modelo de governança de dados da educação as bases de referência e as responsabilidades por estas bases, com mecanismos de compartilhamento que evitem replicação e garantam segurança e privacidade."
+MEC,,Sistemas legados pouco confiáveis e com,Provável,provável,Médio,médio,Eliminar,eliminar,Realizar diagnóstico e estabelecer um programa de atualização tecnológica dos sistemas legados,Realizar diagnóstico e estabelecer um programa de atualização tecnológica dos sistemas legados
+MEMP,,Falta de recursos orçamentários para execução dos projetos e ações de TD,Pouco provável,pouco provável,Muito alto,muito alto,Mitigar,mitigar,"1, 11 e 14","1. Governança bem definida, com alinhamento estratégico, tático e operacional."
+MEMP,,Atrasos nos cronogramas das ações levantadas conforme prazos acordados,Provável,provável,Médio,médio,Mitigar,mitigar,"1, 3, 4, 5, 6, 8, 9, 10 e 14","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. | 4. Prospecção de formas alternativas para a composição da força de trabalho. | 5. Utilizar melhores práticas de gerenciamento de projetos registrando as etapas. | 6. Alinhamento interno quanto a critérios para simplificação e priorização no rito regulatório para os serviços constantes do plano digital. | 8. Projeto atualizado mesmo com a substituição de membro da equipe. | 9. Reuniões periódicas de divulgação de informações do Plano e entregas realizadas."
+MEMP,,"Capacidade limitada, por parte dos fornecedores, para executar os projetos e ações",Muito Provável,muito provável,Alto,alto,Mitigar,mitigar,"1, 2, 3, 4, 5 e 14","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 2. Sensibilização das áreas de negócio para a importância do plano digital. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. | 4. Prospecção de formas alternativas para a composição da força de trabalho. | 5. Utilizar melhores práticas de gerenciamento de projetos registrando as etapas."
+MEMP,,Baixa disponibilidade das equipes de TI para coordenar e apoiar a transformação digital,Muito Provável,muito provável,Alto,alto,Mitigar,mitigar,"4, 5 e 8",4. Prospecção de formas alternativas para a composição da força de trabalho. | 5. Utilizar melhores práticas de gerenciamento de projetos registrando as etapas. | 8. Projeto atualizado mesmo com a substituição de membro da equipe.
+MEMP,,Baixa disponibilidade das áreas de negócio para atuar nas ações pactuadas,Provável,provável,Muito alto,muito alto,Mitigar,mitigar,"1, 2, 3, 9 e 10","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 2. Sensibilização das áreas de negócio para a importância do plano digital. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. | 9. Reuniões periódicas de divulgação de informações do Plano e entregas realizadas."
+MEMP,,Indisponibilidade de sistemas/serviço para o cidadão,Provável,provável,Médio,médio,Transferir,transferir,9 e 14,9. Reuniões periódicas de divulgação de informações do Plano e entregas realizadas.
+MEMP,,Alterações na política pública relacionada ao serviço do PTD,Provável,provável,Alto,alto,Aceitar,aceitar,"1, 11 e 13","1. Governança bem definida, com alinhamento estratégico, tático e operacional."
+MEMP,,Risco de descontinuidade de equipes ou de paralisação de atividades,Pouco provável,pouco provável,Muito alto,muito alto,Mitigar,mitigar,"2, 4, 5 e 8",2. Sensibilização das áreas de negócio para a importância do plano digital. | 4. Prospecção de formas alternativas para a composição da força de trabalho. | 5. Utilizar melhores práticas de gerenciamento de projetos registrando as etapas. | 8. Projeto atualizado mesmo com a substituição de membro da equipe.
+MEMP,,Falta de prioridade do PTD pela alta administração,Pouco provável,pouco provável,Muito alto,muito alto,Aceitar,aceitar,"1, 2, 6, 7, 9 e 11","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 2. Sensibilização das áreas de negócio para a importância do plano digital. | 6. Alinhamento interno quanto a critérios para simplificação e priorização no rito regulatório para os serviços constantes do plano digital. | 7. Alinhamento com as estratégias e planos de Governo. | 9. Reuniões periódicas de divulgação de informações do Plano e entregas realizadas."
+MEMP,,Indisponibilidade da SGD/MGI para apoiar execução e monitoramento de projetos,Pouco provável,pouco provável,Médio,médio,Mitigar,mitigar,"1, 3 e 9","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. | 9. Reuniões periódicas de divulgação de informações do Plano e entregas realizadas."
+MESP,,Baixo engajamento da alta gestão,,,médio,médio,Mitigar,mitigar,"Realizar workshops de sensibilização, alinhar o PTD aos","Realizar workshops de sensibilização, alinhar o PTD aos"
+MF,,Indisponibilidade das equipes de TI para executar transformação digital,Provável,provável,Alto,alto,Mitigar,mitigar,4,4. Prospecção de formas alternativas para a composição da força de trabalho.
+MF,,Corte orçamentário,Provável,provável,Alto,alto,Mitigar,mitigar,"1, 11","1. Governança bem definida, com alinhamento estratégico, tático e operacional."
+MF,,Dependência de fornecedores,Praticamente certo,praticamente certo,Alto,alto,Mitigar,mitigar,"1, 14","1. Governança bem definida, com alinhamento estratégico, tático e operacional."
+MF,,Atraso nos cronogramas pactuados,Provável,provável,Médio,médio,Mitigar,mitigar,"1, 3, 5, 10, 11","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. | 5. Utilizar melhores práticas de gerenciamento de projetos registrando as etapas."
+MF,,Diminuição da priorização do PTD pela alta administração,Raro,raro,Alto,alto,Mitigar,mitigar,"1, 3, 9, 11","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão."
+MF,,Baixo comprometimento das áreas de negócio com as ações pactuadas,Pouco provável,pouco provável,Alto,alto,Mitigar,mitigar,"1, 2, 3, 9","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 2. Sensibilização das áreas de negócio para a importância do plano digital. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão."
+MF,,Rotatividade das equipes envolvidas na transformação digital,Pouco provável,pouco provável,Médio,médio,Mitigar,mitigar,"4, 5, 8",4. Prospecção de formas alternativas para a composição da força de trabalho. | 5. Utilizar melhores práticas de gerenciamento de projetos registrando as etapas.
+MGI,,Alteração da política pública relacionada ao PTD,Pouco provável,pouco provável,Alto,alto,Aceitar,aceitar,-,-
+MGI,,Mudança de gestão e instabilidade política,Muito provável,muito provável,Alto,alto,Aceitar,aceitar,-,-
+MGI,,Despriorização do PTD pela alta administração,Raro,raro,Alto,alto,Mitigar,mitigar,1-2-4-10-15,1-2-4-10-15
+MGI,,Corte/contingenciamento orçamentário,Muito provável,muito provável,Alto,alto,Mitigar,mitigar,1-2-4-5-10,1-2-4-5-10
+MGI,,Falta de apoio da SGD/MGI,Pouco provável,pouco provável,Médio,médio,Mitigar,mitigar,1-2-4,1-2-4
+MGI,,Problemas com perda e/ou integridade de dados,Pouco Provável,pouco provável,Alto,alto,Mitigar,mitigar,6-7-8-23,6-7-8-23
+MGI,,Mudança da estratégia da área de negócio responsável pelo serviço,Pouco provável,pouco provável,Médio,médio,Mitigar,mitigar,1-2-3-5-9,1-2-3-5-9
+MGI,,Dependência de fornecedores,Muito provável,muito provável,Alto,alto,Mitigar,mitigar,11-17,11-17
+MGI,,Falta de capacidade do fornecedor em cumprir as entregas no prazo desejado,Provável,provável,Alto,alto,Mitigar,mitigar,11-12,11-12
+MGI,,Atraso no processo administrativo de contratação,Provável,provável,Médio,médio,Mitigar,mitigar,1-5-11-,1-5-11-
+MGI,,Indisponibilidade dos donos de serviço para atuação na transformação digital,Provável,provável,Médio,médio,Mitigar,mitigar,14 -15-18-22,14 -15-18-22
+MGI,,Baixo comprometimento das áreas de negócio com as ações pactuadas,Pouco provável,pouco provável,Alto,alto,Mitigar,mitigar,14-15-17-18-22,14-15-17-18-22
+MGI,,"Não aceitação dos demais atores envolvidos (AGU, Cartórios, entre outros) pelo modelo de serviços estabelecido",Muito provável,muito provável,Alto,alto,Mitigar,mitigar,2-13,2-13
+MGI,,Atraso nos cronogramas pactuados,Provável,provável,Médio,médio,Mitigar,mitigar,12-14-15-17-18-22,12-14-15-17-18-22
+MGI,,"Alteração do escopo inicial do projeto para adaptá-lo às necessidades específicas de um ou demais atores externos, levando ao atraso de entregas",Pouco provável,pouco provável,Médio,médio,Mitigar,mitigar,1-2-17-18-22,1-2-17-18-22
+MGI,,Não conseguir articular integração com bases de dados de órgãos parceiros para obtenção e/ou comunicação de transferência de imóveis com a base dos cartórios ou da Receita Federal (DOITU),Provável,provável,Médio,médio,Mitigar,mitigar,1-2-19,1-2-19
+MGI,,Baixa adesão de uso do formulário de avaliação do serviço por parte dos usuários,Provável,provável,Médio,médio,Mitigar,mitigar,14-20,14-20
+MGI,,Incompatibilidade entre o tempo da transformação do serviço e necessidade de alteração normativa,Pouco provável,pouco provável,Médio,médio,Mitigar,mitigar,17-21,17-21
+MGI,,Carência de recursos humanos nas equipes de TI para executar a transformação digital,Provável,provável,Alto,alto,Mitigar,mitigar,16 -17,16 -17
+MGI,,Rotatividade de recursos humanos na área de TI do órgão e órgãos vinculados,Provável,provável,Médio,médio,Mitigar,mitigar,1-14-16-17,1-14-16-17
+MGI,,Rotatividades das equipes envolvidas na transformação digital,Provável,provável,Alto,alto,Mitigar,mitigar,14-16-17,14-16-17
+MGI,,Indisponibilidade dos sistemas de acesso para o cidadão,Provável,provável,Médio,médio,Mitigar,mitigar,23,23
+MGI,,Indisponibilidade dos sistemas relacionados ao serviço,Provável,provável,Médio,médio,Mitigar,mitigar,23,23
+MGI,,Velocidade insuficiente do link usado para a transferência dos dados,Praticamente certo,praticamente certo,Médio,médio,Mitigar,mitigar,11-23,11-23
+MGI,,A transformação digital de um serviço não gerar o resultado esperado,Provável,provável,Alto,alto,Mitigar,mitigar,"24, 25, 29","24, 25, 29"
+MGI,,A transformação digital de um serviço público não ser uma transformação propriamente dita,Provável,provável,Médio,médio,Mitigar,mitigar,"24, 25","24, 25"
+MGI,,O serviço público terminar sendo oferecido somente pela via digital (digital only),Pouco provável,pouco provável,Alto,alto,Mitigar,mitigar,"1, 21, 26, 29","1. Governança bem definida, com alinhamento estratégico, tático e operacional."
+MGI,,Ocorrência de problemas de funcionamento do serviço público transformado digitalmente,Muito provável,muito provável,Alto,alto,Mitigar,mitigar,27,27
+MGI,,Ataques cibernéticos,Muito provável,muito provável,Muito alto,muito alto,Mitigar,mitigar,"28, 29","28, 29"
+MINC,,Perda de integridade de dados,Pouco provável,pouco provável,Muito alto,muito alto,Mitigar,mitigar,"1, 3 e 11","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. | 11. Reporte a alta administração para alinhamento de eventuais alterações estratégicas."
+MINC,,Incapacidade de execução da transformação digital,Pouco provável,pouco provável,Alto,alto,Mitigar,mitigar,"3, 4 e 5",3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. | 4. Prospecção de formas alternativas para a composição da força de trabalho. | 5. Utilizar melhores práticas de gerenciamento de projetos registrando as etapas.
+MINC,,Indisponibilidade das equipes de TI para executar a transformação digital,Provável,provável,Alto,alto,Mitigar,mitigar,"4, 5",4. Prospecção de formas alternativas para a composição da força de trabalho. | 5. Utilizar melhores práticas de gerenciamento de projetos registrando as etapas.
+MINC,,Falta de priorização do PTD pela alta administração,Provável,provável,Alto,alto,Aceitar,aceitar,"1, 2, 3, 6 e 8","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 2. Sensibilização das áreas de negócio para a importância do plano digital. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. | 6. 1 ÓRGÃOS COMPONENTES | 8. Projeto atualizado mesmo com a substituição de membro da equipe."
+MJSP,,"Indisponibilidade dos representantes das áreas de negócios (Férias, afasta- mentos, missões/viagens, outras ativi- dades, etc.);",,,Alto,alto,,,,
+MJSP,,Falta de conhecimento dos indicados pelas áreas de negócios para conduzi- rem os projetos junto a DTIC;,,,Alto,alto,,,,
+MJSP,,"Troca dos gestores das áreas de negó- cios demandantes, assim como dos in- dicados para atuarem como donos dos produtos;",,,Alto,alto,,,,
+MJSP,,Falta de conhecimento dos papeis e responsabilidades dos indicados pelas áreas de negócio no processo de de- senvolvimento voltado para metodolo- gia ágil;,,,Alto,alto,,,,
+MJSP,,Falta de conhecimento dos indicados pelas áreas de negócios para edição no Gov.br;,,,Médio,médio,,,,
+MJSP,,Erros inesperados de integração do Sis- tema;,,,Alto,alto,,,,
+MJSP,,"Dificuldade de acesso as informações de algumas bases, impactando no cro- nograma estimado para implementa- ção das integrações.",,,Médio,médio,,,,
+MJSP,,"Preservação de dados - obsolescência, expiração e atualização, bem como os problemas logísticos das tecnologias - suporte, acesso aos dados e espaço de armazenamento suficiente.",,,Alto,alto,,,,
+MJSP,,Morosidade nas Integrações com siste- mas ou bases que são mantidos pelo Serpro,,,Alto,alto,,,,
+MMA,,O Monitoramento do PTD do MMA e vinculadas não ser patrocinado pelo Conselho de Governança do MMA e das entidades Vinculadas – CG-MMA,Pouco Provável,pouco provável,Muito Alto,muito alto,Eliminar,eliminar,15,15
+MMA,,Dependência de fornecedores,Provável,provável,Alto,alto,Mitigar,mitigar,14,14. Identificação de dependências com fornecedores para o planejamento preventivo para a contratação ou migração de
+MMA,,Indisponibilidade dos donos de serviço para atuação na transformação,Provável,provável,Alto,alto,Evitar,aceitar,2,2. Sensibilização das áreas de negócio para a importância do plano digital.
+MMA,,Indisponibilidade das equipes de TI para executar a transformação digital,Praticamente certo,praticamente certo,Alto,alto,Mitigar,mitigar,4,4. Prospecção de formas alternativas para a composição da força de trabalho.
+MMA,,Despriorização do PTD pela alta administração,Provável,provável,Alto,alto,Mitigar,mitigar,"1, 11","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 11. Reporte a alta administração para alinhamento de eventuais alterações estratégicas."
+MMA,,Baixo comprometimento das áreas,Provável,provável,Alto,alto,Mitigar,mitigar,2,2. Sensibilização das áreas de negócio para a importância do plano digital.
+MME,,Capacidade inadequada da empresa de serviço terceirizado de desenvolvimento e manutenção de softwares,Pouco provável,pouco provável,Alto,alto,Mitigar,mitigar,"Contratar profissional capacitado; Cobrar da contratada o fornecimento da expertise especificada no contrato; Solicitar substituição de profissionais, quando necessário.","Contratar profissional capacitado; Cobrar da contratada o fornecimento da expertise especificada no contrato; Solicitar substituição de profissionais, quando necessário."
+MMULHERES,,Falta de adesão das,,,,,,,,
+MMULHERES,,partes interessadas às,,,,,,,,
+MMULHERES,,iniciativas digitais,,,,,,,,
+MMULHERES,,Mudanças em políticas,,,,,,,,
+MMULHERES,,públicas que impactam os,,,,,,,,
+MMULHERES,,serviços digitais,,,,,,,,
+MMULHERES,,Baixa adesão dos,,,,,,,,
+MMULHERES,,beneficiários aos serviços,,,,,,,,
+MMULHERES,,digitais,,,,,,,,
+MMULHERES,,Problemas na segurança,,,,,,,,
+MMULHERES,,e privacidade de dados,,,,,,,,
+MMULHERES,,sensíveis,,,,,,,,
+MMULHERES,,Falta de equipe,,,,,,,,
+MMULHERES,,qualificada para execução,,,,,,,,
+MMULHERES,,da transformação digital,,,,,,,,
+MMULHERES,,Dependência excessiva,,,,,,,,
+MMULHERES,,de fornecedores de,,,,,,,,
+MMULHERES,,tecnologia,,,,,,,,
+MMULHERES,,Baixa priorização da,,,,,,,,
+MMULHERES,,transformação digital pela,,,,,,,,
+MMULHERES,,gestão,,,,,,,,
+MMULHERES,,Desafios na,,,,,,,,
+MMULHERES,,interoperabilidade dos,,,,,,,,
+MMULHERES,,sistemas governamentais,,,,,,,,
+MMULHERES,,Descontinuidade de,,,,,,,,
+MMULHERES,,projetos devido a,,,,,,,,
+MMULHERES,,mudanças de governo,,,,,,,,
+MMULHERES,,Falta de infraestrutura,,,,,,,,
+MMULHERES,,adequada para,,,,,,,,
+MMULHERES,,implementação digital,,,,,,,,
+MMULHERES,,Risco de exclusão digital,,,,,,,,
+MMULHERES,,de populações tradicionais,,,,,,,,
+MMULHERES,,e rurais,,,,,,,,
+MMULHERES,,Resistência cultural à,,,,,,,,
+MMULHERES,,transformação digital,,,,,,,,
+MMULHERES,,Ataques cibernéticos,,,,,,,,
+MMULHERES,,contra sistemas do,,,,,,,,
+MMULHERES,,Ministério,,,,,,,,
+MMULHERES,,Falta de orçamento,,,,,,,,
+MMULHERES,,Baixa acessibilidade dos,,,,,,,,
+MMULHERES,,serviços digitais,,,,,,,,
+MPI,,Restrições Orçamentárias,Provável,provável,Alto,alto,Mitigar,mitigar,Renegociar prazos e/ou reduzir o escopo do projeto,Renegociar prazos e/ou reduzir o escopo do projeto
+MPI,,Indisponibilidade de Recursos Humanos,Muito provável,muito provável,Muito alto,muito alto,Mitigar,mitigar,Buscar opções de contratação para apoiar as atividades relativas ao Plano.,Buscar opções de contratação para apoiar as atividades relativas ao Plano.
+MPI,,Surgimento de demandas não previstas no PDTIC,Provável,provável,Médio,médio,Mitigar,mitigar,Promover atualizações/revisões no PDTIC,Promover atualizações/revisões no PDTIC
+MPI,,Alterações na legislação,Provavel,provável,Alto,alto,Mitigar,mitigar,Promover atualizações/revisões nos normativos do Ministério,Promover atualizações/revisões nos normativos do Ministério
+MPI,,Falhas de Segurança da Informação,Provavel,provável,Muito alto,muito alto,Mitigar,mitigar,"Orientar regularmente os servidores e colaboradores do MPI quanto à aplicação das políticas e normativos vigentes, voltados à Segurança da Informação.","Orientar regularmente os servidores e colaboradores do MPI quanto à aplicação das políticas e normativos vigentes, voltados à Segurança da Informação."
+MPOR,,Surgimento de demandas não previstas no PDTIC,Provável,provável,Alto,alto,Mitigar,mitigar,"Governanç a bem definida, com alinhament o estratégico, tático e operacional ; Sensibilizar a alta gestão e demais atores estratégico s sobre a importância do plano e seu alinhament o com os objetivos estratégico","Governanç a bem definida, com alinhament o estratégico, tático e operacional ; Sensibilizar a alta gestão e demais atores estratégico s sobre a importância do plano e seu alinhament o com os objetivos estratégico"
+MPO,,Restrições Orçamentárias,Provável,provável,Alto,alto,,,Aceitar,Aceitar
+MPO,,Indisponibilidade de Recursos Humanos,Praticamente certo,praticamente certo,Muito alto,muito alto,,,Mitigar,Mitigar
+MPO,,Indisponibilidade de serviços por falta de fornecimento de bens patrimoniais e/ou serviços,Pouco provável,pouco provável,Baixo,baixo,,,Mitigar,Mitigar
+MPO,,Surgimento de demandas não previstas no PDTIC,Provável,provável,Médio,médio,,,Mitigar,Mitigar
+MPO,,Indisponibilidade dos serviços públicos em produção por falta de mão de obra especializada,Raro,raro,Alto,alto,,,Mitigar,Mitigar
+MPO,,Mudanças constantes na legislação e regulamentações publicas,Certo,Certo,Muito alto,muito alto,,,Aceitar,Aceitar
+MPO,,Atraso dos acordos de entregas dos prestadores de serviços,Provável,provável,Alto,alto,,,Mitigar,Mitigar
+MPO,,Falta de apoio da Alta Gestão,Baixa,Baixa,Alto,alto,,,Mitigar,Mitigar
+MPO,,"Falhas da Segurança da Informação (ex: acesso indevido à dados, intranet, documentos internos não autorizados, etc..)",Provável,provável,Alto,alto,,,Mitigar,Mitigar
+MPS,,Recursos orçamentários insuficientes para a execução do PTD,Provável,provável,Alto,alto,Aceitar,aceitar,Realinhamento para a reformulação do projeto com base no que é possível executar mediante disponibilidade orçamentária.,Realinhamento para a reformulação do projeto com base no que é possível executar mediante disponibilidade orçamentária.
+MPS,,Capacidade insuficiente de pessoal técnico da equipe de TI do MPS para execução do PTD,Provável,provável,Alto,alto,Mitigar,mitigar,Buscar junto à SGD/MGI o fortalecimento do quadro de pessoal de TI e realizar processos seletivos para composição da força de trabalho. Buscar capacitação e qualificação do pessoal técnico.,Buscar junto à SGD/MGI o fortalecimento do quadro de pessoal de TI e realizar processos seletivos para composição da força de trabalho. Buscar capacitação e qualificação do pessoal técnico.
+MPS,,Capacidade insuficiente de prestação de serviços por parte de fornecedores.,Pouco Provável,pouco provável,Médio,médio,Mitigar,mitigar,Articular junto aos fornecedores o aumento da capacidade de atendimento e a execução de projetos considerados prioritários.,Articular junto aos fornecedores o aumento da capacidade de atendimento e a execução de projetos considerados prioritários.
+MPS,,Atraso nas entregas previstas em cronogramas pactuados.,Provável,provável,Alto,alto,Mitigar,mitigar,Reuniões periódicas com os envolvidos para o acompanhamento das atividades propostas e reorganização do cronograma se necessário.,Reuniões periódicas com os envolvidos para o acompanhamento das atividades propostas e reorganização do cronograma se necessário.
+MPS,,Impossibilidade de execução do PTD,Raro,raro,Muito Alto,muito alto,Mitigar,mitigar,"Conscientizar a alta administração em relação à importância do plano, aprovar o instrumento e monitorar a sua execução.","Conscientizar a alta administração em relação à importância do plano, aprovar o instrumento e monitorar a sua execução."
+MRE,,Número insuficiente d e servidores capazes de coordenar e gerir projetos.,Muito provável,muito provável,Muito alto,muito alto,Mitigar,mitigar,"4, 15",4. Prospecção de formas alternativas para a composição da força de trabalho. | 15. Dimensionar a força de trabalho e capacidade de execução para concretizar as ações
+MRE,,"Falta de profissionais especializados em desenvolvimento de software, análise de dados e inteligência artificial.",Provável,provável,Muito alto,muito alto,Mitigar,mitigar,"4, 15",4. Prospecção de formas alternativas para a composição da força de trabalho. | 15. Dimensionar a força de trabalho e capacidade de execução para concretizar as ações
+MRE,,Contratos de terceirização de serviços com resultados abaixo do esperado.,Provável,provável,Muito alto,muito alto,Mitigar,mitigar,"10, 14, 19","10. Acompanhamento quinzenal do Plano, conforme monitoramento interno. | 14. Identificação de dependências com fornecedores para o planejamento preventivo para a"
+MRE,,Dificuldade de coordenação entre áreas negociais e de tecnologia na gestão dos projetos.,Muito provável,muito provável,Muito alto,muito alto,Mitigar,mitigar,"1, 2, 3, 5, 6, 8, 9, 10, 11, 16, 17, 18","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 2. Sensibilização das áreas de negócio para a importância do plano digital. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. | 5. Utilizar melhores práticas de gerenciamento de projetos registrando as etapas. | 6. 1 ÓRGÃOS COMPONENTES | 8. Projeto atualizado mesmo com a substituição de membro da equipe. | 9. Reuniões periódicas de divulgação de informações do Plano e entregas realizadas. dados. de dados da organização. contratação ou migração de soluções visando a continuidade do negócio. previstas no plano. software. importantes para gestão de projetos, tais como: planejamento das entregas, gestão do backlog, critérios de aceite, definições de papéis e responsabilidades, entre outros. transformação digital. Órgão Proponente: Ministério das Relações Exteriores  Definir diretrizes de atuação do seu PTD alinhado com suas políticas públicas, voltada para o cidadão, sempre que couber;  Propor e submeter para pactuação o Plano de Transformação Digital e deliberar sobre recursos e riscos estruturantes; | 10. Acompanhamento quinzenal do Plano, conforme monitoramento interno. | 11. Reporte a alta administração para alinhamento de eventuais alterações estratégicas. | 16. Publicar política institucional para o atendimento de demandas por desenvolvimento de | 17. Instituir metodologia de desenvolvimento de software que contemple diversos pontos | 18. Elaborar e implementar plano de capacitação para habilitar servidores a atuar nas ações de"
+MRE,,Mudança informal de prioridades.,Provável,provável,Muito alto,muito alto,Mitigar,mitigar,"1, 2, 3, 7, 9, 11, 16","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 2. Sensibilização das áreas de negócio para a importância do plano digital. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. | 7. Alinhamento com as estratégias e planos de Governo. | 9. Reuniões periódicas de divulgação de informações do Plano e entregas realizadas. dados. de dados da organização. contratação ou migração de soluções visando a continuidade do negócio. previstas no plano. software. importantes para gestão de projetos, tais como: planejamento das entregas, gestão do backlog, critérios de aceite, definições de papéis e responsabilidades, entre outros. transformação digital. Órgão Proponente: Ministério das Relações Exteriores  Definir diretrizes de atuação do seu PTD alinhado com suas políticas públicas, voltada para o cidadão, sempre que couber;  Propor e submeter para pactuação o Plano de Transformação Digital e deliberar sobre recursos e riscos estruturantes; | 11. Reporte a alta administração para alinhamento de eventuais alterações estratégicas. | 16. Publicar política institucional para o atendimento de demandas por desenvolvimento de"
+MRE,,Preenchimento incompleto de informações nas ferramentas dos ciclos periódicos do PPSI.,Praticamente certo,praticamente certo,Muito alto,muito alto,Mitigar,mitigar,"1, 2, 3, 9, 12, 18","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 2. Sensibilização das áreas de negócio para a importância do plano digital. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. | 9. Reuniões periódicas de divulgação de informações do Plano e entregas realizadas. dados. de dados da organização. contratação ou migração de soluções visando a continuidade do negócio. previstas no plano. software. importantes para gestão de projetos, tais como: planejamento das entregas, gestão do backlog, critérios de aceite, definições de papéis e responsabilidades, entre outros. transformação digital. Órgão Proponente: Ministério das Relações Exteriores  Definir diretrizes de atuação do seu PTD alinhado com suas políticas públicas, voltada para o cidadão, sempre que couber;  Propor e submeter para pactuação o Plano de Transformação Digital e deliberar sobre recursos e riscos estruturantes; | 12. Fortalecer a conformidade com a LGPD e a melhoria contínua do fluxo de tratamento dos | 18. Elaborar e implementar plano de capacitação para habilitar servidores a atuar nas ações de"
+MRE,,Atraso na implementação das ações previstas no plano de trabalho do PPSI,Praticamente certo,praticamente certo,Muito alto,muito alto,Mitigar,mitigar,"1, 2, 3, 9, 12, 18","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 2. Sensibilização das áreas de negócio para a importância do plano digital. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. | 9. Reuniões periódicas de divulgação de informações do Plano e entregas realizadas. dados. de dados da organização. contratação ou migração de soluções visando a continuidade do negócio. previstas no plano. software. importantes para gestão de projetos, tais como: planejamento das entregas, gestão do backlog, critérios de aceite, definições de papéis e responsabilidades, entre outros. transformação digital. Órgão Proponente: Ministério das Relações Exteriores  Definir diretrizes de atuação do seu PTD alinhado com suas políticas públicas, voltada para o cidadão, sempre que couber;  Propor e submeter para pactuação o Plano de Transformação Digital e deliberar sobre recursos e riscos estruturantes; | 12. Fortalecer a conformidade com a LGPD e a melhoria contínua do fluxo de tratamento dos | 18. Elaborar e implementar plano de capacitação para habilitar servidores a atuar nas ações de"
+MRE,,Atraso nas entregas,Provável,provável,Médio,médio,Mitigar,mitigar,"4, 5, 8, 10, 17","4. Prospecção de formas alternativas para a composição da força de trabalho. | 5. Utilizar melhores práticas de gerenciamento de projetos registrando as etapas. | 8. Projeto atualizado mesmo com a substituição de membro da equipe. | 10. Acompanhamento quinzenal do Plano, conforme monitoramento interno. | 17. Instituir metodologia de desenvolvimento de software que contemple diversos pontos"
+MRE,,Insuficiência de recursos financeiros.,Provável,provável,Alto,alto,Mitigar,mitigar,"1, 2, 3","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 2. Sensibilização das áreas de negócio para a importância do plano digital. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão."
+MRE,,Dificuldade para definir critérios de compartilhamento de dados e informações,Provável,provável,Médio,médio,Mitigar,mitigar,"12, 13",12. Fortalecer a conformidade com a LGPD e a melhoria contínua do fluxo de tratamento dos | 13. Estabelecer uma estratégia efetiva de governança de dados que reconheça o valor dos ativos
+MTE,,Alterações na política pública relacionada ao serviço do PTD.,Pouco provável,pouco provável,Alto,alto,Aceitar,aceitar,-,-
+MTE,,Capacidade insuficiente para a execução da transformação digital.,Provável,provável,Alto,alto,Mitigar,mitigar,"1,2,3,4 e 5.","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 2. Sensibilização das áreas de negócio para a importância do plano digital. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. | 4. Prospecção de formas alternativas para a composição da força de trabalho. | 5. Utilizar melhores práticas de gerenciamento de projetos registrando as etapas."
+MTE,,Dependência de fornecedores.,Muito provável,muito provável,Alto,alto,Mitigar,mitigar,1 e 7.,1 e 7.
+MTE,,Baixa disponibilidade dos donos de serviço para atuação na transformação.,Provável,provável,Alto,alto,Mitigar,mitigar,"1,2 e 3.","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 2. Sensibilização das áreas de negócio para a importância do plano digital. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão."
+MTE,,Atraso nos cronogramas pactuados.,Provável,provável,Alto,alto,Mitigar,mitigar,"3, 4 e 5.",3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. | 4. Prospecção de formas alternativas para a composição da força de trabalho. | 5. Utilizar melhores práticas de gerenciamento de projetos registrando as etapas.
+MTE,,"Corte no orçamento previsto, restringindo a realização das entregas vinculadas ao PTD.",Pouco provável,pouco provável,Alto,alto,Mitigar,mitigar,1 e 6.,1 e 6.
+MTUR,,Não adesão da alta gestão.,Rara,raro,Alto,alto,Mitigar,mitigar,Sensibilizar quanto à importância do plano.,Sensibilizar quanto à importância do plano.
+MTUR,,Falta de interesse das áreas de negócio.,Pouca,Pouca,Alto,alto,Mitigar,mitigar,Sensibilizar quanto à da melhoria dos serviços,Sensibilizar quanto à da melhoria dos serviços
+MTUR,,Atraso na execução do plano.,Provável,provável,Médio,médio,Mitigar,mitigar,"Priorizar a demanda, sensibilizar as áreas envolvidas.","Priorizar a demanda, sensibilizar as áreas envolvidas."
+MTUR,,Contingenciamento orçamentário.,Pouca,Pouca,Alto,alto,Mitigar,mitigar,Priorizar as demandas do plano. Sensibilizar a alta gestão.,Priorizar as demandas do plano. Sensibilizar a alta gestão.
+MTUR,,Mudanças de estrutura/pessoas.,Pouca,Pouca,Alto,alto,Mitigar,mitigar,Realizar repasse de conhecimento o quanto antes.,Realizar repasse de conhecimento o quanto antes.
+PF,,Perda de confiança das partes interessadas,pouco provável,pouco provável,alto,alto,mitigar,mitigar,,
+PF,,Alteração na política pública,pouco provável,pouco provável,médio,médio,mitigar,mitigar,,
+PF,,Disponibilidade dos sistemas de acesso para o cidadão,pouco provável,pouco provável,alto,alto,mitigar,mitigar,,
+PF,,Perda de integridade de dados,raro,raro,alto,alto,mitigar,mitigar,,
+PF,,Capacidade de execução da transformação digital,pouco provável,pouco provável,alto,alto,mitigar,mitigar,,
+PF,,Dependência de fornecedores,raro,raro,médio,médio,mitigar,mitigar,,
+PF,,Disponibilidade dos donos de serviço para atuação na transformação,pouco provável,pouco provável,médio,médio,mitigar,mitigar,,
+PF,,Disponibilidade das equipes de TI para executar a transformação digital,provável,provável,alto,alto,mitigar,mitigar,,
+PF,,Despriorização do PTD pela alta administração,pouco provável,pouco provável,alto,alto,mitigar,mitigar,,
+PF,,Baixo comprometimento das áreas de negócio com as ações pactuadas,pouco provável,pouco provável,alto,alto,mitigar,mitigar,,
+PF,,Atraso nos cronogramas pactuados,provável,provável,baixo,baixo,mitigar,mitigar,,
+PF,,Rotatividades das equipes envolvidas na transformação digital,provável,provável,baixo,baixo,mitigar,mitigar,,
+PF,,Incompatibilidade entre o tempo da transformação do serviço e necessidade de alteração normativa,provável,provável,médio,médio,mitigar,mitigar,,
+PF,,Corte no orçamento,pouco provável,pouco provável,médio,médio,mitigar,mitigar,,
+PF,,Falta de apoio da SGD,pouco provável,pouco provável,alto,alto,mitigar,mitigar,,
+PF,,A transformação digital de um serviço não gerar o resultado esperado,pouco provável,pouco provável,médio,médio,mitigar,mitigar,,
+PGFN,,Indisponibilidade das equipes de TI para executar transformação digital,Provável,provável,Alto,alto,Mitigar,mitigar,4,4. Prospecção de formas alternativas para a composição da força de trabalho.
+PGFN,,Corte orçamentário,Provável,provável,Alto,alto,Mitigar,mitigar,"1, 11","1. Governança bem definida, com alinhamento estratégico, tático e operacional."
+PGFN,,Dependência de fornecedores,Praticamente certo,praticamente certo,Alto,alto,Mitigar,mitigar,"1, 14","1. Governança bem definida, com alinhamento estratégico, tático e operacional."
+PGFN,,Atraso nos cronogramas pactuados,Provável,provável,Médio,médio,Mitigar,mitigar,"1, 3, 5, 10, 11","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. | 5. Utilizar melhores práticas de gerenciamento de projetos registrando as etapas."
+PGFN,,Diminuição da priorização do PTD pela alta administração,Raro,raro,Alto,alto,Mitigar,mitigar,"1, 3, 9, 11","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão."
+PGFN,,Baixo comprometimento das áreas de negócio com as ações pactuadas,Pouco provável,pouco provável,Alto,alto,Mitigar,mitigar,"1, 2, 3, 9","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 2. Sensibilização das áreas de negócio para a importância do plano digital. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão."
+PGFN,,Rotatividade das equipes envolvidas na transformação digital,Pouco provável,pouco provável,Médio,médio,Mitigar,mitigar,"4, 5, 8",4. Prospecção de formas alternativas para a composição da força de trabalho. | 5. Utilizar melhores práticas de gerenciamento de projetos registrando as etapas.
+PRF,,Alteração na Política Pública.,,,,,"1, 2, 4, 21",1; 2; 4; 21,,
+PRF,,Despriorização do PTD pela alta administração.,,,,,"2, 4, 6, 7",2; 4; 6; 7,,
+PRF,,Baixa priorização do PTD para áreas de negócio com as ações pactuadas.,,,,,"2, 3, 4, 5, 6, 7",2; 3; 4; 5; 6; 7,,
+PRF,,Baixa priorização das ações do PTD para equipes de TI.,,,,,"2, 3, 4, 5, 6, 7,13",2; 3; 4; 5; 6; 7; 13,,
+PRF,,Sobrecarga da equipe de execução da transformação digital.,,,,,"3,4,6,8,12,13",3; 4; 6; 8; 12; 13,,
+RFB,,Indisponibilidade das equipes de TI para executar transformação digital,Provável,provável,Alto,alto,Mitigar,mitigar,4,4. Prospecção de formas alternativas para a composição da força de trabalho.
+RFB,,Corte orçamentário,Provável,provável,Alto,alto,Mitigar,mitigar,"1, 11","1. Governança bem definida, com alinhamento estratégico, tático e operacional."
+RFB,,Dependência de fornecedores,Praticamente certo,praticamente certo,Alto,alto,Mitigar,mitigar,"1, 14","1. Governança bem definida, com alinhamento estratégico, tático e operacional."
+RFB,,Atraso nos cronogramas pactuados,Provável,provável,Médio,médio,Mitigar,mitigar,"1, 3, 5, 10, 11","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. | 5. Utilizar melhores práticas de gerenciamento de projetos registrando as etapas."
+RFB,,Diminuição da priorização do PTD pela alta administração,Raro,raro,Alto,alto,Mitigar,mitigar,"1, 3, 9, 11","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão."
+RFB,,Baixo comprometimento das áreas de negócio com as ações pactuadas,Pouco provável,pouco provável,Alto,alto,Mitigar,mitigar,"1, 2, 3, 9","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 2. Sensibilização das áreas de negócio para a importância do plano digital. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão."
+RFB,,Rotatividade das equipes envolvidas na transformação digital,Pouco provável,pouco provável,Médio,médio,Mitigar,mitigar,"4, 5, 8",4. Prospecção de formas alternativas para a composição da força de trabalho. | 5. Utilizar melhores práticas de gerenciamento de projetos registrando as etapas.
+SFB,,O Monitoramento do PTD do MMA e vinculadas não ser patrocinado pelo Conselho de Governança do MMA e das entidades Vinculadas – CG-MMA,Pouco Provável,pouco provável,Muito Alto,muito alto,Eliminar,eliminar,15,15
+SFB,,Dependência de fornecedores,Provável,provável,Alto,alto,Mitigar,mitigar,14,14. Identificação de dependências com fornecedores para o planejamento preventivo para a contratação ou migração de
+SFB,,Indisponibilidade dos donos de serviço para atuação na transformação,Provável,provável,Alto,alto,Evitar,aceitar,2,2. Sensibilização das áreas de negócio para a importância do plano digital.
+SFB,,Indisponibilidade das equipes de TI para executar a transformação digital,Praticamente certo,praticamente certo,Alto,alto,Mitigar,mitigar,4,4. Prospecção de formas alternativas para a composição da força de trabalho.
+SFB,,Despriorização do PTD pela alta administração,Provável,provável,Alto,alto,Mitigar,mitigar,"1, 11","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 11. Reporte a alta administração para alinhamento de eventuais alterações estratégicas."
+SFB,,Baixo comprometimento das áreas,Provável,provável,Alto,alto,Mitigar,mitigar,2,2. Sensibilização das áreas de negócio para a importância do plano digital.
+SGPR,,Interrupção dos serviços por falhas no sistema.,provável,provável,muito alto,muito alto,transferir,transferir,"7, 9","7, 9"
+SGPR,,Interrupção temporária da continuidade do suporte técnico ao ID Jovem.,praticamente certo,praticamente certo,muito alto,muito alto,mitigar,mitigar,"6, 9","6, 9"
+SGPR,,Ataques cibernéticos.,pouco provável,pouco provável,alto,alto,transferir,transferir,"10,11","10,11"
+STN,,Indisponibilidade das equipes de TI para executar transformação digital,Provável,provável,Alto,alto,Mitigar,mitigar,4,4. Prospecção de formas alternativas para a composição da força de trabalho.
+STN,,Corte orçamentário,Provável,provável,Alto,alto,Mitigar,mitigar,"1, 11","1. Governança bem definida, com alinhamento estratégico, tático e operacional."
+STN,,Dependência de fornecedores,Praticamente certo,praticamente certo,Alto,alto,Mitigar,mitigar,"1, 14","1. Governança bem definida, com alinhamento estratégico, tático e operacional."
+STN,,Atraso nos cronogramas pactuados,Provável,provável,Médio,médio,Mitigar,mitigar,"1, 3, 5, 10, 11","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. | 5. Utilizar melhores práticas de gerenciamento de projetos registrando as etapas."
+STN,,Diminuição da priorização do PTD pela alta administração,Raro,raro,Alto,alto,Mitigar,mitigar,"1, 3, 9, 11","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão."
+STN,,Baixo comprometimento das áreas de negócio com as ações pactuadas,Pouco provável,pouco provável,Alto,alto,Mitigar,mitigar,"1, 2, 3, 9","1. Governança bem definida, com alinhamento estratégico, tático e operacional. | 2. Sensibilização das áreas de negócio para a importância do plano digital. | 3. Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão."
+STN,,Rotatividade das equipes envolvidas na transformação digital,Pouco provável,pouco provável,Médio,médio,Mitigar,mitigar,"4, 5, 8",4. Prospecção de formas alternativas para a composição da força de trabalho. | 5. Utilizar melhores práticas de gerenciamento de projetos registrando as etapas.
+SUSEP,,Falta de recursos orçamentários para execução das iniciativas de atendimento às necessidades;,4,4,4,4,,,,
+SUSEP,,Falta de recursos humanos para execução das iniciativas de atendimento às necessidades;,4,4,3,3,,,,
+SUSEP,,Alternância de priorização das demandas;,3,3,3,3,,,,
+SUSEP,,Indefinição ou definição imprecisa do fluxo do processo de negócio para o qual será desenvolvida a solução;,3,3,3,3,,,,
+SUSEP,,Indisponibilidade de servidor capacitado da área de negócio interessada durante todo curso do projeto;,3,3,4,4,,,,
+SUSEP,,Indisponibilidade ou ineficácia do serviço de Fábrica de Software contratada;,2,2,4,4,,,,
+SUSEP,,Falta de conhecimento para a realização das ações.,1,1,4,4,,,,
+SUSEP,,Atrasos nos processos licitatórios.,2,2,3,3,,,,
+SUSEP,,"Mudanças no cenário político, na legislação vigente ou na gestão que possam descontinuar planos e projetos.",3,3,3,3,,,,
