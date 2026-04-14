@@ -116,16 +116,16 @@ ANAC,Superapp- Cadastrar  drone básico,Migração de Serviço para Plataforma U
 ANAC,Superapp - Consultar regularidade de táxi-aereo ( Voe Seguro),Migração de Serviço para Plataforma Unificada,Migração de Serviço para Plataforma Unificada,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,30/12/2025,high
 ANAC,Superapp - Consultar Registro (RAB),Migração de Serviço para Plataforma Unificada,Migração de Serviço para Plataforma Unificada,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,30/12/2025,high
 ANAC,Registrar direito sobre aeronave,Evolução do Serviço,Evolução do Serviço,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,30/12/2025,high
-ANAC,Interoperabilidade com DPF - SISMIGRA (Sistema de Registro Nacional Migratório),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,23/12/2025,medium
-ANAC,Interoperabilidade com ANATEL - RAB,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,23/12/2025,medium
-ANAC,Interoperabilidade com ANATEL - LICENÇA DE ESTAÇÃO aeronaves (ANATEL),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,23/12/2025,medium
-ANAC,Interoperabilidade com SUSEP (Seguro RETA),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,12/06/2026,medium
-ANAC,Interoperabilidade com EMPRESAS AÉREAS,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,28/04/2026,medium
-ANAC,Interoperabilidade com OPERADORES AEROPORTUÁRIOS (Pousos e Decolagens),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,30/03/2026,medium
-ANAC,Interoperabilidade com ENAP (EVG),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,30/11/2025,medium
-ANAC,Interoperabilidade com CREA (Anotação de Responsabilidade Técnica ARTT por UF),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,30/03/2026,medium
-ANAC,Interoperabilidade com CENTROS DE TREINAMENTO,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,30/02/2026,medium
-ANAC,Interoperabilidade DECEA,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,30/12/2026,medium
+ANAC,Interoperabilidade com DPF - SISMIGRA (Sistema de Registro Nacional Migratório),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,23/12/2025,medium
+ANAC,Interoperabilidade com ANATEL - RAB,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,23/12/2025,medium
+ANAC,Interoperabilidade com ANATEL - LICENÇA DE ESTAÇÃO aeronaves (ANATEL),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,23/12/2025,medium
+ANAC,Interoperabilidade com SUSEP (Seguro RETA),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,12/06/2026,medium
+ANAC,Interoperabilidade com EMPRESAS AÉREAS,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,28/04/2026,medium
+ANAC,Interoperabilidade com OPERADORES AEROPORTUÁRIOS (Pousos e Decolagens),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,30/03/2026,medium
+ANAC,Interoperabilidade com ENAP (EVG),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,30/11/2025,medium
+ANAC,Interoperabilidade com CREA (Anotação de Responsabilidade Técnica ARTT por UF),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,30/03/2026,medium
+ANAC,Interoperabilidade com CENTROS DE TREINAMENTO,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,30/02/2026,medium
+ANAC,Interoperabilidade DECEA,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,30/12/2026,medium
 ANAC,PPSI Ciclo 4,Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,30/12/2025,high
 ANAC,PPSI Ciclo 5,Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,30/03/2026,high
 ANAC,PPSI Ciclo 6,"Auto-avaliação, análise de lacunas e planejamento do PPSI","Auto-avaliação, análise de lacunas e planejamento do PPSI",1.0,Segurança e Privacidade,Segurança e Privacidade,28/02/2026,high
@@ -156,8 +156,8 @@ ANAC,Superapp - Incluir registro de hora de voo individual (CIV),Disponibilizaç
 ANAC,Superapp - Criação de múltiplas jornadas,Evolução do Serviço,Evolução do Serviço,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,30/06/2025,high
 ANAC,PPSI Ciclo 4,"Auto-avaliação, análise de lacunas e planejamento do PPSI","Auto-avaliação, análise de lacunas e planejamento do PPSI",1.0,Segurança e Privacidade,Segurança e Privacidade,28/02/2025,high
 ANAC,PPSI Ciclo 5,"Auto-avaliação, análise de lacunas e planejamento do PPSI","Auto-avaliação, análise de lacunas e planejamento do PPSI",1.0,Segurança e Privacidade,Segurança e Privacidade,28/02/2025,high
-ANAC,Interoperabilidade com ANATEL - RAB,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,20/06/2025,medium
-ANAC,Interoperabilidade com MAPA (RAB),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,23/09/2025,medium
+ANAC,Interoperabilidade com ANATEL - RAB,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,20/06/2025,medium
+ANAC,Interoperabilidade com MAPA (RAB),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,23/09/2025,medium
 ANAC,Declarar Tipo de Uso para Aeródromos de Uso Público,Implantação do Design System,Implantação do Design System,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,31/12/2025,high
 ANAC,Cancelar Matrícula de Aeronaves Brasileiras,Implantação do Design System,Implantação do Design System,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,30/12/2022,high
 ANAC,Cancelar Matrícula de Aeronaves Brasileiras por IDERA,Implantação do Design System,Implantação do Design System,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,30/12/2022,high
@@ -285,8 +285,8 @@ ANCINE,indireto,Integração ao Login Único,Integração ao Login Único,1.0,Un
 ANCINE,Solicitar coexecução de projeto,Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,dez/26,high
 ANCINE,,Integração ao Pagtesouro,Integração ao Pagtesouro,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,nov/25,high
 ANCINE,administrativa ( canal atual: e-mail  ),Integração ao Pagtesouro,Integração ao Pagtesouro,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,mar/25,high
-ANCINE,coprodução internacional,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,nov/25,medium
-ANCINE,coprodução internacional,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,nov/25,medium
+ANCINE,coprodução internacional,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,nov/25,medium
+ANCINE,coprodução internacional,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,nov/25,medium
 ANCINE,implementadas.,Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,dez/25,high
 ANCINE,atraso - após emissão de NFL,Evolução do Serviço,Evolução do Serviço,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,ago/24,high
 ANCINE,atraso - após emissão de NFL,Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,ago/24,high
@@ -318,7 +318,7 @@ ANCINE,,Integração com Assinatura Digital Gov.br,Integração com Assinatu
 ANCINE,,Migração de APPs móveis para a loja do Gov.br,Migração de APPs móveis para a loja do Gov.br,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,,high
 ANCINE,,Migração de Portal Institucional,Migração de Portal Institucional,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,,high
 ANCINE,,Migração de Serviço para Plataforma Unificada,Migração de Serviço para Plataforma Unificada,1.0,Governança e Gestão de Dados,Unificação de Canais Digitais,,high
-ANCINE,,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,,medium
+ANCINE,,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,,medium
 ANCINE,,"Auto-avaliação, análise de lacunas e planejamento do PPSI","Auto-avaliação, análise de lacunas e planejamento do PPSI",1.0,Segurança e Privacidade,Segurança e Privacidade,,high
 ANCINE,,Implementação do PPSI,Implementação do PPSI,1.0,Projetos Especiais,Segurança e Privacidade,,high
 ANEEL,energia elétrica,Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,set/27,high
@@ -390,7 +390,7 @@ ANM,Comunicar a extração de fósseis,Evolução do Serviço,Evolução do Serv
 ANM,Comunicar a extração de fósseis,Implantação do Design System,Implantação do Design System,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,set-26,high
 ANM,Comunicar a extração de fósseis,Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,jul-26,high
 ANM,Comunicar a extração de fósseis,Integração à ferramenta de avaliação da satisfação dos usuários,Integração à ferramenta de avaliação da satisfação dos usuários,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,ago-26,high
-ANM,Comunicar a extração de fósseis,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,dez-26,medium
+ANM,Comunicar a extração de fósseis,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,dez-26,medium
 ANM,Comunicar a extração de fósseis,Realização de Autodiagnóstico de Qualidade,Realização de Autodiagnóstico de Qualidade,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,jan-27,high
 ANM,Comunicar nova substância durante a pesquisa mineral,Evolução do Serviço,Evolução do Serviço,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,jun-27,high
 ANM,Comunicar nova substância durante a pesquisa mineral,Implantação do Design System,Implantação do Design System,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,set-26,high
@@ -775,7 +775,7 @@ ANTT,Credencia - Novos Motivos de Solicitação,Disponibilização em Acesso Dig
 ANTT,CRM - v1,Disponibilização em Acesso Digital,Disponibilização em Acesso Digital,1.0,,Serviços Digitais e Melhoria da Qualidade,30/11/2025,high
 ANTT,,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,30/11/2025,high
 ANTT,Leilão de Veículos - Privado,Disponibilização em Acesso Digital,Disponibilização em Acesso Digital,1.0,,Serviços Digitais e Melhoria da Qualidade,31/12/2025,high
-ANTT,Fiscalização - Fiscalização Senatran - Boletim de Ocorrência de Roubo/Furto,Integração à base de dados(OUTROS),Integração à base de dados,0.867,,Projetos Especiais,31/12/2025,medium
+ANTT,Fiscalização - Fiscalização Senatran - Boletim de Ocorrência de Roubo/Furto,Integração à base de dados(OUTROS),Integração à base de dados,0.867,,Governança e Gestão de Dados,31/12/2025,medium
 ANTT,Conformidade Renainf - Pagamento da Infração,Disponibilização em Acesso Digital,Disponibilização em Acesso Digital,1.0,,Serviços Digitais e Melhoria da Qualidade,31/12/2025,high
 ANTT,Conformidade Renainf - Fase Recursal da Infração,Disponibilização em Acesso Digital,Disponibilização em Acesso Digital,1.0,,Serviços Digitais e Melhoria da Qualidade,31/12/2025,high
 ANTT,Transferência Segura - Transferência Segura,Disponibilização em Acesso Digital,Disponibilização em Acesso Digital,1.0,,Serviços Digitais e Melhoria da Qualidade,31/12/2025,high
@@ -805,8 +805,8 @@ ANTT,Credencial de Estacionamento: Pessoa com Deficiência - PCD,Evolução do S
 ANTT,de avaliação de maturidade e capacidade disponibilizado por meio da ferramenta,do framework de Privacidade e Segurança da Informação.,Adequação ao Framework de Privacidade e Segurança da Informação,0.906,,Segurança e Privacidade,16/10/2023,medium
 ANTT,ao usuário das rodovias federais”,Integração à ferramenta de avaliação da satisfação dos usuários,Integração à ferramenta de avaliação da satisfação dos usuários,1.0,,Serviços Digitais e Melhoria da Qualidade,31/04/2024,high
 ANTT,Programa Nacional de Educação para o Trânsito”,Integração à ferramenta de avaliação da satisfação dos usuários,Integração à ferramenta de avaliação da satisfação dos usuários,1.0,,Serviços Digitais e Melhoria da Qualidade,31/04/2024,high
-ANTT,pela pessoa jurídica de direito privado,Integração à base de dados (OUTROS),Integração à base de dados,0.852,,Projetos Especiais,,medium
-ANTT,mesmo deve ser registrado junto a RFB),Integração à base de dados (OUTROS),Integração à base de dados,0.852,,Projetos Especiais,,medium
+ANTT,pela pessoa jurídica de direito privado,Integração à base de dados (OUTROS),Integração à base de dados,0.852,,Governança e Gestão de Dados,,medium
+ANTT,mesmo deve ser registrado junto a RFB),Integração à base de dados (OUTROS),Integração à base de dados,0.852,,Governança e Gestão de Dados,,medium
 ANVISA,12912 Solicitar Autorização de Funcionamento (AFE) - Drogarias e Farmácias,Evolução do Serviço,Evolução do Serviço,1.0,Serviços Digitais e Melhoria da Qualidade GGFIS,Serviços Digitais e Melhoria da Qualidade,30/03/2025,high
 ANVISA,12912 Solicitar Autorização de Funcionamento (AFE) - Drogarias e Farmácias,Integração com Assinatura Digital Gov.br,Integração com Assinatura Digital Gov.br,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,30/03/2025,high
 ANVISA,12911 Alterar Autorização de Funcionamento (AFE) - Drogarias e Farmácias,Evolução do Serviço,Evolução do Serviço,1.0,Serviços Digitais e Melhoria da Qualidade GGFIS,Serviços Digitais e Melhoria da Qualidade,30/03/2025,high
@@ -1305,12 +1305,12 @@ CAPES,Solicitar assistência Técnico-financeira para o MEC no âmbito do PAR 5,
 CAPES,Inscrever-se no SISU (Sistema de Seleção Unificada),Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 CAPES,Inscrever-se no SISU (Sistema de Seleção Unificada),Implantação da Experiência LabQ,Implantação da Experiência LabQ,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 CAPES,Inscrever-se no SISU (Sistema de Seleção Unificada),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
-CAPES,Inscrever-se no SISU (Sistema de Seleção Unificada),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
+CAPES,Inscrever-se no SISU (Sistema de Seleção Unificada),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
 CAPES,Obter bolsa de estudo do ProUni,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 CAPES,Obter bolsa de estudo do ProUni,Implantação da Experiência LabQ,Implantação da Experiência LabQ,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 CAPES,Obter bolsa de estudo do ProUni,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
-CAPES,Obter bolsa de estudo do ProUni,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
-CAPES,Obter bolsa de estudo do ProUni,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
+CAPES,Obter bolsa de estudo do ProUni,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
+CAPES,Obter bolsa de estudo do ProUni,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
 CAPES,Consultar Oferta de Vagas no SISU,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 CAPES,Consultar Oferta de Vagas no SISU,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 CAPES,Consultar Oferta de Vagas no SISU,Migração de Serviço para Plataforma,Migração de Serviço para Plataforma Unificada,0.875,,Unificação de Canais Digitais,,medium
@@ -1323,10 +1323,10 @@ CAPES,Ver boletim SISU,Migração de Serviço para Plataforma,Migração de Serv
 CAPES,Obter financiamento FIES,Implantação da Experiência LabQ,Implantação da Experiência LabQ,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 CAPES,Obter financiamento FIES,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 CAPES,Obter financiamento FIES,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
-CAPES,Obter financiamento FIES,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
+CAPES,Obter financiamento FIES,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
 CAPES,Realizar adesão ao Sisu (Sisu Gestão),Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 CAPES,Realizar adesão ao Sisu (Sisu Gestão),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
-CAPES,Realizar adesão ao Sisu (Sisu Gestão),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
+CAPES,Realizar adesão ao Sisu (Sisu Gestão),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
 CAPES,Ofertar vagas para o Fies.  (FiesOferta),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 CAPES,Revalidar e Reconhecer Diplomas Estrangeiros,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 CAPES,Revalidar e Reconhecer Diplomas Estrangeiros,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
@@ -1356,12 +1356,12 @@ CAPES,Aderir ao PDDE Equidade,Evolução do Serviço,Evolução do Serviço,1.0,
 CAPES,Aderir ao PDDE Equidade,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 CAPES,Comprovar cumprimento das condicionalidades  da educação do Programa Bolsa Família,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,jan/26,high
 CAPES,Comprovar cumprimento das condicionalidades  da educação do Programa Bolsa Família,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,jan/26,high
-CAPES,Comprovar cumprimento das condicionalidades  da educação do Programa Bolsa Família,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jan/26,medium
+CAPES,Comprovar cumprimento das condicionalidades  da educação do Programa Bolsa Família,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jan/26,medium
 CAPES,,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,jan/26,high
 CAPES,,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,jan/26,high
-CAPES,,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jan/26,medium
-CAPES,Inclusão da base de dados do SIGEF  no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jul/26,medium
-CAPES,Inclusão da base de dados do SIOPE   no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jul/26,medium
+CAPES,,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jan/26,medium
+CAPES,Inclusão da base de dados do SIGEF  no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jul/26,medium
+CAPES,Inclusão da base de dados do SIOPE   no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jul/26,medium
 CAPES,Planejamento da Escola  para o PDDE,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,jul/26,high
 CAPES,Planejamento da Escola  para o PDDE,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,jul/26,high
 CAPES,Planejamento da Escola  para o PDDE,Migração de Serviço para Plataforma,Migração de Serviço para Plataforma Unificada,0.875,,Unificação de Canais Digitais,,medium
@@ -1375,7 +1375,7 @@ CAPES,Cadastrar usuário no SISPDDE,Evolução do Serviço,Evolução do Serviç
 CAPES,Cadastrar usuário no SISPDDE,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,jul/26,high
 CAPES,Cadastrar usuário no SISPDDE,Migração de Serviço para Plataforma,Migração de Serviço para Plataforma Unificada,0.875,,Unificação de Canais Digitais,,medium
 CAPES,Elaboração do Inventário de Dados Pessoais,Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,set/26,high
-CAPES,Inclusão da base de dados do PDDE   no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jul/26,medium
+CAPES,Inclusão da base de dados do PDDE   no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jul/26,medium
 CENSIPAM,PPSI Ciclo 5 (SISP: DETIC),Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,31/12/2025,high
 CENSIPAM,PPSI Ciclo 6  (SISP: DETIC),Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,,high
 CENSIPAM,PPSI Ciclo 7 (SISP: DETIC),Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,31/12/2026,high
@@ -1430,7 +1430,7 @@ CENSIPAM,Obter autorização para blindagem de veículo,Integração ao Login Ú
 CENSIPAM,Obter autorização para blindagem de veículo,Integração ao Pagtesouro,Integração ao Pagtesouro,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,30/12/2026,high
 CENSIPAM,Obter autorização para blindagem de veículo,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da,Serviços Digitais e Melhoria da Qualidade,30/12/2026,high
 CENSIPAM,Carreira (ESA),Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,31/12/2025,high
-CENSIPAM,Carreira (ESA),Integração à base de dados (OUTROS),Integração à base de dados,0.852,,Projetos Especiais,31/12/2025,medium
+CENSIPAM,Carreira (ESA),Integração à base de dados (OUTROS),Integração à base de dados,0.852,,Governança e Gestão de Dados,31/12/2025,medium
 CENSIPAM,Carreira (ESA),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da,Serviços Digitais e Melhoria da Qualidade,30/04/2026,high
 CENSIPAM,(CMBH),Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,30/06/2026,high
 CENSIPAM,(CMBH),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da,Serviços Digitais e Melhoria da Qualidade,30/06/2026,high
@@ -1516,7 +1516,7 @@ CEX,Obter autorização para blindagem de veículo,Integração ao Login Único,
 CEX,Obter autorização para blindagem de veículo,Integração ao Pagtesouro,Integração ao Pagtesouro,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,30/12/2026,high
 CEX,Obter autorização para blindagem de veículo,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da,Serviços Digitais e Melhoria da Qualidade,30/12/2026,high
 CEX,Carreira (ESA),Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,31/12/2025,high
-CEX,Carreira (ESA),Integração à base de dados (OUTROS),Integração à base de dados,0.852,,Projetos Especiais,31/12/2025,medium
+CEX,Carreira (ESA),Integração à base de dados (OUTROS),Integração à base de dados,0.852,,Governança e Gestão de Dados,31/12/2025,medium
 CEX,Carreira (ESA),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da,Serviços Digitais e Melhoria da Qualidade,30/04/2026,high
 CEX,(CMBH),Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,30/06/2026,high
 CEX,(CMBH),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da,Serviços Digitais e Melhoria da Qualidade,30/06/2026,high
@@ -1612,7 +1612,7 @@ CM,Obter autorização para blindagem de veículo,Integração ao Login Único,I
 CM,Obter autorização para blindagem de veículo,Integração ao Pagtesouro,Integração ao Pagtesouro,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,30/12/2026,high
 CM,Obter autorização para blindagem de veículo,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da,Serviços Digitais e Melhoria da Qualidade,30/12/2026,high
 CM,Carreira (ESA),Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,31/12/2025,high
-CM,Carreira (ESA),Integração à base de dados (OUTROS),Integração à base de dados,0.852,,Projetos Especiais,31/12/2025,medium
+CM,Carreira (ESA),Integração à base de dados (OUTROS),Integração à base de dados,0.852,,Governança e Gestão de Dados,31/12/2025,medium
 CM,Carreira (ESA),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da,Serviços Digitais e Melhoria da Qualidade,30/04/2026,high
 CM,(CMBH),Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,30/06/2026,high
 CM,(CMBH),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da,Serviços Digitais e Melhoria da Qualidade,30/06/2026,high
@@ -1665,7 +1665,7 @@ CNPQ,PPSI Ciclo 1 a 3,Implementação do PPSI,Implementação do PPSI,1.0,Segura
 CNPQ,PPSI Ciclo 4,"Auto-avaliação, análise de lacunas e planejamento do PPSI","Auto-avaliação, análise de lacunas e planejamento do PPSI",1.0,Segurança e Privacidade,Segurança e Privacidade,31/01/2025,high
 COAF,Financeiras (Siscoaf),Realização de Autodiagnóstico de Qualidade,Realização de Autodiagnóstico de Qualidade,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,07/2025,high
 COAF,Cadastrar-se no Coaf,Realização de Autodiagnóstico de Qualidade,Realização de Autodiagnóstico de Qualidade,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,07/2025,high
-COAF,Controle de Atividades Financeiras (Siscoaf),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,12/2025,medium
+COAF,Controle de Atividades Financeiras (Siscoaf),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,12/2025,medium
 COAF,PPSI Ciclo 4,Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,30/06/2025,high
 COAF,PPSI Ciclo 5,"Auto-avaliação, análise de lacunas e planejamento do","Auto-avaliação, análise de lacunas e planejamento do PPSI",0.954,,Segurança e Privacidade,01/07/2025,high
 COAF,PPSI Ciclo 5,Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,31/12/2025,high
@@ -1734,7 +1734,7 @@ COMAER,Obter autorização para blindagem de veículo,Integração ao Login Úni
 COMAER,Obter autorização para blindagem de veículo,Integração ao Pagtesouro,Integração ao Pagtesouro,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,30/12/2026,high
 COMAER,Obter autorização para blindagem de veículo,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da,Serviços Digitais e Melhoria da Qualidade,30/12/2026,high
 COMAER,Carreira (ESA),Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,31/12/2025,high
-COMAER,Carreira (ESA),Integração à base de dados (OUTROS),Integração à base de dados,0.852,,Projetos Especiais,31/12/2025,medium
+COMAER,Carreira (ESA),Integração à base de dados (OUTROS),Integração à base de dados,0.852,,Governança e Gestão de Dados,31/12/2025,medium
 COMAER,Carreira (ESA),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da,Serviços Digitais e Melhoria da Qualidade,30/04/2026,high
 COMAER,(CMBH),Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,30/06/2026,high
 COMAER,(CMBH),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da,Serviços Digitais e Melhoria da Qualidade,30/06/2026,high
@@ -1773,7 +1773,7 @@ CONAB,,Realização de Autodiagnóstico de Qualidade,Realização de Autodiagnó
 CONAB,,Implantação da Experiência LabQ,Implantação da Experiência LabQ,1.0,,Serviços Digitais e Melhoria da Qualidade,,high
 CONAB,,Implementação do VLIBRAS,Implementação do VLIBRAS,1.0,Eixo 2 - Unificação de Canais Digitais,Serviços Digitais e Melhoria da Qualidade,,high
 CVM,Audiências a Particulares (CAP),Evolução do Serviço,Evolução do Serviço,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,fev-25,high
-CVM,de uso interno,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,fev-25,medium
+CVM,de uso interno,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,fev-25,medium
 CVM,certificado requerido para seu uso,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,mar-25,high
 CVM,positiva,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,dez-25,high
 CVM,positiva,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,jun-26,high
@@ -1803,7 +1803,7 @@ DNIT,Credencia - Novos Motivos de Solicitação,Disponibilização em Acesso Dig
 DNIT,CRM - v1,Disponibilização em Acesso Digital,Disponibilização em Acesso Digital,1.0,,Serviços Digitais e Melhoria da Qualidade,30/11/2025,high
 DNIT,,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,30/11/2025,high
 DNIT,Leilão de Veículos - Privado,Disponibilização em Acesso Digital,Disponibilização em Acesso Digital,1.0,,Serviços Digitais e Melhoria da Qualidade,31/12/2025,high
-DNIT,Fiscalização - Fiscalização Senatran - Boletim de Ocorrência de Roubo/Furto,Integração à base de dados(OUTROS),Integração à base de dados,0.867,,Projetos Especiais,31/12/2025,medium
+DNIT,Fiscalização - Fiscalização Senatran - Boletim de Ocorrência de Roubo/Furto,Integração à base de dados(OUTROS),Integração à base de dados,0.867,,Governança e Gestão de Dados,31/12/2025,medium
 DNIT,Conformidade Renainf - Pagamento da Infração,Disponibilização em Acesso Digital,Disponibilização em Acesso Digital,1.0,,Serviços Digitais e Melhoria da Qualidade,31/12/2025,high
 DNIT,Conformidade Renainf - Fase Recursal da Infração,Disponibilização em Acesso Digital,Disponibilização em Acesso Digital,1.0,,Serviços Digitais e Melhoria da Qualidade,31/12/2025,high
 DNIT,Transferência Segura - Transferência Segura,Disponibilização em Acesso Digital,Disponibilização em Acesso Digital,1.0,,Serviços Digitais e Melhoria da Qualidade,31/12/2025,high
@@ -1833,8 +1833,8 @@ DNIT,Credencial de Estacionamento: Pessoa com Deficiência - PCD,Evolução do S
 DNIT,de avaliação de maturidade e capacidade disponibilizado por meio da ferramenta,do framework de Privacidade e Segurança da Informação.,Adequação ao Framework de Privacidade e Segurança da Informação,0.906,,Segurança e Privacidade,16/10/2023,medium
 DNIT,ao usuário das rodovias federais”,Integração à ferramenta de avaliação da satisfação dos usuários,Integração à ferramenta de avaliação da satisfação dos usuários,1.0,,Serviços Digitais e Melhoria da Qualidade,31/04/2024,high
 DNIT,Programa Nacional de Educação para o Trânsito”,Integração à ferramenta de avaliação da satisfação dos usuários,Integração à ferramenta de avaliação da satisfação dos usuários,1.0,,Serviços Digitais e Melhoria da Qualidade,31/04/2024,high
-DNIT,pela pessoa jurídica de direito privado,Integração à base de dados (OUTROS),Integração à base de dados,0.852,,Projetos Especiais,,medium
-DNIT,mesmo deve ser registrado junto a RFB),Integração à base de dados (OUTROS),Integração à base de dados,0.852,,Projetos Especiais,,medium
+DNIT,pela pessoa jurídica de direito privado,Integração à base de dados (OUTROS),Integração à base de dados,0.852,,Governança e Gestão de Dados,,medium
+DNIT,mesmo deve ser registrado junto a RFB),Integração à base de dados (OUTROS),Integração à base de dados,0.852,,Governança e Gestão de Dados,,medium
 DNOCS,Solicitar poços profundos,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez-26,high
 DNOCS,Solicitar poços profundos,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez-26,high
 DNOCS,Solicitar manutenção de barragens,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez-26,high
@@ -1926,12 +1926,12 @@ EBSERH,Solicitar assistência Técnico-financeira para o MEC no âmbito do PAR 5
 EBSERH,Inscrever-se no SISU (Sistema de Seleção Unificada),Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 EBSERH,Inscrever-se no SISU (Sistema de Seleção Unificada),Implantação da Experiência LabQ,Implantação da Experiência LabQ,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 EBSERH,Inscrever-se no SISU (Sistema de Seleção Unificada),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
-EBSERH,Inscrever-se no SISU (Sistema de Seleção Unificada),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
+EBSERH,Inscrever-se no SISU (Sistema de Seleção Unificada),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
 EBSERH,Obter bolsa de estudo do ProUni,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 EBSERH,Obter bolsa de estudo do ProUni,Implantação da Experiência LabQ,Implantação da Experiência LabQ,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 EBSERH,Obter bolsa de estudo do ProUni,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
-EBSERH,Obter bolsa de estudo do ProUni,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
-EBSERH,Obter bolsa de estudo do ProUni,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
+EBSERH,Obter bolsa de estudo do ProUni,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
+EBSERH,Obter bolsa de estudo do ProUni,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
 EBSERH,Consultar Oferta de Vagas no SISU,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 EBSERH,Consultar Oferta de Vagas no SISU,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 EBSERH,Consultar Oferta de Vagas no SISU,Migração de Serviço para Plataforma,Migração de Serviço para Plataforma Unificada,0.875,,Unificação de Canais Digitais,,medium
@@ -1944,10 +1944,10 @@ EBSERH,Ver boletim SISU,Migração de Serviço para Plataforma,Migração de Ser
 EBSERH,Obter financiamento FIES,Implantação da Experiência LabQ,Implantação da Experiência LabQ,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 EBSERH,Obter financiamento FIES,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 EBSERH,Obter financiamento FIES,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
-EBSERH,Obter financiamento FIES,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
+EBSERH,Obter financiamento FIES,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
 EBSERH,Realizar adesão ao Sisu (Sisu Gestão),Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 EBSERH,Realizar adesão ao Sisu (Sisu Gestão),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
-EBSERH,Realizar adesão ao Sisu (Sisu Gestão),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
+EBSERH,Realizar adesão ao Sisu (Sisu Gestão),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
 EBSERH,Ofertar vagas para o Fies.  (FiesOferta),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 EBSERH,Revalidar e Reconhecer Diplomas Estrangeiros,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 EBSERH,Revalidar e Reconhecer Diplomas Estrangeiros,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
@@ -1977,12 +1977,12 @@ EBSERH,Aderir ao PDDE Equidade,Evolução do Serviço,Evolução do Serviço,1.0
 EBSERH,Aderir ao PDDE Equidade,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 EBSERH,Comprovar cumprimento das condicionalidades  da educação do Programa Bolsa Família,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,jan/26,high
 EBSERH,Comprovar cumprimento das condicionalidades  da educação do Programa Bolsa Família,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,jan/26,high
-EBSERH,Comprovar cumprimento das condicionalidades  da educação do Programa Bolsa Família,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jan/26,medium
+EBSERH,Comprovar cumprimento das condicionalidades  da educação do Programa Bolsa Família,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jan/26,medium
 EBSERH,,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,jan/26,high
 EBSERH,,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,jan/26,high
-EBSERH,,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jan/26,medium
-EBSERH,Inclusão da base de dados do SIGEF  no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jul/26,medium
-EBSERH,Inclusão da base de dados do SIOPE   no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jul/26,medium
+EBSERH,,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jan/26,medium
+EBSERH,Inclusão da base de dados do SIGEF  no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jul/26,medium
+EBSERH,Inclusão da base de dados do SIOPE   no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jul/26,medium
 EBSERH,Planejamento da Escola  para o PDDE,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,jul/26,high
 EBSERH,Planejamento da Escola  para o PDDE,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,jul/26,high
 EBSERH,Planejamento da Escola  para o PDDE,Migração de Serviço para Plataforma,Migração de Serviço para Plataforma Unificada,0.875,,Unificação de Canais Digitais,,medium
@@ -1996,7 +1996,7 @@ EBSERH,Cadastrar usuário no SISPDDE,Evolução do Serviço,Evolução do Servi�
 EBSERH,Cadastrar usuário no SISPDDE,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,jul/26,high
 EBSERH,Cadastrar usuário no SISPDDE,Migração de Serviço para Plataforma,Migração de Serviço para Plataforma Unificada,0.875,,Unificação de Canais Digitais,,medium
 EBSERH,Elaboração do Inventário de Dados Pessoais,Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,set/26,high
-EBSERH,Inclusão da base de dados do PDDE   no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jul/26,medium
+EBSERH,Inclusão da base de dados do PDDE   no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jul/26,medium
 FBN,Agendar consulta nos acervos especiais da Biblioteca Nacional,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,,high
 FBN,Agendar consulta nos acervos especiais da Biblioteca Nacional,Realização de Autodiagnóstico de Qualidade,Realização de Autodiagnóstico de Qualidade,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,,high
 FBN,Agendar visita orientada ou técnica,Evolução do Serviço,Evolução do Serviço,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,,high
@@ -2172,12 +2172,12 @@ FNDE,Solicitar assistência Técnico-financeira para o MEC no âmbito do PAR 5,M
 FNDE,Inscrever-se no SISU (Sistema de Seleção Unificada),Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 FNDE,Inscrever-se no SISU (Sistema de Seleção Unificada),Implantação da Experiência LabQ,Implantação da Experiência LabQ,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 FNDE,Inscrever-se no SISU (Sistema de Seleção Unificada),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
-FNDE,Inscrever-se no SISU (Sistema de Seleção Unificada),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
+FNDE,Inscrever-se no SISU (Sistema de Seleção Unificada),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
 FNDE,Obter bolsa de estudo do ProUni,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 FNDE,Obter bolsa de estudo do ProUni,Implantação da Experiência LabQ,Implantação da Experiência LabQ,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 FNDE,Obter bolsa de estudo do ProUni,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
-FNDE,Obter bolsa de estudo do ProUni,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
-FNDE,Obter bolsa de estudo do ProUni,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
+FNDE,Obter bolsa de estudo do ProUni,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
+FNDE,Obter bolsa de estudo do ProUni,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
 FNDE,Consultar Oferta de Vagas no SISU,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 FNDE,Consultar Oferta de Vagas no SISU,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 FNDE,Consultar Oferta de Vagas no SISU,Migração de Serviço para Plataforma,Migração de Serviço para Plataforma Unificada,0.875,,Unificação de Canais Digitais,,medium
@@ -2190,10 +2190,10 @@ FNDE,Ver boletim SISU,Migração de Serviço para Plataforma,Migração de Servi
 FNDE,Obter financiamento FIES,Implantação da Experiência LabQ,Implantação da Experiência LabQ,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 FNDE,Obter financiamento FIES,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 FNDE,Obter financiamento FIES,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
-FNDE,Obter financiamento FIES,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
+FNDE,Obter financiamento FIES,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
 FNDE,Realizar adesão ao Sisu (Sisu Gestão),Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 FNDE,Realizar adesão ao Sisu (Sisu Gestão),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
-FNDE,Realizar adesão ao Sisu (Sisu Gestão),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
+FNDE,Realizar adesão ao Sisu (Sisu Gestão),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
 FNDE,Ofertar vagas para o Fies.  (FiesOferta),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 FNDE,Revalidar e Reconhecer Diplomas Estrangeiros,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 FNDE,Revalidar e Reconhecer Diplomas Estrangeiros,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
@@ -2223,12 +2223,12 @@ FNDE,Aderir ao PDDE Equidade,Evolução do Serviço,Evolução do Serviço,1.0,,
 FNDE,Aderir ao PDDE Equidade,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 FNDE,Comprovar cumprimento das condicionalidades  da educação do Programa Bolsa Família,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,jan/26,high
 FNDE,Comprovar cumprimento das condicionalidades  da educação do Programa Bolsa Família,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,jan/26,high
-FNDE,Comprovar cumprimento das condicionalidades  da educação do Programa Bolsa Família,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jan/26,medium
+FNDE,Comprovar cumprimento das condicionalidades  da educação do Programa Bolsa Família,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jan/26,medium
 FNDE,,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,jan/26,high
 FNDE,,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,jan/26,high
-FNDE,,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jan/26,medium
-FNDE,Inclusão da base de dados do SIGEF  no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jul/26,medium
-FNDE,Inclusão da base de dados do SIOPE   no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jul/26,medium
+FNDE,,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jan/26,medium
+FNDE,Inclusão da base de dados do SIGEF  no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jul/26,medium
+FNDE,Inclusão da base de dados do SIOPE   no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jul/26,medium
 FNDE,Planejamento da Escola  para o PDDE,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,jul/26,high
 FNDE,Planejamento da Escola  para o PDDE,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,jul/26,high
 FNDE,Planejamento da Escola  para o PDDE,Migração de Serviço para Plataforma,Migração de Serviço para Plataforma Unificada,0.875,,Unificação de Canais Digitais,,medium
@@ -2242,7 +2242,7 @@ FNDE,Cadastrar usuário no SISPDDE,Evolução do Serviço,Evolução do Serviço
 FNDE,Cadastrar usuário no SISPDDE,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,jul/26,high
 FNDE,Cadastrar usuário no SISPDDE,Migração de Serviço para Plataforma,Migração de Serviço para Plataforma Unificada,0.875,,Unificação de Canais Digitais,,medium
 FNDE,Elaboração do Inventário de Dados Pessoais,Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,set/26,high
-FNDE,Inclusão da base de dados do PDDE   no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jul/26,medium
+FNDE,Inclusão da base de dados do PDDE   no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jul/26,medium
 FOSORIO,PPSI Ciclo 5 (SISP: DETIC),Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,31/12/2025,high
 FOSORIO,PPSI Ciclo 6  (SISP: DETIC),Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,,high
 FOSORIO,PPSI Ciclo 7 (SISP: DETIC),Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,31/12/2026,high
@@ -2297,7 +2297,7 @@ FOSORIO,Obter autorização para blindagem de veículo,Integração ao Login Ún
 FOSORIO,Obter autorização para blindagem de veículo,Integração ao Pagtesouro,Integração ao Pagtesouro,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,30/12/2026,high
 FOSORIO,Obter autorização para blindagem de veículo,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da,Serviços Digitais e Melhoria da Qualidade,30/12/2026,high
 FOSORIO,Carreira (ESA),Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,31/12/2025,high
-FOSORIO,Carreira (ESA),Integração à base de dados (OUTROS),Integração à base de dados,0.852,,Projetos Especiais,31/12/2025,medium
+FOSORIO,Carreira (ESA),Integração à base de dados (OUTROS),Integração à base de dados,0.852,,Governança e Gestão de Dados,31/12/2025,medium
 FOSORIO,Carreira (ESA),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da,Serviços Digitais e Melhoria da Qualidade,30/04/2026,high
 FOSORIO,(CMBH),Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,30/06/2026,high
 FOSORIO,(CMBH),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da,Serviços Digitais e Melhoria da Qualidade,30/06/2026,high
@@ -2329,12 +2329,12 @@ FOSORIO,Obter Declaração Certificadora,Disponibilização em Acesso Digital,Di
 FOSORIO,Obter Declaração Certificadora,Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,31/12/2027,high
 FOSORIO,Obter Declaração de Isenção do D.O.U,Disponibilização em Acesso Digital,Disponibilização em Acesso Digital,1.0,Serviços Digitais e Melhoria da,Serviços Digitais e Melhoria da Qualidade,31/12/2027,high
 FOSORIO,Obter Declaração de Isenção do D.O.U,Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,31/12/2027,high
-FUNARTE,pública.,Integração à base de dados do,Integração à base de dados,0.945,,Projetos Especiais,,medium
-FUNARTE,cultural por meio de seleção pública.,Integração à base de dados do,Integração à base de dados,0.945,,Projetos Especiais,,medium
-FUNARTE,pública.,Integração à base de dados do,Integração à base de dados,0.945,,Projetos Especiais,,medium
-FUNARTE,cultural por meio de seleção pública.,Integração à base de dados do,Integração à base de dados,0.945,,Projetos Especiais,,medium
-FUNARTE,pública.,Integração à base de dados do,Integração à base de dados,0.945,,Projetos Especiais,,medium
-FUNARTE,cultural por meio de seleção pública.,Integração à base de dados do,Integração à base de dados,0.945,,Projetos Especiais,,medium
+FUNARTE,pública.,Integração à base de dados do,Integração à base de dados,0.945,,Governança e Gestão de Dados,,medium
+FUNARTE,cultural por meio de seleção pública.,Integração à base de dados do,Integração à base de dados,0.945,,Governança e Gestão de Dados,,medium
+FUNARTE,pública.,Integração à base de dados do,Integração à base de dados,0.945,,Governança e Gestão de Dados,,medium
+FUNARTE,cultural por meio de seleção pública.,Integração à base de dados do,Integração à base de dados,0.945,,Governança e Gestão de Dados,,medium
+FUNARTE,pública.,Integração à base de dados do,Integração à base de dados,0.945,,Governança e Gestão de Dados,,medium
+FUNARTE,cultural por meio de seleção pública.,Integração à base de dados do,Integração à base de dados,0.945,,Governança e Gestão de Dados,,medium
 FUNARTE,PPSI Ciclo 3,Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,dez/24,high
 FUNARTE,PPSI Ciclo 4,Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,jun/25,high
 FUNARTE,PPSI Ciclo 5,Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,dez/25,high
@@ -2369,7 +2369,7 @@ FUNARTE,,Integração com Assinatura Digital Gov.br,Integração com Assinat
 FUNARTE,,Migração de APPs móveis para a loja do Gov.br,Migração de APPs móveis para a loja do Gov.br,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,,high
 FUNARTE,,Migração de Portal Institucional,Migração de Portal Institucional,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,,high
 FUNARTE,,Migração de Serviço para Plataforma Unificada,Migração de Serviço para Plataforma Unificada,1.0,Governança e Gestão de Dados,Unificação de Canais Digitais,,high
-FUNARTE,,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,,medium
+FUNARTE,,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,,medium
 FUNARTE,,"Auto-avaliação, análise de lacunas e planejamento do PPSI","Auto-avaliação, análise de lacunas e planejamento do PPSI",1.0,Segurança e Privacidade,Segurança e Privacidade,,high
 FUNARTE,,Implementação do PPSI,Implementação do PPSI,1.0,Projetos Especiais,Segurança e Privacidade,,high
 FUNDAJ,Criação de Relatório de Impacto (RIPD),Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,mar/25,high
@@ -2415,12 +2415,12 @@ FUNDAJ,Solicitar assistência Técnico-financeira para o MEC no âmbito do PAR 5
 FUNDAJ,Inscrever-se no SISU (Sistema de Seleção Unificada),Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 FUNDAJ,Inscrever-se no SISU (Sistema de Seleção Unificada),Implantação da Experiência LabQ,Implantação da Experiência LabQ,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 FUNDAJ,Inscrever-se no SISU (Sistema de Seleção Unificada),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
-FUNDAJ,Inscrever-se no SISU (Sistema de Seleção Unificada),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
+FUNDAJ,Inscrever-se no SISU (Sistema de Seleção Unificada),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
 FUNDAJ,Obter bolsa de estudo do ProUni,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 FUNDAJ,Obter bolsa de estudo do ProUni,Implantação da Experiência LabQ,Implantação da Experiência LabQ,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 FUNDAJ,Obter bolsa de estudo do ProUni,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
-FUNDAJ,Obter bolsa de estudo do ProUni,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
-FUNDAJ,Obter bolsa de estudo do ProUni,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
+FUNDAJ,Obter bolsa de estudo do ProUni,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
+FUNDAJ,Obter bolsa de estudo do ProUni,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
 FUNDAJ,Consultar Oferta de Vagas no SISU,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 FUNDAJ,Consultar Oferta de Vagas no SISU,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 FUNDAJ,Consultar Oferta de Vagas no SISU,Migração de Serviço para Plataforma,Migração de Serviço para Plataforma Unificada,0.875,,Unificação de Canais Digitais,,medium
@@ -2433,10 +2433,10 @@ FUNDAJ,Ver boletim SISU,Migração de Serviço para Plataforma,Migração de Ser
 FUNDAJ,Obter financiamento FIES,Implantação da Experiência LabQ,Implantação da Experiência LabQ,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 FUNDAJ,Obter financiamento FIES,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 FUNDAJ,Obter financiamento FIES,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
-FUNDAJ,Obter financiamento FIES,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
+FUNDAJ,Obter financiamento FIES,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
 FUNDAJ,Realizar adesão ao Sisu (Sisu Gestão),Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 FUNDAJ,Realizar adesão ao Sisu (Sisu Gestão),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
-FUNDAJ,Realizar adesão ao Sisu (Sisu Gestão),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
+FUNDAJ,Realizar adesão ao Sisu (Sisu Gestão),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
 FUNDAJ,Ofertar vagas para o Fies.  (FiesOferta),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 FUNDAJ,Revalidar e Reconhecer Diplomas Estrangeiros,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 FUNDAJ,Revalidar e Reconhecer Diplomas Estrangeiros,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
@@ -2466,12 +2466,12 @@ FUNDAJ,Aderir ao PDDE Equidade,Evolução do Serviço,Evolução do Serviço,1.0
 FUNDAJ,Aderir ao PDDE Equidade,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 FUNDAJ,Comprovar cumprimento das condicionalidades  da educação do Programa Bolsa Família,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,jan/26,high
 FUNDAJ,Comprovar cumprimento das condicionalidades  da educação do Programa Bolsa Família,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,jan/26,high
-FUNDAJ,Comprovar cumprimento das condicionalidades  da educação do Programa Bolsa Família,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jan/26,medium
+FUNDAJ,Comprovar cumprimento das condicionalidades  da educação do Programa Bolsa Família,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jan/26,medium
 FUNDAJ,,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,jan/26,high
 FUNDAJ,,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,jan/26,high
-FUNDAJ,,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jan/26,medium
-FUNDAJ,Inclusão da base de dados do SIGEF  no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jul/26,medium
-FUNDAJ,Inclusão da base de dados do SIOPE   no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jul/26,medium
+FUNDAJ,,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jan/26,medium
+FUNDAJ,Inclusão da base de dados do SIGEF  no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jul/26,medium
+FUNDAJ,Inclusão da base de dados do SIOPE   no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jul/26,medium
 FUNDAJ,Planejamento da Escola  para o PDDE,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,jul/26,high
 FUNDAJ,Planejamento da Escola  para o PDDE,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,jul/26,high
 FUNDAJ,Planejamento da Escola  para o PDDE,Migração de Serviço para Plataforma,Migração de Serviço para Plataforma Unificada,0.875,,Unificação de Canais Digitais,,medium
@@ -2485,7 +2485,7 @@ FUNDAJ,Cadastrar usuário no SISPDDE,Evolução do Serviço,Evolução do Servi�
 FUNDAJ,Cadastrar usuário no SISPDDE,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,jul/26,high
 FUNDAJ,Cadastrar usuário no SISPDDE,Migração de Serviço para Plataforma,Migração de Serviço para Plataforma Unificada,0.875,,Unificação de Canais Digitais,,medium
 FUNDAJ,Elaboração do Inventário de Dados Pessoais,Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,set/26,high
-FUNDAJ,Inclusão da base de dados do PDDE   no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jul/26,medium
+FUNDAJ,Inclusão da base de dados do PDDE   no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jul/26,medium
 HFA,PPSI Ciclo 5 (SISP: DETIC),Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,31/12/2025,high
 HFA,PPSI Ciclo 6  (SISP: DETIC),Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,,high
 HFA,PPSI Ciclo 7 (SISP: DETIC),Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,31/12/2026,high
@@ -2540,7 +2540,7 @@ HFA,Obter autorização para blindagem de veículo,Integração ao Login Único,
 HFA,Obter autorização para blindagem de veículo,Integração ao Pagtesouro,Integração ao Pagtesouro,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,30/12/2026,high
 HFA,Obter autorização para blindagem de veículo,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da,Serviços Digitais e Melhoria da Qualidade,30/12/2026,high
 HFA,Carreira (ESA),Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,31/12/2025,high
-HFA,Carreira (ESA),Integração à base de dados (OUTROS),Integração à base de dados,0.852,,Projetos Especiais,31/12/2025,medium
+HFA,Carreira (ESA),Integração à base de dados (OUTROS),Integração à base de dados,0.852,,Governança e Gestão de Dados,31/12/2025,medium
 HFA,Carreira (ESA),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da,Serviços Digitais e Melhoria da Qualidade,30/04/2026,high
 HFA,(CMBH),Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,30/06/2026,high
 HFA,(CMBH),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da,Serviços Digitais e Melhoria da Qualidade,30/06/2026,high
@@ -2621,9 +2621,9 @@ IBAMA,(Solução Legal para encerramento do processo),Integração ao Login Úni
 IBAMA,Solicitar Emissão de Certidão Negativa de Embargo do ICMBio,Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,mar/25,high
 IBAMA,Solicitar Emissão de Certidão de Débitos,Integração ao Pagtesouro,Integração ao Pagtesouro,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,mar/25,high
 IBAMA,Solicitar Emissão de Certidão de Débitos,Integração com Assinatura Digital Gov.br,Integração com Assinatura Digital Gov.br,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,mar/25,high
-IBAMA,Solicitar Emissão de Certidão de Débitos,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,mar/25,medium
+IBAMA,Solicitar Emissão de Certidão de Débitos,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,mar/25,medium
 IBAMA,Solicitar Emissão de Certidão Negativa de Embargo do ICMBio,Integração com Assinatura Digital Gov.br,Integração com Assinatura Digital Gov.br,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,mar/25,high
-IBAMA,Solicitar Emissão de Certidão Negativa de Embargo do ICMBio,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,mar/25,medium
+IBAMA,Solicitar Emissão de Certidão Negativa de Embargo do ICMBio,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,mar/25,medium
 IBAMA,Cadastrar Madeira e Carvão Vegetal,Realização de Autodiagnóstico de Qualidade,Realização de Autodiagnóstico de Qualidade,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,mar/25,high
 IBAMA,Atualizar os serviços do órgão no portal Gov.br,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 IBAMA,Visitar o Jardim Botânico do Rio de Janeiro,Evolução do Serviço,Evolução do Serviço,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,dez/26,high
@@ -2759,12 +2759,12 @@ IBC,Solicitar assistência Técnico-financeira para o MEC no âmbito do PAR 5,Mi
 IBC,Inscrever-se no SISU (Sistema de Seleção Unificada),Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 IBC,Inscrever-se no SISU (Sistema de Seleção Unificada),Implantação da Experiência LabQ,Implantação da Experiência LabQ,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 IBC,Inscrever-se no SISU (Sistema de Seleção Unificada),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
-IBC,Inscrever-se no SISU (Sistema de Seleção Unificada),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
+IBC,Inscrever-se no SISU (Sistema de Seleção Unificada),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
 IBC,Obter bolsa de estudo do ProUni,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 IBC,Obter bolsa de estudo do ProUni,Implantação da Experiência LabQ,Implantação da Experiência LabQ,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 IBC,Obter bolsa de estudo do ProUni,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
-IBC,Obter bolsa de estudo do ProUni,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
-IBC,Obter bolsa de estudo do ProUni,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
+IBC,Obter bolsa de estudo do ProUni,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
+IBC,Obter bolsa de estudo do ProUni,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
 IBC,Consultar Oferta de Vagas no SISU,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 IBC,Consultar Oferta de Vagas no SISU,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 IBC,Consultar Oferta de Vagas no SISU,Migração de Serviço para Plataforma,Migração de Serviço para Plataforma Unificada,0.875,,Unificação de Canais Digitais,,medium
@@ -2777,10 +2777,10 @@ IBC,Ver boletim SISU,Migração de Serviço para Plataforma,Migração de Servi�
 IBC,Obter financiamento FIES,Implantação da Experiência LabQ,Implantação da Experiência LabQ,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 IBC,Obter financiamento FIES,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 IBC,Obter financiamento FIES,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
-IBC,Obter financiamento FIES,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
+IBC,Obter financiamento FIES,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
 IBC,Realizar adesão ao Sisu (Sisu Gestão),Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 IBC,Realizar adesão ao Sisu (Sisu Gestão),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
-IBC,Realizar adesão ao Sisu (Sisu Gestão),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
+IBC,Realizar adesão ao Sisu (Sisu Gestão),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
 IBC,Ofertar vagas para o Fies.  (FiesOferta),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 IBC,Revalidar e Reconhecer Diplomas Estrangeiros,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 IBC,Revalidar e Reconhecer Diplomas Estrangeiros,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
@@ -2810,12 +2810,12 @@ IBC,Aderir ao PDDE Equidade,Evolução do Serviço,Evolução do Serviço,1.0,,S
 IBC,Aderir ao PDDE Equidade,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 IBC,Comprovar cumprimento das condicionalidades  da educação do Programa Bolsa Família,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,jan/26,high
 IBC,Comprovar cumprimento das condicionalidades  da educação do Programa Bolsa Família,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,jan/26,high
-IBC,Comprovar cumprimento das condicionalidades  da educação do Programa Bolsa Família,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jan/26,medium
+IBC,Comprovar cumprimento das condicionalidades  da educação do Programa Bolsa Família,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jan/26,medium
 IBC,,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,jan/26,high
 IBC,,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,jan/26,high
-IBC,,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jan/26,medium
-IBC,Inclusão da base de dados do SIGEF  no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jul/26,medium
-IBC,Inclusão da base de dados do SIOPE   no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jul/26,medium
+IBC,,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jan/26,medium
+IBC,Inclusão da base de dados do SIGEF  no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jul/26,medium
+IBC,Inclusão da base de dados do SIOPE   no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jul/26,medium
 IBC,Planejamento da Escola  para o PDDE,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,jul/26,high
 IBC,Planejamento da Escola  para o PDDE,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,jul/26,high
 IBC,Planejamento da Escola  para o PDDE,Migração de Serviço para Plataforma,Migração de Serviço para Plataforma Unificada,0.875,,Unificação de Canais Digitais,,medium
@@ -2829,7 +2829,7 @@ IBC,Cadastrar usuário no SISPDDE,Evolução do Serviço,Evolução do Serviço,
 IBC,Cadastrar usuário no SISPDDE,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,jul/26,high
 IBC,Cadastrar usuário no SISPDDE,Migração de Serviço para Plataforma,Migração de Serviço para Plataforma Unificada,0.875,,Unificação de Canais Digitais,,medium
 IBC,Elaboração do Inventário de Dados Pessoais,Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,set/26,high
-IBC,Inclusão da base de dados do PDDE   no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jul/26,medium
+IBC,Inclusão da base de dados do PDDE   no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jul/26,medium
 IBGE,Inscrever em Cursos do IBGE,Disponibilização em Acesso Digital,Disponibilização em Acesso Digital,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,30/07/2025,high
 IBGE,Inscrever em Cursos do IBGE,Integração à ferramenta de avaliação da satisfação dos usuários,Integração à ferramenta de avaliação da satisfação dos usuários,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,30/07/2025,high
 IBGE,Inscrever em Cursos do IBGE,Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,30/07/2025,high
@@ -2842,18 +2842,18 @@ IBGE,Propor edição em áreas de ponderação,Integração ao Login Único,Inte
 IBGE,Responder Censo Agropecuário,Disponibilização em Acesso Digital,Disponibilização em Acesso Digital,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,30/08/2025,high
 IBGE,Responder Censo Agropecuário,Integração à ferramenta de avaliação da satisfação dos usuários,Integração à ferramenta de avaliação da satisfação dos usuários,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,30/08/2025,high
 IBGE,Responder Censo Agropecuário,Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,30/08/2025,high
-IBGE,DAP – Documento de Aptidão ao Pronaf,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,30/06/2025,medium
-IBGE,SIGEF – Sistema de Gestão Fundiária,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,30/06/2025,medium
-IBGE,CAR - Cadastro Ambiental Rural,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,30/06/2025,medium
-IBGE,CAF – Cadastro da Agricultura Familiar,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,30/06/2025,medium
+IBGE,DAP – Documento de Aptidão ao Pronaf,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,30/06/2025,medium
+IBGE,SIGEF – Sistema de Gestão Fundiária,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,30/06/2025,medium
+IBGE,CAR - Cadastro Ambiental Rural,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,30/06/2025,medium
+IBGE,CAF – Cadastro da Agricultura Familiar,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,30/06/2025,medium
 IBGE,PPSI Ciclo 4,"Auto-avaliação, análise de lacunas e planejamento do PPSI","Auto-avaliação, análise de lacunas e planejamento do PPSI",1.0,Segurança e Privacidade,Segurança e Privacidade,15/02/2025,high
 IBGE,PPSI Ciclo 4,Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,30/06/2025,high
 IBGE,PPSI Ciclo 5,"Auto-avaliação, análise de lacunas e planejamento do PPSI","Auto-avaliação, análise de lacunas e planejamento do PPSI",1.0,Segurança e Privacidade,Segurança e Privacidade,01/07/2025,high
 IBGE,PPSI Ciclo 5,Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,31/12/2025,high
 IBGE,PPSI Ciclo 6,"Auto-avaliação, análise de lacunas e planejamento do PPSI","Auto-avaliação, análise de lacunas e planejamento do PPSI",1.0,Segurança e Privacidade,Segurança e Privacidade,31/01/2026,high
 IBGE,PPSI Ciclo 6,Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,30/06/2026,high
-IBGE,Cadastro de Atividade Econômica da Pessoa Física,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,05/08/2024,medium
-IBGE,Simples Nacional,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,05/08/2024,medium
+IBGE,Cadastro de Atividade Econômica da Pessoa Física,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,05/08/2024,medium
+IBGE,Simples Nacional,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,05/08/2024,medium
 ICMBIO,Realizar Pagamento por serviços reflorestamento (Novo Floresta+),Disponibilização em Acesso Digital,Disponibilização em Acesso Digital,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,fev/25,high
 ICMBIO,Realizar Identificação e Controle de Animais Domésticos (Novo SINPatinhas),Disponibilização em Acesso Digital,Disponibilização em Acesso Digital,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,fev/25,high
 ICMBIO,Realizar Identificação e Controle de Animais Domésticos (Novo SINPatinhas),Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,fev/25,high
@@ -2903,9 +2903,9 @@ ICMBIO,(Solução Legal para encerramento do processo),Integração ao Login Ún
 ICMBIO,Solicitar Emissão de Certidão Negativa de Embargo do ICMBio,Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,mar/25,high
 ICMBIO,Solicitar Emissão de Certidão de Débitos,Integração ao Pagtesouro,Integração ao Pagtesouro,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,mar/25,high
 ICMBIO,Solicitar Emissão de Certidão de Débitos,Integração com Assinatura Digital Gov.br,Integração com Assinatura Digital Gov.br,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,mar/25,high
-ICMBIO,Solicitar Emissão de Certidão de Débitos,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,mar/25,medium
+ICMBIO,Solicitar Emissão de Certidão de Débitos,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,mar/25,medium
 ICMBIO,Solicitar Emissão de Certidão Negativa de Embargo do ICMBio,Integração com Assinatura Digital Gov.br,Integração com Assinatura Digital Gov.br,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,mar/25,high
-ICMBIO,Solicitar Emissão de Certidão Negativa de Embargo do ICMBio,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,mar/25,medium
+ICMBIO,Solicitar Emissão de Certidão Negativa de Embargo do ICMBio,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,mar/25,medium
 ICMBIO,Cadastrar Madeira e Carvão Vegetal,Realização de Autodiagnóstico de Qualidade,Realização de Autodiagnóstico de Qualidade,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,mar/25,high
 ICMBIO,Atualizar os serviços do órgão no portal Gov.br,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 ICMBIO,Visitar o Jardim Botânico do Rio de Janeiro,Evolução do Serviço,Evolução do Serviço,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,dez/26,high
@@ -3041,12 +3041,12 @@ INEP,Solicitar assistência Técnico-financeira para o MEC no âmbito do PAR 5,M
 INEP,Inscrever-se no SISU (Sistema de Seleção Unificada),Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 INEP,Inscrever-se no SISU (Sistema de Seleção Unificada),Implantação da Experiência LabQ,Implantação da Experiência LabQ,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 INEP,Inscrever-se no SISU (Sistema de Seleção Unificada),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
-INEP,Inscrever-se no SISU (Sistema de Seleção Unificada),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
+INEP,Inscrever-se no SISU (Sistema de Seleção Unificada),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
 INEP,Obter bolsa de estudo do ProUni,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 INEP,Obter bolsa de estudo do ProUni,Implantação da Experiência LabQ,Implantação da Experiência LabQ,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 INEP,Obter bolsa de estudo do ProUni,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
-INEP,Obter bolsa de estudo do ProUni,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
-INEP,Obter bolsa de estudo do ProUni,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
+INEP,Obter bolsa de estudo do ProUni,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
+INEP,Obter bolsa de estudo do ProUni,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
 INEP,Consultar Oferta de Vagas no SISU,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 INEP,Consultar Oferta de Vagas no SISU,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 INEP,Consultar Oferta de Vagas no SISU,Migração de Serviço para Plataforma,Migração de Serviço para Plataforma Unificada,0.875,,Unificação de Canais Digitais,,medium
@@ -3059,10 +3059,10 @@ INEP,Ver boletim SISU,Migração de Serviço para Plataforma,Migração de Servi
 INEP,Obter financiamento FIES,Implantação da Experiência LabQ,Implantação da Experiência LabQ,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 INEP,Obter financiamento FIES,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 INEP,Obter financiamento FIES,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
-INEP,Obter financiamento FIES,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
+INEP,Obter financiamento FIES,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
 INEP,Realizar adesão ao Sisu (Sisu Gestão),Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 INEP,Realizar adesão ao Sisu (Sisu Gestão),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
-INEP,Realizar adesão ao Sisu (Sisu Gestão),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
+INEP,Realizar adesão ao Sisu (Sisu Gestão),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
 INEP,Ofertar vagas para o Fies.  (FiesOferta),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 INEP,Revalidar e Reconhecer Diplomas Estrangeiros,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 INEP,Revalidar e Reconhecer Diplomas Estrangeiros,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
@@ -3092,12 +3092,12 @@ INEP,Aderir ao PDDE Equidade,Evolução do Serviço,Evolução do Serviço,1.0,,
 INEP,Aderir ao PDDE Equidade,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 INEP,Comprovar cumprimento das condicionalidades  da educação do Programa Bolsa Família,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,jan/26,high
 INEP,Comprovar cumprimento das condicionalidades  da educação do Programa Bolsa Família,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,jan/26,high
-INEP,Comprovar cumprimento das condicionalidades  da educação do Programa Bolsa Família,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jan/26,medium
+INEP,Comprovar cumprimento das condicionalidades  da educação do Programa Bolsa Família,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jan/26,medium
 INEP,,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,jan/26,high
 INEP,,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,jan/26,high
-INEP,,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jan/26,medium
-INEP,Inclusão da base de dados do SIGEF  no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jul/26,medium
-INEP,Inclusão da base de dados do SIOPE   no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jul/26,medium
+INEP,,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jan/26,medium
+INEP,Inclusão da base de dados do SIGEF  no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jul/26,medium
+INEP,Inclusão da base de dados do SIOPE   no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jul/26,medium
 INEP,Planejamento da Escola  para o PDDE,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,jul/26,high
 INEP,Planejamento da Escola  para o PDDE,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,jul/26,high
 INEP,Planejamento da Escola  para o PDDE,Migração de Serviço para Plataforma,Migração de Serviço para Plataforma Unificada,0.875,,Unificação de Canais Digitais,,medium
@@ -3111,7 +3111,7 @@ INEP,Cadastrar usuário no SISPDDE,Evolução do Serviço,Evolução do Serviço
 INEP,Cadastrar usuário no SISPDDE,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,jul/26,high
 INEP,Cadastrar usuário no SISPDDE,Migração de Serviço para Plataforma,Migração de Serviço para Plataforma Unificada,0.875,,Unificação de Canais Digitais,,medium
 INEP,Elaboração do Inventário de Dados Pessoais,Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,set/26,high
-INEP,Inclusão da base de dados do PDDE   no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jul/26,medium
+INEP,Inclusão da base de dados do PDDE   no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jul/26,medium
 INES,Criação de Relatório de Impacto (RIPD),Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,mar/25,high
 INES,Criação de Capacitações e Conscientização sobre privacidade e segurança da informação,Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,mar/25,high
 INES,Publicação de Normativo sobre Compartilhamento de Dados,Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,mar/25,high
@@ -3155,12 +3155,12 @@ INES,Solicitar assistência Técnico-financeira para o MEC no âmbito do PAR 5,M
 INES,Inscrever-se no SISU (Sistema de Seleção Unificada),Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 INES,Inscrever-se no SISU (Sistema de Seleção Unificada),Implantação da Experiência LabQ,Implantação da Experiência LabQ,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 INES,Inscrever-se no SISU (Sistema de Seleção Unificada),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
-INES,Inscrever-se no SISU (Sistema de Seleção Unificada),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
+INES,Inscrever-se no SISU (Sistema de Seleção Unificada),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
 INES,Obter bolsa de estudo do ProUni,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 INES,Obter bolsa de estudo do ProUni,Implantação da Experiência LabQ,Implantação da Experiência LabQ,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 INES,Obter bolsa de estudo do ProUni,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
-INES,Obter bolsa de estudo do ProUni,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
-INES,Obter bolsa de estudo do ProUni,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
+INES,Obter bolsa de estudo do ProUni,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
+INES,Obter bolsa de estudo do ProUni,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
 INES,Consultar Oferta de Vagas no SISU,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 INES,Consultar Oferta de Vagas no SISU,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 INES,Consultar Oferta de Vagas no SISU,Migração de Serviço para Plataforma,Migração de Serviço para Plataforma Unificada,0.875,,Unificação de Canais Digitais,,medium
@@ -3173,10 +3173,10 @@ INES,Ver boletim SISU,Migração de Serviço para Plataforma,Migração de Servi
 INES,Obter financiamento FIES,Implantação da Experiência LabQ,Implantação da Experiência LabQ,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 INES,Obter financiamento FIES,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 INES,Obter financiamento FIES,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
-INES,Obter financiamento FIES,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
+INES,Obter financiamento FIES,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
 INES,Realizar adesão ao Sisu (Sisu Gestão),Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 INES,Realizar adesão ao Sisu (Sisu Gestão),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
-INES,Realizar adesão ao Sisu (Sisu Gestão),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
+INES,Realizar adesão ao Sisu (Sisu Gestão),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
 INES,Ofertar vagas para o Fies.  (FiesOferta),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 INES,Revalidar e Reconhecer Diplomas Estrangeiros,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 INES,Revalidar e Reconhecer Diplomas Estrangeiros,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
@@ -3206,12 +3206,12 @@ INES,Aderir ao PDDE Equidade,Evolução do Serviço,Evolução do Serviço,1.0,,
 INES,Aderir ao PDDE Equidade,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 INES,Comprovar cumprimento das condicionalidades  da educação do Programa Bolsa Família,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,jan/26,high
 INES,Comprovar cumprimento das condicionalidades  da educação do Programa Bolsa Família,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,jan/26,high
-INES,Comprovar cumprimento das condicionalidades  da educação do Programa Bolsa Família,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jan/26,medium
+INES,Comprovar cumprimento das condicionalidades  da educação do Programa Bolsa Família,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jan/26,medium
 INES,,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,jan/26,high
 INES,,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,jan/26,high
-INES,,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jan/26,medium
-INES,Inclusão da base de dados do SIGEF  no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jul/26,medium
-INES,Inclusão da base de dados do SIOPE   no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jul/26,medium
+INES,,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jan/26,medium
+INES,Inclusão da base de dados do SIGEF  no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jul/26,medium
+INES,Inclusão da base de dados do SIOPE   no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jul/26,medium
 INES,Planejamento da Escola  para o PDDE,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,jul/26,high
 INES,Planejamento da Escola  para o PDDE,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,jul/26,high
 INES,Planejamento da Escola  para o PDDE,Migração de Serviço para Plataforma,Migração de Serviço para Plataforma Unificada,0.875,,Unificação de Canais Digitais,,medium
@@ -3225,7 +3225,7 @@ INES,Cadastrar usuário no SISPDDE,Evolução do Serviço,Evolução do Serviço
 INES,Cadastrar usuário no SISPDDE,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,jul/26,high
 INES,Cadastrar usuário no SISPDDE,Migração de Serviço para Plataforma,Migração de Serviço para Plataforma Unificada,0.875,,Unificação de Canais Digitais,,medium
 INES,Elaboração do Inventário de Dados Pessoais,Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,set/26,high
-INES,Inclusão da base de dados do PDDE   no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jul/26,medium
+INES,Inclusão da base de dados do PDDE   no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jul/26,medium
 INPI,industrial,Evolução do Serviço,Evolução do Serviço,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,jul/25,high
 INPI,registro,Evolução do Serviço,Evolução do Serviço,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,jul/25,high
 INPI,Solicitar patente de invenção,Implantação do Design System,Implantação do Design System,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,jun/26,high
@@ -3325,7 +3325,7 @@ INPI,PPSI Ciclo 3,Implementação do PPSI,Implementação do PPSI,1.0,Segurança
 INSS,PPSI Ciclo 5,Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,31/12/2025,high
 INSS,PPSI Ciclo 6,Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,30/06/2026,high
 INSS,PPSI Ciclo 7,Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,31/12/2026,high
-INSS,Internalização de Bases de Dados Governamentais no CNIS,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Serviços Digitais e Melhoria da Qualidade,Projetos Especiais,15/01/2023,medium
+INSS,Internalização de Bases de Dados Governamentais no CNIS,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Serviços Digitais e Melhoria da Qualidade,Governança e Gestão de Dados,15/01/2023,medium
 INSS,Adoção Linguagem Simples,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,15/05/2023,high
 INSS,Extrato de Empréstimo Consignado,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,22/07/2024,high
 INSS,Declaração de Regularidade da Situação do Contribuinte Individual (DRSCI),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,22/07/2024,high
@@ -3429,7 +3429,7 @@ IPHAN,,Integração com Assinatura Digital Gov.br,Integração com Assinatura Di
 IPHAN,,Migração de APPs móveis para a loja do Gov.br,Migração de APPs móveis para a loja do Gov.br,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,,high
 IPHAN,,Migração de Portal Institucional,Migração de Portal Institucional,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,,high
 IPHAN,,Migração de Serviço para Plataforma Unificada,Migração de Serviço para Plataforma Unificada,1.0,Governança e Gestão de Dados,Unificação de Canais Digitais,,high
-IPHAN,,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,,medium
+IPHAN,,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,,medium
 IPHAN,,"Auto-avaliação, análise de lacunas e planejamento do PPSI","Auto-avaliação, análise de lacunas e planejamento do PPSI",1.0,Segurança e Privacidade,Segurança e Privacidade,,high
 IPHAN,,Implementação do PPSI,Implementação do PPSI,1.0,Projetos Especiais,Segurança e Privacidade,,high
 JBRJ,Realizar Pagamento por serviços reflorestamento (Novo Floresta+),Disponibilização em Acesso Digital,Disponibilização em Acesso Digital,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,fev/25,high
@@ -3481,9 +3481,9 @@ JBRJ,(Solução Legal para encerramento do processo),Integração ao Login Únic
 JBRJ,Solicitar Emissão de Certidão Negativa de Embargo do ICMBio,Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,mar/25,high
 JBRJ,Solicitar Emissão de Certidão de Débitos,Integração ao Pagtesouro,Integração ao Pagtesouro,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,mar/25,high
 JBRJ,Solicitar Emissão de Certidão de Débitos,Integração com Assinatura Digital Gov.br,Integração com Assinatura Digital Gov.br,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,mar/25,high
-JBRJ,Solicitar Emissão de Certidão de Débitos,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,mar/25,medium
+JBRJ,Solicitar Emissão de Certidão de Débitos,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,mar/25,medium
 JBRJ,Solicitar Emissão de Certidão Negativa de Embargo do ICMBio,Integração com Assinatura Digital Gov.br,Integração com Assinatura Digital Gov.br,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,mar/25,high
-JBRJ,Solicitar Emissão de Certidão Negativa de Embargo do ICMBio,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,mar/25,medium
+JBRJ,Solicitar Emissão de Certidão Negativa de Embargo do ICMBio,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,mar/25,medium
 JBRJ,Cadastrar Madeira e Carvão Vegetal,Realização de Autodiagnóstico de Qualidade,Realização de Autodiagnóstico de Qualidade,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,mar/25,high
 JBRJ,Atualizar os serviços do órgão no portal Gov.br,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 JBRJ,Visitar o Jardim Botânico do Rio de Janeiro,Evolução do Serviço,Evolução do Serviço,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,dez/26,high
@@ -3782,7 +3782,7 @@ MD,Obter autorização para blindagem de veículo,Integração ao Login Único,I
 MD,Obter autorização para blindagem de veículo,Integração ao Pagtesouro,Integração ao Pagtesouro,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,30/12/2026,high
 MD,Obter autorização para blindagem de veículo,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da,Serviços Digitais e Melhoria da Qualidade,30/12/2026,high
 MD,Carreira (ESA),Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,31/12/2025,high
-MD,Carreira (ESA),Integração à base de dados (OUTROS),Integração à base de dados,0.852,,Projetos Especiais,31/12/2025,medium
+MD,Carreira (ESA),Integração à base de dados (OUTROS),Integração à base de dados,0.852,,Governança e Gestão de Dados,31/12/2025,medium
 MD,Carreira (ESA),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da,Serviços Digitais e Melhoria da Qualidade,30/04/2026,high
 MD,(CMBH),Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,30/06/2026,high
 MD,(CMBH),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da,Serviços Digitais e Melhoria da Qualidade,30/06/2026,high
@@ -3928,7 +3928,7 @@ MDIC,União Europeia,Disponibilização em Acesso Digital,Disponibilização em 
 MDIC,Integração do Tarefas MDIC ao login gov.br,Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,01/08/2024,high
 MDIC,"Disponibilização do serviço ""Registrar pedido de ato concessório de Drawback""",Disponibilização em Acesso Digital,Disponibilização em Acesso Digital,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,27/09/2024,high
 MDIC,Integração do PDG-PETRVS-MDIC ao login gov.br,Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,14/10/2024,high
-MDIC,Integração do PDG-PETRVS-MDIC ao com API de Consulta SIAPE,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,14/10/2024,medium
+MDIC,Integração do PDG-PETRVS-MDIC ao com API de Consulta SIAPE,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,14/10/2024,medium
 MDIC,de Bens,Implantação do Design System,Implantação do Design System,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,14/10/2024,high
 MDIC,acesso de exportações brasileiras aos mercados internacionais,Evolução do Serviço,Evolução do Serviço,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,10/01/2024,high
 MDIC,âmbito do Ombudsman de Investimentos Diretos (OID),Evolução do Serviço,Evolução do Serviço,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,05/02/2024,high
@@ -3989,12 +3989,12 @@ MEC,Solicitar assistência Técnico-financeira para o MEC no âmbito do PAR 5,Mi
 MEC,Inscrever-se no SISU (Sistema de Seleção Unificada),Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 MEC,Inscrever-se no SISU (Sistema de Seleção Unificada),Implantação da Experiência LabQ,Implantação da Experiência LabQ,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 MEC,Inscrever-se no SISU (Sistema de Seleção Unificada),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
-MEC,Inscrever-se no SISU (Sistema de Seleção Unificada),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
+MEC,Inscrever-se no SISU (Sistema de Seleção Unificada),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
 MEC,Obter bolsa de estudo do ProUni,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 MEC,Obter bolsa de estudo do ProUni,Implantação da Experiência LabQ,Implantação da Experiência LabQ,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 MEC,Obter bolsa de estudo do ProUni,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
-MEC,Obter bolsa de estudo do ProUni,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
-MEC,Obter bolsa de estudo do ProUni,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
+MEC,Obter bolsa de estudo do ProUni,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
+MEC,Obter bolsa de estudo do ProUni,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
 MEC,Consultar Oferta de Vagas no SISU,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 MEC,Consultar Oferta de Vagas no SISU,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 MEC,Consultar Oferta de Vagas no SISU,Migração de Serviço para Plataforma,Migração de Serviço para Plataforma Unificada,0.875,,Unificação de Canais Digitais,,medium
@@ -4007,10 +4007,10 @@ MEC,Ver boletim SISU,Migração de Serviço para Plataforma,Migração de Servi�
 MEC,Obter financiamento FIES,Implantação da Experiência LabQ,Implantação da Experiência LabQ,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 MEC,Obter financiamento FIES,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 MEC,Obter financiamento FIES,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
-MEC,Obter financiamento FIES,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
+MEC,Obter financiamento FIES,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
 MEC,Realizar adesão ao Sisu (Sisu Gestão),Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 MEC,Realizar adesão ao Sisu (Sisu Gestão),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
-MEC,Realizar adesão ao Sisu (Sisu Gestão),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,dez/25,medium
+MEC,Realizar adesão ao Sisu (Sisu Gestão),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,dez/25,medium
 MEC,Ofertar vagas para o Fies.  (FiesOferta),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 MEC,Revalidar e Reconhecer Diplomas Estrangeiros,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 MEC,Revalidar e Reconhecer Diplomas Estrangeiros,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
@@ -4040,12 +4040,12 @@ MEC,Aderir ao PDDE Equidade,Evolução do Serviço,Evolução do Serviço,1.0,,S
 MEC,Aderir ao PDDE Equidade,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 MEC,Comprovar cumprimento das condicionalidades  da educação do Programa Bolsa Família,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,jan/26,high
 MEC,Comprovar cumprimento das condicionalidades  da educação do Programa Bolsa Família,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,jan/26,high
-MEC,Comprovar cumprimento das condicionalidades  da educação do Programa Bolsa Família,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jan/26,medium
+MEC,Comprovar cumprimento das condicionalidades  da educação do Programa Bolsa Família,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jan/26,medium
 MEC,,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,jan/26,high
 MEC,,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,jan/26,high
-MEC,,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jan/26,medium
-MEC,Inclusão da base de dados do SIGEF  no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jul/26,medium
-MEC,Inclusão da base de dados do SIOPE   no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jul/26,medium
+MEC,,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jan/26,medium
+MEC,Inclusão da base de dados do SIGEF  no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jul/26,medium
+MEC,Inclusão da base de dados do SIOPE   no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jul/26,medium
 MEC,Planejamento da Escola  para o PDDE,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,jul/26,high
 MEC,Planejamento da Escola  para o PDDE,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,jul/26,high
 MEC,Planejamento da Escola  para o PDDE,Migração de Serviço para Plataforma,Migração de Serviço para Plataforma Unificada,0.875,,Unificação de Canais Digitais,,medium
@@ -4059,14 +4059,14 @@ MEC,Cadastrar usuário no SISPDDE,Evolução do Serviço,Evolução do Serviço,
 MEC,Cadastrar usuário no SISPDDE,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,,Serviços Digitais e Melhoria da Qualidade,jul/26,high
 MEC,Cadastrar usuário no SISPDDE,Migração de Serviço para Plataforma,Migração de Serviço para Plataforma Unificada,0.875,,Unificação de Canais Digitais,,medium
 MEC,Elaboração do Inventário de Dados Pessoais,Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,set/26,high
-MEC,Inclusão da base de dados do PDDE   no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Projetos Especiais,jul/26,medium
+MEC,Inclusão da base de dados do PDDE   no DateLake  da PlatEduc,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de,Governança e Gestão de Dados,jul/26,medium
 MEMP,Cadastrais do Artesanato Brasileiro - SICAB),Evolução do Serviço,Evolução do Serviço,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 MEMP,Cadastrais do Artesanato Brasileiro - SICAB),Implantação do Design System,Implantação do Design System,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,dez/25,high
 MEMP,Cadastrais do Artesanato Brasileiro - SICAB),Integração à ferramenta de avaliação da satisfação dos,Integração à ferramenta de avaliação da satisfação dos usuários,0.923,,Serviços Digitais e Melhoria da Qualidade,dez/26,medium
 MEMP,Brasileiro,Disponibilização em Acesso Digital,Disponibilização em Acesso Digital,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,dez/26,high
 MEMP,Brasileiro,Integração ao Login Único,Integração ao Login Único,1.0,Serviços Digitais e Melhoria da Qualidade,Unificação de Canais Digitais,dez/26,high
 MEMP,Brasileiro,Integração à ferramenta de avaliação da satisfação dos,Integração à ferramenta de avaliação da satisfação dos usuários,0.923,,Serviços Digitais e Melhoria da Qualidade,dez/26,medium
-MEMP,(SICAB),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,dez/26,medium
+MEMP,(SICAB),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,dez/26,medium
 MEMP,pequenos negócios e registro e legalização de empresas,Disponibilização em Acesso Digital,Disponibilização em Acesso Digital,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,dez/26,high
 MEMP,pequenos negócios e registro e legalização de empresas,Integração ao Login Único,Integração ao Login Único,1.0,Serviços Digitais e Melhoria da Qualidade,Unificação de Canais Digitais,dez/26,high
 MEMP,pequenos negócios e registro e legalização de empresas,Integração à ferramenta de avaliação da satisfação dos,Integração à ferramenta de avaliação da satisfação dos usuários,0.923,,Serviços Digitais e Melhoria da Qualidade,dez/26,medium
@@ -4168,7 +4168,7 @@ MGI,Imóvel da União,Evolução do Serviço,Evolução do Serviço,1.0,Serviço
 MGI,da União Oriundo da ex-RFFSA,Evolução do Serviço,Evolução do Serviço,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,31/07/2026,high
 MGI,Cadastro da SPU - exclusivo Ativos S.A.,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,31/01/2026,high
 MGI,Serviço Calcular Laudêmio,Evolução do Serviço,Evolução do Serviço,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,31/01/2026,high
-MGI,Serviço Calcular Laudêmio,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,31/01/2026,medium
+MGI,Serviço Calcular Laudêmio,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,31/01/2026,medium
 MGI,da União,Evolução do Serviço,Evolução do Serviço,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,31/07/2026,high
 MGI,Imóvel Rural,Disponibilização em Acesso Digital,Disponibilização em Acesso Digital,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,31/03/2025,high
 MGI,Imóvel Rural,Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,28/02/2025,high
@@ -4182,16 +4182,16 @@ MGI,União em Processo de Usucapião Judicial,Evolução do Serviço,Evolução 
 MGI,exclusivo Cartório,Evolução do Serviço,Evolução do Serviço,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,30/09/2025,high
 MGI,Nacional,Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,31/07/2025,high
 MGI,Transferência,Evolução do Serviço,Evolução do Serviço,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,31/01/2026,high
-MGI,Transferência,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,31/01/2026,medium
+MGI,Transferência,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,31/01/2026,medium
 MGI,Serviço Emitir DARF de Laudêmio,Evolução do Serviço,Evolução do Serviço,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,31/01/2026,high
-MGI,Serviço Emitir DARF de Laudêmio,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,31/01/2026,medium
+MGI,Serviço Emitir DARF de Laudêmio,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,31/01/2026,medium
 MGI,Serviço Enviar DOITU - exclusivo para cartórios,Evolução do Serviço,Evolução do Serviço,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,31/01/2026,high
-MGI,Serviço Enviar DOITU - exclusivo para cartórios,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,31/01/2026,medium
+MGI,Serviço Enviar DOITU - exclusivo para cartórios,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,31/01/2026,medium
 MGI,Serviço Enviar DOITU - exclusivo para cartórios,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,31/01/2026,high
 MGI,Ambiental Rural,Evolução do Serviço,Evolução do Serviço,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,31/10/2025,high
-MGI,Ambiental Rural,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,31/03/2026,medium
-MGI,Ambiental Rural,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,31/03/2026,medium
-MGI,Ambiental Rural,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,31/03/2026,medium
+MGI,Ambiental Rural,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,31/03/2026,medium
+MGI,Ambiental Rural,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,31/03/2026,medium
+MGI,Ambiental Rural,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,31/03/2026,medium
 MGI,Ambiental Rural,Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,31/10/2025,high
 MGI,Ambiental Rural,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,28/02/2025,high
 MGI,,Disponibilização em Acesso Digital,Disponibilização em Acesso Digital,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,28/02/2025,high
@@ -4213,9 +4213,9 @@ MGI,,Revisão da descrição dos serviços,Revisão da descrição dos serviços
 MGI,políticos atendidos pelo DECIPEX,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,31/12/2025,high
 MGI,políticos atendidos pelo DECIPEX,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,31/12/2025,high
 MGI,Cadastro da SPU,Evolução do Serviço,Evolução do Serviço,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,31/01/2026,high
-MGI,Cadastro da SPU,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,31/01/2026,medium
+MGI,Cadastro da SPU,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,31/01/2026,medium
 MGI,Transferência de Imóvel da União,Evolução do Serviço,Evolução do Serviço,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,31/01/2026,high
-MGI,Transferência de Imóvel da União,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,31/01/2026,medium
+MGI,Transferência de Imóvel da União,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,31/01/2026,medium
 MGI,Transferência de Imóvel da União,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,31/01/2026,high
 MGI,Implantar o Design System no SICAF,Implantação do Design System,Implantação do Design System,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,31/12/2025,high
 MGI,Usuários Governo,Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,31/12/2025,high
@@ -4305,9 +4305,9 @@ MGI,da União,Integração ao Login Único,Integração ao Login Único,1.0,Unif
 MGI,Serviço Regularizar Utilização de Imóvel da União,Implantação do Design System,Implantação do Design System,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,31/07/2025,high
 MGI,Serviço Regularizar Utilização de Imóvel da União,Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,31/07/2025,high
 MGI,Serviço Solicitar Atendimento Conta Gov.Br,Evolução do Serviço,Evolução do Serviço,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,31/07/2025,high
-MGI,Serviço Solicitar Atendimento Conta Gov.Br,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,31/07/2025,medium
-MGI,Serviço Solicitar Atendimento Conta Gov.Br,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,31/07/2025,medium
-MGI,Serviço Solicitar Atendimento Conta Gov.Br,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,31/07/2025,medium
+MGI,Serviço Solicitar Atendimento Conta Gov.Br,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,31/07/2025,medium
+MGI,Serviço Solicitar Atendimento Conta Gov.Br,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,31/07/2025,medium
+MGI,Serviço Solicitar Atendimento Conta Gov.Br,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,31/07/2025,medium
 MGI,Cadastro da SPU,Implantação do Design System,Implantação do Design System,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,31/07/2025,high
 MGI,Cadastro da SPU,Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,31/07/2025,high
 MGI,Transferência de Imóvel da União,Implantação do Design System,Implantação do Design System,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,31/07/2025,high
@@ -4357,7 +4357,7 @@ MINC,PPSI Ciclo 5 (2ºSEM/ 2025),Implementação do PPSI,Implementação do PPSI
 MINC,Portais do CNPC,Migração de Portal Institucional,Migração de Portal Institucional,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,dez/25,high
 MINC,pracinhas.cultura.gov.br,Migração de Portal Institucional,Migração de Portal Institucional,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,dez/25,high
 MINC,PPSI Ciclo 6 (1ºSEM/ 2026),Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,jun/26,high
-MINC,Registros dos Municípios de Referencia),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,jun/26,medium
+MINC,Registros dos Municípios de Referencia),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,jun/26,medium
 MINC,Revisão Geral da Carta de Serviços MinC (2026),Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,set/26,high
 MINC,Credenciar empresa no Programa Cultura do Trabalhador ( PCT),Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,dez/26,high
 MINC,PPSI Ciclo 7  (2ºSEM/ 2025),Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,dez/26,high
@@ -4388,9 +4388,9 @@ MINC,Portal Temático Revista Pihhy - gov.br/revistapihhy,Implantação do Desig
 MINC,Portal Temático 4ª Conferência Nacional de Cultura - gov.br/4cnc,Migração de Portal Institucional,Migração de Portal Institucional,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,mar/24,high
 MINC,Portal Temático Plano Nacional de Cultura (PNC) gov.br/pnc,Migração de Portal Institucional,Migração de Portal Institucional,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,mar/24,high
 MINC,Portal Temático https://www.gov.br/culturano g20 - gov.br/culturanog20,Implantação do Design System,Implantação do Design System,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,mar/24,high
-MINC,proposta cultural (API CADIN),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,abr/24,medium
-MINC,Adequar projeto aprovado à realidade de execução (API CADIN),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,abr/24,medium
-MINC,Solicitar alteração de projeto durante o período de execução (API CADIN),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,abr/24,medium
+MINC,proposta cultural (API CADIN),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,abr/24,medium
+MINC,Adequar projeto aprovado à realidade de execução (API CADIN),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,abr/24,medium
+MINC,Solicitar alteração de projeto durante o período de execução (API CADIN),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,abr/24,medium
 MINC,Portal Temático Retomada Cultural RS - gov.br/retomadaculturalrs,Implantação do Design System,Implantação do Design System,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,mai/24,high
 MINC,PPSI Ciclo 2 (1ºSEM/ 2024),Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,jun/24,high
 MINC,Portal Temático Lei Rouanet - gov.br/leirouanet,Migração de Portal Institucional,Migração de Portal Institucional,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,jul/24,high
@@ -4504,7 +4504,7 @@ MJSP,,Integração com Assinatura Digital Gov.br,Integração com Assinatura Dig
 MJSP,,Migração de APPs móveis para a loja do Gov.br,Migração de APPs móveis para a loja do Gov.br,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,,high
 MJSP,,Migração de Portal Institucional,Migração de Portal Institucional,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,,high
 MJSP,,Migração de Serviço para Plataforma Unificada,Migração de Serviço para Plataforma Unificada,1.0,Governança e Gestão de Dados,Unificação de Canais Digitais,,high
-MJSP,,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,,medium
+MJSP,,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,,medium
 MMA,Realizar Pagamento por serviços reflorestamento (Novo Floresta+),Disponibilização em Acesso Digital,Disponibilização em Acesso Digital,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,fev/25,high
 MMA,Realizar Identificação e Controle de Animais Domésticos (Novo SINPatinhas),Disponibilização em Acesso Digital,Disponibilização em Acesso Digital,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,fev/25,high
 MMA,Realizar Identificação e Controle de Animais Domésticos (Novo SINPatinhas),Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,fev/25,high
@@ -4554,9 +4554,9 @@ MMA,(Solução Legal para encerramento do processo),Integração ao Login Único
 MMA,Solicitar Emissão de Certidão Negativa de Embargo do ICMBio,Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,mar/25,high
 MMA,Solicitar Emissão de Certidão de Débitos,Integração ao Pagtesouro,Integração ao Pagtesouro,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,mar/25,high
 MMA,Solicitar Emissão de Certidão de Débitos,Integração com Assinatura Digital Gov.br,Integração com Assinatura Digital Gov.br,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,mar/25,high
-MMA,Solicitar Emissão de Certidão de Débitos,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,mar/25,medium
+MMA,Solicitar Emissão de Certidão de Débitos,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,mar/25,medium
 MMA,Solicitar Emissão de Certidão Negativa de Embargo do ICMBio,Integração com Assinatura Digital Gov.br,Integração com Assinatura Digital Gov.br,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,mar/25,high
-MMA,Solicitar Emissão de Certidão Negativa de Embargo do ICMBio,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,mar/25,medium
+MMA,Solicitar Emissão de Certidão Negativa de Embargo do ICMBio,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,mar/25,medium
 MMA,Cadastrar Madeira e Carvão Vegetal,Realização de Autodiagnóstico de Qualidade,Realização de Autodiagnóstico de Qualidade,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,mar/25,high
 MMA,Atualizar os serviços do órgão no portal Gov.br,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 MMA,Visitar o Jardim Botânico do Rio de Janeiro,Evolução do Serviço,Evolução do Serviço,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,dez/26,high
@@ -4727,14 +4727,14 @@ MMULHERES,PPSI Ciclo 3,Implementação do PPSI,Implementação do PPSI,1.0,Segur
 MMULHERES,PPSI Ciclo 4,"Auto-avaliação, análise de lacunas e planejamento do","Auto-avaliação, análise de lacunas e planejamento do PPSI",0.954,,Segurança e Privacidade,15/02/2025,high
 MMULHERES,PPSI Ciclo 4,Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,30/06/2025,high
 MMULHERES,PPSI Ciclo 5,"Auto-avaliação, análise de lacunas e planejamento do","Auto-avaliação, análise de lacunas e planejamento do PPSI",0.954,,Segurança e Privacidade,01/07/2025,high
-MPI,a API SIPRA,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,31/03/2026,medium
-MPI,a API SNCR,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,31/03/2026,medium
-MPI,a API SIGEF GEO,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,31/03/2026,medium
-MPI,a API CTCA,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,31/03/2026,medium
-MPI,a API SICAR CPF/CNPJ,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,31/03/2026,medium
-MPI,a API SICAR SICAR TEMA,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,31/03/2026,medium
-MPI,a API SICAR DEMONSTRATIVO,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,31/03/2026,medium
-MPI,a API SICAR IMÓVEL,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,31/03/2026,medium
+MPI,a API SIPRA,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,31/03/2026,medium
+MPI,a API SNCR,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,31/03/2026,medium
+MPI,a API SIGEF GEO,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,31/03/2026,medium
+MPI,a API CTCA,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,31/03/2026,medium
+MPI,a API SICAR CPF/CNPJ,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,31/03/2026,medium
+MPI,a API SICAR SICAR TEMA,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,31/03/2026,medium
+MPI,a API SICAR DEMONSTRATIVO,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,31/03/2026,medium
+MPI,a API SICAR IMÓVEL,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,31/03/2026,medium
 MPI,PPSI Ciclo 5,Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,31/12/2025,high
 MPI,PPSI Ciclo 6,"Auto-avaliação, análise de lacunas e planejamento do PPSI","Auto-avaliação, análise de lacunas e planejamento do PPSI",1.0,Segurança e Privacidade,Segurança e Privacidade,31/01/2026,high
 MPI,PPSI Ciclo 6,Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,30/06/2026,high
@@ -4750,7 +4750,7 @@ MPI,PPSI Ciclo 3,Implementação do PPSI,Implementação do PPSI,1.0,Segurança 
 MPI,PPSI Ciclo 4,"Auto-avaliação, análise de lacunas e planejamento do PPSI","Auto-avaliação, análise de lacunas e planejamento do PPSI",1.0,Segurança e Privacidade,Segurança e Privacidade,02/2025,high
 MPI,PPSI Ciclo 4,Implementação do PPSI,Implementação do PPSI,1.0,Segurança e Privacidade,Segurança e Privacidade,06/2025,high
 MPI,PPSI Ciclo 5,"Auto-avaliação, análise de lacunas e planejamento do PPSI","Auto-avaliação, análise de lacunas e planejamento do PPSI",1.0,Segurança e Privacidade,Segurança e Privacidade,01/07/2025,high
-MPI,Integração da API Siape Consultas ao Sistema Petrvs,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,,medium
+MPI,Integração da API Siape Consultas ao Sistema Petrvs,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,,medium
 MPI,,Disponibilização em Acesso Digital,Disponibilização em Acesso Digital,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,,high
 MPI,,Evolução do Serviço,Evolução do Serviço,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,,high
 MPI,,Implantação da Área Logada,Implantação da Área Logada Gov.Br,0.881,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,,medium
@@ -4766,7 +4766,7 @@ MPI,,Integração com Assinatura Digital Gov.br,Integração com Assinatura Digi
 MPI,,Migração de APPs móveis para a loja do Gov.br,Migração de APPs móveis para a loja do Gov.br,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,,high
 MPI,,Migração de Portal Institucional,Migração de Portal Institucional,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,,high
 MPI,,Migração de Serviço para Plataforma Unificada,Migração de Serviço para Plataforma Unificada,1.0,Governança e Gestão de Dados,Unificação de Canais Digitais,,high
-MPI,,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,,medium
+MPI,,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,,medium
 MPI,,"Auto-avaliação, análise de lacunas e planejamento do PPSI","Auto-avaliação, análise de lacunas e planejamento do PPSI",1.0,Segurança e Privacidade,Segurança e Privacidade,,high
 MPI,,Implementação do PPSI,Implementação do PPSI,1.0,Projetos Especiais,Segurança e Privacidade,,high
 MPO,do Portal de Financiamento Externo,Disponibilização em Acesso Digital,Disponibilização em Acesso Digital,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,jun/25,high
@@ -4911,7 +4911,7 @@ MT,Credencia - Novos Motivos de Solicitação,Disponibilização em Acesso Digit
 MT,CRM - v1,Disponibilização em Acesso Digital,Disponibilização em Acesso Digital,1.0,,Serviços Digitais e Melhoria da Qualidade,30/11/2025,high
 MT,,Evolução do Serviço,Evolução do Serviço,1.0,,Serviços Digitais e Melhoria da Qualidade,30/11/2025,high
 MT,Leilão de Veículos - Privado,Disponibilização em Acesso Digital,Disponibilização em Acesso Digital,1.0,,Serviços Digitais e Melhoria da Qualidade,31/12/2025,high
-MT,Fiscalização - Fiscalização Senatran - Boletim de Ocorrência de Roubo/Furto,Integração à base de dados(OUTROS),Integração à base de dados,0.867,,Projetos Especiais,31/12/2025,medium
+MT,Fiscalização - Fiscalização Senatran - Boletim de Ocorrência de Roubo/Furto,Integração à base de dados(OUTROS),Integração à base de dados,0.867,,Governança e Gestão de Dados,31/12/2025,medium
 MT,Conformidade Renainf - Pagamento da Infração,Disponibilização em Acesso Digital,Disponibilização em Acesso Digital,1.0,,Serviços Digitais e Melhoria da Qualidade,31/12/2025,high
 MT,Conformidade Renainf - Fase Recursal da Infração,Disponibilização em Acesso Digital,Disponibilização em Acesso Digital,1.0,,Serviços Digitais e Melhoria da Qualidade,31/12/2025,high
 MT,Transferência Segura - Transferência Segura,Disponibilização em Acesso Digital,Disponibilização em Acesso Digital,1.0,,Serviços Digitais e Melhoria da Qualidade,31/12/2025,high
@@ -4941,8 +4941,8 @@ MT,Credencial de Estacionamento: Pessoa com Deficiência - PCD,Evolução do Ser
 MT,de avaliação de maturidade e capacidade disponibilizado por meio da ferramenta,do framework de Privacidade e Segurança da Informação.,Adequação ao Framework de Privacidade e Segurança da Informação,0.906,,Segurança e Privacidade,16/10/2023,medium
 MT,ao usuário das rodovias federais”,Integração à ferramenta de avaliação da satisfação dos usuários,Integração à ferramenta de avaliação da satisfação dos usuários,1.0,,Serviços Digitais e Melhoria da Qualidade,31/04/2024,high
 MT,Programa Nacional de Educação para o Trânsito”,Integração à ferramenta de avaliação da satisfação dos usuários,Integração à ferramenta de avaliação da satisfação dos usuários,1.0,,Serviços Digitais e Melhoria da Qualidade,31/04/2024,high
-MT,pela pessoa jurídica de direito privado,Integração à base de dados (OUTROS),Integração à base de dados,0.852,,Projetos Especiais,,medium
-MT,mesmo deve ser registrado junto a RFB),Integração à base de dados (OUTROS),Integração à base de dados,0.852,,Projetos Especiais,,medium
+MT,pela pessoa jurídica de direito privado,Integração à base de dados (OUTROS),Integração à base de dados,0.852,,Governança e Gestão de Dados,,medium
+MT,mesmo deve ser registrado junto a RFB),Integração à base de dados (OUTROS),Integração à base de dados,0.852,,Governança e Gestão de Dados,,medium
 MTE,Solicitar o Seguro-Desemprego,Integração à ferramenta de avaliação da satisfação dos usuários,Integração à ferramenta de avaliação da satisfação dos usuários,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,31/12/2025,high
 MTE,Consultar Notificação de Débito do FGTS,Integração à ferramenta de avaliação da satisfação dos usuários,Integração à ferramenta de avaliação da satisfação dos usuários,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,31/12/2025,high
 MTE,Sacar cotas do PIS ou PASEP (Descontinuado no MTE),Integração à ferramenta de avaliação da satisfação dos usuários,Integração à ferramenta de avaliação da satisfação dos usuários,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,31/12/2025,high
@@ -4989,7 +4989,7 @@ MTUR,Alterar cadastro (Cadastur),Evolução do Serviço,Evolução do Serviço,1
 MTUR,Alterar cadastro (Cadastur),Implementação do VLIBRAS,Implementação do VLIBRAS,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,mar/25,high
 MTUR,Alterar cadastro (Cadastur),Implantação do Design System,Implantação do Design System,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,mar/25,high
 MTUR,Alterar cadastro (Cadastur),Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,mar/25,high
-MTUR,Alterar cadastro (Cadastur),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,mar/25,medium
+MTUR,Alterar cadastro (Cadastur),Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,mar/25,medium
 MTUR,Cadastrar artista ou banda para seleção em eventos,Evolução do Serviço,Evolução do Serviço,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,jun/25,high
 MTUR,Cadastrar artista ou banda para seleção em eventos,Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,jun/25,high
 MTUR,Cadastrar artista ou banda para seleção em eventos,Implementação do VLIBRAS,Implementação do VLIBRAS,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,jun/25,high
@@ -5468,7 +5468,7 @@ PREVIC,Requerer Habilitação de Dirigente,Evolução do Serviço,Evolução do 
 PREVIC,Requerer Habilitação de Dirigente,Integração à ferramenta de avaliação da satisfação dos usuários,Integração à ferramenta de avaliação da satisfação dos usuários,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,set/25,high
 PREVIC,Requerer Habilitação de Dirigente,Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,set/25,high
 PREVIC,Requerer Habilitação de Dirigente,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,set/25,high
-PREVIC,Requerer Habilitação de Dirigente,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,set/25,medium
+PREVIC,Requerer Habilitação de Dirigente,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,set/25,medium
 PREVIC,de adesão por iniciativa da EFPC,Evolução do Serviço,Evolução do Serviço,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,out/25,high
 PREVIC,de adesão por iniciativa da EFPC,Integração à ferramenta de avaliação da satisfação dos usuários,Integração à ferramenta de avaliação da satisfação dos usuários,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,out/25,high
 PREVIC,de adesão por iniciativa da EFPC,Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,out/25,high
@@ -5972,9 +5972,9 @@ SFB,(Solução Legal para encerramento do processo),Integração ao Login Único
 SFB,Solicitar Emissão de Certidão Negativa de Embargo do ICMBio,Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,mar/25,high
 SFB,Solicitar Emissão de Certidão de Débitos,Integração ao Pagtesouro,Integração ao Pagtesouro,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,mar/25,high
 SFB,Solicitar Emissão de Certidão de Débitos,Integração com Assinatura Digital Gov.br,Integração com Assinatura Digital Gov.br,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,mar/25,high
-SFB,Solicitar Emissão de Certidão de Débitos,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,mar/25,medium
+SFB,Solicitar Emissão de Certidão de Débitos,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,mar/25,medium
 SFB,Solicitar Emissão de Certidão Negativa de Embargo do ICMBio,Integração com Assinatura Digital Gov.br,Integração com Assinatura Digital Gov.br,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,mar/25,high
-SFB,Solicitar Emissão de Certidão Negativa de Embargo do ICMBio,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Projetos Especiais,mar/25,medium
+SFB,Solicitar Emissão de Certidão Negativa de Embargo do ICMBio,Integração à base de dados (OUTROS),Integração à base de dados,0.852,Governança e Gestão de Dados,Governança e Gestão de Dados,mar/25,medium
 SFB,Cadastrar Madeira e Carvão Vegetal,Realização de Autodiagnóstico de Qualidade,Realização de Autodiagnóstico de Qualidade,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,mar/25,high
 SFB,Atualizar os serviços do órgão no portal Gov.br,Revisão da descrição dos serviços,Revisão da descrição dos serviços,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,dez/25,high
 SFB,Visitar o Jardim Botânico do Rio de Janeiro,Evolução do Serviço,Evolução do Serviço,1.0,Serviços Digitais e Melhoria da Qualidade,Serviços Digitais e Melhoria da Qualidade,dez/26,high
@@ -6289,5 +6289,5 @@ SUSEP,em supervisionadas,Disponibilização em Acesso Digital,Disponibilização
 SUSEP,SUSEP ao PagTesouro,Integração ao Pagtesouro,Integração ao Pagtesouro,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,30/06/2025,high
 SUSEP,Cadastrar Associação,Disponibilização em Acesso Digital,Disponibilização em Acesso Digital,1.0,Serviços Digitais e Melhoria da,Serviços Digitais e Melhoria da Qualidade,31/05/2025,high
 SUSEP,Cadastrar Associação,Integração ao Login Único,Integração ao Login Único,1.0,Unificação de Canais Digitais,Unificação de Canais Digitais,31/05/2025,high
-SUSEP,Cadastrar Associação,Integração à base de dados,Integração à base de dados,1.0,,Projetos Especiais,31/05/2025,high
+SUSEP,Cadastrar Associação,Integração à base de dados,Integração à base de dados,1.0,,Governança e Gestão de Dados,31/05/2025,high
 SUSEP,Consultar Associação,Disponibilização em Acesso Digital,Disponibilização em Acesso Digital,1.0,Serviços Digitais e Melhoria da,Serviços Digitais e Melhoria da Qualidade,31/05/2025,high
