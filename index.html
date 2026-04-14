@@ -919,23 +919,18 @@ function runCompare(){
     html+=`<div class="chart-container" style="padding:0;margin-bottom:8px">`;
     html+=`<details><summary style="padding:14px 16px;cursor:pointer;font-weight:600;color:var(--dark);list-style:none;display:flex;justify-content:space-between;align-items:center"><span>${eixo}</span><span style="font-size:.8rem;color:var(--muted)">${nCatalogo} canônicos${nLegados?' + '+nLegados+' legados':''} · ${totalEixo.toLocaleString('pt-BR')} entregas</span></summary>`;
     html+=`<div style="padding:0 16px 14px"><p style="font-size:.83rem;color:var(--muted);margin-bottom:10px">${info.foco}</p>`;
-    html+=`<table><thead><tr><th>Produto</th><th style="width:80px;text-align:right">Entregas</th><th style="width:80px;text-align:right">Órgãos</th><th style="width:60px">Origem</th></tr></thead><tbody>`;
-    // Contar órgãos por produto
+    html+=`<table><thead><tr><th>Produto</th><th style="width:160px">Entregas</th><th style="width:70px;text-align:right">Órgãos</th><th style="width:50px">v.</th></tr></thead><tbody>`;
     const prodOrgs={};allDel.forEach(d=>{if(!prodOrgs[d.produto_normalizado])prodOrgs[d.produto_normalizado]=new Set();prodOrgs[d.produto_normalizado].add(d.orgao_sigla);});
-    // Canônicos primeiro
-    info.prods.forEach(p=>{
-      const c=prodCounts[p]||0;const no=prodOrgs[p]?.size||0;
-      const color=c>100?'var(--green)':c>0?'var(--text)':'var(--red)';
-      html+=`<tr><td style="color:${color}">${p}</td><td style="text-align:right;font-weight:600;color:${color}">${c>0?c.toLocaleString('pt-BR'):'—'}</td><td style="text-align:right;color:${color}">${no>0?no:'—'}</td><td style="font-size:.75rem;color:var(--muted)">v4.0</td></tr>`;
-    });
-    // Legados
-    if(info.legados?.length){
-      info.legados.forEach(p=>{
-        const c=prodCounts[p]||0;const no=prodOrgs[p]?.size||0;
-        const color=c>100?'#8E44AD':c>0?'#8E44AD':'var(--red)';
-        html+=`<tr style="background:#f9f5ff"><td style="color:${color}">${p} <em style="font-size:.7rem">(legado)</em></td><td style="text-align:right;font-weight:600;color:${color}">${c>0?c.toLocaleString('pt-BR'):'—'}</td><td style="text-align:right;color:${color}">${no>0?no:'—'}</td><td style="font-size:.75rem;color:#8E44AD">v2.x</td></tr>`;
-      });
+    const maxProd=Math.max(...allProds.map(p=>prodCounts[p]||0),1);
+    function prodRow(p,c,no,isLegacy){
+      const pct=c/maxProd*100;
+      const barColor=isLegacy?'#8E44AD':c>100?'var(--green)':c>0?'var(--accent)':'transparent';
+      const textColor=c===0?'var(--red)':isLegacy?'#8E44AD':'var(--text)';
+      const bg=isLegacy?'background:#f9f5ff;':'';
+      return `<tr style="${bg}"><td style="color:${textColor}">${p}${isLegacy?' <em style="font-size:.7rem;color:#8E44AD">(legado)</em>':''}</td><td><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;background:var(--bg);border-radius:3px;height:16px;overflow:hidden"><div style="width:${pct}%;height:100%;background:${barColor};border-radius:3px;transition:width .3s"></div></div><span style="font-weight:600;font-size:.82rem;min-width:40px;text-align:right;color:${textColor}">${c>0?c.toLocaleString('pt-BR'):'—'}</span></div></td><td style="text-align:right;color:${textColor};font-weight:600">${no>0?no:'—'}</td><td style="font-size:.7rem;color:var(--muted)">${isLegacy?'2.x':'4.0'}</td></tr>`;
     }
+    info.prods.forEach(p=>{ html+=prodRow(p,prodCounts[p]||0,prodOrgs[p]?.size||0,false); });
+    if(info.legados?.length){ info.legados.forEach(p=>{ html+=prodRow(p,prodCounts[p]||0,prodOrgs[p]?.size||0,true); }); }
     html+=`</tbody></table></div></details></div>`;
   });
   el.innerHTML=html;
