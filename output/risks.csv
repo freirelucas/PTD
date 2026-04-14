@@ -1,0 +1,409 @@
+﻿orgao_sigla,risco_texto,probabilidade,impacto,tratamento
+ANA,5.1 Perda de confiança,pouco provável,alto,mitigar
+ANA,das partes interessadas,pouco provável,alto,mitigar
+ANA,Pouco,pouco provável,alto,mitigar
+ANA,provável,provável,alto,mitigar
+ANA,Alto,,alto,mitigar
+ANA,Plano e entregas realizadas.,pouco provável,,
+ANA,5.2 Indisponibilidade,pouco provável,,
+ANA,dos sistemas e soluções,pouco provável,alto,
+ANA,providos pela SGD,pouco provável,alto,transferir
+ANA,Pouco,pouco provável,alto,transferir
+ANA,provável,provável,alto,transferir
+ANA,Muito,,alto,transferir
+ANA,alto,,alto,transferir
+ANA,digitais priorizadas.,provável,,
+ANA,5.3 Capacidade,provável,,
+ANA,institucional de,provável,alto,
+ANA,execução do plano de,provável,alto,mitigar
+ANA,transformação digital,provável,alto,mitigar
+ANA,Muito provável,provável,alto,mitigar
+ANA,Muito,,alto,mitigar
+ANA,alto,,alto,mitigar
+ANA,A8 - Projeto atualizado mesmo,provável,,
+ANA,com a substituição de membro,provável,,
+ANA,da equipe.,provável,alto,
+ANA,5.4 Dependência de,provável,alto,mitigar
+ANA,fornecedores,provável,alto,mitigar
+ANA,Muito provável,provável,alto,mitigar
+ANA,Muito,,alto,mitigar
+ANA,alto,,alto,mitigar
+ANAC,Restrições,provável,alto,mitigar
+ANAC,Orçamentá,provável,alto,mitigar
+ANAC,rias,provável,alto,mitigar
+ANAC,Muito provável,provável,alto,mitigar
+ANAC,Muito Alto,,alto,mitigar
+ANAC,profissionai,provável,,
+ANAC,quadro,provável,alto,mitigar
+ANAC,efetivo,provável,alto,mitigar
+ANAC,Provável,provável,alto,mitigar
+ANAC,Alto,,alto,mitigar
+ANAC,mudanças,pouco provável,,
+ANAC,significativa,pouco provável,médio,
+ANAC,s no plano,pouco provável,médio,
+ANAC,de trabalho,pouco provável,médio,
+ANAC,Pouco,pouco provável,médio,
+ANAC,provável,provável,médio,
+ANAC,Médio,,médio,
+ANAC,design,pouco provável,,
+ANAC,soluções,pouco provável,médio,mitigar
+ANAC,digitais,pouco provável,médio,mitigar
+ANAC,Pouco,pouco provável,médio,mitigar
+ANAC,provável,provável,médio,mitigar
+ANAC,Médio,,médio,mitigar
+ANAC,software que robusteça a,provável,médio,
+ANAC,fase de design;,provável,médio,mitigar
+ANAC,Atraso nos,provável,médio,mitigar
+ANAC,cronogram,provável,médio,mitigar
+ANAC,Provável,provável,médio,mitigar
+ANAC,Médio,,médio,mitigar
+ANS,tratamen,,baixo,
+ANS,[escolher,,baixo,
+ANS,muito,raro,baixo,
+ANS,entre:,raro,baixo,
+ANS,baixo;,raro,baixo,
+ANS,[escolher,raro,baixo,
+ANS,raro; pouco,raro,baixo,mitigar
+ANS,baixo;,provável,baixo,mitigar
+ANS,entre:,provável,médio,mitigar
+ANS,provável ;,provável,médio,mitigar
+ANS,médio; alto;,provável,médio,mitigar
+ANS,mitigar;,provável,alto,mitigar
+ANS,provável;,provável,alto,eliminar
+ANS,muito alto ],provável,alto,eliminar
+ANS,eliminar;,provável,,eliminar
+ANS,muito,provável,,transferir
+ANS,transferir;,provável,,transferir
+ANS,provável;,provável,,aceitar
+BCB,Indisponibilidade das,provável,alto,
+BCB,equipes de TI para,provável,alto,mitigar
+BCB,executar a,provável,alto,mitigar
+BCB,transformação digital,provável,alto,mitigar
+BCB,Provável,provável,alto,mitigar
+BCB,Alto,,alto,mitigar
+BCB,"recurso, prazo e escopo.",raro,,
+BCB,Diminuição da,raro,alto,
+BCB,priorização do PTD,raro,alto,mitigar
+BCB,pela alta,raro,alto,mitigar
+BCB,administração,raro,alto,mitigar
+BCB,Raro,raro,alto,mitigar
+BCB,Alto,,alto,mitigar
+BCB,reportar continuamente a,provável,,
+BCB,alta gestão.,provável,médio,
+BCB,Atraso nos,provável,médio,mitigar
+BCB,cronogramas,provável,médio,mitigar
+BCB,pactuados,provável,médio,mitigar
+BCB,Provável,provável,médio,mitigar
+BCB,Médio,,médio,mitigar
+BCB,"recurso, prazo e escopo.",pouco provável,,
+BCB,Rotatividade de,pouco provável,alto,
+BCB,equipes ou,pouco provável,alto,mitigar
+BCB,paralisação de,pouco provável,alto,mitigar
+BCB,atividades,pouco provável,alto,mitigar
+BCB,Pouco provável,pouco provável,alto,mitigar
+BCB,Alto,,alto,mitigar
+BCB,Utilizar melhores práticas,provável,,
+BCB,de gerenciamento de,provável,médio,
+BCB,"projetos, negociando",provável,médio,mitigar
+BCB,"recurso, prazo e escopo.",provável,médio,mitigar
+BCB,Corte orçamentário,provável,médio,mitigar
+BCB,Provável,provável,médio,mitigar
+BCB,Médio,,médio,mitigar
+CADE,Baixo,,baixo,
+CADE,comprometimento,,baixo,
+CADE,unidades do Cade em,,baixo,mitigar
+CADE,relação  ao  Plano  de,,baixo,mitigar
+CADE,Transformação Digital,,baixo,mitigar
+CADE,Baixo,,baixo,mitigar
+CADE,Alto,,alto,mitigar
+CADE,equipe,,alto,mitigar
+CADE,CGTI/DAP/Cade,,alto,mitigar
+CADE,Alta,,alto,mitigar
+CADE,Alto,,baixo,mitigar
+CADE,Mitigar,,baixo,mitigar
+CADE,Fazer gestão junto a SGD,,baixo,
+CADE,para ter uma força de trabalho,,baixo,
+CADE,adequada.,,baixo,
+CADE,Baixo,,baixo,
+CADE,empresas,,médio,
+CADE,contratadas,,médio,
+CADE,relacionadas,,médio,transferir
+CADE,Transformação Digital,,médio,transferir
+CADE,Médio,,médio,transferir
+CADE,Alto,,alto,transferir
+CADE,compras centralizadas que são,,médio,
+CADE,feitas pela SGD.,,médio,
+CADE,Falta de acesso as bases,,médio,mitigar
+CADE,e API de outros órgãos,,médio,mitigar
+CADE,públicos,,médio,mitigar
+CADE,Médio,,médio,mitigar
+CADE,Médio,,médio,mitigar
+CNPQ,operacional,pouco provável,,
+CNPQ,eficiência dos processos.,pouco provável,alto,mitigar
+CNPQ,Pouco,pouco provável,alto,mitigar
+CNPQ,provável,provável,alto,mitigar
+CNPQ,Alto,,alto,mitigar
+COAF,Risco,raro,,
+COAF,Probabilidade,raro,,
+COAF,de Ocorrer,raro,,
+COAF,[escolher entre:,raro,,
+COAF,raro; pouco,raro,,
+COAF,provável; muito,provável,,
+COAF,provável;,provável,,
+COAF,praticamente,praticamente certo,,
+COAF,certo],,muito baixo,
+COAF,Impacto,,muito baixo,
+COAF,[escolher,,muito baixo,
+COAF,entre:,,muito baixo,
+COAF,muito,,muito baixo,
+COAF,baixo;,,baixo,
+COAF,baixo.,,baixo,
+COAF,Médio;,,médio,
+COAF,alto; muito,,alto,
+COAF,alto],,alto,mitigar
+COAF,tratamento,pouco provável,,
+COAF,do risco,pouco provável,alto,
+COAF,Alteração na política,pouco provável,alto,aceitar
+COAF,pública,pouco provável,alto,aceitar
+COAF,Pouco provável,pouco provável,alto,aceitar
+COAF,Muito alto,,alto,aceitar
+COAF,"1,10",pouco provável,,
+COAF,Indisponibilidade dos,pouco provável,alto,
+COAF,sistemas de acesso para,pouco provável,alto,mitigar
+COAF,o cidadão,pouco provável,alto,mitigar
+COAF,Pouco provável,pouco provável,alto,mitigar
+COAF,Muito alto,,alto,mitigar
+COAF,"1,3,8,10,12",pouco provável,,
+COAF,Indisponibilidade dos,pouco provável,alto,
+COAF,Sistemas relacionados,pouco provável,alto,mitigar
+COAF,aos serviços,pouco provável,alto,mitigar
+COAF,Pouco provável,pouco provável,alto,mitigar
+COAF,Muito alto,,alto,mitigar
+COAF,"8,12",pouco provável,,
+COAF,Problemas com perda e,pouco provável,alto,
+COAF,/ ou integridade de,pouco provável,alto,mitigar
+COAF,dados,pouco provável,alto,mitigar
+COAF,Pouco provável,pouco provável,alto,mitigar
+COAF,Muito alto,,alto,mitigar
+COAF,Indisponibilidade das,provável,médio,
+COAF,equipes de TI para,provável,médio,
+COAF,executar a,provável,médio,mitigar
+COAF,transformação digital,provável,médio,mitigar
+COAF,Provável,provável,médio,mitigar
+COAF,Médio,,médio,mitigar
+COAF,"4,5,12",pouco provável,,
+COAF,Falta de prioridade do,pouco provável,alto,aceitar
+COAF,PTD pela alta,pouco provável,alto,aceitar
+CVM,Disponibilidade dos donos de,provável,alto,mitigar
+CVM,serviço para atuação na,provável,alto,mitigar
+CVM,transformação,provável,alto,mitigar
+CVM,Muito provável,provável,alto,mitigar
+CVM,Alto,,alto,mitigar
+CVM,divulgação de informações,provável,,
+CVM,do Plano e entregas,provável,alto,
+CVM,realizadas.,provável,alto,mitigar
+CVM,Capacidade de execução,provável,alto,mitigar
+CVM,da transformação digital,provável,alto,mitigar
+CVM,Provável,provável,alto,mitigar
+CVM,Muito Alto,,alto,mitigar
+CVM,Atraso nos cronogramas,provável,alto,mitigar
+CVM,pactuados,provável,alto,mitigar
+CVM,Provável,provável,alto,mitigar
+CVM,Alto,,alto,mitigar
+CVM,alterações estratégicas.,provável,,
+CVM,Incompatibilidade entre o,provável,alto,
+CVM,tempo da transformação do,provável,alto,mitigar
+CVM,serviço e necessidade de,provável,alto,mitigar
+CVM,alteração normativa,provável,alto,mitigar
+CVM,Provável,provável,alto,mitigar
+CVM,Alto,,alto,mitigar
+IPHAN,Perda de confiança das partes,pouco provável,médio,mitigar
+IPHAN,interessadas,pouco provável,médio,mitigar
+IPHAN,Pouco provável,pouco provável,médio,mitigar
+IPHAN,médio,,médio,mitigar
+IPHAN,mudanças,provável,,
+IPHAN,gestão,provável,médio,mitigar
+IPHAN,descontinuidade de projetos,provável,médio,mitigar
+IPHAN,Provável,provável,médio,mitigar
+IPHAN,médio,provável,médio,mitigar
+IPHAN,mitigar,provável,alto,mitigar
+IPHAN,"6, 7, 11",provável,alto,mitigar
+IPHAN,Disponibilidade dos sistemas de,provável,alto,mitigar
+IPHAN,acesso para o cidadão,provável,alto,mitigar
+IPHAN,Provável,provável,alto,mitigar
+IPHAN,muito alto,provável,alto,mitigar
+IPHAN,mitigar,provável,alto,mitigar
+IPHAN,Perda de integridade de dados,provável,alto,mitigar
+IPHAN,Provável,provável,alto,mitigar
+IPHAN,muito alto,provável,alto,mitigar
+IPHAN,mitigar,provável,alto,mitigar
+IPHAN,"12,13",provável,alto,mitigar
+IPHAN,Dependência de fornecedores,provável,alto,mitigar
+IPHAN,Provável,provável,alto,mitigar
+IPHAN,alto,,alto,mitigar
+IPHAN,serviço,pouco provável,,
+IPHAN,para,pouco provável,alto,
+IPHAN,atuação,pouco provável,alto,mitigar
+IPHAN,transformação,pouco provável,alto,mitigar
+IPHAN,Pouco provável,pouco provável,alto,mitigar
+IPHAN,alto,,alto,mitigar
+IPHAN,Disponibilidade das equipes de TI,provável,,
+IPHAN,para executar a transformação,provável,alto,
+IPHAN,digital insuficiência de recursos,provável,alto,mitigar
+IPHAN,humanos para gestão e execução,provável,alto,mitigar
+IPHAN,do plano,provável,alto,mitigar
+IPHAN,Provável,provável,alto,mitigar
+IPHAN,alto,,alto,mitigar
+IPHAN,"administração,",provável,,
+IPHAN,demandas,provável,alto,
+IPHAN,operacionais se sobrepõem a,provável,alto,mitigar
+IPHAN,pauta estratégica e a gestão do,provável,alto,mitigar
+IPHAN,plano,provável,baixo,mitigar
+IPHAN,Provável,provável,baixo,mitigar
+IPHAN,alto,,baixo,mitigar
+IPHAN,mitigar,,baixo,mitigar
+IPHAN,"1,3,9,11",,baixo,
+IPHAN,Baixo,provável,baixo,
+IPHAN,comprometimento,provável,alto,
+IPHAN,áreas de negócio com as ações,provável,alto,mitigar
+IPHAN,pactuadas,provável,alto,mitigar
+IPHAN,Muito provável,provável,alto,mitigar
+MESP,Ocorrer,,muito baixo,
+MESP,muito baixo;,,muito baixo,
+MESP,[escolher,,baixo,
+MESP,[escolher,,baixo,mitigar
+MESP,baixo; médio;,raro,baixo,mitigar
+MESP,entre:,raro,alto,mitigar
+MESP,entre:,raro,alto,mitigar
+MESP,alto; muito alto ],raro,alto,mitigar
+MESP,mitigar;,raro,,mitigar
+MESP,raro; pouco,raro,,eliminar
+MESP,eliminar;,provável,,eliminar
+MESP,provável ;,provável,,transferir
+MESP,transferir;,provável,,transferir
+MESP,provável;,provável,,aceitar
+MESP,aceitar;],provável,baixo,aceitar
+MESP,muito,provável,baixo,
+MESP,provável;,provável,baixo,
+MESP,praticamente,praticamente certo,baixo,
+MESP,certo ],,baixo,
+MESP,Baixo,pouco provável,baixo,
+MESP,engajamento,pouco provável,médio,
+MESP,alta gestão,pouco provável,médio,mitigar
+MESP,Pouco,pouco provável,médio,mitigar
+MESP,provável,provável,médio,mitigar
+MESP,médio,,médio,mitigar
+MME,terceirizado de,pouco provável,,
+MME,desenvolvimento e,pouco provável,alto,
+MME,manutenção de,pouco provável,alto,mitigar
+MME,softwares,pouco provável,alto,mitigar
+MME,Pouco,pouco provável,alto,mitigar
+MME,provável,provável,alto,mitigar
+MME,Alto,,alto,mitigar
+MMULHERES,Falta de adesão das,pouco provável,alto,
+MMULHERES,partes interessadas às,pouco provável,alto,mitigar
+MMULHERES,iniciativas digitais,pouco provável,alto,mitigar
+MMULHERES,Pouco,pouco provável,alto,mitigar
+MMULHERES,Provável,provável,alto,mitigar
+MMULHERES,Alto,,alto,mitigar
+MMULHERES,- Alinhamento contínuo com as diretrizes do governo.,provável,,
+MMULHERES,Mudanças em políticas,provável,alto,mitigar
+MMULHERES,públicas que impactam os,provável,alto,mitigar
+MMULHERES,serviços digitais,provável,alto,mitigar
+MMULHERES,Provável,provável,alto,mitigar
+MMULHERES,Alto,,alto,mitigar
+MMULHERES,Baixa adesão dos,provável,,
+MMULHERES,beneficiários aos serviços,provável,alto,
+MMULHERES,digitais,provável,alto,mitigar
+MMULHERES,Muito,provável,alto,mitigar
+MMULHERES,provável,provável,alto,mitigar
+MMULHERES,Muito,,alto,mitigar
+MMULHERES,alto,,alto,mitigar
+MMULHERES,Problemas na segurança,pouco provável,,
+MMULHERES,e privacidade de dados,pouco provável,alto,
+MMULHERES,sensíveis,pouco provável,alto,mitigar
+MMULHERES,Pouco,pouco provável,alto,mitigar
+MMULHERES,Provável,provável,alto,mitigar
+MMULHERES,Muito,,alto,mitigar
+MMULHERES,alto,,alto,mitigar
+MMULHERES,- Adoção de protocolos de segurança cibernética.,provável,,
+MMULHERES,Falta de equipe,provável,alto,mitigar
+MMULHERES,qualificada para execução,provável,alto,mitigar
+MMULHERES,da transformação digital,provável,alto,mitigar
+MMULHERES,Provável,provável,alto,mitigar
+MMULHERES,Alto,,alto,mitigar
+MMULHERES,Dependência excessiva,provável,médio,
+MMULHERES,de fornecedores de,provável,médio,mitigar
+MMULHERES,tecnologia,provável,médio,mitigar
+MMULHERES,Muito,provável,médio,mitigar
+MMULHERES,provável,provável,médio,mitigar
+MMULHERES,Médio,,médio,mitigar
+MMULHERES,Baixa priorização da,pouco provável,alto,
+MMULHERES,transformação digital pela,pouco provável,alto,mitigar
+MMULHERES,gestão,pouco provável,alto,mitigar
+MMULHERES,Pouco,pouco provável,alto,mitigar
+MMULHERES,provável,provável,alto,mitigar
+MMULHERES,Alto,,alto,mitigar
+MMULHERES,das iniciativas.,provável,,
+MMULHERES,Desafios na,provável,alto,mitigar
+MMULHERES,interoperabilidade dos,provável,alto,mitigar
+MMULHERES,sistemas governamentais,provável,alto,mitigar
+MMULHERES,Provável,provável,alto,mitigar
+MMULHERES,Alto,,alto,mitigar
+MMULHERES,Descontinuidade de,pouco provável,alto,
+MPI,Restrições,provável,alto,mitigar
+MPI,Orçamentárias,provável,alto,mitigar
+MPI,Provável,provável,alto,mitigar
+MPI,Alto,,alto,mitigar
+MPI,do projeto,provável,,
+MPI,Indisponibilidade,provável,alto,
+MPI,Recursos,provável,alto,mitigar
+MPI,Humanos,provável,alto,mitigar
+MPI,Muito provável,provável,alto,mitigar
+MPI,Muito alto,,alto,mitigar
+MPI,demandas,provável,,
+MPI,previstas,provável,médio,mitigar
+MPI,PDTIC,provável,médio,mitigar
+MPI,Provável,provável,médio,mitigar
+MPI,Médio,,médio,mitigar
+MPI,atualizações/revisões,provável,,
+MPI,no PDTIC,provável,alto,
+MPI,Alterações,provável,alto,mitigar
+MPI,legislação,provável,alto,mitigar
+MPI,Provavel,provável,alto,mitigar
+MPI,Alto,,alto,mitigar
+MPI,Falhas,provável,,
+MPI,Segurança,provável,alto,mitigar
+MPI,Informação,provável,alto,mitigar
+MPI,Provavel,provável,alto,mitigar
+MPI,Muito alto,,alto,mitigar
+PRF,PROBABILIDADE IMPACTO TRATAMENTO,raro,,
+PRF,AÇÕES DE,raro,,
+PRF,TRATAMENTO,raro,alto,
+PRF,Alteração na Política Pública.,raro,alto,mitigar
+PRF,RARO,raro,alto,mitigar
+PRF,MUITO,,alto,mitigar
+PRF,ALTO,,alto,mitigar
+PRF,"1, 2, 4, 21",pouco provável,,
+PRF,Despriorização do PTD pela alta,pouco provável,alto,mitigar
+PRF,administração.,pouco provável,alto,mitigar
+PRF,POUCO,pouco provável,alto,mitigar
+PRF,PROVÁVEL,provável,alto,mitigar
+PRF,ALTO,,alto,mitigar
+PRF,Baixa priorização do PTD para,pouco provável,médio,
+PRF,áreas de negócio com as ações,pouco provável,médio,mitigar
+PRF,pactuadas.,pouco provável,médio,mitigar
+PRF,POUCO,pouco provável,médio,mitigar
+PRF,PROVÁVEL,provável,médio,mitigar
+PRF,MÉDIO,,médio,mitigar
+PRF,"2, 3, 4, 5, 6, 7",pouco provável,,
+PRF,Baixa priorização das ações do,pouco provável,alto,mitigar
+PRF,PTD para equipes de TI.,pouco provável,alto,mitigar
+PRF,POUCO,pouco provável,alto,mitigar
+PRF,PROVÁVEL,provável,alto,mitigar
+PRF,ALTO,,alto,mitigar
+PRF,Sobrecarga,provável,,
+PRF,equipe,provável,alto,mitigar
+PRF,execução da transformação digital.,provável,alto,mitigar
+PRF,PROVÁVEL,provável,alto,mitigar
+PRF,ALTO,,alto,mitigar

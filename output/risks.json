@@ -1,0 +1,2891 @@
+{
+  "exported_at": "2026-04-14T02:46:18.056344",
+  "total": 408,
+  "orgaos": 14,
+  "data": {
+    "ANA": [
+      {
+        "orgao_sigla": "ANA",
+        "risco_texto": "5.1 Perda de confiança",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "ANA",
+        "risco_texto": "das partes interessadas",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "ANA",
+        "risco_texto": "Pouco",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "ANA",
+        "risco_texto": "provável",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "ANA",
+        "risco_texto": "Alto",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "ANA",
+        "risco_texto": "Plano e entregas realizadas.",
+        "probabilidade": "pouco provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "ANA",
+        "risco_texto": "5.2 Indisponibilidade",
+        "probabilidade": "pouco provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "ANA",
+        "risco_texto": "dos sistemas e soluções",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "ANA",
+        "risco_texto": "providos pela SGD",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "transferir"
+      },
+      {
+        "orgao_sigla": "ANA",
+        "risco_texto": "Pouco",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "transferir"
+      },
+      {
+        "orgao_sigla": "ANA",
+        "risco_texto": "provável",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "transferir"
+      },
+      {
+        "orgao_sigla": "ANA",
+        "risco_texto": "Muito",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "transferir"
+      },
+      {
+        "orgao_sigla": "ANA",
+        "risco_texto": "alto",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "transferir"
+      },
+      {
+        "orgao_sigla": "ANA",
+        "risco_texto": "digitais priorizadas.",
+        "probabilidade": "provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "ANA",
+        "risco_texto": "5.3 Capacidade",
+        "probabilidade": "provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "ANA",
+        "risco_texto": "institucional de",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "ANA",
+        "risco_texto": "execução do plano de",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "ANA",
+        "risco_texto": "transformação digital",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "ANA",
+        "risco_texto": "Muito provável",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "ANA",
+        "risco_texto": "Muito",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "ANA",
+        "risco_texto": "alto",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "ANA",
+        "risco_texto": "A8 - Projeto atualizado mesmo",
+        "probabilidade": "provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "ANA",
+        "risco_texto": "com a substituição de membro",
+        "probabilidade": "provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "ANA",
+        "risco_texto": "da equipe.",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "ANA",
+        "risco_texto": "5.4 Dependência de",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "ANA",
+        "risco_texto": "fornecedores",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "ANA",
+        "risco_texto": "Muito provável",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "ANA",
+        "risco_texto": "Muito",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "ANA",
+        "risco_texto": "alto",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      }
+    ],
+    "ANAC": [
+      {
+        "orgao_sigla": "ANAC",
+        "risco_texto": "Restrições",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "ANAC",
+        "risco_texto": "Orçamentá",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "ANAC",
+        "risco_texto": "rias",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "ANAC",
+        "risco_texto": "Muito provável",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "ANAC",
+        "risco_texto": "Muito Alto",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "ANAC",
+        "risco_texto": "profissionai",
+        "probabilidade": "provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "ANAC",
+        "risco_texto": "quadro",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "ANAC",
+        "risco_texto": "efetivo",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "ANAC",
+        "risco_texto": "Provável",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "ANAC",
+        "risco_texto": "Alto",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "ANAC",
+        "risco_texto": "mudanças",
+        "probabilidade": "pouco provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "ANAC",
+        "risco_texto": "significativa",
+        "probabilidade": "pouco provável",
+        "impacto": "médio",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "ANAC",
+        "risco_texto": "s no plano",
+        "probabilidade": "pouco provável",
+        "impacto": "médio",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "ANAC",
+        "risco_texto": "de trabalho",
+        "probabilidade": "pouco provável",
+        "impacto": "médio",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "ANAC",
+        "risco_texto": "Pouco",
+        "probabilidade": "pouco provável",
+        "impacto": "médio",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "ANAC",
+        "risco_texto": "provável",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "ANAC",
+        "risco_texto": "Médio",
+        "probabilidade": "",
+        "impacto": "médio",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "ANAC",
+        "risco_texto": "design",
+        "probabilidade": "pouco provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "ANAC",
+        "risco_texto": "soluções",
+        "probabilidade": "pouco provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "ANAC",
+        "risco_texto": "digitais",
+        "probabilidade": "pouco provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "ANAC",
+        "risco_texto": "Pouco",
+        "probabilidade": "pouco provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "ANAC",
+        "risco_texto": "provável",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "ANAC",
+        "risco_texto": "Médio",
+        "probabilidade": "",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "ANAC",
+        "risco_texto": "software que robusteça a",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "ANAC",
+        "risco_texto": "fase de design;",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "ANAC",
+        "risco_texto": "Atraso nos",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "ANAC",
+        "risco_texto": "cronogram",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "ANAC",
+        "risco_texto": "Provável",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "ANAC",
+        "risco_texto": "Médio",
+        "probabilidade": "",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      }
+    ],
+    "ANS": [
+      {
+        "orgao_sigla": "ANS",
+        "risco_texto": "tratamen",
+        "probabilidade": "",
+        "impacto": "baixo",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "ANS",
+        "risco_texto": "[escolher",
+        "probabilidade": "",
+        "impacto": "baixo",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "ANS",
+        "risco_texto": "muito",
+        "probabilidade": "raro",
+        "impacto": "baixo",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "ANS",
+        "risco_texto": "entre:",
+        "probabilidade": "raro",
+        "impacto": "baixo",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "ANS",
+        "risco_texto": "baixo;",
+        "probabilidade": "raro",
+        "impacto": "baixo",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "ANS",
+        "risco_texto": "[escolher",
+        "probabilidade": "raro",
+        "impacto": "baixo",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "ANS",
+        "risco_texto": "raro; pouco",
+        "probabilidade": "raro",
+        "impacto": "baixo",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "ANS",
+        "risco_texto": "baixo;",
+        "probabilidade": "provável",
+        "impacto": "baixo",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "ANS",
+        "risco_texto": "entre:",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "ANS",
+        "risco_texto": "provável ;",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "ANS",
+        "risco_texto": "médio; alto;",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "ANS",
+        "risco_texto": "mitigar;",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "ANS",
+        "risco_texto": "provável;",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "eliminar"
+      },
+      {
+        "orgao_sigla": "ANS",
+        "risco_texto": "muito alto ]",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "eliminar"
+      },
+      {
+        "orgao_sigla": "ANS",
+        "risco_texto": "eliminar;",
+        "probabilidade": "provável",
+        "impacto": "",
+        "tratamento": "eliminar"
+      },
+      {
+        "orgao_sigla": "ANS",
+        "risco_texto": "muito",
+        "probabilidade": "provável",
+        "impacto": "",
+        "tratamento": "transferir"
+      },
+      {
+        "orgao_sigla": "ANS",
+        "risco_texto": "transferir;",
+        "probabilidade": "provável",
+        "impacto": "",
+        "tratamento": "transferir"
+      },
+      {
+        "orgao_sigla": "ANS",
+        "risco_texto": "provável;",
+        "probabilidade": "provável",
+        "impacto": "",
+        "tratamento": "aceitar"
+      }
+    ],
+    "BCB": [
+      {
+        "orgao_sigla": "BCB",
+        "risco_texto": "Indisponibilidade das",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "BCB",
+        "risco_texto": "equipes de TI para",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "BCB",
+        "risco_texto": "executar a",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "BCB",
+        "risco_texto": "transformação digital",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "BCB",
+        "risco_texto": "Provável",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "BCB",
+        "risco_texto": "Alto",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "BCB",
+        "risco_texto": "recurso, prazo e escopo.",
+        "probabilidade": "raro",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "BCB",
+        "risco_texto": "Diminuição da",
+        "probabilidade": "raro",
+        "impacto": "alto",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "BCB",
+        "risco_texto": "priorização do PTD",
+        "probabilidade": "raro",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "BCB",
+        "risco_texto": "pela alta",
+        "probabilidade": "raro",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "BCB",
+        "risco_texto": "administração",
+        "probabilidade": "raro",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "BCB",
+        "risco_texto": "Raro",
+        "probabilidade": "raro",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "BCB",
+        "risco_texto": "Alto",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "BCB",
+        "risco_texto": "reportar continuamente a",
+        "probabilidade": "provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "BCB",
+        "risco_texto": "alta gestão.",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "BCB",
+        "risco_texto": "Atraso nos",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "BCB",
+        "risco_texto": "cronogramas",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "BCB",
+        "risco_texto": "pactuados",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "BCB",
+        "risco_texto": "Provável",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "BCB",
+        "risco_texto": "Médio",
+        "probabilidade": "",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "BCB",
+        "risco_texto": "recurso, prazo e escopo.",
+        "probabilidade": "pouco provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "BCB",
+        "risco_texto": "Rotatividade de",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "BCB",
+        "risco_texto": "equipes ou",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "BCB",
+        "risco_texto": "paralisação de",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "BCB",
+        "risco_texto": "atividades",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "BCB",
+        "risco_texto": "Pouco provável",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "BCB",
+        "risco_texto": "Alto",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "BCB",
+        "risco_texto": "Utilizar melhores práticas",
+        "probabilidade": "provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "BCB",
+        "risco_texto": "de gerenciamento de",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "BCB",
+        "risco_texto": "projetos, negociando",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "BCB",
+        "risco_texto": "recurso, prazo e escopo.",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "BCB",
+        "risco_texto": "Corte orçamentário",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "BCB",
+        "risco_texto": "Provável",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "BCB",
+        "risco_texto": "Médio",
+        "probabilidade": "",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      }
+    ],
+    "CADE": [
+      {
+        "orgao_sigla": "CADE",
+        "risco_texto": "Baixo",
+        "probabilidade": "",
+        "impacto": "baixo",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "CADE",
+        "risco_texto": "comprometimento",
+        "probabilidade": "",
+        "impacto": "baixo",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "CADE",
+        "risco_texto": "unidades do Cade em",
+        "probabilidade": "",
+        "impacto": "baixo",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "CADE",
+        "risco_texto": "relação  ao  Plano  de",
+        "probabilidade": "",
+        "impacto": "baixo",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "CADE",
+        "risco_texto": "Transformação Digital",
+        "probabilidade": "",
+        "impacto": "baixo",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "CADE",
+        "risco_texto": "Baixo",
+        "probabilidade": "",
+        "impacto": "baixo",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "CADE",
+        "risco_texto": "Alto",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "CADE",
+        "risco_texto": "equipe",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "CADE",
+        "risco_texto": "CGTI/DAP/Cade",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "CADE",
+        "risco_texto": "Alta",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "CADE",
+        "risco_texto": "Alto",
+        "probabilidade": "",
+        "impacto": "baixo",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "CADE",
+        "risco_texto": "Mitigar",
+        "probabilidade": "",
+        "impacto": "baixo",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "CADE",
+        "risco_texto": "Fazer gestão junto a SGD",
+        "probabilidade": "",
+        "impacto": "baixo",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "CADE",
+        "risco_texto": "para ter uma força de trabalho",
+        "probabilidade": "",
+        "impacto": "baixo",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "CADE",
+        "risco_texto": "adequada.",
+        "probabilidade": "",
+        "impacto": "baixo",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "CADE",
+        "risco_texto": "Baixo",
+        "probabilidade": "",
+        "impacto": "baixo",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "CADE",
+        "risco_texto": "empresas",
+        "probabilidade": "",
+        "impacto": "médio",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "CADE",
+        "risco_texto": "contratadas",
+        "probabilidade": "",
+        "impacto": "médio",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "CADE",
+        "risco_texto": "relacionadas",
+        "probabilidade": "",
+        "impacto": "médio",
+        "tratamento": "transferir"
+      },
+      {
+        "orgao_sigla": "CADE",
+        "risco_texto": "Transformação Digital",
+        "probabilidade": "",
+        "impacto": "médio",
+        "tratamento": "transferir"
+      },
+      {
+        "orgao_sigla": "CADE",
+        "risco_texto": "Médio",
+        "probabilidade": "",
+        "impacto": "médio",
+        "tratamento": "transferir"
+      },
+      {
+        "orgao_sigla": "CADE",
+        "risco_texto": "Alto",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "transferir"
+      },
+      {
+        "orgao_sigla": "CADE",
+        "risco_texto": "compras centralizadas que são",
+        "probabilidade": "",
+        "impacto": "médio",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "CADE",
+        "risco_texto": "feitas pela SGD.",
+        "probabilidade": "",
+        "impacto": "médio",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "CADE",
+        "risco_texto": "Falta de acesso as bases",
+        "probabilidade": "",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "CADE",
+        "risco_texto": "e API de outros órgãos",
+        "probabilidade": "",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "CADE",
+        "risco_texto": "públicos",
+        "probabilidade": "",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "CADE",
+        "risco_texto": "Médio",
+        "probabilidade": "",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "CADE",
+        "risco_texto": "Médio",
+        "probabilidade": "",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      }
+    ],
+    "CNPQ": [
+      {
+        "orgao_sigla": "CNPQ",
+        "risco_texto": "operacional",
+        "probabilidade": "pouco provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "CNPQ",
+        "risco_texto": "eficiência dos processos.",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "CNPQ",
+        "risco_texto": "Pouco",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "CNPQ",
+        "risco_texto": "provável",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "CNPQ",
+        "risco_texto": "Alto",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      }
+    ],
+    "COAF": [
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "Risco",
+        "probabilidade": "raro",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "Probabilidade",
+        "probabilidade": "raro",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "de Ocorrer",
+        "probabilidade": "raro",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "[escolher entre:",
+        "probabilidade": "raro",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "raro; pouco",
+        "probabilidade": "raro",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "provável; muito",
+        "probabilidade": "provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "provável;",
+        "probabilidade": "provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "praticamente",
+        "probabilidade": "praticamente certo",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "certo]",
+        "probabilidade": "",
+        "impacto": "muito baixo",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "Impacto",
+        "probabilidade": "",
+        "impacto": "muito baixo",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "[escolher",
+        "probabilidade": "",
+        "impacto": "muito baixo",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "entre:",
+        "probabilidade": "",
+        "impacto": "muito baixo",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "muito",
+        "probabilidade": "",
+        "impacto": "muito baixo",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "baixo;",
+        "probabilidade": "",
+        "impacto": "baixo",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "baixo.",
+        "probabilidade": "",
+        "impacto": "baixo",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "Médio;",
+        "probabilidade": "",
+        "impacto": "médio",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "alto; muito",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "alto]",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "tratamento",
+        "probabilidade": "pouco provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "do risco",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "Alteração na política",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "aceitar"
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "pública",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "aceitar"
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "Pouco provável",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "aceitar"
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "Muito alto",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "aceitar"
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "1,10",
+        "probabilidade": "pouco provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "Indisponibilidade dos",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "sistemas de acesso para",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "o cidadão",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "Pouco provável",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "Muito alto",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "1,3,8,10,12",
+        "probabilidade": "pouco provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "Indisponibilidade dos",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "Sistemas relacionados",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "aos serviços",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "Pouco provável",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "Muito alto",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "8,12",
+        "probabilidade": "pouco provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "Problemas com perda e",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "/ ou integridade de",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "dados",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "Pouco provável",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "Muito alto",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "Indisponibilidade das",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "equipes de TI para",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "executar a",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "transformação digital",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "Provável",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "Médio",
+        "probabilidade": "",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "4,5,12",
+        "probabilidade": "pouco provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "Falta de prioridade do",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "aceitar"
+      },
+      {
+        "orgao_sigla": "COAF",
+        "risco_texto": "PTD pela alta",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "aceitar"
+      }
+    ],
+    "CVM": [
+      {
+        "orgao_sigla": "CVM",
+        "risco_texto": "Disponibilidade dos donos de",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "CVM",
+        "risco_texto": "serviço para atuação na",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "CVM",
+        "risco_texto": "transformação",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "CVM",
+        "risco_texto": "Muito provável",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "CVM",
+        "risco_texto": "Alto",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "CVM",
+        "risco_texto": "divulgação de informações",
+        "probabilidade": "provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "CVM",
+        "risco_texto": "do Plano e entregas",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "CVM",
+        "risco_texto": "realizadas.",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "CVM",
+        "risco_texto": "Capacidade de execução",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "CVM",
+        "risco_texto": "da transformação digital",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "CVM",
+        "risco_texto": "Provável",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "CVM",
+        "risco_texto": "Muito Alto",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "CVM",
+        "risco_texto": "Atraso nos cronogramas",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "CVM",
+        "risco_texto": "pactuados",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "CVM",
+        "risco_texto": "Provável",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "CVM",
+        "risco_texto": "Alto",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "CVM",
+        "risco_texto": "alterações estratégicas.",
+        "probabilidade": "provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "CVM",
+        "risco_texto": "Incompatibilidade entre o",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "CVM",
+        "risco_texto": "tempo da transformação do",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "CVM",
+        "risco_texto": "serviço e necessidade de",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "CVM",
+        "risco_texto": "alteração normativa",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "CVM",
+        "risco_texto": "Provável",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "CVM",
+        "risco_texto": "Alto",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      }
+    ],
+    "IPHAN": [
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "Perda de confiança das partes",
+        "probabilidade": "pouco provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "interessadas",
+        "probabilidade": "pouco provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "Pouco provável",
+        "probabilidade": "pouco provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "médio",
+        "probabilidade": "",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "mudanças",
+        "probabilidade": "provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "gestão",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "descontinuidade de projetos",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "Provável",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "médio",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "mitigar",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "6, 7, 11",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "Disponibilidade dos sistemas de",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "acesso para o cidadão",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "Provável",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "muito alto",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "mitigar",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "Perda de integridade de dados",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "Provável",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "muito alto",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "mitigar",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "12,13",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "Dependência de fornecedores",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "Provável",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "alto",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "serviço",
+        "probabilidade": "pouco provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "para",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "atuação",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "transformação",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "Pouco provável",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "alto",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "Disponibilidade das equipes de TI",
+        "probabilidade": "provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "para executar a transformação",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "digital insuficiência de recursos",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "humanos para gestão e execução",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "do plano",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "Provável",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "alto",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "administração,",
+        "probabilidade": "provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "demandas",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "operacionais se sobrepõem a",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "pauta estratégica e a gestão do",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "plano",
+        "probabilidade": "provável",
+        "impacto": "baixo",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "Provável",
+        "probabilidade": "provável",
+        "impacto": "baixo",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "alto",
+        "probabilidade": "",
+        "impacto": "baixo",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "mitigar",
+        "probabilidade": "",
+        "impacto": "baixo",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "1,3,9,11",
+        "probabilidade": "",
+        "impacto": "baixo",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "Baixo",
+        "probabilidade": "provável",
+        "impacto": "baixo",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "comprometimento",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "áreas de negócio com as ações",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "pactuadas",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "IPHAN",
+        "risco_texto": "Muito provável",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      }
+    ],
+    "MESP": [
+      {
+        "orgao_sigla": "MESP",
+        "risco_texto": "Ocorrer",
+        "probabilidade": "",
+        "impacto": "muito baixo",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "MESP",
+        "risco_texto": "muito baixo;",
+        "probabilidade": "",
+        "impacto": "muito baixo",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "MESP",
+        "risco_texto": "[escolher",
+        "probabilidade": "",
+        "impacto": "baixo",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "MESP",
+        "risco_texto": "[escolher",
+        "probabilidade": "",
+        "impacto": "baixo",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MESP",
+        "risco_texto": "baixo; médio;",
+        "probabilidade": "raro",
+        "impacto": "baixo",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MESP",
+        "risco_texto": "entre:",
+        "probabilidade": "raro",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MESP",
+        "risco_texto": "entre:",
+        "probabilidade": "raro",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MESP",
+        "risco_texto": "alto; muito alto ]",
+        "probabilidade": "raro",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MESP",
+        "risco_texto": "mitigar;",
+        "probabilidade": "raro",
+        "impacto": "",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MESP",
+        "risco_texto": "raro; pouco",
+        "probabilidade": "raro",
+        "impacto": "",
+        "tratamento": "eliminar"
+      },
+      {
+        "orgao_sigla": "MESP",
+        "risco_texto": "eliminar;",
+        "probabilidade": "provável",
+        "impacto": "",
+        "tratamento": "eliminar"
+      },
+      {
+        "orgao_sigla": "MESP",
+        "risco_texto": "provável ;",
+        "probabilidade": "provável",
+        "impacto": "",
+        "tratamento": "transferir"
+      },
+      {
+        "orgao_sigla": "MESP",
+        "risco_texto": "transferir;",
+        "probabilidade": "provável",
+        "impacto": "",
+        "tratamento": "transferir"
+      },
+      {
+        "orgao_sigla": "MESP",
+        "risco_texto": "provável;",
+        "probabilidade": "provável",
+        "impacto": "",
+        "tratamento": "aceitar"
+      },
+      {
+        "orgao_sigla": "MESP",
+        "risco_texto": "aceitar;]",
+        "probabilidade": "provável",
+        "impacto": "baixo",
+        "tratamento": "aceitar"
+      },
+      {
+        "orgao_sigla": "MESP",
+        "risco_texto": "muito",
+        "probabilidade": "provável",
+        "impacto": "baixo",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "MESP",
+        "risco_texto": "provável;",
+        "probabilidade": "provável",
+        "impacto": "baixo",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "MESP",
+        "risco_texto": "praticamente",
+        "probabilidade": "praticamente certo",
+        "impacto": "baixo",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "MESP",
+        "risco_texto": "certo ]",
+        "probabilidade": "",
+        "impacto": "baixo",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "MESP",
+        "risco_texto": "Baixo",
+        "probabilidade": "pouco provável",
+        "impacto": "baixo",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "MESP",
+        "risco_texto": "engajamento",
+        "probabilidade": "pouco provável",
+        "impacto": "médio",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "MESP",
+        "risco_texto": "alta gestão",
+        "probabilidade": "pouco provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MESP",
+        "risco_texto": "Pouco",
+        "probabilidade": "pouco provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MESP",
+        "risco_texto": "provável",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MESP",
+        "risco_texto": "médio",
+        "probabilidade": "",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      }
+    ],
+    "MME": [
+      {
+        "orgao_sigla": "MME",
+        "risco_texto": "terceirizado de",
+        "probabilidade": "pouco provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "MME",
+        "risco_texto": "desenvolvimento e",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "MME",
+        "risco_texto": "manutenção de",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MME",
+        "risco_texto": "softwares",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MME",
+        "risco_texto": "Pouco",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MME",
+        "risco_texto": "provável",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MME",
+        "risco_texto": "Alto",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      }
+    ],
+    "MMULHERES": [
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "Falta de adesão das",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "partes interessadas às",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "iniciativas digitais",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "Pouco",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "Provável",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "Alto",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "- Alinhamento contínuo com as diretrizes do governo.",
+        "probabilidade": "provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "Mudanças em políticas",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "públicas que impactam os",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "serviços digitais",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "Provável",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "Alto",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "Baixa adesão dos",
+        "probabilidade": "provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "beneficiários aos serviços",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "digitais",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "Muito",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "provável",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "Muito",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "alto",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "Problemas na segurança",
+        "probabilidade": "pouco provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "e privacidade de dados",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "sensíveis",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "Pouco",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "Provável",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "Muito",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "alto",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "- Adoção de protocolos de segurança cibernética.",
+        "probabilidade": "provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "Falta de equipe",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "qualificada para execução",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "da transformação digital",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "Provável",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "Alto",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "Dependência excessiva",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "de fornecedores de",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "tecnologia",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "Muito",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "provável",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "Médio",
+        "probabilidade": "",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "Baixa priorização da",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "transformação digital pela",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "gestão",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "Pouco",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "provável",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "Alto",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "das iniciativas.",
+        "probabilidade": "provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "Desafios na",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "interoperabilidade dos",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "sistemas governamentais",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "Provável",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "Alto",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MMULHERES",
+        "risco_texto": "Descontinuidade de",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": ""
+      }
+    ],
+    "MPI": [
+      {
+        "orgao_sigla": "MPI",
+        "risco_texto": "Restrições",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MPI",
+        "risco_texto": "Orçamentárias",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MPI",
+        "risco_texto": "Provável",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MPI",
+        "risco_texto": "Alto",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MPI",
+        "risco_texto": "do projeto",
+        "probabilidade": "provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "MPI",
+        "risco_texto": "Indisponibilidade",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "MPI",
+        "risco_texto": "Recursos",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MPI",
+        "risco_texto": "Humanos",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MPI",
+        "risco_texto": "Muito provável",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MPI",
+        "risco_texto": "Muito alto",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MPI",
+        "risco_texto": "demandas",
+        "probabilidade": "provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "MPI",
+        "risco_texto": "previstas",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MPI",
+        "risco_texto": "PDTIC",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MPI",
+        "risco_texto": "Provável",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MPI",
+        "risco_texto": "Médio",
+        "probabilidade": "",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MPI",
+        "risco_texto": "atualizações/revisões",
+        "probabilidade": "provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "MPI",
+        "risco_texto": "no PDTIC",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "MPI",
+        "risco_texto": "Alterações",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MPI",
+        "risco_texto": "legislação",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MPI",
+        "risco_texto": "Provavel",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MPI",
+        "risco_texto": "Alto",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MPI",
+        "risco_texto": "Falhas",
+        "probabilidade": "provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "MPI",
+        "risco_texto": "Segurança",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MPI",
+        "risco_texto": "Informação",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MPI",
+        "risco_texto": "Provavel",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "MPI",
+        "risco_texto": "Muito alto",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      }
+    ],
+    "PRF": [
+      {
+        "orgao_sigla": "PRF",
+        "risco_texto": "PROBABILIDADE IMPACTO TRATAMENTO",
+        "probabilidade": "raro",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "PRF",
+        "risco_texto": "AÇÕES DE",
+        "probabilidade": "raro",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "PRF",
+        "risco_texto": "TRATAMENTO",
+        "probabilidade": "raro",
+        "impacto": "alto",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "PRF",
+        "risco_texto": "Alteração na Política Pública.",
+        "probabilidade": "raro",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "PRF",
+        "risco_texto": "RARO",
+        "probabilidade": "raro",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "PRF",
+        "risco_texto": "MUITO",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "PRF",
+        "risco_texto": "ALTO",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "PRF",
+        "risco_texto": "1, 2, 4, 21",
+        "probabilidade": "pouco provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "PRF",
+        "risco_texto": "Despriorização do PTD pela alta",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "PRF",
+        "risco_texto": "administração.",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "PRF",
+        "risco_texto": "POUCO",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "PRF",
+        "risco_texto": "PROVÁVEL",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "PRF",
+        "risco_texto": "ALTO",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "PRF",
+        "risco_texto": "Baixa priorização do PTD para",
+        "probabilidade": "pouco provável",
+        "impacto": "médio",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "PRF",
+        "risco_texto": "áreas de negócio com as ações",
+        "probabilidade": "pouco provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "PRF",
+        "risco_texto": "pactuadas.",
+        "probabilidade": "pouco provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "PRF",
+        "risco_texto": "POUCO",
+        "probabilidade": "pouco provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "PRF",
+        "risco_texto": "PROVÁVEL",
+        "probabilidade": "provável",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "PRF",
+        "risco_texto": "MÉDIO",
+        "probabilidade": "",
+        "impacto": "médio",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "PRF",
+        "risco_texto": "2, 3, 4, 5, 6, 7",
+        "probabilidade": "pouco provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "PRF",
+        "risco_texto": "Baixa priorização das ações do",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "PRF",
+        "risco_texto": "PTD para equipes de TI.",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "PRF",
+        "risco_texto": "POUCO",
+        "probabilidade": "pouco provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "PRF",
+        "risco_texto": "PROVÁVEL",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "PRF",
+        "risco_texto": "ALTO",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "PRF",
+        "risco_texto": "Sobrecarga",
+        "probabilidade": "provável",
+        "impacto": "",
+        "tratamento": ""
+      },
+      {
+        "orgao_sigla": "PRF",
+        "risco_texto": "equipe",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "PRF",
+        "risco_texto": "execução da transformação digital.",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "PRF",
+        "risco_texto": "PROVÁVEL",
+        "probabilidade": "provável",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      },
+      {
+        "orgao_sigla": "PRF",
+        "risco_texto": "ALTO",
+        "probabilidade": "",
+        "impacto": "alto",
+        "tratamento": "mitigar"
+      }
+    ]
+  }
+}
