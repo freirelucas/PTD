@@ -891,29 +891,51 @@ function runCompare(){
 
 // ==================== EIXOS ACCORDION (aba O que é PTD) ====================
 (function renderEixosAccordion(){
+  // Catálogo v4.0 + legados, separados por seção
   const PRODS={
-    "Serviços Digitais e Melhoria da Qualidade":{foco:"Digitalizar e evoluir serviços ao cidadão, avaliação de satisfação, acessibilidade",prods:["Disponibilização em Acesso Digital","Disponibilização de datas/cronograma na Agenda Gov.Br","Evolução do Serviço","Implantação da Área Logada Gov.Br","Implantação da Experiência LabQ","Implementação do VLIBRAS","Integração à ferramenta de acompanhamento das solicitações","Integração à ferramenta de avaliação da satisfação dos usuários","Realização de Autodiagnóstico de Qualidade","Revisão da descrição dos serviços","Oferta de agendamento digital","Integração à ferramenta de solicitação de atendimento presencial","Implantação do Atendimento Virtual"]},
-    "Unificação de Canais Digitais":{foco:"Login Único, Design System, migração para Gov.br, Pagtesouro",prods:["Implantação do Design System","Integração ao Login Único","Integração ao Pagtesouro","Integração com Assinatura Digital Gov.br","Migração de APPs móveis para a loja do Gov.br","Migração de Portal Institucional","Migração de Serviço para Plataforma Unificada"]},
-    "Governança e Gestão de Dados":{foco:"LGPD, dados abertos, interoperabilidade, Conecta Gov.br, inventário de dados",prods:["Abertura de bases de dados","Adequação à LGPD","Catalogação de bases de dados no Portal de Dados","Criação de Comitê de Governança de Dados","Elaboração de Plano de Dados Abertos","Elaboração do PDTIC","Elaboração/Revisão da POSIC","Implantação de processo de gestão de dados","Implantação do inventário de bases de dados","Implementação da interoperabilidade de dados","Integração de dados ao Conecta Gov.br","Integração de dados ao Datamart","Melhoria da qualidade de bases de dados","Nomeação de Encarregado de Dados Pessoais","Obtenção de certificação de bases de dados","Publicação de dados no Portal de Dados Abertos","Realização de Inventário de Dados","Relatório de Impacto à Proteção de Dados Pessoais","Resposta a demandas de compartilhamento","Utilização de dados do Conecta Gov.br"]},
-    "Segurança e Privacidade":{foco:"Framework de privacidade, maturidade em segurança (PPSI na prática)",prods:["Adequação ao Framework de Privacidade e Segurança da Informação","Elevação do nível de maturidade em privacidade e segurança"]},
-    "Projetos Especiais":{foco:"Iniciativas de transformação digital e projetos estratégicos",prods:["Iniciativa de Transformação Digital","Projeto Especial de Transformação Digital"]},
+    "Serviços Digitais e Melhoria da Qualidade":{foco:"Digitalizar e evoluir serviços ao cidadão, avaliação de satisfação, acessibilidade",
+      prods:["Disponibilização em Acesso Digital","Disponibilização de datas/cronograma na Agenda Gov.Br","Evolução do Serviço","Implantação da Área Logada Gov.Br","Implantação da Experiência LabQ","Implementação do VLIBRAS","Integração à ferramenta de acompanhamento das solicitações","Integração à ferramenta de avaliação da satisfação dos usuários","Realização de Autodiagnóstico de Qualidade","Revisão da descrição dos serviços","Oferta de agendamento digital","Integração à ferramenta de solicitação de atendimento presencial","Implantação do Atendimento Virtual"],
+      legados:["Digitalização de Serviço"]},
+    "Unificação de Canais Digitais":{foco:"Login Único, Design System, migração para Gov.br, Pagtesouro",
+      prods:["Implantação do Design System","Integração ao Login Único","Integração ao Pagtesouro","Integração com Assinatura Digital Gov.br","Migração de APPs móveis para a loja do Gov.br","Migração de Portal Institucional","Migração de Serviço para Plataforma Unificada"],legados:[]},
+    "Governança e Gestão de Dados":{foco:"LGPD, dados abertos, interoperabilidade, Conecta Gov.br, inventário de dados",
+      prods:["Abertura de bases de dados","Adequação à LGPD","Catalogação de bases de dados no Portal de Dados","Criação de Comitê de Governança de Dados","Elaboração de Plano de Dados Abertos","Elaboração do PDTIC","Elaboração/Revisão da POSIC","Implantação de processo de gestão de dados","Implantação do inventário de bases de dados","Implementação da interoperabilidade de dados","Integração de dados ao Conecta Gov.br","Integração de dados ao Datamart","Melhoria da qualidade de bases de dados","Nomeação de Encarregado de Dados Pessoais","Obtenção de certificação de bases de dados","Publicação de dados no Portal de Dados Abertos","Realização de Inventário de Dados","Relatório de Impacto à Proteção de Dados Pessoais","Resposta a demandas de compartilhamento","Utilização de dados do Conecta Gov.br"],
+      legados:["Integração à base de dados","Interoperabilidade de Sistemas"]},
+    "Segurança e Privacidade":{foco:"Framework de privacidade, maturidade em segurança (PPSI na prática)",
+      prods:["Adequação ao Framework de Privacidade e Segurança da Informação","Elevação do nível de maturidade em privacidade e segurança"],
+      legados:["Implementação do PPSI","Adequação ao PPSI","Auto-avaliação, análise de lacunas e planejamento do PPSI"]},
+    "Projetos Especiais":{foco:"Iniciativas de transformação digital e projetos estratégicos",
+      prods:["Iniciativa de Transformação Digital","Projeto Especial de Transformação Digital"],legados:[]},
   };
   const el=document.getElementById('eixos-accordion');
   if(!el)return;
-  // Count actual deliveries per product
   const prodCounts={};allDel.forEach(d=>{prodCounts[d.produto_normalizado]=(prodCounts[d.produto_normalizado]||0)+1;});
   let html='';
   Object.entries(PRODS).forEach(([eixo,info])=>{
-    const totalEixo=info.prods.reduce((s,p)=>s+(prodCounts[p]||0),0);
+    const allProds=[...info.prods,...(info.legados||[])];
+    const totalEixo=allProds.reduce((s,p)=>s+(prodCounts[p]||0),0);
+    const nCatalogo=info.prods.length;
+    const nLegados=info.legados?.length||0;
     html+=`<div class="chart-container" style="padding:0;margin-bottom:8px">`;
-    html+=`<details><summary style="padding:14px 16px;cursor:pointer;font-weight:600;color:var(--dark);list-style:none;display:flex;justify-content:space-between;align-items:center"><span>${eixo}</span><span style="font-size:.8rem;color:var(--muted)">${info.prods.length} produtos | ${totalEixo.toLocaleString('pt-BR')} entregas</span></summary>`;
+    html+=`<details><summary style="padding:14px 16px;cursor:pointer;font-weight:600;color:var(--dark);list-style:none;display:flex;justify-content:space-between;align-items:center"><span>${eixo}</span><span style="font-size:.8rem;color:var(--muted)">${nCatalogo} canônicos${nLegados?' + '+nLegados+' legados':''} · ${totalEixo.toLocaleString('pt-BR')} entregas</span></summary>`;
     html+=`<div style="padding:0 16px 14px"><p style="font-size:.83rem;color:var(--muted);margin-bottom:10px">${info.foco}</p>`;
-    html+=`<table><thead><tr><th>Produto</th><th style="width:100px;text-align:right">Entregas</th></tr></thead><tbody>`;
+    html+=`<table><thead><tr><th>Produto</th><th style="width:80px;text-align:right">Entregas</th><th style="width:80px;text-align:right">Órgãos</th><th style="width:60px">Origem</th></tr></thead><tbody>`;
+    // Contar órgãos por produto
+    const prodOrgs={};allDel.forEach(d=>{if(!prodOrgs[d.produto_normalizado])prodOrgs[d.produto_normalizado]=new Set();prodOrgs[d.produto_normalizado].add(d.orgao_sigla);});
+    // Canônicos primeiro
     info.prods.forEach(p=>{
-      const c=prodCounts[p]||0;
+      const c=prodCounts[p]||0;const no=prodOrgs[p]?.size||0;
       const color=c>100?'var(--green)':c>0?'var(--text)':'var(--red)';
-      html+=`<tr><td style="color:${color}">${p}</td><td style="text-align:right;font-weight:600;color:${color}">${c>0?c.toLocaleString('pt-BR'):'—'}</td></tr>`;
+      html+=`<tr><td style="color:${color}">${p}</td><td style="text-align:right;font-weight:600;color:${color}">${c>0?c.toLocaleString('pt-BR'):'—'}</td><td style="text-align:right;color:${color}">${no>0?no:'—'}</td><td style="font-size:.75rem;color:var(--muted)">v4.0</td></tr>`;
     });
+    // Legados
+    if(info.legados?.length){
+      info.legados.forEach(p=>{
+        const c=prodCounts[p]||0;const no=prodOrgs[p]?.size||0;
+        const color=c>100?'#8E44AD':c>0?'#8E44AD':'var(--red)';
+        html+=`<tr style="background:#f9f5ff"><td style="color:${color}">${p} <em style="font-size:.7rem">(legado)</em></td><td style="text-align:right;font-weight:600;color:${color}">${c>0?c.toLocaleString('pt-BR'):'—'}</td><td style="text-align:right;color:${color}">${no>0?no:'—'}</td><td style="font-size:.75rem;color:#8E44AD">v2.x</td></tr>`;
+      });
+    }
     html+=`</tbody></table></div></details></div>`;
   });
   el.innerHTML=html;
