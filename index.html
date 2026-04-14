@@ -810,36 +810,70 @@ function openOrganModal(sigla){
   if(!o) return;
   const del=PTD_DELIVERIES[sigla]||[];
   const risks=PTD_RISKS[sigla]||[];
-  let html=`<h2>${sigla}</h2><div class="meta">`;
+  const orgDate=typeof PTD_DATES!=='undefined'?PTD_DATES[sigla]:'';
+
+  // Header + meta
+  let html=`<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px">`;
+  html+=`<div><h2 style="margin-bottom:4px">${sigla}</h2><div class="meta" style="margin-bottom:0">`;
   if(o.grupo) html+=`<span>Grupo: <b>${o.grupo}</b></span>`;
   html+=`<span>Entregas: <b>${o.n_entregas}</b></span><span>Riscos: <b>${o.n_riscos}</b></span>`;
-  const orgDate=typeof PTD_DATES!=='undefined'?PTD_DATES[sigla]:'';
   if(orgDate) html+=`<span>Assinatura: <b>${orgDate}</b></span>`;
-  if(o.url_diretivo) html+=`<a href="${o.url_diretivo}" target="_blank">PDF Diretivo</a>`;
-  if(o.url_entregas) html+=`<a href="${o.url_entregas}" target="_blank">PDF Entregas</a>`;
-  html+=`</div>`;
-  // Eixo chart
+  html+=`</div></div><div style="display:flex;gap:8px">`;
+  if(o.url_diretivo) html+=`<a href="${o.url_diretivo}" target="_blank" style="font-size:.8rem;color:var(--accent)">PDF Diretivo</a>`;
+  if(o.url_entregas) html+=`<a href="${o.url_entregas}" target="_blank" style="font-size:.8rem;color:var(--accent)">PDF Entregas</a>`;
+  html+=`</div></div>`;
+
+  // Two-column layout: left = chart + summary, right = tabs
+  html+=`<div style="display:grid;grid-template-columns:280px 1fr;gap:16px">`;
+
+  // Left column: compact bar chart + stats
+  html+=`<div>`;
   if(o.eixo_breakdown && Object.keys(o.eixo_breakdown).length){
-    html+=`<div class="chart-container"><h3>Entregas por Eixo</h3><canvas id="modal-eixo" height="150"></canvas></div>`;
+    html+=`<canvas id="modal-eixo" height="140"></canvas>`;
   }
-  // Deliveries table
+  // Product breakdown as compact list
+  if(o.produto_breakdown){
+    const prods=Object.entries(o.produto_breakdown).sort((a,b)=>b[1]-a[1]).slice(0,8);
+    const maxP=prods[0]?.[1]||1;
+    html+=`<div style="margin-top:12px;font-size:.78rem">`;
+    prods.forEach(([p,c])=>{
+      const w=c/maxP*100;
+      html+=`<div style="margin-bottom:3px;display:flex;align-items:center;gap:6px"><div style="flex:1;background:var(--bg);border-radius:2px;height:10px;overflow:hidden"><div style="width:${w}%;height:100%;background:var(--accent);border-radius:2px"></div></div><span style="min-width:24px;text-align:right;font-weight:600">${c}</span><span style="color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:140px" title="${p}">${p}</span></div>`;
+    });
+    html+=`</div>`;
+  }
+  html+=`</div>`;
+
+  // Right column: tabbed entregas/riscos
+  html+=`<div>`;
+  // Entregas table
   if(del.length){
-    html+=`<div class="chart-container"><h3>Entregas (${del.length})</h3><div class="table-wrap" style="max-height:300px"><table><thead><tr><th>Serviço/Ação</th><th>Produto</th><th>Eixo</th><th>Data</th></tr></thead><tbody>`;
-    del.forEach(d=>html+=`<tr><td>${(d.servico_acao||'').substring(0,60)}</td><td>${d.produto_normalizado}</td><td>${(d.eixo_normalizado||'').substring(0,25)}</td><td>${d.data_pactuada||''}</td></tr>`);
-    html+=`</tbody></table></div></div>`;
+    html+=`<div style="margin-bottom:12px"><strong style="font-size:.85rem">Entregas (${del.length})</strong></div>`;
+    html+=`<div class="table-wrap" style="max-height:250px"><table><thead><tr><th>Serviço/Ação</th><th>Produto</th><th>Data</th></tr></thead><tbody>`;
+    del.forEach(d=>html+=`<tr><td>${(d.servico_acao||'').substring(0,50)}</td><td style="font-size:.8rem">${d.produto_normalizado}</td><td style="font-size:.8rem">${d.data_pactuada||''}</td></tr>`);
+    html+=`</tbody></table></div>`;
   }
   // Risks table
   if(risks.length){
-    html+=`<div class="chart-container"><h3>Riscos (${risks.length})</h3><div class="table-wrap" style="max-height:300px"><table><thead><tr><th>Risco</th><th>Prob.</th><th>Impacto</th><th>Tratamento</th></tr></thead><tbody>`;
-    risks.forEach(r=>html+=`<tr><td>${(r.risco_texto||'').substring(0,60)}</td><td>${r.probabilidade_normalizada||''}</td><td>${r.impacto_normalizado||''}</td><td>${r.tratamento_normalizado||''}</td></tr>`);
-    html+=`</tbody></table></div></div>`;
+    html+=`<div style="margin:12px 0 8px"><strong style="font-size:.85rem">Riscos (${risks.length})</strong></div>`;
+    html+=`<div class="table-wrap" style="max-height:200px"><table><thead><tr><th>Risco</th><th>Prob.</th><th>Imp.</th><th>Trat.</th></tr></thead><tbody>`;
+    risks.forEach(r=>html+=`<tr><td>${(r.risco_texto||'').substring(0,50)}</td><td style="font-size:.78rem">${r.probabilidade_normalizada||''}</td><td style="font-size:.78rem">${r.impacto_normalizado||''}</td><td style="font-size:.78rem">${r.tratamento_normalizado||''}</td></tr>`);
+    html+=`</tbody></table></div>`;
   }
+  if(!del.length&&!risks.length) html+=`<p style="color:var(--muted)">Sem dados extraídos para este órgão.</p>`;
+  html+=`</div></div>`; // close grid
+
   document.getElementById('modal-body').innerHTML=html;
   document.getElementById('modal-overlay').classList.add('active');
-  // Render modal chart
+
+  // Render compact horizontal bar (not donut)
   if(o.eixo_breakdown && Object.keys(o.eixo_breakdown).length){
     setTimeout(()=>{
-      new Chart(document.getElementById('modal-eixo'),{type:'doughnut',data:{labels:Object.keys(o.eixo_breakdown),datasets:[{data:Object.values(o.eixo_breakdown),backgroundColor:COLORS}]},options:{plugins:{legend:{position:'right'}}}});
+      const eb=o.eixo_breakdown;
+      const labels=Object.keys(eb).map(e=>e.substring(0,20));
+      new Chart(document.getElementById('modal-eixo'),{type:'bar',data:{
+        labels,datasets:[{data:Object.values(eb),backgroundColor:COLORS.slice(0,labels.length),borderRadius:3}]
+      },options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{display:false,beginAtZero:true},y:{grid:{display:false},ticks:{font:{size:10}}}},animation:{duration:400}}});
     },100);
   }
 }
