@@ -119,6 +119,7 @@ tr:hover td{background:var(--light)}
     <a href="#organs" onclick="showSection('organs')"><span class="icon">&#9733;</span><span>Órgãos</span></a>
     <a href="#compare" onclick="showSection('compare')"><span class="icon">&#8596;</span><span>Comparação</span></a>
     <a href="#insights" onclick="showSection('insights')"><span class="icon">&#9881;</span><span>Insights</span></a>
+    <a href="#ptd-method" onclick="showSection('ptd-method')"><span class="icon">&#9776;</span><span>O que é o PTD</span></a>
     <a href="#methodology" onclick="showSection('methodology')"><span class="icon">&#9998;</span><span>Nota Técnica</span></a>
   </nav>
   <div class="info">Dados: gov.br/governodigital<br>Atualizado: 2026-04-14</div>
@@ -208,6 +209,99 @@ tr:hover td{background:var(--light)}
   <h2>Insights</h2>
   <p class="desc">Achados analíticos derivados do corpus de 91 órgãos. Os números são calculados dinamicamente a partir dos dados extraídos.</p>
   <div id="insights-content"></div>
+</div>
+
+<!-- ===== O QUE É O PTD ===== -->
+<div id="ptd-method" class="section">
+  <h2>O que é o Plano de Transformação Digital</h2>
+  <div class="prose">
+    <h3>1. Marco Legal e Institucional</h3>
+    <p>O Plano de Transformação Digital (PTD) é um instrumento de planejamento e pactuação instituído pelo <strong>Decreto nº 12.198, de 24 de setembro de 2024</strong>, que estabelece a <strong>Estratégia Federal de Governo Digital (EFGD) 2024-2027</strong>. A regulamentação operacional é dada pela <strong>Portaria SGD/MGI nº 6.618/2024</strong>.</p>
+    <p>Cada órgão e entidade da administração pública federal direta e indireta autárquica e fundacional deve elaborar seu PTD em parceria com a <strong>Secretaria de Governo Digital (SGD)</strong> do Ministério da Gestão e da Inovação em Serviços Públicos (MGI).</p>
+    <p>Referência: <a href="https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital" target="_blank">Portal Gov.br — Planos de Transformação Digital</a></p>
+
+    <h3>2. Metodologia de Elaboração — Guia 10 Passos</h3>
+    <p>A SGD disponibiliza o <a href="https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/kit-de-elaboracao-ptd" target="_blank">Kit de Elaboração do PTD</a>, que inclui templates e um guia referencial. O processo segue aproximadamente 10 etapas:</p>
+    <ol>
+      <li><strong>Contextualização estratégica</strong> — alinhamento com a EFGD e planejamento institucional</li>
+      <li><strong>Definição de escopo e vigência</strong> — período de 2 a 3 anos, tipicamente alinhado à EFGD</li>
+      <li><strong>Mapeamento de serviços</strong> — levantamento dos serviços públicos do órgão</li>
+      <li><strong>Priorização de ações</strong> — seleção de quais serviços serão digitalizados/evoluídos</li>
+      <li><strong>Planejamento de entregas</strong> — definição de produtos, eixos, prazos e responsáveis</li>
+      <li><strong>Alinhamento com a EFGD</strong> — mapeamento para os 5 eixos e 44 produtos canônicos</li>
+      <li><strong>Identificação de riscos</strong> — tabela com probabilidade, impacto, tratamento e ações (conforme <a href="https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital-ifes/Modelo-Gestao-Riscos/orientacoes-gestaoriscos_v1-1.docx" target="_blank">Orientações de Gestão de Riscos</a>)</li>
+      <li><strong>Definição de governança</strong> — comitê, ponto focal, gerente de projeto</li>
+      <li><strong>Pactuação formal</strong> — assinatura entre dirigente do órgão e SGD/MGI</li>
+      <li><strong>Monitoramento</strong> — acompanhamento periódico com a CGREP/SGD</li>
+    </ol>
+
+    <h3>3. Estrutura dos Documentos</h3>
+    <p>Cada PTD é composto por dois documentos principais:</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:12px 0">
+      <div class="kpi" style="border-left:4px solid var(--primary)">
+        <div class="label">Documento Diretivo</div>
+        <p style="font-size:.85rem;margin-top:8px">Contexto do órgão, escopo, vigência, signatários, estratégia de monitoramento e a <strong>tabela de gestão de riscos</strong> com 5 colunas: risco, probabilidade de ocorrer, impacto, opção de tratamento, ações de tratamento. Template atual: <code>DocDiretivo_Minuta_v2.2</code></p>
+      </div>
+      <div class="kpi" style="border-left:4px solid var(--accent)">
+        <div class="label">Anexo de Entregas</div>
+        <p style="font-size:.85rem;margin-top:8px">Três tabelas: <strong>entregas pactuadas</strong> (serviço/ação, produto, eixo, área, data), <strong>entregas concluídas</strong> e <strong>serviços cancelados</strong> (com justificativa). Template atual: <code>Anexo_de_Entregas_v4.0</code></p>
+      </div>
+    </div>
+
+    <h3>4. Evolução dos Templates e Vocabulários</h3>
+    <p>Os templates de PTD passaram por diversas versões, refletindo a evolução da política de governo digital:</p>
+    <table style="margin:12px 0">
+      <thead><tr><th>Era</th><th>Período</th><th>Eixos</th><th>Template Entregas</th><th>Características</th></tr></thead>
+      <tbody>
+        <tr><td><strong>EGD 2020-2022</strong></td><td>2020-2023</td><td>Diferentes (ex: "Transformação Digital de Serviços Públicos", "Governo como Plataforma", "Identidade Digital do Cidadão")</td><td>Sem versão padronizada</td><td>Documento único (sem separação Diretivo/Entregas), formato narrativo, seções numeradas. Ex: FIOCRUZ</td></tr>
+        <tr><td><strong>Transição</strong></td><td>2024-2026</td><td>5 eixos atuais (parcial)</td><td>v2.1</td><td>Tabela padronizada introduzida, mas alguns produtos ainda não consolidados. Surge PPSI. Ex: ANCINE, FCP</td></tr>
+        <tr><td><strong>EFGD 2024-2027</strong></td><td>2025-2027</td><td>5 eixos canônicos</td><td>v2.2 / v4.0</td><td>44 produtos canônicos, 3 tabelas de entregas, template de riscos padronizado. Maioria dos PTDs vigentes</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Impacto na base de dados:</strong> Para garantir coerência, o pipeline de extração inclui:</p>
+    <ul>
+      <li><strong>10 produtos legados</strong> mapeados aos eixos atuais (ex: "Implementação do PPSI" → Segurança e Privacidade)</li>
+      <li><strong>19 aliases de produto</strong> para variações de texto (ex: "Integração ao Login Unico" → "Integração ao Login Único")</li>
+      <li><strong>10 aliases de eixo</strong> para nomenclaturas da EGD 2020 (ex: "Governo como Plataforma" → "Unificação de Canais Digitais")</li>
+      <li><strong>Detecção automática de formato legado</strong> para PDFs no estilo pré-EFGD</li>
+      <li><strong>Campos original + normalizado</strong> preservados em todas as classificações</li>
+    </ul>
+
+    <h3>5. Apreciação Crítica do Portal Gov.br</h3>
+    <p>Após a coleta e análise dos 177 PDFs de 91 órgãos, algumas observações sobre o ecossistema:</p>
+
+    <div class="insight-card" style="border-left-color:var(--green)"><h4>Pontos Positivos</h4><p>
+      <strong>Transparência</strong>: todos os PTDs assinados estão publicados abertamente no portal, com links diretos para os PDFs — um bom exemplo de dados governamentais acessíveis.<br>
+      <strong>Padronização crescente</strong>: a evolução dos templates (v2.1 → v4.0) mostra esforço real de uniformização do vocabulário e das categorias.<br>
+      <strong>Cobertura ampla</strong>: 91 órgãos signatários abrangem praticamente toda a administração federal direta, autarquias e fundações.
+    </p></div>
+
+    <div class="insight-card" style="border-left-color:var(--yellow)"><h4>Oportunidades de Melhoria</h4><p>
+      <strong>Formato dos PDFs</strong>: ~15% dos documentos são PDFs escaneados (imagem), impossibilitando extração automática de texto. Publicar como PDF nativo (text-based) ou em formato aberto (ODF, CSV) melhoraria drasticamente a acessibilidade dos dados.<br>
+      <strong>Estrutura HTML do portal</strong>: a lista de órgãos usa formatação visual (<code>&lt;strong&gt;</code> dentro de <code>&lt;td&gt;</code>) sem marcação semântica. Uma API REST ou um JSON/CSV público da lista de órgãos e URLs simplificaria o reuso.<br>
+      <strong>Versionamento de dados</strong>: quando um PTD é repactuado, a versão anterior desaparece. Um histórico versionado permitiria análise longitudinal.<br>
+      <strong>Metadados estruturados</strong>: os PDFs não contêm metadados padronizados (sigla do órgão, vigência, versão do template). Incluir esses dados como propriedades do PDF facilitaria catálogos automáticos.
+    </p></div>
+
+    <div class="insight-card" style="border-left-color:var(--red)"><h4>Desafios para Análise Automatizada</h4><p>
+      <strong>Variabilidade de formato</strong>: mesmo dentro da mesma versão de template, cada órgão formata tabelas de forma ligeiramente diferente — colunas partidas em linhas, headers com quebras, acentuação inconsistente.<br>
+      <strong>Tabelas multi-página</strong>: a tabela de riscos frequentemente tem o header na página N e os dados na página N+1, exigindo lógica de merge.<br>
+      <strong>Referências numéricas</strong>: a coluna "ações de tratamento" frequentemente contém referências numéricas ("1, 2, 9") a uma lista que aparece DEPOIS da tabela — não é autocontida.<br>
+      <strong>Órgãos agrupados</strong>: 7 grupos ministeriais compartilham PDFs entre múltiplos órgãos, nem sempre com separação clara de qual entrega pertence a qual entidade.
+    </p></div>
+
+    <h3>6. Os 5 Eixos da EFGD 2024-2027</h3>
+    <table style="margin:12px 0">
+      <thead><tr><th>Eixo</th><th>Produtos</th><th>Foco</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Serviços Digitais e Melhoria da Qualidade</strong></td><td>13</td><td>Digitalizar e evoluir serviços ao cidadão, avaliação de satisfação, acessibilidade</td></tr>
+        <tr><td><strong>Unificação de Canais Digitais</strong></td><td>7</td><td>Login Único, Design System, migração para Gov.br, Pagtesouro</td></tr>
+        <tr><td><strong>Governança e Gestão de Dados</strong></td><td>20</td><td>LGPD, dados abertos, interoperabilidade, Conecta Gov.br, inventário de dados</td></tr>
+        <tr><td><strong>Segurança e Privacidade</strong></td><td>2</td><td>Framework de privacidade, maturidade em segurança (PPSI na prática)</td></tr>
+        <tr><td><strong>Projetos Especiais</strong></td><td>2</td><td>Iniciativas de transformação digital e projetos estratégicos</td></tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <!-- ===== NOTA TÉCNICA ===== -->
