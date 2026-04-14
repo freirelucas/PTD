@@ -118,6 +118,7 @@ tr:hover td{background:var(--light)}
     <div class="chart-container"><h3>Entregas por Eixo Estratégico</h3><canvas id="chart-eixo"></canvas></div>
     <div class="chart-container"><h3>Cobertura de Extração</h3><canvas id="chart-coverage"></canvas></div>
   </div>
+  <div class="chart-container" id="gaps-section"><h3>Órgãos sem Dados — Motivos</h3><div id="gaps-content"></div></div>
   <div class="chart-container"><h3>Top 10 Produtos</h3><div class="table-wrap" id="top-produtos-table"></div></div>
   <div class="chart-container"><h3>Figuras Pré-Geradas</h3><div class="figures-grid" id="figures-grid"></div></div>
 </div>
@@ -252,6 +253,39 @@ function initOverview(){
   sorted.forEach(([p,c],i)=>{ html+=`<tr><td>${i+1}</td><td>${p}</td><td>${c.toLocaleString('pt-BR')}</td><td>${(c/allDel.length*100).toFixed(1)}%</td></tr>`; });
   html+='</tbody></table>';
   document.getElementById('top-produtos-table').innerHTML=html;
+
+  // Gaps — órgãos sem dados e motivos
+  const noData = PTD_ORGANS.filter(o => o.n_entregas === 0 && o.n_riscos === 0);
+  const noEntregas = PTD_ORGANS.filter(o => o.n_entregas === 0);
+  const noRiscos = PTD_ORGANS.filter(o => o.n_riscos === 0 && o.pdf_diretivo);
+  const scans = PTD_ORGANS.filter(o => o.status_entregas === 'scan_ou_formato' || o.status_riscos === 'scan');
+  const semPdf = PTD_ORGANS.filter(o => !o.pdf_diretivo);
+
+  let gapHtml = `<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">`;
+  gapHtml += `<div class="kpi" style="border-left:4px solid var(--red)"><div class="label">Principal causa</div><div class="value" style="font-size:1.3rem">PDF Escaneado (imagem)</div><div class="sub">${scans.length} órgãos com PDFs sem texto extraível — necessitam OCR (Docling no Colab)</div></div>`;
+  gapHtml += `<div class="kpi" style="border-left:4px solid var(--yellow)"><div class="label">Outras causas</div><div class="value" style="font-size:1.3rem">${semPdf.length} sem PDF Diretivo</div><div class="sub">${semPdf.map(o=>o.sigla).join(', ')} — gov.br não publica Documento Diretivo para esses órgãos</div></div>`;
+  gapHtml += `</div>`;
+
+  // Tabela de órgãos sem dados
+  gapHtml += `<div class="table-wrap" style="max-height:350px"><table><thead><tr><th>Órgão</th><th>Grupo</th><th>Entregas</th><th>Riscos</th><th>Motivo</th></tr></thead><tbody>`;
+  const problemOrgs = PTD_ORGANS.filter(o => o.n_entregas === 0 || o.n_riscos === 0).sort((a,b) => (a.n_entregas+a.n_riscos) - (b.n_entregas+b.n_riscos));
+  problemOrgs.forEach(o => {
+    let motivo = '';
+    if (!o.pdf_diretivo && !o.pdf_entregas) motivo = 'Sem PDFs no site';
+    else if (o.status_entregas === 'scan_ou_formato') motivo = 'PDF escaneado (entregas) — precisa OCR';
+    else if (o.status_riscos === 'scan' && o.n_entregas > 0) motivo = 'PDF diretivo escaneado — precisa OCR';
+    else if (o.status_riscos === 'scan') motivo = 'PDFs escaneados — precisa OCR';
+    else if (!o.pdf_diretivo) motivo = 'Sem Documento Diretivo no site';
+    else if (o.n_riscos === 0) motivo = 'Tabela de riscos não detectada (formato diferente ou imagem)';
+    else motivo = 'Formato não reconhecido';
+    const eIcon = o.n_entregas > 0 ? '&#10003;' : '&#10007;';
+    const rIcon = o.n_riscos > 0 ? '&#10003;' : '&#10007;';
+    const eColor = o.n_entregas > 0 ? 'var(--green)' : 'var(--red)';
+    const rColor = o.n_riscos > 0 ? 'var(--green)' : 'var(--red)';
+    gapHtml += `<tr><td><b>${o.sigla}</b></td><td>${o.grupo || '—'}</td><td style="color:${eColor}">${eIcon} ${o.n_entregas}</td><td style="color:${rColor}">${rIcon} ${o.n_riscos}</td><td>${motivo}</td></tr>`;
+  });
+  gapHtml += `</tbody></table></div>`;
+  document.getElementById('gaps-content').innerHTML = gapHtml;
 
   // Figures
   const figs=[{f:'01_entregas_por_eixo.png',c:'Entregas por Eixo'},{f:'02_top20_produtos.png',c:'Top 20 Produtos'},{f:'03_top30_orgaos_entregas.png',c:'Top 30 Órgãos'},{f:'04_matriz_riscos.png',c:'Matriz de Riscos'},{f:'05_tratamento_riscos.png',c:'Tratamento'},{f:'06_prob_impacto_dist.png',c:'Probabilidade × Impacto'},{f:'07_cobertura.png',c:'Cobertura'}];
