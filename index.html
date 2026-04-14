@@ -6,9 +6,10 @@
 <title>PTD Dashboard — Planos de Transformação Digital</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
-:root{--primary:#015f96;--dark:#1a1a2e;--accent:#2b7bba;--light:#f0f5fa;--bg:#f7f9fb;--card:#fff;--text:#2d2d2d;--muted:#5a6a7a;--border:#d4dbe3;--green:#168821;--yellow:#e87722;--red:#cc1a1a;--radius:6px}
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&display=swap');
+:root{--primary:#264A7F;--dark:#1B3A5C;--accent:#4D8AC9;--light:#E8EEF4;--bg:#F2F2F2;--card:#FFFFFF;--text:#333333;--muted:#666666;--border:#D4D4D4;--green:#27AE60;--yellow:#E67E22;--red:#C0392B;--radius:4px}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);display:flex;min-height:100vh}
+body{font-family:'Source Sans 3','Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);display:flex;min-height:100vh;font-size:14px;line-height:1.55}
 /* Sidebar */
 .sidebar{width:220px;background:var(--dark);color:#fff;position:fixed;top:0;left:0;height:100vh;display:flex;flex-direction:column;z-index:100}
 .sidebar h1{font-size:1.1rem;padding:20px 16px;border-bottom:1px solid rgba(255,255,255,.15);letter-spacing:.5px}
@@ -16,7 +17,7 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--
 .sidebar nav{flex:1;padding:8px 0}
 .sidebar nav a{display:flex;align-items:center;gap:10px;padding:12px 20px;color:rgba(255,255,255,.75);text-decoration:none;font-size:.9rem;border-left:3px solid transparent;transition:all .2s}
 .sidebar nav a:hover{background:rgba(255,255,255,.08);color:#fff}
-.sidebar nav a.active{background:rgba(255,255,255,.12);color:#fff;border-left-color:var(--accent)}
+.sidebar nav a.active{background:rgba(255,255,255,.15);color:#fff;border-left-color:#7AAFDB}
 .sidebar nav a .icon{font-size:1.1rem;width:22px;text-align:center}
 .sidebar .info{padding:16px;font-size:.7rem;color:rgba(255,255,255,.4);border-top:1px solid rgba(255,255,255,.1)}
 /* Main */
@@ -25,12 +26,12 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--
 .section.active{display:block}
 /* Cards */
 .kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:24px}
-.kpi{background:var(--card);border-radius:var(--radius);padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.kpi{background:var(--card);border-radius:var(--radius);padding:20px;box-shadow:0 1px 2px rgba(0,0,0,.06);border-top:3px solid var(--primary)}
 .kpi .label{font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
-.kpi .value{font-size:2rem;font-weight:700;color:var(--primary);margin-top:4px}
+.kpi .value{font-size:2rem;font-weight:700;color:var(--dark);margin-top:4px}
 .kpi .sub{font-size:.75rem;color:var(--muted);margin-top:2px}
 /* Charts */
-.chart-container{background:var(--card);border-radius:var(--radius);padding:20px;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.chart-container{background:var(--card);border-radius:var(--radius);padding:20px;margin-bottom:20px;box-shadow:0 1px 2px rgba(0,0,0,.06)}
 .chart-container h3{margin-bottom:12px;font-size:1rem;color:var(--dark)}
 .chart-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
 .chart-sm canvas{max-height:250px}
@@ -43,7 +44,7 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--
 .prose li{margin-bottom:6px}
 .prose code{background:var(--light);padding:2px 6px;border-radius:4px;font-size:.85rem}
 .prose a{color:var(--accent)}
-.insight-card{background:var(--card);border-radius:var(--radius);padding:20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.08);border-left:4px solid var(--accent)}
+.insight-card{background:var(--card);border-radius:var(--radius);padding:20px;margin-bottom:16px;box-shadow:0 1px 2px rgba(0,0,0,.06);border-left:4px solid var(--primary)}
 .action-bar{display:flex;align-items:center;gap:8px;padding:8px 12px;margin-bottom:4px;background:var(--bg);border-radius:var(--radius);cursor:pointer;transition:background .2s;border-left:4px solid var(--accent)}
 .action-bar:hover{background:var(--light)}
 .action-bar.selected{background:var(--light);border-left-color:var(--primary)}
@@ -55,10 +56,10 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--
 .action-detail table{font-size:.8rem}
 .insight-card h4{color:var(--dark);margin-bottom:6px;font-size:.95rem}
 .insight-card p{color:var(--text);font-size:.88rem;line-height:1.5;margin:0}
-.insight-card .num{font-size:1.4rem;font-weight:700;color:var(--primary)}
+.insight-card .num{font-size:1.4rem;font-weight:700;color:var(--dark)}
 /* Tables */
 table{width:100%;border-collapse:collapse;font-size:.85rem}
-th{background:var(--primary);color:#fff;padding:10px 12px;text-align:left;font-weight:600;position:sticky;top:0}
+th{background:var(--dark);color:#fff;padding:10px 12px;text-align:left;font-weight:600;position:sticky;top:0;font-size:.8rem;text-transform:uppercase;letter-spacing:.3px}
 td{padding:8px 12px;border-bottom:1px solid var(--border)}
 tr:hover td{background:var(--light)}
 .table-wrap{background:var(--card);border-radius:var(--radius);overflow:auto;max-height:500px;box-shadow:0 1px 3px rgba(0,0,0,.08);margin-bottom:20px}
@@ -84,7 +85,7 @@ tr:hover td{background:var(--light)}
 .risk-matrix .row-label:hover{transform:none;box-shadow:none}
 /* Organ Cards */
 .organ-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:20px}
-.organ-card{background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.08);cursor:pointer;transition:box-shadow .2s;border-left:4px solid var(--green)}
+.organ-card{background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:0 1px 2px rgba(0,0,0,.06);cursor:pointer;transition:box-shadow .2s;border-left:4px solid var(--green)}
 .organ-card:hover{box-shadow:0 4px 12px rgba(0,0,0,.15)}
 .organ-card.partial{border-left-color:var(--yellow)}
 .organ-card.failed{border-left-color:var(--red)}
@@ -378,8 +379,8 @@ const EIXOS = ["Serviços Digitais e Melhoria da Qualidade","Unificação de Can
 const PROB_ORDER = ["raro","pouco provável","provável","muito provável","praticamente certo"];
 const IMP_ORDER = ["muito baixo","baixo","médio","alto","muito alto"];
 const TRAT = ["mitigar","eliminar","transferir","aceitar"];
-// Paleta ipeaplot-inspired
-const COLORS = ["#015f96","#168821","#e87722","#cc1a1a","#6a3d9a","#2b7bba","#33a02c","#ff7f00","#e31a1c","#8856a7"];
+// Paleta ipeaplot — categórica institucional IPEA
+const COLORS = ["#264A7F","#C0392B","#27AE60","#E67E22","#8E44AD","#2980B9","#D35400","#16A085","#4D8AC9","#7F8C8D"];
 
 // Build action index: parse acoes_resolvidas to extract numbered actions
 const ACTION_INDEX = {}; // action_id -> {text, risks: [risk objects]}
@@ -438,7 +439,7 @@ function initOverview(){
   const covOk=PTD_ORGANS.filter(o=>o.status_entregas==='ok').length;
   const covScan=PTD_ORGANS.filter(o=>o.status_entregas==='scan_ou_formato').length;
   const covNone=PTD_ORGANS.filter(o=>o.status_entregas==='sem_pdf').length;
-  charts.cov = new Chart(document.getElementById('chart-coverage'),{type:'doughnut',data:{labels:['Dados extraídos','PDF escaneado (OCR pendente)','Sem PDF publicado'],datasets:[{data:[covOk,covScan,covNone],backgroundColor:['#168821','#e87722','#cc1a1a'],borderWidth:2,borderColor:'#fff'}]},options:{aspectRatio:1.8,cutout:'55%',animation:{animateRotate:true,duration:1000},plugins:{legend:{position:'bottom',labels:{padding:12,usePointStyle:true,pointStyle:'circle'}},tooltip:{callbacks:{label:ctx=>`${ctx.label}: ${ctx.raw} órgãos (${(ctx.raw/PTD_STATS.orgaos_total*100).toFixed(0)}%)`}}}}});
+  charts.cov = new Chart(document.getElementById('chart-coverage'),{type:'doughnut',data:{labels:['Dados extraídos','PDF escaneado (OCR pendente)','Sem PDF publicado'],datasets:[{data:[covOk,covScan,covNone],backgroundColor:['#27AE60','#E67E22','#C0392B'],borderWidth:2,borderColor:'#fff'}]},options:{aspectRatio:1.8,cutout:'55%',animation:{animateRotate:true,duration:1000},plugins:{legend:{position:'bottom',labels:{padding:12,usePointStyle:true,pointStyle:'circle'}},tooltip:{callbacks:{label:ctx=>`${ctx.label}: ${ctx.raw} órgãos (${(ctx.raw/PTD_STATS.orgaos_total*100).toFixed(0)}%)`}}}}});
 
   // Top produtos table
   const prodCounts = {};
@@ -684,7 +685,7 @@ function renderTratamentoChart(){
   destroyChart('trat');
   const tc={};allRisk.forEach(r=>{(r.tratamento_normalizado||'').split(';').forEach(t=>{t=t.trim().toLowerCase();if(TRAT.includes(t))tc[t]=(tc[t]||0)+1;});});
   const labels=Object.keys(tc),vals=Object.values(tc);
-  charts.trat=new Chart(document.getElementById('chart-tratamento'),{type:'bar',data:{labels,datasets:[{data:vals,backgroundColor:['#FF9800','#F44336','#2196F3','#4CAF50'],borderRadius:4}]},options:{plugins:{legend:{display:false}}}});
+  charts.trat=new Chart(document.getElementById('chart-tratamento'),{type:'bar',data:{labels,datasets:[{data:vals,backgroundColor:['#264A7F','#C0392B','#4D8AC9','#27AE60'],borderRadius:4}]},options:{plugins:{legend:{display:false}}}});
 }
 
 function renderTopRisks(){
