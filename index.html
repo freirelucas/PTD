@@ -44,6 +44,15 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--
 .prose code{background:var(--light);padding:2px 6px;border-radius:4px;font-size:.85rem}
 .prose a{color:var(--accent)}
 .insight-card{background:var(--card);border-radius:var(--radius);padding:20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.08);border-left:4px solid var(--accent)}
+.action-bar{display:flex;align-items:center;gap:8px;padding:8px 12px;margin-bottom:4px;background:var(--bg);border-radius:var(--radius);cursor:pointer;transition:background .2s;border-left:4px solid var(--accent)}
+.action-bar:hover{background:var(--light)}
+.action-bar.selected{background:var(--light);border-left-color:var(--primary)}
+.action-bar .num{font-weight:700;color:var(--primary);min-width:28px;text-align:center;font-size:.95rem}
+.action-bar .text{flex:1;font-size:.83rem;color:var(--text)}
+.action-bar .count{font-weight:700;color:var(--muted);font-size:.85rem;min-width:40px;text-align:right}
+.action-bar .bar-fill{height:6px;background:var(--accent);border-radius:3px;min-width:2px}
+.action-detail{background:var(--light);border-radius:var(--radius);padding:12px;margin:4px 0 12px;font-size:.83rem}
+.action-detail table{font-size:.8rem}
 .insight-card h4{color:var(--dark);margin-bottom:6px;font-size:.95rem}
 .insight-card p{color:var(--text);font-size:.88rem;line-height:1.5;margin:0}
 .insight-card .num{font-size:1.4rem;font-weight:700;color:var(--primary)}
@@ -161,7 +170,8 @@ tr:hover td{background:var(--light)}
 <div id="risks" class="section">
   <h2>Gestão de Riscos</h2>
   <p class="desc">Riscos identificados pelos órgãos em seus Documentos Diretivos, classificados por <strong>probabilidade</strong> (raro a praticamente certo), <strong>impacto</strong> (muito baixo a muito alto) e <strong>opção de tratamento</strong> (mitigar, eliminar, transferir, aceitar). A matriz abaixo mostra a concentração de riscos — clique em uma célula para ver os riscos daquela combinação.</p>
-  <div class="chart-container"><h3>Matriz de Riscos — Probabilidade × Impacto <small>(clique para filtrar)</small></h3><div class="risk-matrix" id="risk-matrix"></div></div>
+  <div class="chart-container"><h3>Matriz de Riscos — Probabilidade × Impacto <small>(clique para filtrar)</small></h3><div class="risk-matrix" id="risk-matrix"></div><div id="matrix-actions" style="margin-top:12px"></div></div>
+  <div class="chart-container"><h3>Ações de Mitigação — Referencial SGD <small>(quanto mais citada, mais transversal a ação)</small></h3><p class="desc" style="margin-bottom:12px">As ações abaixo são o referencial padronizado pela SGD. Cada risco referencia um subconjunto dessas ações (ex: "1, 2, 9"). Clique em uma ação para ver os riscos que a utilizam.</p><div id="actions-list"></div></div>
   <div class="filters">
     <select id="r-orgao"><option value="">Todos os Órgãos</option></select>
     <select id="r-tratamento"><option value="">Todos os Tratamentos</option></select>
@@ -378,9 +388,35 @@ const IMP_ORDER = ["muito baixo","baixo","médio","alto","muito alto"];
 const TRAT = ["mitigar","eliminar","transferir","aceitar"];
 const COLORS = ["#1351B4","#2670E8","#0C326F","#3F8EFC","#71A7FF","#F9A825","#C62828","#2E7D32","#FF6D00","#6A1B9A"];
 
+// Build action index: parse acoes_resolvidas to extract numbered actions
+const ACTION_INDEX = {}; // action_id -> {text, risks: [risk objects]}
+const RISK_TO_ACTIONS = new WeakMap(); // risk -> [action_ids]
+
 // Flatten deliveries and risks into arrays
 let allDel = []; Object.values(PTD_DELIVERIES).forEach(arr => allDel.push(...arr));
 let allRisk = []; Object.values(PTD_RISKS).forEach(arr => allRisk.push(...arr));
+
+// Build action index from resolved references
+(function buildActionIndex(){
+  allRisk.forEach(r => {
+    const res = r.acoes_resolvidas || '';
+    const actionIds = [];
+    if (res.includes('|')) {
+      res.split('|').forEach(part => {
+        part = part.trim();
+        const m = part.match(/^(\d+)\.\s*(.+)/);
+        if (m) {
+          const id = m[1], text = m[2].trim();
+          if (!ACTION_INDEX[id]) ACTION_INDEX[id] = {id, text, risks: []};
+          else if (text.length > ACTION_INDEX[id].text.length) ACTION_INDEX[id].text = text;
+          ACTION_INDEX[id].risks.push(r);
+          actionIds.push(id);
+        }
+      });
+    }
+    RISK_TO_ACTIONS.set(r, actionIds);
+  });
+})();
 
 // ==================== NAV ====================
 window.addEventListener('hashchange', ()=>{ const h=location.hash.replace('#',''); if(h) showSection(h); });
@@ -532,6 +568,7 @@ function initRisks(){
   filterRisks();
   renderTratamentoChart();
   renderTopRisks();
+  renderActionsList();
 }
 
 function buildRiskMatrix(){
@@ -551,7 +588,7 @@ function buildRiskMatrix(){
       const pi=PROB_ORDER.indexOf(p), ii=IMP_ORDER.indexOf(i);
       const severity=pi+ii;
       const bg=severity<=2?'#C8E6C9':severity<=4?'#FFF9C4':severity<=6?'#FFE0B2':'#FFCDD2';
-      html+=`<div class="cell" style="background:${bg}" onclick="matrixFilter={p:'${p}',i:'${i}'};filterRisks()">${c||''}</div>`;
+      html+=`<div class="cell" style="background:${bg}" onclick="matrixFilter={p:'${p}',i:'${i}'};filterRisks();updateMatrixActions()">${c||''}</div>`;
     });
   });
   document.getElementById('risk-matrix').innerHTML=html;
@@ -578,7 +615,77 @@ function filterRisks(){
   document.getElementById('risk-table').innerHTML=html;
 }
 
-function resetRiskFilters(){ matrixFilter=null; document.getElementById('r-orgao').value=''; document.getElementById('r-tratamento').value=''; filterRisks(); }
+function resetRiskFilters(){ matrixFilter=null; document.getElementById('r-orgao').value=''; document.getElementById('r-tratamento').value=''; filterRisks(); updateMatrixActions(); }
+
+function updateMatrixActions(){
+  const el=document.getElementById('matrix-actions');
+  if(!matrixFilter){el.innerHTML='';return;}
+  // Find actions used by risks in this cell
+  const cellRisks=allRisk.filter(r=>r.probabilidade_normalizada===matrixFilter.p && r.impacto_normalizado===matrixFilter.i);
+  const actionCounts={};
+  cellRisks.forEach(r=>{
+    const ids=RISK_TO_ACTIONS.get(r)||[];
+    ids.forEach(id=>{actionCounts[id]=(actionCounts[id]||0)+1;});
+  });
+  if(!Object.keys(actionCounts).length){el.innerHTML=`<p style="font-size:.83rem;color:var(--muted)">Nenhuma ação de mitigação referenciada para ${matrixFilter.p} × ${matrixFilter.i}</p>`;return;}
+  const sorted=Object.entries(actionCounts).sort((a,b)=>b[1]-a[1]);
+  let html=`<p style="font-size:.83rem;color:var(--muted);margin-bottom:8px"><strong>Ações de mitigação para ${matrixFilter.p} × ${matrixFilter.i}</strong> (${cellRisks.length} riscos):</p>`;
+  sorted.forEach(([id,count])=>{
+    const a=ACTION_INDEX[id];
+    if(a) html+=`<div class="action-bar" style="border-left-color:#FF9800"><span class="num">${id}</span><span class="text">${a.text.substring(0,100)}</span><span class="count">${count}x</span></div>`;
+  });
+  el.innerHTML=html;
+}
+
+function renderActionsList(){
+  const el=document.getElementById('actions-list');
+  const ids=Object.keys(ACTION_INDEX).sort((a,b)=>parseInt(a)-parseInt(b));
+  if(!ids.length){el.innerHTML='<p style="color:var(--muted)">Nenhuma ação de mitigação padronizada encontrada nos PDFs.</p>';return;}
+  const maxCount=Math.max(...ids.map(id=>ACTION_INDEX[id].risks.length));
+  let selectedAction=null;
+
+  function render(){
+    let html='';
+    ids.forEach(id=>{
+      const a=ACTION_INDEX[id];
+      const pct=a.risks.length/maxCount*100;
+      const sel=selectedAction===id?'selected':'';
+      html+=`<div class="action-bar ${sel}" data-action="${id}">`;
+      html+=`<span class="num">${id}</span>`;
+      html+=`<span class="text">${a.text.substring(0,120)}</span>`;
+      html+=`<span class="count">${a.risks.length} riscos</span>`;
+      html+=`<div style="width:80px"><div class="bar-fill" style="width:${pct}%"></div></div>`;
+      html+=`</div>`;
+      if(selectedAction===id){
+        // Show detail: which organs, prob/impact breakdown
+        const orgs=[...new Set(a.risks.map(r=>r.orgao_sigla))].sort();
+        const probC={};a.risks.forEach(r=>{const p=r.probabilidade_normalizada;if(p)probC[p]=(probC[p]||0)+1;});
+        const impC={};a.risks.forEach(r=>{const i=r.impacto_normalizado;if(i)impC[i]=(impC[i]||0)+1;});
+        html+=`<div class="action-detail">`;
+        html+=`<p><strong>${a.risks.length} riscos</strong> em <strong>${orgs.length} órgãos</strong>: ${orgs.join(', ')}</p>`;
+        html+=`<p style="margin-top:6px"><strong>Probabilidade:</strong> ${Object.entries(probC).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`${k} (${v})`).join(', ')}</p>`;
+        html+=`<p><strong>Impacto:</strong> ${Object.entries(impC).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`${k} (${v})`).join(', ')}</p>`;
+        // Show sample risks
+        html+=`<div class="table-wrap" style="max-height:200px;margin-top:8px"><table><thead><tr><th>Órgão</th><th>Risco</th><th>Prob.</th><th>Impacto</th></tr></thead><tbody>`;
+        a.risks.slice(0,20).forEach(r=>{
+          html+=`<tr><td><b>${r.orgao_sigla}</b></td><td>${(r.risco_texto||'').substring(0,70)}</td><td>${r.probabilidade_normalizada||''}</td><td>${r.impacto_normalizado||''}</td></tr>`;
+        });
+        if(a.risks.length>20) html+=`<tr><td colspan="4" style="color:var(--muted);text-align:center">... e mais ${a.risks.length-20} riscos</td></tr>`;
+        html+=`</tbody></table></div></div>`;
+      }
+    });
+    el.innerHTML=html;
+    // Attach click handlers
+    el.querySelectorAll('.action-bar').forEach(bar=>{
+      bar.addEventListener('click',()=>{
+        const id=bar.dataset.action;
+        selectedAction=selectedAction===id?null:id;
+        render();
+      });
+    });
+  }
+  render();
+}
 
 function renderTratamentoChart(){
   destroyChart('trat');
