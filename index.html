@@ -206,11 +206,11 @@ tr:hover td{background:var(--light)}
   <h2>Similaridade entre Órgãos</h2>
   <p class="desc">Mapa de similaridade baseado no <strong>coeficiente de Jaccard</strong> dos perfis de produtos pactuados. Cada célula indica o grau de sobreposição entre os catálogos de entregas de dois órgãos (0% = nenhum produto em comum, 100% = catálogos idênticos). Órgãos de um mesmo grupo ministerial (ex: MEC, MD) tendem a ter similaridade máxima por compartilharem o mesmo PTD.</p>
   <div class="chart-container">
-    <h3>Mapa de Similaridade (Jaccard)</h3>
+    <h3>Similaridade por Perfil de Produtos (Jaccard)</h3>
     <div class="filters">
-      <select id="sim-orgao"><option value="">Selecione um órgão para destacar...</option></select>
+      <select id="sim-orgao"><option value="">Selecione um órgão de referência...</option></select>
     </div>
-    <div id="jaccard-heatmap" style="overflow-x:auto"></div>
+    <div id="similarity-result"></div>
   </div>
   <div class="chart-row">
     <div class="chart-container"><h3>Pares Mais Similares</h3><div class="table-wrap" id="top-pairs" style="max-height:400px"></div></div>
@@ -850,51 +850,44 @@ function initCompare(){
     const orgaos=(typeof PTD_JACCARD_ORGANS!=='undefined'?PTD_JACCARD_ORGANS:Object.keys(orgProductSets).sort());
     const simSel=document.getElementById('sim-orgao');
     orgaos.forEach(o=>{const op=document.createElement('option');op.value=o;op.textContent=o;simSel.appendChild(op);});
-    simSel.addEventListener('change',renderHeatmap);
+    simSel.addEventListener('change',renderSimilarityRanking);
     for(let i=1;i<=3;i++){
       const sel=document.getElementById('cmp-'+i);
       orgaos.forEach(o=>{const op=document.createElement('option');op.value=o;op.textContent=o;sel.appendChild(op);});
     }
-    renderHeatmap();
     renderTopPairs();
     renderDistinctOrgans();
   }
 }
 
-function renderHeatmap(){
-  const el=document.getElementById('jaccard-heatmap');
-  if(typeof PTD_JACCARD_MATRIX==='undefined'){el.innerHTML='<p>Matriz não disponível</p>';return;}
-  const orgs=PTD_JACCARD_ORGANS;
-  const mx=PTD_JACCARD_MATRIX;
-  const n=orgs.length;
-  const highlight=document.getElementById('sim-orgao').value;
-  const hi=highlight?orgs.indexOf(highlight):-1;
-  const sz=Math.max(10,Math.min(14,Math.floor(700/n)));
-  let html=`<div style="display:inline-block;font-size:0;line-height:0">`;
-  // Header row
-  html+=`<div style="display:flex"><div style="width:50px;height:${sz}px"></div>`;
-  orgs.forEach((o,j)=>{
-    const bold=j===hi?'font-weight:700;color:var(--primary)':'';
-    html+=`<div style="width:${sz}px;height:${sz}px;display:flex;align-items:center;justify-content:center;font-size:6px;transform:rotate(-45deg);${bold}" title="${o}">${o.substring(0,4)}</div>`;
-  });
-  html+=`</div>`;
-  // Rows
-  orgs.forEach((o1,i)=>{
-    const rowBold=i===hi?'font-weight:700;color:var(--primary)':'';
-    html+=`<div style="display:flex"><div style="width:50px;height:${sz}px;display:flex;align-items:center;justify-content:flex-end;padding-right:4px;font-size:7px;${rowBold}">${o1}</div>`;
-    orgs.forEach((o2,j)=>{
-      const v=mx[i][j];
-      const dimmed=(hi>=0&&i!==hi&&j!==hi)?'opacity:.3;':'';
-      // Color: white(0) → light blue(0.3) → blue(0.6) → dark blue(1.0)
-      const r=Math.round(255-v*217), g=Math.round(255-v*181), b=Math.round(255-v*128);
-      const bg=i===j?'var(--bg)':`rgb(${r},${g},${b})`;
-      html+=`<div style="width:${sz}px;height:${sz}px;background:${bg};${dimmed}" title="${o1}×${o2}: ${(v*100).toFixed(0)}%"></div>`;
-    });
-    html+=`</div>`;
-  });
-  html+=`</div>`;
-  html+=`<p style="font-size:.75rem;color:var(--muted);margin-top:8px">Escala: <span style="display:inline-block;width:12px;height:12px;background:rgb(255,255,255);border:1px solid var(--border);vertical-align:middle"></span> 0% &nbsp; <span style="display:inline-block;width:12px;height:12px;background:rgb(147,148,191);vertical-align:middle"></span> 50% &nbsp; <span style="display:inline-block;width:12px;height:12px;background:rgb(38,74,127);vertical-align:middle"></span> 100% &nbsp; Selecione um órgão acima para destacar sua linha/coluna.</p>`;
+function renderSimilarityRanking(){
+  const el=document.getElementById('similarity-result');
+  const ref=document.getElementById('sim-orgao').value;
+  if(!ref||typeof PTD_JACCARD_MATRIX==='undefined'){
+    el.innerHTML=ref?'':'<p style="color:var(--muted);font-size:.85rem">Selecione um órgão acima para ver os mais similares por perfil de produtos pactuados.</p>';
+    return;
+  }
+  const orgs=PTD_JACCARD_ORGANS, mx=PTD_JACCARD_MATRIX;
+  const ri=orgs.indexOf(ref);
+  if(ri<0){el.innerHTML='';return;}
+  const refProds=orgProductSets[ref];
+  const scores=orgs.map((o,j)=>({o,j:mx[ri][j],prods:orgProductSets[o]?.size||0})).filter(x=>x.o!==ref&&x.j>0).sort((a,b)=>b.j-a.j);
+
+  let html=`<p style="margin:10px 0;font-size:.85rem"><strong>${ref}</strong>: ${refProds?.size||0} produtos distintos</p>`;
+  // Chart.js horizontal bar dos top 20
+  html+=`<canvas id="chart-similarity" height="${Math.max(200,Math.min(scores.length,20)*22)}"></canvas>`;
   el.innerHTML=html;
+
+  destroyChart('simBar');
+  const top=scores.slice(0,20);
+  charts.simBar=new Chart(document.getElementById('chart-similarity'),{type:'bar',data:{
+    labels:top.map(s=>s.o),
+    datasets:[{label:'Similaridade Jaccard (%)',data:top.map(s=>Math.round(s.j*100)),
+      backgroundColor:top.map(s=>s.j>=0.8?'#264A7F':s.j>=0.5?'#4D8AC9':s.j>=0.3?'#A5CAE8':'#D4D4D4'),borderRadius:4}]
+  },options:{indexAxis:'y',animation:{duration:600},plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>{
+    const s=top[ctx.dataIndex];const shared=refProds&&orgProductSets[s.o]?[...refProds].filter(p=>orgProductSets[s.o].has(p)):[];
+    return `${ctx.raw}% — ${shared.length} produtos em comum`;
+  }}}},scales:{x:{beginAtZero:true,max:100,title:{display:true,text:'Jaccard (%)'},grid:{display:false}},y:{grid:{display:false}}}}});
 }
 
 function renderTopPairs(){
