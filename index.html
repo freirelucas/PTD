@@ -79,6 +79,7 @@ tr:hover td{background:var(--light)}
 .risk-matrix{display:grid;grid-template-columns:140px repeat(5,1fr);gap:2px;margin-bottom:20px}
 .risk-matrix .cell{padding:12px 8px;text-align:center;font-weight:600;font-size:.9rem;border-radius:4px;cursor:pointer;transition:transform .1s}
 .risk-matrix .cell:hover{transform:scale(1.05);box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.risk-matrix .cell.selected{outline:3px solid var(--dark);outline-offset:-2px;transform:scale(1.08);z-index:2}
 .risk-matrix .header{background:var(--dark);color:#fff;font-size:.75rem;font-weight:600;cursor:default;display:flex;align-items:center;justify-content:center}
 .risk-matrix .header:hover{transform:none;box-shadow:none}
 .risk-matrix .row-label{background:var(--primary);color:#fff;font-size:.75rem;display:flex;align-items:center;justify-content:center;cursor:default}
@@ -140,7 +141,9 @@ tr:hover td{background:var(--light)}
 <!-- ===== VISÃO GERAL ===== -->
 <div id="overview" class="section active">
   <h2>Visão Geral</h2>
-  <p class="desc">Panorama dos <strong>Planos de Transformação Digital (PTDs)</strong> de 91 órgãos da administração pública federal, conforme publicados no portal gov.br. Os dados foram extraídos automaticamente dos PDFs oficiais (Documento Diretivo e Anexo de Entregas) e padronizados conforme a taxonomia da <strong>EFGD 2024-2027</strong> (Decreto nº 12.198/2024).</p>
+  <div style="background:var(--dark);color:#fff;padding:20px 24px;border-radius:var(--radius);margin-bottom:20px;line-height:1.7;font-size:.92rem">
+    <strong>Achado principal:</strong> A transformação digital federal concentra 85% das pactuações em dois eixos (serviços ao cidadão e unificação de canais), enquanto o eixo de Governança e Gestão de Dados — com o maior catálogo de produtos da EFGD — opera com apenas 1 de seus 20 produtos. Dos 670 riscos mapeados, 66% reproduzem textos do referencial padrão e 45% não têm ações de tratamento detalhadas.
+  </div>
   <div class="kpi-row" id="kpi-cards"></div>
   <div class="chart-container"><h3>Cronologia das Assinaturas dos PTDs</h3><p class="desc" style="margin-bottom:8px">Data de criação do PDF como proxy da assinatura. Barras mostram o volume de entregas pactuadas pelos órgãos que assinaram em cada mês.</p><canvas id="chart-timeline"></canvas><div id="timeline-insight" style="margin-top:12px"></div></div>
   <div class="chart-row">
@@ -196,7 +199,13 @@ tr:hover td{background:var(--light)}
   <h2>Órgãos Signatários</h2>
   <p class="desc">Cada card representa um dos 91 órgãos signatários de PTD. A borda <strong style="color:var(--green)">verde</strong> indica dados completos, <strong style="color:var(--yellow)">amarela</strong> parcial e <strong style="color:var(--red)">vermelha</strong> sem dados extraídos. Clique em um órgão para ver seus detalhes, entregas e riscos.</p>
   <div class="filters">
-    <input id="organ-search" type="text" placeholder="Buscar sigla ou grupo...">
+    <input id="organ-search" type="text" placeholder="Buscar sigla...">
+    <select id="organ-group"><option value="">Todos os grupos</option></select>
+    <select id="organ-sort">
+      <option value="sigla">Ordenar: Sigla (A-Z)</option>
+      <option value="entregas">Ordenar: Mais entregas</option>
+      <option value="riscos">Ordenar: Mais riscos</option>
+    </select>
   </div>
   <div class="organ-grid" id="organ-grid"></div>
 </div>
@@ -403,9 +412,9 @@ tr:hover td{background:var(--light)}
     <p>O pipeline inteiro — do scraping à visualização — pode ser reproduzido executando o notebook Colab. Os dados brutos (PDFs) são baixados diretamente do portal gov.br, garantindo que qualquer pesquisador possa replicar o corpus.</p>
 
     <h3>7. Citação Sugerida</h3>
-    <p style="background:var(--light);padding:12px;border-radius:var(--radius);font-size:.85rem">
-      DIREITO, Denise; SILVA, Lucas; QUEIROZ, Sérgio. <em>Corpus dos Planos de Transformação Digital: extração, padronização e análise dos PTDs de 91 órgãos federais brasileiros</em>. Ipea, 2026. Disponível em: <a href="https://github.com/freirelucas/PTD" target="_blank">github.com/freirelucas/PTD</a>.
-    </p>
+    <blockquote style="border-left:4px solid var(--primary);margin:12px 0;padding:16px 20px;background:var(--light);border-radius:0 var(--radius) var(--radius) 0;font-size:.88rem;line-height:1.7">
+      DIREITO, Denise; SILVA, Lucas; QUEIROZ, Sérgio. <em>Corpus dos Planos de Transformação Digital: extração, padronização e análise dos PTDs de 91 órgãos federais brasileiros</em>. Brasília: Ipea, 2026. (Nota Técnica). Disponível em: <a href="https://github.com/freirelucas/PTD" target="_blank">https://github.com/freirelucas/PTD</a>.
+    </blockquote>
   </div>
 </div>
 
@@ -606,7 +615,10 @@ function filterDeliveries(){
     if(q && !(d.servico_acao||'').toLowerCase().includes(q)) return false;
     return true;
   });
-  document.getElementById('del-count').textContent=`${delFiltered.length.toLocaleString('pt-BR')} entregas encontradas`;
+  const delOrgs=new Set(delFiltered.map(d=>d.orgao_sigla));
+  const delProdC={};delFiltered.forEach(d=>{delProdC[d.produto_normalizado]=(delProdC[d.produto_normalizado]||0)+1;});
+  const topDelProd=Object.entries(delProdC).sort((a,b)=>b[1]-a[1])[0];
+  document.getElementById('del-count').innerHTML=`<strong>${delFiltered.length.toLocaleString('pt-BR')}</strong> entregas em <strong>${delOrgs.size}</strong> órgãos${topDelProd?' · Produto mais frequente: <em>'+topDelProd[0]+'</em> ('+topDelProd[1]+')':''}`;
   renderDelTable();
   // Chart for selected organ
   if(org){
@@ -624,11 +636,11 @@ function filterDeliveries(){
 function renderDelTable(){
   const PER=50, start=delPage*PER, end=Math.min(start+PER,delFiltered.length);
   const page=delFiltered.slice(start,end);
-  let html='<table><thead><tr><th>Órgão</th><th>Serviço/Ação</th><th>Produto</th><th>Eixo</th><th>Data</th><th>Conf.</th></tr></thead><tbody>';
+  let html='<table><thead><tr><th>Órgão</th><th>Serviço/Ação</th><th>Produto</th><th>Eixo</th><th>Data</th></tr></thead><tbody>';
   page.forEach(d=>{
-    html+=`<tr><td><b>${d.orgao_sigla}</b></td><td>${(d.servico_acao||'').substring(0,80)}</td><td>${d.produto_normalizado}</td><td>${(d.eixo_normalizado||'').substring(0,30)}</td><td>${d.data_pactuada||''}</td><td>${d.confidence}</td></tr>`;
+    html+=`<tr><td><b>${d.orgao_sigla}</b></td><td>${(d.servico_acao||'').substring(0,80)}</td><td>${d.produto_normalizado}</td><td>${(d.eixo_normalizado||'').substring(0,30)}</td><td>${d.data_pactuada||''}</td></tr>`;
   });
-  if(!page.length) html+='<tr><td colspan="6" style="text-align:center;color:var(--muted)">Nenhuma entrega encontrada</td></tr>';
+  if(!page.length) html+='<tr><td colspan="5" style="text-align:center;color:var(--muted)">Nenhuma entrega encontrada</td></tr>';
   html+='</tbody></table>';
   document.getElementById('del-table').innerHTML=html;
   const totalPages=Math.ceil(delFiltered.length/PER);
@@ -670,7 +682,7 @@ function buildRiskMatrix(){
       const pi=PROB_ORDER.indexOf(p), ii=IMP_ORDER.indexOf(i);
       const severity=pi+ii;
       const bg=severity<=2?'#C8E6C9':severity<=4?'#FFF9C4':severity<=6?'#FFE0B2':'#FFCDD2';
-      html+=`<div class="cell" style="background:${bg}" onclick="matrixFilter={p:'${p}',i:'${i}'};filterRisks();updateMatrixActions()">${c||''}</div>`;
+      html+=`<div class="cell" data-p="${p}" data-i="${i}" style="background:${bg}" onclick="matrixFilter={p:'${p}',i:'${i}'};highlightMatrixCell(this);filterRisks();updateMatrixActions()">${c||''}</div>`;
     });
   });
   document.getElementById('risk-matrix').innerHTML=html;
@@ -697,7 +709,8 @@ function filterRisks(){
   document.getElementById('risk-table').innerHTML=html;
 }
 
-function resetRiskFilters(){ matrixFilter=null; document.getElementById('r-orgao').value=''; document.getElementById('r-tratamento').value=''; filterRisks(); updateMatrixActions(); }
+function highlightMatrixCell(el){document.querySelectorAll('.risk-matrix .cell.selected').forEach(c=>c.classList.remove('selected'));el.classList.add('selected');}
+function resetRiskFilters(){ matrixFilter=null;document.querySelectorAll('.risk-matrix .cell.selected').forEach(c=>c.classList.remove('selected')); document.getElementById('r-orgao').value=''; document.getElementById('r-tratamento').value=''; filterRisks(); updateMatrixActions(); }
 
 function updateMatrixActions(){
   const el=document.getElementById('matrix-actions');
@@ -779,8 +792,12 @@ function renderTratamentoChart(){
 function renderTopRisks(){
   const rc={};allRisk.forEach(r=>{const t=(r.risco_texto||'').substring(0,60);if(t.length>10)rc[t]=(rc[t]||0)+1;});
   const sorted=Object.entries(rc).sort((a,b)=>b[1]-a[1]).slice(0,10);
-  let html='<table><thead><tr><th>Risco</th><th>Órgãos</th></tr></thead><tbody>';
-  sorted.forEach(([t,c])=>html+=`<tr><td>${t}...</td><td>${c}</td></tr>`);
+  const maxC=sorted[0]?.[1]||1;
+  let html='<table><thead><tr><th>Risco</th><th style="width:120px">Frequência</th></tr></thead><tbody>';
+  sorted.forEach(([t,c])=>{
+    const w=c/maxC*100;
+    html+=`<tr><td style="font-size:.82rem">${t}...</td><td><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;background:var(--bg);border-radius:2px;height:10px"><div style="width:${w}%;height:100%;background:var(--primary);border-radius:2px"></div></div><span style="font-weight:600;font-size:.8rem;min-width:20px">${c}</span></div></td></tr>`;
+  });
   html+='</tbody></table>';
   document.getElementById('top-risks-table').innerHTML=html;
 }
@@ -788,13 +805,30 @@ function renderTopRisks(){
 // ==================== 4. ÓRGÃOS ====================
 let orgInit=false;
 function initOrgans(){
-  if(!orgInit){ orgInit=true; document.getElementById('organ-search').addEventListener('input',renderOrganGrid); }
+  if(!orgInit){
+    orgInit=true;
+    document.getElementById('organ-search').addEventListener('input',renderOrganGrid);
+    document.getElementById('organ-sort').addEventListener('change',renderOrganGrid);
+    const gSel=document.getElementById('organ-group');
+    const groups=[...new Set(PTD_ORGANS.map(o=>o.grupo).filter(Boolean))].sort();
+    groups.forEach(g=>{const op=document.createElement('option');op.value=g;op.textContent=g;gSel.appendChild(op);});
+    gSel.addEventListener('change',renderOrganGrid);
+  }
   renderOrganGrid();
 }
 
 function renderOrganGrid(){
   const q=(document.getElementById('organ-search').value||'').toLowerCase();
-  const filtered=PTD_ORGANS.filter(o=>!q || o.sigla.toLowerCase().includes(q) || (o.grupo||'').toLowerCase().includes(q));
+  const g=document.getElementById('organ-group').value;
+  const sort=document.getElementById('organ-sort').value;
+  let filtered=PTD_ORGANS.filter(o=>{
+    if(q && !o.sigla.toLowerCase().includes(q)) return false;
+    if(g && (o.grupo||'')!==g) return false;
+    return true;
+  });
+  if(sort==='entregas') filtered.sort((a,b)=>b.n_entregas-a.n_entregas);
+  else if(sort==='riscos') filtered.sort((a,b)=>b.n_riscos-a.n_riscos);
+  else filtered.sort((a,b)=>a.sigla.localeCompare(b.sigla));
   document.getElementById('organ-grid').innerHTML=filtered.map(o=>{
     const cls=o.status_entregas==='ok'&&o.status_riscos==='ok'?'':o.n_entregas>0||o.n_riscos>0?'partial':'failed';
     return `<div class="organ-card ${cls}" onclick="openOrganModal('${o.sigla}')">
