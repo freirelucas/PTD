@@ -17,14 +17,22 @@ def _map_risk_columns(df: pd.DataFrame) -> Dict[str, Optional[str]]:
 
     # Keywords por campo canônico (prioridade decrescente)
     keyword_map = {
-        "risco": ["risco", "evento", "descricao do risco", "descricao"],
-        "probabilidade": ["probabilidade", "prob", "classificacao de probabilidade"],
+        "risco": ["risco", "evento", "descricao do risco", "descricao", "id do risco"],
+        "probabilidade": ["probabilidade", "probabilidade de ocorrer", "prob",
+                          "classificacao de probabilidade"],
         "impacto": ["impacto", "severidade", "classificacao de impacto"],
-        "tratamento": ["tratamento", "resposta", "tipo de tratamento", "estrategia"],
-        "acoes": ["acoes", "acao", "acoes de tratamento", "medidas", "plano de acao"],
+        "tratamento": ["opcao de tratamento", "tratamento", "resposta",
+                       "tipo de tratamento", "estrategia"],
+        "acoes": ["acoes de tratamento", "descrever acoes", "acoes", "acao",
+                  "medidas", "plano de acao"],
     }
 
-    headers = {str(c): _normalize_header(str(c)) for c in df.columns}
+    # Limpar headers: tratar quebras de linha e hífens
+    def _clean_h(c):
+        s = _normalize_header(str(c))
+        s = s.replace("- ", "").replace("-\n", "")
+        return s
+    headers = {str(c): _clean_h(c) for c in df.columns}
 
     for canon_key, keywords in keyword_map.items():
         best_col = None

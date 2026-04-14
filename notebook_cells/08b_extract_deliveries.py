@@ -27,8 +27,9 @@ def _map_entregas_columns(
 
     keyword_map = {
         "servico_acao": [
-            "servico", "acao", "servico/acao", "servico / acao",
+            "servico/acao", "servico / acao", "servico", "acao",
             "nome do servico", "servico ou acao",
+            # MEC variant: "Serviço /Ação" (espaço antes da barra)
         ],
         "produto": [
             "produto", "produto ptd", "entrega", "produto/entrega",
@@ -37,16 +38,19 @@ def _map_entregas_columns(
             "eixo", "eixo ptd", "eixo de transformacao",
         ],
         "area_responsavel": [
-            "area responsavel", "arearesponsavel", "area", "responsavel",
+            "area responsavel", "arearesponsavel", "area",
             "unidade responsavel", "setor",
+            "responsavel",  # colunas partidas: "Area\nResponsavel"
         ],
         "data_pactuada": [
             "dtpactuada", "dt pactuada", "data pactuada", "datapactuada",
             "prazo", "data prevista", "previsao",
+            "dtpactuadadtreplanejada",  # ANVISA variant
         ],
         "data_entrega": [
             "dtentrega", "dt entrega", "data entrega", "dataentrega",
             "data de entrega", "data conclusao", "dataconclusao",
+            # MD group usa "Data Entrega" como coluna principal
         ],
         "pactuado": [
             "pactuado?", "pactuado ?", "pactuado", "foi pactuado",
@@ -57,7 +61,12 @@ def _map_entregas_columns(
         ],
     }
 
-    headers = {str(c): _normalize_header(str(c)) for c in df.columns}
+    # Limpar headers: tratar quebras de linha e hífens de quebra
+    def _clean_h(c):
+        s = _normalize_header(str(c))
+        s = s.replace("- ", "").replace("-\n", "")
+        return s
+    headers = {str(c): _clean_h(c) for c in df.columns}
 
     for canon_key, keywords in keyword_map.items():
         best_col = None

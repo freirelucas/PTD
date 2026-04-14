@@ -64,25 +64,36 @@ def classify_diretivo_table(df: pd.DataFrame) -> str:
         return "unknown"
 
     ncols = len(df.columns)
-    headers = [_normalize_header(str(c)) for c in df.columns]
+    # Normalizar headers — tratar quebras de linha e hífens de quebra
+    def _clean_col(c):
+        s = _normalize_header(str(c))
+        s = s.replace("- ", "").replace("-\n", "")  # hífens de quebra: "DtPac-\ntuada"
+        return s
+    headers = [_clean_col(c) for c in df.columns]
     # Também verificar a primeira linha caso os headers sejam genéricos (0,1,2...)
     first_row_headers = []
     if len(df) > 0:
-        first_row_headers = [_normalize_header(str(v)) for v in df.iloc[0]]
+        first_row_headers = [_clean_col(v) for v in df.iloc[0]]
 
     all_headers = headers + first_row_headers
 
     combined = " ".join(all_headers)
 
-    # --- Tabela de riscos: espera 4-6 colunas com keywords específicas ---
-    risk_keywords = ["risco", "probabilidade", "impacto", "tratamento"]
-    risk_alt_keywords = ["evento", "classificacao", "severidade", "resposta", "acao", "acoes"]
+    # --- Tabela de riscos: espera 3-8 colunas com keywords específicas ---
+    risk_keywords = ["risco", "probabilidade", "impacto", "tratamento", "ocorrer"]
+    risk_alt_keywords = ["evento", "classificacao", "severidade", "resposta", "acao", "acoes",
+                         "id do risco", "descricao do risco", "opcao de tratamento"]
     risk_hits = sum(1 for kw in risk_keywords if kw in combined)
     risk_alt_hits = sum(1 for kw in risk_alt_keywords if kw in combined)
 
+    # Match principal: 2+ keywords primárias
     if risk_hits >= 2 and 3 <= ncols <= 8:
         return "risk_table"
+    # Match alternativo: 1 primária + 1 alternativa
     if risk_hits >= 1 and risk_alt_hits >= 1 and 3 <= ncols <= 8:
+        return "risk_table"
+    # Match relaxado: combinação tem "risco" + "tratamento" em qualquer posição
+    if "risco" in combined and "tratamento" in combined and 3 <= ncols <= 8:
         return "risk_table"
 
     # --- Informações do órgão: keywords institucionais ---
@@ -118,13 +129,14 @@ def classify_entregas_table(df: pd.DataFrame) -> str:
     if df is None or df.empty:
         return "unknown"
 
-    headers = [_normalize_header(str(c)) for c in df.columns]
+    headers = [_clean_col(c) for c in df.columns]
     first_row_headers = []
     if len(df) > 0:
-        first_row_headers = [_normalize_header(str(v)) for v in df.iloc[0]]
+        first_row_headers = [_clean_col(v) for v in df.iloc[0]]
 
     all_headers = headers + first_row_headers
     combined = " ".join(all_headers)
+    combined_compact = combined.replace(" ", "")
 
     has_area_resp = any(
         "area" in h and "responsavel" in h for h in all_headers
