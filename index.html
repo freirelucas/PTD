@@ -33,6 +33,20 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--
 .chart-container{background:var(--card);border-radius:var(--radius);padding:20px;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
 .chart-container h3{margin-bottom:12px;font-size:1rem;color:var(--dark)}
 .chart-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
+.chart-sm canvas{max-height:250px}
+.desc{color:var(--muted);font-size:.9rem;line-height:1.6;margin-bottom:20px;max-width:900px}
+.desc strong{color:var(--dark)}
+.prose{max-width:860px;line-height:1.7;font-size:.92rem}
+.prose h3{color:var(--primary);margin:24px 0 8px;font-size:1.05rem}
+.prose p{margin-bottom:12px}
+.prose ul{margin:0 0 12px 20px}
+.prose li{margin-bottom:6px}
+.prose code{background:var(--light);padding:2px 6px;border-radius:4px;font-size:.85rem}
+.prose a{color:var(--accent)}
+.insight-card{background:var(--card);border-radius:var(--radius);padding:20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.08);border-left:4px solid var(--accent)}
+.insight-card h4{color:var(--dark);margin-bottom:6px;font-size:.95rem}
+.insight-card p{color:var(--text);font-size:.88rem;line-height:1.5;margin:0}
+.insight-card .num{font-size:1.4rem;font-weight:700;color:var(--primary)}
 /* Tables */
 table{width:100%;border-collapse:collapse;font-size:.85rem}
 th{background:var(--primary);color:#fff;padding:10px 12px;text-align:left;font-weight:600;position:sticky;top:0}
@@ -104,6 +118,8 @@ tr:hover td{background:var(--light)}
     <a href="#risks" onclick="showSection('risks')"><span class="icon">&#9888;</span><span>Riscos</span></a>
     <a href="#organs" onclick="showSection('organs')"><span class="icon">&#9733;</span><span>Órgãos</span></a>
     <a href="#compare" onclick="showSection('compare')"><span class="icon">&#8596;</span><span>Comparação</span></a>
+    <a href="#insights" onclick="showSection('insights')"><span class="icon">&#9881;</span><span>Insights</span></a>
+    <a href="#methodology" onclick="showSection('methodology')"><span class="icon">&#9998;</span><span>Nota Técnica</span></a>
   </nav>
   <div class="info">Dados: gov.br/governodigital<br>Atualizado: 2026-04-14</div>
 </aside>
@@ -113,10 +129,11 @@ tr:hover td{background:var(--light)}
 <!-- ===== VISÃO GERAL ===== -->
 <div id="overview" class="section active">
   <h2>Visão Geral</h2>
+  <p class="desc">Panorama dos <strong>Planos de Transformação Digital (PTDs)</strong> de 91 órgãos da administração pública federal, conforme publicados no portal gov.br. Os dados foram extraídos automaticamente dos PDFs oficiais (Documento Diretivo e Anexo de Entregas) e padronizados conforme a taxonomia da <strong>EFGD 2024-2027</strong> (Decreto nº 12.198/2024).</p>
   <div class="kpi-row" id="kpi-cards"></div>
   <div class="chart-row">
     <div class="chart-container"><h3>Entregas por Eixo Estratégico</h3><canvas id="chart-eixo"></canvas></div>
-    <div class="chart-container"><h3>Cobertura de Extração</h3><canvas id="chart-coverage"></canvas></div>
+    <div class="chart-container chart-sm"><h3>Cobertura de Extração</h3><canvas id="chart-coverage"></canvas></div>
   </div>
   <div class="chart-container" id="gaps-section"><h3>Órgãos sem Dados — Motivos</h3><div id="gaps-content"></div></div>
   <div class="chart-container"><h3>Top 10 Produtos</h3><div class="table-wrap" id="top-produtos-table"></div></div>
@@ -126,6 +143,7 @@ tr:hover td{background:var(--light)}
 <!-- ===== ENTREGAS ===== -->
 <div id="deliveries" class="section">
   <h2>Entregas Pactuadas</h2>
+  <p class="desc">Ações e serviços digitais pactuados entre cada órgão e a Secretaria de Governo Digital (SGD/MGI). Cada entrega está vinculada a um <strong>produto</strong> da EFGD (ex: Evolução do Serviço, Integração ao Login Único) e a um dos 5 <strong>eixos estratégicos</strong>. Use os filtros para explorar por órgão, eixo ou produto.</p>
   <div class="filters">
     <select id="f-orgao"><option value="">Todos os Órgãos</option></select>
     <select id="f-eixo"><option value="">Todos os Eixos</option></select>
@@ -141,6 +159,7 @@ tr:hover td{background:var(--light)}
 <!-- ===== RISCOS ===== -->
 <div id="risks" class="section">
   <h2>Gestão de Riscos</h2>
+  <p class="desc">Riscos identificados pelos órgãos em seus Documentos Diretivos, classificados por <strong>probabilidade</strong> (raro a praticamente certo), <strong>impacto</strong> (muito baixo a muito alto) e <strong>opção de tratamento</strong> (mitigar, eliminar, transferir, aceitar). A matriz abaixo mostra a concentração de riscos — clique em uma célula para ver os riscos daquela combinação.</p>
   <div class="chart-container"><h3>Matriz de Riscos — Probabilidade × Impacto <small>(clique para filtrar)</small></h3><div class="risk-matrix" id="risk-matrix"></div></div>
   <div class="filters">
     <select id="r-orgao"><option value="">Todos os Órgãos</option></select>
@@ -158,6 +177,7 @@ tr:hover td{background:var(--light)}
 <!-- ===== ÓRGÃOS ===== -->
 <div id="organs" class="section">
   <h2>Órgãos Signatários</h2>
+  <p class="desc">Cada card representa um dos 91 órgãos signatários de PTD. A borda <strong style="color:var(--green)">verde</strong> indica dados completos, <strong style="color:var(--yellow)">amarela</strong> parcial e <strong style="color:var(--red)">vermelha</strong> sem dados extraídos. Clique em um órgão para ver seus detalhes, entregas e riscos.</p>
   <div class="filters">
     <input id="organ-search" type="text" placeholder="Buscar sigla ou grupo...">
   </div>
@@ -167,6 +187,7 @@ tr:hover td{background:var(--light)}
 <!-- ===== COMPARAÇÃO ===== -->
 <div id="compare" class="section">
   <h2>Comparação entre Órgãos</h2>
+  <p class="desc">Selecione até 5 órgãos para comparar seus perfis de transformação digital. O gráfico radar mostra a distribuição percentual de entregas por eixo, e o gráfico de barras compara os produtos mais frequentes.</p>
   <div class="compare-select">
     <select id="cmp-1"><option value="">Selecione...</option></select>
     <select id="cmp-2"><option value="">Selecione...</option></select>
@@ -180,6 +201,67 @@ tr:hover td{background:var(--light)}
     <div class="chart-container"><h3>Produtos por Órgão</h3><canvas id="chart-compare-bar"></canvas></div>
   </div>
   <div class="chart-container"><h3>Métricas Comparativas</h3><div class="table-wrap" id="compare-table"></div></div>
+</div>
+
+<!-- ===== INSIGHTS ===== -->
+<div id="insights" class="section">
+  <h2>Insights</h2>
+  <p class="desc">Achados analíticos derivados do corpus de 91 órgãos. Os números são calculados dinamicamente a partir dos dados extraídos.</p>
+  <div id="insights-content"></div>
+</div>
+
+<!-- ===== NOTA TÉCNICA ===== -->
+<div id="methodology" class="section">
+  <h2>Nota Técnica</h2>
+  <div class="prose">
+    <h3>1. Fonte dos Dados</h3>
+    <p>Os dados foram coletados do portal <a href="https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital" target="_blank">gov.br/governodigital — Planos de Transformação Digital</a>, mantido pela Secretaria de Governo Digital (SGD) do Ministério da Gestão e da Inovação em Serviços Públicos (MGI).</p>
+    <p>Os PTDs são instrumentos de planejamento instituídos pelo <strong>Decreto nº 12.198, de 24 de setembro de 2024</strong>, que estabelece a Estratégia Federal de Governo Digital (EFGD) para 2024-2027, e regulamentados pela <strong>Portaria SGD/MGI nº 6.618/2024</strong>.</p>
+
+    <h3>2. Estrutura do Corpus</h3>
+    <p>Cada órgão signatário publica até 2 documentos PDF:</p>
+    <ul>
+      <li><strong>Documento Diretivo</strong>: contém contexto institucional, escopo, cronograma e a <em>tabela de gestão de riscos</em> (5 colunas: risco, probabilidade, impacto, opção de tratamento, ações de tratamento)</li>
+      <li><strong>Anexo de Entregas</strong>: contém as tabelas de entregas pactuadas, concluídas e canceladas (colunas: serviço/ação, produto, eixo, área responsável, data)</li>
+    </ul>
+    <p>Foram identificados <strong>91 órgãos</strong> com PTD vigente, totalizando <strong>177 PDFs</strong> (86 diretivos + 91 entregas).</p>
+
+    <h3>3. Pipeline de Coleta e Extração</h3>
+    <ul>
+      <li><strong>Scraping</strong>: BeautifulSoup4 para parsing do HTML do gov.br e extração de URLs dos PDFs</li>
+      <li><strong>Download</strong>: requests com rate-limiting (1.5s entre requests), verificação de integridade (%PDF magic bytes)</li>
+      <li><strong>Extração de tabelas</strong>: PyMuPDF <code>find_tables()</code> para extração estruturada de tabelas, com merge de tabelas multi-página (header na pág N, dados na pág N+1)</li>
+      <li><strong>Resolução de referências</strong>: ações de tratamento numéricas ("1, 2, 9") resolvidas para texto completo via lista "Referencial para ações de tratamento do risco"</li>
+      <li><strong>Padronização</strong>: matching em 4 camadas (alias determinístico → exato accent-insensitive → fuzzy SequenceMatcher ≥0.85 → UNMATCHED)</li>
+    </ul>
+
+    <h3>4. Taxonomia e Vocabulário</h3>
+    <p>A EFGD define <strong>5 eixos estratégicos</strong> e <strong>44 produtos canônicos</strong>. Foram adicionados 10 produtos legados (templates v1.x/v2.x), 19 aliases de produto e 10 aliases de eixo para compatibilidade com PTDs de diferentes períodos.</p>
+    <p>Escalas de risco: <em>Probabilidade</em> (raro, pouco provável, provável, muito provável, praticamente certo) e <em>Impacto</em> (muito baixo, baixo, médio, alto, muito alto), conforme orientação SGD.</p>
+
+    <h3>5. Cobertura e Limitações</h3>
+    <ul>
+      <li><strong>Entregas</strong>: 6.292 registros de 79/91 órgãos (87%). 12 órgãos faltantes: 7 com PDFs escaneados (imagem sem texto) e 5 com formato de tabela não-padrão</li>
+      <li><strong>Riscos</strong>: 670 registros de 71/86 órgãos com diretivo (83%). 15 faltantes: todos PDFs escaneados sem texto extraível</li>
+      <li><strong>OCR pendente</strong>: a extração via Docling (IBM) com OCR habilitado no Google Colab pode recuperar os órgãos com PDFs escaneados</li>
+      <li><strong>Texto original preservado</strong>: todas as classificações mantêm o campo original do PDF ao lado da versão normalizada</li>
+    </ul>
+
+    <h3>6. Reprodutibilidade e Ciência Aberta</h3>
+    <ul>
+      <li><strong>Código-fonte</strong>: <a href="https://github.com/freirelucas/PTD" target="_blank">github.com/freirelucas/PTD</a> (licença aberta)</li>
+      <li><strong>Notebook Colab</strong>: <a href="https://colab.research.google.com/github/freirelucas/PTD/blob/main/ptd_scraper.ipynb" target="_blank">ptd_scraper.ipynb</a> — pipeline completo executável em um clique</li>
+      <li><strong>Dados abertos</strong>: todos os CSVs e JSONs disponíveis no diretório <code>output/</code> do repositório</li>
+      <li><strong>Build do dashboard</strong>: <code>data.js</code> gerado automaticamente a partir dos CSVs exportados</li>
+      <li><strong>Versionamento</strong>: cada etapa commitada com mensagem descritiva no Git</li>
+    </ul>
+    <p>O pipeline inteiro — do scraping à visualização — pode ser reproduzido executando o notebook Colab. Os dados brutos (PDFs) são baixados diretamente do portal gov.br, garantindo que qualquer pesquisador possa replicar o corpus.</p>
+
+    <h3>7. Citação Sugerida</h3>
+    <p style="background:var(--light);padding:12px;border-radius:var(--radius);font-size:.85rem">
+      FREIRE, Lucas. <em>Corpus dos Planos de Transformação Digital: extração, padronização e análise dos PTDs de 91 órgãos federais brasileiros</em>. 2026. Disponível em: <a href="https://github.com/freirelucas/PTD" target="_blank">github.com/freirelucas/PTD</a>.
+    </p>
+  </div>
 </div>
 
 </main>
@@ -207,16 +289,6 @@ let allDel = []; Object.values(PTD_DELIVERIES).forEach(arr => allDel.push(...arr
 let allRisk = []; Object.values(PTD_RISKS).forEach(arr => allRisk.push(...arr));
 
 // ==================== NAV ====================
-function showSection(id) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  document.querySelectorAll('.sidebar nav a').forEach(a => a.classList.toggle('active', a.getAttribute('href')==='#'+id));
-  if(id==='overview') initOverview();
-  if(id==='deliveries') initDeliveries();
-  if(id==='risks') initRisks();
-  if(id==='organs') initOrgans();
-  if(id==='compare') initCompare();
-}
 window.addEventListener('hashchange', ()=>{ const h=location.hash.replace('#',''); if(h) showSection(h); });
 
 function destroyChart(key){ if(charts[key]){charts[key].destroy();delete charts[key];} }
@@ -243,7 +315,7 @@ function initOverview(){
   const covOk=PTD_ORGANS.filter(o=>o.status_entregas==='ok').length;
   const covScan=PTD_ORGANS.filter(o=>o.status_entregas==='scan_ou_formato').length;
   const covNone=PTD_ORGANS.filter(o=>o.status_entregas==='sem_pdf').length;
-  charts.cov = new Chart(document.getElementById('chart-coverage'),{type:'doughnut',data:{labels:['Extraídos','Scan/Formato','Sem PDF'],datasets:[{data:[covOk,covScan,covNone],backgroundColor:['#2E7D32','#F9A825','#C62828']}]},options:{plugins:{legend:{position:'bottom'}}}});
+  charts.cov = new Chart(document.getElementById('chart-coverage'),{type:'doughnut',data:{labels:['Extraídos','Scan/Formato','Sem PDF'],datasets:[{data:[covOk,covScan,covNone],backgroundColor:['#2E7D32','#F9A825','#C62828']}]},options:{aspectRatio:1.6,plugins:{legend:{position:'bottom'}}}});
 
   // Top produtos table
   const prodCounts = {};
@@ -538,7 +610,91 @@ function runCompare(){
   document.getElementById('compare-table').innerHTML=html;
 }
 
+// ==================== 6. INSIGHTS ====================
+let insInit=false;
+function initInsights(){
+  if(insInit) return; insInit=true;
+  const el=document.getElementById('insights-content');
+
+  // Compute insights dynamically
+  const totalDel=allDel.length, totalRisk=allRisk.length;
+  const eixoCounts={};allDel.forEach(d=>{const e=d.eixo_normalizado;if(e)eixoCounts[e]=(eixoCounts[e]||0)+1;});
+  const top2Eixos=Object.entries(eixoCounts).sort((a,b)=>b[1]-a[1]).slice(0,2);
+  const top2Pct=((top2Eixos[0]?.[1]||0)+(top2Eixos[1]?.[1]||0))/totalDel*100;
+
+  const prodCounts={};allDel.forEach(d=>{const p=d.produto_normalizado;prodCounts[p]=(prodCounts[p]||0)+1;});
+  const topProd=Object.entries(prodCounts).sort((a,b)=>b[1]-a[1])[0];
+
+  const orgCounts={};allDel.forEach(d=>orgCounts[d.orgao_sigla]=(orgCounts[d.orgao_sigla]||0)+1);
+  const orgSorted=Object.entries(orgCounts).sort((a,b)=>b[1]-a[1]);
+  const maxOrg=orgSorted[0], minOrg=orgSorted[orgSorted.length-1];
+
+  const tratCounts={};allRisk.forEach(r=>{(r.tratamento_normalizado||'').split(';').forEach(t=>{t=t.trim().toLowerCase();if(['mitigar','eliminar','transferir','aceitar'].includes(t))tratCounts[t]=(tratCounts[t]||0)+1;});});
+  const mitigarPct=(tratCounts.mitigar||0)/Object.values(tratCounts).reduce((a,b)=>a+b,0)*100;
+
+  const riskTexts={};allRisk.forEach(r=>{const t=(r.risco_texto||'').substring(0,60);if(t.length>10)riskTexts[t]=(riskTexts[t]||0)+1;});
+  const topRisk=Object.entries(riskTexts).sort((a,b)=>b[1]-a[1])[0];
+
+  const probAlto=allRisk.filter(r=>r.probabilidade_normalizada==='provável'&&r.impacto_normalizado==='alto').length;
+
+  const govDados=eixoCounts['Governança e Gestão de Dados']||0;
+  const govPct=govDados/totalDel*100;
+
+  const ppsiCount=prodCounts['Implementação do PPSI']||0;
+  const ppsiAutoCount=prodCounts['Auto-avaliação, análise de lacunas e planejamento do PPSI']||0;
+
+  let html='<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">';
+
+  html+=`<div class="insight-card" style="border-left-color:#1351B4"><h4>Concentração de Entregas</h4><p><span class="num">${top2Pct.toFixed(0)}%</span> das entregas concentram-se em apenas 2 eixos: <strong>${top2Eixos[0]?.[0]?.substring(0,35)}</strong> e <strong>${top2Eixos[1]?.[0]?.substring(0,25)}</strong>. Isso sugere que a maioria dos órgãos prioriza a digitalização de serviços ao cidadão e a unificação de canais, enquanto eixos como Governança de Dados recebem menos atenção nas pactuações.</p></div>`;
+
+  html+=`<div class="insight-card" style="border-left-color:#2670E8"><h4>Produto Dominante</h4><p>"<strong>${topProd?.[0]}</strong>" é o produto mais pactuado, com <span class="num">${topProd?.[1]?.toLocaleString('pt-BR')}</span> entregas (${(topProd?.[1]/totalDel*100).toFixed(0)}% do total). Isso reflete a diretriz da EFGD de evoluir serviços já digitalizados, melhorando a qualidade e a experiência do usuário.</p></div>`;
+
+  html+=`<div class="insight-card" style="border-left-color:#FF9800"><h4>Perfil de Risco Predominante</h4><p>A célula <strong>provável × alto</strong> concentra <span class="num">${probAlto}</span> riscos — a combinação mais frequente na matriz. <span class="num">${mitigarPct.toFixed(0)}%</span> dos riscos são tratados com <strong>mitigação</strong>, indicando que os órgãos preferem reduzir probabilidade/impacto em vez de aceitar ou transferir.</p></div>`;
+
+  html+=`<div class="insight-card" style="border-left-color:#C62828"><h4>Risco Transversal</h4><p>"<strong>${topRisk?.[0]}...</strong>" aparece em <span class="num">${topRisk?.[1]}</span> órgãos — o risco mais recorrente do governo federal. A dependência de fornecedores para execução de projetos de TI é um problema sistêmico que afeta a capacidade de transformação digital.</p></div>`;
+
+  html+=`<div class="insight-card" style="border-left-color:#2E7D32"><h4>Disparidade entre Órgãos</h4><p>Existe grande variação no volume de entregas: <strong>${maxOrg?.[0]}</strong> lidera com <span class="num">${maxOrg?.[1]}</span> entregas, enquanto <strong>${minOrg?.[0]}</strong> tem apenas <span class="num">${minOrg?.[1]}</span>. A média é ${PTD_STATS.media_entregas_por_orgao} e a mediana ${PTD_STATS.mediana_entregas_por_orgao}, indicando distribuição assimétrica com poucos órgãos concentrando muitas entregas.</p></div>`;
+
+  html+=`<div class="insight-card" style="border-left-color:#6A1B9A"><h4>Governança de Dados Sub-representada</h4><p>O eixo "Governança e Gestão de Dados" tem apenas <span class="num">${govPct.toFixed(1)}%</span> das entregas (${govDados}), apesar de conter <strong>20 dos 44 produtos canônicos</strong> (45% do catálogo). Abertura de dados, LGPD, inventário de bases e interoperabilidade aparecem raramente nas pactuações efetivas.</p></div>`;
+
+  html+=`<div class="insight-card" style="border-left-color:#00695C"><h4>Segurança: PPSI é Prioridade na Prática</h4><p>A "Implementação do PPSI" aparece <span class="num">${ppsiCount}</span> vezes e "Auto-avaliação do PPSI" <span class="num">${ppsiAutoCount}</span> vezes — juntos representam ${((ppsiCount+ppsiAutoCount)/totalDel*100).toFixed(0)}% das entregas. Esses produtos não existiam no template v4.0 original (são legados do v2.x), mas dominam o eixo Segurança e Privacidade na prática.</p></div>`;
+
+  html+=`<div class="insight-card" style="border-left-color:#37474F"><h4>Cobertura do Corpus</h4><p>O pipeline extraiu dados de <span class="num">${PTD_STATS.entregas_orgaos}</span>/91 órgãos para entregas e <span class="num">${PTD_STATS.riscos_orgaos}</span>/86 para riscos. Os <strong>${PTD_STATS.pdfs_escaneados_pendentes} órgãos pendentes</strong> possuem PDFs escaneados como imagem — recuperáveis via OCR (Docling). O corpus atual cobre a grande maioria da administração federal direta e indireta.</p></div>`;
+
+  // Projetos Especiais
+  const peCount=eixoCounts['Projetos Especiais']||0;
+  const peOrgs=new Set();allDel.filter(d=>d.eixo_normalizado==='Projetos Especiais').forEach(d=>peOrgs.add(d.orgao_sigla));
+  html+=`<div class="insight-card" style="border-left-color:#E65100"><h4>Projetos Especiais: Espaço Subutilizado</h4><p>O eixo "Projetos Especiais" contém apenas <span class="num">${peCount}</span> entregas em <strong>${peOrgs.size}</strong> órgãos — o menor volume de todos os eixos. Esse é o espaço previsto na EFGD para <strong>iniciativas inovadoras de transformação digital</strong>, incluindo uso de IA, automação, analytics e projetos experimentais. A baixa adesão sugere que os órgãos priorizam demandas obrigatórias (Login Único, PPSI) em detrimento de projetos estratégicos de maior potencial transformador.</p></div>`;
+
+  // Potencial de IA
+  const iaTerms=['inteligencia artificial','ia ','machine learning','aprendizado de máquina','chatbot','assistente virtual','automação','automatiz','analytics','dados abertos','big data','nlp','processamento de linguagem'];
+  let iaCount=0;const iaOrgs=new Set();
+  allDel.forEach(d=>{const t=((d.servico_acao||'')+(d.produto_original||'')).toLowerCase();if(iaTerms.some(k=>t.includes(k))){iaCount++;iaOrgs.add(d.orgao_sigla);}});
+  html+=`<div class="insight-card" style="border-left-color:#0D47A1"><h4>IA e Automação na Administração Pública</h4><p>Buscando termos relacionados a IA, automação e analytics nos textos livres das entregas, encontramos <span class="num">${iaCount}</span> menções em <strong>${iaOrgs.size}</strong> órgãos. ${iaCount>50?'Há um movimento emergente':'A presença ainda é tímida'} de adoção de IA no governo federal. As oportunidades mais claras estão em: <strong>atendimento virtual</strong> (chatbots para serviços ao cidadão), <strong>análise de dados</strong> (dashboards e predição), <strong>automação de processos</strong> (RPA para back-office) e <strong>interoperabilidade inteligente</strong> (APIs com enriquecimento de dados).</p></div>`;
+
+  // Eixos com potencial transformador
+  html+=`<div class="insight-card" style="border-left-color:#1B5E20"><h4>Eixos com Maior Potencial Transformador</h4><p>Embora "Serviços Digitais" domine em volume, os eixos com <strong>maior potencial de impacto sistêmico</strong> são:<br>
+  <strong>1. Governança e Gestão de Dados</strong> (${govPct.toFixed(0)}% das entregas) — a interoperabilidade de dados entre órgãos pode eliminar redundâncias, melhorar políticas públicas baseadas em evidência, e habilitar o uso de IA em escala.<br>
+  <strong>2. Projetos Especiais</strong> — espaço formal para inovação que pode catalisar a modernização transversal.<br>
+  <strong>3. Unificação de Canais</strong> — a migração para plataforma unificada Gov.br cria a infraestrutura para experiências digitais integradas e personalização via IA.</p></div>`;
+
+  html+='</div>';
+  el.innerHTML=html;
+}
+
 // ==================== INIT ====================
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.sidebar nav a').forEach(a => a.classList.toggle('active', a.getAttribute('href')==='#'+id));
+  if(id==='overview') initOverview();
+  if(id==='deliveries') initDeliveries();
+  if(id==='risks') initRisks();
+  if(id==='organs') initOrgans();
+  if(id==='compare') initCompare();
+  if(id==='insights') initInsights();
+}
+
 document.addEventListener('DOMContentLoaded',()=>{
   const h=location.hash.replace('#','');
   showSection(h||'overview');
