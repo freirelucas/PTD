@@ -943,6 +943,63 @@ function initInsights(){
   <strong>2. Projetos Especiais</strong> — espaço formal para inovação que pode catalisar a modernização transversal.<br>
   <strong>3. Unificação de Canais</strong> — a migração para plataforma unificada Gov.br cria a infraestrutura para experiências digitais integradas e personalização via IA.</p></div>`;
 
+  // === NOVOS INSIGHTS — RISCOS E MITIGAÇÕES ===
+
+  // Riscos sem ação de mitigação
+  const noAction=allRisk.filter(r=>!(r.acoes_original||'').trim()&&!(r.acoes_resolvidas||'').trim());
+  const noActionHigh=noAction.filter(r=>['alto','muito alto'].includes(r.impacto_normalizado));
+  html+=`<div class="insight-card" style="border-left-color:#b71c1c"><h4>Riscos sem Plano de Ação: ${noAction.length} de ${allRisk.length}</h4><p>
+    <span class="num">${(noAction.length/allRisk.length*100).toFixed(0)}%</span> dos riscos mapeados não possuem nenhuma ação de tratamento registrada — o campo está vazio. Desses, <strong>${noActionHigh.length} têm impacto alto ou muito alto</strong>. Isso sugere que muitos órgãos cumprem a obrigatoriedade de mapear riscos mas não detalham como pretender tratá-los — a gestão de riscos fica <em>formal mas não operacional</em>.
+  </p></div>`;
+
+  // Aceitação de riscos altos
+  const acceptHigh=allRisk.filter(r=>(r.tratamento_normalizado||'').toLowerCase().includes('aceitar')&&['alto','muito alto'].includes(r.impacto_normalizado));
+  const acceptOrgs=new Set(acceptHigh.map(r=>r.orgao_sigla));
+  html+=`<div class="insight-card" style="border-left-color:#e65100"><h4>Aceitação Deliberada de Riscos Altos</h4><p>
+    <span class="num">${acceptHigh.length}</span> riscos com impacto alto/muito alto são deliberadamente <strong>aceitos</strong> por <strong>${acceptOrgs.size} órgãos</strong>. Casos como "alteração na política pública" e "despriorização do PTD pela alta administração" são classificados como impacto alto mas tratados com aceitação — o órgão reconhece o risco mas decide não agir, possivelmente por estar fora de sua governabilidade.
+  </p></div>`;
+
+  // Monocultura do mitigar
+  const orgTrat={};allRisk.forEach(r=>{if(!orgTrat[r.orgao_sigla])orgTrat[r.orgao_sigla]=new Set();(r.tratamento_normalizado||'').split(';').forEach(t=>{t=t.trim().toLowerCase();if(['mitigar','eliminar','transferir','aceitar'].includes(t))orgTrat[r.orgao_sigla].add(t);});});
+  const onlyMitigar=Object.entries(orgTrat).filter(([o,s])=>s.size===1&&s.has('mitigar')).length;
+  const diversified=Object.entries(orgTrat).filter(([o,s])=>s.size>=3).length;
+  html+=`<div class="insight-card" style="border-left-color:#015f96"><h4>Monocultura da Mitigação</h4><p>
+    <span class="num">${onlyMitigar}</span> órgãos usam exclusivamente "mitigar" como estratégia de tratamento — nenhum risco é eliminado, transferido ou aceito. Apenas <strong>${diversified} órgãos</strong> diversificam com 3+ estratégias. Em todos os níveis de impacto, mitigar domina com ~80%. A literatura de gestão de riscos recomenda que riscos de baixa probabilidade sejam aceitos e riscos transferíveis (como dependência de fornecedores) sejam compartilhados — a ausência dessas estratégias sugere baixa maturidade em gestão de riscos.
+  </p></div>`;
+
+  // Riscos fiscais vs pessoal
+  const fiscal=allRisk.filter(r=>{const t=(r.risco_texto||'').toLowerCase();return t.includes('orçament')||t.includes('recurso')||t.includes('financ')||t.includes('custo');});
+  const pessoal=allRisk.filter(r=>{const t=(r.risco_texto||'').toLowerCase();return t.includes('equipe')||t.includes('pessoal')||t.includes('rotatividade')||t.includes('recurso humano')||t.includes('força de trabalho')||t.includes('disponibilidade');});
+  const fiscalOrgs=new Set(fiscal.map(r=>r.orgao_sigla));
+  const pessoalOrgs=new Set(pessoal.map(r=>r.orgao_sigla));
+  html+=`<div class="insight-card" style="border-left-color:#1565c0"><h4>Pessoas > Orçamento: Os Dois Riscos Estruturais</h4><p>
+    Os riscos do governo digital se concentram em duas dimensões estruturais:<br>
+    <strong>Pessoal/Capacidade:</strong> <span class="num">${pessoal.length}</span> riscos em ${pessoalOrgs.size} órgãos — rotatividade, indisponibilidade de equipes de TI, dependência de fornecedores.<br>
+    <strong>Orçamento/Fiscal:</strong> <span class="num">${fiscal.length}</span> riscos em ${fiscalOrgs.size} órgãos — cortes orçamentários, falta de recursos para contratações.<br>
+    Riscos de pessoal são <strong>${(pessoal.length/fiscal.length).toFixed(1)}x mais frequentes</strong> que fiscais, indicando que o gargalo da transformação digital não é dinheiro — é gente qualificada.
+  </p></div>`;
+
+  // Viés de avaliação (otimistas vs pessimistas)
+  const probIdx={"raro":0,"pouco provável":1,"provável":2,"muito provável":3,"praticamente certo":4};
+  const orgProbAvg={};
+  allRisk.forEach(r=>{const p=probIdx[r.probabilidade_normalizada];if(p!==undefined){if(!orgProbAvg[r.orgao_sigla])orgProbAvg[r.orgao_sigla]={sum:0,n:0};orgProbAvg[r.orgao_sigla].sum+=p;orgProbAvg[r.orgao_sigla].n++;}});
+  const optimists=Object.entries(orgProbAvg).filter(([o,v])=>v.n>=3&&v.sum/v.n<1.2).map(([o,v])=>({o,avg:(v.sum/v.n).toFixed(1),n:v.n}));
+  html+=`<div class="insight-card" style="border-left-color:#2e7d32"><h4>Viés de Avaliação: Otimistas Estruturais</h4><p>
+    <span class="num">${optimists.length}</span> órgãos classificam sistematicamente todos os seus riscos como "raro" ou "pouco provável" (média < 1.2 na escala 0-4): <strong>${optimists.map(x=>x.o).join(', ')}</strong>. ${optimists.length>0?'Nenhum órgão é sistematicamente pessimista (média > 2.8).':''}  Esse viés otimista pode indicar auto-avaliação branda ou baixa percepção de riscos — exatamente os órgãos que menos se preparam são os mais vulneráveis a surpresas.
+  </p></div>`;
+
+  // Relação entregas vs riscos
+  const orgDelC={};allDel.forEach(d=>orgDelC[d.orgao_sigla]=(orgDelC[d.orgao_sigla]||0)+1);
+  const orgRiskC={};allRisk.forEach(r=>orgRiskC[r.orgao_sigla]=(orgRiskC[r.orgao_sigla]||0)+1);
+  const ratios=Object.keys(orgDelC).filter(o=>orgRiskC[o]>0).map(o=>({o,d:orgDelC[o],r:orgRiskC[o],ratio:orgDelC[o]/orgRiskC[o]})).sort((a,b)=>b.ratio-a.ratio);
+  const highAmb=ratios.slice(0,3);
+  const lowAmb=ratios.slice(-3).reverse();
+  html+=`<div class="insight-card" style="border-left-color:#6a1b9a"><h4>Ambição vs Cautela: Razão Entregas/Riscos</h4><p>
+    A razão entregas por risco revela perfis opostos:<br>
+    <strong>Alta ambição, poucos riscos:</strong> ${highAmb.map(x=>`${x.o} (${x.d} entregas / ${x.r} riscos = ${x.ratio.toFixed(0)}:1)`).join(', ')} — muitas entregas pactuadas mas poucos riscos declarados, potencialmente subestimando desafios.<br>
+    <strong>Cautela extrema:</strong> ${lowAmb.map(x=>`${x.o} (${x.d} entregas / ${x.r} riscos = ${x.ratio.toFixed(1)}:1)`).join(', ')} — mais riscos do que entregas, indicando consciência de vulnerabilidades ou ambiente de alta complexidade.
+  </p></div>`;
+
   html+='</div>';
   el.innerHTML=html;
 }
