@@ -110,7 +110,8 @@ prob_counter = Counter(r.probabilidade_normalizada for r in all_risks if r.proba
 imp_counter = Counter(r.impacto_normalizado for r in all_risks if r.impacto_normalizado)
 trat_counter = Counter()
 for r in all_risks:
-    for t in str(r.tratamento_normalizado).split(";"):
+    trat_str = r.tratamento_normalizado or ""
+    for t in trat_str.split(";"):
         t = t.strip()
         if t:
             trat_counter[t] += 1
@@ -205,12 +206,21 @@ for organ in sorted(all_organs, key=lambda o: o.sigla):
 # -----------------------------------------------------------------
 # 3. PTD_DELIVERIES  (agrupado por sigla)
 # -----------------------------------------------------------------
+# Cache de scores para evitar recomputar fuzzy match por entrega
+_score_cache = {}
+def _get_produto_score(original: str, normalizado: str) -> float:
+    if not original:
+        return 0.0
+    if normalizado and normalizado == original:
+        return 1.0
+    if original not in _score_cache:
+        _, s = fuzzy_match_produto(original)
+        _score_cache[original] = s
+    return _score_cache[original]
+
 ptd_deliveries = defaultdict(list)
 for d in all_deliveries:
-    # Recomputar score do produto
-    _, pscore = fuzzy_match_produto(d.produto_original) if d.produto_original else ("", 0.0)
-    if d.produto_normalizado and d.produto_normalizado == d.produto_original:
-        pscore = 1.0
+    pscore = _get_produto_score(d.produto_original or "", d.produto_normalizado or "")
 
     ptd_deliveries[d.orgao_sigla].append({
         "orgao_sigla": d.orgao_sigla,
