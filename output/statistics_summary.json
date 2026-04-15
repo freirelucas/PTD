@@ -3,9 +3,9 @@
   "orgaos_total": 91,
   "entregas_total": 6292,
   "entregas_orgaos": 79,
-  "riscos_total": 670,
+  "riscos_total": 929,
   "riscos_orgaos": 71,
-  "riscos_canonicos": 376,
+  "riscos_canonicos": 773,
   "pdfs_escaneados_pendentes": 15,
   "top5_produtos": {
     "Evolução do Serviço": 1406,
@@ -21,24 +21,24 @@
     "Governança e Gestão de Dados": 171
   },
   "distribuicao_probabilidade": {
-    "raro": 27,
-    "pouco provável": 142,
-    "provável": 151,
-    "muito provável": 40,
-    "praticamente certo": 16
+    "raro": 37,
+    "pouco provável": 250,
+    "provável": 350,
+    "muito provável": 94,
+    "praticamente certo": 42
   },
   "distribuicao_impacto": {
     "muito baixo": 0,
-    "baixo": 26,
-    "médio": 90,
-    "alto": 178,
-    "muito alto": 82
+    "baixo": 61,
+    "médio": 260,
+    "alto": 389,
+    "muito alto": 118
   },
   "distribuicao_tratamento": {
-    "mitigar": 279,
-    "aceitar": 35,
-    "transferir": 18,
-    "eliminar": 22
+    "mitigar": 413,
+    "aceitar": 84,
+    "transferir": 22,
+    "eliminar": 29
   },
   "media_entregas_por_orgao": 79.6,
   "mediana_entregas_por_orgao": 59
