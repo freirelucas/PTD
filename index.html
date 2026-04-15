@@ -44,8 +44,15 @@ body{font-family:'Source Sans 3','Segoe UI',system-ui,sans-serif;background:var(
 .prose li{margin-bottom:6px}
 .prose code{background:var(--light);padding:2px 6px;border-radius:4px;font-size:.85rem}
 .prose a{color:var(--accent)}
-.insight-card{background:var(--card);border-radius:var(--radius);padding:20px;margin-bottom:16px;box-shadow:0 1px 2px rgba(0,0,0,.06);border-left:4px solid var(--primary)}
-.action-bar{display:flex;align-items:center;gap:8px;padding:8px 12px;margin-bottom:4px;background:var(--bg);border-radius:var(--radius);cursor:pointer;transition:background .2s;border-left:4px solid var(--accent)}
+.insight-card{background:var(--card);border-radius:var(--radius);padding:14px 18px;margin-bottom:10px;box-shadow:0 1px 2px rgba(0,0,0,.06);border-left:4px solid var(--primary);cursor:pointer;transition:background .15s}
+.insight-card:hover{background:var(--light)}
+.insight-card h4{color:var(--dark);margin-bottom:2px;font-size:.88rem;display:flex;justify-content:space-between;align-items:center}
+.insight-card h4 .tag{font-size:1.1rem;font-weight:700;color:var(--primary)}
+.insight-card .summary{font-size:.82rem;color:var(--muted);line-height:1.4}
+.insight-card .detail{display:none;margin-top:8px;padding-top:8px;border-top:1px solid var(--border);font-size:.82rem;color:var(--text);line-height:1.6}
+.insight-card.open .detail{display:block}
+.insight-card p{color:var(--text);font-size:.85rem;line-height:1.5;margin:0}
+.insight-card .num{font-size:1.2rem;font-weight:700;color:var(--dark)};align-items:center;gap:8px;padding:8px 12px;margin-bottom:4px;background:var(--bg);border-radius:var(--radius);cursor:pointer;transition:background .2s;border-left:4px solid var(--accent)}
 .action-bar:hover{background:var(--light)}
 .action-bar.selected{background:var(--light);border-left-color:var(--primary)}
 .action-bar .num{font-weight:700;color:var(--primary);min-width:28px;text-align:center;font-size:.95rem}
@@ -1179,12 +1186,82 @@ function runCompare(){
   el.innerHTML=html;
 })();
 
-// ==================== 6. INSIGHTS (tom IPEA) ====================
+// ==================== 6. INSIGHTS (v2 — collapsible) ====================
 let insInit=false;
 function initInsights(){
   if(insInit) return; insInit=true;
   const el=document.getElementById('insights-content');
   const N=allDel.length, NR=allRisk.length;
+  const nOrgsD=new Set(allDel.map(d=>d.orgao_sigla)).size;
+  const nOrgsR=new Set(allRisk.map(r=>r.orgao_sigla)).size;
+  const eixoC={};allDel.forEach(d=>{const e=d.eixo_normalizado;if(e)eixoC[e]=(eixoC[e]||0)+1;});
+  const eixoS=Object.entries(eixoC).sort((a,b)=>b[1]-a[1]);
+  const top2pct=((eixoS[0]?.[1]||0)+(eixoS[1]?.[1]||0))/N*100;
+  const govDados=eixoC['Governança e Gestão de Dados']||0;
+  const prodC={};allDel.forEach(d=>{prodC[d.produto_normalizado]=(prodC[d.produto_normalizado]||0)+1;});
+  const nProdsUsed=Object.keys(prodC).length;
+  const orgProds={};allDel.forEach(d=>{if(!orgProds[d.orgao_sigla])orgProds[d.orgao_sigla]=new Set();orgProds[d.orgao_sigla].add(d.produto_normalizado);});
+  const ppsiPres=Object.values(orgProds).filter(s=>s.has('Implementação do PPSI')).length;
+  const riskT={};allRisk.forEach(r=>{const t=re_norm(r.risco_texto);if(t.length>10)riskT[t]=(riskT[t]||0)+1;});
+  function re_norm(t){return(t||'').trim().toLowerCase().substring(0,60).replace(/\s+/g,' ');}
+  const templateR=Object.values(riskT).filter(c=>c>=5).reduce((a,b)=>a+b,0);
+  const noAction=allRisk.filter(r=>!(r.acoes_original||'').trim()&&!(r.acoes_resolvidas||'').trim()).length;
+  const noActHigh=allRisk.filter(r=>!(r.acoes_original||'').trim()&&!(r.acoes_resolvidas||'').trim()&&['alto','muito alto'].includes(r.impacto_normalizado)).length;
+  const orgTrat={};allRisk.forEach(r=>{if(!orgTrat[r.orgao_sigla])orgTrat[r.orgao_sigla]=new Set();(r.tratamento_normalizado||'').split(';').forEach(t=>{t=t.trim().toLowerCase();if(['mitigar','eliminar','transferir','aceitar'].includes(t))orgTrat[r.orgao_sigla].add(t);});});
+  const onlyMit=Object.entries(orgTrat).filter(([,s])=>s.size===1&&s.has('mitigar')).length;
+  const pessoalKw=['equipe','pessoal','rotatividade','recurso humano','força de trabalho','fornecedor','disponibilidade'];
+  const fiscalKw=['orçament','recurso','financ','custo'];
+  const nPess=allRisk.filter(r=>pessoalKw.some(k=>(r.risco_texto||'').toLowerCase().includes(k))).length;
+  const nFisc=allRisk.filter(r=>fiscalKw.some(k=>(r.risco_texto||'').toLowerCase().includes(k))).length;
+  const highP=new Set(['provável','muito provável','praticamente certo']);
+  const highI=new Set(['alto','muito alto']);
+  const crit=allRisk.filter(r=>highP.has(r.probabilidade_normalizada)&&highI.has(r.impacto_normalizado));
+
+  function card(color,title,tag,summary,detail){
+    return `<div class="insight-card" style="border-left-color:${color}" onclick="this.classList.toggle('open')"><h4>${title}<span class="tag" style="color:${color}">${tag}</span></h4><div class="summary">${summary}</div><div class="detail">${detail}</div></div>`;
+  }
+
+  let html='<p style="font-size:.82rem;color:var(--muted);margin-bottom:16px">Clique em um card para expandir a fundamentação.</p>';
+  html+='<h3 style="color:var(--dark);margin-bottom:12px">Corpus</h3>';
+  html+=card('#264A7F','Cobertura',nOrgsD+'/91',
+    `${N.toLocaleString('pt-BR')} entregas e ${NR} riscos extraídos de ${nOrgsD} e ${nOrgsR} órgãos respectivamente.`,
+    `Os ${PTD_STATS.pdfs_escaneados_pendentes} órgãos ausentes possuem PDFs escaneados como imagem. A cobertura de 87% confere representatividade substantiva, embora a confirmação definitiva requeira OCR. A extração usou abordagem híbrida: find_tables() para tabelas multi-página + fallback textual para PDFs sem estrutura tabelar detectável.`);
+  html+=card('#264A7F','Homogeneidade','PPSI 90%',
+    `${nProdsUsed} dos 44 produtos canônicos usados. PPSI presente em ${ppsiPres}/${nOrgsD} órgãos.`,
+    `Nenhum produto é universal. A padronização de facto centra-se em segurança (PPSI, 90%) e identidade digital (Login Único, 76%). Os 25 produtos ausentes — a maioria do eixo Governança — existem no catálogo da EFGD mas não nas pactuações efetivas.`);
+
+  html+='<h3 style="color:var(--dark);margin:16px 0 12px">Entregas</h3>';
+  html+=card('#4D8AC9','Concentração setorial',top2pct.toFixed(0)+'%',
+    `Dois eixos (Serviços Digitais + Unificação) concentram ${top2pct.toFixed(0)}% das entregas.`,
+    `A transformação digital federal prioriza a interface com o cidadão em detrimento de dimensões estruturantes. Segurança (${eixoC['Segurança e Privacidade']||0}, ${((eixoC['Segurança e Privacidade']||0)/N*100).toFixed(0)}%) é sustentada pelo PPSI legado. Governança e Dados tem ${govDados} entregas (${(govDados/N*100).toFixed(1)}%), todas de um único produto.`);
+  html+=card('#4D8AC9','Governança residual',govDados.toString(),
+    `${govDados} entregas em Governança, todas de "Integração à base de dados". 19/20 produtos com zero.`,
+    `Adequação à LGPD, PDTIC, abertura de dados, interoperabilidade — todos com zero pactuações. Quando órgãos executam ações de governança (ex: LGPD na ANA), registram sob outros produtos. Ressalva: 12 órgãos com PDFs escaneados não foram processados.`);
+  html+=card('#4D8AC9','6 princípios, 5 eixos','3 ativos',
+    `Dos 6 princípios do Decreto, apenas 3 têm expressão operacional nos PTDs.`,
+    `Os princípios centrado no cidadão (I), integrado (II) e seguro (IV) sustentam as pactuações. Inteligente/inovador (III), transparente/participativo (V) e eficiente/sustentável (VI) carecem de materialização. A distância entre aspiração normativa e execução é significativa.`);
+
+  html+='<h3 style="color:var(--dark);margin:16px 0 12px">Riscos</h3>';
+  html+=card('#C0392B','Reprodução do referencial',(templateR/NR*100).toFixed(0)+'%',
+    `${templateR} dos ${NR} riscos repetem textos do referencial SGD. ${NR-templateR} são originais.`,
+    `Os riscos mais replicados — dependência de fornecedores, atraso nos cronogramas, baixo comprometimento — são legítimos, mas sua uniformidade sugere conformidade formal mais que exercício analítico genuíno. Órgãos como MMULHERES (44 riscos) e MGI (29) apresentam maior originalidade.`);
+  html+=card('#C0392B','Sem plano de ação',noAction+'/'+NR,
+    `${(noAction/NR*100).toFixed(0)}% dos riscos não têm ações detalhadas. ${noActHigh} desses com impacto alto/muito alto.`,
+    `O mapeamento existe mas a resposta não se materializa no documento. Essa dissociação entre diagnóstico e tratamento é particularmente preocupante nos ${noActHigh} riscos de alta severidade sem ações — o órgão reconhece o problema mas não registra como pretende enfrentá-lo.`);
+  html+=card('#C0392B','Monocultura da mitigação',onlyMit+' órgãos',
+    `${onlyMit} órgãos usam exclusivamente "mitigar". Apenas ${Object.entries(orgTrat).filter(([,s])=>s.size>=3).length} diversificam com 3+ estratégias.`,
+    `Em todos os níveis de impacto, mitigação representa ~80% das respostas. Riscos transferíveis (dependência de fornecedores) e riscos aceitáveis (baixa probabilidade) raramente recebem o tratamento recomendado pela literatura de gestão de riscos.`);
+
+  html+='<h3 style="color:var(--dark);margin:16px 0 12px">Transversal</h3>';
+  html+=card('#27AE60','Pessoas, não orçamento',nPess+' vs '+nFisc,
+    `Riscos de pessoal (${nPess}) são ${(nPess/Math.max(nFisc,1)).toFixed(1)}× mais frequentes que fiscais (${nFisc}).`,
+    `A restrição mais reconhecida não é orçamentária, mas de capital humano — rotatividade, indisponibilidade de TI, dependência de fornecedores. ${Math.round(Object.keys(orgTrat).filter(o=>!allRisk.some(r=>r.orgao_sigla===o&&pessoalKw.some(k=>(r.risco_texto||'').toLowerCase().includes(k)))).length/Object.keys(orgTrat).length*100)}% dos órgãos sequer mencionam esse tipo de risco.`);
+  html+=card('#27AE60','Zona crítica da matriz',crit.length.toString(),
+    `${crit.length} riscos com probabilidade ≥provável e impacto ≥alto, em ${new Set(crit.map(r=>r.orgao_sigla)).size} órgãos.`,
+    `Os mais recorrentes: dependência de fornecedores, indisponibilidade de equipes de TI, atraso nos cronogramas. A classificação é autodeclarada, o que pode introduzir vieses de sub ou superestimação. Cinco riscos ocupam a célula máxima (praticamente certo × muito alto).`);
+
+  el.innerHTML=html;
+}
 
   // Pre-compute
   const eixoC={};allDel.forEach(d=>{const e=d.eixo_normalizado;if(e)eixoC[e]=(eixoC[e]||0)+1;});
