@@ -41,7 +41,7 @@
 
 ### SINOPSE
 
-Esta nota técnica apresenta a construção e análise de um corpus abrangente dos Planos de Transformação Digital (PTDs) vigentes de 91 órgãos da administração pública federal brasileira. Os PTDs, instituídos pelo Decreto nº 12.198/2024 no âmbito da Estratégia Federal de Governo Digital (EFGD) 2024-2027, foram coletados automaticamente do portal gov.br, com extração estruturada de tabelas de entregas pactuadas (6.292 registros) e gestão de riscos (670 registros). O corpus resultante permite análises transversais inéditas sobre o estado da transformação digital no governo federal, revelando padrões de concentração setorial, lacunas de governança de dados e características sistêmicas da gestão de riscos.
+Esta nota técnica apresenta a construção e análise de um corpus abrangente dos Planos de Transformação Digital (PTDs) vigentes de 91 órgãos da administração pública federal brasileira. Os PTDs, instituídos pelo Decreto nº 12.198/2024 no âmbito da Estratégia Federal de Governo Digital (EFGD) 2024-2027, foram coletados automaticamente do portal gov.br, com extração estruturada de tabelas de entregas pactuadas (4.530 registros) e gestão de riscos (600 registros). Órgãos que compartilham um mesmo PTD ministerial são contados uma única vez, evitando dupla contagem. O corpus resultante permite análises transversais inéditas sobre o estado da transformação digital no governo federal, revelando padrões de concentração setorial, lacunas de governança de dados e características sistêmicas da gestão de riscos.
 
 ---
 
@@ -67,8 +67,8 @@ Esta nota técnica apresenta a construção e análise de um corpus abrangente d
 |-------|--------|-----------|
 | Scraping da página gov.br | BeautifulSoup4 + requests | 91 órgãos, 177 URLs de PDFs |
 | Download dos PDFs | requests com rate-limiting (1.5s), verificação %PDF | 86 Diretivos + 91 Entregas = 177 PDFs |
-| Extração de tabelas de entregas | PyMuPDF find_tables() + matching fuzzy de produtos | 6.292 registros de 79 órgãos |
-| Extração de tabelas de riscos | PyMuPDF find_tables() com merge multi-página | 670 registros de 71 órgãos |
+| Extração de tabelas de entregas | Docling (IBM) + matching fuzzy de produtos | 4.530 registros de 79 órgãos (57 próprios + 22 compartilhados) |
+| Extração de tabelas de riscos | Docling com merge multi-página | 600 registros de 71 órgãos (50 próprios + 21 compartilhados) |
 | Resolução de ações numéricas | Parsing da lista "Referencial para ações de tratamento" | 35 órgãos com referências resolvidas |
 
 - 12 órgãos não processados (PDFs escaneados como imagem, sem camada de texto)
@@ -86,11 +86,11 @@ Esta nota técnica apresenta a construção e análise de um corpus abrangente d
 
 **2.3 Estrutura do corpus**
 
-Entregas (deliveries.csv — 6.292 linhas × 9 colunas):
+Entregas (deliveries.csv — 4.530 linhas × 9 colunas):
 - orgao_sigla, servico_acao, produto_original, produto_normalizado, produto_score
 - eixo_original, eixo_normalizado, data_pactuada, confidence
 
-Riscos (risks.csv — 670 linhas × 11 colunas):
+Riscos (risks.csv — 600 linhas × 11 colunas):
 - orgao_sigla, id_risco, risco_texto
 - probabilidade_original, probabilidade_normalizada
 - impacto_original, impacto_normalizado
@@ -103,27 +103,27 @@ Riscos (risks.csv — 670 linhas × 11 colunas):
 
 **3.1 Panorama das entregas**
 
-- 6.292 entregas pactuadas por 79 órgãos
+- 4.530 entregas pactuadas por 79 órgãos (57 com dados próprios + 22 compartilhando PTD ministerial)
 - Distribuição por eixo:
-  - Serviços Digitais e Melhoria da Qualidade: 3.507 (55,7%)
-  - Unificação de Canais Digitais: 1.817 (28,9%)
-  - Segurança e Privacidade: 797 (12,7%)
-  - Governança e Gestão de Dados: 171 (2,7%)
+  - Serviços Digitais e Melhoria da Qualidade: 2.109 (46,6%)
+  - Unificação de Canais Digitais: 1.206 (26,6%)
+  - Segurança e Privacidade: 655 (14,5%)
+  - Governança e Gestão de Dados: 112 (2,5%)
   - Projetos Especiais: 0 (0,0%)
 - 19 dos 44 produtos canônicos aparecem no corpus; 25 têm zero pactuações
-- Top 3 produtos: Evolução do Serviço (1.406), Integração ao Login Único (1.030), Disponibilização em Acesso Digital (759)
-- 3 produtos legados concentram 965 entregas (15,3%): PPSI (641), Integração à base de dados (171), Auto-avaliação PPSI (153)
-- Média: 79,6 entregas/órgão | Mediana: 59 | Máx: ANVISA (344) | Mín: ABIN (5)
+- Top 3 produtos: Integração à ferramenta de avaliação da satisfação dos usuários (790), Integração ao Login Único (699), Evolução do Serviço (676)
+- 2 produtos legados concentram 461 entregas (10,2%): PPSI (349), Integração à base de dados (112)
+- Média: 79,5 entregas/órgão | Mediana: 53 | Máx: ANVISA (437) | Mín: MDA (6)
 - 30% das entregas concentradas em dezembro (final de vigência)
 
 **3.2 Panorama dos riscos**
 
-- 670 riscos mapeados por 71 órgãos
-- Distribuição de probabilidade: provável (151), pouco provável (142), muito provável (40), raro (27), praticamente certo (16)
-- Distribuição de impacto: alto (178), médio (90), muito alto (82), baixo (26)
-- Tratamento: mitigar (79%), aceitar (10%), eliminar (6%), transferir (5%)
-- 151 riscos na zona crítica (probabilidade ≥ provável × impacto ≥ alto)
-- 5 riscos na severidade máxima (praticamente certo × muito alto): INSS, MPO, MRE (2), SG-PR
+- 600 riscos mapeados por 71 órgãos (50 com dados próprios + 21 compartilhando PTD ministerial)
+- Distribuição de probabilidade: provável (188), pouco provável (174), muito provável (44), raro (28), praticamente certo (20)
+- Distribuição de impacto: alto (220), médio (140), muito alto (100), baixo (45)
+- Tratamento: mitigar (62%), aceitar (10%), transferir (4%), eliminar (1%)
+- 166 riscos na zona crítica (probabilidade ≥ provável × impacto ≥ alto)
+- 11 riscos na severidade máxima (praticamente certo × muito alto): ANATEL, ANA, INSS, MDHC, MEC, MME, MPO, MRE (2), SG-PR (2)
 - 45% dos riscos sem ações de tratamento detalhadas
 - 66% dos textos de risco reproduzem o referencial padrão da SGD
 - 23 órgãos usam exclusivamente "mitigar" como estratégia
@@ -132,7 +132,7 @@ Riscos (risks.csv — 670 linhas × 11 colunas):
 
 **Governança de Dados como eixo residual:**
 - 20 dos 44 produtos canônicos pertencem ao eixo Governança e Gestão de Dados
-- Apenas 1 produto deste eixo aparece nas pactuações (Integração à base de dados, com 171 entregas)
+- Apenas 1 produto deste eixo aparece nas pactuações (Integração à base de dados, com 112 entregas)
 - 19 produtos — LGPD, PDTIC, dados abertos, interoperabilidade, inventário de dados — têm zero pactuações
 - Quando órgãos executam ações de governança (ex: adequação à LGPD), registram sob outros produtos (PPSI)
 - Ressalva: 12 órgãos com PDFs escaneados não foram processados; confirmação definitiva requer OCR
@@ -151,7 +151,7 @@ Riscos (risks.csv — 670 linhas × 11 colunas):
 **Concentração e homogeneidade:**
 - PPSI é o produto mais difundido (90% dos órgãos), seguido de Login Único (76%)
 - Nenhum produto é universal (presente em todos os órgãos)
-- Top 2 eixos concentram 84,6% das entregas
+- Top 2 eixos concentram 73,2% das entregas
 
 ---
 
