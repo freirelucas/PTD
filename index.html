@@ -185,8 +185,8 @@ tr:hover td{background:var(--light)}
   <div class="chart-container">
     <h3>Matriz de Riscos — Probabilidade × Impacto <small>(clique para filtrar)</small></h3>
     <div class="filters" style="margin-bottom:12px">
-      <select id="r-orgao"><option value="">Todos os Órgãos</option></select>
-      <select id="r-tratamento"><option value="">Todos os Tratamentos</option></select>
+      <select id="r-orgao" onchange="matrixFilter=null;filterRisks()"><option value="">Todos os Órgãos</option></select>
+      <select id="r-tratamento" onchange="matrixFilter=null;filterRisks()"><option value="">Todos os Tratamentos</option></select>
       <button onclick="resetRiskFilters()" style="padding:8px 14px;border:1px solid var(--border);border-radius:var(--radius);background:#fff;cursor:pointer">Limpar</button>
     </div>
     <div class="risk-matrix" id="risk-matrix"></div>
@@ -746,12 +746,14 @@ function filterRisks(){
     }
     return true;
   });
-  document.getElementById('risk-count').textContent=`${riskFiltered.length} riscos encontrados` + (matrixFilter?` (${matrixFilter.p} × ${matrixFilter.i})`:'');
+  const activeF=[(org?org:''),(trat?'trat: '+trat:''),(matrixFilter?matrixFilter.p+' × '+matrixFilter.i:'')].filter(Boolean).join(' · ');
+  document.getElementById('risk-count').innerHTML=`<strong>${riskFiltered.length}</strong> riscos${activeF?' <span style="font-size:.8rem;color:var(--muted)">— '+activeF+'</span>':''}`;
   let html='<table><thead><tr><th>Órgão</th><th>Risco</th><th>Prob.</th><th>Impacto</th><th>Tratamento</th><th>Ações</th></tr></thead><tbody>';
-  riskFiltered.slice(0,100).forEach(r=>{
+  riskFiltered.slice(0,50).forEach(r=>{
     html+=`<tr><td><b>${r.orgao_sigla}</b></td><td>${(r.risco_texto||'').substring(0,80)}</td><td>${r.probabilidade_normalizada||''}</td><td>${r.impacto_normalizado||''}</td><td>${r.tratamento_normalizado||''}</td><td title="${(r.acoes_resolvidas||'').substring(0,500)}">${(r.acoes_resolvidas||'').substring(0,60)}${(r.acoes_resolvidas||'').length>60?'...':''}</td></tr>`;
   });
   if(!riskFiltered.length) html+='<tr><td colspan="6" style="text-align:center;color:var(--muted)">Nenhum risco encontrado</td></tr>';
+  if(riskFiltered.length>50) html+=`<tr><td colspan="6" style="text-align:center;color:var(--muted);font-size:.82rem">Mostrando 50 de ${riskFiltered.length} — refine os filtros</td></tr>`;
   html+='</tbody></table>';
   document.getElementById('risk-table').innerHTML=html;
 }
