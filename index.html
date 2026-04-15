@@ -158,15 +158,22 @@ tr:hover td{background:var(--light)}
 <!-- ===== ENTREGAS ===== -->
 <div id="deliveries" class="section">
   <h2>Entregas Pactuadas</h2>
-  <p class="desc">Ações e serviços digitais pactuados entre cada órgão e a Secretaria de Governo Digital (SGD/MGI). Cada entrega está vinculada a um <strong>produto</strong> da EFGD (ex: Evolução do Serviço, Integração ao Login Único) e a um dos 5 <strong>eixos estratégicos</strong>. Use os filtros para explorar por órgão, eixo ou produto.</p>
+  <p class="desc">Ações e serviços digitais pactuados entre cada órgão e a SGD/MGI, classificados por <strong>produto</strong> e <strong>eixo</strong> da EFGD 2024-2027. Explore por múltiplas dimensões: os gráficos e a tabela respondem aos filtros simultaneamente.</p>
+
   <div class="filters">
     <select id="f-orgao"><option value="">Todos os Órgãos</option></select>
     <select id="f-eixo"><option value="">Todos os Eixos</option></select>
     <select id="f-produto"><option value="">Todos os Produtos</option></select>
-    <input id="f-search" type="text" placeholder="Buscar serviço/ação...">
+    <input id="f-search" type="text" placeholder="Buscar no texto do serviço/ação...">
   </div>
-  <div id="del-chart-wrap" class="chart-container" style="display:none"><h3 id="del-chart-title">Distribuição</h3><canvas id="chart-del-organ"></canvas></div>
-  <div class="result-count" id="del-count"></div>
+  <div class="result-count" id="del-count" style="margin-bottom:12px"></div>
+
+  <div class="chart-row">
+    <div class="chart-container"><h3 id="del-eixo-title">Entregas por Eixo</h3><canvas id="chart-del-eixo"></canvas></div>
+    <div class="chart-container"><h3 id="del-prod-title">Entregas por Produto</h3><canvas id="chart-del-prod"></canvas></div>
+  </div>
+  <div id="del-org-chart-wrap" class="chart-container" style="display:none"><h3 id="del-org-title">Entregas por Órgão</h3><canvas id="chart-del-org"></canvas></div>
+
   <div class="table-wrap" id="del-table"></div>
   <div class="pagination" id="del-pagination"></div>
 </div>
@@ -603,7 +610,7 @@ function initDeliveries(){
     orgaos.forEach(o=>{ const op=document.createElement('option'); op.value=o; op.textContent=o; fO.appendChild(op); });
     eixos.forEach(e=>{ const op=document.createElement('option'); op.value=e; op.textContent=e.substring(0,50); fE.appendChild(op); });
     prods.forEach(p=>{ const op=document.createElement('option'); op.value=p; op.textContent=p.substring(0,50); fP.appendChild(op); });
-    [fO,fE,fP,document.getElementById('f-search')].forEach(el=>el.addEventListener('change',()=>{delPage=0;filterDeliveries();}));
+    [fO,fE,fP].forEach(el=>el.addEventListener('change',()=>{delPage=0;filterDeliveries();}));
     document.getElementById('f-search').addEventListener('input',()=>{delPage=0;filterDeliveries();});
   }
   filterDeliveries();
@@ -621,22 +628,56 @@ function filterDeliveries(){
     if(q && !(d.servico_acao||'').toLowerCase().includes(q)) return false;
     return true;
   });
+
+  // Summary
   const delOrgs=new Set(delFiltered.map(d=>d.orgao_sigla));
   const delProdC={};delFiltered.forEach(d=>{delProdC[d.produto_normalizado]=(delProdC[d.produto_normalizado]||0)+1;});
   const topDelProd=Object.entries(delProdC).sort((a,b)=>b[1]-a[1])[0];
-  document.getElementById('del-count').innerHTML=`<strong>${delFiltered.length.toLocaleString('pt-BR')}</strong> entregas em <strong>${delOrgs.size}</strong> órgãos${topDelProd?' · Produto mais frequente: <em>'+topDelProd[0]+'</em> ('+topDelProd[1]+')':''}`;
-  renderDelTable();
-  // Chart for selected organ
-  if(org){
-    document.getElementById('del-chart-wrap').style.display='block';
-    document.getElementById('del-chart-title').textContent='Distribuição — '+org;
-    destroyChart('delOrgan');
-    const pc={};delFiltered.forEach(d=>{const p=d.produto_normalizado;pc[p]=(pc[p]||0)+1;});
-    const s=Object.entries(pc).sort((a,b)=>b[1]-a[1]).slice(0,10);
-    charts.delOrgan=new Chart(document.getElementById('chart-del-organ'),{type:'bar',data:{labels:s.map(x=>x[0].substring(0,35)),datasets:[{data:s.map(x=>x[1]),backgroundColor:COLORS.slice(0,s.length),borderRadius:4}]},options:{indexAxis:'y',plugins:{legend:{display:false}}}});
-  } else {
-    document.getElementById('del-chart-wrap').style.display='none';
+  const activeFilters=[(org?'órgão: '+org:''),(eix?'eixo: '+eix.substring(0,25):''),(prod?'produto: '+prod.substring(0,25):''),(q?'texto: "'+q+'"':'')].filter(Boolean).join(' · ');
+  document.getElementById('del-count').innerHTML=`<strong>${delFiltered.length.toLocaleString('pt-BR')}</strong> entregas em <strong>${delOrgs.size}</strong> órgãos${topDelProd?' · Mais frequente: <em>'+topDelProd[0]+'</em> ('+topDelProd[1]+')':''}${activeFilters?'<br><span style="font-size:.78rem;color:var(--muted)">Filtros: '+activeFilters+'</span>':''}`;
+
+  // Eixo chart — always visible, responds to filters
+  destroyChart('delEixo');
+  const eixoC={};delFiltered.forEach(d=>{const e=d.eixo_normalizado;if(e)eixoC[e]=(eixoC[e]||0)+1;});
+  const eixoSorted=Object.entries(eixoC).sort((a,b)=>b[1]-a[1]);
+  if(eixoSorted.length){
+    document.getElementById('del-eixo-title').textContent=org?'Eixos — '+org:'Entregas por Eixo';
+    charts.delEixo=new Chart(document.getElementById('chart-del-eixo'),{type:'bar',data:{
+      labels:eixoSorted.map(([e])=>e.substring(0,25)),
+      datasets:[{data:eixoSorted.map(([,c])=>c),backgroundColor:COLORS.slice(0,eixoSorted.length),borderRadius:4}]
+    },options:{indexAxis:'y',animation:{duration:400},plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${ctx.raw} entregas (${(ctx.raw/delFiltered.length*100).toFixed(1)}%)`}}},scales:{x:{beginAtZero:true,grid:{display:false}},y:{grid:{display:false}}}}});
   }
+
+  // Product chart — always visible, responds to filters
+  destroyChart('delProd');
+  const prodSorted=Object.entries(delProdC).sort((a,b)=>b[1]-a[1]).slice(0,10);
+  if(prodSorted.length){
+    document.getElementById('del-prod-title').textContent=org?'Produtos — '+org:'Top 10 Produtos';
+    charts.delProd=new Chart(document.getElementById('chart-del-prod'),{type:'bar',data:{
+      labels:prodSorted.map(([p])=>p.substring(0,30)),
+      datasets:[{data:prodSorted.map(([,c])=>c),backgroundColor:'#264A7F',borderRadius:4}]
+    },options:{indexAxis:'y',animation:{duration:400},plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>{
+      const nOrgs=new Set(delFiltered.filter(d=>d.produto_normalizado===prodSorted[ctx.dataIndex][0]).map(d=>d.orgao_sigla)).size;
+      return `${ctx.raw} entregas em ${nOrgs} órgãos`;
+    }}}},scales:{x:{beginAtZero:true,grid:{display:false}},y:{grid:{display:false}}}}});
+  }
+
+  // Org chart — show when filtering by eixo or produto (not by organ)
+  destroyChart('delOrg');
+  if(!org && (eix || prod) && delOrgs.size > 1){
+    document.getElementById('del-org-chart-wrap').style.display='block';
+    document.getElementById('del-org-title').textContent=`Órgãos${eix?' — '+eix.substring(0,30):''}${prod?' — '+prod.substring(0,30):''}`;
+    const orgC={};delFiltered.forEach(d=>{orgC[d.orgao_sigla]=(orgC[d.orgao_sigla]||0)+1;});
+    const orgSorted=Object.entries(orgC).sort((a,b)=>b[1]-a[1]).slice(0,20);
+    charts.delOrg=new Chart(document.getElementById('chart-del-org'),{type:'bar',data:{
+      labels:orgSorted.map(([o])=>o),
+      datasets:[{data:orgSorted.map(([,c])=>c),backgroundColor:'#4D8AC9',borderRadius:4}]
+    },options:{animation:{duration:400},plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{display:false}}}}});
+  } else {
+    document.getElementById('del-org-chart-wrap').style.display='none';
+  }
+
+  renderDelTable();
 }
 
 function renderDelTable(){
