@@ -97,6 +97,13 @@ def _read_pdf_metadata(organs: list) -> List[dict]:
 organs_with_risks = set(r.orgao_sigla for r in all_risks) if all_risks else set()
 organs_with_deliveries = set(d.orgao_sigla for d in all_deliveries) if all_deliveries else set()
 
+# Incluir membros de grupo cujo cabeça tem dados (cobertura compartilhada)
+for m, head in MEMBER_TO_GROUP.items():
+    if head in organs_with_deliveries:
+        organs_with_deliveries.add(m)
+    if head in organs_with_risks:
+        organs_with_risks.add(m)
+
 # Entregas por eixo
 eixo_counter = Counter(d.eixo_normalizado for d in all_deliveries if d.eixo_normalizado)
 entregas_por_eixo = {e: eixo_counter.get(e, 0) for e in CANONICAL_EIXOS if eixo_counter.get(e, 0) > 0}
