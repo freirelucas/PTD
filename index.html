@@ -586,10 +586,12 @@ function initOverview(){
   const nRiskCanon=allRisk.filter(r=>PROB_ORDER.includes(r.probabilidade_normalizada)&&IMP_ORDER.includes(r.impacto_normalizado)).length;
   const nProdsUsed=new Set(allDel.map(d=>d.produto_normalizado)).size;
   const nOrgsDel=new Set(allDel.map(d=>d.orgao_sigla)).size;
+  const nOrgsRisk=new Set(allRisk.map(r=>r.orgao_sigla)).size;
+  const nEixos=new Set(allDel.map(d=>d.eixo_normalizado).filter(Boolean)).size;
   const navCards=[
     {nav:'deliveries',icon:'\u25B6',title:'Entregas Pactuadas',
-     metric:N.toLocaleString('pt-BR'),
-     desc:`${nProdsUsed} produtos em ${Object.keys(eixoC).length} eixos. Filtre por órgão, eixo ou produto. Os gráficos respondem simultaneamente.`,
+     metric:allDel.length.toLocaleString('pt-BR'),
+     desc:`${nProdsUsed} produtos em ${nEixos} eixos. Filtre por órgão, eixo ou produto. Os gráficos respondem simultaneamente.`,
      color:'#264A7F'},
     {nav:'risks',icon:'\u26A0',title:'Gestão de Riscos',
      metric:allRisk.length.toString(),
@@ -597,7 +599,7 @@ function initOverview(){
      color:'#C0392B'},
     {nav:'organs',icon:'\u2605',title:'\u00D3rgãos Signatários',
      metric:'91',
-     desc:`${nOrgsDel} com entregas extraídas, ${Object.keys(orgRiskC).length} com riscos. Ordene por volume, filtre por grupo ministerial, abra fichas detalhadas.`,
+     desc:`${nOrgsDel} com entregas extraídas, ${nOrgsRisk} com riscos. Ordene por volume, filtre por grupo ministerial, abra fichas detalhadas.`,
      color:'#27AE60'},
     {nav:'compare',icon:'\u2194',title:'Similaridade',
      metric:'Jaccard',
