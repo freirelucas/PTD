@@ -6,7 +6,7 @@ Pipeline para coleta, extração e análise dos **Planos de Transformação Digi
 
 ## Resultados
 
-O pipeline extrai dados estruturados de 91 órgãos federais:
+O pipeline extrai dados estruturados de 91 órgãos federais (release 15/04/2026).
 
 | Arquivo | Descrição |
 |---------|-----------|
