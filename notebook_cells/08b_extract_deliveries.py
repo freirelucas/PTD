@@ -404,43 +404,19 @@ def extract_all_deliveries() -> None:
         # Verificar se o PDF já foi processado (órgãos agrupados)
         real_path = os.path.realpath(pdf_path)
         if real_path in pdf_results_cache:
-            cached_entries, cached_errs = pdf_results_cache[real_path]
-            for entry in cached_entries:
-                new_entry = DeliveryEntry(
-                    orgao_sigla=sigla,
-                    tabela_tipo=entry.tabela_tipo,
-                    servico_acao=entry.servico_acao,
-                    produto_original=entry.produto_original,
-                    produto_normalizado=entry.produto_normalizado,
-                    eixo_original=entry.eixo_original,
-                    eixo_normalizado=entry.eixo_normalizado,
-                    area_responsavel=entry.area_responsavel,
-                    data_pactuada=entry.data_pactuada,
-                    data_entrega=entry.data_entrega,
-                    pactuado=entry.pactuado,
-                    justificativa=entry.justificativa,
-                    extraction_confidence=entry.extraction_confidence,
-                    needs_review=entry.needs_review,
-                    review_reason=entry.review_reason,
-                )
-                batch_deliveries.append(new_entry)
-                all_deliveries.append(new_entry)
-            for err in cached_errs:
-                new_err = ProcessingError(
-                    orgao_sigla=sigla,
-                    document_type=err.document_type,
-                    stage=err.stage,
-                    error_type=err.error_type,
-                    error_message=err.error_message,
-                )
-                batch_errors.append(new_err)
-                all_errors.append(new_err)
+            # PDF compartilhado — não duplicar entries (evita dupla contagem).
+            # O órgão-cabeça já possui os registros; este membro é apenas
+            # marcado como processado.
+            owner_sigla = pdf_results_cache[real_path][2]
             processed_siglas.add(sigla)
-            logger.info(f"[{sigla}] Reutilizando resultados de PDF compartilhado")
+            logger.info(
+                f"[{sigla}] PDF compartilhado com {owner_sigla} — "
+                f"entregas atribuídas a {owner_sigla} (sem duplicação)"
+            )
         else:
             # Processar PDF
             entries, errs = extract_entregas_tables(pdf_path, sigla)
-            pdf_results_cache[real_path] = (entries, errs)
+            pdf_results_cache[real_path] = (entries, errs, sigla)
 
             batch_deliveries.extend(entries)
             all_deliveries.extend(entries)

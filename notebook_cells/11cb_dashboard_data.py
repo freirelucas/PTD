@@ -164,6 +164,14 @@ for e in all_errors:
     if key not in organ_status_map:
         organ_status_map[key] = e.error_type
 
+# Mapa inverso: para membros de grupo sem dados próprios, encontrar o cabeça
+# que detém os registros (usando MEMBER_TO_GROUP de 02_config.py)
+_head_for = {}
+for head_sigla, members in ORGAN_GROUPS.items():
+    for m in members:
+        if m != head_sigla:
+            _head_for[m] = head_sigla
+
 ptd_organs = []
 for organ in sorted(all_organs, key=lambda o: o.sigla):
     # Breakdown de eixo e produto
@@ -171,17 +179,26 @@ for organ in sorted(all_organs, key=lambda o: o.sigla):
     eixo_bd = dict(Counter(d.eixo_normalizado for d in organ_deliveries if d.eixo_normalizado))
     prod_bd = dict(Counter(d.produto_normalizado for d in organ_deliveries if d.produto_normalizado))
 
+    # Para membros de grupo sem dados próprios, referir ao cabeça
+    head = _head_for.get(organ.sigla)
+    shares_head = head and del_count.get(organ.sigla, 0) == 0 and del_count.get(head, 0) > 0
+
     # Status
     if del_count.get(organ.sigla, 0) > 0:
         s_entregas = "ok"
+    elif shares_head:
+        s_entregas = "compartilhado"
     elif not organ.pdf_path_entregas and not organ.url_entregas:
         s_entregas = "sem_pdf"
     else:
         err_key = (organ.sigla, "entregas")
         s_entregas = organ_status_map.get(err_key, "sem_dados")
 
+    shares_head_r = head and risk_count.get(organ.sigla, 0) == 0 and risk_count.get(head, 0) > 0
     if risk_count.get(organ.sigla, 0) > 0:
         s_riscos = "ok"
+    elif shares_head_r:
+        s_riscos = "compartilhado"
     elif not organ.pdf_path_diretivo and not organ.url_diretivo:
         s_riscos = "sem_pdf"
     else:
