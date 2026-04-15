@@ -133,6 +133,7 @@ tr:hover td{background:var(--light)}
     <a href="#organs" onclick="showSection('organs')"><span class="icon">&#9733;</span><span>Órgãos</span></a>
     <a href="#compare" onclick="showSection('compare')"><span class="icon">&#8596;</span><span>Comparação</span></a>
     <a href="#insights" onclick="showSection('insights')"><span class="icon">&#9881;</span><span>Insights</span></a>
+    <a href="#visualizations" onclick="showSection('visualizations')"><span class="icon">&#9636;</span><span>Visualizações</span></a>
     <a href="#methodology" onclick="showSection('methodology')"><span class="icon">&#9998;</span><span>Nota Técnica</span></a>
   </nav>
   <div class="info">Direito, D.; Silva, L.; Queiroz, S.<br>Ipea · 2026<br><br><em style="color:rgba(255,200,200,.7);font-size:.65rem">Documento preparatório. Não publicar ou citar sem consentimento dos autores.</em></div>
@@ -371,6 +372,47 @@ tr:hover td{background:var(--light)}
     </p></div>
 
   </div>
+</div>
+
+<!-- ===== VISUALIZAÇÕES ===== -->
+<div id="visualizations" class="section">
+  <h2>Outras Visualizações</h2>
+  <p class="desc">Análises estatísticas exploratórias do corpus. Todos os gráficos são calculados dinamicamente a partir dos dados extraídos.</p>
+
+  <div class="chart-container"><h3>Scatter: Entregas × Riscos por Órgão</h3>
+    <p class="desc" style="margin-bottom:8px">Cada ponto é um órgão. Revela perfis: alta ambição/alto risco (canto superior direito), baixa ambição/poucos riscos (canto inferior esquerdo).</p>
+    <canvas id="chart-scatter"></canvas></div>
+
+  <div class="chart-container"><h3>Curva de Lorenz — Concentração de Entregas</h3>
+    <p class="desc" style="margin-bottom:8px">Mede a desigualdade na distribuição de entregas entre órgãos. A linha diagonal representa igualdade perfeita; quanto mais a curva se afasta, maior a concentração.</p>
+    <canvas id="chart-lorenz"></canvas>
+    <div id="lorenz-stats" style="margin-top:8px"></div></div>
+
+  <div class="chart-row">
+    <div class="chart-container"><h3>Distribuição de Entregas por Órgão</h3>
+      <p class="desc" style="margin-bottom:8px">Histograma: quantos órgãos têm 0-50 entregas, 50-100, etc.</p>
+      <canvas id="chart-histogram"></canvas></div>
+    <div class="chart-container"><h3>Diversidade de Produtos por Órgão</h3>
+      <p class="desc" style="margin-bottom:8px">Quantos produtos distintos cada órgão pactuou. Barra ordenada.</p>
+      <canvas id="chart-diversity"></canvas></div>
+  </div>
+
+  <div class="chart-container"><h3>Heatmap: Órgão × Eixo</h3>
+    <p class="desc" style="margin-bottom:8px">Concentração de entregas por eixo para os 30 maiores órgãos. Células mais escuras = mais entregas.</p>
+    <div id="heatmap-org-eixo" style="overflow-x:auto"></div></div>
+
+  <div class="chart-row">
+    <div class="chart-container"><h3>Perfil de Risco por Grupo Ministerial</h3>
+      <p class="desc" style="margin-bottom:8px">Média de riscos e distribuição de probabilidade por grupo.</p>
+      <canvas id="chart-group-risk"></canvas></div>
+    <div class="chart-container"><h3>Bigramas Mais Frequentes nos Riscos</h3>
+      <p class="desc" style="margin-bottom:8px">Pares de palavras mais comuns nos textos de risco.</p>
+      <canvas id="chart-bigrams"></canvas></div>
+  </div>
+
+  <div class="chart-container"><h3>Burndown: Concentração Temporal das Entregas</h3>
+    <p class="desc" style="margin-bottom:8px">Distribuição das datas pactuadas por mês. Revela se os órgãos planejam entregas constantes ou concentram no final da vigência.</p>
+    <canvas id="chart-burndown"></canvas></div>
 </div>
 
 <!-- ===== NOTA TÉCNICA ===== -->
@@ -1231,6 +1273,123 @@ function initInsights(){
   el.innerHTML=html;
 }
 
+// ==================== 7. VISUALIZAÇÕES ====================
+let vizInit=false;
+function initVisualizations(){
+  if(vizInit) return; vizInit=true;
+
+  const orgDelC={};allDel.forEach(d=>orgDelC[d.orgao_sigla]=(orgDelC[d.orgao_sigla]||0)+1);
+  const orgRiskC2={};allRisk.forEach(r=>orgRiskC2[r.orgao_sigla]=(orgRiskC2[r.orgao_sigla]||0)+1);
+  const orgProds={};allDel.forEach(d=>{if(!orgProds[d.orgao_sigla])orgProds[d.orgao_sigla]=new Set();orgProds[d.orgao_sigla].add(d.produto_normalizado);});
+
+  // 1. Scatter Entregas × Riscos
+  const scatterData=PTD_ORGANS.filter(o=>o.n_entregas>0||o.n_riscos>0).map(o=>({x:o.n_entregas,y:o.n_riscos,label:o.sigla}));
+  new Chart(document.getElementById('chart-scatter'),{type:'scatter',data:{datasets:[{
+    data:scatterData,backgroundColor:'#264A7F88',borderColor:'#264A7F',pointRadius:5,pointHoverRadius:8}]},
+    options:{plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.raw.label+': '+ctx.raw.x+' entregas, '+ctx.raw.y+' riscos'}}},
+    scales:{x:{title:{display:true,text:'Entregas pactuadas'},beginAtZero:true,grid:{display:false}},
+    y:{title:{display:true,text:'Riscos mapeados'},beginAtZero:true,grid:{display:false}}}}});
+
+  // 2. Curva de Lorenz
+  const vals=Object.values(orgDelC).sort((a,b)=>a-b);
+  const n=vals.length,total=vals.reduce((a,b)=>a+b,0);
+  let cum=0;
+  const lorenzX=[0],lorenzY=[0];
+  vals.forEach((v,i)=>{cum+=v;lorenzX.push((i+1)/n*100);lorenzY.push(cum/total*100);});
+  // Gini
+  let giniSum=0;
+  vals.forEach((v,i)=>{giniSum+=(2*(i+1)-n-1)*v;});
+  const gini=(giniSum/(n*total)).toFixed(3);
+  new Chart(document.getElementById('chart-lorenz'),{type:'line',data:{labels:lorenzX.map(x=>x.toFixed(0)+'%'),datasets:[
+    {label:'Distribuição real',data:lorenzY,borderColor:'#264A7F',backgroundColor:'#264A7F22',fill:true,tension:0.3,pointRadius:0},
+    {label:'Igualdade perfeita',data:lorenzX,borderColor:'#C0392B',borderDash:[5,5],pointRadius:0,fill:false}
+  ]},options:{plugins:{legend:{position:'bottom'}},scales:{x:{title:{display:true,text:'% acumulado de órgãos'},grid:{display:false}},y:{title:{display:true,text:'% acumulado de entregas'},grid:{display:false}}}}});
+  document.getElementById('lorenz-stats').innerHTML=`<div style="display:flex;gap:16px"><div class="kpi" style="padding:10px;border-top:3px solid #264A7F;flex:1"><div class="label">Coeficiente de Gini</div><div class="value" style="font-size:1.3rem">${gini}</div><div class="sub">${gini>0.4?'Concentração elevada':'Concentração moderada'}</div></div><div class="kpi" style="padding:10px;border-top:3px solid #C0392B;flex:1"><div class="label">Top 20% dos órgãos</div><div class="value" style="font-size:1.3rem">${(lorenzY[Math.floor(n*0.8)]).toFixed(0)}%</div><div class="sub">das entregas</div></div></div>`;
+
+  // 3. Histograma
+  const bins=[0,25,50,100,150,200,300,500];
+  const hist=new Array(bins.length).fill(0);
+  Object.values(orgDelC).forEach(v=>{for(let i=bins.length-1;i>=0;i--){if(v>=bins[i]){hist[i]++;break;}}});
+  const histLabels=bins.map((b,i)=>i<bins.length-1?b+'-'+(bins[i+1]-1):b+'+');
+  new Chart(document.getElementById('chart-histogram'),{type:'bar',data:{labels:histLabels,datasets:[{
+    data:hist,backgroundColor:'#264A7F',borderRadius:4}]},options:{plugins:{legend:{display:false}},
+    scales:{x:{title:{display:true,text:'Faixa de entregas'},grid:{display:false}},y:{title:{display:true,text:'Nº de órgãos'},beginAtZero:true,grid:{display:false}}}}});
+
+  // 4. Diversidade de produtos
+  const divData=Object.entries(orgProds).map(([o,s])=>({o,n:s.size})).sort((a,b)=>b.n-a.n).slice(0,30);
+  new Chart(document.getElementById('chart-diversity'),{type:'bar',data:{labels:divData.map(d=>d.o),datasets:[{
+    data:divData.map(d=>d.n),backgroundColor:'#4D8AC9',borderRadius:4}]},options:{plugins:{legend:{display:false}},
+    scales:{x:{grid:{display:false}},y:{title:{display:true,text:'Produtos distintos'},beginAtZero:true,grid:{display:false}}}}});
+
+  // 5. Heatmap Órgão × Eixo (HTML table)
+  const topOrgs=Object.entries(orgDelC).sort((a,b)=>b[1]-a[1]).slice(0,30).map(([o])=>o);
+  const eixos=[...new Set(allDel.map(d=>d.eixo_normalizado).filter(Boolean))].sort();
+  const heatData={};
+  allDel.forEach(d=>{if(!topOrgs.includes(d.orgao_sigla))return;const k=d.orgao_sigla+'|'+d.eixo_normalizado;heatData[k]=(heatData[k]||0)+1;});
+  const maxHeat=Math.max(...Object.values(heatData),1);
+  let hhtml='<table style="font-size:.75rem"><thead><tr><th></th>'+eixos.map(e=>`<th style="writing-mode:vertical-lr;transform:rotate(180deg);max-width:30px;font-size:.7rem">${e.substring(0,25)}</th>`).join('')+'</tr></thead><tbody>';
+  topOrgs.forEach(o=>{
+    hhtml+=`<tr><td style="font-weight:600;white-space:nowrap">${o}</td>`;
+    eixos.forEach(e=>{
+      const v=heatData[o+'|'+e]||0;
+      const intensity=v/maxHeat;
+      const bg=v===0?'#f5f5f5':`rgba(38,74,127,${0.1+intensity*0.8})`;
+      const color=intensity>0.5?'#fff':'var(--text)';
+      hhtml+=`<td style="text-align:center;background:${bg};color:${color};padding:4px 6px;min-width:40px">${v||''}</td>`;
+    });
+    hhtml+=`</tr>`;
+  });
+  hhtml+='</tbody></table>';
+  document.getElementById('heatmap-org-eixo').innerHTML=hhtml;
+
+  // 6. Perfil de risco por grupo
+  const groups={};
+  PTD_ORGANS.forEach(o=>{const g=o.grupo||o.sigla;if(!groups[g])groups[g]={risks:0,orgs:0};groups[g].risks+=o.n_riscos;groups[g].orgs++;});
+  const gSorted=Object.entries(groups).filter(([g,d])=>d.risks>5).sort((a,b)=>b[1].risks/b[1].orgs-a[1].risks/a[1].orgs).slice(0,15);
+  new Chart(document.getElementById('chart-group-risk'),{type:'bar',data:{
+    labels:gSorted.map(([g])=>g),datasets:[{label:'Riscos/órgão',data:gSorted.map(([,d])=>(d.risks/d.orgs).toFixed(1)),backgroundColor:'#C0392B',borderRadius:4}]},
+    options:{plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{title:{display:true,text:'Riscos por órgão (média)'},beginAtZero:true,grid:{display:false}}}}});
+
+  // 7. Bigramas nos riscos
+  const stopwords=new Set(['de','do','da','dos','das','para','com','por','no','na','nos','nas','ao','aos','em','um','uma','que','se','ou','e','o','a','os','as','é','não','à','às']);
+  const bigrams={};
+  allRisk.forEach(r=>{
+    const words=(r.risco_texto||'').toLowerCase().replace(/[^a-záéíóúâêôãõç\s]/g,'').split(/\s+/).filter(w=>w.length>2&&!stopwords.has(w));
+    for(let i=0;i<words.length-1;i++){const bg=words[i]+' '+words[i+1];bigrams[bg]=(bigrams[bg]||0)+1;}
+  });
+  const topBg=Object.entries(bigrams).sort((a,b)=>b[1]-a[1]).slice(0,15);
+  new Chart(document.getElementById('chart-bigrams'),{type:'bar',data:{
+    labels:topBg.map(([bg])=>bg),datasets:[{data:topBg.map(([,c])=>c),backgroundColor:'#8E44AD',borderRadius:4}]},
+    options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,grid:{display:false}},y:{grid:{display:false}}}}});
+
+  // 8. Burndown temporal
+  const months={"jan":"01","fev":"02","mar":"03","abr":"04","mai":"05","jun":"06","jul":"07","ago":"08","set":"09","out":"10","nov":"11","dez":"12"};
+  const dateC={};
+  allDel.forEach(d=>{
+    const dp=(d.data_pactuada||'').toLowerCase();
+    let ym='';
+    const m1=dp.match(/^(jan|fev|mar|abr|mai|jun|jul|ago|set|out|nov|dez)[\-\/](\d{2,4})$/);
+    if(m1){let yr=m1[2];if(yr.length===2)yr='20'+yr;ym=yr+'-'+months[m1[1]];}
+    const m2=dp.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+    if(m2) ym=m2[3]+'-'+m2[2];
+    const m3=dp.match(/^(\d{2})\/(\d{2,4})$/);
+    if(m3){let yr=m3[2];if(yr.length===2)yr='20'+yr;ym=yr+'-'+m3[1];}
+    if(ym) dateC[ym]=(dateC[ym]||0)+1;
+  });
+  const dSorted=Object.entries(dateC).sort((a,b)=>a[0].localeCompare(b[0]));
+  if(dSorted.length){
+    const dLabels=dSorted.map(([m])=>{const [y,mo]=m.split('-');const nomes=['','jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];return (nomes[parseInt(mo)]||mo)+'/'+y.substring(2);});
+    let cumDel=0;
+    const cumData=dSorted.map(([,c])=>{cumDel+=c;return cumDel;});
+    new Chart(document.getElementById('chart-burndown'),{type:'line',data:{labels:dLabels,datasets:[
+      {label:'Entregas no mês',data:dSorted.map(([,c])=>c),borderColor:'#264A7F',backgroundColor:'#264A7F22',fill:true,tension:0.2,pointRadius:2,yAxisID:'y'},
+      {label:'Acumulado',data:cumData,borderColor:'#C0392B',borderDash:[5,3],tension:0.2,pointRadius:0,yAxisID:'y1'}
+    ]},options:{interaction:{mode:'index',intersect:false},plugins:{legend:{position:'bottom'}},
+      scales:{x:{grid:{display:false}},y:{beginAtZero:true,position:'left',title:{display:true,text:'Entregas/mês'},grid:{display:false}},
+      y1:{beginAtZero:true,position:'right',title:{display:true,text:'Acumulado'},grid:{drawOnChartArea:false}}}}});
+  }
+}
+
 // ==================== INIT ====================
 function showSection(id) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
@@ -1243,6 +1402,7 @@ function showSection(id) {
   if(id==='organs') initOrgans();
   if(id==='compare') initCompare();
   if(id==='insights') initInsights();
+  if(id==='visualizations') initVisualizations();
 }
 
 document.addEventListener('DOMContentLoaded',()=>{
