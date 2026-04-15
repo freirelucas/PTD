@@ -453,8 +453,8 @@ tr:hover td{background:var(--light)}
 
     <h3>5. Cobertura e Limitações</h3>
     <ul>
-      <li><strong>Entregas</strong>: 6.292 registros de 79/91 órgãos (87%). 12 órgãos faltantes: 7 com PDFs escaneados (imagem sem texto) e 5 com formato de tabela não-padrão</li>
-      <li><strong>Riscos</strong>: 670 registros de 71/86 órgãos com diretivo (83%). 15 faltantes: todos PDFs escaneados sem texto extraível</li>
+      <li><strong>Entregas</strong>: 7.664 registros de 79/91 órgãos (87%). Extração híbrida: find_tables() para tabelas multi-página + fallback textual. 12 órgãos com PDFs escaneados não processados</li>
+      <li><strong>Riscos</strong>: 929 registros de 71/86 órgãos com diretivo (83%). Extração multi-página com merge de headers. 15 faltantes: PDFs escaneados sem texto extraível</li>
       <li><strong>OCR pendente</strong>: a extração via Docling (IBM) com OCR habilitado no Google Colab pode recuperar os órgãos com PDFs escaneados</li>
       <li><strong>Texto original preservado</strong>: todas as classificações mantêm o campo original do PDF ao lado da versão normalizada</li>
     </ul>
@@ -656,7 +656,7 @@ function initOverview(){
      color:'#8E44AD'},
     {nav:'insights',icon:'\u2699',title:'Insights',
      metric:'12',
-     desc:`Achados analíticos: concentração em 2 eixos, governança residual, riscos copiados do referencial, monocultura da mitigação.`,
+     desc:`Achados analíticos em 4 seções: corpus, entregas, riscos e análise transversal. Cards expansíveis com fundamentação.`,
      color:'#E67E22'},
     {nav:'ptd-method',icon:'\u2630',title:'O que \u00E9 o PTD',
      metric:'EFGD',
@@ -1194,6 +1194,7 @@ function initInsights(){
   const N=allDel.length, NR=allRisk.length;
   const nOrgsD=new Set(allDel.map(d=>d.orgao_sigla)).size;
   const nOrgsR=new Set(allRisk.map(r=>r.orgao_sigla)).size;
+  const orgDelC2={};allDel.forEach(d=>orgDelC2[d.orgao_sigla]=(orgDelC2[d.orgao_sigla]||0)+1);
   const eixoC={};allDel.forEach(d=>{const e=d.eixo_normalizado;if(e)eixoC[e]=(eixoC[e]||0)+1;});
   const eixoS=Object.entries(eixoC).sort((a,b)=>b[1]-a[1]);
   const top2pct=((eixoS[0]?.[1]||0)+(eixoS[1]?.[1]||0))/N*100;
@@ -1260,7 +1261,26 @@ function initInsights(){
     `${crit.length} riscos com probabilidade ≥provável e impacto ≥alto, em ${new Set(crit.map(r=>r.orgao_sigla)).size} órgãos.`,
     `Os mais recorrentes: dependência de fornecedores, indisponibilidade de equipes de TI, atraso nos cronogramas. A classificação é autodeclarada, o que pode introduzir vieses de sub ou superestimação. Cinco riscos ocupam a célula máxima (praticamente certo × muito alto).`);
 
+  // Gini concentration
+  const orgDelVals=Object.values(orgDelC2).sort((a,b)=>a-b);
+  const gN=orgDelVals.length, gTotal=orgDelVals.reduce((a,b)=>a+b,0);
+  let giniSum=0; orgDelVals.forEach((v,i)=>{giniSum+=(2*(i+1)-gN-1)*v;});
+  const gini=(giniSum/(gN*gTotal)).toFixed(3);
+  const top20pct=orgDelVals.slice(Math.floor(gN*0.8)).reduce((a,b)=>a+b,0);
+  html+=card('#27AE60','Concentração (Gini)','0.'+gini.split('.')[1],
+    `Coeficiente de Gini de ${gini}. Os 20% maiores órgãos concentram ${(top20pct/gTotal*100).toFixed(0)}% das entregas.`,
+    `A curva de Lorenz (aba Visualizações) mostra que a distribuição de entregas entre órgãos é moderadamente desigual. Órgãos como ANVISA, IBAMA e PGFN pactuam centenas de entregas, enquanto outros como ABIN e CGU registram menos de 10. Essa disparidade pode refletir diferenças no porte dos órgãos, na maturidade digital, ou no grau de engajamento com o instrumento PTD.`);
+
+  // PPSI dominance
+  const segEntregas=allDel.filter(d=>d.eixo_normalizado==='Segurança e Privacidade');
+  const ppsiInSeg=segEntregas.filter(d=>d.produto_normalizado.includes('PPSI')).length;
+  html+=card('#27AE60','PPSI: o produto que domina Segurança',ppsiInSeg+'/'+segEntregas.length,
+    `${(ppsiInSeg/Math.max(segEntregas.length,1)*100).toFixed(0)}% das entregas de Segurança e Privacidade são de produtos PPSI — um legado do template v2.x.`,
+    `O PPSI (Programa de Privacidade e Segurança da Informação) não consta no catálogo v4.0 da EFGD mas é o 1º produto em difusão (90% dos órgãos). Os 2 produtos canônicos deste eixo — Adequação ao Framework e Elevação de maturidade — somam apenas ${segEntregas.length-ppsiInSeg} entregas. Isso evidencia uma desconexão entre o catálogo oficial e a prática: os órgãos seguem pactuando um produto de versões anteriores do template.`);
+
   el.innerHTML=html;
+  // Make cards clickable to expand
+  el.querySelectorAll('.insight-card').forEach(c=>{c.style.cursor='pointer';});
 }
 
 // ==================== 7. VISUALIZAÇÕES ====================
