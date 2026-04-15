@@ -537,7 +537,7 @@ let overviewInit = false;
 function initOverview(){
   if(overviewInit) return; overviewInit=true;
   // KPIs
-  const cov = PTD_ORGANS.filter(o=>o.status_entregas==='ok').length;
+  const cov = PTD_ORGANS.filter(o=>o.status_entregas==='ok'||o.status_entregas==='compartilhado').length;
   document.getElementById('kpi-cards').innerHTML = [
     {l:'Órgãos',v:PTD_STATS.orgaos_total,s:'signatários'},
     {l:'Entregas',v:PTD_STATS.entregas_total.toLocaleString('pt-BR'),s:'pactuadas'},
@@ -584,7 +584,7 @@ function initOverview(){
   charts.eixo = new Chart(document.getElementById('chart-eixo'),{type:'bar',data:{labels:eixoLabels.map(l=>l.length>35?l.substring(0,35)+'...':l),datasets:[{label:'Entregas',data:eixoLabels.map(l=>eixoData[l]),backgroundColor:COLORS.slice(0,eixoLabels.length),borderRadius:6,barPercentage:0.7}]},options:{indexAxis:'y',animation:{duration:800},plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${ctx.raw.toLocaleString('pt-BR')} entregas (${(ctx.raw/allDel.length*100).toFixed(1)}%)`}}},scales:{x:{beginAtZero:true,grid:{display:false}},y:{grid:{display:false}}}}});
 
   // Coverage donut
-  const covOk=PTD_ORGANS.filter(o=>o.status_entregas==='ok').length;
+  const covOk=PTD_ORGANS.filter(o=>o.status_entregas==='ok'||o.status_entregas==='compartilhado').length;
   const covScan=PTD_ORGANS.filter(o=>o.status_entregas==='scan_ou_formato').length;
   const covNone=PTD_ORGANS.filter(o=>o.status_entregas==='sem_pdf').length;
   charts.cov = new Chart(document.getElementById('chart-coverage'),{type:'doughnut',data:{labels:['Dados extraídos','PDF escaneado (OCR pendente)','Sem PDF publicado'],datasets:[{data:[covOk,covScan,covNone],backgroundColor:['#27AE60','#E67E22','#C0392B'],borderWidth:2,borderColor:'#fff'}]},options:{aspectRatio:1.8,cutout:'55%',animation:{animateRotate:true,duration:1000},plugins:{legend:{position:'bottom',labels:{padding:12,usePointStyle:true,pointStyle:'circle'}},tooltip:{callbacks:{label:ctx=>`${ctx.label}: ${ctx.raw} órgãos (${(ctx.raw/PTD_STATS.orgaos_total*100).toFixed(0)}%)`}}}}});
@@ -599,9 +599,10 @@ function initOverview(){
   document.getElementById('top-produtos-table').innerHTML=html;
 
   // Gaps — órgãos sem dados e motivos
-  const noData = PTD_ORGANS.filter(o => o.n_entregas === 0 && o.n_riscos === 0);
-  const noEntregas = PTD_ORGANS.filter(o => o.n_entregas === 0);
-  const noRiscos = PTD_ORGANS.filter(o => o.n_riscos === 0 && o.pdf_diretivo);
+  const _shared = o => o.status_entregas==='compartilhado'||o.status_riscos==='compartilhado';
+  const noData = PTD_ORGANS.filter(o => o.n_entregas === 0 && o.n_riscos === 0 && !_shared(o));
+  const noEntregas = PTD_ORGANS.filter(o => o.n_entregas === 0 && o.status_entregas!=='compartilhado');
+  const noRiscos = PTD_ORGANS.filter(o => o.n_riscos === 0 && o.pdf_diretivo && o.status_riscos!=='compartilhado');
   const scans = PTD_ORGANS.filter(o => o.status_entregas === 'scan_ou_formato' || o.status_riscos === 'scan');
   const semPdf = PTD_ORGANS.filter(o => !o.pdf_diretivo);
 
@@ -612,7 +613,7 @@ function initOverview(){
 
   // Tabela de órgãos sem dados
   gapHtml += `<div class="table-wrap" style="max-height:350px"><table><thead><tr><th>Órgão</th><th>Grupo</th><th>Entregas</th><th>Riscos</th><th>Motivo</th></tr></thead><tbody>`;
-  const problemOrgs = PTD_ORGANS.filter(o => o.n_entregas === 0 || o.n_riscos === 0).sort((a,b) => (a.n_entregas+a.n_riscos) - (b.n_entregas+b.n_riscos));
+  const problemOrgs = PTD_ORGANS.filter(o => (o.n_entregas === 0 || o.n_riscos === 0) && !_shared(o)).sort((a,b) => (a.n_entregas+a.n_riscos) - (b.n_entregas+b.n_riscos));
   problemOrgs.forEach(o => {
     let motivo = '';
     if (!o.pdf_diretivo && !o.pdf_entregas) motivo = 'Sem PDFs no site';
@@ -947,7 +948,7 @@ function renderOrganGrid(){
   else if(sort==='riscos') filtered.sort((a,b)=>b.n_riscos-a.n_riscos);
   else filtered.sort((a,b)=>a.sigla.localeCompare(b.sigla));
   document.getElementById('organ-grid').innerHTML=filtered.map(o=>{
-    const cls=o.status_entregas==='ok'&&o.status_riscos==='ok'?'':o.n_entregas>0||o.n_riscos>0?'partial':'failed';
+    const _ok=s=>s==='ok'||s==='compartilhado'; const cls=_ok(o.status_entregas)&&_ok(o.status_riscos)?'':o.n_entregas>0||o.n_riscos>0||_ok(o.status_entregas)||_ok(o.status_riscos)?'partial':'failed';
     return `<div class="organ-card ${cls}" onclick="openOrganModal('${o.sigla}')">
       <div class="sigla">${o.sigla}</div>
       ${o.grupo?`<div class="grupo">${o.grupo}</div>`:''}
