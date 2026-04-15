@@ -1,4 +1,32 @@
-ptd_output/
+# Python
 __pycache__/
 *.pyc
+*.pyo
 *.pkl
+*.egg-info/
+dist/
+build/
+*.egg
+.eggs/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Project — diretório de trabalho local
+ptd_output/
