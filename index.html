@@ -106,11 +106,13 @@ tr:hover td{background:var(--light)}
 .compare-select select{padding:8px 12px;border:1px solid var(--border);border-radius:var(--radius);font-size:.85rem}
 .compare-table{margin-bottom:20px}
 /* Figures */
-.figures-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
-.figures-grid a{display:block;background:var(--card);border-radius:var(--radius);overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08);transition:box-shadow .2s}
-.figures-grid a:hover{box-shadow:0 4px 12px rgba(0,0,0,.15)}
-.figures-grid img{width:100%;height:auto;display:block}
-.figures-grid .caption{padding:8px 12px;font-size:.8rem;color:var(--muted)}
+.nav-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.nav-card{background:var(--card);border-radius:var(--radius);padding:20px;box-shadow:0 1px 2px rgba(0,0,0,.06);cursor:pointer;transition:all .2s;border-top:4px solid var(--border);text-decoration:none;color:var(--text);display:block}
+.nav-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.12);transform:translateY(-2px);border-top-color:var(--primary)}
+.nav-card .nc-icon{font-size:1.8rem;margin-bottom:8px;display:block}
+.nav-card .nc-title{font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:4px}
+.nav-card .nc-metric{font-size:1.5rem;font-weight:700;color:var(--primary);margin-bottom:4px}
+.nav-card .nc-desc{font-size:.82rem;color:var(--muted);line-height:1.5}
 /* Mobile */
 @media(max-width:768px){
 .sidebar{width:60px}.sidebar h1 span,.sidebar nav a span:not(.icon),.sidebar .info{display:none}.sidebar h1{padding:16px 8px;font-size:.8rem;text-align:center}
@@ -152,7 +154,7 @@ tr:hover td{background:var(--light)}
   </div>
   <div class="chart-container" id="gaps-section"><h3>Órgãos sem Dados — Motivos</h3><div id="gaps-content"></div></div>
   <div class="chart-container"><h3>Top 10 Produtos</h3><div class="table-wrap" id="top-produtos-table"></div></div>
-  <div class="chart-container"><h3>Explorar o Corpus</h3><p class="desc" style="margin-bottom:12px">As análises estão organizadas em abas temáticas. Cada imagem abaixo é um atalho para a aba correspondente, onde os dados são interativos e filtráveis.</p><div class="figures-grid" id="figures-grid"></div></div>
+  <div class="chart-container"><h3>Explorar o Corpus</h3><p class="desc" style="margin-bottom:12px">Cada card leva a uma análise interativa. Os números refletem o corpus processado.</p><div class="nav-cards" id="nav-cards"></div></div>
 </div>
 
 <!-- ===== ENTREGAS ===== -->
@@ -580,22 +582,37 @@ function initOverview(){
   gapHtml += `</tbody></table></div>`;
   document.getElementById('gaps-content').innerHTML = gapHtml;
 
-  // Figures
-  const figs=[
-    {f:'04_matriz_riscos.png',c:'Matriz de Riscos',nav:'risks',
-     desc:'A análise central: 670 riscos classificados por probabilidade e impacto. Clique nas células para filtrar. Conectada às ações de mitigação.'},
-    {f:'01_entregas_por_eixo.png',c:'Entregas por Eixo',nav:'deliveries',
-     desc:'Distribuição das 6.292 entregas pelos 5 eixos da EFGD. Revela a concentração em Serviços Digitais e a quase ausência de Governança de Dados.'},
-    {f:'02_top20_produtos.png',c:'Produtos Pactuados',nav:'deliveries',
-     desc:'Quais produtos os órgãos efetivamente pactuam — e quais 25 dos 44 canônicos nunca foram pactuados. Filtrável por órgão e eixo.'},
-    {f:'03_top30_orgaos_entregas.png',c:'Perfil dos Órgãos',nav:'organs',
-     desc:'91 órgãos com entregas, riscos e data de assinatura. Ordenável por volume. Ficha detalhada ao clicar.'},
-    {f:'06_prob_impacto_dist.png',c:'Similaridade entre Órgãos',nav:'compare',
-     desc:'Coeficiente de Jaccard: quais órgãos têm perfis de pactuação parecidos? Grupos ministeriais se destacam.'},
-    {f:'07_cobertura.png',c:'Metodologia e Limitações',nav:'methodology',
-     desc:'Pipeline de coleta, templates, 12 órgãos pendentes (OCR), reprodutibilidade do código e dos dados.'},
+  // Navigation cards
+  const nRiskCanon=allRisk.filter(r=>PROB_ORDER.includes(r.probabilidade_normalizada)&&IMP_ORDER.includes(r.impacto_normalizado)).length;
+  const nProdsUsed=new Set(allDel.map(d=>d.produto_normalizado)).size;
+  const nOrgsDel=new Set(allDel.map(d=>d.orgao_sigla)).size;
+  const navCards=[
+    {nav:'deliveries',icon:'\u25B6',title:'Entregas Pactuadas',
+     metric:N.toLocaleString('pt-BR'),
+     desc:`${nProdsUsed} produtos em ${Object.keys(eixoC).length} eixos. Filtre por órgão, eixo ou produto. Os gráficos respondem simultaneamente.`,
+     color:'#264A7F'},
+    {nav:'risks',icon:'\u26A0',title:'Gestão de Riscos',
+     metric:allRisk.length.toString(),
+     desc:`Matriz 5\u00D75 interativa, ${nRiskCanon} riscos com valores canônicos. Clique numa célula para ver riscos e ações de mitigação conectadas.`,
+     color:'#C0392B'},
+    {nav:'organs',icon:'\u2605',title:'\u00D3rgãos Signatários',
+     metric:'91',
+     desc:`${nOrgsDel} com entregas extraídas, ${Object.keys(orgRiskC).length} com riscos. Ordene por volume, filtre por grupo ministerial, abra fichas detalhadas.`,
+     color:'#27AE60'},
+    {nav:'compare',icon:'\u2194',title:'Similaridade',
+     metric:'Jaccard',
+     desc:`Quais órgãos têm perfis de pactuação parecidos? Selecione um de referência e veja o ranking de similaridade com barras interativas.`,
+     color:'#8E44AD'},
+    {nav:'insights',icon:'\u2699',title:'Insights',
+     metric:'12',
+     desc:`Achados analíticos: concentração em 2 eixos, governança residual, riscos copiados do referencial, monocultura da mitigação.`,
+     color:'#E67E22'},
+    {nav:'ptd-method',icon:'\u2630',title:'O que \u00E9 o PTD',
+     metric:'EFGD',
+     desc:`Marco legal, 6 princípios × 5 eixos, evolução dos templates, apreciação crítica do portal gov.br.`,
+     color:'#4D8AC9'},
   ];
-  document.getElementById('figures-grid').innerHTML=figs.map(f=>`<a href="#${f.nav}" onclick="showSection('${f.nav}');return false;" style="cursor:pointer"><img src="output/figures/${f.f}" alt="${f.c}" loading="lazy"><div class="caption"><strong>${f.c}</strong><br><span style="color:var(--muted);font-size:.75rem">${f.desc}</span></div></a>`).join('');
+  document.getElementById('nav-cards').innerHTML=navCards.map(c=>`<a class="nav-card" href="#${c.nav}" onclick="showSection('${c.nav}');return false;" style="border-top-color:${c.color}"><span class="nc-icon">${c.icon}</span><div class="nc-title">${c.title}</div><div class="nc-metric" style="color:${c.color}">${c.metric}</div><div class="nc-desc">${c.desc}</div></a>`).join('');
 }
 
 // ==================== 2. ENTREGAS ====================
