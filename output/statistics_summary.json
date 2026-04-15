@@ -1,7 +1,7 @@
 {
   "data_execucao": "2026-04-14",
   "orgaos_total": 91,
-  "entregas_total": 6292,
+  "entregas_total": 7664,
   "entregas_orgaos": 79,
   "riscos_total": 929,
   "riscos_orgaos": 71,
@@ -15,10 +15,10 @@
     "Implementação do PPSI": 641
   },
   "entregas_por_eixo": {
-    "Serviços Digitais e Melhoria da Qualidade": 3507,
-    "Unificação de Canais Digitais": 1817,
-    "Segurança e Privacidade": 797,
-    "Governança e Gestão de Dados": 171
+    "Serviços Digitais e Melhoria da Qualidade": 3700,
+    "Unificação de Canais Digitais": 1864,
+    "Segurança e Privacidade": 1057,
+    "Governança e Gestão de Dados": 258
   },
   "distribuicao_probabilidade": {
     "raro": 37,
@@ -40,6 +40,6 @@
     "transferir": 22,
     "eliminar": 29
   },
-  "media_entregas_por_orgao": 79.6,
-  "mediana_entregas_por_orgao": 59
+  "media_entregas_por_orgao": 97.0,
+  "mediana_entregas_por_orgao": 70
 }
