@@ -4,6 +4,9 @@ Pipeline para coleta, extração e análise dos **Planos de Transformação Digi
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/freirelucas/PTD/blob/main/ptd_scraper.ipynb)
 
+
+## Visite e explore:  https://freirelucas.github.io/PTD/
+
 ## Resultados
 
 O pipeline extrai dados estruturados de 91 órgãos federais (release 15/04/2026).
