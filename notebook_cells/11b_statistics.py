@@ -9,6 +9,9 @@ plt.rcParams['figure.figsize'] = (12, 6)
 plt.rcParams['font.size'] = 11
 sns.set_style("whitegrid")
 
+fig_dir = os.path.join(DIRS["output"], "figures")
+os.makedirs(fig_dir, exist_ok=True)
+
 # Build DataFrames for analysis (reuse if already created in export cell)
 if all_deliveries:
     df_del = pd.DataFrame([asdict(e) for e in all_deliveries])
@@ -78,6 +81,7 @@ if not df_del.empty and "eixo_normalizado" in df_del.columns:
     ax.set_title("Entregas por Eixo Estratégico")
     ax.bar_label(bars, padding=3)
     plt.tight_layout()
+    plt.savefig(os.path.join(fig_dir, "01_entregas_por_eixo.png"), dpi=150, bbox_inches="tight")
     plt.show()
 else:
     print("Sem dados de entregas para gráfico de eixos.")
@@ -112,6 +116,7 @@ if not df_risk.empty and "probabilidade_normalizada" in df_risk.columns and "imp
         ax.set_ylabel("Probabilidade")
         ax.set_title("Matriz de Riscos: Probabilidade × Impacto")
         plt.tight_layout()
+        plt.savefig(os.path.join(fig_dir, "04_matriz_riscos.png"), dpi=150, bbox_inches="tight")
         plt.show()
     else:
         print("Sem riscos com valores canônicos de probabilidade/impacto para heatmap.")
@@ -131,6 +136,7 @@ if not df_del.empty and "produto_normalizado" in df_del.columns:
     ax.set_title("Top 20 Produtos Mais Frequentes")
     ax.bar_label(bars, padding=3)
     plt.tight_layout()
+    plt.savefig(os.path.join(fig_dir, "02_top20_produtos.png"), dpi=150, bbox_inches="tight")
     plt.show()
 else:
     print("Sem dados de entregas para gráfico de produtos.")
@@ -157,6 +163,7 @@ if not df_del.empty and "tabela_tipo" in df_del.columns:
         )
         ax.set_title("Distribuição de Entregas por Tipo")
         plt.tight_layout()
+        plt.savefig(os.path.join(fig_dir, "05_distribuicao_tipos.png"), dpi=150, bbox_inches="tight")
         plt.show()
     else:
         print("Sem dados de tipo de tabela para gráfico de pizza.")
@@ -176,6 +183,7 @@ if not df_del.empty and "orgao_sigla" in df_del.columns:
     ax.set_title("Top 30 Órgãos por Número de Entregas")
     ax.bar_label(bars, padding=3)
     plt.tight_layout()
+    plt.savefig(os.path.join(fig_dir, "03_top30_orgaos_entregas.png"), dpi=150, bbox_inches="tight")
     plt.show()
 else:
     print("Sem dados de entregas para gráfico por órgão.")
@@ -202,6 +210,7 @@ if not df_risk.empty and "tratamento_normalizado" in df_risk.columns:
         ax.bar_label(bars, padding=3)
         plt.xticks(rotation=30, ha="right")
         plt.tight_layout()
+        plt.savefig(os.path.join(fig_dir, "06_tratamento_riscos.png"), dpi=150, bbox_inches="tight")
         plt.show()
     else:
         print("Sem dados de tratamento para gráfico.")

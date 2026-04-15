@@ -309,41 +309,19 @@ def extract_all_risks() -> None:
         # Verificar se o PDF já foi processado (órgãos agrupados)
         real_path = os.path.realpath(pdf_path)
         if real_path in pdf_results_cache:
-            # Copiar resultados adaptando a sigla
-            cached_entries, cached_errs = pdf_results_cache[real_path]
-            for entry in cached_entries:
-                new_entry = RiskEntry(
-                    orgao_sigla=sigla,
-                    risco_texto=entry.risco_texto,
-                    probabilidade_original=entry.probabilidade_original,
-                    probabilidade_normalizada=entry.probabilidade_normalizada,
-                    impacto_original=entry.impacto_original,
-                    impacto_normalizado=entry.impacto_normalizado,
-                    tratamento_original=entry.tratamento_original,
-                    tratamento_normalizado=entry.tratamento_normalizado,
-                    acoes_tratamento=entry.acoes_tratamento,
-                    extraction_confidence=entry.extraction_confidence,
-                    needs_review=entry.needs_review,
-                    review_reason=entry.review_reason,
-                )
-                batch_risks.append(new_entry)
-                all_risks.append(new_entry)
-            for err in cached_errs:
-                new_err = ProcessingError(
-                    orgao_sigla=sigla,
-                    document_type=err.document_type,
-                    stage=err.stage,
-                    error_type=err.error_type,
-                    error_message=err.error_message,
-                )
-                batch_errors.append(new_err)
-                all_errors.append(new_err)
+            # PDF compartilhado — não duplicar entries (evita dupla contagem).
+            # O órgão-cabeça já possui os registros; este membro é apenas
+            # marcado como processado.
+            owner_sigla = pdf_results_cache[real_path][2]
             processed_siglas.add(sigla)
-            logger.info(f"[{sigla}] Reutilizando resultados de PDF compartilhado")
+            logger.info(
+                f"[{sigla}] PDF compartilhado com {owner_sigla} — "
+                f"riscos atribuídos a {owner_sigla} (sem duplicação)"
+            )
         else:
             # Processar PDF
             entries, errs = extract_risk_table(pdf_path, sigla)
-            pdf_results_cache[real_path] = (entries, errs)
+            pdf_results_cache[real_path] = (entries, errs, sigla)
 
             batch_risks.extend(entries)
             all_risks.extend(entries)
