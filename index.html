@@ -758,7 +758,7 @@ function _expandOrgs(csvOrgs){
   const expanded=new Set(csvOrgs);
   PTD_ORGANS.filter(o=>o.status_entregas==='compartilhado').forEach(o=>{
     const grpKey=o.grupo||o.sigla;
-    const owner=PTD_ORGANS.find(p=>p.status_entregas==='ok'&&p.grupo===grpKey);
+    const owner=PTD_ORGANS.find(p=>p.status_entregas==='ok'&&(p.grupo===grpKey||p.sigla===grpKey));
     if(owner&&csvOrgs.has(owner.sigla)) expanded.add(o.sigla);
   });
   return expanded;
@@ -767,7 +767,7 @@ function _expandRiskOrgs(csvOrgs){
   const expanded=new Set(csvOrgs);
   PTD_ORGANS.filter(o=>o.status_riscos==='compartilhado').forEach(o=>{
     const grpKey=o.grupo||o.sigla;
-    const owner=PTD_ORGANS.find(p=>p.status_riscos==='ok'&&p.grupo===grpKey);
+    const owner=PTD_ORGANS.find(p=>p.status_riscos==='ok'&&(p.grupo===grpKey||p.sigla===grpKey));
     if(owner&&csvOrgs.has(owner.sigla)) expanded.add(o.sigla);
   });
   return expanded;
