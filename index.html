@@ -803,7 +803,10 @@ function filterDeliveries(){
     charts.delEixo=new Chart(document.getElementById('chart-del-eixo'),{type:'bar',data:{
       labels:eixoSorted.map(([e])=>e.substring(0,25)),
       datasets:[{data:eixoSorted.map(([,c])=>c),backgroundColor:COLORS.slice(0,eixoSorted.length),borderRadius:4}]
-    },options:{indexAxis:'y',animation:{duration:400},plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${ctx.raw} entregas (${(ctx.raw/delFiltered.length*100).toFixed(1)}%)`}}},scales:{x:{beginAtZero:true,grid:{display:false}},y:{grid:{display:false}}}}});
+    },options:{indexAxis:'y',animation:{duration:400},onClick:(evt,elems)=>{
+      if(elems.length){const idx=elems[0].index;const eixoName=eixoSorted[idx][0];
+      document.getElementById('f-eixo').value=eixoName;delPage=0;filterDeliveries();}
+    },plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${ctx.raw} entregas (${(ctx.raw/delFiltered.length*100).toFixed(1)}%) — clique para filtrar`}}},scales:{x:{beginAtZero:true,grid:{display:false}},y:{grid:{display:false}}}}});
   }
 
   // Product chart — always visible, responds to filters
@@ -816,8 +819,11 @@ function filterDeliveries(){
       datasets:[{data:prodSorted.map(([,c])=>c),backgroundColor:'#264A7F',borderRadius:4}]
     },options:{indexAxis:'y',animation:{duration:400},plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>{
       const nOrgs=new Set(delFiltered.filter(d=>d.produto_normalizado===prodSorted[ctx.dataIndex][0]).map(d=>d.orgao_sigla)).size;
-      return `${ctx.raw} entregas em ${nOrgs} órgãos`;
-    }}}},scales:{x:{beginAtZero:true,grid:{display:false}},y:{grid:{display:false}}}}});
+      return `${ctx.raw} entregas em ${nOrgs} órgãos — clique para filtrar`;
+    }}}},onClick:(evt,elems)=>{
+      if(elems.length){const idx=elems[0].index;const prodName=prodSorted[idx][0];
+      document.getElementById('f-produto').value=prodName;delPage=0;filterDeliveries();}
+    },scales:{x:{beginAtZero:true,grid:{display:false}},y:{grid:{display:false}}}}});
   }
 
   // Org chart — show when filtering by eixo or produto (not by organ)
@@ -1245,15 +1251,18 @@ function runCompare(){
       prods:["Adequação ao Framework de Privacidade e Segurança da Informação","Elevação do nível de maturidade em privacidade e segurança"],
       legados:["Implementação do PPSI","Adequação ao PPSI","Auto-avaliação, análise de lacunas e planejamento do PPSI"]},
     "Projetos Especiais":{foco:"Iniciativas de transformação digital e projetos estratégicos",
-      prods:["Iniciativa de Transformação Digital","Projeto Especial de Transformação Digital"],legados:[]},
+      prods:["Iniciativa de Transformação Digital","Projeto Especial de Transformação Digital"],legados:["Outros"]},
   };
   const el=document.getElementById('eixos-accordion');
   if(!el)return;
   const prodCounts={};allDel.forEach(d=>{prodCounts[d.produto_normalizado]=(prodCounts[d.produto_normalizado]||0)+1;});
+  // Contar "Outros" por eixo (não global)
+  const outrosPorEixo={};allDel.forEach(d=>{if(d.produto_normalizado==='Outros'&&d.eixo_normalizado){outrosPorEixo[d.eixo_normalizado]=(outrosPorEixo[d.eixo_normalizado]||0)+1;}});
   let html='';
   Object.entries(PRODS).forEach(([eixo,info])=>{
     const allProds=[...info.prods,...(info.legados||[])];
-    const totalEixo=allProds.reduce((s,p)=>s+(prodCounts[p]||0),0);
+    let totalEixo=allProds.filter(p=>p!=='Outros').reduce((s,p)=>s+(prodCounts[p]||0),0);
+    if(info.legados?.includes('Outros')) totalEixo+=(outrosPorEixo[eixo]||0);
     const nCatalogo=info.prods.length;
     const nLegados=info.legados?.length||0;
     html+=`<div class="chart-container" style="padding:0;margin-bottom:8px">`;
@@ -1270,7 +1279,11 @@ function runCompare(){
       return `<tr style="${bg}"><td style="color:${textColor}">${p}${isLegacy?' <em style="font-size:.7rem;color:#8E44AD">(legado)</em>':''}</td><td><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;background:var(--bg);border-radius:3px;height:16px;overflow:hidden"><div style="width:${pct}%;height:100%;background:${barColor};border-radius:3px;transition:width .3s"></div></div><span style="font-weight:600;font-size:.82rem;min-width:40px;text-align:right;color:${textColor}">${c>0?c.toLocaleString('pt-BR'):'—'}</span></div></td><td style="text-align:right;color:${textColor};font-weight:600">${no>0?no:'—'}</td><td style="font-size:.7rem;color:var(--muted)">${isLegacy?'2.x':'4.0'}</td></tr>`;
     }
     info.prods.forEach(p=>{ html+=prodRow(p,prodCounts[p]||0,prodOrgs[p]?.size||0,false); });
-    if(info.legados?.length){ info.legados.forEach(p=>{ html+=prodRow(p,prodCounts[p]||0,prodOrgs[p]?.size||0,true); }); }
+    if(info.legados?.length){ info.legados.forEach(p=>{
+      const cnt = p==='Outros' ? (outrosPorEixo[eixo]||0) : (prodCounts[p]||0);
+      const nOrgs = p==='Outros' ? new Set(allDel.filter(d=>d.produto_normalizado==='Outros'&&d.eixo_normalizado===eixo).map(d=>d.orgao_sigla)).size : (prodOrgs[p]?.size||0);
+      html+=prodRow(p,cnt,nOrgs,true);
+    }); }
     html+=`</tbody></table></div></details></div>`;
   });
   el.innerHTML=html;
