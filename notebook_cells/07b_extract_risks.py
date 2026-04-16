@@ -75,39 +75,101 @@ def _is_header_row(row: pd.Series, col_map: Dict[str, Optional[str]]) -> bool:
     return hits >= 2
 
 
+def _cols_are_data(df: pd.DataFrame) -> bool:
+    """Detecta se find_tables/Docling interpretou o 1o risco como header de coluna."""
+    if df.shape[1] < 4:
+        return False
+    col0 = _normalize_header(str(df.columns[0]))
+    if len(col0) < 10 or col0.startswith("risco") or col0.startswith("col") or col0 == "nan":
+        return False
+    col1 = _normalize_header(str(df.columns[1]))
+    scale_vals = ["raro", "pouco provavel", "provavel", "muito provavel", "praticamente certo",
+                  "baixo", "medio", "alto", "muito alto", "baixa", "media", "alta"]
+    return any(sv in strip_accents(col1) for sv in scale_vals)
+
+
+def _is_risk_data(df: pd.DataFrame) -> bool:
+    """Verifica se uma tabela contém valores de escala de risco (tabela de continuação)."""
+    if df is None or df.empty or df.shape[1] < 4:
+        return False
+    all_text = strip_accents(" ".join(str(v).lower() for v in df.values.flatten()))
+    scale_vals = ["raro", "pouco provavel", "provavel", "muito provavel", "praticamente certo",
+                  "muito baixo", "baixo", "medio", "alto", "muito alto",
+                  "mitigar", "eliminar", "transferir", "aceitar", "baixa", "media", "alta"]
+    return sum(1 for sv in scale_vals if sv in all_text) >= 2
+
+
+def _extract_action_list_from_text(doc_text: str) -> dict:
+    """Extrai a lista 'Referencial para ações de tratamento do risco' do texto do documento."""
+    actions = {}
+    for pat in [r"[Rr]eferencial\s+para\s+a[çc][õo]es\s+de\s+tratamento",
+                r"[Aa][çc][õo]es\s+de\s+tratamento\s+do\s+risco\s*:"]:
+        m = re.search(pat, doc_text)
+        if m:
+            for line in doc_text[m.end():].split('\n'):
+                line = line.strip()
+                am = re.match(r"^(\d{1,2})\s*[\.\-\)]\s*(.+)", line)
+                if am:
+                    actions[am.group(1)] = am.group(2).strip()
+                elif actions and not line[0:1].isdigit() and len(actions) > 3:
+                    break
+            if actions:
+                return actions
+    return actions
+
+
+def _resolve_action_refs(acoes_text: str, action_list: dict) -> str:
+    """Resolve referências numéricas ('1, 2, 9') para texto completo."""
+    if not acoes_text or not action_list:
+        return acoes_text
+    refs = re.findall(r'\d+', acoes_text)
+    if not refs:
+        return acoes_text
+    tokens = re.split(r'[,;\s]+', acoes_text.strip())
+    num_tokens = sum(1 for t in tokens if re.match(r'^\d+$', t.strip()))
+    if num_tokens / max(len(tokens), 1) < 0.5:
+        return acoes_text  # texto livre, não referência
+    resolved = [f"{ref}. {action_list[ref]}" for ref in refs if ref in action_list]
+    return " | ".join(resolved) if resolved else acoes_text
+
+
 def extract_risk_table(
     pdf_path: str, sigla: str
 ) -> Tuple[List[RiskEntry], List[ProcessingError]]:
     """Extrai a tabela de riscos de um Documento Diretivo.
 
-    Args:
-        pdf_path: Caminho do PDF diretivo.
-        sigla: Sigla do órgão.
-
-    Returns:
-        (lista de RiskEntry, lista de ProcessingError)
+    Inclui:
+    - Merge de tabelas multi-página (header na pág N, dados na pág N+1)
+    - Recuperação de riscos que viraram header de coluna em tabelas de continuação
+    - Resolução de referências numéricas de ações ('1, 2, 9' → texto completo)
     """
     entries: List[RiskEntry] = []
     errors: List[ProcessingError] = []
 
     def _try_extract(conv: DocumentConverter) -> Tuple[List[RiskEntry], bool]:
-        """Tenta extrair com um conversor. Retorna (entries, found_risk_table)."""
         result = conv.convert(pdf_path)
 
-        # Detectar formato legado (EGD 2020-2022)
+        # Detectar formato legado
         legacy = detect_legacy_format(result)
         if legacy:
-            logger.info(f"[{sigla}] Formato legado detectado ({legacy}) — tabela de risco pode diferir do padrão")
+            logger.info(f"[{sigla}] Formato legado detectado ({legacy})")
             errors.append(ProcessingError(
-                orgao_sigla=sigla,
-                document_type="diretivo",
-                stage="extraction",
+                orgao_sigla=sigla, document_type="diretivo", stage="extraction",
                 error_type="legacy_format",
-                error_message=f"Formato legado {legacy}: estrutura de tabela pode diferir do template atual",
+                error_message=f"Formato legado {legacy}: estrutura pode diferir do template atual",
             ))
+
+        # Extrair lista de ações de tratamento do texto do documento
+        try:
+            doc_text = result.document.export_to_markdown()
+        except Exception:
+            doc_text = ""
+        action_list = _extract_action_list_from_text(doc_text)
 
         local_entries: List[RiskEntry] = []
         found = False
+        risk_ncols = None
+        col_map = None
 
         for table in result.document.tables:
             try:
@@ -116,98 +178,156 @@ def extract_risk_table(
                 logger.warning(f"[{sigla}] Falha ao exportar tabela: {exc}")
                 continue
 
-            if df is None or df.empty:
+            if df is None or df.shape[1] < 4:
                 continue
 
-            classification = classify_diretivo_table(df)
+            has_header = classify_diretivo_table(df) == "risk_table"
+            data_as_header = _cols_are_data(df)
+            is_continuation = (risk_ncols and df.shape[1] == risk_ncols
+                               and not has_header and _is_risk_data(df))
 
-            if classification != "risk_table":
+            if not has_header and not data_as_header and not is_continuation:
                 continue
 
             found = True
-            col_map = _map_risk_columns(df)
 
-            # Se a coluna 'risco' não foi mapeada, tentar usar a primeira coluna
-            if col_map["risco"] is None and len(df.columns) > 0:
-                col_map["risco"] = str(df.columns[0])
+            if has_header:
+                col_map = _map_risk_columns(df)
+                if col_map["risco"] is None and len(df.columns) > 0:
+                    col_map["risco"] = str(df.columns[0])
+                risk_ncols = len(df.columns)
+
+                # Checar se primeira linha é sub-header
+                if len(df) > 0 and _is_header_row(df.iloc[0], col_map):
+                    df = df.iloc[1:].reset_index(drop=True)
+                if len(df) == 0:
+                    continue  # Header-only, dados na próxima tabela
+
+            elif data_as_header:
+                # Primeiro risco virou header de coluna — recuperar
+                risk_ncols = len(df.columns)
+                if col_map is None:
+                    # Inferir col_map pela posição
+                    col_names = list(df.columns)
+                    col_map = {}
+                    positions = ["risco", "probabilidade", "impacto", "tratamento", "acoes"]
+                    if len(col_names) >= 6:
+                        positions = ["id_risco"] + positions
+                    for i, field in enumerate(positions):
+                        if i < len(col_names):
+                            col_map[field] = str(col_names[i])
+
+                # Extrair o risco que virou header
+                header_vals = {str(c): normalize_text(str(c)) for c in df.columns}
+                risco_raw = normalize_text(str(df.columns[0])) if col_map.get("risco") else ""
+                if risco_raw.lower() not in ("nan", "none", "") and not _is_header_row(
+                    pd.Series({str(c): str(c) for c in df.columns}), col_map
+                ):
+                    prob_col = col_map.get("probabilidade", "")
+                    imp_col = col_map.get("impacto", "")
+                    trat_col = col_map.get("tratamento", "")
+                    acoes_col = col_map.get("acoes", "")
+
+                    prob_raw = normalize_text(str(dict(zip([str(c) for c in df.columns], df.columns)).get(prob_col, "")))
+                    # Simplificar: usar posição
+                    cols_list = [normalize_text(str(c)) for c in df.columns]
+                    for var in cols_list:
+                        if var.lower() in ("nan", "none"):
+                            cols_list[cols_list.index(var)] = ""
+
+                    p_raw = cols_list[1] if len(cols_list) > 1 else ""
+                    i_raw = cols_list[2] if len(cols_list) > 2 else ""
+                    t_raw = cols_list[3] if len(cols_list) > 3 else ""
+                    a_raw = cols_list[4] if len(cols_list) > 4 else ""
+
+                    prob_norm, prob_score = fuzzy_match_scale(p_raw, PROBABILIDADE_SCALE)
+                    imp_norm, imp_score = fuzzy_match_scale(i_raw, IMPACTO_SCALE)
+                    trat_norm, trat_score = fuzzy_match_scale(t_raw, TRATAMENTO_OPTIONS)
+                    acoes_resolved = _resolve_action_refs(a_raw, action_list)
+
+                    local_entries.append(RiskEntry(
+                        orgao_sigla=sigla, risco_texto=cols_list[0],
+                        probabilidade_original=p_raw,
+                        probabilidade_normalizada=prob_norm if prob_score >= 0.70 else "",
+                        impacto_original=i_raw,
+                        impacto_normalizado=imp_norm if imp_score >= 0.70 else "",
+                        tratamento_original=t_raw,
+                        tratamento_normalizado=trat_norm if trat_score >= 0.70 else "",
+                        acoes_tratamento=acoes_resolved,
+                        extraction_confidence="medium",
+                        needs_review=True,
+                        review_reason="recuperado de header de coluna",
+                    ))
+
+            elif is_continuation and col_map:
+                # Tabela de continuação — pular sub-headers
+                if len(df) > 0 and _is_header_row(df.iloc[0], col_map):
+                    df = df.iloc[1:].reset_index(drop=True)
+
+            # Extrair linhas de dados
+            if col_map is None:
+                continue
 
             mapped_count = sum(1 for v in col_map.values() if v is not None)
 
             for idx, row in df.iterrows():
-                # Pular linhas de cabeçalho repetidas
                 if _is_header_row(row, col_map):
                     continue
 
-                # Extrair valores
                 risco_raw = ""
-                if col_map["risco"] and col_map["risco"] in row.index:
+                if col_map.get("risco") and col_map["risco"] in row.index:
                     risco_raw = normalize_text(str(row[col_map["risco"]]))
-
                 prob_raw = ""
-                if col_map["probabilidade"] and col_map["probabilidade"] in row.index:
+                if col_map.get("probabilidade") and col_map["probabilidade"] in row.index:
                     prob_raw = normalize_text(str(row[col_map["probabilidade"]]))
-
                 imp_raw = ""
-                if col_map["impacto"] and col_map["impacto"] in row.index:
+                if col_map.get("impacto") and col_map["impacto"] in row.index:
                     imp_raw = normalize_text(str(row[col_map["impacto"]]))
-
                 trat_raw = ""
-                if col_map["tratamento"] and col_map["tratamento"] in row.index:
+                if col_map.get("tratamento") and col_map["tratamento"] in row.index:
                     trat_raw = normalize_text(str(row[col_map["tratamento"]]))
-
                 acoes_raw = ""
-                if col_map["acoes"] and col_map["acoes"] in row.index:
+                if col_map.get("acoes") and col_map["acoes"] in row.index:
                     acoes_raw = normalize_text(str(row[col_map["acoes"]]))
 
-                # Limpar valores "nan"
-                risco_raw = "" if risco_raw.lower() in ("nan", "none") else risco_raw
-                prob_raw = "" if prob_raw.lower() in ("nan", "none") else prob_raw
-                imp_raw = "" if imp_raw.lower() in ("nan", "none") else imp_raw
-                trat_raw = "" if trat_raw.lower() in ("nan", "none") else trat_raw
-                acoes_raw = "" if acoes_raw.lower() in ("nan", "none") else acoes_raw
+                # Limpar nan
+                for var_name in ["risco_raw", "prob_raw", "imp_raw", "trat_raw", "acoes_raw"]:
+                    if eval(var_name).lower() in ("nan", "none"):
+                        exec(f"{var_name} = ''")
 
-                # Pular linhas completamente vazias
                 if not risco_raw and not prob_raw and not imp_raw:
                     continue
 
-                # Normalizar escalas
+                # Normalizar
                 prob_norm, prob_score = fuzzy_match_scale(prob_raw, PROBABILIDADE_SCALE)
                 imp_norm, imp_score = fuzzy_match_scale(imp_raw, IMPACTO_SCALE)
                 trat_norm, trat_score = fuzzy_match_scale(trat_raw, TRATAMENTO_OPTIONS)
+                acoes_resolved = _resolve_action_refs(acoes_raw, action_list)
 
-                # Determinar confiança
                 review_reasons = []
                 if prob_raw and prob_score < 0.70:
                     review_reasons.append(f"probabilidade não mapeada: '{prob_raw}'")
                 if imp_raw and imp_score < 0.70:
                     review_reasons.append(f"impacto não mapeado: '{imp_raw}'")
-                if trat_raw and trat_score < 0.70:
-                    review_reasons.append(f"tratamento não mapeado: '{trat_raw}'")
                 if not risco_raw:
                     review_reasons.append("texto do risco vazio")
 
-                if mapped_count >= 4 and not review_reasons:
-                    confidence = "high"
-                elif mapped_count >= 3 and len(review_reasons) <= 1:
-                    confidence = "medium"
-                else:
-                    confidence = "low"
+                confidence = "high" if mapped_count >= 4 and not review_reasons else \
+                             "medium" if mapped_count >= 3 and len(review_reasons) <= 1 else "low"
 
-                entry = RiskEntry(
-                    orgao_sigla=sigla,
-                    risco_texto=risco_raw,
+                local_entries.append(RiskEntry(
+                    orgao_sigla=sigla, risco_texto=risco_raw,
                     probabilidade_original=prob_raw,
                     probabilidade_normalizada=prob_norm if prob_score >= 0.70 else "",
                     impacto_original=imp_raw,
                     impacto_normalizado=imp_norm if imp_score >= 0.70 else "",
                     tratamento_original=trat_raw,
                     tratamento_normalizado=trat_norm if trat_score >= 0.70 else "",
-                    acoes_tratamento=acoes_raw,
+                    acoes_tratamento=acoes_resolved,
                     extraction_confidence=confidence,
                     needs_review=len(review_reasons) > 0,
                     review_reason="; ".join(review_reasons) if review_reasons else None,
-                )
-                local_entries.append(entry)
+                ))
 
         return local_entries, found
 
