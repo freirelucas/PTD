@@ -1,5 +1,5 @@
 {
-  "data_execucao": "2026-04-15",
+  "data_execucao": "2026-04-16",
   "orgaos_total": 91,
   "entregas_total": 4573,
   "entregas_orgaos": 79,
@@ -8,17 +8,17 @@
   "riscos_canonicos": 439,
   "pdfs_escaneados_pendentes": 15,
   "top5_produtos": {
-    "Integração à ferramenta de avaliação da satisfação dos usuários": 790,
-    "Integração ao Login Único": 699,
-    "Evolução do Serviço": 676,
-    "Disponibilização em Acesso Digital": 518,
-    "Implementação do PPSI": 349
+    "Integração ao Login Único": 694,
+    "Integração à ferramenta de avaliação da satisfação dos usuários": 685,
+    "Evolução do Serviço": 677,
+    "Disponibilização em Acesso Digital": 517,
+    "Implementação do PPSI": 348
   },
   "entregas_por_eixo": {
     "Serviços Digitais e Melhoria da Qualidade": 2414,
-    "Projetos Especiais": 140,
     "Unificação de Canais Digitais": 1241,
     "Segurança e Privacidade": 654,
+    "Projetos Especiais": 140,
     "Governança e Gestão de Dados": 124
   },
   "distribuicao_probabilidade": {
@@ -29,7 +29,6 @@
     "praticamente certo": 20
   },
   "distribuicao_impacto": {
-    "muito baixo": 0,
     "baixo": 45,
     "médio": 146,
     "alto": 205,
@@ -39,7 +38,8 @@
     "mitigar": 327,
     "aceitar": 54,
     "transferir": 22,
-    "eliminar": 9
+    "eliminar": 9,
+    "compartilhar": 1
   },
   "media_entregas_por_orgao": 80.2,
   "mediana_entregas_por_orgao": 57
