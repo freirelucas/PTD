@@ -1,374 +1,199 @@
 # ============================================================
-# CÉLULA 8 — Extração de Tabelas de Entregas (Anexos de Entregas)
+# CÉLULA 8 — Extração de Tabelas de Entregas (PyMuPDF find_tables)
 # ============================================================
+# Abordagem híbrida: find_tables() para tabelas multi-página,
+# fallback texto para PDFs sem estrutura tabelar.
+# Captura produto "Outros" literalmente.
 
-def _map_entregas_columns(
-    df: pd.DataFrame, tabela_tipo: str
-) -> Dict[str, Optional[str]]:
-    """Mapeia colunas do DataFrame para nomes canônicos de entregas.
-
-    Args:
-        df: DataFrame da tabela extraída.
-        tabela_tipo: 'pactuadas', 'concluidas', ou 'canceladas'.
-
-    Returns:
-        Dict com chaves canônicas e valores = nome real da coluna (ou None).
-    """
-    canonical: Dict[str, Optional[str]] = {
-        "servico_acao": None,
-        "produto": None,
-        "eixo": None,
-        "area_responsavel": None,
-        "data_pactuada": None,
-        "data_entrega": None,
-        "pactuado": None,
-        "justificativa": None,
-    }
-
-    keyword_map = {
-        "servico_acao": [
-            "servico/acao", "servico / acao", "servico", "acao",
-            "nome do servico", "servico ou acao",
-            # MEC variant: "Serviço /Ação" (espaço antes da barra)
-        ],
-        "produto": [
-            "produto", "produto ptd", "entrega", "produto/entrega",
-        ],
-        "eixo": [
-            "eixo", "eixo ptd", "eixo de transformacao",
-        ],
-        "area_responsavel": [
-            "area responsavel", "arearesponsavel", "area",
-            "unidade responsavel", "setor",
-            "responsavel",  # colunas partidas: "Area\nResponsavel"
-        ],
-        "data_pactuada": [
-            "dtpactuada", "dt pactuada", "data pactuada", "datapactuada",
-            "prazo", "data prevista", "previsao",
-            "dtpactuadadtreplanejada",  # ANVISA variant
-        ],
-        "data_entrega": [
-            "dtentrega", "dt entrega", "data entrega", "dataentrega",
-            "data de entrega", "data conclusao", "dataconclusao",
-            # MD group usa "Data Entrega" como coluna principal
-        ],
-        "pactuado": [
-            "pactuado?", "pactuado ?", "pactuado", "foi pactuado",
-        ],
-        "justificativa": [
-            "justificativa", "motivo", "motivo cancelamento",
-            "motivo do cancelamento", "observacao", "obs",
-        ],
-    }
-
-    # Limpar headers: tratar quebras de linha e hífens de quebra
-    def _clean_h(c):
-        s = _normalize_header(str(c))
-        s = s.replace("- ", "").replace("-\n", "")
-        return s
-    headers = {str(c): _clean_h(c) for c in df.columns}
-
-    for canon_key, keywords in keyword_map.items():
-        best_col = None
-        best_score = 0.0
-
-        for col_name, col_norm in headers.items():
-            # Remove espaços para comparação compacta
-            col_compact = col_norm.replace(" ", "")
-
-            for kw in keywords:
-                kw_norm = strip_accents(kw.lower())
-                kw_compact = kw_norm.replace(" ", "")
-
-                # Substring match
-                if kw_norm in col_norm or kw_compact in col_compact:
-                    score = len(kw_norm) / max(len(col_norm), 1)
-                    score = max(score, 0.85)
-                    if score > best_score:
-                        best_score = score
-                        best_col = col_name
-                    continue
-
-                # Fuzzy match
-                ratio = difflib.SequenceMatcher(
-                    None, col_norm, kw_norm
-                ).ratio()
-                if ratio > best_score and ratio >= 0.65:
-                    best_score = ratio
-                    best_col = col_name
-
-        canonical[canon_key] = best_col
-
-    return canonical
+def _id_col(col_name: str) -> Optional[str]:
+    c = _normalize_header(str(col_name))
+    if "servico" in c or "acao" in c: return "servico"
+    if c.strip() in ("produto", "produto ptd", "entrega"): return "produto"
+    if "eixo" in c: return "eixo"
+    if "dtpactuada" in c.replace(" ","") or "data pactuada" in c or "prazo" in c: return "data"
+    if "dtentrega" in c.replace(" ","") or "data entrega" in c: return "data"
+    return None
 
 
-def _clean_cell(value) -> str:
-    """Limpa valor de célula: trata NaN, multi-line, espaços extras."""
-    if value is None:
-        return ""
-    s = str(value)
-    if s.lower() in ("nan", "none", "nat", ""):
-        return ""
-    # Multi-line text: juntar com espaço
-    s = re.sub(r"[\r\n]+", " ", s)
-    s = re.sub(r"\s+", " ", s).strip()
-    return s
+def _is_outros(text: str) -> bool:
+    return normalize_text(text).lower().strip() in ("outros", "outro", "outros -", "outros –")
 
 
-def _is_entregas_header_row(row: pd.Series, col_map: Dict[str, Optional[str]]) -> bool:
-    """Verifica se a row é uma linha de cabeçalho repetida."""
-    values = []
-    for canon_key, col_name in col_map.items():
-        if col_name is not None and col_name in row.index:
-            values.append(_normalize_header(str(row[col_name])))
+def _extract_deliveries_tables(pdf_path: str, sigla: str) -> List[DeliveryEntry]:
+    """Extrai entregas via find_tables() com matching de produtos."""
+    entries = []
+    doc = fitz.open(pdf_path)
+    col_map = None
 
-    header_keywords = [
-        "servico", "acao", "produto", "eixo", "area", "responsavel",
-        "dtpactuada", "dtentrega", "pactuado", "justificativa",
-        "data", "prazo",
-    ]
-    hits = sum(1 for v in values if any(kw in v for kw in header_keywords))
-    return hits >= 2
-
-
-def extract_entregas_tables(
-    pdf_path: str, sigla: str
-) -> Tuple[List[DeliveryEntry], List[ProcessingError]]:
-    """Extrai tabelas de entregas de um Anexo de Entregas.
-
-    Args:
-        pdf_path: Caminho do PDF de entregas.
-        sigla: Sigla do órgão.
-
-    Returns:
-        (lista de DeliveryEntry, lista de ProcessingError)
-    """
-    entries: List[DeliveryEntry] = []
-    errors: List[ProcessingError] = []
-
-    def _try_extract(conv: DocumentConverter) -> Tuple[List[DeliveryEntry], bool]:
-        """Tenta extrair com um conversor. Retorna (entries, found_any_table)."""
-        result = conv.convert(pdf_path)
-
-        # Detectar formato legado (EGD 2020-2022)
-        legacy = detect_legacy_format(result)
-        if legacy:
-            logger.info(f"[{sigla}] Formato legado detectado ({legacy}) — tabelas podem diferir do padrão")
-            errors.append(ProcessingError(
-                orgao_sigla=sigla,
-                document_type="entregas",
-                stage="extraction",
-                error_type="legacy_format",
-                error_message=f"Formato legado {legacy}: estrutura pode diferir do template atual",
-            ))
-
-        local_entries: List[DeliveryEntry] = []
-        found_any = False
-
-        for table in result.document.tables:
+    for page in doc:
+        tabs = page.find_tables()
+        for table in tabs.tables:
             try:
-                df = table.export_to_dataframe()
-            except Exception as exc:
-                logger.warning(f"[{sigla}] Falha ao exportar tabela de entregas: {exc}")
+                df = table.to_pandas()
+            except Exception:
+                continue
+            if df is None or df.empty or df.shape[1] < 3:
                 continue
 
-            if df is None or df.empty:
+            # Tentar mapear colunas
+            nm = {}
+            for ci, col in enumerate(df.columns):
+                role = _id_col(str(col))
+                if role and role not in nm:
+                    nm[role] = str(col)
+            if "produto" in nm or ("servico" in nm and len(nm) >= 2):
+                col_map = nm
+
+            if not col_map and len(df) > 0:
+                for ci, val in enumerate(df.iloc[0]):
+                    role = _id_col(str(val))
+                    if role:
+                        if col_map is None:
+                            col_map = {}
+                        if role not in col_map:
+                            col_map[role] = str(df.columns[ci])
+                if col_map:
+                    df = df.iloc[1:].reset_index(drop=True)
+
+            if not col_map:
+                for _, row in df.iterrows():
+                    for val in row:
+                        pm = fuzzy_match_produto(str(val))
+                        if pm[1] >= 0.85 or _is_outros(str(val)):
+                            ci2 = list(row).index(val)
+                            col_map = {"produto": str(df.columns[ci2])}
+                            if ci2 > 0: col_map["servico"] = str(df.columns[ci2-1])
+                            if ci2+1 < len(df.columns): col_map["eixo"] = str(df.columns[ci2+1])
+                            break
+                    if col_map:
+                        break
+
+            if not col_map:
                 continue
 
-            classification = classify_entregas_table(df)
-
-            if classification == "unknown":
-                continue
-
-            found_any = True
-            col_map = _map_entregas_columns(df, classification)
-            mapped_count = sum(1 for v in col_map.values() if v is not None)
-
-            # Mapear tabela_tipo para valor padronizado
-            tipo_map = {
-                "pactuadas": "pactuada",
-                "concluidas": "concluida",
-                "canceladas": "cancelada",
-            }
-            tabela_tipo = tipo_map.get(classification, classification)
-
-            for idx, row in df.iterrows():
-                # Pular linhas de cabeçalho repetidas
-                if _is_entregas_header_row(row, col_map):
+            for _, row in df.iterrows():
+                prod_raw = ""
+                if "produto" in col_map:
+                    prod_raw = normalize_text(str(row.get(col_map["produto"], "")))
+                if not prod_raw or prod_raw.lower() in ("nan", "none", "produto", "produto ptd"):
+                    for val in row:
+                        pm = fuzzy_match_produto(str(val))
+                        if pm[1] >= 0.85 or _is_outros(str(val)):
+                            prod_raw = normalize_text(str(val))
+                            break
+                if not prod_raw or prod_raw.lower() in ("nan", "none"):
                     continue
 
-                # Extrair valores
-                servico_raw = _clean_cell(
-                    row.get(col_map["servico_acao"]) if col_map["servico_acao"] else None
-                )
-                produto_raw = _clean_cell(
-                    row.get(col_map["produto"]) if col_map["produto"] else None
-                )
-                eixo_raw = _clean_cell(
-                    row.get(col_map["eixo"]) if col_map["eixo"] else None
-                )
-                area_raw = _clean_cell(
-                    row.get(col_map["area_responsavel"]) if col_map["area_responsavel"] else None
-                )
-                dt_pact_raw = _clean_cell(
-                    row.get(col_map["data_pactuada"]) if col_map["data_pactuada"] else None
-                )
-                dt_entr_raw = _clean_cell(
-                    row.get(col_map["data_entrega"]) if col_map["data_entrega"] else None
-                )
-                pactuado_raw = _clean_cell(
-                    row.get(col_map["pactuado"]) if col_map["pactuado"] else None
-                )
-                justif_raw = _clean_cell(
-                    row.get(col_map["justificativa"]) if col_map["justificativa"] else None
-                )
-
-                # Pular linhas completamente vazias
-                if not servico_raw and not produto_raw and not eixo_raw:
+                pm = fuzzy_match_produto(prod_raw)
+                is_out = _is_outros(prod_raw)
+                if pm[1] < 0.85 and not is_out:
                     continue
 
-                # Normalizar produto e eixo
-                produto_norm = ""
-                produto_score = 0.0
-                is_outros = produto_raw and produto_raw.strip().lower() in ("outros","outro","outros -","outros –")
-                if produto_raw:
-                    produto_norm, produto_score = fuzzy_match_produto(produto_raw)
-                # Se não matchou canônico mas é "Outros" literal, aceitar
-                if produto_score < 0.80 and is_outros:
-                    produto_norm = "Outros"
-                    produto_score = 1.0
+                serv = ""
+                if "servico" in col_map:
+                    serv = normalize_text(str(row.get(col_map["servico"], "")))
+                    if serv.lower() in ("nan", "none", "servico/acao", "servico"): serv = ""
 
-                eixo_norm = ""
-                eixo_score = 0.0
-                if eixo_raw:
-                    eixo_norm, eixo_score = fuzzy_match_eixo(eixo_raw)
+                eixo_raw = ""
+                if "eixo" in col_map:
+                    eixo_raw = normalize_text(str(row.get(col_map["eixo"], "")))
+                    if eixo_raw.lower() in ("nan", "none", "eixo"): eixo_raw = ""
 
-                # Se eixo não veio no texto mas o produto foi normalizado, inferir
-                if not eixo_norm and produto_norm and produto_score >= 0.80:
-                    eixo_norm = PRODUTO_TO_EIXO.get(produto_norm, "")
+                prod_norm = pm[0] if pm[1] >= 0.85 else "Outros"
+                eixo_norm = PRODUTO_TO_EIXO.get(prod_norm, "")
+                if not eixo_norm:
+                    eixo_match = fuzzy_match_eixo(eixo_raw)
+                    if eixo_match[1] >= 0.80:
+                        eixo_norm = eixo_match[0]
 
-                # Parsear datas
-                dt_pactuada = parse_date(dt_pact_raw) if dt_pact_raw else None
-                dt_entrega = parse_date(dt_entr_raw) if dt_entr_raw else None
+                data = ""
+                if "data" in col_map:
+                    data = normalize_text(str(row.get(col_map["data"], "")))
+                    if data.lower() in ("nan", "none", "dtpactuada"): data = ""
 
-                # Normalizar pactuado (Sim/Não)
-                pactuado_final = None
-                if pactuado_raw:
-                    p_lower = pactuado_raw.lower().strip()
-                    if p_lower in ("sim", "s", "yes", "x"):
-                        pactuado_final = "Sim"
-                    elif p_lower in ("nao", "não", "n", "no"):
-                        pactuado_final = "Não"
-                    else:
-                        pactuado_final = pactuado_raw
-
-                # Determinar confiança
-                review_reasons = []
-                if produto_raw and produto_score < 0.70:
-                    review_reasons.append(f"produto não mapeado: '{produto_raw}'")
-                if eixo_raw and eixo_score < 0.70 and not eixo_norm:
-                    review_reasons.append(f"eixo não mapeado: '{eixo_raw}'")
-                if not servico_raw and not produto_raw:
-                    review_reasons.append("serviço e produto vazios")
-
-                if mapped_count >= 4 and not review_reasons:
-                    confidence = "high"
-                elif mapped_count >= 3 and len(review_reasons) <= 1:
-                    confidence = "medium"
-                else:
-                    confidence = "low"
-
-                entry = DeliveryEntry(
+                entries.append(DeliveryEntry(
                     orgao_sigla=sigla,
-                    tabela_tipo=tabela_tipo,
-                    servico_acao=servico_raw,
-                    produto_original=produto_raw,
-                    produto_normalizado=produto_norm if produto_score >= 0.70 else "",
+                    servico_acao=serv[:250],
+                    produto_original=prod_raw[:250],
+                    produto_normalizado=prod_norm,
                     eixo_original=eixo_raw,
                     eixo_normalizado=eixo_norm,
-                    area_responsavel=area_raw if area_raw else None,
-                    data_pactuada=dt_pactuada,
-                    data_entrega=dt_entrega,
-                    pactuado=pactuado_final,
-                    justificativa=justif_raw if justif_raw else None,
-                    extraction_confidence=confidence,
-                    needs_review=len(review_reasons) > 0,
-                    review_reason="; ".join(review_reasons) if review_reasons else None,
-                )
-                local_entries.append(entry)
-
-        return local_entries, found_any
-
-    # Tentativa principal: modo ACCURATE
-    try:
-        entries, found = _try_extract(converter_accurate)
-        if not found:
-            logger.info(
-                f"[{sigla}] Nenhuma tabela de entregas no modo ACCURATE, tentando FAST..."
-            )
-            converter_fast = create_converter(accurate=False, ocr=True)
-            entries, found = _try_extract(converter_fast)
-            if not found:
-                errors.append(ProcessingError(
-                    orgao_sigla=sigla,
-                    document_type="entregas",
-                    stage="extraction",
-                    error_type="no_entregas_table",
-                    error_message=(
-                        f"Nenhuma tabela de entregas encontrada em "
-                        f"{os.path.basename(pdf_path)}"
-                    ),
+                    data_pactuada=parse_date(data) if data else None,
+                    extraction_confidence="high" if pm[1] >= 0.95 else ("medium" if pm[1] >= 0.85 else "low"),
+                    needs_review=pm[1] < 0.95 or is_out,
+                    review_reason="produto Outros" if is_out else (f"fuzzy={pm[1]:.2f}" if pm[1] < 0.95 else None),
                 ))
-    except Exception as exc:
-        logger.warning(f"[{sigla}] ACCURATE falhou em entregas: {exc}. Tentando FAST...")
-        try:
-            converter_fast = create_converter(accurate=False, ocr=True)
-            entries, found = _try_extract(converter_fast)
-            if not found:
-                errors.append(ProcessingError(
-                    orgao_sigla=sigla,
-                    document_type="entregas",
-                    stage="extraction",
-                    error_type="no_entregas_table",
-                    error_message=(
-                        f"Nenhuma tabela de entregas encontrada (modo FAST) em "
-                        f"{os.path.basename(pdf_path)}"
-                    ),
-                ))
-        except Exception as exc2:
-            errors.append(ProcessingError(
+
+    doc.close()
+    return entries
+
+
+def _extract_deliveries_text(pdf_path: str, sigla: str) -> List[DeliveryEntry]:
+    """Fallback: extrai entregas por matching de produto no texto linha-a-linha."""
+    entries = []
+    doc = fitz.open(pdf_path)
+
+    for page in doc:
+        lines = [l.strip() for l in page.get_text().split('\n') if l.strip()]
+        for i, line in enumerate(lines):
+            pm = fuzzy_match_produto(line)
+            is_out = _is_outros(line)
+            if pm[1] < 0.85 and not is_out:
+                continue
+
+            serv = ""
+            if i > 0:
+                prev = lines[i-1]
+                if (fuzzy_match_produto(prev)[1] < 0.80 and
+                    fuzzy_match_eixo(prev)[1] < 0.80 and len(prev) > 5 and
+                    not re.match(r"^(jan|fev|mar|abr|mai|jun|jul|ago|set|out|nov|dez)", prev.lower())):
+                    serv = prev[:250]
+
+            prod_norm = pm[0] if pm[1] >= 0.85 else "Outros"
+            eixo_norm = PRODUTO_TO_EIXO.get(prod_norm, "")
+            if not eixo_norm and i+1 < len(lines):
+                em = fuzzy_match_eixo(lines[i+1])
+                if em[1] >= 0.80:
+                    eixo_norm = em[0]
+
+            data = ""
+            for j in range(i+1, min(i+5, len(lines))):
+                if re.match(r"^(jan|fev|mar|abr|mai|jun|jul|ago|set|out|nov|dez)[\-/]\d{2,4}$", lines[j].lower()):
+                    data = lines[j]; break
+                if re.match(r"^\d{2}/\d{2,4}$", lines[j]):
+                    data = lines[j]; break
+
+            entries.append(DeliveryEntry(
                 orgao_sigla=sigla,
-                document_type="entregas",
-                stage="extraction",
-                error_type="docling_failure",
-                error_message=f"Docling falhou em ambos os modos: {exc2}",
+                servico_acao=serv,
+                produto_original=line[:250],
+                produto_normalizado=prod_norm,
+                eixo_original="",
+                eixo_normalizado=eixo_norm,
+                data_pactuada=parse_date(data) if data else None,
+                extraction_confidence="high" if pm[1] >= 0.95 else ("medium" if pm[1] >= 0.85 else "low"),
+                needs_review=pm[1] < 0.95 or is_out,
+                review_reason="produto Outros" if is_out else None,
             ))
 
-    return entries, errors
+    doc.close()
+    return entries
 
 
-# --------------- Extração em lote -----------------------------
+# --------------- Extração em lote (híbrida) -------------------
 
 def extract_all_deliveries() -> None:
-    """Extrai tabelas de entregas de todos os órgãos com Anexo de Entregas."""
     global all_deliveries, all_errors
 
-    # Tentar carregar checkpoint (só usa se tiver dados reais)
     cached = load_checkpoint("deliveries_raw")
     if cached is not None and len(cached[0]) > 0:
-        cached_deliveries, cached_errors, processed_siglas = cached
-        all_deliveries.extend(cached_deliveries)
+        cached_del, cached_errors, processed_siglas = cached
+        all_deliveries.extend(cached_del)
         all_errors.extend(cached_errors)
-        print(
-            f"  Retomando: {len(cached_deliveries)} entregas já extraídas "
-            f"de {len(processed_siglas)} órgãos"
-        )
+        print(f"  Retomando: {len(cached_del)} entregas de {len(processed_siglas)} órgãos")
     else:
-        cached_deliveries = []
-        cached_errors = []
-        processed_siglas = set()
+        cached_del, cached_errors, processed_siglas = [], [], set()
 
-    # Órgãos com PDF de entregas
     organs_with_pdf = [o for o in all_organs if o.pdf_path_entregas]
     pending = [o for o in organs_with_pdf if o.sigla not in processed_siglas]
 
@@ -376,16 +201,10 @@ def extract_all_deliveries() -> None:
         print("  Todos os órgãos já processados (checkpoint).")
         return
 
-    print(
-        f"  Processando entregas: {len(pending)} órgãos pendentes "
-        f"({len(processed_siglas)} já processados)"
-    )
+    print(f"  Processando: {len(pending)} órgãos pendentes")
 
-    # Cache de resultados por PDF (para órgãos agrupados com PDF compartilhado)
-    pdf_results_cache: Dict[str, Tuple[List[DeliveryEntry], List[ProcessingError]]] = {}
-
-    batch_deliveries: List[DeliveryEntry] = []
-    batch_errors: List[ProcessingError] = []
+    pdf_results_cache: Dict[str, Tuple[List[DeliveryEntry], str]] = {}
+    batch_del, batch_errors = [], []
     count = 0
 
     for organ in tqdm(pending, desc="Extraindo entregas"):
@@ -393,107 +212,58 @@ def extract_all_deliveries() -> None:
         pdf_path = organ.pdf_path_entregas
 
         if not os.path.isfile(pdf_path):
-            err = ProcessingError(
-                orgao_sigla=sigla,
-                document_type="entregas",
-                stage="extraction",
-                error_type="file_not_found",
-                error_message=f"PDF não encontrado: {pdf_path}",
-            )
-            batch_errors.append(err)
-            all_errors.append(err)
+            batch_errors.append(ProcessingError(orgao_sigla=sigla, document_type="entregas",
+                stage="extraction", error_type="file_not_found",
+                error_message=f"PDF não encontrado: {pdf_path}"))
             processed_siglas.add(sigla)
             count += 1
             continue
 
-        # Verificar se o PDF já foi processado (órgãos agrupados)
         real_path = os.path.realpath(pdf_path)
         if real_path in pdf_results_cache:
-            # PDF compartilhado — não duplicar entries (evita dupla contagem).
-            # O órgão-cabeça já possui os registros; este membro é apenas
-            # marcado como processado.
-            owner_sigla = pdf_results_cache[real_path][2]
+            owner = pdf_results_cache[real_path][1]
             processed_siglas.add(sigla)
-            logger.info(
-                f"[{sigla}] PDF compartilhado com {owner_sigla} — "
-                f"entregas atribuídas a {owner_sigla} (sem duplicação)"
-            )
+            logger.info(f"[{sigla}] PDF compartilhado com {owner} — sem duplicação")
         else:
-            # Processar PDF
-            entries, errs = extract_entregas_tables(pdf_path, sigla)
-            pdf_results_cache[real_path] = (entries, errs, sigla)
+            # Híbrido: find_tables primeiro, fallback texto
+            ft_entries = _extract_deliveries_tables(pdf_path, sigla)
+            tx_entries = _extract_deliveries_text(pdf_path, sigla)
+            best = ft_entries if len(ft_entries) >= len(tx_entries) else tx_entries
 
-            batch_deliveries.extend(entries)
-            all_deliveries.extend(entries)
-            batch_errors.extend(errs)
-            all_errors.extend(errs)
+            pdf_results_cache[real_path] = (best, sigla)
+            batch_del.extend(best)
+            all_deliveries.extend(best)
             processed_siglas.add(sigla)
 
-            if entries:
-                logger.info(f"[{sigla}] {len(entries)} entregas extraídas")
-            else:
-                logger.info(f"[{sigla}] Nenhuma entrega extraída")
+            if best:
+                logger.info(f"[{sigla}] {len(best)} entregas extraídas")
 
         count += 1
-
-        # Checkpoint a cada 10 órgãos
         if count % 10 == 0:
-            save_checkpoint(
-                (
-                    cached_deliveries + batch_deliveries,
-                    cached_errors + batch_errors,
-                    processed_siglas,
-                ),
-                "deliveries_raw",
-            )
+            save_checkpoint((cached_del + batch_del, cached_errors + batch_errors, processed_siglas), "deliveries_raw")
 
-    # Checkpoint final
-    save_checkpoint(
-        (
-            cached_deliveries + batch_deliveries,
-            cached_errors + batch_errors,
-            processed_siglas,
-        ),
-        "deliveries_raw",
-    )
+    save_checkpoint((cached_del + batch_del, cached_errors + batch_errors, processed_siglas), "deliveries_raw")
     print(f"  Extração de entregas concluída.")
 
 
 # --------------- Execução -------------------------------------
 extract_all_deliveries()
 
-# Resumo
-organs_with_deliveries = set(d.orgao_sigla for d in all_deliveries)
-organs_without_deliveries = set(
-    o.sigla for o in all_organs if o.pdf_path_entregas
-) - organs_with_deliveries
-delivery_errors = [
-    e for e in all_errors
-    if e.document_type == "entregas" and e.stage == "extraction"
-]
+organs_with_del = set(d.orgao_sigla for d in all_deliveries)
+del_errors = [e for e in all_errors if e.document_type == "entregas" and e.stage == "extraction"]
 
 print(f"\n{'='*60}")
 print(f"RESUMO — Extração de Entregas")
 print(f"{'='*60}")
 print(f"  Total de entregas extraídas: {len(all_deliveries)}")
-print(f"  Órgãos com entregas: {len(organs_with_deliveries)}")
-print(f"  Órgãos sem entregas: {len(organs_without_deliveries)}")
-if organs_without_deliveries:
-    print(f"    → {', '.join(sorted(organs_without_deliveries))}")
-print(f"  Erros de extração: {len(delivery_errors)}")
+print(f"  Órgãos com entregas: {len(organs_with_del)}")
+print(f"  Erros de extração: {len(del_errors)}")
 
-# Breakdown por tipo de tabela
 tipo_counts = {}
 for d in all_deliveries:
-    tipo_counts[d.tabela_tipo] = tipo_counts.get(d.tabela_tipo, 0) + 1
+    t = d.tabela_tipo or "pactuada"
+    tipo_counts[t] = tipo_counts.get(t, 0) + 1
 print(f"  Por tipo: {tipo_counts}")
 
-needs_review = [d for d in all_deliveries if d.needs_review]
-print(f"  Entregas que precisam revisão: {len(needs_review)}")
-
-confidence_counts = {}
-for d in all_deliveries:
-    confidence_counts[d.extraction_confidence] = (
-        confidence_counts.get(d.extraction_confidence, 0) + 1
-    )
-print(f"  Confiança: {confidence_counts}")
+n_outros = sum(1 for d in all_deliveries if d.produto_normalizado == "Outros")
+print(f"  Produto 'Outros': {n_outros}")
