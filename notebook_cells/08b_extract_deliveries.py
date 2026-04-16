@@ -230,8 +230,13 @@ def extract_entregas_tables(
                 # Normalizar produto e eixo
                 produto_norm = ""
                 produto_score = 0.0
+                is_outros = produto_raw and produto_raw.strip().lower() in ("outros","outro","outros -","outros –")
                 if produto_raw:
                     produto_norm, produto_score = fuzzy_match_produto(produto_raw)
+                # Se não matchou canônico mas é "Outros" literal, aceitar
+                if produto_score < 0.80 and is_outros:
+                    produto_norm = "Outros"
+                    produto_score = 1.0
 
                 eixo_norm = ""
                 eixo_score = 0.0
