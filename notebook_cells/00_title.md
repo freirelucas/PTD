@@ -7,7 +7,7 @@ Notebook para coleta, extração e análise dos Planos de Transformação Digita
 **Pipeline:**
 1. Scraping da lista de órgãos signatários e URLs dos PDFs
 2. Download dos PDFs (Documento Diretivo + Anexo de Entregas)
-3. Extração de tabelas com Docling (IBM)
+3. Extração de tabelas (PyMuPDF `find_tables()` / Docling para OCR)
 4. Padronização de vocabulário
 5. Exportação CSV/JSON + relatório de erros
 6. Análises estatísticas do corpus
