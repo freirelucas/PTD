@@ -152,7 +152,7 @@ tr:hover td{background:var(--light)}
 <div id="overview" class="section active">
   <h2>Visão Geral</h2>
   <div style="background:var(--dark);color:#fff;padding:20px 24px;border-radius:var(--radius);margin-bottom:20px;line-height:1.7;font-size:.92rem">
-    <strong>O corpus:</strong> Extração automatizada dos Planos de Transformação Digital (PTDs) de 91 órgãos da administração pública federal, conforme publicados no portal gov.br. De cada PTD foram extraídos o Anexo de Entregas (ações pactuadas com a SGD/MGI, classificadas por produto e eixo da EFGD 2024-2027) e o Documento Diretivo (tabela de gestão de riscos com probabilidade, impacto e ações de tratamento). O corpus totaliza <strong>4.530 entregas</strong> e <strong>600 riscos</strong>, cobrindo 87% dos órgãos signatários (órgãos que compartilham um mesmo PTD ministerial são contados uma única vez).
+    <strong>O corpus:</strong> Extração automatizada dos Planos de Transformação Digital (PTDs) de 91 órgãos da administração pública federal, conforme publicados no portal gov.br. De cada PTD foram extraídos o Anexo de Entregas (ações pactuadas com a SGD/MGI, classificadas por produto e eixo da EFGD 2024-2027) e o Documento Diretivo (tabela de gestão de riscos com probabilidade, impacto e ações de tratamento). O corpus totaliza <strong>4.530 entregas</strong> e <strong>931 riscos</strong>, cobrindo 87% dos órgãos signatários (órgãos que compartilham um mesmo PTD ministerial são contados uma única vez).
   </div>
   <div class="kpi-row" id="kpi-cards"></div>
   <div class="chart-container"><h3>Cronologia das Assinaturas dos PTDs</h3><p class="desc" style="margin-bottom:8px">Data de criação do PDF como proxy da assinatura. Barras mostram o volume de entregas pactuadas pelos órgãos que assinaram em cada mês.</p><canvas id="chart-timeline"></canvas><div id="timeline-insight" style="margin-top:12px"></div></div>
@@ -653,11 +653,21 @@ function initOverview(){
   const eixoLabels = EIXOS;
   charts.eixo = new Chart(document.getElementById('chart-eixo'),{type:'bar',data:{labels:eixoLabels.map(l=>l.length>35?l.substring(0,35)+'...':l),datasets:[{label:'Entregas',data:eixoLabels.map(l=>eixoData[l]),backgroundColor:COLORS.slice(0,eixoLabels.length),borderRadius:6,barPercentage:0.7}]},options:{indexAxis:'y',animation:{duration:800},plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${ctx.raw.toLocaleString('pt-BR')} entregas (${(ctx.raw/allDel.length*100).toFixed(1)}%)`}}},scales:{x:{beginAtZero:true,grid:{display:false}},y:{grid:{display:false}}}}});
 
-  // Coverage donut
+  // Coverage — barra empilhada horizontal
   const covOk=PTD_ORGANS.filter(o=>o.status_entregas==='ok'||o.status_entregas==='compartilhado').length;
-  const covScan=PTD_ORGANS.filter(o=>o.status_entregas==='scan_ou_formato').length;
+  const covScan=PTD_ORGANS.filter(o=>o.status_entregas==='scan_ou_formato'||o.status_entregas==='sem_dados').length;
   const covNone=PTD_ORGANS.filter(o=>o.status_entregas==='sem_pdf').length;
-  charts.cov = new Chart(document.getElementById('chart-coverage'),{type:'doughnut',data:{labels:['Dados extraídos','PDF escaneado (OCR pendente)','Sem PDF publicado'],datasets:[{data:[covOk,covScan,covNone],backgroundColor:['#27AE60','#E67E22','#C0392B'],borderWidth:2,borderColor:'#fff'}]},options:{aspectRatio:1.8,cutout:'55%',animation:{animateRotate:true,duration:1000},plugins:{legend:{position:'bottom',labels:{padding:12,usePointStyle:true,pointStyle:'circle'}},tooltip:{callbacks:{label:ctx=>`${ctx.label}: ${ctx.raw} órgãos (${(ctx.raw/PTD_STATS.orgaos_total*100).toFixed(0)}%)`}}}}});
+  const covOther=PTD_STATS.orgaos_total-covOk-covScan-covNone;
+  charts.cov = new Chart(document.getElementById('chart-coverage'),{type:'bar',data:{
+    labels:[''],
+    datasets:[
+      {label:`Dados extraídos (${covOk})`,data:[covOk],backgroundColor:'#27AE60'},
+      {label:`PDF escaneado — OCR pendente (${covScan+(covOther>0?covOther:0)})`,data:[covScan+(covOther>0?covOther:0)],backgroundColor:'#E67E22'},
+      {label:`Sem PDF publicado (${covNone})`,data:[covNone],backgroundColor:'#C0392B'},
+    ]},options:{indexAxis:'y',scales:{x:{stacked:true,max:PTD_STATS.orgaos_total,title:{display:true,text:'Órgãos'},grid:{display:false}},y:{stacked:true,display:false}},
+    plugins:{legend:{position:'bottom',labels:{usePointStyle:true,pointStyle:'rect',padding:12}},
+    tooltip:{callbacks:{label:ctx=>`${ctx.dataset.label}: ${(ctx.raw/PTD_STATS.orgaos_total*100).toFixed(0)}%`}}},
+    animation:{duration:600}}});
 
   // Top produtos table
   const prodCounts = {};
