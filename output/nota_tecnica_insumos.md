@@ -41,7 +41,7 @@
 
 ### SINOPSE
 
-Esta nota técnica apresenta a construção e análise de um corpus abrangente dos Planos de Transformação Digital (PTDs) vigentes de 91 órgãos da administração pública federal brasileira. Os PTDs, instituídos pelo Decreto nº 12.198/2024 no âmbito da Estratégia Federal de Governo Digital (EFGD) 2024-2027, foram coletados automaticamente do portal gov.br, com extração estruturada de tabelas de entregas pactuadas (4.530 registros) e gestão de riscos (600 registros). Órgãos que compartilham um mesmo PTD ministerial são contados uma única vez, evitando dupla contagem. O corpus resultante permite análises transversais inéditas sobre o estado da transformação digital no governo federal, revelando padrões de concentração setorial, lacunas de governança de dados e características sistêmicas da gestão de riscos.
+Esta nota técnica apresenta a construção e análise de um corpus abrangente dos Planos de Transformação Digital (PTDs) vigentes de 91 órgãos da administração pública federal brasileira. Os PTDs, instituídos pelo Decreto nº 12.198/2024 no âmbito da Estratégia Federal de Governo Digital (EFGD) 2024-2027, foram coletados automaticamente do portal gov.br, com extração estruturada de tabelas de entregas pactuadas (4.530 registros) e gestão de riscos (931 registros). Órgãos que compartilham um mesmo PTD ministerial são contados uma única vez, evitando dupla contagem. O corpus resultante permite análises transversais inéditas sobre o estado da transformação digital no governo federal, revelando padrões de concentração setorial, lacunas de governança de dados e características sistêmicas da gestão de riscos.
 
 ---
 
@@ -68,7 +68,7 @@ Esta nota técnica apresenta a construção e análise de um corpus abrangente d
 | Scraping da página gov.br | BeautifulSoup4 + requests | 91 órgãos, 177 URLs de PDFs |
 | Download dos PDFs | requests com rate-limiting (1.5s), verificação %PDF | 86 Diretivos + 91 Entregas = 177 PDFs |
 | Extração de tabelas de entregas | Docling (IBM) + matching fuzzy de produtos | 4.530 registros de 79 órgãos (57 próprios + 22 compartilhados) |
-| Extração de tabelas de riscos | Docling com merge multi-página | 600 registros de 71 órgãos (50 próprios + 21 compartilhados) |
+| Extração de tabelas de riscos | Docling com merge multi-página + recuperação header-as-data + resolução de ações numéricas | 931 registros de 71 órgãos (50 próprios + 21 compartilhados) |
 | Resolução de ações numéricas | Parsing da lista "Referencial para ações de tratamento" | 35 órgãos com referências resolvidas |
 
 - 12 órgãos não processados (PDFs escaneados como imagem, sem camada de texto)
@@ -90,7 +90,7 @@ Entregas (deliveries.csv — 4.530 linhas × 9 colunas):
 - orgao_sigla, servico_acao, produto_original, produto_normalizado, produto_score
 - eixo_original, eixo_normalizado, data_pactuada, confidence
 
-Riscos (risks.csv — 600 linhas × 11 colunas):
+Riscos (risks.csv — 931 linhas × 11 colunas):
 - orgao_sigla, id_risco, risco_texto
 - probabilidade_original, probabilidade_normalizada
 - impacto_original, impacto_normalizado
@@ -118,7 +118,7 @@ Riscos (risks.csv — 600 linhas × 11 colunas):
 
 **3.2 Panorama dos riscos**
 
-- 600 riscos mapeados por 71 órgãos (50 com dados próprios + 21 compartilhando PTD ministerial)
+- 931 riscos mapeados por 71 órgãos (50 com dados próprios + 21 compartilhando PTD ministerial)
 - Distribuição de probabilidade: provável (188), pouco provável (174), muito provável (44), raro (28), praticamente certo (20)
 - Distribuição de impacto: alto (220), médio (140), muito alto (100), baixo (45)
 - Tratamento: mitigar (62%), aceitar (10%), transferir (4%), eliminar (1%)
