@@ -470,7 +470,7 @@ tr:hover td{background:var(--light)}
     <h3>5. Cobertura e Limitações</h3>
     <ul>
       <li><strong>Entregas</strong>: 4.530 registros de 79/91 órgãos (87%). Extração híbrida: find_tables() para tabelas multi-página + fallback textual. Órgãos agrupados (mesmo PTD ministerial) contados uma única vez. 12 órgãos com PDFs escaneados não processados</li>
-      <li><strong>Riscos</strong>: 600 registros de 71/86 órgãos com diretivo (83%). Extração multi-página com merge de headers. 15 faltantes: PDFs escaneados sem texto extraível</li>
+      <li><strong>Riscos</strong>: 931 registros de 71/86 órgãos com diretivo (78%). Extração multi-página com merge de headers + recuperação de riscos interpretados como header de coluna. 15 faltantes: PDFs escaneados sem texto extraível</li>
       <li><strong>OCR pendente</strong>: a extração via Docling (IBM) com OCR habilitado no Google Colab pode recuperar os órgãos com PDFs escaneados</li>
       <li><strong>Texto original preservado</strong>: todas as classificações mantêm o campo original do PDF ao lado da versão normalizada</li>
     </ul>
@@ -485,7 +485,60 @@ tr:hover td{background:var(--light)}
     </ul>
     <p>O pipeline inteiro — do scraping à visualização — pode ser reproduzido executando o notebook Colab. Os dados brutos (PDFs) são baixados diretamente do portal gov.br, garantindo que qualquer pesquisador possa replicar o corpus.</p>
 
-    <h3>7. Citação Sugerida</h3>
+    <h3>7. Justificativas Metodológicas</h3>
+
+    <h4 style="color:var(--dark);margin-top:16px">7.1 Por que PyMuPDF e não Docling/Tabula/Camelot?</h4>
+    <p>A extração de tabelas de PDFs governamentais é um problema não trivial. Foram consideradas quatro alternativas:</p>
+    <table style="margin:12px 0;font-size:.85rem">
+      <thead><tr><th>Ferramenta</th><th>Vantagem</th><th>Limitação</th><th>Decisão</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Tabula / Camelot</strong></td><td>Amplamente usados</td><td>Não lidam com tabelas multi-página; exigem Java (Tabula)</td><td>Descartados</td></tr>
+        <tr><td><strong>Docling (IBM)</strong></td><td>OCR integrado, detecção de layout por deep learning</td><td>~2 GB de modelos, lento (~1 min/PDF), instável em ambientes sem GPU</td><td>Mantido como alternativa para OCR no Colab</td></tr>
+        <tr><td><strong>pdfplumber</strong></td><td>API simples</td><td>Sem detecção automática de tabelas que cruzam páginas</td><td>Descartado</td></tr>
+        <tr><td><strong>PyMuPDF <code>find_tables()</code></strong></td><td>Rápido (~1s/PDF), detecta estrutura tabelar nativamente, disponível em v1.23+</td><td>Não faz OCR; interpreta 1ª linha de continuação como header</td><td><strong>Adotado</strong> com fixes para multi-página e header-as-data</td></tr>
+      </tbody>
+    </table>
+    <p>A escolha de PyMuPDF se justifica pela combinação de velocidade (177 PDFs em ~3 minutos), robustez na detecção de tabelas nativas, e independência de modelos pesados. Os dois bugs identificados — tabelas de continuação multi-página e primeira linha interpretada como header — foram corrigidos com heurísticas específicas (<code>_is_risk_data()</code> e <code>_cols_are_data()</code>).</p>
+
+    <h4 style="color:var(--dark);margin-top:16px">7.2 Por que matching fuzzy em camadas?</h4>
+    <p>Os PDFs apresentam variabilidade significativa na grafia dos produtos e eixos:</p>
+    <ul>
+      <li><strong>Truncamentos</strong>: "Migração de Serviço para Plataforma" (sem "Unificada")</li>
+      <li><strong>Acentuação inconsistente</strong>: "Integração ao Login Unico" vs "Único"</li>
+      <li><strong>Variações de caixa</strong>: "Disponibilização em acesso digital" vs "Acesso Digital"</li>
+      <li><strong>Vocabulário legado</strong>: "Implementação do PPSI" (template v2.x, ausente no catálogo v4.0)</li>
+    </ul>
+    <p>O matching em 4 camadas resolve cada tipo: aliases determinísticos para variações conhecidas (19 mapeamentos), match exato accent-insensitive para problemas de acentuação, fuzzy (SequenceMatcher ≥0.85) para truncamentos, e classificação UNMATCHED com flag de revisão para termos não reconhecidos. A taxa de acerto é de 90,7% exato e 9,3% fuzzy, sem perdas não identificadas.</p>
+
+    <h4 style="color:var(--dark);margin-top:16px">7.3 Por que desduplicar órgãos agrupados?</h4>
+    <p>Sete grupos ministeriais (MD, MEC, MF, MMA, MT, MIDR, MDA) publicam um único PTD para múltiplos órgãos — por exemplo, o PTD do MEC serve a CAPES, EBSERH, FNDE, FUNDAJ, IBC, INEP e INES. Replicar as mesmas entregas para cada membro inflaria o corpus artificialmente. A decisão foi:</p>
+    <ul>
+      <li><strong>Dados desduplicados</strong>: cada entrega e risco conta uma vez, atribuído ao órgão-cabeça</li>
+      <li><strong>Cobertura contabiliza membros</strong>: os 22 membros compartilhados são contados como "cobertos" na estatística de cobertura (79/91 = 87%)</li>
+      <li><strong>Dashboard indica compartilhamento</strong>: membros mostram status "compartilhado" e herdam o perfil do cabeça para visualização</li>
+    </ul>
+    <p>Exceção: MF/PGFN — a PGFN tem seção própria no PDF do MF com entregas distintas, portanto conta como órgão independente.</p>
+
+    <h4 style="color:var(--dark);margin-top:16px">7.4 Por que preservar texto original e normalizado?</h4>
+    <p>Toda classificação preserva dois campos: <code>produto_original</code> (texto exato extraído do PDF) e <code>produto_normalizado</code> (categoria canônica mapeada). Essa decisão permite:</p>
+    <ul>
+      <li>Auditoria de qualidade: qualquer mapeamento pode ser verificado</li>
+      <li>Análise textual: bigramas, termos frequentes, busca por IA/chatbot operam sobre o texto original</li>
+      <li>Reprodutibilidade: o pesquisador pode contestar ou refinar a normalização</li>
+    </ul>
+
+    <h4 style="color:var(--dark);margin-top:16px">7.5 Por que a resolução de ações numéricas?</h4>
+    <p>A coluna "Ações de tratamento" dos documentos diretivos frequentemente contém referências numéricas ("1, 2, 9") a uma lista padronizada pela SGD ("Referencial para ações de tratamento do risco") que aparece <em>após</em> a tabela no mesmo PDF. Sem resolução, a coluna seria ininteligível. O pipeline extrai a lista automaticamente e substitui os números pelo texto completo, mantendo o campo original para verificação. A resolução funciona em 35 dos 50 órgãos com dados próprios — os demais usam texto livre ou formatos não-numéricos.</p>
+
+    <h4 style="color:var(--dark);margin-top:16px">7.6 Limitações conhecidas e não resolvidas</h4>
+    <ul>
+      <li><strong>12 órgãos com PDFs escaneados</strong> (AGU, CODEVASF, FUNAI, FUNDACENTRO, INCRA, ITI, MCOM, MIDR, SG-PR, SUDAM, SUDECO, SUDENE) não foram processados. Requer OCR — viável com Docling no Colab mas não executado na versão atual do corpus.</li>
+      <li><strong>Tabelas com formatação irregular</strong>: alguns PDFs (especialmente MMULHERES, com 86+ linhas) podem ter perdas parciais em tabelas muito longas que cruzam 3+ páginas.</li>
+      <li><strong>Classificação autodeclarada de riscos</strong>: probabilidade e impacto são definidos pelo próprio órgão, sem validação externa. Possíveis vieses de sub ou superestimação.</li>
+      <li><strong>Snapshot temporal</strong>: o corpus reflete os PTDs vigentes na data de coleta (abril/2026). Repactuações subsequentes não são capturadas automaticamente.</li>
+    </ul>
+
+    <h3>8. Citação Sugerida</h3>
     <blockquote style="border-left:4px solid var(--primary);margin:12px 0;padding:16px 20px;background:var(--light);border-radius:0 var(--radius) var(--radius) 0;font-size:.88rem;line-height:1.7">
       DIREITO, Denise; SILVA, Lucas; QUEIROZ, Sérgio. <em>Corpus dos Planos de Transformação Digital: extração, padronização e análise dos PTDs de 91 órgãos federais brasileiros</em>. Brasília: Ipea, 2026. (Nota Técnica). Disponível em: <a href="https://github.com/freirelucas/PTD" target="_blank">https://github.com/freirelucas/PTD</a>.
     </blockquote>
