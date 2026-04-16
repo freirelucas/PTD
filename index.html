@@ -721,8 +721,8 @@ function initOverview(){
   // Navigation cards
   const nRiskCanon=allRisk.filter(r=>PROB_ORDER.includes(r.probabilidade_normalizada)&&IMP_ORDER.includes(r.impacto_normalizado)).length;
   const nProdsUsed=new Set(allDel.map(d=>d.produto_normalizado)).size;
-  const nOrgsDel=new Set(allDel.map(d=>d.orgao_sigla)).size;
-  const nOrgsRisk=new Set(allRisk.map(r=>r.orgao_sigla)).size;
+  const nOrgsDel=_expandOrgs(new Set(allDel.map(d=>d.orgao_sigla))).size;
+  const nOrgsRisk=_expandRiskOrgs(new Set(allRisk.map(r=>r.orgao_sigla))).size;
   const nEixos=new Set(allDel.map(d=>d.eixo_normalizado).filter(Boolean)).size;
   const navCards=[
     {nav:'deliveries',icon:'\u25B6',title:'Entregas Pactuadas',
@@ -751,6 +751,26 @@ function initOverview(){
      color:'#4D8AC9'},
   ];
   document.getElementById('nav-cards').innerHTML=navCards.map(c=>`<a class="nav-card" href="#${c.nav}" onclick="showSection('${c.nav}');return false;" style="border-top-color:${c.color}"><span class="nc-icon">${c.icon}</span><div class="nc-title">${c.title}</div><div class="nc-metric" style="color:${c.color}">${c.metric}</div><div class="nc-desc">${c.desc}</div></a>`).join('');
+}
+
+// ==================== SHARED ORGAN EXPANSION ====================
+function _expandOrgs(csvOrgs){
+  const expanded=new Set(csvOrgs);
+  PTD_ORGANS.filter(o=>o.status_entregas==='compartilhado').forEach(o=>{
+    const grpKey=o.grupo||o.sigla;
+    const owner=PTD_ORGANS.find(p=>p.status_entregas==='ok'&&(p.grupo===grpKey||p.sigla===grpKey));
+    if(owner&&csvOrgs.has(owner.sigla)) expanded.add(o.sigla);
+  });
+  return expanded;
+}
+function _expandRiskOrgs(csvOrgs){
+  const expanded=new Set(csvOrgs);
+  PTD_ORGANS.filter(o=>o.status_riscos==='compartilhado').forEach(o=>{
+    const grpKey=o.grupo||o.sigla;
+    const owner=PTD_ORGANS.find(p=>p.status_riscos==='ok'&&(p.grupo===grpKey||p.sigla===grpKey));
+    if(owner&&csvOrgs.has(owner.sigla)) expanded.add(o.sigla);
+  });
+  return expanded;
 }
 
 // ==================== 2. ENTREGAS ====================
@@ -786,9 +806,8 @@ function filterDeliveries(){
 
   // Summary
   const delOrgs=new Set(delFiltered.map(d=>d.orgao_sigla));
-  // Contar órgãos cobertos (próprios + compartilhados)
-  const coveredOrgs=PTD_ORGANS.filter(o=>o.status_entregas==='ok'||o.status_entregas==='compartilhado').length;
-  const orgCount=org?1:(delFiltered.length===allDel.length?coveredOrgs:delOrgs.size);
+  const expandedOrgs=_expandOrgs(delOrgs);
+  const orgCount=org?1:expandedOrgs.size;
   const delProdC={};delFiltered.forEach(d=>{delProdC[d.produto_normalizado]=(delProdC[d.produto_normalizado]||0)+1;});
   const topDelProd=Object.entries(delProdC).sort((a,b)=>b[1]-a[1])[0];
   const activeFilters=[(org?'órgão: '+org:''),(eix?'eixo: '+eix.substring(0,25):''),(prod?'produto: '+prod.substring(0,25):''),(q?'texto: "'+q+'"':'')].filter(Boolean).join(' · ');
@@ -818,8 +837,8 @@ function filterDeliveries(){
       labels:prodSorted.map(([p])=>p.substring(0,30)),
       datasets:[{data:prodSorted.map(([,c])=>c),backgroundColor:'#264A7F',borderRadius:4}]
     },options:{indexAxis:'y',animation:{duration:400},plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>{
-      const nOrgs=new Set(delFiltered.filter(d=>d.produto_normalizado===prodSorted[ctx.dataIndex][0]).map(d=>d.orgao_sigla)).size;
-      return `${ctx.raw} entregas em ${nOrgs} órgãos — clique para filtrar`;
+      const pOrgs=new Set(delFiltered.filter(d=>d.produto_normalizado===prodSorted[ctx.dataIndex][0]).map(d=>d.orgao_sigla));
+      return `${ctx.raw} entregas em ${_expandOrgs(pOrgs).size} órgãos — clique para filtrar`;
     }}}},onClick:(evt,elems)=>{
       if(elems.length){const idx=elems[0].index;const prodName=prodSorted[idx][0];
       document.getElementById('f-produto').value=prodName;delPage=0;filterDeliveries();}
@@ -966,7 +985,7 @@ function renderActionsList(){
       html+=`</div>`;
       if(selectedAction===id){
         // Show detail: which organs, prob/impact breakdown
-        const orgs=[...new Set(a.risks.map(r=>r.orgao_sigla))].sort();
+        const orgs=[..._expandRiskOrgs(new Set(a.risks.map(r=>r.orgao_sigla)))].sort();
         const probC={};a.risks.forEach(r=>{const p=r.probabilidade_normalizada;if(p)probC[p]=(probC[p]||0)+1;});
         const impC={};a.risks.forEach(r=>{const i=r.impacto_normalizado;if(i)impC[i]=(impC[i]||0)+1;});
         html+=`<div class="action-detail">`;
@@ -1278,11 +1297,11 @@ function runCompare(){
       const bg=isLegacy?'background:#f9f5ff;':'';
       return `<tr style="${bg}"><td style="color:${textColor}">${p}${isLegacy?' <em style="font-size:.7rem;color:#8E44AD">(legado)</em>':''}</td><td><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;background:var(--bg);border-radius:3px;height:16px;overflow:hidden"><div style="width:${pct}%;height:100%;background:${barColor};border-radius:3px;transition:width .3s"></div></div><span style="font-weight:600;font-size:.82rem;min-width:40px;text-align:right;color:${textColor}">${c>0?c.toLocaleString('pt-BR'):'—'}</span></div></td><td style="text-align:right;color:${textColor};font-weight:600">${no>0?no:'—'}</td><td style="font-size:.7rem;color:var(--muted)">${isLegacy?'2.x':'4.0'}</td></tr>`;
     }
-    info.prods.forEach(p=>{ html+=prodRow(p,prodCounts[p]||0,prodOrgs[p]?.size||0,false); });
+    info.prods.forEach(p=>{ html+=prodRow(p,prodCounts[p]||0,_expandOrgs(prodOrgs[p]||new Set()).size,false); });
     if(info.legados?.length){ info.legados.forEach(p=>{
       const cnt = p==='Outros' ? (outrosPorEixo[eixo]||0) : (prodCounts[p]||0);
-      const nOrgs = p==='Outros' ? new Set(allDel.filter(d=>d.produto_normalizado==='Outros'&&d.eixo_normalizado===eixo).map(d=>d.orgao_sigla)).size : (prodOrgs[p]?.size||0);
-      html+=prodRow(p,cnt,nOrgs,true);
+      const oSet = p==='Outros' ? new Set(allDel.filter(d=>d.produto_normalizado==='Outros'&&d.eixo_normalizado===eixo).map(d=>d.orgao_sigla)) : (prodOrgs[p]||new Set());
+      html+=prodRow(p,cnt,_expandOrgs(oSet).size,true);
     }); }
     html+=`</tbody></table></div></details></div>`;
   });
@@ -1295,8 +1314,8 @@ function initInsights(){
   if(insInit) return; insInit=true;
   const el=document.getElementById('insights-content');
   const N=allDel.length, NR=allRisk.length;
-  const nOrgsD=new Set(allDel.map(d=>d.orgao_sigla)).size;
-  const nOrgsR=new Set(allRisk.map(r=>r.orgao_sigla)).size;
+  const nOrgsD=_expandOrgs(new Set(allDel.map(d=>d.orgao_sigla))).size;
+  const nOrgsR=_expandRiskOrgs(new Set(allRisk.map(r=>r.orgao_sigla))).size;
   const orgDelC2={};allDel.forEach(d=>orgDelC2[d.orgao_sigla]=(orgDelC2[d.orgao_sigla]||0)+1);
   const eixoC={};allDel.forEach(d=>{const e=d.eixo_normalizado;if(e)eixoC[e]=(eixoC[e]||0)+1;});
   const eixoS=Object.entries(eixoC).sort((a,b)=>b[1]-a[1]);
@@ -1305,14 +1324,15 @@ function initInsights(){
   const prodC={};allDel.forEach(d=>{prodC[d.produto_normalizado]=(prodC[d.produto_normalizado]||0)+1;});
   const nProdsUsed=Object.keys(prodC).length;
   const orgProds={};allDel.forEach(d=>{if(!orgProds[d.orgao_sigla])orgProds[d.orgao_sigla]=new Set();orgProds[d.orgao_sigla].add(d.produto_normalizado);});
-  const ppsiPres=Object.values(orgProds).filter(s=>s.has('Implementação do PPSI')).length;
+  const ppsiPres=_expandOrgs(new Set(Object.keys(orgProds).filter(o=>orgProds[o].has('Implementação do PPSI')))).size;
   const riskT={};allRisk.forEach(r=>{const t=re_norm(r.risco_texto);if(t.length>10)riskT[t]=(riskT[t]||0)+1;});
   function re_norm(t){return(t||'').trim().toLowerCase().substring(0,60).replace(/\s+/g,' ');}
   const templateR=Object.values(riskT).filter(c=>c>=5).reduce((a,b)=>a+b,0);
   const noAction=allRisk.filter(r=>!(r.acoes_original||'').trim()&&!(r.acoes_resolvidas||'').trim()).length;
   const noActHigh=allRisk.filter(r=>!(r.acoes_original||'').trim()&&!(r.acoes_resolvidas||'').trim()&&['alto','muito alto'].includes(r.impacto_normalizado)).length;
   const orgTrat={};allRisk.forEach(r=>{if(!orgTrat[r.orgao_sigla])orgTrat[r.orgao_sigla]=new Set();(r.tratamento_normalizado||'').split(';').forEach(t=>{t=t.trim().toLowerCase();if(['mitigar','eliminar','transferir','aceitar'].includes(t))orgTrat[r.orgao_sigla].add(t);});});
-  const onlyMit=Object.entries(orgTrat).filter(([,s])=>s.size===1&&s.has('mitigar')).length;
+  const onlyMitOrgs=new Set(Object.entries(orgTrat).filter(([,s])=>s.size===1&&s.has('mitigar')).map(([o])=>o));
+  const onlyMit=_expandRiskOrgs(onlyMitOrgs).size;
   const pessoalKw=['equipe','pessoal','rotatividade','recurso humano','força de trabalho','fornecedor','disponibilidade'];
   const fiscalKw=['orçament','recurso','financ','custo'];
   const nPess=allRisk.filter(r=>pessoalKw.some(k=>(r.risco_texto||'').toLowerCase().includes(k))).length;
@@ -1353,15 +1373,15 @@ function initInsights(){
     `${(noAction/NR*100).toFixed(0)}% dos riscos não têm ações detalhadas. ${noActHigh} desses com impacto alto/muito alto.`,
     `O mapeamento existe mas a resposta não se materializa no documento. Essa dissociação entre diagnóstico e tratamento é particularmente preocupante nos ${noActHigh} riscos de alta severidade sem ações — o órgão reconhece o problema mas não registra como pretende enfrentá-lo.`);
   html+=card('#C0392B','Monocultura da mitigação',onlyMit+' órgãos',
-    `${onlyMit} órgãos usam exclusivamente "mitigar". Apenas ${Object.entries(orgTrat).filter(([,s])=>s.size>=3).length} diversificam com 3+ estratégias.`,
+    `${onlyMit} órgãos usam exclusivamente "mitigar". Apenas ${_expandRiskOrgs(new Set(Object.entries(orgTrat).filter(([,s])=>s.size>=3).map(([o])=>o))).size} diversificam com 3+ estratégias.`,
     `Em todos os níveis de impacto, mitigação representa ~80% das respostas. Riscos transferíveis (dependência de fornecedores) e riscos aceitáveis (baixa probabilidade) raramente recebem o tratamento recomendado pela literatura de gestão de riscos.`);
 
   html+='<h3 style="color:var(--dark);margin:16px 0 12px">Transversal</h3>';
   html+=card('#27AE60','Pessoas, não orçamento',nPess+' vs '+nFisc,
     `Riscos de pessoal (${nPess}) são ${(nPess/Math.max(nFisc,1)).toFixed(1)}× mais frequentes que fiscais (${nFisc}).`,
-    `A restrição mais reconhecida não é orçamentária, mas de capital humano — rotatividade, indisponibilidade de TI, dependência de fornecedores. ${Math.round(Object.keys(orgTrat).filter(o=>!allRisk.some(r=>r.orgao_sigla===o&&pessoalKw.some(k=>(r.risco_texto||'').toLowerCase().includes(k)))).length/Object.keys(orgTrat).length*100)}% dos órgãos sequer mencionam esse tipo de risco.`);
+    `A restrição mais reconhecida não é orçamentária, mas de capital humano — rotatividade, indisponibilidade de TI, dependência de fornecedores. ${Math.round((nOrgsR-_expandRiskOrgs(new Set(Object.keys(orgTrat).filter(o=>allRisk.some(r=>r.orgao_sigla===o&&pessoalKw.some(k=>(r.risco_texto||'').toLowerCase().includes(k)))))).size)/nOrgsR*100)}% dos órgãos sequer mencionam esse tipo de risco.`);
   html+=card('#27AE60','Zona crítica da matriz',crit.length.toString(),
-    `${crit.length} riscos com probabilidade ≥provável e impacto ≥alto, em ${new Set(crit.map(r=>r.orgao_sigla)).size} órgãos.`,
+    `${crit.length} riscos com probabilidade ≥provável e impacto ≥alto, em ${_expandRiskOrgs(new Set(crit.map(r=>r.orgao_sigla))).size} órgãos.`,
     `Os mais recorrentes: dependência de fornecedores, indisponibilidade de equipes de TI, atraso nos cronogramas. A classificação é autodeclarada, o que pode introduzir vieses de sub ou superestimação. Cinco riscos ocupam a célula máxima (praticamente certo × muito alto).`);
 
   // Gini concentration
@@ -1519,7 +1539,7 @@ function initVisualizations(){
       const t=((d.servico_acao||'')+(d.produto_original||'')).toLowerCase();
       if(terms.some(k=>t.includes(k))){count++;orgs.add(d.orgao_sigla);}
     });
-    techResults.push({cat,count,orgs:orgs.size});
+    techResults.push({cat,count,orgs:_expandOrgs(orgs).size});
   });
   techResults.sort((a,b)=>b.count-a.count);
 
@@ -1535,7 +1555,7 @@ function initVisualizations(){
 
   // === Fornecedores ===
   const fornRisks=allRisk.filter(r=>(r.risco_texto||'').toLowerCase().includes('fornecedor'));
-  const fornOrgs=new Set(fornRisks.map(r=>r.orgao_sigla));
+  const fornOrgs=_expandRiskOrgs(new Set(fornRisks.map(r=>r.orgao_sigla)));
   const fornCrit=fornRisks.filter(r=>['provável','muito provável','praticamente certo'].includes(r.probabilidade_normalizada)&&['alto','muito alto'].includes(r.impacto_normalizado));
   const fornTrat={};fornRisks.forEach(r=>{(r.tratamento_normalizado||'').split(';').forEach(t=>{t=t.trim().toLowerCase();if(t&&t.length<20)fornTrat[t]=(fornTrat[t]||0)+1;});});
 
