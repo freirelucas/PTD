@@ -43,7 +43,7 @@ pip install -r requirements.txt
 jupyter notebook ptd_scraper.ipynb
 ```
 
-> **Nota:** A biblioteca `docling` (extração de tabelas via OCR) requer ~2 GB para download dos modelos. Para uso casual, recomendamos o Google Colab.
+> **Nota:** A extração usa PyMuPDF `find_tables()` por padrão. Para PDFs escaneados (OCR), a biblioteca `docling` é ativada automaticamente no Colab (~2 GB de modelos).
 
 Para visualizar o dashboard localmente:
 
@@ -61,7 +61,7 @@ O notebook executa 12 etapas sequenciais:
 3. **Utilitários** — Rede, normalização, fuzzy matching
 4. **Scraping** — Coleta lista de órgãos e URLs dos PDFs no gov.br
 5. **Download** — Baixa PDFs (Documento Diretivo + Anexo de Entregas)
-6. **Docling** — Configura extrator de tabelas (IBM Docling)
+6. **Extração** — Configura extrator de tabelas (PyMuPDF `find_tables()` ou Docling para OCR)
 7. **Riscos** — Extrai tabelas de riscos dos Documentos Diretivos
 8. **Entregas** — Extrai tabelas de entregas dos Anexos
 9. **Padronização** — Normaliza vocabulário, cross-validation produto↔eixo

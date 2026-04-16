@@ -67,8 +67,8 @@ Esta nota técnica apresenta a construção e análise de um corpus abrangente d
 |-------|--------|-----------|
 | Scraping da página gov.br | BeautifulSoup4 + requests | 91 órgãos, 177 URLs de PDFs |
 | Download dos PDFs | requests com rate-limiting (1.5s), verificação %PDF | 86 Diretivos + 91 Entregas = 177 PDFs |
-| Extração de tabelas de entregas | Docling (IBM) + matching fuzzy de produtos | 4.530 registros de 79 órgãos (57 próprios + 22 compartilhados) |
-| Extração de tabelas de riscos | Docling com merge multi-página + recuperação header-as-data + resolução de ações numéricas | 931 registros de 71 órgãos (50 próprios + 21 compartilhados) |
+| Extração de tabelas de entregas | PyMuPDF `find_tables()` + matching fuzzy de produtos | 4.530 registros de 79 órgãos (57 próprios + 22 compartilhados) |
+| Extração de tabelas de riscos | PyMuPDF `find_tables()` com merge multi-página + recuperação header-as-data + resolução de ações numéricas | 931 registros de 71 órgãos (50 próprios + 21 compartilhados) |
 | Resolução de ações numéricas | Parsing da lista "Referencial para ações de tratamento" | 35 órgãos com referências resolvidas |
 
 - 12 órgãos não processados (PDFs escaneados como imagem, sem camada de texto)
