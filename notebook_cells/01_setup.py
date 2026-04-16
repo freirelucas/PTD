@@ -1,22 +1,27 @@
 # ============================================================
 # CÉLULA 1 — Setup & Instalação
 # ============================================================
-# Monta Google Drive e instala dependências.
+# Detecta ambiente (Google Colab ou local) e instala dependências.
 # Execute esta célula primeiro.
 
 import os, sys
 
-# --- Instalação de pacotes ---
-!pip install -q "typer>=0.24.0" "typer-slim>=0.24.0"
-!pip install -q docling beautifulsoup4 requests tqdm pandas matplotlib seaborn tabulate
+# --- Detecção de ambiente ---
+try:
+    from google.colab import drive
+    IN_COLAB = True
+except ImportError:
+    IN_COLAB = False
 
-# --- Google Drive (persistência de PDFs e outputs) ---
-from google.colab import drive
-drive.mount('/content/drive')
+# --- Instalação de pacotes (apenas no Colab; local usa requirements.txt) ---
+if IN_COLAB:
+    get_ipython().system('pip install -q docling beautifulsoup4 requests tqdm pandas matplotlib seaborn')
 
-# --- Diretórios de trabalho ---
-USE_DRIVE = True
+# --- Google Drive (persistência de PDFs e outputs no Colab) ---
+USE_DRIVE = IN_COLAB
+
 if USE_DRIVE:
+    drive.mount('/content/drive')
     BASE_DIR = "/content/drive/MyDrive/PTD_Scraper"
 else:
     BASE_DIR = os.path.join(os.getcwd(), "ptd_output")
@@ -30,5 +35,6 @@ DIRS = {
 for d in DIRS.values():
     os.makedirs(d, exist_ok=True)
 
+print(f"Ambiente: {'Google Colab' if IN_COLAB else 'Local'}")
 print(f"Diretório base: {BASE_DIR}")
 print("Estrutura criada:", list(DIRS.keys()))

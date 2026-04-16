@@ -6,9 +6,10 @@
 <title>PTD Dashboard — Planos de Transformação Digital</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
-:root{--primary:#1351B4;--dark:#071D41;--accent:#2670E8;--light:#E8F0FE;--bg:#F5F7FA;--card:#fff;--text:#333;--muted:#666;--border:#DEE2E6;--green:#2E7D32;--yellow:#F9A825;--red:#C62828;--radius:8px}
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&display=swap');
+:root{--primary:#264A7F;--dark:#1B3A5C;--accent:#4D8AC9;--light:#E8EEF4;--bg:#F2F2F2;--card:#FFFFFF;--text:#333333;--muted:#666666;--border:#D4D4D4;--green:#27AE60;--yellow:#E67E22;--red:#C0392B;--radius:4px}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);display:flex;min-height:100vh}
+body{font-family:'Source Sans 3','Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);display:flex;min-height:100vh;font-size:14px;line-height:1.55}
 /* Sidebar */
 .sidebar{width:220px;background:var(--dark);color:#fff;position:fixed;top:0;left:0;height:100vh;display:flex;flex-direction:column;z-index:100}
 .sidebar h1{font-size:1.1rem;padding:20px 16px;border-bottom:1px solid rgba(255,255,255,.15);letter-spacing:.5px}
@@ -16,7 +17,7 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--
 .sidebar nav{flex:1;padding:8px 0}
 .sidebar nav a{display:flex;align-items:center;gap:10px;padding:12px 20px;color:rgba(255,255,255,.75);text-decoration:none;font-size:.9rem;border-left:3px solid transparent;transition:all .2s}
 .sidebar nav a:hover{background:rgba(255,255,255,.08);color:#fff}
-.sidebar nav a.active{background:rgba(255,255,255,.12);color:#fff;border-left-color:var(--accent)}
+.sidebar nav a.active{background:rgba(255,255,255,.15);color:#fff;border-left-color:#7AAFDB}
 .sidebar nav a .icon{font-size:1.1rem;width:22px;text-align:center}
 .sidebar .info{padding:16px;font-size:.7rem;color:rgba(255,255,255,.4);border-top:1px solid rgba(255,255,255,.1)}
 /* Main */
@@ -25,17 +26,47 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--
 .section.active{display:block}
 /* Cards */
 .kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:24px}
-.kpi{background:var(--card);border-radius:var(--radius);padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.kpi{background:var(--card);border-radius:var(--radius);padding:20px;box-shadow:0 1px 2px rgba(0,0,0,.06);border-top:3px solid var(--primary)}
 .kpi .label{font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
-.kpi .value{font-size:2rem;font-weight:700;color:var(--primary);margin-top:4px}
+.kpi .value{font-size:2rem;font-weight:700;color:var(--dark);margin-top:4px}
 .kpi .sub{font-size:.75rem;color:var(--muted);margin-top:2px}
 /* Charts */
-.chart-container{background:var(--card);border-radius:var(--radius);padding:20px;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.chart-container{background:var(--card);border-radius:var(--radius);padding:20px;margin-bottom:20px;box-shadow:0 1px 2px rgba(0,0,0,.06)}
 .chart-container h3{margin-bottom:12px;font-size:1rem;color:var(--dark)}
 .chart-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
+.chart-sm canvas{max-height:250px}
+.desc{color:var(--muted);font-size:.9rem;line-height:1.6;margin-bottom:20px;max-width:900px}
+.desc strong{color:var(--dark)}
+.prose{max-width:860px;line-height:1.7;font-size:.92rem}
+.prose h3{color:var(--primary);margin:24px 0 8px;font-size:1.05rem}
+.prose p{margin-bottom:12px}
+.prose ul{margin:0 0 12px 20px}
+.prose li{margin-bottom:6px}
+.prose code{background:var(--light);padding:2px 6px;border-radius:4px;font-size:.85rem}
+.prose a{color:var(--accent)}
+.insight-card{background:var(--card);border-radius:var(--radius);padding:14px 18px;margin-bottom:10px;box-shadow:0 1px 2px rgba(0,0,0,.06);border-left:4px solid var(--primary);cursor:pointer;transition:background .15s}
+.insight-card:hover{background:var(--light)}
+.insight-card h4{color:var(--dark);margin-bottom:2px;font-size:.88rem;display:flex;justify-content:space-between;align-items:center}
+.insight-card h4 .tag{font-size:1.1rem;font-weight:700;color:var(--primary)}
+.insight-card .summary{font-size:.82rem;color:var(--muted);line-height:1.4}
+.insight-card .detail{display:none;margin-top:8px;padding-top:8px;border-top:1px solid var(--border);font-size:.82rem;color:var(--text);line-height:1.6}
+.insight-card.open .detail{display:block}
+.insight-card p{color:var(--text);font-size:.85rem;line-height:1.5;margin:0}
+.insight-card .num{font-size:1.2rem;font-weight:700;color:var(--dark)};align-items:center;gap:8px;padding:8px 12px;margin-bottom:4px;background:var(--bg);border-radius:var(--radius);cursor:pointer;transition:background .2s;border-left:4px solid var(--accent)}
+.action-bar:hover{background:var(--light)}
+.action-bar.selected{background:var(--light);border-left-color:var(--primary)}
+.action-bar .num{font-weight:700;color:var(--primary);min-width:28px;text-align:center;font-size:.95rem}
+.action-bar .text{flex:1;font-size:.83rem;color:var(--text)}
+.action-bar .count{font-weight:700;color:var(--muted);font-size:.85rem;min-width:40px;text-align:right}
+.action-bar .bar-fill{height:6px;background:var(--accent);border-radius:3px;min-width:2px}
+.action-detail{background:var(--light);border-radius:var(--radius);padding:12px;margin:4px 0 12px;font-size:.83rem}
+.action-detail table{font-size:.8rem}
+.insight-card h4{color:var(--dark);margin-bottom:6px;font-size:.95rem}
+.insight-card p{color:var(--text);font-size:.88rem;line-height:1.5;margin:0}
+.insight-card .num{font-size:1.4rem;font-weight:700;color:var(--dark)}
 /* Tables */
 table{width:100%;border-collapse:collapse;font-size:.85rem}
-th{background:var(--primary);color:#fff;padding:10px 12px;text-align:left;font-weight:600;position:sticky;top:0}
+th{background:var(--dark);color:#fff;padding:10px 12px;text-align:left;font-weight:600;position:sticky;top:0;font-size:.8rem;text-transform:uppercase;letter-spacing:.3px}
 td{padding:8px 12px;border-bottom:1px solid var(--border)}
 tr:hover td{background:var(--light)}
 .table-wrap{background:var(--card);border-radius:var(--radius);overflow:auto;max-height:500px;box-shadow:0 1px 3px rgba(0,0,0,.08);margin-bottom:20px}
@@ -55,13 +86,14 @@ tr:hover td{background:var(--light)}
 .risk-matrix{display:grid;grid-template-columns:140px repeat(5,1fr);gap:2px;margin-bottom:20px}
 .risk-matrix .cell{padding:12px 8px;text-align:center;font-weight:600;font-size:.9rem;border-radius:4px;cursor:pointer;transition:transform .1s}
 .risk-matrix .cell:hover{transform:scale(1.05);box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.risk-matrix .cell.selected{outline:3px solid var(--dark);outline-offset:-2px;transform:scale(1.08);z-index:2}
 .risk-matrix .header{background:var(--dark);color:#fff;font-size:.75rem;font-weight:600;cursor:default;display:flex;align-items:center;justify-content:center}
 .risk-matrix .header:hover{transform:none;box-shadow:none}
 .risk-matrix .row-label{background:var(--primary);color:#fff;font-size:.75rem;display:flex;align-items:center;justify-content:center;cursor:default}
 .risk-matrix .row-label:hover{transform:none;box-shadow:none}
 /* Organ Cards */
 .organ-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:20px}
-.organ-card{background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.08);cursor:pointer;transition:box-shadow .2s;border-left:4px solid var(--green)}
+.organ-card{background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:0 1px 2px rgba(0,0,0,.06);cursor:pointer;transition:box-shadow .2s;border-left:4px solid var(--green)}
 .organ-card:hover{box-shadow:0 4px 12px rgba(0,0,0,.15)}
 .organ-card.partial{border-left-color:var(--yellow)}
 .organ-card.failed{border-left-color:var(--red)}
@@ -81,11 +113,13 @@ tr:hover td{background:var(--light)}
 .compare-select select{padding:8px 12px;border:1px solid var(--border);border-radius:var(--radius);font-size:.85rem}
 .compare-table{margin-bottom:20px}
 /* Figures */
-.figures-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
-.figures-grid a{display:block;background:var(--card);border-radius:var(--radius);overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08);transition:box-shadow .2s}
-.figures-grid a:hover{box-shadow:0 4px 12px rgba(0,0,0,.15)}
-.figures-grid img{width:100%;height:auto;display:block}
-.figures-grid .caption{padding:8px 12px;font-size:.8rem;color:var(--muted)}
+.nav-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.nav-card{background:var(--card);border-radius:var(--radius);padding:20px;box-shadow:0 1px 2px rgba(0,0,0,.06);cursor:pointer;transition:all .2s;border-top:4px solid var(--border);text-decoration:none;color:var(--text);display:block}
+.nav-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.12);transform:translateY(-2px);border-top-color:var(--primary)}
+.nav-card .nc-icon{font-size:1.8rem;margin-bottom:8px;display:block}
+.nav-card .nc-title{font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:4px}
+.nav-card .nc-metric{font-size:1.5rem;font-weight:700;color:var(--primary);margin-bottom:4px}
+.nav-card .nc-desc{font-size:.82rem;color:var(--muted);line-height:1.5}
 /* Mobile */
 @media(max-width:768px){
 .sidebar{width:60px}.sidebar h1 span,.sidebar nav a span:not(.icon),.sidebar .info{display:none}.sidebar h1{padding:16px 8px;font-size:.8rem;text-align:center}
@@ -100,12 +134,16 @@ tr:hover td{background:var(--light)}
   <h1>PTD<span>Transformação Digital</span></h1>
   <nav>
     <a href="#overview" class="active" onclick="showSection('overview')"><span class="icon">&#9632;</span><span>Visão Geral</span></a>
+    <a href="#ptd-method" onclick="showSection('ptd-method')"><span class="icon">&#9776;</span><span>O que é o PTD</span></a>
     <a href="#deliveries" onclick="showSection('deliveries')"><span class="icon">&#9654;</span><span>Entregas</span></a>
     <a href="#risks" onclick="showSection('risks')"><span class="icon">&#9888;</span><span>Riscos</span></a>
     <a href="#organs" onclick="showSection('organs')"><span class="icon">&#9733;</span><span>Órgãos</span></a>
     <a href="#compare" onclick="showSection('compare')"><span class="icon">&#8596;</span><span>Comparação</span></a>
+    <a href="#insights" onclick="showSection('insights')"><span class="icon">&#9881;</span><span>Insights</span></a>
+    <a href="#visualizations" onclick="showSection('visualizations')"><span class="icon">&#9636;</span><span>Visualizações</span></a>
+    <a href="#methodology" onclick="showSection('methodology')"><span class="icon">&#9998;</span><span>Nota Técnica</span></a>
   </nav>
-  <div class="info">Dados: gov.br/governodigital<br>Atualizado: 2026-04-14</div>
+  <div class="info">Direito, D.; Silva, L.; Queiroz, S.<br>Ipea · 2026<br><br><em style="color:rgba(255,200,200,.7);font-size:.65rem">Documento preparatório. Não publicar ou citar sem consentimento dos autores.</em></div>
 </aside>
 
 <main class="main">
@@ -113,26 +151,39 @@ tr:hover td{background:var(--light)}
 <!-- ===== VISÃO GERAL ===== -->
 <div id="overview" class="section active">
   <h2>Visão Geral</h2>
+  <div style="background:var(--dark);color:#fff;padding:20px 24px;border-radius:var(--radius);margin-bottom:20px;line-height:1.7;font-size:.92rem">
+    <strong>O corpus:</strong> Extração automatizada dos Planos de Transformação Digital (PTDs) de 91 órgãos da administração pública federal, conforme publicados no portal gov.br. De cada PTD foram extraídos o Anexo de Entregas (ações pactuadas com a SGD/MGI, classificadas por produto e eixo da EFGD 2024-2027) e o Documento Diretivo (tabela de gestão de riscos com probabilidade, impacto e ações de tratamento). O corpus totaliza <strong>4.530 entregas</strong> e <strong>600 riscos</strong>, cobrindo 87% dos órgãos signatários (órgãos que compartilham um mesmo PTD ministerial são contados uma única vez).
+  </div>
   <div class="kpi-row" id="kpi-cards"></div>
+  <div class="chart-container"><h3>Cronologia das Assinaturas dos PTDs</h3><p class="desc" style="margin-bottom:8px">Data de criação do PDF como proxy da assinatura. Barras mostram o volume de entregas pactuadas pelos órgãos que assinaram em cada mês.</p><canvas id="chart-timeline"></canvas><div id="timeline-insight" style="margin-top:12px"></div></div>
   <div class="chart-row">
     <div class="chart-container"><h3>Entregas por Eixo Estratégico</h3><canvas id="chart-eixo"></canvas></div>
-    <div class="chart-container"><h3>Cobertura de Extração</h3><canvas id="chart-coverage"></canvas></div>
+    <div class="chart-container chart-sm"><h3>Cobertura de Extração</h3><canvas id="chart-coverage"></canvas></div>
   </div>
+  <div class="chart-container" id="gaps-section"><h3>Órgãos sem Dados — Motivos</h3><div id="gaps-content"></div></div>
   <div class="chart-container"><h3>Top 10 Produtos</h3><div class="table-wrap" id="top-produtos-table"></div></div>
-  <div class="chart-container"><h3>Figuras Pré-Geradas</h3><div class="figures-grid" id="figures-grid"></div></div>
+  <div class="chart-container"><h3>Explorar o Corpus</h3><p class="desc" style="margin-bottom:12px">Cada card leva a uma análise interativa. Os números refletem o corpus processado.</p><div class="nav-cards" id="nav-cards"></div></div>
 </div>
 
 <!-- ===== ENTREGAS ===== -->
 <div id="deliveries" class="section">
   <h2>Entregas Pactuadas</h2>
+  <p class="desc">Ações e serviços digitais pactuados entre cada órgão e a SGD/MGI, classificados por <strong>produto</strong> e <strong>eixo</strong> da EFGD 2024-2027. Explore por múltiplas dimensões: os gráficos e a tabela respondem aos filtros simultaneamente.</p>
+
   <div class="filters">
     <select id="f-orgao"><option value="">Todos os Órgãos</option></select>
     <select id="f-eixo"><option value="">Todos os Eixos</option></select>
     <select id="f-produto"><option value="">Todos os Produtos</option></select>
-    <input id="f-search" type="text" placeholder="Buscar serviço/ação...">
+    <input id="f-search" type="text" placeholder="Buscar no texto do serviço/ação...">
   </div>
-  <div id="del-chart-wrap" class="chart-container" style="display:none"><h3 id="del-chart-title">Distribuição</h3><canvas id="chart-del-organ"></canvas></div>
-  <div class="result-count" id="del-count"></div>
+  <div class="result-count" id="del-count" style="margin-bottom:12px"></div>
+
+  <div class="chart-row">
+    <div class="chart-container"><h3 id="del-eixo-title">Entregas por Eixo</h3><canvas id="chart-del-eixo"></canvas></div>
+    <div class="chart-container"><h3 id="del-prod-title">Entregas por Produto</h3><canvas id="chart-del-prod"></canvas></div>
+  </div>
+  <div id="del-org-chart-wrap" class="chart-container" style="display:none"><h3 id="del-org-title">Entregas por Órgão</h3><canvas id="chart-del-org"></canvas></div>
+
   <div class="table-wrap" id="del-table"></div>
   <div class="pagination" id="del-pagination"></div>
 </div>
@@ -140,45 +191,289 @@ tr:hover td{background:var(--light)}
 <!-- ===== RISCOS ===== -->
 <div id="risks" class="section">
   <h2>Gestão de Riscos</h2>
-  <div class="chart-container"><h3>Matriz de Riscos — Probabilidade × Impacto <small>(clique para filtrar)</small></h3><div class="risk-matrix" id="risk-matrix"></div></div>
-  <div class="filters">
-    <select id="r-orgao"><option value="">Todos os Órgãos</option></select>
-    <select id="r-tratamento"><option value="">Todos os Tratamentos</option></select>
-    <button onclick="resetRiskFilters()" style="padding:8px 14px;border:1px solid var(--border);border-radius:var(--radius);background:#fff;cursor:pointer">Limpar Filtros</button>
+  <p class="desc">Riscos identificados pelos órgãos em seus Documentos Diretivos, classificados por <strong>probabilidade</strong> (raro a praticamente certo), <strong>impacto</strong> (muito baixo a muito alto) e <strong>opção de tratamento</strong> (mitigar, eliminar, transferir, aceitar). A matriz abaixo mostra a concentração de riscos — clique em uma célula para ver os riscos daquela combinação.</p>
+  <div class="chart-container">
+    <h3>Matriz de Riscos — Probabilidade × Impacto <small>(clique para filtrar)</small></h3>
+    <div class="filters" style="margin-bottom:12px">
+      <select id="r-orgao" onchange="matrixFilter=null;filterRisks()"><option value="">Todos os Órgãos</option></select>
+      <select id="r-tratamento" onchange="matrixFilter=null;filterRisks()"><option value="">Todos os Tratamentos</option></select>
+      <button onclick="resetRiskFilters()" style="padding:8px 14px;border:1px solid var(--border);border-radius:var(--radius);background:#fff;cursor:pointer">Limpar</button>
+    </div>
+    <div class="risk-matrix" id="risk-matrix"></div>
+    <div id="matrix-actions" style="margin-top:12px"></div>
+    <div class="result-count" id="risk-count" style="margin-top:12px"></div>
+    <div class="table-wrap" id="risk-table" style="max-height:400px"></div>
   </div>
   <div class="chart-row">
     <div class="chart-container"><h3>Distribuição de Tratamento</h3><canvas id="chart-tratamento"></canvas></div>
     <div class="chart-container"><h3>Riscos Mais Frequentes</h3><div class="table-wrap" id="top-risks-table" style="max-height:300px"></div></div>
   </div>
-  <div class="result-count" id="risk-count"></div>
-  <div class="table-wrap" id="risk-table"></div>
+  <div class="chart-container"><h3>Ações de Mitigação — Referencial SGD <small>(clique para expandir)</small></h3><p class="desc" style="margin-bottom:12px">Ações padronizadas pela SGD. Cada risco referencia um subconjunto (ex: "1, 2, 9"). A barra indica frequência relativa.</p><div id="actions-list"></div></div>
 </div>
 
 <!-- ===== ÓRGÃOS ===== -->
 <div id="organs" class="section">
   <h2>Órgãos Signatários</h2>
+  <p class="desc">Cada card representa um dos 91 órgãos signatários de PTD. A borda <strong style="color:var(--green)">verde</strong> indica dados completos, <strong style="color:var(--yellow)">amarela</strong> parcial e <strong style="color:var(--red)">vermelha</strong> sem dados extraídos. Clique em um órgão para ver seus detalhes, entregas e riscos.</p>
   <div class="filters">
-    <input id="organ-search" type="text" placeholder="Buscar sigla ou grupo...">
+    <input id="organ-search" type="text" placeholder="Buscar sigla...">
+    <select id="organ-group"><option value="">Todos os grupos</option></select>
+    <select id="organ-sort">
+      <option value="sigla">Ordenar: Sigla (A-Z)</option>
+      <option value="entregas">Ordenar: Mais entregas</option>
+      <option value="riscos">Ordenar: Mais riscos</option>
+    </select>
   </div>
   <div class="organ-grid" id="organ-grid"></div>
 </div>
 
 <!-- ===== COMPARAÇÃO ===== -->
 <div id="compare" class="section">
-  <h2>Comparação entre Órgãos</h2>
-  <div class="compare-select">
-    <select id="cmp-1"><option value="">Selecione...</option></select>
-    <select id="cmp-2"><option value="">Selecione...</option></select>
-    <select id="cmp-3"><option value="">Selecione...</option></select>
-    <select id="cmp-4"><option value="">Selecione...</option></select>
-    <select id="cmp-5"><option value="">Selecione...</option></select>
-    <button onclick="runCompare()" style="padding:8px 16px;background:var(--primary);color:#fff;border:none;border-radius:var(--radius);cursor:pointer">Comparar</button>
+  <h2>Similaridade entre Órgãos</h2>
+  <p class="desc">Mapa de similaridade baseado no <strong>coeficiente de Jaccard</strong> dos perfis de produtos pactuados. Cada célula indica o grau de sobreposição entre os catálogos de entregas de dois órgãos (0% = nenhum produto em comum, 100% = catálogos idênticos). Órgãos de um mesmo grupo ministerial (ex: MEC, MD) tendem a ter similaridade máxima por compartilharem o mesmo PTD.</p>
+  <div class="chart-container">
+    <h3>Similaridade por Perfil de Produtos (Jaccard)</h3>
+    <div class="filters">
+      <select id="sim-orgao"><option value="">Selecione um órgão de referência...</option></select>
+    </div>
+    <div id="similarity-result"></div>
   </div>
   <div class="chart-row">
-    <div class="chart-container"><h3>Entregas por Eixo (Radar)</h3><canvas id="chart-radar"></canvas></div>
-    <div class="chart-container"><h3>Produtos por Órgão</h3><canvas id="chart-compare-bar"></canvas></div>
+    <div class="chart-container"><h3>Pares Mais Similares</h3><div class="table-wrap" id="top-pairs" style="max-height:400px"></div></div>
+    <div class="chart-container"><h3>Órgãos Mais Distintos</h3><div class="table-wrap" id="distinct-organs" style="max-height:400px"></div></div>
   </div>
-  <div class="chart-container"><h3>Métricas Comparativas</h3><div class="table-wrap" id="compare-table"></div></div>
+  <div class="chart-container">
+    <h3>Comparação Direta</h3>
+    <div class="compare-select">
+      <select id="cmp-1"><option value="">Órgão 1...</option></select>
+      <select id="cmp-2"><option value="">Órgão 2...</option></select>
+      <select id="cmp-3"><option value="">Órgão 3...</option></select>
+      <button onclick="runCompare()" style="padding:8px 16px;background:var(--primary);color:#fff;border:none;border-radius:var(--radius);cursor:pointer">Comparar</button>
+    </div>
+    <div class="chart-row" style="margin-top:16px">
+      <div class="chart-container" style="box-shadow:none;padding:0"><canvas id="chart-compare-bar"></canvas></div>
+      <div class="table-wrap" id="compare-table"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== INSIGHTS ===== -->
+<div id="insights" class="section">
+  <h2>Insights</h2>
+  <p class="desc">Achados analíticos derivados do corpus de 91 órgãos. Os números são calculados dinamicamente a partir dos dados extraídos.</p>
+  <div id="insights-content"></div>
+</div>
+
+<!-- ===== O QUE É O PTD ===== -->
+<div id="ptd-method" class="section">
+  <h2>O que é o Plano de Transformação Digital</h2>
+  <div class="prose">
+    <h3>1. Marco Legal e Institucional</h3>
+    <p>O Plano de Transformação Digital (PTD) é um instrumento de planejamento e pactuação instituído pelo <strong>Decreto nº 12.198, de 24 de setembro de 2024</strong>, que estabelece a <strong>Estratégia Federal de Governo Digital (EFGD) 2024-2027</strong>. A regulamentação operacional é dada pela <strong>Portaria SGD/MGI nº 6.618/2024</strong>.</p>
+    <p>Referências: <a href="https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/EFGD" target="_blank">EFGD 2024-2027</a> · <a href="https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital" target="_blank">Portal PTDs</a></p>
+
+    <h3>2. Os 6 Princípios da EFGD (Decreto 12.198/2024)</h3>
+    <p>A EFGD é estruturada em <strong>6 princípios fundamentais</strong>, com 16 objetivos estratégicos e 100 iniciativas:</p>
+    <table style="margin:12px 0">
+      <thead><tr><th style="width:40px">#</th><th>Princípio</th><th>Descrição (Art. 1º)</th></tr></thead>
+      <tbody>
+        <tr><td>I</td><td><strong>Centrado no Cidadão e Inclusivo</strong></td><td>Experiência agradável, simples e ágil; acesso universal aos serviços independente de situação socioeconômica</td></tr>
+        <tr><td>II</td><td><strong>Integrado e Colaborativo</strong></td><td>Atuação coordenada, interoperabilidade de dados, integração de plataformas e serviços entre União, estados e municípios</td></tr>
+        <tr><td>III</td><td><strong>Inteligente e Inovador</strong></td><td>Tecnologia e dados como ferramentas de otimização; postura proativa e aberta a novas ideias</td></tr>
+        <tr><td>IV</td><td><strong>Confiável e Seguro</strong></td><td>Confiança pública, interação segura, proteção de direitos, dados e informações</td></tr>
+        <tr><td>V</td><td><strong>Transparente, Aberto e Participativo</strong></td><td>Participação social, transparência, acompanhamento de políticas públicas e serviços</td></tr>
+        <tr><td>VI</td><td><strong>Eficiente e Sustentável</strong></td><td>Plataformas compartilhadas, otimização de processos, sustentabilidade ambiental e social</td></tr>
+      </tbody>
+    </table>
+
+    <h3>3. Os 5 Eixos Operacionais do Template PTD</h3>
+    <p>A SGD traduziu os princípios da EFGD em <strong>5 eixos operacionais</strong> no template de pactuação (xlsx v4.0), com 44 produtos canônicos. Note que são camadas diferentes: o Decreto define princípios estratégicos, o template define eixos de execução.</p>
+    <p>Clique em um eixo para ver seus produtos canônicos:</p>
+    <div id="eixos-accordion"></div>
+
+    <h3>4. Cruzamento: 6 Princípios × 5 Eixos</h3>
+    <p>A tabela abaixo mostra como os eixos operacionais do template cobrem (ou não) os princípios do Decreto. Células marcadas indicam alinhamento direto; células vazias indicam lacunas.</p>
+    <div class="table-wrap">
+    <table style="margin:12px 0;font-size:.82rem">
+      <thead><tr><th style="width:200px">Eixo ↓ / Princípio →</th><th>I. Cidadão</th><th>II. Integrado</th><th>III. Inteligente</th><th>IV. Seguro</th><th>V. Transparente</th><th>VI. Eficiente</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Serviços Digitais</strong></td><td style="background:#E8EEF4;text-align:center">&#10003;</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td><strong>Unificação de Canais</strong></td><td style="background:#E8EEF4;text-align:center">&#10003;</td><td style="background:#E8EEF4;text-align:center">&#10003;</td><td></td><td></td><td></td><td style="background:#E8EEF4;text-align:center">&#10003;</td></tr>
+        <tr><td><strong>Governança de Dados</strong></td><td></td><td style="background:#E8EEF4;text-align:center">&#10003;</td><td style="background:#E8EEF4;text-align:center">&#10003;</td><td></td><td style="background:#E8EEF4;text-align:center">&#10003;</td><td></td></tr>
+        <tr><td><strong>Segurança e Privacidade</strong></td><td></td><td></td><td></td><td style="background:#E8EEF4;text-align:center">&#10003;</td><td></td><td></td></tr>
+        <tr><td><strong>Projetos Especiais</strong></td><td></td><td></td><td style="background:#E8EEF4;text-align:center">&#10003;</td><td></td><td></td><td style="background:#E8EEF4;text-align:center">&#10003;</td></tr>
+        <tr style="background:#fff3e0"><td><em>Cobertura do princípio</em></td><td style="text-align:center"><strong>2 eixos</strong></td><td style="text-align:center"><strong>2 eixos</strong></td><td style="text-align:center"><strong>2 eixos</strong></td><td style="text-align:center"><strong>1 eixo</strong></td><td style="text-align:center;color:var(--red)"><strong>1 eixo*</strong></td><td style="text-align:center;color:var(--red)"><strong>2 eixos*</strong></td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p style="font-size:.82rem;color:var(--muted)">* Os princípios V (Transparente/Participativo) e VI (Eficiente/Sustentável) têm cobertura teórica mas <strong>zero entregas pactuadas</strong> nos produtos correspondentes (Dados Abertos, Participação Social, Plataformas Compartilhadas). Na prática, esses princípios não se materializam nos PTDs.</p>
+
+    <h3>2. Metodologia de Elaboração — Guia 10 Passos</h3>
+    <p>A SGD disponibiliza o <a href="https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/kit-de-elaboracao-ptd" target="_blank">Kit de Elaboração do PTD</a>, que inclui templates e um guia referencial. O processo segue aproximadamente 10 etapas:</p>
+    <ol>
+      <li><strong>Contextualização estratégica</strong> — alinhamento com a EFGD e planejamento institucional</li>
+      <li><strong>Definição de escopo e vigência</strong> — período de 2 a 3 anos, tipicamente alinhado à EFGD</li>
+      <li><strong>Mapeamento de serviços</strong> — levantamento dos serviços públicos do órgão</li>
+      <li><strong>Priorização de ações</strong> — seleção de quais serviços serão digitalizados/evoluídos</li>
+      <li><strong>Planejamento de entregas</strong> — definição de produtos, eixos, prazos e responsáveis</li>
+      <li><strong>Alinhamento com a EFGD</strong> — mapeamento para os 5 eixos e 44 produtos canônicos</li>
+      <li><strong>Identificação de riscos</strong> — tabela com probabilidade, impacto, tratamento e ações (conforme <a href="https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital-ifes/Modelo-Gestao-Riscos/orientacoes-gestaoriscos_v1-1.docx" target="_blank">Orientações de Gestão de Riscos</a>)</li>
+      <li><strong>Definição de governança</strong> — comitê, ponto focal, gerente de projeto</li>
+      <li><strong>Pactuação formal</strong> — assinatura entre dirigente do órgão e SGD/MGI</li>
+      <li><strong>Monitoramento</strong> — acompanhamento periódico com a CGREP/SGD</li>
+    </ol>
+
+    <h3>3. Estrutura dos Documentos</h3>
+    <p>Cada PTD é composto por dois documentos principais:</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:12px 0">
+      <div class="kpi" style="border-left:4px solid var(--primary)">
+        <div class="label">Documento Diretivo</div>
+        <p style="font-size:.85rem;margin-top:8px">Contexto do órgão, escopo, vigência, signatários, estratégia de monitoramento e a <strong>tabela de gestão de riscos</strong> com 5 colunas: risco, probabilidade de ocorrer, impacto, opção de tratamento, ações de tratamento. Template atual: <code>DocDiretivo_Minuta_v2.2</code></p>
+      </div>
+      <div class="kpi" style="border-left:4px solid var(--accent)">
+        <div class="label">Anexo de Entregas</div>
+        <p style="font-size:.85rem;margin-top:8px">Três tabelas: <strong>entregas pactuadas</strong> (serviço/ação, produto, eixo, área, data), <strong>entregas concluídas</strong> e <strong>serviços cancelados</strong> (com justificativa). Template atual: <code>Anexo_de_Entregas_v4.0</code></p>
+      </div>
+    </div>
+
+    <h3>4. Evolução dos Templates e Vocabulários</h3>
+    <p>Os templates de PTD passaram por diversas versões, refletindo a evolução da política de governo digital:</p>
+    <table style="margin:12px 0">
+      <thead><tr><th>Era</th><th>Período</th><th>Eixos</th><th>Template Entregas</th><th>Características</th></tr></thead>
+      <tbody>
+        <tr><td><strong>EGD 2020-2022</strong></td><td>2020-2023</td><td>Diferentes (ex: "Transformação Digital de Serviços Públicos", "Governo como Plataforma", "Identidade Digital do Cidadão")</td><td>Sem versão padronizada</td><td>Documento único (sem separação Diretivo/Entregas), formato narrativo, seções numeradas. Ex: FIOCRUZ</td></tr>
+        <tr><td><strong>Transição</strong></td><td>2024-2026</td><td>5 eixos atuais (parcial)</td><td>v2.1</td><td>Tabela padronizada introduzida, mas alguns produtos ainda não consolidados. Surge PPSI. Ex: ANCINE, FCP</td></tr>
+        <tr><td><strong>EFGD 2024-2027</strong></td><td>2025-2027</td><td>5 eixos canônicos</td><td>v2.2 / v4.0</td><td>44 produtos canônicos, 3 tabelas de entregas, template de riscos padronizado. Maioria dos PTDs vigentes</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Impacto na base de dados:</strong> Para garantir coerência, o pipeline de extração inclui:</p>
+    <ul>
+      <li><strong>10 produtos legados</strong> mapeados aos eixos atuais (ex: "Implementação do PPSI" → Segurança e Privacidade)</li>
+      <li><strong>19 aliases de produto</strong> para variações de texto (ex: "Integração ao Login Unico" → "Integração ao Login Único")</li>
+      <li><strong>10 aliases de eixo</strong> para nomenclaturas da EGD 2020 (ex: "Governo como Plataforma" → "Unificação de Canais Digitais")</li>
+      <li><strong>Detecção automática de formato legado</strong> para PDFs no estilo pré-EFGD</li>
+      <li><strong>Campos original + normalizado</strong> preservados em todas as classificações</li>
+    </ul>
+
+    <h3>5. Apreciação Crítica do Portal Gov.br</h3>
+    <p>Após a coleta e análise dos 177 PDFs de 91 órgãos, algumas observações sobre o ecossistema:</p>
+
+    <div class="insight-card" style="border-left-color:var(--green)"><h4>Pontos Positivos</h4><p>
+      <strong>Transparência</strong>: todos os PTDs assinados estão publicados abertamente no portal, com links diretos para os PDFs — um bom exemplo de dados governamentais acessíveis.<br>
+      <strong>Padronização crescente</strong>: a evolução dos templates (v2.1 → v4.0) mostra esforço real de uniformização do vocabulário e das categorias.<br>
+      <strong>Cobertura ampla</strong>: 91 órgãos signatários abrangem praticamente toda a administração federal direta, autarquias e fundações.
+    </p></div>
+
+    <div class="insight-card" style="border-left-color:var(--yellow)"><h4>Oportunidades de Melhoria</h4><p>
+      <strong>Formato dos PDFs</strong>: ~15% dos documentos são PDFs escaneados (imagem), impossibilitando extração automática de texto. Publicar como PDF nativo (text-based) ou em formato aberto (ODF, CSV) melhoraria drasticamente a acessibilidade dos dados.<br>
+      <strong>Estrutura HTML do portal</strong>: a lista de órgãos usa formatação visual (<code>&lt;strong&gt;</code> dentro de <code>&lt;td&gt;</code>) sem marcação semântica. Uma API REST ou um JSON/CSV público da lista de órgãos e URLs simplificaria o reuso.<br>
+      <strong>Versionamento de dados</strong>: quando um PTD é repactuado, a versão anterior desaparece. Um histórico versionado permitiria análise longitudinal.<br>
+      <strong>Metadados estruturados</strong>: os PDFs não contêm metadados padronizados (sigla do órgão, vigência, versão do template). Incluir esses dados como propriedades do PDF facilitaria catálogos automáticos.
+    </p></div>
+
+    <div class="insight-card" style="border-left-color:var(--red)"><h4>Desafios para Análise Automatizada</h4><p>
+      <strong>Variabilidade de formato</strong>: mesmo dentro da mesma versão de template, cada órgão formata tabelas de forma ligeiramente diferente — colunas partidas em linhas, headers com quebras, acentuação inconsistente.<br>
+      <strong>Tabelas multi-página</strong>: a tabela de riscos frequentemente tem o header na página N e os dados na página N+1, exigindo lógica de merge.<br>
+      <strong>Referências numéricas</strong>: a coluna "ações de tratamento" frequentemente contém referências numéricas ("1, 2, 9") a uma lista que aparece DEPOIS da tabela — não é autocontida.<br>
+      <strong>Órgãos agrupados</strong>: 7 grupos ministeriais compartilham PDFs entre múltiplos órgãos, nem sempre com separação clara de qual entrega pertence a qual entidade.
+    </p></div>
+
+  </div>
+</div>
+
+<!-- ===== VISUALIZAÇÕES ===== -->
+<div id="visualizations" class="section">
+  <h2>Outras Visualizações</h2>
+  <p class="desc">Análises estatísticas exploratórias do corpus. Todos os gráficos são calculados dinamicamente a partir dos dados extraídos.</p>
+
+  <div class="chart-container"><h3>Scatter: Entregas × Riscos por Órgão</h3>
+    <p class="desc" style="margin-bottom:8px">Cada ponto é um órgão. Revela perfis: alta ambição/alto risco (canto superior direito), baixa ambição/poucos riscos (canto inferior esquerdo).</p>
+    <canvas id="chart-scatter"></canvas></div>
+
+  <div class="chart-container"><h3>Curva de Lorenz — Concentração de Entregas</h3>
+    <p class="desc" style="margin-bottom:8px">Mede a desigualdade na distribuição de entregas entre órgãos. A linha diagonal representa igualdade perfeita; quanto mais a curva se afasta, maior a concentração.</p>
+    <canvas id="chart-lorenz"></canvas>
+    <div id="lorenz-stats" style="margin-top:8px"></div></div>
+
+  <div class="chart-row">
+    <div class="chart-container"><h3>Distribuição de Entregas por Órgão</h3>
+      <p class="desc" style="margin-bottom:8px">Histograma: quantos órgãos têm 0-50 entregas, 50-100, etc.</p>
+      <canvas id="chart-histogram"></canvas></div>
+    <div class="chart-container"><h3>Diversidade de Produtos por Órgão</h3>
+      <p class="desc" style="margin-bottom:8px">Quantos produtos distintos cada órgão pactuou. Barra ordenada.</p>
+      <canvas id="chart-diversity"></canvas></div>
+  </div>
+
+  <div class="chart-container"><h3>Heatmap: Órgão × Eixo</h3>
+    <p class="desc" style="margin-bottom:8px">Concentração de entregas por eixo para os 30 maiores órgãos. Células mais escuras = mais entregas.</p>
+    <div id="heatmap-org-eixo" style="overflow-x:auto"></div></div>
+
+  <div class="chart-row">
+    <div class="chart-container"><h3>Perfil de Risco por Grupo Ministerial</h3>
+      <p class="desc" style="margin-bottom:8px">Média de riscos e distribuição de probabilidade por grupo.</p>
+      <canvas id="chart-group-risk"></canvas></div>
+    <div class="chart-container"><h3>Bigramas Mais Frequentes nos Riscos</h3>
+      <p class="desc" style="margin-bottom:8px">Pares de palavras mais comuns nos textos de risco.</p>
+      <canvas id="chart-bigrams"></canvas></div>
+  </div>
+
+  <div class="chart-container"><h3>Burndown: Concentração Temporal das Entregas</h3>
+    <p class="desc" style="margin-bottom:8px">Distribuição das datas pactuadas por mês. Revela se os órgãos planejam entregas constantes ou concentram no final da vigência.</p>
+    <canvas id="chart-burndown"></canvas></div>
+</div>
+
+<!-- ===== NOTA TÉCNICA ===== -->
+<div id="methodology" class="section">
+  <h2>Nota Técnica</h2>
+  <div class="prose">
+    <h3>1. Fonte dos Dados</h3>
+    <p>Os dados foram coletados do portal <a href="https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital" target="_blank">gov.br/governodigital — Planos de Transformação Digital</a>, mantido pela Secretaria de Governo Digital (SGD) do Ministério da Gestão e da Inovação em Serviços Públicos (MGI).</p>
+    <p>Os PTDs são instrumentos de planejamento instituídos pelo <strong>Decreto nº 12.198, de 24 de setembro de 2024</strong>, que estabelece a Estratégia Federal de Governo Digital (EFGD) para 2024-2027, e regulamentados pela <strong>Portaria SGD/MGI nº 6.618/2024</strong>.</p>
+
+    <h3>2. Estrutura do Corpus</h3>
+    <p>Cada órgão signatário publica até 2 documentos PDF:</p>
+    <ul>
+      <li><strong>Documento Diretivo</strong>: contém contexto institucional, escopo, cronograma e a <em>tabela de gestão de riscos</em> (5 colunas: risco, probabilidade, impacto, opção de tratamento, ações de tratamento)</li>
+      <li><strong>Anexo de Entregas</strong>: contém as tabelas de entregas pactuadas, concluídas e canceladas (colunas: serviço/ação, produto, eixo, área responsável, data)</li>
+    </ul>
+    <p>Foram identificados <strong>91 órgãos</strong> com PTD vigente, totalizando <strong>177 PDFs</strong> (86 diretivos + 91 entregas).</p>
+
+    <h3>3. Pipeline de Coleta e Extração</h3>
+    <ul>
+      <li><strong>Scraping</strong>: BeautifulSoup4 para parsing do HTML do gov.br e extração de URLs dos PDFs</li>
+      <li><strong>Download</strong>: requests com rate-limiting (1.5s entre requests), verificação de integridade (%PDF magic bytes)</li>
+      <li><strong>Extração de tabelas</strong>: PyMuPDF <code>find_tables()</code> para extração estruturada de tabelas, com merge de tabelas multi-página (header na pág N, dados na pág N+1)</li>
+      <li><strong>Resolução de referências</strong>: ações de tratamento numéricas ("1, 2, 9") resolvidas para texto completo via lista "Referencial para ações de tratamento do risco"</li>
+      <li><strong>Padronização</strong>: matching em 4 camadas (alias determinístico → exato accent-insensitive → fuzzy SequenceMatcher ≥0.85 → UNMATCHED)</li>
+    </ul>
+
+    <h3>4. Taxonomia e Vocabulário</h3>
+    <p>A EFGD define 6 princípios (Decreto 12.198/2024) que a SGD operacionaliza em <strong>5 eixos</strong> e <strong>44 produtos canônicos</strong> no template PTD. Foram adicionados 10 produtos legados (templates v1.x/v2.x), 19 aliases de produto e 10 aliases de eixo para compatibilidade com PTDs de diferentes períodos.</p>
+    <p>Escalas de risco: <em>Probabilidade</em> (raro, pouco provável, provável, muito provável, praticamente certo) e <em>Impacto</em> (muito baixo, baixo, médio, alto, muito alto), conforme orientação SGD.</p>
+
+    <h3>5. Cobertura e Limitações</h3>
+    <ul>
+      <li><strong>Entregas</strong>: 4.530 registros de 79/91 órgãos (87%). Extração híbrida: find_tables() para tabelas multi-página + fallback textual. Órgãos agrupados (mesmo PTD ministerial) contados uma única vez. 12 órgãos com PDFs escaneados não processados</li>
+      <li><strong>Riscos</strong>: 600 registros de 71/86 órgãos com diretivo (83%). Extração multi-página com merge de headers. 15 faltantes: PDFs escaneados sem texto extraível</li>
+      <li><strong>OCR pendente</strong>: a extração via Docling (IBM) com OCR habilitado no Google Colab pode recuperar os órgãos com PDFs escaneados</li>
+      <li><strong>Texto original preservado</strong>: todas as classificações mantêm o campo original do PDF ao lado da versão normalizada</li>
+    </ul>
+
+    <h3>6. Reprodutibilidade e Ciência Aberta</h3>
+    <ul>
+      <li><strong>Código-fonte</strong>: <a href="https://github.com/freirelucas/PTD" target="_blank">github.com/freirelucas/PTD</a> (licença aberta)</li>
+      <li><strong>Notebook Colab</strong>: <a href="https://colab.research.google.com/github/freirelucas/PTD/blob/main/ptd_scraper.ipynb" target="_blank">ptd_scraper.ipynb</a> — pipeline completo executável em um clique</li>
+      <li><strong>Dados abertos</strong>: todos os CSVs e JSONs disponíveis no diretório <code>output/</code> do repositório</li>
+      <li><strong>Build do dashboard</strong>: <code>data.js</code> gerado automaticamente a partir dos CSVs exportados</li>
+      <li><strong>Versionamento</strong>: cada etapa commitada com mensagem descritiva no Git</li>
+    </ul>
+    <p>O pipeline inteiro — do scraping à visualização — pode ser reproduzido executando o notebook Colab. Os dados brutos (PDFs) são baixados diretamente do portal gov.br, garantindo que qualquer pesquisador possa replicar o corpus.</p>
+
+    <h3>7. Citação Sugerida</h3>
+    <blockquote style="border-left:4px solid var(--primary);margin:12px 0;padding:16px 20px;background:var(--light);border-radius:0 var(--radius) var(--radius) 0;font-size:.88rem;line-height:1.7">
+      DIREITO, Denise; SILVA, Lucas; QUEIROZ, Sérgio. <em>Corpus dos Planos de Transformação Digital: extração, padronização e análise dos PTDs de 91 órgãos federais brasileiros</em>. Brasília: Ipea, 2026. (Nota Técnica). Disponível em: <a href="https://github.com/freirelucas/PTD" target="_blank">https://github.com/freirelucas/PTD</a>.
+    </blockquote>
+  </div>
 </div>
 
 </main>
@@ -199,23 +494,40 @@ const EIXOS = ["Serviços Digitais e Melhoria da Qualidade","Unificação de Can
 const PROB_ORDER = ["raro","pouco provável","provável","muito provável","praticamente certo"];
 const IMP_ORDER = ["muito baixo","baixo","médio","alto","muito alto"];
 const TRAT = ["mitigar","eliminar","transferir","aceitar"];
-const COLORS = ["#1351B4","#2670E8","#0C326F","#3F8EFC","#71A7FF","#F9A825","#C62828","#2E7D32","#FF6D00","#6A1B9A"];
+// Paleta ipeaplot — categórica institucional IPEA
+const COLORS = ["#264A7F","#C0392B","#27AE60","#E67E22","#8E44AD","#2980B9","#D35400","#16A085","#4D8AC9","#7F8C8D"];
+
+// Build action index: parse acoes_resolvidas to extract numbered actions
+const ACTION_INDEX = {}; // action_id -> {text, risks: [risk objects]}
+const RISK_TO_ACTIONS = new WeakMap(); // risk -> [action_ids]
 
 // Flatten deliveries and risks into arrays
 let allDel = []; Object.values(PTD_DELIVERIES).forEach(arr => allDel.push(...arr));
 let allRisk = []; Object.values(PTD_RISKS).forEach(arr => allRisk.push(...arr));
 
+// Build action index from resolved references
+(function buildActionIndex(){
+  allRisk.forEach(r => {
+    const res = r.acoes_resolvidas || '';
+    const actionIds = [];
+    if (res.includes('|')) {
+      res.split('|').forEach(part => {
+        part = part.trim();
+        const m = part.match(/^(\d+)\.\s*(.+)/);
+        if (m) {
+          const id = m[1], text = m[2].trim();
+          if (!ACTION_INDEX[id]) ACTION_INDEX[id] = {id, text, risks: []};
+          else if (text.length > ACTION_INDEX[id].text.length) ACTION_INDEX[id].text = text;
+          ACTION_INDEX[id].risks.push(r);
+          actionIds.push(id);
+        }
+      });
+    }
+    RISK_TO_ACTIONS.set(r, actionIds);
+  });
+})();
+
 // ==================== NAV ====================
-function showSection(id) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  document.querySelectorAll('.sidebar nav a').forEach(a => a.classList.toggle('active', a.getAttribute('href')==='#'+id));
-  if(id==='overview') initOverview();
-  if(id==='deliveries') initDeliveries();
-  if(id==='risks') initRisks();
-  if(id==='organs') initOrgans();
-  if(id==='compare') initCompare();
-}
 window.addEventListener('hashchange', ()=>{ const h=location.hash.replace('#',''); if(h) showSection(h); });
 
 function destroyChart(key){ if(charts[key]){charts[key].destroy();delete charts[key];} }
@@ -225,7 +537,7 @@ let overviewInit = false;
 function initOverview(){
   if(overviewInit) return; overviewInit=true;
   // KPIs
-  const cov = PTD_ORGANS.filter(o=>o.status_entregas==='ok').length;
+  const cov = PTD_ORGANS.filter(o=>o.status_entregas==='ok'||o.status_entregas==='compartilhado').length;
   document.getElementById('kpi-cards').innerHTML = [
     {l:'Órgãos',v:PTD_STATS.orgaos_total,s:'signatários'},
     {l:'Entregas',v:PTD_STATS.entregas_total.toLocaleString('pt-BR'),s:'pactuadas'},
@@ -233,16 +545,49 @@ function initOverview(){
     {l:'Cobertura',v:Math.round(cov/PTD_STATS.orgaos_total*100)+'%',s:cov+'/'+PTD_STATS.orgaos_total+' órgãos'},
   ].map(k=>`<div class="kpi"><div class="label">${k.l}</div><div class="value">${k.v}</div><div class="sub">${k.s}</div></div>`).join('');
 
+  // Timeline chart — trimestral, linha, absoluto + acumulado
+  if(typeof PTD_TIMELINE_ORGANS !== 'undefined'){
+    const dates=typeof PTD_DATES!=='undefined'?PTD_DATES:{};
+    // Agregar por trimestre
+    const qMap={};
+    Object.entries(dates).forEach(([sigla,d])=>{
+      if(!d)return;
+      const [y,m]=d.split('-').map(Number);
+      const q=Math.ceil(m/3);
+      const key=`${y}T${q}`;
+      if(!qMap[key])qMap[key]={orgs:0,label:`${q}ºT/${y.toString().substring(2)}`};
+      qMap[key].orgs++;
+    });
+    const quarters=Object.keys(qMap).sort();
+    const qOrgs=quarters.map(q=>qMap[q].orgs);
+    const qLabels=quarters.map(q=>qMap[q].label);
+    // Acumulado
+    let cum=0;
+    const qCum=qOrgs.map(v=>{cum+=v;return cum;});
+
+    charts.timeline=new Chart(document.getElementById('chart-timeline'),{type:'line',data:{labels:qLabels,datasets:[
+      {label:'Assinaturas no trimestre',data:qOrgs,borderColor:'#264A7F',backgroundColor:'#264A7F22',fill:true,tension:0.3,pointRadius:5,pointBackgroundColor:'#264A7F',yAxisID:'y'},
+      {label:'Acumulado de órgãos',data:qCum,borderColor:'#C0392B',backgroundColor:'transparent',borderDash:[6,3],tension:0.3,pointRadius:4,pointBackgroundColor:'#C0392B',yAxisID:'y1'}
+    ]},options:{animation:{duration:800},interaction:{mode:'index',intersect:false},plugins:{legend:{position:'bottom',labels:{usePointStyle:true}},tooltip:{callbacks:{label:ctx=>ctx.dataset.label+': '+ctx.raw}}},scales:{y:{beginAtZero:true,position:'left',title:{display:true,text:'Assinaturas no trimestre'},grid:{display:false}},y1:{beginAtZero:true,position:'right',title:{display:true,text:'Total acumulado'},max:95,grid:{drawOnChartArea:false}},x:{grid:{display:false}}}}});
+
+    // KPIs temporais
+    const peakQ=quarters[qOrgs.indexOf(Math.max(...qOrgs))];
+    const peakLabel=qMap[peakQ].label;
+    const earlyOrgs=Object.values(dates).filter(d=>d<'2025-04').length;
+    const lateOrgs=Object.values(dates).filter(d=>d>='2025-10').length;
+    document.getElementById('timeline-insight').innerHTML=`<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px"><div class="kpi" style="padding:12px;border-top:3px solid #264A7F"><div class="label">Trimestre de pico</div><div class="value" style="font-size:1.3rem">${peakLabel}</div><div class="sub">${Math.max(...qOrgs)} assinaturas</div></div><div class="kpi" style="padding:12px;border-top:3px solid #27AE60"><div class="label">Primeiros adotantes</div><div class="value" style="font-size:1.3rem">${earlyOrgs}</div><div class="sub">órgãos até mar/2025</div></div><div class="kpi" style="padding:12px;border-top:3px solid #E67E22"><div class="label">Adotantes tardios</div><div class="value" style="font-size:1.3rem">${lateOrgs}</div><div class="sub">órgãos a partir de out/2025</div></div></div>`;
+  }
+
   // Eixo chart
   const eixoData = PTD_STATS.entregas_por_eixo;
   const eixoLabels = Object.keys(eixoData);
-  charts.eixo = new Chart(document.getElementById('chart-eixo'),{type:'bar',data:{labels:eixoLabels.map(l=>l.length>30?l.substring(0,30)+'...':l),datasets:[{data:eixoLabels.map(l=>eixoData[l]),backgroundColor:COLORS.slice(0,eixoLabels.length),borderRadius:4}]},options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{beginAtZero:true}}}});
+  charts.eixo = new Chart(document.getElementById('chart-eixo'),{type:'bar',data:{labels:eixoLabels.map(l=>l.length>35?l.substring(0,35)+'...':l),datasets:[{label:'Entregas',data:eixoLabels.map(l=>eixoData[l]),backgroundColor:COLORS.slice(0,eixoLabels.length),borderRadius:6,barPercentage:0.7}]},options:{indexAxis:'y',animation:{duration:800},plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${ctx.raw.toLocaleString('pt-BR')} entregas (${(ctx.raw/allDel.length*100).toFixed(1)}%)`}}},scales:{x:{beginAtZero:true,grid:{display:false}},y:{grid:{display:false}}}}});
 
   // Coverage donut
-  const covOk=PTD_ORGANS.filter(o=>o.status_entregas==='ok').length;
+  const covOk=PTD_ORGANS.filter(o=>o.status_entregas==='ok'||o.status_entregas==='compartilhado').length;
   const covScan=PTD_ORGANS.filter(o=>o.status_entregas==='scan_ou_formato').length;
   const covNone=PTD_ORGANS.filter(o=>o.status_entregas==='sem_pdf').length;
-  charts.cov = new Chart(document.getElementById('chart-coverage'),{type:'doughnut',data:{labels:['Extraídos','Scan/Formato','Sem PDF'],datasets:[{data:[covOk,covScan,covNone],backgroundColor:['#2E7D32','#F9A825','#C62828']}]},options:{plugins:{legend:{position:'bottom'}}}});
+  charts.cov = new Chart(document.getElementById('chart-coverage'),{type:'doughnut',data:{labels:['Dados extraídos','PDF escaneado (OCR pendente)','Sem PDF publicado'],datasets:[{data:[covOk,covScan,covNone],backgroundColor:['#27AE60','#E67E22','#C0392B'],borderWidth:2,borderColor:'#fff'}]},options:{aspectRatio:1.8,cutout:'55%',animation:{animateRotate:true,duration:1000},plugins:{legend:{position:'bottom',labels:{padding:12,usePointStyle:true,pointStyle:'circle'}},tooltip:{callbacks:{label:ctx=>`${ctx.label}: ${ctx.raw} órgãos (${(ctx.raw/PTD_STATS.orgaos_total*100).toFixed(0)}%)`}}}}});
 
   // Top produtos table
   const prodCounts = {};
@@ -253,9 +598,73 @@ function initOverview(){
   html+='</tbody></table>';
   document.getElementById('top-produtos-table').innerHTML=html;
 
-  // Figures
-  const figs=[{f:'01_entregas_por_eixo.png',c:'Entregas por Eixo'},{f:'02_top20_produtos.png',c:'Top 20 Produtos'},{f:'03_top30_orgaos_entregas.png',c:'Top 30 Órgãos'},{f:'04_matriz_riscos.png',c:'Matriz de Riscos'},{f:'05_tratamento_riscos.png',c:'Tratamento'},{f:'06_prob_impacto_dist.png',c:'Probabilidade × Impacto'},{f:'07_cobertura.png',c:'Cobertura'}];
-  document.getElementById('figures-grid').innerHTML=figs.map(f=>`<a href="output/figures/${f.f}" target="_blank"><img src="output/figures/${f.f}" alt="${f.c}" loading="lazy"><div class="caption">${f.c}</div></a>`).join('');
+  // Gaps — órgãos sem dados e motivos
+  const _shared = o => o.status_entregas==='compartilhado'||o.status_riscos==='compartilhado';
+  const noData = PTD_ORGANS.filter(o => o.n_entregas === 0 && o.n_riscos === 0 && !_shared(o));
+  const noEntregas = PTD_ORGANS.filter(o => o.n_entregas === 0 && o.status_entregas!=='compartilhado');
+  const noRiscos = PTD_ORGANS.filter(o => o.n_riscos === 0 && o.pdf_diretivo && o.status_riscos!=='compartilhado');
+  const scans = PTD_ORGANS.filter(o => o.status_entregas === 'scan_ou_formato' || o.status_riscos === 'scan');
+  const semPdf = PTD_ORGANS.filter(o => !o.pdf_diretivo);
+
+  let gapHtml = `<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">`;
+  gapHtml += `<div class="kpi" style="border-left:4px solid var(--red)"><div class="label">Principal causa</div><div class="value" style="font-size:1.3rem">PDF Escaneado (imagem)</div><div class="sub">${scans.length} órgãos com PDFs sem texto extraível — necessitam OCR (Docling no Colab)</div></div>`;
+  gapHtml += `<div class="kpi" style="border-left:4px solid var(--yellow)"><div class="label">Outras causas</div><div class="value" style="font-size:1.3rem">${semPdf.length} sem PDF Diretivo</div><div class="sub">${semPdf.map(o=>o.sigla).join(', ')} — gov.br não publica Documento Diretivo para esses órgãos</div></div>`;
+  gapHtml += `</div>`;
+
+  // Tabela de órgãos sem dados
+  gapHtml += `<div class="table-wrap" style="max-height:350px"><table><thead><tr><th>Órgão</th><th>Grupo</th><th>Entregas</th><th>Riscos</th><th>Motivo</th></tr></thead><tbody>`;
+  const problemOrgs = PTD_ORGANS.filter(o => (o.n_entregas === 0 || o.n_riscos === 0) && !_shared(o)).sort((a,b) => (a.n_entregas+a.n_riscos) - (b.n_entregas+b.n_riscos));
+  problemOrgs.forEach(o => {
+    let motivo = '';
+    if (!o.pdf_diretivo && !o.pdf_entregas) motivo = 'Sem PDFs no site';
+    else if (o.status_entregas === 'scan_ou_formato') motivo = 'PDF escaneado (entregas) — precisa OCR';
+    else if (o.status_riscos === 'scan' && o.n_entregas > 0) motivo = 'PDF diretivo escaneado — precisa OCR';
+    else if (o.status_riscos === 'scan') motivo = 'PDFs escaneados — precisa OCR';
+    else if (!o.pdf_diretivo) motivo = 'Sem Documento Diretivo no site';
+    else if (o.n_riscos === 0) motivo = 'Tabela de riscos não detectada (formato diferente ou imagem)';
+    else motivo = 'Formato não reconhecido';
+    const eIcon = o.n_entregas > 0 ? '&#10003;' : '&#10007;';
+    const rIcon = o.n_riscos > 0 ? '&#10003;' : '&#10007;';
+    const eColor = o.n_entregas > 0 ? 'var(--green)' : 'var(--red)';
+    const rColor = o.n_riscos > 0 ? 'var(--green)' : 'var(--red)';
+    gapHtml += `<tr><td><b>${o.sigla}</b></td><td>${o.grupo || '—'}</td><td style="color:${eColor}">${eIcon} ${o.n_entregas}</td><td style="color:${rColor}">${rIcon} ${o.n_riscos}</td><td>${motivo}</td></tr>`;
+  });
+  gapHtml += `</tbody></table></div>`;
+  document.getElementById('gaps-content').innerHTML = gapHtml;
+
+  // Navigation cards
+  const nRiskCanon=allRisk.filter(r=>PROB_ORDER.includes(r.probabilidade_normalizada)&&IMP_ORDER.includes(r.impacto_normalizado)).length;
+  const nProdsUsed=new Set(allDel.map(d=>d.produto_normalizado)).size;
+  const nOrgsDel=new Set(allDel.map(d=>d.orgao_sigla)).size;
+  const nOrgsRisk=new Set(allRisk.map(r=>r.orgao_sigla)).size;
+  const nEixos=new Set(allDel.map(d=>d.eixo_normalizado).filter(Boolean)).size;
+  const navCards=[
+    {nav:'deliveries',icon:'\u25B6',title:'Entregas Pactuadas',
+     metric:allDel.length.toLocaleString('pt-BR'),
+     desc:`${nProdsUsed} produtos em ${nEixos} eixos. Filtre por órgão, eixo ou produto. Os gráficos respondem simultaneamente.`,
+     color:'#264A7F'},
+    {nav:'risks',icon:'\u26A0',title:'Gestão de Riscos',
+     metric:allRisk.length.toString(),
+     desc:`Matriz 5\u00D75 interativa, ${nRiskCanon} riscos com valores canônicos. Clique numa célula para ver riscos e ações de mitigação conectadas.`,
+     color:'#C0392B'},
+    {nav:'organs',icon:'\u2605',title:'\u00D3rgãos Signatários',
+     metric:'91',
+     desc:`${nOrgsDel} com entregas extraídas, ${nOrgsRisk} com riscos. Ordene por volume, filtre por grupo ministerial, abra fichas detalhadas.`,
+     color:'#27AE60'},
+    {nav:'compare',icon:'\u2194',title:'Similaridade',
+     metric:'Jaccard',
+     desc:`Quais órgãos têm perfis de pactuação parecidos? Selecione um de referência e veja o ranking de similaridade com barras interativas.`,
+     color:'#8E44AD'},
+    {nav:'insights',icon:'\u2699',title:'Insights',
+     metric:'12',
+     desc:`Achados analíticos em 4 seções: corpus, entregas, riscos e análise transversal. Cards expansíveis com fundamentação.`,
+     color:'#E67E22'},
+    {nav:'ptd-method',icon:'\u2630',title:'O que \u00E9 o PTD',
+     metric:'EFGD',
+     desc:`Marco legal, 6 princípios × 5 eixos, evolução dos templates, apreciação crítica do portal gov.br.`,
+     color:'#4D8AC9'},
+  ];
+  document.getElementById('nav-cards').innerHTML=navCards.map(c=>`<a class="nav-card" href="#${c.nav}" onclick="showSection('${c.nav}');return false;" style="border-top-color:${c.color}"><span class="nc-icon">${c.icon}</span><div class="nc-title">${c.title}</div><div class="nc-metric" style="color:${c.color}">${c.metric}</div><div class="nc-desc">${c.desc}</div></a>`).join('');
 }
 
 // ==================== 2. ENTREGAS ====================
@@ -270,7 +679,7 @@ function initDeliveries(){
     orgaos.forEach(o=>{ const op=document.createElement('option'); op.value=o; op.textContent=o; fO.appendChild(op); });
     eixos.forEach(e=>{ const op=document.createElement('option'); op.value=e; op.textContent=e.substring(0,50); fE.appendChild(op); });
     prods.forEach(p=>{ const op=document.createElement('option'); op.value=p; op.textContent=p.substring(0,50); fP.appendChild(op); });
-    [fO,fE,fP,document.getElementById('f-search')].forEach(el=>el.addEventListener('change',()=>{delPage=0;filterDeliveries();}));
+    [fO,fE,fP].forEach(el=>el.addEventListener('change',()=>{delPage=0;filterDeliveries();}));
     document.getElementById('f-search').addEventListener('input',()=>{delPage=0;filterDeliveries();});
   }
   filterDeliveries();
@@ -288,29 +697,66 @@ function filterDeliveries(){
     if(q && !(d.servico_acao||'').toLowerCase().includes(q)) return false;
     return true;
   });
-  document.getElementById('del-count').textContent=`${delFiltered.length.toLocaleString('pt-BR')} entregas encontradas`;
-  renderDelTable();
-  // Chart for selected organ
-  if(org){
-    document.getElementById('del-chart-wrap').style.display='block';
-    document.getElementById('del-chart-title').textContent='Distribuição — '+org;
-    destroyChart('delOrgan');
-    const pc={};delFiltered.forEach(d=>{const p=d.produto_normalizado;pc[p]=(pc[p]||0)+1;});
-    const s=Object.entries(pc).sort((a,b)=>b[1]-a[1]).slice(0,10);
-    charts.delOrgan=new Chart(document.getElementById('chart-del-organ'),{type:'bar',data:{labels:s.map(x=>x[0].substring(0,35)),datasets:[{data:s.map(x=>x[1]),backgroundColor:COLORS.slice(0,s.length),borderRadius:4}]},options:{indexAxis:'y',plugins:{legend:{display:false}}}});
-  } else {
-    document.getElementById('del-chart-wrap').style.display='none';
+
+  // Summary
+  const delOrgs=new Set(delFiltered.map(d=>d.orgao_sigla));
+  const delProdC={};delFiltered.forEach(d=>{delProdC[d.produto_normalizado]=(delProdC[d.produto_normalizado]||0)+1;});
+  const topDelProd=Object.entries(delProdC).sort((a,b)=>b[1]-a[1])[0];
+  const activeFilters=[(org?'órgão: '+org:''),(eix?'eixo: '+eix.substring(0,25):''),(prod?'produto: '+prod.substring(0,25):''),(q?'texto: "'+q+'"':'')].filter(Boolean).join(' · ');
+  document.getElementById('del-count').innerHTML=`<strong>${delFiltered.length.toLocaleString('pt-BR')}</strong> entregas em <strong>${delOrgs.size}</strong> órgãos${topDelProd?' · Mais frequente: <em>'+topDelProd[0]+'</em> ('+topDelProd[1]+')':''}${activeFilters?'<br><span style="font-size:.78rem;color:var(--muted)">Filtros: '+activeFilters+'</span>':''}`;
+
+  // Eixo chart — always visible, responds to filters
+  destroyChart('delEixo');
+  const eixoC={};delFiltered.forEach(d=>{const e=d.eixo_normalizado;if(e)eixoC[e]=(eixoC[e]||0)+1;});
+  const eixoSorted=Object.entries(eixoC).sort((a,b)=>b[1]-a[1]);
+  if(eixoSorted.length){
+    document.getElementById('del-eixo-title').textContent=org?'Eixos — '+org:'Entregas por Eixo';
+    charts.delEixo=new Chart(document.getElementById('chart-del-eixo'),{type:'bar',data:{
+      labels:eixoSorted.map(([e])=>e.substring(0,25)),
+      datasets:[{data:eixoSorted.map(([,c])=>c),backgroundColor:COLORS.slice(0,eixoSorted.length),borderRadius:4}]
+    },options:{indexAxis:'y',animation:{duration:400},plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${ctx.raw} entregas (${(ctx.raw/delFiltered.length*100).toFixed(1)}%)`}}},scales:{x:{beginAtZero:true,grid:{display:false}},y:{grid:{display:false}}}}});
   }
+
+  // Product chart — always visible, responds to filters
+  destroyChart('delProd');
+  const prodSorted=Object.entries(delProdC).sort((a,b)=>b[1]-a[1]).slice(0,10);
+  if(prodSorted.length){
+    document.getElementById('del-prod-title').textContent=org?'Produtos — '+org:'Top 10 Produtos';
+    charts.delProd=new Chart(document.getElementById('chart-del-prod'),{type:'bar',data:{
+      labels:prodSorted.map(([p])=>p.substring(0,30)),
+      datasets:[{data:prodSorted.map(([,c])=>c),backgroundColor:'#264A7F',borderRadius:4}]
+    },options:{indexAxis:'y',animation:{duration:400},plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>{
+      const nOrgs=new Set(delFiltered.filter(d=>d.produto_normalizado===prodSorted[ctx.dataIndex][0]).map(d=>d.orgao_sigla)).size;
+      return `${ctx.raw} entregas em ${nOrgs} órgãos`;
+    }}}},scales:{x:{beginAtZero:true,grid:{display:false}},y:{grid:{display:false}}}}});
+  }
+
+  // Org chart — show when filtering by eixo or produto (not by organ)
+  destroyChart('delOrg');
+  if(!org && (eix || prod) && delOrgs.size > 1){
+    document.getElementById('del-org-chart-wrap').style.display='block';
+    document.getElementById('del-org-title').textContent=`Órgãos${eix?' — '+eix.substring(0,30):''}${prod?' — '+prod.substring(0,30):''}`;
+    const orgC={};delFiltered.forEach(d=>{orgC[d.orgao_sigla]=(orgC[d.orgao_sigla]||0)+1;});
+    const orgSorted=Object.entries(orgC).sort((a,b)=>b[1]-a[1]).slice(0,20);
+    charts.delOrg=new Chart(document.getElementById('chart-del-org'),{type:'bar',data:{
+      labels:orgSorted.map(([o])=>o),
+      datasets:[{data:orgSorted.map(([,c])=>c),backgroundColor:'#4D8AC9',borderRadius:4}]
+    },options:{animation:{duration:400},plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{display:false}}}}});
+  } else {
+    document.getElementById('del-org-chart-wrap').style.display='none';
+  }
+
+  renderDelTable();
 }
 
 function renderDelTable(){
   const PER=50, start=delPage*PER, end=Math.min(start+PER,delFiltered.length);
   const page=delFiltered.slice(start,end);
-  let html='<table><thead><tr><th>Órgão</th><th>Serviço/Ação</th><th>Produto</th><th>Eixo</th><th>Data</th><th>Conf.</th></tr></thead><tbody>';
+  let html='<table><thead><tr><th>Órgão</th><th>Serviço/Ação</th><th>Produto</th><th>Eixo</th><th>Data</th></tr></thead><tbody>';
   page.forEach(d=>{
-    html+=`<tr><td><b>${d.orgao_sigla}</b></td><td>${(d.servico_acao||'').substring(0,80)}</td><td>${d.produto_normalizado}</td><td>${(d.eixo_normalizado||'').substring(0,30)}</td><td>${d.data_pactuada||''}</td><td>${d.confidence}</td></tr>`;
+    html+=`<tr><td><b>${d.orgao_sigla}</b></td><td>${(d.servico_acao||'').substring(0,80)}</td><td>${d.produto_normalizado}</td><td>${(d.eixo_normalizado||'').substring(0,30)}</td><td>${d.data_pactuada||''}</td></tr>`;
   });
-  if(!page.length) html+='<tr><td colspan="6" style="text-align:center;color:var(--muted)">Nenhuma entrega encontrada</td></tr>';
+  if(!page.length) html+='<tr><td colspan="5" style="text-align:center;color:var(--muted)">Nenhuma entrega encontrada</td></tr>';
   html+='</tbody></table>';
   document.getElementById('del-table').innerHTML=html;
   const totalPages=Math.ceil(delFiltered.length/PER);
@@ -332,6 +778,7 @@ function initRisks(){
   filterRisks();
   renderTratamentoChart();
   renderTopRisks();
+  renderActionsList();
 }
 
 function buildRiskMatrix(){
@@ -351,7 +798,7 @@ function buildRiskMatrix(){
       const pi=PROB_ORDER.indexOf(p), ii=IMP_ORDER.indexOf(i);
       const severity=pi+ii;
       const bg=severity<=2?'#C8E6C9':severity<=4?'#FFF9C4':severity<=6?'#FFE0B2':'#FFCDD2';
-      html+=`<div class="cell" style="background:${bg}" onclick="matrixFilter={p:'${p}',i:'${i}'};filterRisks()">${c||''}</div>`;
+      html+=`<div class="cell" data-p="${p}" data-i="${i}" style="background:${bg}" onclick="matrixFilter={p:'${p}',i:'${i}'};highlightMatrixCell(this);filterRisks();updateMatrixActions()">${c||''}</div>`;
     });
   });
   document.getElementById('risk-matrix').innerHTML=html;
@@ -368,30 +815,107 @@ function filterRisks(){
     }
     return true;
   });
-  document.getElementById('risk-count').textContent=`${riskFiltered.length} riscos encontrados` + (matrixFilter?` (${matrixFilter.p} × ${matrixFilter.i})`:'');
+  const activeF=[(org?org:''),(trat?'trat: '+trat:''),(matrixFilter?matrixFilter.p+' × '+matrixFilter.i:'')].filter(Boolean).join(' · ');
+  document.getElementById('risk-count').innerHTML=`<strong>${riskFiltered.length}</strong> riscos${activeF?' <span style="font-size:.8rem;color:var(--muted)">— '+activeF+'</span>':''}`;
   let html='<table><thead><tr><th>Órgão</th><th>Risco</th><th>Prob.</th><th>Impacto</th><th>Tratamento</th><th>Ações</th></tr></thead><tbody>';
-  riskFiltered.slice(0,100).forEach(r=>{
+  riskFiltered.slice(0,50).forEach(r=>{
     html+=`<tr><td><b>${r.orgao_sigla}</b></td><td>${(r.risco_texto||'').substring(0,80)}</td><td>${r.probabilidade_normalizada||''}</td><td>${r.impacto_normalizado||''}</td><td>${r.tratamento_normalizado||''}</td><td title="${(r.acoes_resolvidas||'').substring(0,500)}">${(r.acoes_resolvidas||'').substring(0,60)}${(r.acoes_resolvidas||'').length>60?'...':''}</td></tr>`;
   });
   if(!riskFiltered.length) html+='<tr><td colspan="6" style="text-align:center;color:var(--muted)">Nenhum risco encontrado</td></tr>';
+  if(riskFiltered.length>50) html+=`<tr><td colspan="6" style="text-align:center;color:var(--muted);font-size:.82rem">Mostrando 50 de ${riskFiltered.length} — refine os filtros</td></tr>`;
   html+='</tbody></table>';
   document.getElementById('risk-table').innerHTML=html;
 }
 
-function resetRiskFilters(){ matrixFilter=null; document.getElementById('r-orgao').value=''; document.getElementById('r-tratamento').value=''; filterRisks(); }
+function highlightMatrixCell(el){document.querySelectorAll('.risk-matrix .cell.selected').forEach(c=>c.classList.remove('selected'));el.classList.add('selected');}
+function resetRiskFilters(){ matrixFilter=null;document.querySelectorAll('.risk-matrix .cell.selected').forEach(c=>c.classList.remove('selected')); document.getElementById('r-orgao').value=''; document.getElementById('r-tratamento').value=''; filterRisks(); updateMatrixActions(); }
+
+function updateMatrixActions(){
+  const el=document.getElementById('matrix-actions');
+  if(!matrixFilter){el.innerHTML='';return;}
+  // Find actions used by risks in this cell
+  const cellRisks=allRisk.filter(r=>r.probabilidade_normalizada===matrixFilter.p && r.impacto_normalizado===matrixFilter.i);
+  const actionCounts={};
+  cellRisks.forEach(r=>{
+    const ids=RISK_TO_ACTIONS.get(r)||[];
+    ids.forEach(id=>{actionCounts[id]=(actionCounts[id]||0)+1;});
+  });
+  if(!Object.keys(actionCounts).length){el.innerHTML=`<p style="font-size:.83rem;color:var(--muted)">Nenhuma ação de mitigação referenciada para ${matrixFilter.p} × ${matrixFilter.i}</p>`;return;}
+  const sorted=Object.entries(actionCounts).sort((a,b)=>b[1]-a[1]);
+  let html=`<p style="font-size:.83rem;color:var(--muted);margin-bottom:8px"><strong>Ações de mitigação para ${matrixFilter.p} × ${matrixFilter.i}</strong> (${cellRisks.length} riscos):</p>`;
+  sorted.forEach(([id,count])=>{
+    const a=ACTION_INDEX[id];
+    if(a) html+=`<div class="action-bar" style="border-left-color:#FF9800"><span class="num">${id}</span><span class="text">${a.text.substring(0,100)}</span><span class="count">${count}x</span></div>`;
+  });
+  el.innerHTML=html;
+}
+
+function renderActionsList(){
+  const el=document.getElementById('actions-list');
+  const ids=Object.keys(ACTION_INDEX).sort((a,b)=>parseInt(a)-parseInt(b));
+  if(!ids.length){el.innerHTML='<p style="color:var(--muted)">Nenhuma ação de mitigação padronizada encontrada nos PDFs.</p>';return;}
+  const maxCount=Math.max(...ids.map(id=>ACTION_INDEX[id].risks.length));
+  let selectedAction=null;
+
+  function render(){
+    let html='';
+    ids.forEach(id=>{
+      const a=ACTION_INDEX[id];
+      const pct=a.risks.length/maxCount*100;
+      const sel=selectedAction===id?'selected':'';
+      html+=`<div class="action-bar ${sel}" data-action="${id}">`;
+      html+=`<span class="num">${id}</span>`;
+      html+=`<span class="text">${a.text.substring(0,120)}</span>`;
+      html+=`<span class="count">${a.risks.length} riscos</span>`;
+      html+=`<div style="width:80px"><div class="bar-fill" style="width:${pct}%"></div></div>`;
+      html+=`</div>`;
+      if(selectedAction===id){
+        // Show detail: which organs, prob/impact breakdown
+        const orgs=[...new Set(a.risks.map(r=>r.orgao_sigla))].sort();
+        const probC={};a.risks.forEach(r=>{const p=r.probabilidade_normalizada;if(p)probC[p]=(probC[p]||0)+1;});
+        const impC={};a.risks.forEach(r=>{const i=r.impacto_normalizado;if(i)impC[i]=(impC[i]||0)+1;});
+        html+=`<div class="action-detail">`;
+        html+=`<p><strong>${a.risks.length} riscos</strong> em <strong>${orgs.length} órgãos</strong>: ${orgs.join(', ')}</p>`;
+        html+=`<p style="margin-top:6px"><strong>Probabilidade:</strong> ${Object.entries(probC).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`${k} (${v})`).join(', ')}</p>`;
+        html+=`<p><strong>Impacto:</strong> ${Object.entries(impC).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`${k} (${v})`).join(', ')}</p>`;
+        // Show sample risks
+        html+=`<div class="table-wrap" style="max-height:200px;margin-top:8px"><table><thead><tr><th>Órgão</th><th>Risco</th><th>Prob.</th><th>Impacto</th></tr></thead><tbody>`;
+        a.risks.slice(0,20).forEach(r=>{
+          html+=`<tr><td><b>${r.orgao_sigla}</b></td><td>${(r.risco_texto||'').substring(0,70)}</td><td>${r.probabilidade_normalizada||''}</td><td>${r.impacto_normalizado||''}</td></tr>`;
+        });
+        if(a.risks.length>20) html+=`<tr><td colspan="4" style="color:var(--muted);text-align:center">... e mais ${a.risks.length-20} riscos</td></tr>`;
+        html+=`</tbody></table></div></div>`;
+      }
+    });
+    el.innerHTML=html;
+    // Attach click handlers
+    el.querySelectorAll('.action-bar').forEach(bar=>{
+      bar.addEventListener('click',()=>{
+        const id=bar.dataset.action;
+        selectedAction=selectedAction===id?null:id;
+        render();
+      });
+    });
+  }
+  render();
+}
 
 function renderTratamentoChart(){
   destroyChart('trat');
   const tc={};allRisk.forEach(r=>{(r.tratamento_normalizado||'').split(';').forEach(t=>{t=t.trim().toLowerCase();if(TRAT.includes(t))tc[t]=(tc[t]||0)+1;});});
   const labels=Object.keys(tc),vals=Object.values(tc);
-  charts.trat=new Chart(document.getElementById('chart-tratamento'),{type:'bar',data:{labels,datasets:[{data:vals,backgroundColor:['#FF9800','#F44336','#2196F3','#4CAF50'],borderRadius:4}]},options:{plugins:{legend:{display:false}}}});
+  charts.trat=new Chart(document.getElementById('chart-tratamento'),{type:'bar',data:{labels,datasets:[{data:vals,backgroundColor:['#264A7F','#C0392B','#4D8AC9','#27AE60'],borderRadius:4}]},options:{plugins:{legend:{display:false}}}});
 }
 
 function renderTopRisks(){
   const rc={};allRisk.forEach(r=>{const t=(r.risco_texto||'').substring(0,60);if(t.length>10)rc[t]=(rc[t]||0)+1;});
   const sorted=Object.entries(rc).sort((a,b)=>b[1]-a[1]).slice(0,10);
-  let html='<table><thead><tr><th>Risco</th><th>Órgãos</th></tr></thead><tbody>';
-  sorted.forEach(([t,c])=>html+=`<tr><td>${t}...</td><td>${c}</td></tr>`);
+  const maxC=sorted[0]?.[1]||1;
+  let html='<table><thead><tr><th>Risco</th><th style="width:120px">Frequência</th></tr></thead><tbody>';
+  sorted.forEach(([t,c])=>{
+    const w=c/maxC*100;
+    html+=`<tr><td style="font-size:.82rem">${t}...</td><td><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;background:var(--bg);border-radius:2px;height:10px"><div style="width:${w}%;height:100%;background:var(--primary);border-radius:2px"></div></div><span style="font-weight:600;font-size:.8rem;min-width:20px">${c}</span></div></td></tr>`;
+  });
   html+='</tbody></table>';
   document.getElementById('top-risks-table').innerHTML=html;
 }
@@ -399,15 +923,32 @@ function renderTopRisks(){
 // ==================== 4. ÓRGÃOS ====================
 let orgInit=false;
 function initOrgans(){
-  if(!orgInit){ orgInit=true; document.getElementById('organ-search').addEventListener('input',renderOrganGrid); }
+  if(!orgInit){
+    orgInit=true;
+    document.getElementById('organ-search').addEventListener('input',renderOrganGrid);
+    document.getElementById('organ-sort').addEventListener('change',renderOrganGrid);
+    const gSel=document.getElementById('organ-group');
+    const groups=[...new Set(PTD_ORGANS.map(o=>o.grupo).filter(Boolean))].sort();
+    groups.forEach(g=>{const op=document.createElement('option');op.value=g;op.textContent=g;gSel.appendChild(op);});
+    gSel.addEventListener('change',renderOrganGrid);
+  }
   renderOrganGrid();
 }
 
 function renderOrganGrid(){
   const q=(document.getElementById('organ-search').value||'').toLowerCase();
-  const filtered=PTD_ORGANS.filter(o=>!q || o.sigla.toLowerCase().includes(q) || (o.grupo||'').toLowerCase().includes(q));
+  const g=document.getElementById('organ-group').value;
+  const sort=document.getElementById('organ-sort').value;
+  let filtered=PTD_ORGANS.filter(o=>{
+    if(q && !o.sigla.toLowerCase().includes(q)) return false;
+    if(g && (o.grupo||'')!==g) return false;
+    return true;
+  });
+  if(sort==='entregas') filtered.sort((a,b)=>b.n_entregas-a.n_entregas);
+  else if(sort==='riscos') filtered.sort((a,b)=>b.n_riscos-a.n_riscos);
+  else filtered.sort((a,b)=>a.sigla.localeCompare(b.sigla));
   document.getElementById('organ-grid').innerHTML=filtered.map(o=>{
-    const cls=o.status_entregas==='ok'&&o.status_riscos==='ok'?'':o.n_entregas>0||o.n_riscos>0?'partial':'failed';
+    const _ok=s=>s==='ok'||s==='compartilhado'; const cls=_ok(o.status_entregas)&&_ok(o.status_riscos)?'':o.n_entregas>0||o.n_riscos>0||_ok(o.status_entregas)||_ok(o.status_riscos)?'partial':'failed';
     return `<div class="organ-card ${cls}" onclick="openOrganModal('${o.sigla}')">
       <div class="sigla">${o.sigla}</div>
       ${o.grupo?`<div class="grupo">${o.grupo}</div>`:''}
@@ -421,34 +962,70 @@ function openOrganModal(sigla){
   if(!o) return;
   const del=PTD_DELIVERIES[sigla]||[];
   const risks=PTD_RISKS[sigla]||[];
-  let html=`<h2>${sigla}</h2><div class="meta">`;
+  const orgDate=typeof PTD_DATES!=='undefined'?PTD_DATES[sigla]:'';
+
+  // Header + meta
+  let html=`<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px">`;
+  html+=`<div><h2 style="margin-bottom:4px">${sigla}</h2><div class="meta" style="margin-bottom:0">`;
   if(o.grupo) html+=`<span>Grupo: <b>${o.grupo}</b></span>`;
   html+=`<span>Entregas: <b>${o.n_entregas}</b></span><span>Riscos: <b>${o.n_riscos}</b></span>`;
-  if(o.url_diretivo) html+=`<a href="${o.url_diretivo}" target="_blank">PDF Diretivo</a>`;
-  if(o.url_entregas) html+=`<a href="${o.url_entregas}" target="_blank">PDF Entregas</a>`;
-  html+=`</div>`;
-  // Eixo chart
+  if(orgDate) html+=`<span>Assinatura: <b>${orgDate}</b></span>`;
+  html+=`</div></div><div style="display:flex;gap:8px">`;
+  if(o.url_diretivo) html+=`<a href="${o.url_diretivo}" target="_blank" style="font-size:.8rem;color:var(--accent)">PDF Diretivo</a>`;
+  if(o.url_entregas) html+=`<a href="${o.url_entregas}" target="_blank" style="font-size:.8rem;color:var(--accent)">PDF Entregas</a>`;
+  html+=`</div></div>`;
+
+  // Two-column layout: left = chart + summary, right = tabs
+  html+=`<div style="display:grid;grid-template-columns:280px 1fr;gap:16px">`;
+
+  // Left column: compact bar chart + stats
+  html+=`<div>`;
   if(o.eixo_breakdown && Object.keys(o.eixo_breakdown).length){
-    html+=`<div class="chart-container"><h3>Entregas por Eixo</h3><canvas id="modal-eixo" height="150"></canvas></div>`;
+    html+=`<canvas id="modal-eixo" height="140"></canvas>`;
   }
-  // Deliveries table
+  // Product breakdown as compact list
+  if(o.produto_breakdown){
+    const prods=Object.entries(o.produto_breakdown).sort((a,b)=>b[1]-a[1]).slice(0,8);
+    const maxP=prods[0]?.[1]||1;
+    html+=`<div style="margin-top:12px;font-size:.78rem">`;
+    prods.forEach(([p,c])=>{
+      const w=c/maxP*100;
+      html+=`<div style="margin-bottom:3px;display:flex;align-items:center;gap:6px"><div style="flex:1;background:var(--bg);border-radius:2px;height:10px;overflow:hidden"><div style="width:${w}%;height:100%;background:var(--accent);border-radius:2px"></div></div><span style="min-width:24px;text-align:right;font-weight:600">${c}</span><span style="color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:140px" title="${p}">${p}</span></div>`;
+    });
+    html+=`</div>`;
+  }
+  html+=`</div>`;
+
+  // Right column: tabbed entregas/riscos
+  html+=`<div>`;
+  // Entregas table
   if(del.length){
-    html+=`<div class="chart-container"><h3>Entregas (${del.length})</h3><div class="table-wrap" style="max-height:300px"><table><thead><tr><th>Serviço/Ação</th><th>Produto</th><th>Eixo</th><th>Data</th></tr></thead><tbody>`;
-    del.forEach(d=>html+=`<tr><td>${(d.servico_acao||'').substring(0,60)}</td><td>${d.produto_normalizado}</td><td>${(d.eixo_normalizado||'').substring(0,25)}</td><td>${d.data_pactuada||''}</td></tr>`);
-    html+=`</tbody></table></div></div>`;
+    html+=`<div style="margin-bottom:12px"><strong style="font-size:.85rem">Entregas (${del.length})</strong></div>`;
+    html+=`<div class="table-wrap" style="max-height:250px"><table><thead><tr><th>Serviço/Ação</th><th>Produto</th><th>Data</th></tr></thead><tbody>`;
+    del.forEach(d=>html+=`<tr><td>${(d.servico_acao||'').substring(0,50)}</td><td style="font-size:.8rem">${d.produto_normalizado}</td><td style="font-size:.8rem">${d.data_pactuada||''}</td></tr>`);
+    html+=`</tbody></table></div>`;
   }
   // Risks table
   if(risks.length){
-    html+=`<div class="chart-container"><h3>Riscos (${risks.length})</h3><div class="table-wrap" style="max-height:300px"><table><thead><tr><th>Risco</th><th>Prob.</th><th>Impacto</th><th>Tratamento</th></tr></thead><tbody>`;
-    risks.forEach(r=>html+=`<tr><td>${(r.risco_texto||'').substring(0,60)}</td><td>${r.probabilidade_normalizada||''}</td><td>${r.impacto_normalizado||''}</td><td>${r.tratamento_normalizado||''}</td></tr>`);
-    html+=`</tbody></table></div></div>`;
+    html+=`<div style="margin:12px 0 8px"><strong style="font-size:.85rem">Riscos (${risks.length})</strong></div>`;
+    html+=`<div class="table-wrap" style="max-height:200px"><table><thead><tr><th>Risco</th><th>Prob.</th><th>Imp.</th><th>Trat.</th></tr></thead><tbody>`;
+    risks.forEach(r=>html+=`<tr><td>${(r.risco_texto||'').substring(0,50)}</td><td style="font-size:.78rem">${r.probabilidade_normalizada||''}</td><td style="font-size:.78rem">${r.impacto_normalizado||''}</td><td style="font-size:.78rem">${r.tratamento_normalizado||''}</td></tr>`);
+    html+=`</tbody></table></div>`;
   }
+  if(!del.length&&!risks.length) html+=`<p style="color:var(--muted)">Sem dados extraídos para este órgão.</p>`;
+  html+=`</div></div>`; // close grid
+
   document.getElementById('modal-body').innerHTML=html;
   document.getElementById('modal-overlay').classList.add('active');
-  // Render modal chart
+
+  // Render compact horizontal bar (not donut)
   if(o.eixo_breakdown && Object.keys(o.eixo_breakdown).length){
     setTimeout(()=>{
-      new Chart(document.getElementById('modal-eixo'),{type:'doughnut',data:{labels:Object.keys(o.eixo_breakdown),datasets:[{data:Object.values(o.eixo_breakdown),backgroundColor:COLORS}]},options:{plugins:{legend:{position:'right'}}}});
+      const eb=o.eixo_breakdown;
+      const labels=Object.keys(eb).map(e=>e.substring(0,20));
+      new Chart(document.getElementById('modal-eixo'),{type:'bar',data:{
+        labels,datasets:[{data:Object.values(eb),backgroundColor:COLORS.slice(0,labels.length),borderRadius:3}]
+      },options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{display:false,beginAtZero:true},y:{grid:{display:false},ticks:{font:{size:10}}}},animation:{duration:400}}});
     },100);
   }
 }
@@ -457,54 +1034,388 @@ function closeModal(){ document.getElementById('modal-overlay').classList.remove
 
 // ==================== 5. COMPARAÇÃO ====================
 let cmpInit=false;
+const orgProductSets={};
+allDel.forEach(d=>{if(!orgProductSets[d.orgao_sigla])orgProductSets[d.orgao_sigla]=new Set();orgProductSets[d.orgao_sigla].add(d.produto_normalizado);});
+
 function initCompare(){
   if(!cmpInit){
     cmpInit=true;
-    const orgaos=PTD_ORGANS.filter(o=>o.n_entregas>0).map(o=>o.sigla).sort();
-    for(let i=1;i<=5;i++){
+    const orgaos=(typeof PTD_JACCARD_ORGANS!=='undefined'?PTD_JACCARD_ORGANS:Object.keys(orgProductSets).sort());
+    const simSel=document.getElementById('sim-orgao');
+    orgaos.forEach(o=>{const op=document.createElement('option');op.value=o;op.textContent=o;simSel.appendChild(op);});
+    simSel.addEventListener('change',renderSimilarityRanking);
+    for(let i=1;i<=3;i++){
       const sel=document.getElementById('cmp-'+i);
       orgaos.forEach(o=>{const op=document.createElement('option');op.value=o;op.textContent=o;sel.appendChild(op);});
     }
+    renderTopPairs();
+    renderDistinctOrgans();
   }
+}
+
+function renderSimilarityRanking(){
+  const el=document.getElementById('similarity-result');
+  const ref=document.getElementById('sim-orgao').value;
+  if(!ref||typeof PTD_JACCARD_MATRIX==='undefined'){
+    el.innerHTML=ref?'':'<p style="color:var(--muted);font-size:.85rem">Selecione um órgão acima para ver os mais similares por perfil de produtos pactuados.</p>';
+    return;
+  }
+  const orgs=PTD_JACCARD_ORGANS, mx=PTD_JACCARD_MATRIX;
+  const ri=orgs.indexOf(ref);
+  if(ri<0){el.innerHTML='';return;}
+  const refProds=orgProductSets[ref];
+  const scores=orgs.map((o,j)=>({o,j:mx[ri][j],prods:orgProductSets[o]?.size||0})).filter(x=>x.o!==ref&&x.j>0).sort((a,b)=>b.j-a.j);
+
+  let html=`<p style="margin:10px 0;font-size:.85rem"><strong>${ref}</strong>: ${refProds?.size||0} produtos distintos</p>`;
+  // Chart.js horizontal bar dos top 20
+  html+=`<canvas id="chart-similarity" height="${Math.max(200,Math.min(scores.length,20)*22)}"></canvas>`;
+  el.innerHTML=html;
+
+  destroyChart('simBar');
+  const top=scores.slice(0,20);
+  charts.simBar=new Chart(document.getElementById('chart-similarity'),{type:'bar',data:{
+    labels:top.map(s=>s.o),
+    datasets:[{label:'Similaridade Jaccard (%)',data:top.map(s=>Math.round(s.j*100)),
+      backgroundColor:top.map(s=>s.j>=0.8?'#264A7F':s.j>=0.5?'#4D8AC9':s.j>=0.3?'#A5CAE8':'#D4D4D4'),borderRadius:4}]
+  },options:{indexAxis:'y',animation:{duration:600},plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>{
+    const s=top[ctx.dataIndex];const shared=refProds&&orgProductSets[s.o]?[...refProds].filter(p=>orgProductSets[s.o].has(p)):[];
+    return `${ctx.raw}% — ${shared.length} produtos em comum`;
+  }}}},scales:{x:{beginAtZero:true,max:100,title:{display:true,text:'Jaccard (%)'},grid:{display:false}},y:{grid:{display:false}}}}});
+}
+
+function renderTopPairs(){
+  if(typeof PTD_JACCARD_MATRIX==='undefined')return;
+  const orgs=PTD_JACCARD_ORGANS,mx=PTD_JACCARD_MATRIX;
+  const pairs=[];
+  for(let i=0;i<orgs.length;i++)for(let j=i+1;j<orgs.length;j++)if(mx[i][j]>0.5)pairs.push([orgs[i],orgs[j],mx[i][j]]);
+  pairs.sort((a,b)=>b[2]-a[2]);
+  let html='<table><thead><tr><th>Órgão A</th><th>Órgão B</th><th>Jaccard</th><th>Interpretação</th></tr></thead><tbody>';
+  pairs.slice(0,15).forEach(([a,b,j])=>{
+    const pct=(j*100).toFixed(0);
+    const oA=PTD_ORGANS.find(x=>x.sigla===a), oB=PTD_ORGANS.find(x=>x.sigla===b);
+    const sameGroup=oA?.grupo&&oB?.grupo&&oA.grupo===oB.grupo;
+    const interp=j===1?(sameGroup?'Mesmo PTD (grupo '+oA.grupo+')':'Catálogos idênticos'):j>=0.8?'Muito similares':'Similares';
+    html+=`<tr><td><b>${a}</b></td><td><b>${b}</b></td><td style="font-weight:700;color:var(--primary)">${pct}%</td><td style="font-size:.8rem;color:var(--muted)">${interp}</td></tr>`;
+  });
+  html+='</tbody></table>';
+  document.getElementById('top-pairs').innerHTML=html;
+}
+
+function renderDistinctOrgans(){
+  if(typeof PTD_JACCARD_MATRIX==='undefined')return;
+  const orgs=PTD_JACCARD_ORGANS,mx=PTD_JACCARD_MATRIX;
+  const avgSim=orgs.map((o,i)=>{
+    const sims=mx[i].filter((_,j)=>j!==i);
+    return {o,avg:sims.reduce((a,b)=>a+b,0)/sims.length,prods:orgProductSets[o]?.size||0};
+  }).sort((a,b)=>a.avg-b.avg);
+  let html='<table><thead><tr><th>Órgão</th><th>Similaridade média</th><th>Produtos</th><th>Perfil</th></tr></thead><tbody>';
+  avgSim.slice(0,15).forEach(({o,avg,prods})=>{
+    const barW=Math.max(2,avg*100);
+    const perfil=avg<0.25?'Altamente específico':avg<0.35?'Distinto':'Moderado';
+    html+=`<tr><td><b>${o}</b></td><td><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;background:var(--bg);border-radius:3px;height:12px"><div style="width:${barW}%;height:100%;background:var(--accent);border-radius:3px"></div></div><span style="font-size:.8rem;min-width:35px">${(avg*100).toFixed(0)}%</span></div></td><td style="text-align:center">${prods}</td><td style="font-size:.8rem;color:var(--muted)">${perfil}</td></tr>`;
+  });
+  html+='</tbody></table>';
+  document.getElementById('distinct-organs').innerHTML=html;
 }
 
 function runCompare(){
   const selected=[];
-  for(let i=1;i<=5;i++){const v=document.getElementById('cmp-'+i).value;if(v&&!selected.includes(v))selected.push(v);}
+  for(let i=1;i<=3;i++){const v=document.getElementById('cmp-'+i).value;if(v&&!selected.includes(v))selected.push(v);}
   if(selected.length<2){alert('Selecione pelo menos 2 órgãos');return;}
-
-  // Radar chart — entregas por eixo (normalized %)
-  destroyChart('radar'); destroyChart('cmpBar');
-  const datasets=selected.map((s,i)=>{
-    const o=PTD_ORGANS.find(x=>x.sigla===s);
-    const eb=o?.eixo_breakdown||{};
-    const total=Object.values(eb).reduce((a,b)=>a+b,0)||1;
-    return {label:s, data:EIXOS.map(e=>(eb[e]||0)/total*100), borderColor:COLORS[i], backgroundColor:COLORS[i]+'33', pointRadius:4};
-  });
-  charts.radar=new Chart(document.getElementById('chart-radar'),{type:'radar',data:{labels:EIXOS.map(e=>e.substring(0,20)),datasets},options:{scales:{r:{min:0,max:100,ticks:{stepSize:20}}},plugins:{legend:{position:'bottom'}}}});
-
-  // Grouped bar — top 5 products across selected
+  destroyChart('cmpBar');
   const allProds=new Set();
   selected.forEach(s=>{const o=PTD_ORGANS.find(x=>x.sigla===s);Object.keys(o?.produto_breakdown||{}).forEach(p=>allProds.add(p));});
-  const topProds=[...allProds].map(p=>{let total=0;selected.forEach(s=>{const o=PTD_ORGANS.find(x=>x.sigla===s);total+=(o?.produto_breakdown||{})[p]||0;});return [p,total];}).sort((a,b)=>b[1]-a[1]).slice(0,8).map(x=>x[0]);
-
-  const barDS=selected.map((s,i)=>{
-    const o=PTD_ORGANS.find(x=>x.sigla===s);
-    return {label:s,data:topProds.map(p=>(o?.produto_breakdown||{})[p]||0),backgroundColor:COLORS[i],borderRadius:4};
-  });
-  charts.cmpBar=new Chart(document.getElementById('chart-compare-bar'),{type:'bar',data:{labels:topProds.map(p=>p.substring(0,30)),datasets:barDS},options:{plugins:{legend:{position:'bottom'}}}});
-
-  // Metrics table
+  const topProds=[...allProds].map(p=>{let t=0;selected.forEach(s=>{const o=PTD_ORGANS.find(x=>x.sigla===s);t+=(o?.produto_breakdown||{})[p]||0;});return[p,t];}).sort((a,b)=>b[1]-a[1]).slice(0,8).map(x=>x[0]);
+  const barDS=selected.map((s,i)=>({label:s,data:topProds.map(p=>(PTD_ORGANS.find(x=>x.sigla===s)?.produto_breakdown||{})[p]||0),backgroundColor:COLORS[i],borderRadius:4}));
+  charts.cmpBar=new Chart(document.getElementById('chart-compare-bar'),{type:'bar',data:{labels:topProds.map(p=>p.substring(0,30)),datasets:barDS},options:{indexAxis:'y',plugins:{legend:{position:'bottom'}},scales:{x:{beginAtZero:true,grid:{display:false}},y:{grid:{display:false}}}}});
   let html='<table><thead><tr><th>Métrica</th>'+selected.map(s=>`<th>${s}</th>`).join('')+'</tr></thead><tbody>';
   html+='<tr><td>Entregas</td>'+selected.map(s=>`<td>${PTD_ORGANS.find(x=>x.sigla===s)?.n_entregas||0}</td>`).join('')+'</tr>';
   html+='<tr><td>Riscos</td>'+selected.map(s=>`<td>${PTD_ORGANS.find(x=>x.sigla===s)?.n_riscos||0}</td>`).join('')+'</tr>';
-  html+='<tr><td>Top Produto</td>'+selected.map(s=>{const o=PTD_ORGANS.find(x=>x.sigla===s);const pb=o?.produto_breakdown||{};const top=Object.entries(pb).sort((a,b)=>b[1]-a[1])[0];return `<td>${top?top[0].substring(0,30):'-'}</td>`;}).join('')+'</tr>';
-  html+='<tr><td>Grupo</td>'+selected.map(s=>`<td>${PTD_ORGANS.find(x=>x.sigla===s)?.grupo||'-'}</td>`).join('')+'</tr>';
+  html+='<tr><td>Produtos</td>'+selected.map(s=>`<td>${orgProductSets[s]?.size||0}</td>`).join('')+'</tr>';
+  if(selected.length===2&&typeof PTD_JACCARD_MATRIX!=='undefined'){
+    const i=PTD_JACCARD_ORGANS.indexOf(selected[0]),j=PTD_JACCARD_ORGANS.indexOf(selected[1]);
+    if(i>=0&&j>=0)html+=`<tr><td>Jaccard</td><td colspan="2" style="font-weight:700;color:var(--primary)">${(PTD_JACCARD_MATRIX[i][j]*100).toFixed(0)}%</td></tr>`;
+  }
   html+='</tbody></table>';
   document.getElementById('compare-table').innerHTML=html;
 }
 
+// ==================== EIXOS ACCORDION (aba O que é PTD) ====================
+(function renderEixosAccordion(){
+  // Catálogo v4.0 + legados, separados por seção
+  const PRODS={
+    "Serviços Digitais e Melhoria da Qualidade":{foco:"Digitalizar e evoluir serviços ao cidadão, avaliação de satisfação, acessibilidade",
+      prods:["Disponibilização em Acesso Digital","Disponibilização de datas/cronograma na Agenda Gov.Br","Evolução do Serviço","Implantação da Área Logada Gov.Br","Implantação da Experiência LabQ","Implementação do VLIBRAS","Integração à ferramenta de acompanhamento das solicitações","Integração à ferramenta de avaliação da satisfação dos usuários","Realização de Autodiagnóstico de Qualidade","Revisão da descrição dos serviços","Oferta de agendamento digital","Integração à ferramenta de solicitação de atendimento presencial","Implantação do Atendimento Virtual"],
+      legados:["Digitalização de Serviço"]},
+    "Unificação de Canais Digitais":{foco:"Login Único, Design System, migração para Gov.br, Pagtesouro",
+      prods:["Implantação do Design System","Integração ao Login Único","Integração ao Pagtesouro","Integração com Assinatura Digital Gov.br","Migração de APPs móveis para a loja do Gov.br","Migração de Portal Institucional","Migração de Serviço para Plataforma Unificada"],legados:[]},
+    "Governança e Gestão de Dados":{foco:"LGPD, dados abertos, interoperabilidade, Conecta Gov.br, inventário de dados",
+      prods:["Abertura de bases de dados","Adequação à LGPD","Catalogação de bases de dados no Portal de Dados","Criação de Comitê de Governança de Dados","Elaboração de Plano de Dados Abertos","Elaboração do PDTIC","Elaboração/Revisão da POSIC","Implantação de processo de gestão de dados","Implantação do inventário de bases de dados","Implementação da interoperabilidade de dados","Integração de dados ao Conecta Gov.br","Integração de dados ao Datamart","Melhoria da qualidade de bases de dados","Nomeação de Encarregado de Dados Pessoais","Obtenção de certificação de bases de dados","Publicação de dados no Portal de Dados Abertos","Realização de Inventário de Dados","Relatório de Impacto à Proteção de Dados Pessoais","Resposta a demandas de compartilhamento","Utilização de dados do Conecta Gov.br"],
+      legados:["Integração à base de dados","Interoperabilidade de Sistemas"]},
+    "Segurança e Privacidade":{foco:"Framework de privacidade, maturidade em segurança (PPSI na prática)",
+      prods:["Adequação ao Framework de Privacidade e Segurança da Informação","Elevação do nível de maturidade em privacidade e segurança"],
+      legados:["Implementação do PPSI","Adequação ao PPSI","Auto-avaliação, análise de lacunas e planejamento do PPSI"]},
+    "Projetos Especiais":{foco:"Iniciativas de transformação digital e projetos estratégicos",
+      prods:["Iniciativa de Transformação Digital","Projeto Especial de Transformação Digital"],legados:[]},
+  };
+  const el=document.getElementById('eixos-accordion');
+  if(!el)return;
+  const prodCounts={};allDel.forEach(d=>{prodCounts[d.produto_normalizado]=(prodCounts[d.produto_normalizado]||0)+1;});
+  let html='';
+  Object.entries(PRODS).forEach(([eixo,info])=>{
+    const allProds=[...info.prods,...(info.legados||[])];
+    const totalEixo=allProds.reduce((s,p)=>s+(prodCounts[p]||0),0);
+    const nCatalogo=info.prods.length;
+    const nLegados=info.legados?.length||0;
+    html+=`<div class="chart-container" style="padding:0;margin-bottom:8px">`;
+    html+=`<details><summary style="padding:14px 16px;cursor:pointer;font-weight:600;color:var(--dark);list-style:none;display:flex;justify-content:space-between;align-items:center"><span>${eixo}</span><span style="font-size:.8rem;color:var(--muted)">${nCatalogo} canônicos${nLegados?' + '+nLegados+' legados':''} · ${totalEixo.toLocaleString('pt-BR')} entregas</span></summary>`;
+    html+=`<div style="padding:0 16px 14px"><p style="font-size:.83rem;color:var(--muted);margin-bottom:10px">${info.foco}</p>`;
+    html+=`<table><thead><tr><th>Produto</th><th style="width:160px">Entregas</th><th style="width:70px;text-align:right">Órgãos</th><th style="width:50px">v.</th></tr></thead><tbody>`;
+    const prodOrgs={};allDel.forEach(d=>{if(!prodOrgs[d.produto_normalizado])prodOrgs[d.produto_normalizado]=new Set();prodOrgs[d.produto_normalizado].add(d.orgao_sigla);});
+    const maxProd=Math.max(...allProds.map(p=>prodCounts[p]||0),1);
+    function prodRow(p,c,no,isLegacy){
+      const pct=c/maxProd*100;
+      const barColor=isLegacy?'#8E44AD':c>100?'var(--green)':c>0?'var(--accent)':'transparent';
+      const textColor=c===0?'var(--red)':isLegacy?'#8E44AD':'var(--text)';
+      const bg=isLegacy?'background:#f9f5ff;':'';
+      return `<tr style="${bg}"><td style="color:${textColor}">${p}${isLegacy?' <em style="font-size:.7rem;color:#8E44AD">(legado)</em>':''}</td><td><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;background:var(--bg);border-radius:3px;height:16px;overflow:hidden"><div style="width:${pct}%;height:100%;background:${barColor};border-radius:3px;transition:width .3s"></div></div><span style="font-weight:600;font-size:.82rem;min-width:40px;text-align:right;color:${textColor}">${c>0?c.toLocaleString('pt-BR'):'—'}</span></div></td><td style="text-align:right;color:${textColor};font-weight:600">${no>0?no:'—'}</td><td style="font-size:.7rem;color:var(--muted)">${isLegacy?'2.x':'4.0'}</td></tr>`;
+    }
+    info.prods.forEach(p=>{ html+=prodRow(p,prodCounts[p]||0,prodOrgs[p]?.size||0,false); });
+    if(info.legados?.length){ info.legados.forEach(p=>{ html+=prodRow(p,prodCounts[p]||0,prodOrgs[p]?.size||0,true); }); }
+    html+=`</tbody></table></div></details></div>`;
+  });
+  el.innerHTML=html;
+})();
+
+// ==================== 6. INSIGHTS (v2 — collapsible) ====================
+let insInit=false;
+function initInsights(){
+  if(insInit) return; insInit=true;
+  const el=document.getElementById('insights-content');
+  const N=allDel.length, NR=allRisk.length;
+  const nOrgsD=new Set(allDel.map(d=>d.orgao_sigla)).size;
+  const nOrgsR=new Set(allRisk.map(r=>r.orgao_sigla)).size;
+  const orgDelC2={};allDel.forEach(d=>orgDelC2[d.orgao_sigla]=(orgDelC2[d.orgao_sigla]||0)+1);
+  const eixoC={};allDel.forEach(d=>{const e=d.eixo_normalizado;if(e)eixoC[e]=(eixoC[e]||0)+1;});
+  const eixoS=Object.entries(eixoC).sort((a,b)=>b[1]-a[1]);
+  const top2pct=((eixoS[0]?.[1]||0)+(eixoS[1]?.[1]||0))/N*100;
+  const govDados=eixoC['Governança e Gestão de Dados']||0;
+  const prodC={};allDel.forEach(d=>{prodC[d.produto_normalizado]=(prodC[d.produto_normalizado]||0)+1;});
+  const nProdsUsed=Object.keys(prodC).length;
+  const orgProds={};allDel.forEach(d=>{if(!orgProds[d.orgao_sigla])orgProds[d.orgao_sigla]=new Set();orgProds[d.orgao_sigla].add(d.produto_normalizado);});
+  const ppsiPres=Object.values(orgProds).filter(s=>s.has('Implementação do PPSI')).length;
+  const riskT={};allRisk.forEach(r=>{const t=re_norm(r.risco_texto);if(t.length>10)riskT[t]=(riskT[t]||0)+1;});
+  function re_norm(t){return(t||'').trim().toLowerCase().substring(0,60).replace(/\s+/g,' ');}
+  const templateR=Object.values(riskT).filter(c=>c>=5).reduce((a,b)=>a+b,0);
+  const noAction=allRisk.filter(r=>!(r.acoes_original||'').trim()&&!(r.acoes_resolvidas||'').trim()).length;
+  const noActHigh=allRisk.filter(r=>!(r.acoes_original||'').trim()&&!(r.acoes_resolvidas||'').trim()&&['alto','muito alto'].includes(r.impacto_normalizado)).length;
+  const orgTrat={};allRisk.forEach(r=>{if(!orgTrat[r.orgao_sigla])orgTrat[r.orgao_sigla]=new Set();(r.tratamento_normalizado||'').split(';').forEach(t=>{t=t.trim().toLowerCase();if(['mitigar','eliminar','transferir','aceitar'].includes(t))orgTrat[r.orgao_sigla].add(t);});});
+  const onlyMit=Object.entries(orgTrat).filter(([,s])=>s.size===1&&s.has('mitigar')).length;
+  const pessoalKw=['equipe','pessoal','rotatividade','recurso humano','força de trabalho','fornecedor','disponibilidade'];
+  const fiscalKw=['orçament','recurso','financ','custo'];
+  const nPess=allRisk.filter(r=>pessoalKw.some(k=>(r.risco_texto||'').toLowerCase().includes(k))).length;
+  const nFisc=allRisk.filter(r=>fiscalKw.some(k=>(r.risco_texto||'').toLowerCase().includes(k))).length;
+  const highP=new Set(['provável','muito provável','praticamente certo']);
+  const highI=new Set(['alto','muito alto']);
+  const crit=allRisk.filter(r=>highP.has(r.probabilidade_normalizada)&&highI.has(r.impacto_normalizado));
+
+  function card(color,title,tag,summary,detail){
+    return `<div class="insight-card" style="border-left-color:${color}" onclick="this.classList.toggle('open')"><h4>${title}<span class="tag" style="color:${color}">${tag}</span></h4><div class="summary">${summary}</div><div class="detail">${detail}</div></div>`;
+  }
+
+  let html='<p style="font-size:.82rem;color:var(--muted);margin-bottom:16px">Clique em um card para expandir a fundamentação.</p>';
+  html+='<h3 style="color:var(--dark);margin-bottom:12px">Corpus</h3>';
+  html+=card('#264A7F','Cobertura',nOrgsD+'/91',
+    `${N.toLocaleString('pt-BR')} entregas e ${NR} riscos extraídos de ${nOrgsD} e ${nOrgsR} órgãos respectivamente.`,
+    `Os ${PTD_STATS.pdfs_escaneados_pendentes} órgãos ausentes possuem PDFs escaneados como imagem. A cobertura de 87% confere representatividade substantiva, embora a confirmação definitiva requeira OCR. A extração usou abordagem híbrida: find_tables() para tabelas multi-página + fallback textual para PDFs sem estrutura tabelar detectável.`);
+  html+=card('#264A7F','Homogeneidade','PPSI 90%',
+    `${nProdsUsed} dos 44 produtos canônicos usados. PPSI presente em ${ppsiPres}/${nOrgsD} órgãos.`,
+    `Nenhum produto é universal. A padronização de facto centra-se em segurança (PPSI, 90%) e identidade digital (Login Único, 76%). Os 25 produtos ausentes — a maioria do eixo Governança — existem no catálogo da EFGD mas não nas pactuações efetivas.`);
+
+  html+='<h3 style="color:var(--dark);margin:16px 0 12px">Entregas</h3>';
+  html+=card('#4D8AC9','Concentração setorial',top2pct.toFixed(0)+'%',
+    `Dois eixos (Serviços Digitais + Unificação) concentram ${top2pct.toFixed(0)}% das entregas.`,
+    `A transformação digital federal prioriza a interface com o cidadão em detrimento de dimensões estruturantes. Segurança (${eixoC['Segurança e Privacidade']||0}, ${((eixoC['Segurança e Privacidade']||0)/N*100).toFixed(0)}%) é sustentada pelo PPSI legado. Governança e Dados tem ${govDados} entregas (${(govDados/N*100).toFixed(1)}%), todas de um único produto.`);
+  html+=card('#4D8AC9','Governança residual',govDados.toString(),
+    `${govDados} entregas em Governança, todas de "Integração à base de dados". 19/20 produtos com zero.`,
+    `Adequação à LGPD, PDTIC, abertura de dados, interoperabilidade — todos com zero pactuações. Quando órgãos executam ações de governança (ex: LGPD na ANA), registram sob outros produtos. Ressalva: 12 órgãos com PDFs escaneados não foram processados.`);
+  html+=card('#4D8AC9','6 princípios, 5 eixos','3 ativos',
+    `Dos 6 princípios do Decreto, apenas 3 têm expressão operacional nos PTDs.`,
+    `Os princípios centrado no cidadão (I), integrado (II) e seguro (IV) sustentam as pactuações. Inteligente/inovador (III), transparente/participativo (V) e eficiente/sustentável (VI) carecem de materialização. A distância entre aspiração normativa e execução é significativa.`);
+
+  html+='<h3 style="color:var(--dark);margin:16px 0 12px">Riscos</h3>';
+  html+=card('#C0392B','Reprodução do referencial',(templateR/NR*100).toFixed(0)+'%',
+    `${templateR} dos ${NR} riscos repetem textos do referencial SGD. ${NR-templateR} são originais.`,
+    `Os riscos mais replicados — dependência de fornecedores, atraso nos cronogramas, baixo comprometimento — são legítimos, mas sua uniformidade sugere conformidade formal mais que exercício analítico genuíno. Órgãos como MMULHERES (44 riscos) e MGI (29) apresentam maior originalidade.`);
+  html+=card('#C0392B','Sem plano de ação',noAction+'/'+NR,
+    `${(noAction/NR*100).toFixed(0)}% dos riscos não têm ações detalhadas. ${noActHigh} desses com impacto alto/muito alto.`,
+    `O mapeamento existe mas a resposta não se materializa no documento. Essa dissociação entre diagnóstico e tratamento é particularmente preocupante nos ${noActHigh} riscos de alta severidade sem ações — o órgão reconhece o problema mas não registra como pretende enfrentá-lo.`);
+  html+=card('#C0392B','Monocultura da mitigação',onlyMit+' órgãos',
+    `${onlyMit} órgãos usam exclusivamente "mitigar". Apenas ${Object.entries(orgTrat).filter(([,s])=>s.size>=3).length} diversificam com 3+ estratégias.`,
+    `Em todos os níveis de impacto, mitigação representa ~80% das respostas. Riscos transferíveis (dependência de fornecedores) e riscos aceitáveis (baixa probabilidade) raramente recebem o tratamento recomendado pela literatura de gestão de riscos.`);
+
+  html+='<h3 style="color:var(--dark);margin:16px 0 12px">Transversal</h3>';
+  html+=card('#27AE60','Pessoas, não orçamento',nPess+' vs '+nFisc,
+    `Riscos de pessoal (${nPess}) são ${(nPess/Math.max(nFisc,1)).toFixed(1)}× mais frequentes que fiscais (${nFisc}).`,
+    `A restrição mais reconhecida não é orçamentária, mas de capital humano — rotatividade, indisponibilidade de TI, dependência de fornecedores. ${Math.round(Object.keys(orgTrat).filter(o=>!allRisk.some(r=>r.orgao_sigla===o&&pessoalKw.some(k=>(r.risco_texto||'').toLowerCase().includes(k)))).length/Object.keys(orgTrat).length*100)}% dos órgãos sequer mencionam esse tipo de risco.`);
+  html+=card('#27AE60','Zona crítica da matriz',crit.length.toString(),
+    `${crit.length} riscos com probabilidade ≥provável e impacto ≥alto, em ${new Set(crit.map(r=>r.orgao_sigla)).size} órgãos.`,
+    `Os mais recorrentes: dependência de fornecedores, indisponibilidade de equipes de TI, atraso nos cronogramas. A classificação é autodeclarada, o que pode introduzir vieses de sub ou superestimação. Cinco riscos ocupam a célula máxima (praticamente certo × muito alto).`);
+
+  // Gini concentration
+  const orgDelVals=Object.values(orgDelC2).sort((a,b)=>a-b);
+  const gN=orgDelVals.length, gTotal=orgDelVals.reduce((a,b)=>a+b,0);
+  let giniSum=0; orgDelVals.forEach((v,i)=>{giniSum+=(2*(i+1)-gN-1)*v;});
+  const gini=(giniSum/(gN*gTotal)).toFixed(3);
+  const top20pct=orgDelVals.slice(Math.floor(gN*0.8)).reduce((a,b)=>a+b,0);
+  html+=card('#27AE60','Concentração (Gini)','0.'+gini.split('.')[1],
+    `Coeficiente de Gini de ${gini}. Os 20% maiores órgãos concentram ${(top20pct/gTotal*100).toFixed(0)}% das entregas.`,
+    `A curva de Lorenz (aba Visualizações) mostra que a distribuição de entregas entre órgãos é moderadamente desigual. Órgãos como ANVISA, IBAMA e PGFN pactuam centenas de entregas, enquanto outros como ABIN e CGU registram menos de 10. Essa disparidade pode refletir diferenças no porte dos órgãos, na maturidade digital, ou no grau de engajamento com o instrumento PTD.`);
+
+  // PPSI dominance
+  const segEntregas=allDel.filter(d=>d.eixo_normalizado==='Segurança e Privacidade');
+  const ppsiInSeg=segEntregas.filter(d=>d.produto_normalizado.includes('PPSI')).length;
+  html+=card('#27AE60','PPSI: o produto que domina Segurança',ppsiInSeg+'/'+segEntregas.length,
+    `${(ppsiInSeg/Math.max(segEntregas.length,1)*100).toFixed(0)}% das entregas de Segurança e Privacidade são de produtos PPSI — um legado do template v2.x.`,
+    `O PPSI (Programa de Privacidade e Segurança da Informação) não consta no catálogo v4.0 da EFGD mas é o 1º produto em difusão (90% dos órgãos). Os 2 produtos canônicos deste eixo — Adequação ao Framework e Elevação de maturidade — somam apenas ${segEntregas.length-ppsiInSeg} entregas. Isso evidencia uma desconexão entre o catálogo oficial e a prática: os órgãos seguem pactuando um produto de versões anteriores do template.`);
+
+  el.innerHTML=html;
+  // Make cards clickable to expand
+  el.querySelectorAll('.insight-card').forEach(c=>{c.style.cursor='pointer';});
+}
+
+// ==================== 7. VISUALIZAÇÕES ====================
+let vizInit=false;
+function initVisualizations(){
+  if(vizInit) return; vizInit=true;
+
+  const orgDelC={};allDel.forEach(d=>orgDelC[d.orgao_sigla]=(orgDelC[d.orgao_sigla]||0)+1);
+  const orgRiskC2={};allRisk.forEach(r=>orgRiskC2[r.orgao_sigla]=(orgRiskC2[r.orgao_sigla]||0)+1);
+  const orgProds={};allDel.forEach(d=>{if(!orgProds[d.orgao_sigla])orgProds[d.orgao_sigla]=new Set();orgProds[d.orgao_sigla].add(d.produto_normalizado);});
+
+  // 1. Scatter Entregas × Riscos
+  const scatterData=PTD_ORGANS.filter(o=>o.n_entregas>0||o.n_riscos>0).map(o=>({x:o.n_entregas,y:o.n_riscos,label:o.sigla}));
+  new Chart(document.getElementById('chart-scatter'),{type:'scatter',data:{datasets:[{
+    data:scatterData,backgroundColor:'#264A7F88',borderColor:'#264A7F',pointRadius:5,pointHoverRadius:8}]},
+    options:{plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.raw.label+': '+ctx.raw.x+' entregas, '+ctx.raw.y+' riscos'}}},
+    scales:{x:{title:{display:true,text:'Entregas pactuadas'},beginAtZero:true,grid:{display:false}},
+    y:{title:{display:true,text:'Riscos mapeados'},beginAtZero:true,grid:{display:false}}}}});
+
+  // 2. Curva de Lorenz
+  const vals=Object.values(orgDelC).sort((a,b)=>a-b);
+  const n=vals.length,total=vals.reduce((a,b)=>a+b,0);
+  let cum=0;
+  const lorenzX=[0],lorenzY=[0];
+  vals.forEach((v,i)=>{cum+=v;lorenzX.push((i+1)/n*100);lorenzY.push(cum/total*100);});
+  // Gini
+  let giniSum=0;
+  vals.forEach((v,i)=>{giniSum+=(2*(i+1)-n-1)*v;});
+  const gini=(giniSum/(n*total)).toFixed(3);
+  new Chart(document.getElementById('chart-lorenz'),{type:'line',data:{labels:lorenzX.map(x=>x.toFixed(0)+'%'),datasets:[
+    {label:'Distribuição real',data:lorenzY,borderColor:'#264A7F',backgroundColor:'#264A7F22',fill:true,tension:0.3,pointRadius:0},
+    {label:'Igualdade perfeita',data:lorenzX,borderColor:'#C0392B',borderDash:[5,5],pointRadius:0,fill:false}
+  ]},options:{plugins:{legend:{position:'bottom'}},scales:{x:{title:{display:true,text:'% acumulado de órgãos'},grid:{display:false}},y:{title:{display:true,text:'% acumulado de entregas'},grid:{display:false}}}}});
+  document.getElementById('lorenz-stats').innerHTML=`<div style="display:flex;gap:16px"><div class="kpi" style="padding:10px;border-top:3px solid #264A7F;flex:1"><div class="label">Coeficiente de Gini</div><div class="value" style="font-size:1.3rem">${gini}</div><div class="sub">${gini>0.4?'Concentração elevada':'Concentração moderada'}</div></div><div class="kpi" style="padding:10px;border-top:3px solid #C0392B;flex:1"><div class="label">Top 20% dos órgãos</div><div class="value" style="font-size:1.3rem">${(lorenzY[Math.floor(n*0.8)]).toFixed(0)}%</div><div class="sub">das entregas</div></div></div>`;
+
+  // 3. Histograma
+  const bins=[0,25,50,100,150,200,300,500];
+  const hist=new Array(bins.length).fill(0);
+  Object.values(orgDelC).forEach(v=>{for(let i=bins.length-1;i>=0;i--){if(v>=bins[i]){hist[i]++;break;}}});
+  const histLabels=bins.map((b,i)=>i<bins.length-1?b+'-'+(bins[i+1]-1):b+'+');
+  new Chart(document.getElementById('chart-histogram'),{type:'bar',data:{labels:histLabels,datasets:[{
+    data:hist,backgroundColor:'#264A7F',borderRadius:4}]},options:{plugins:{legend:{display:false}},
+    scales:{x:{title:{display:true,text:'Faixa de entregas'},grid:{display:false}},y:{title:{display:true,text:'Nº de órgãos'},beginAtZero:true,grid:{display:false}}}}});
+
+  // 4. Diversidade de produtos
+  const divData=Object.entries(orgProds).map(([o,s])=>({o,n:s.size})).sort((a,b)=>b.n-a.n).slice(0,30);
+  new Chart(document.getElementById('chart-diversity'),{type:'bar',data:{labels:divData.map(d=>d.o),datasets:[{
+    data:divData.map(d=>d.n),backgroundColor:'#4D8AC9',borderRadius:4}]},options:{plugins:{legend:{display:false}},
+    scales:{x:{grid:{display:false}},y:{title:{display:true,text:'Produtos distintos'},beginAtZero:true,grid:{display:false}}}}});
+
+  // 5. Heatmap Órgão × Eixo (HTML table)
+  const topOrgs=Object.entries(orgDelC).sort((a,b)=>b[1]-a[1]).slice(0,30).map(([o])=>o);
+  const eixos=[...new Set(allDel.map(d=>d.eixo_normalizado).filter(Boolean))].sort();
+  const heatData={};
+  allDel.forEach(d=>{if(!topOrgs.includes(d.orgao_sigla))return;const k=d.orgao_sigla+'|'+d.eixo_normalizado;heatData[k]=(heatData[k]||0)+1;});
+  const maxHeat=Math.max(...Object.values(heatData),1);
+  let hhtml='<table style="font-size:.75rem"><thead><tr><th></th>'+eixos.map(e=>`<th style="writing-mode:vertical-lr;transform:rotate(180deg);max-width:30px;font-size:.7rem">${e.substring(0,25)}</th>`).join('')+'</tr></thead><tbody>';
+  topOrgs.forEach(o=>{
+    hhtml+=`<tr><td style="font-weight:600;white-space:nowrap">${o}</td>`;
+    eixos.forEach(e=>{
+      const v=heatData[o+'|'+e]||0;
+      const intensity=v/maxHeat;
+      const bg=v===0?'#f5f5f5':`rgba(38,74,127,${0.1+intensity*0.8})`;
+      const color=intensity>0.5?'#fff':'var(--text)';
+      hhtml+=`<td style="text-align:center;background:${bg};color:${color};padding:4px 6px;min-width:40px">${v||''}</td>`;
+    });
+    hhtml+=`</tr>`;
+  });
+  hhtml+='</tbody></table>';
+  document.getElementById('heatmap-org-eixo').innerHTML=hhtml;
+
+  // 6. Perfil de risco por grupo
+  const groups={};
+  PTD_ORGANS.forEach(o=>{const g=o.grupo||o.sigla;if(!groups[g])groups[g]={risks:0,orgs:0};groups[g].risks+=o.n_riscos;groups[g].orgs++;});
+  const gSorted=Object.entries(groups).filter(([g,d])=>d.risks>5).sort((a,b)=>b[1].risks/b[1].orgs-a[1].risks/a[1].orgs).slice(0,15);
+  new Chart(document.getElementById('chart-group-risk'),{type:'bar',data:{
+    labels:gSorted.map(([g])=>g),datasets:[{label:'Riscos/órgão',data:gSorted.map(([,d])=>(d.risks/d.orgs).toFixed(1)),backgroundColor:'#C0392B',borderRadius:4}]},
+    options:{plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{title:{display:true,text:'Riscos por órgão (média)'},beginAtZero:true,grid:{display:false}}}}});
+
+  // 7. Bigramas nos riscos
+  const stopwords=new Set(['de','do','da','dos','das','para','com','por','no','na','nos','nas','ao','aos','em','um','uma','que','se','ou','e','o','a','os','as','é','não','à','às']);
+  const bigrams={};
+  allRisk.forEach(r=>{
+    const words=(r.risco_texto||'').toLowerCase().replace(/[^a-záéíóúâêôãõç\s]/g,'').split(/\s+/).filter(w=>w.length>2&&!stopwords.has(w));
+    for(let i=0;i<words.length-1;i++){const bg=words[i]+' '+words[i+1];bigrams[bg]=(bigrams[bg]||0)+1;}
+  });
+  const topBg=Object.entries(bigrams).sort((a,b)=>b[1]-a[1]).slice(0,15);
+  new Chart(document.getElementById('chart-bigrams'),{type:'bar',data:{
+    labels:topBg.map(([bg])=>bg),datasets:[{data:topBg.map(([,c])=>c),backgroundColor:'#8E44AD',borderRadius:4}]},
+    options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,grid:{display:false}},y:{grid:{display:false}}}}});
+
+  // 8. Burndown temporal
+  const months={"jan":"01","fev":"02","mar":"03","abr":"04","mai":"05","jun":"06","jul":"07","ago":"08","set":"09","out":"10","nov":"11","dez":"12"};
+  const dateC={};
+  allDel.forEach(d=>{
+    const dp=(d.data_pactuada||'').toLowerCase();
+    let ym='';
+    const m1=dp.match(/^(jan|fev|mar|abr|mai|jun|jul|ago|set|out|nov|dez)[\-\/](\d{2,4})$/);
+    if(m1){let yr=m1[2];if(yr.length===2)yr='20'+yr;ym=yr+'-'+months[m1[1]];}
+    const m2=dp.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+    if(m2) ym=m2[3]+'-'+m2[2];
+    const m3=dp.match(/^(\d{2})\/(\d{2,4})$/);
+    if(m3){let yr=m3[2];if(yr.length===2)yr='20'+yr;ym=yr+'-'+m3[1];}
+    if(ym) dateC[ym]=(dateC[ym]||0)+1;
+  });
+  const dSorted=Object.entries(dateC).sort((a,b)=>a[0].localeCompare(b[0]));
+  if(dSorted.length){
+    const dLabels=dSorted.map(([m])=>{const [y,mo]=m.split('-');const nomes=['','jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];return (nomes[parseInt(mo)]||mo)+'/'+y.substring(2);});
+    let cumDel=0;
+    const cumData=dSorted.map(([,c])=>{cumDel+=c;return cumDel;});
+    new Chart(document.getElementById('chart-burndown'),{type:'line',data:{labels:dLabels,datasets:[
+      {label:'Entregas no mês',data:dSorted.map(([,c])=>c),borderColor:'#264A7F',backgroundColor:'#264A7F22',fill:true,tension:0.2,pointRadius:2,yAxisID:'y'},
+      {label:'Acumulado',data:cumData,borderColor:'#C0392B',borderDash:[5,3],tension:0.2,pointRadius:0,yAxisID:'y1'}
+    ]},options:{interaction:{mode:'index',intersect:false},plugins:{legend:{position:'bottom'}},
+      scales:{x:{grid:{display:false}},y:{beginAtZero:true,position:'left',title:{display:true,text:'Entregas/mês'},grid:{display:false}},
+      y1:{beginAtZero:true,position:'right',title:{display:true,text:'Acumulado'},grid:{drawOnChartArea:false}}}}});
+  }
+}
+
 // ==================== INIT ====================
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.sidebar nav a').forEach(a => a.classList.toggle('active', a.getAttribute('href')==='#'+id));
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(id==='overview') initOverview();
+  if(id==='deliveries') initDeliveries();
+  if(id==='risks') initRisks();
+  if(id==='organs') initOrgans();
+  if(id==='compare') initCompare();
+  if(id==='insights') initInsights();
+  if(id==='visualizations') initVisualizations();
+}
+
 document.addEventListener('DOMContentLoaded',()=>{
   const h=location.hash.replace('#','');
   showSection(h||'overview');
