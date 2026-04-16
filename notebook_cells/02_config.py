@@ -114,6 +114,7 @@ LEGACY_PRODUTOS: Dict[str, List[str]] = {
     ],
     "Projetos Especiais": [
         "Ação estratégica de transformação digital",         # variante
+        "Outros",                                            # produto genérico usado por 39 órgãos
     ],
 }
 
