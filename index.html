@@ -786,10 +786,13 @@ function filterDeliveries(){
 
   // Summary
   const delOrgs=new Set(delFiltered.map(d=>d.orgao_sigla));
+  // Contar órgãos cobertos (próprios + compartilhados)
+  const coveredOrgs=PTD_ORGANS.filter(o=>o.status_entregas==='ok'||o.status_entregas==='compartilhado').length;
+  const orgCount=org?1:(delFiltered.length===allDel.length?coveredOrgs:delOrgs.size);
   const delProdC={};delFiltered.forEach(d=>{delProdC[d.produto_normalizado]=(delProdC[d.produto_normalizado]||0)+1;});
   const topDelProd=Object.entries(delProdC).sort((a,b)=>b[1]-a[1])[0];
   const activeFilters=[(org?'órgão: '+org:''),(eix?'eixo: '+eix.substring(0,25):''),(prod?'produto: '+prod.substring(0,25):''),(q?'texto: "'+q+'"':'')].filter(Boolean).join(' · ');
-  document.getElementById('del-count').innerHTML=`<strong>${delFiltered.length.toLocaleString('pt-BR')}</strong> entregas em <strong>${delOrgs.size}</strong> órgãos${topDelProd?' · Mais frequente: <em>'+topDelProd[0]+'</em> ('+topDelProd[1]+')':''}${activeFilters?'<br><span style="font-size:.78rem;color:var(--muted)">Filtros: '+activeFilters+'</span>':''}`;
+  document.getElementById('del-count').innerHTML=`<strong>${delFiltered.length.toLocaleString('pt-BR')}</strong> entregas em <strong>${orgCount}</strong> órgãos${topDelProd?' · Mais frequente: <em>'+topDelProd[0]+'</em> ('+topDelProd[1]+')':''}${activeFilters?'<br><span style="font-size:.78rem;color:var(--muted)">Filtros: '+activeFilters+'</span>':''}`;
 
   // Eixo chart — always visible, responds to filters
   destroyChart('delEixo');
