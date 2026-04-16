@@ -1,11 +1,11 @@
 {
   "data_execucao": "2026-04-15",
   "orgaos_total": 91,
-  "entregas_total": 7929,
+  "entregas_total": 4667,
   "entregas_orgaos": 79,
-  "riscos_total": 931,
+  "riscos_total": 595,
   "riscos_orgaos": 71,
-  "riscos_canonicos": 615,
+  "riscos_canonicos": 439,
   "pdfs_escaneados_pendentes": 15,
   "top5_produtos": {
     "Integração à ferramenta de avaliação da satisfação dos usuários": 790,
@@ -15,32 +15,32 @@
     "Implementação do PPSI": 349
   },
   "entregas_por_eixo": {
-    "Serviços Digitais e Melhoria da Qualidade": 4437,
-    "Unificação de Canais Digitais": 1908,
-    "Segurança e Privacidade": 1057,
-    "Projetos Especiais": 172,
-    "Governança e Gestão de Dados": 262
+    "Serviços Digitais e Melhoria da Qualidade": 2535,
+    "Unificação de Canais Digitais": 1224,
+    "Segurança e Privacidade": 655,
+    "Projetos Especiais": 70,
+    "Governança e Gestão de Dados": 116
   },
   "distribuicao_probabilidade": {
-    "raro": 29,
-    "pouco provável": 214,
-    "provável": 266,
-    "muito provável": 68,
-    "praticamente certo": 42
+    "raro": 26,
+    "pouco provável": 173,
+    "provável": 182,
+    "muito provável": 42,
+    "praticamente certo": 20
   },
   "distribuicao_impacto": {
     "muito baixo": 0,
-    "baixo": 61,
-    "médio": 266,
-    "alto": 374,
-    "muito alto": 133
+    "baixo": 45,
+    "médio": 146,
+    "alto": 205,
+    "muito alto": 108
   },
   "distribuicao_tratamento": {
-    "mitigar": 574,
-    "aceitar": 92,
+    "mitigar": 327,
+    "aceitar": 54,
     "transferir": 22,
-    "eliminar": 38
+    "eliminar": 9
   },
-  "media_entregas_por_orgao": 100.4,
-  "mediana_entregas_por_orgao": 71
+  "media_entregas_por_orgao": 81.9,
+  "mediana_entregas_por_orgao": 55
 }
