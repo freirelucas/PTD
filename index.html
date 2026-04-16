@@ -420,6 +420,22 @@ tr:hover td{background:var(--light)}
   <div class="chart-container"><h3>Burndown: Concentração Temporal das Entregas</h3>
     <p class="desc" style="margin-bottom:8px">Distribuição das datas pactuadas por mês. Revela se os órgãos planejam entregas constantes ou concentram no final da vigência.</p>
     <canvas id="chart-burndown"></canvas></div>
+
+  <div class="chart-container"><h3>Tecnologia e Inovação nos PTDs</h3>
+    <p class="desc" style="margin-bottom:8px">Presença de termos relacionados a tecnologias emergentes nos textos livres das entregas. Revela o grau de adoção de IA, automação e plataformas.</p>
+    <div class="chart-row">
+      <div><canvas id="chart-tech"></canvas></div>
+      <div id="tech-detail"></div>
+    </div>
+  </div>
+
+  <div class="chart-container"><h3>Dependência de Fornecedores — Análise de Risco</h3>
+    <p class="desc" style="margin-bottom:8px">O risco mais recorrente do corpus. Quantos órgãos o identificam, qual a severidade e como tratam.</p>
+    <div class="chart-row">
+      <div><canvas id="chart-fornecedor"></canvas></div>
+      <div id="fornecedor-detail"></div>
+    </div>
+  </div>
 </div>
 
 <!-- ===== NOTA TÉCNICA ===== -->
@@ -1399,6 +1415,50 @@ function initVisualizations(){
       scales:{x:{grid:{display:false}},y:{beginAtZero:true,position:'left',title:{display:true,text:'Entregas/mês'},grid:{display:false}},
       y1:{beginAtZero:true,position:'right',title:{display:true,text:'Acumulado'},grid:{drawOnChartArea:false}}}}});
   }
+
+  // === Tech categories ===
+  const techCats={
+    "Plataforma Gov.br":["login único","login unico","design system","pagtesouro","plataforma unificada","assinatura digital"],
+    "Acessibilidade":["acessibilidade","vlibras","libras","pessoa com deficiência","pessoa com deficiencia"],
+    "Interoperabilidade":["interoperabilidade","integração de sistemas"," api ","webservice","conecta gov"],
+    "LGPD/Privacidade":["lgpd","proteção de dados","privacidade","dados pessoais","encarregado"],
+    "IA e Chatbot":["inteligência artificial","inteligencia artificial"," ia ","machine learning","chatbot","bot ","assistente virtual"],
+    "Mobile/App":["app móvel","aplicativo móvel","mobile","superapp"],
+    "Dados/Analytics":["dados abertos","open data","analytics","business intelligence","dashboard","painel de dados"],
+  };
+  const techResults=[];
+  Object.entries(techCats).forEach(([cat,terms])=>{
+    let count=0;const orgs=new Set();
+    allDel.forEach(d=>{
+      const t=((d.servico_acao||'')+(d.produto_original||'')).toLowerCase();
+      if(terms.some(k=>t.includes(k))){count++;orgs.add(d.orgao_sigla);}
+    });
+    techResults.push({cat,count,orgs:orgs.size});
+  });
+  techResults.sort((a,b)=>b.count-a.count);
+
+  new Chart(document.getElementById('chart-tech'),{type:'bar',data:{
+    labels:techResults.map(t=>t.cat),
+    datasets:[{label:'Entregas',data:techResults.map(t=>t.count),backgroundColor:'#264A7F',borderRadius:4}]
+  },options:{indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${ctx.raw} entregas em ${techResults[ctx.dataIndex].orgs} órgãos`}}},scales:{x:{beginAtZero:true,grid:{display:false}},y:{grid:{display:false}}}}});
+
+  // Tech detail text
+  const iaCount=techResults.find(t=>t.cat==='IA e Chatbot');
+  const platCount=techResults.find(t=>t.cat==='Plataforma Gov.br');
+  document.getElementById('tech-detail').innerHTML=`<div class="insight-card" style="border-left-color:#264A7F;cursor:default"><h4>Diagnóstico</h4><div class="summary"><strong>Governo como Plataforma</strong> domina: ${platCount?.count||0} entregas em ${platCount?.orgs||0} órgãos (Login Único, Design System, Pagtesouro). É a estratégia central de unificação.<br><br><strong>IA e automação</strong> são incipientes: apenas ${iaCount?.count||0} entregas explicitam uso de IA, chatbots ou automação — todas na ANAC e MAPA. Nenhum órgão pactuou RPA, analytics avançado ou machine learning como produto formal.<br><br><strong>Oportunidades</strong>: atendimento virtual com IA (chatbots para Gov.br), automação de back-office, análise preditiva de demandas, e interoperabilidade inteligente via APIs.</div></div>`;
+
+  // === Fornecedores ===
+  const fornRisks=allRisk.filter(r=>(r.risco_texto||'').toLowerCase().includes('fornecedor'));
+  const fornOrgs=new Set(fornRisks.map(r=>r.orgao_sigla));
+  const fornCrit=fornRisks.filter(r=>['provável','muito provável','praticamente certo'].includes(r.probabilidade_normalizada)&&['alto','muito alto'].includes(r.impacto_normalizado));
+  const fornTrat={};fornRisks.forEach(r=>{(r.tratamento_normalizado||'').split(';').forEach(t=>{t=t.trim().toLowerCase();if(t&&t.length<20)fornTrat[t]=(fornTrat[t]||0)+1;});});
+
+  new Chart(document.getElementById('chart-fornecedor'),{type:'doughnut',data:{
+    labels:['Zona crítica (prob≥provável, imp≥alto)','Zona moderada'],
+    datasets:[{data:[fornCrit.length,fornRisks.length-fornCrit.length],backgroundColor:['#C0392B','#4D8AC9'],borderWidth:2,borderColor:'#fff'}]
+  },options:{aspectRatio:1.5,cutout:'50%',plugins:{legend:{position:'bottom'}}}});
+
+  document.getElementById('fornecedor-detail').innerHTML=`<div class="insight-card" style="border-left-color:#C0392B;cursor:default"><h4>Dependência de Fornecedores</h4><div class="summary"><span class="num" style="color:#C0392B">${fornRisks.length}</span> riscos em <strong>${fornOrgs.size}</strong> órgãos mencionam dependência de fornecedores — o risco mais transversal do governo digital.<br><br><strong>${fornCrit.length}</strong> estão na zona crítica (${(fornCrit.length/Math.max(fornRisks.length,1)*100).toFixed(0)}%). O tratamento predominante é <strong>mitigar</strong> (${fornTrat['mitigar']||0}x), embora a literatura recomende <em>transferir</em> ou <em>compartilhar</em> esse tipo de risco.<br><br><strong>Paradoxo</strong>: órgãos que mais digitalizam são os mais dependentes de fornecedores externos para executar a transformação — criando um ciclo de vulnerabilidade estrutural.</div></div>`;
 }
 
 // ==================== INIT ====================
