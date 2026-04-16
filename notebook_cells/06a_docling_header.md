@@ -1,3 +1,3 @@
-## 4. Configuração do Docling e Classificação de Tabelas
+## 4. Configuração do Extrator e Classificação de Tabelas
 
-Inicializa o pipeline de extração de tabelas Docling (IBM) e define funções de classificação.
+Inicializa o extrator de tabelas (PyMuPDF `find_tables()`) e define funções de classificação para tabelas de riscos e entregas.

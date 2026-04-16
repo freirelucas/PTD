@@ -1,3 +1,3 @@
 ## 6. Extração de Tabelas de Entregas (Anexos de Entregas)
 
-Extrai tabelas de entregas pactuadas, concluídas e canceladas de cada Anexo de Entregas.
+Extrai entregas pactuadas via `find_tables()` com fallback textual. Captura produtos canônicos e "Outros" (projetos especiais).

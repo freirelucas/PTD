@@ -15,7 +15,7 @@ except ImportError:
 
 # --- Instalação de pacotes (apenas no Colab; local usa requirements.txt) ---
 if IN_COLAB:
-    get_ipython().system('pip install -q docling beautifulsoup4 requests tqdm pandas matplotlib seaborn')
+    get_ipython().system('pip install -q pymupdf beautifulsoup4 requests tqdm pandas matplotlib seaborn')
 
 # --- Google Drive (persistência de PDFs e outputs no Colab) ---
 USE_DRIVE = IN_COLAB
