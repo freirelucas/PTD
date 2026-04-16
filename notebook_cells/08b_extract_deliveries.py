@@ -43,6 +43,29 @@ def _extract_deliveries_tables(pdf_path: str, sigla: str) -> List[DeliveryEntry]
                     nm[role] = str(col)
             if "produto" in nm or ("servico" in nm and len(nm) >= 2):
                 col_map = nm
+            elif col_map and df.shape[1] == len(col_map):
+                # Continuação multi-página: mesma estrutura, headers são dados
+                # Recuperar primeira linha (que virou header de coluna)
+                header_vals = [normalize_text(str(c)) for c in df.columns]
+                prod_in_header = fuzzy_match_produto(header_vals[1] if len(header_vals)>1 else "")
+                is_out_header = _is_outros(header_vals[1] if len(header_vals)>1 else "")
+                if (prod_in_header[1] >= 0.85 or is_out_header) and header_vals[0].lower() not in ("nan","none",""):
+                    # Header é dado — criar entrada e processar normalmente
+                    p = prod_in_header[0] if prod_in_header[1] >= 0.85 else "Outros"
+                    e = PRODUTO_TO_EIXO.get(p, "")
+                    if not e and len(header_vals) > 2:
+                        em = fuzzy_match_eixo(header_vals[2])
+                        if em[1] >= 0.80: e = em[0]
+                    entries.append(DeliveryEntry(
+                        orgao_sigla=sigla, servico_acao=header_vals[0][:250],
+                        produto_original=header_vals[1][:250] if len(header_vals)>1 else "",
+                        produto_normalizado=p, eixo_original=header_vals[2][:100] if len(header_vals)>2 else "",
+                        eixo_normalizado=e,
+                        data_pactuada=parse_date(header_vals[4]) if len(header_vals)>4 and header_vals[4] else None,
+                        extraction_confidence="medium", needs_review=True,
+                        review_reason="recuperado de header multi-página",
+                    ))
+                # Usar col_map posicional existente para o restante das linhas
 
             if not col_map and len(df) > 0:
                 for ci, val in enumerate(df.iloc[0]):
@@ -71,9 +94,23 @@ def _extract_deliveries_tables(pdf_path: str, sigla: str) -> List[DeliveryEntry]
             if not col_map:
                 continue
 
+            # Construir mapa posicional para tabelas de continuação
+            # onde os nomes de coluna são dados, não headers
+            pos_map = None
+            if col_map:
+                test_col = col_map.get("produto", "")
+                if test_col and test_col not in df.columns:
+                    # Nomes mudaram (continuação) — mapear por posição
+                    # Estrutura padrão: 0=servico, 1=produto, 2=eixo, 3=area, 4=data
+                    pos_map = {"servico": 0, "produto": 1, "eixo": 2}
+                    if df.shape[1] >= 5: pos_map["data"] = 4
+                    elif df.shape[1] >= 4: pos_map["data"] = 3
+
             for _, row in df.iterrows():
                 prod_raw = ""
-                if "produto" in col_map:
+                if pos_map and "produto" in pos_map:
+                    prod_raw = normalize_text(str(row.iloc[pos_map["produto"]]))
+                elif "produto" in col_map:
                     prod_raw = normalize_text(str(row.get(col_map["produto"], "")))
                 if not prod_raw or prod_raw.lower() in ("nan", "none", "produto", "produto ptd"):
                     for val in row:
@@ -90,14 +127,18 @@ def _extract_deliveries_tables(pdf_path: str, sigla: str) -> List[DeliveryEntry]
                     continue
 
                 serv = ""
-                if "servico" in col_map:
+                if pos_map and "servico" in pos_map:
+                    serv = normalize_text(str(row.iloc[pos_map["servico"]]))
+                elif "servico" in col_map:
                     serv = normalize_text(str(row.get(col_map["servico"], "")))
-                    if serv.lower() in ("nan", "none", "servico/acao", "servico"): serv = ""
+                if serv.lower() in ("nan", "none", "servico/acao", "servico", "serviço /ação"): serv = ""
 
                 eixo_raw = ""
-                if "eixo" in col_map:
+                if pos_map and "eixo" in pos_map:
+                    eixo_raw = normalize_text(str(row.iloc[pos_map["eixo"]]))
+                elif "eixo" in col_map:
                     eixo_raw = normalize_text(str(row.get(col_map["eixo"], "")))
-                    if eixo_raw.lower() in ("nan", "none", "eixo"): eixo_raw = ""
+                if eixo_raw.lower() in ("nan", "none", "eixo"): eixo_raw = ""
 
                 prod_norm = pm[0] if pm[1] >= 0.85 else "Outros"
                 eixo_norm = PRODUTO_TO_EIXO.get(prod_norm, "")
@@ -107,9 +148,11 @@ def _extract_deliveries_tables(pdf_path: str, sigla: str) -> List[DeliveryEntry]
                         eixo_norm = eixo_match[0]
 
                 data = ""
-                if "data" in col_map:
+                if pos_map and "data" in pos_map:
+                    data = normalize_text(str(row.iloc[pos_map["data"]]))
+                elif "data" in col_map:
                     data = normalize_text(str(row.get(col_map["data"], "")))
-                    if data.lower() in ("nan", "none", "dtpactuada"): data = ""
+                if data.lower() in ("nan", "none", "dtpactuada"): data = ""
 
                 entries.append(DeliveryEntry(
                     orgao_sigla=sigla,
