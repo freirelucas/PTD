@@ -417,8 +417,8 @@ tr:hover td{background:var(--light)}
       <canvas id="chart-bigrams"></canvas></div>
   </div>
 
-  <div class="chart-container"><h3>Burndown: Concentração Temporal das Entregas</h3>
-    <p class="desc" style="margin-bottom:8px">Distribuição das datas pactuadas por mês. Revela se os órgãos planejam entregas constantes ou concentram no final da vigência.</p>
+  <div class="chart-container"><h3>Assinaturas × Entregas: Cronologia</h3>
+    <p class="desc" style="margin-bottom:8px">Cruza a data de assinatura do PTD (proxy: criação do PDF) com as datas das entregas pactuadas. Revela o lag entre adesão e execução.</p>
     <canvas id="chart-burndown"></canvas></div>
 
   <div class="chart-container"><h3>Tecnologia e Inovação nos PTDs</h3>
@@ -1496,7 +1496,7 @@ function initVisualizations(){
     labels:topBg.map(([bg])=>bg),datasets:[{data:topBg.map(([,c])=>c),backgroundColor:'#8E44AD',borderRadius:4}]},
     options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,grid:{display:false}},y:{grid:{display:false}}}}});
 
-  // 8. Burndown temporal
+  // 8. Assinaturas × Entregas temporal
   const months={"jan":"01","fev":"02","mar":"03","abr":"04","mai":"05","jun":"06","jul":"07","ago":"08","set":"09","out":"10","nov":"11","dez":"12"};
   const dateC={};
   allDel.forEach(d=>{
@@ -1510,14 +1510,19 @@ function initVisualizations(){
     if(m3){let yr=m3[2];if(yr.length===2)yr='20'+yr;ym=yr+'-'+m3[1];}
     if(ym) dateC[ym]=(dateC[ym]||0)+1;
   });
-  const dSorted=Object.entries(dateC).sort((a,b)=>a[0].localeCompare(b[0]));
-  if(dSorted.length){
-    const dLabels=dSorted.map(([m])=>{const [y,mo]=m.split('-');const nomes=['','jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];return (nomes[parseInt(mo)]||mo)+'/'+y.substring(2);});
-    let cumDel=0;
-    const cumData=dSorted.map(([,c])=>{cumDel+=c;return cumDel;});
+  const signC={};
+  if(typeof PTD_DATES!=='undefined'){Object.values(PTD_DATES).forEach(d=>{if(d){const ym=d.substring(0,7);if(ym.length===7)signC[ym]=(signC[ym]||0)+1;}});}
+  const allMonths=[...new Set([...Object.keys(dateC),...Object.keys(signC)])].sort();
+  if(allMonths.length){
+    const nomes=['','jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+    const dLabels=allMonths.map(m=>{const [y,mo]=m.split('-');return (nomes[parseInt(mo)]||mo)+'/'+y.substring(2);});
+    let cumDel=0,cumSign=0;
+    const cumDelData=allMonths.map(m=>{cumDel+=(dateC[m]||0);return cumDel;});
+    const cumSignData=allMonths.map(m=>{cumSign+=(signC[m]||0);return cumSign;});
     new Chart(document.getElementById('chart-burndown'),{type:'line',data:{labels:dLabels,datasets:[
-      {label:'Entregas no mês',data:dSorted.map(([,c])=>c),borderColor:'#264A7F',backgroundColor:'#264A7F22',fill:true,tension:0.2,pointRadius:2,yAxisID:'y'},
-      {label:'Acumulado',data:cumData,borderColor:'#C0392B',borderDash:[5,3],tension:0.2,pointRadius:0,yAxisID:'y1'}
+      {label:'Entregas no mês',data:allMonths.map(m=>dateC[m]||0),type:'bar',backgroundColor:'#264A7F44',borderColor:'#264A7F',borderWidth:1,yAxisID:'y',order:2},
+      {label:'Entregas acumuladas',data:cumDelData,borderColor:'#264A7F',tension:0.2,pointRadius:0,yAxisID:'y1',order:1},
+      {label:'Assinaturas acumuladas',data:cumSignData,borderColor:'#C0392B',borderDash:[5,3],tension:0.2,pointRadius:3,pointBackgroundColor:'#C0392B',yAxisID:'y1',order:0}
     ]},options:{interaction:{mode:'index',intersect:false},plugins:{legend:{position:'bottom'}},
       scales:{x:{grid:{display:false}},y:{beginAtZero:true,position:'left',title:{display:true,text:'Entregas/mês'},grid:{display:false}},
       y1:{beginAtZero:true,position:'right',title:{display:true,text:'Acumulado'},grid:{drawOnChartArea:false}}}}});

@@ -85,13 +85,45 @@ Esta nota técnica apresenta a construção e análise de um corpus abrangente d
 - Campos preservados: produto_original + produto_normalizado (texto livre + canônico)
 - Match exato: 90.7% | Fuzzy: 9.3% (truncamentos do PDF)
 
-**2.3 Estrutura do corpus**
+**2.4 Tratamento de órgãos agrupados**
 
-Entregas (deliveries.csv — 4.573 linhas × 9 colunas):
+Sete grupos ministeriais publicam um único PTD para múltiplos órgãos. Os registros são desduplicados por hash MD5 do arquivo PDF, e a cobertura é expandida para todos os membros do grupo:
+
+| Grupo (cabeça) | Órgão com dados | Membros compartilhados |
+|----------------|-----------------|------------------------|
+| MD | CENSIPAM | MD, CEX, CM, COMAER, FOSORIO, HFA |
+| MEC | CAPES | MEC, EBSERH, FNDE, FUNDAJ, IBC, INEP, INES |
+| MF | MF, PGFN | RFB, STN |
+| MMA | IBAMA | MMA, ICMBIO, JBRJ, SFB |
+| MT | ANTT | MT, DNIT |
+| MDA | CONAB | MDA |
+| MIDR | — (sem dados) | CODEVASF, SUDAM, SUDECO, SUDENE |
+
+Regra: as entregas e riscos extraídos do PDF são registrados uma vez sob o órgão com dados próprios (`status=ok`). Os demais membros recebem `status=compartilhado` e são incluídos nas contagens de cobertura (ex: "79 órgãos com entregas" = 57 próprios + 22 compartilhados), mas sem duplicar os registros no corpus.
+
+**2.5 Desafios de extração e qualidade dos dados**
+
+O extrator PyMuPDF `find_tables()` apresentou cinco desafios técnicos específicos, cada um com tratamento programático:
+
+1. **Tabelas multi-página**: `find_tables()` trata cada página como tabela independente. O merge é feito via rastreamento de `col_order` e `risk_ncols` — quando uma tabela na página N+1 tem a mesma largura (número de colunas) que a tabela da página N e contém dados compatíveis (detecção por `_is_risk_data()`), as linhas são concatenadas à tabela principal.
+
+2. **Header-as-data**: em ~17 PDFs, `find_tables()` interpreta a primeira linha de dados como cabeçalho do DataFrame. A detecção é feita por `_cols_are_data()` (verifica se os supostos cabeçalhos contêm valores compatíveis com riscos ou produtos) e a linha é recuperada como dado.
+
+3. **Mapeamento posicional**: tabelas de continuação multi-página perdem os headers originais — os nomes de coluna são os valores da primeira linha. Um `pos_map` (dicionário posição→campo) permite acesso direto por índice: `{servico: 0, produto: 1, eixo: 2, data: 4}`.
+
+4. **Resolução de ações numéricas**: 35 órgãos referenciam ações de tratamento como "1, 2, 9" ao invés do texto completo, remetendo a uma lista "Referencial para ações de tratamento" incluída no PDF. O extrator faz parsing dessa lista e resolve as referências numéricas para o texto integral.
+
+5. **Colunas deslocadas**: 156 riscos (26%) de 4 órgãos (CENSIPAM: 26, ANTAQ: 26, PRF: 14, SUSEP: 9) apresentam probabilidade e impacto em campos trocados — o texto do risco aparece na coluna de probabilidade e vice-versa. Essa limitação decorre de templates de tabela não-padrão nesses PDFs. Os 439 riscos canônicos (74%) possuem todas as dimensões corretamente mapeadas.
+
+6. **Produto "Outros"**: 140 entregas que não correspondem a nenhum dos 44 produtos canônicos do template v4.0 são classificadas como produto "Outros" no eixo Projetos Especiais. Correspondem a projetos institucionais específicos de cada órgão (ex: "Modernização do SIAFI" no MF).
+
+**2.6 Estrutura do corpus**
+
+Entregas (`deliveries.csv` — 4.573 linhas × 9 colunas):
 - orgao_sigla, servico_acao, produto_original, produto_normalizado, produto_score
 - eixo_original, eixo_normalizado, data_pactuada, confidence
 
-Riscos (risks.csv — 595 linhas × 11 colunas):
+Riscos (`risks.csv` — 595 linhas × 11 colunas):
 - orgao_sigla, id_risco, risco_texto
 - probabilidade_original, probabilidade_normalizada
 - impacto_original, impacto_normalizado
@@ -154,6 +186,34 @@ Riscos (risks.csv — 595 linhas × 11 colunas):
 - PPSI é o produto mais difundido (91% dos órgãos próprios), seguido de Login Único (81%)
 - Nenhum produto é universal (presente em todos os órgãos)
 - Top 2 eixos concentram 79,9% das entregas
+
+**3.4 Análises computadas no dashboard**
+
+O dashboard interativo (disponível em https://freirelucas.github.io/PTD/) implementa as seguintes análises, todas calculadas dinamicamente a partir do corpus:
+
+*Entregas — distribuição e concentração:*
+
+- **Curva de Lorenz e concentração**: mede a desigualdade na distribuição de entregas entre órgãos. Os 20% de órgãos com maior volume concentram mais da metade das entregas pactuadas.
+- **Cronologia assinatura × entrega**: cruza a data de criação do PDF (proxy da assinatura do PTD) com as datas pactuadas de entrega. Revela o lag entre adesão formal e execução planejada, e a concentração de entregas nos meses finais da vigência.
+- **Diversidade de produtos por órgão**: conta o número de produtos distintos pactuados por cada órgão. Revela que a maioria dos órgãos opera num subconjunto reduzido dos 44 produtos canônicos.
+- **Heatmap órgão × eixo**: matriz dos 30 maiores órgãos mostrando a concentração setorial de entregas por eixo estratégico.
+
+*Riscos — padrões e qualidade:*
+
+- **Matriz 5×5 interativa**: probabilidade × impacto com ações de mitigação agregadas por célula. Ao clicar numa célula, exibe as ações de tratamento dos riscos naquela combinação, com órgãos afetados (incluindo membros de grupos compartilhados).
+- **Bigramas**: frequência de pares de palavras consecutivas nos textos de risco. Mede a originalidade da redação vs reprodução do template padrão da SGD.
+- **Dependência de fornecedores**: 23 riscos em 22 órgãos próprios (36 com membros compartilhados) mencionam dependência de fornecedores — o risco mais transversal. 15 estão na zona crítica (probabilidade ≥ provável × impacto ≥ alto). O tratamento predominante é "mitigar" (32×), embora a literatura recomende "transferir" ou "compartilhar" para riscos de dependência externa.
+- **Risco de pessoal/TI**: rotatividade, indisponibilidade de equipes e dependência de fornecedores são mais frequentes que riscos orçamentários. 24% dos órgãos com riscos mapeados não mencionam riscos de pessoal.
+
+*Comparação entre órgãos:*
+
+- **Similaridade de Jaccard**: coeficiente calculado a partir dos perfis de produtos pactuados (conjunto de produtos distintos por órgão). Órgãos de um mesmo grupo ministerial apresentam similaridade 100% (mesmo PTD). Permite identificar clusters de órgãos com estratégias convergentes.
+- **Comparação multi-órgão**: seleção de até 3 órgãos para comparação direta de catálogos de produtos, com tabela de sobreposição.
+
+*Tecnologia e inovação:*
+
+- **Detecção por keyword**: busca de termos em textos livres de entregas (serviço/ação + produto original) para categorias: Plataforma Gov.br (login único, design system, pagtesouro), IA e chatbot, Acessibilidade (VLibras), Interoperabilidade, LGPD/Privacidade, Mobile/App, Dados/Analytics.
+- **Resultado**: "Governo como Plataforma" domina o portfólio digital federal. IA/automação é incipiente — nenhum órgão pactuou RPA, analytics avançado ou machine learning como produto formal.
 
 ---
 
