@@ -811,7 +811,7 @@ function filterDeliveries(){
   const delProdC={};delFiltered.forEach(d=>{delProdC[d.produto_normalizado]=(delProdC[d.produto_normalizado]||0)+1;});
   const topDelProd=Object.entries(delProdC).sort((a,b)=>b[1]-a[1])[0];
   const activeFilters=[(org?'órgão: '+org:''),(eix?'eixo: '+eix.substring(0,25):''),(prod?'produto: '+prod.substring(0,25):''),(q?'texto: "'+q+'"':'')].filter(Boolean).join(' · ');
-  document.getElementById('del-count').innerHTML=`<strong>${delFiltered.length.toLocaleString('pt-BR')}</strong> entregas em <strong>${orgCount}</strong> órgãos${topDelProd?' · Mais frequente: <em>'+topDelProd[0]+'</em> ('+topDelProd[1]+')':''}${activeFilters?'<br><span style="font-size:.78rem;color:var(--muted)">Filtros: '+activeFilters+'</span>':''}`;
+  document.getElementById('del-count').innerHTML=`<strong>${delFiltered.length.toLocaleString('pt-BR')}</strong> entregas em <strong>${orgCount}</strong> órgãos${topDelProd?' · Mais frequente: <em>'+topDelProd[0]+'</em> ('+topDelProd[1]+')':''}${activeFilters?'<br><span style="font-size:.78rem;color:var(--muted)">Filtros: '+activeFilters+' <a href="#" onclick="document.getElementById(\'f-orgao\').value=\'\';document.getElementById(\'f-eixo\').value=\'\';document.getElementById(\'f-produto\').value=\'\';document.getElementById(\'f-search\').value=\'\';delPage=0;filterDeliveries();return false;" style="color:var(--accent);margin-left:8px">limpar</a></span>':''}`;
 
   // Eixo chart — always visible, responds to filters
   destroyChart('delEixo');
@@ -824,7 +824,7 @@ function filterDeliveries(){
       datasets:[{data:eixoSorted.map(([,c])=>c),backgroundColor:COLORS.slice(0,eixoSorted.length),borderRadius:4}]
     },options:{indexAxis:'y',animation:{duration:400},onClick:(evt,elems)=>{
       if(elems.length){const idx=elems[0].index;const eixoName=eixoSorted[idx][0];
-      document.getElementById('f-eixo').value=eixoName;delPage=0;filterDeliveries();}
+      document.getElementById('f-eixo').value=eixoName;document.getElementById('f-produto').value='';delPage=0;filterDeliveries();}
     },plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${ctx.raw} entregas (${(ctx.raw/delFiltered.length*100).toFixed(1)}%) — clique para filtrar`}}},scales:{x:{beginAtZero:true,grid:{display:false}},y:{grid:{display:false}}}}});
   }
 
@@ -841,7 +841,7 @@ function filterDeliveries(){
       return `${ctx.raw} entregas em ${_expandOrgs(pOrgs).size} órgãos — clique para filtrar`;
     }}}},onClick:(evt,elems)=>{
       if(elems.length){const idx=elems[0].index;const prodName=prodSorted[idx][0];
-      document.getElementById('f-produto').value=prodName;delPage=0;filterDeliveries();}
+      document.getElementById('f-produto').value=prodName;document.getElementById('f-eixo').value='';delPage=0;filterDeliveries();}
     },scales:{x:{beginAtZero:true,grid:{display:false}},y:{grid:{display:false}}}}});
   }
 
