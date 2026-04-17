@@ -155,7 +155,7 @@ tr:hover td{background:var(--light)}
     <strong>O corpus:</strong> Extração automatizada dos Planos de Transformação Digital (PTDs) de 91 órgãos da administração pública federal, conforme publicados no portal gov.br. De cada PTD foram extraídos o Anexo de Entregas (ações pactuadas com a SGD/MGI, classificadas por produto e eixo da EFGD 2024-2027) e o Documento Diretivo (tabela de gestão de riscos com probabilidade, impacto e ações de tratamento). O corpus totaliza <strong><span id="hc-del"></span> entregas</strong> e <strong><span id="hc-risk"></span> riscos</strong>, cobrindo <strong><span id="hc-cov"></span></strong> dos órgãos signatários (órgãos que compartilham um mesmo PTD ministerial são contados uma única vez).
   </div>
   <div class="kpi-row" id="kpi-cards"></div>
-  <div class="chart-container"><h3>Cronologia das Assinaturas dos PTDs</h3><p class="desc" style="margin-bottom:8px">Data de criação do PDF como proxy da assinatura. Barras mostram o volume de entregas pactuadas pelos órgãos que assinaram em cada mês.</p><canvas id="chart-timeline"></canvas><div id="timeline-insight" style="margin-top:12px"></div></div>
+  <div class="chart-container"><h3>Cronologia Mensal das Assinaturas dos PTDs</h3><p class="desc" style="margin-bottom:8px">Data de criação do PDF como proxy da assinatura. Barras mostram quantos órgãos assinaram em cada mês; linha tracejada mostra o acumulado.</p><canvas id="chart-timeline"></canvas><div id="timeline-insight" style="margin-top:12px"></div></div>
   <div class="chart-row">
     <div class="chart-container"><h3>Entregas por Eixo Estratégico</h3><canvas id="chart-eixo"></canvas></div>
     <div class="chart-container chart-sm"><h3>Cobertura de Extração</h3><canvas id="chart-coverage"></canvas></div>
@@ -620,37 +620,35 @@ function initOverview(){
     {l:'Cobertura',v:Math.round(cov/PTD_STATS.orgaos_total*100)+'%',s:cov+'/'+PTD_STATS.orgaos_total+' órgãos'},
   ].map(k=>`<div class="kpi"><div class="label">${k.l}</div><div class="value">${k.v}</div><div class="sub">${k.s}</div></div>`).join('');
 
-  // Timeline chart — trimestral, linha, absoluto + acumulado
+  // Timeline chart — mensal, área + acumulado
   if(typeof PTD_TIMELINE_ORGANS !== 'undefined'){
     const dates=typeof PTD_DATES!=='undefined'?PTD_DATES:{};
-    // Agregar por trimestre
-    const qMap={};
+    const meses=['','jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+    const mMap={};
     Object.entries(dates).forEach(([sigla,d])=>{
       if(!d)return;
-      const [y,m]=d.split('-').map(Number);
-      const q=Math.ceil(m/3);
-      const key=`${y}T${q}`;
-      if(!qMap[key])qMap[key]={orgs:0,label:`${q}ºT/${y.toString().substring(2)}`};
-      qMap[key].orgs++;
+      const ym=d.substring(0,7);
+      if(!mMap[ym])mMap[ym]=0;
+      mMap[ym]++;
     });
-    const quarters=Object.keys(qMap).sort();
-    const qOrgs=quarters.map(q=>qMap[q].orgs);
-    const qLabels=quarters.map(q=>qMap[q].label);
-    // Acumulado
+    const monthKeys=Object.keys(mMap).sort();
+    const mOrgs=monthKeys.map(m=>mMap[m]);
+    const mLabels=monthKeys.map(m=>{const [y,mo]=m.split('-');return meses[parseInt(mo)]+'/'+y.substring(2);});
     let cum=0;
-    const qCum=qOrgs.map(v=>{cum+=v;return cum;});
+    const mCum=mOrgs.map(v=>{cum+=v;return cum;});
 
-    charts.timeline=new Chart(document.getElementById('chart-timeline'),{type:'line',data:{labels:qLabels,datasets:[
-      {label:'Assinaturas no trimestre',data:qOrgs,borderColor:'#264A7F',backgroundColor:'#264A7F22',fill:true,tension:0.3,pointRadius:5,pointBackgroundColor:'#264A7F',yAxisID:'y'},
-      {label:'Acumulado de órgãos',data:qCum,borderColor:'#C0392B',backgroundColor:'transparent',borderDash:[6,3],tension:0.3,pointRadius:4,pointBackgroundColor:'#C0392B',yAxisID:'y1'}
-    ]},options:{animation:{duration:800},interaction:{mode:'index',intersect:false},plugins:{legend:{position:'bottom',labels:{usePointStyle:true}},tooltip:{callbacks:{label:ctx=>ctx.dataset.label+': '+ctx.raw}}},scales:{y:{beginAtZero:true,position:'left',title:{display:true,text:'Assinaturas no trimestre'},grid:{display:false}},y1:{beginAtZero:true,position:'right',title:{display:true,text:'Total acumulado'},max:95,grid:{drawOnChartArea:false}},x:{grid:{display:false}}}}});
+    charts.timeline=new Chart(document.getElementById('chart-timeline'),{type:'bar',data:{labels:mLabels,datasets:[
+      {label:'Assinaturas no mês',data:mOrgs,backgroundColor:'#264A7F44',borderColor:'#264A7F',borderWidth:1,borderRadius:3,yAxisID:'y',order:1},
+      {label:'Acumulado de órgãos',data:mCum,type:'line',borderColor:'#C0392B',backgroundColor:'transparent',borderDash:[6,3],tension:0.3,pointRadius:3,pointBackgroundColor:'#C0392B',yAxisID:'y1',order:0}
+    ]},options:{animation:{duration:800},interaction:{mode:'index',intersect:false},plugins:{legend:{position:'bottom',labels:{usePointStyle:true}},tooltip:{callbacks:{label:ctx=>ctx.dataset.label+': '+ctx.raw}}},scales:{y:{beginAtZero:true,position:'left',title:{display:true,text:'Assinaturas/mês'},grid:{display:false}},y1:{beginAtZero:true,position:'right',title:{display:true,text:'Total acumulado'},grid:{drawOnChartArea:false}},x:{grid:{display:false}}}}});
 
     // KPIs temporais
-    const peakQ=quarters[qOrgs.indexOf(Math.max(...qOrgs))];
-    const peakLabel=qMap[peakQ].label;
+    const peakM=monthKeys[mOrgs.indexOf(Math.max(...mOrgs))];
+    const [py,pm]=peakM.split('-');
+    const peakLabel=meses[parseInt(pm)]+'/'+py.substring(2);
     const earlyOrgs=Object.values(dates).filter(d=>d<'2025-04').length;
     const lateOrgs=Object.values(dates).filter(d=>d>='2025-10').length;
-    document.getElementById('timeline-insight').innerHTML=`<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px"><div class="kpi" style="padding:12px;border-top:3px solid #264A7F"><div class="label">Trimestre de pico</div><div class="value" style="font-size:1.3rem">${peakLabel}</div><div class="sub">${Math.max(...qOrgs)} assinaturas</div></div><div class="kpi" style="padding:12px;border-top:3px solid #27AE60"><div class="label">Primeiros adotantes</div><div class="value" style="font-size:1.3rem">${earlyOrgs}</div><div class="sub">órgãos até mar/2025</div></div><div class="kpi" style="padding:12px;border-top:3px solid #E67E22"><div class="label">Adotantes tardios</div><div class="value" style="font-size:1.3rem">${lateOrgs}</div><div class="sub">órgãos a partir de out/2025</div></div></div>`;
+    document.getElementById('timeline-insight').innerHTML=`<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px"><div class="kpi" style="padding:12px;border-top:3px solid #264A7F"><div class="label">Mês de pico</div><div class="value" style="font-size:1.3rem">${peakLabel}</div><div class="sub">${Math.max(...mOrgs)} assinaturas</div></div><div class="kpi" style="padding:12px;border-top:3px solid #27AE60"><div class="label">Primeiros adotantes</div><div class="value" style="font-size:1.3rem">${earlyOrgs}</div><div class="sub">órgãos até mar/2025</div></div><div class="kpi" style="padding:12px;border-top:3px solid #E67E22"><div class="label">Adotantes tardios</div><div class="value" style="font-size:1.3rem">${lateOrgs}</div><div class="sub">órgãos a partir de out/2025</div></div></div>`;
   }
 
   // Eixo chart — sempre mostra os 5 canônicos
