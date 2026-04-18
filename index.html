@@ -417,8 +417,8 @@ tr:hover td{background:var(--light)}
       <canvas id="chart-bigrams"></canvas></div>
   </div>
 
-  <div class="chart-container"><h3>Assinaturas × Entregas: Cronologia</h3>
-    <p class="desc" style="margin-bottom:8px">Cruza a data de assinatura do PTD (proxy: criação do PDF) com as datas das entregas pactuadas. Revela o lag entre adesão e execução.</p>
+  <div class="chart-container"><h3>Concentração Temporal: Assinaturas × Entregas</h3>
+    <p class="desc" style="margin-bottom:8px">Linhas: % acumulado de assinaturas (data do PDF) e de entregas pactuadas. Barras: volume mensal de entregas. Período: dez/24–dez/26 (vigência EFGD).</p>
     <canvas id="chart-burndown"></canvas></div>
 
   <div class="chart-container"><h3>Tecnologia e Inovação nos PTDs</h3>
@@ -1494,29 +1494,32 @@ function initVisualizations(){
     labels:topBg.map(([bg])=>bg),datasets:[{data:topBg.map(([,c])=>c),backgroundColor:'#8E44AD',borderRadius:4}]},
     options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,grid:{display:false}},y:{grid:{display:false}}}}});
 
-  // 8. Assinaturas × Entregas temporal — filtrado para período do PTD (dez/24+)
+  // 8. Concentração temporal das entregas pactuadas
   const dateC={};
   allDel.forEach(d=>{
     const dp=(d.data_pactuada||'').trim();
     const m=dp.match(/^(\d{4})-(\d{2})/);
-    if(m){const ym=m[1]+'-'+m[2];if(ym>='2024-12')dateC[ym]=(dateC[ym]||0)+1;}
+    if(m){const ym=m[1]+'-'+m[2];if(ym>='2024-12'&&ym<='2026-12')dateC[ym]=(dateC[ym]||0)+1;}
   });
   const signC={};
-  if(typeof PTD_DATES!=='undefined'){Object.values(PTD_DATES).forEach(d=>{if(d){const ym=d.substring(0,7);if(ym.length===7)signC[ym]=(signC[ym]||0)+1;}});}
+  const totalSigns=typeof PTD_DATES!=='undefined'?Object.values(PTD_DATES).filter(d=>d).length:0;
+  if(typeof PTD_DATES!=='undefined'){Object.values(PTD_DATES).forEach(d=>{if(d){const ym=d.substring(0,7);if(ym>='2024-12'&&ym<='2026-12')signC[ym]=(signC[ym]||0)+1;}});}
   const allMonths=[...new Set([...Object.keys(dateC),...Object.keys(signC)])].sort();
   if(allMonths.length){
     const nomes=['','jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
     const dLabels=allMonths.map(m=>{const [y,mo]=m.split('-');return (nomes[parseInt(mo)]||mo)+'/'+y.substring(2);});
+    const totalDel=Object.values(dateC).reduce((a,b)=>a+b,0);
     let cumDel=0,cumSign=0;
-    const cumDelData=allMonths.map(m=>{cumDel+=(dateC[m]||0);return cumDel;});
-    const cumSignData=allMonths.map(m=>{cumSign+=(signC[m]||0);return cumSign;});
-    new Chart(document.getElementById('chart-burndown'),{type:'line',data:{labels:dLabels,datasets:[
-      {label:'Entregas no mês',data:allMonths.map(m=>dateC[m]||0),type:'bar',backgroundColor:'#264A7F44',borderColor:'#264A7F',borderWidth:1,yAxisID:'y',order:2},
-      {label:'Entregas acumuladas',data:cumDelData,borderColor:'#264A7F',tension:0.2,pointRadius:0,yAxisID:'y1',order:1},
-      {label:'Assinaturas acumuladas',data:cumSignData,borderColor:'#C0392B',borderDash:[5,3],tension:0.2,pointRadius:3,pointBackgroundColor:'#C0392B',yAxisID:'y1',order:0}
-    ]},options:{interaction:{mode:'index',intersect:false},plugins:{legend:{position:'bottom'}},
+    const cumDelPct=allMonths.map(m=>{cumDel+=(dateC[m]||0);return +(cumDel/totalDel*100).toFixed(1);});
+    const cumSignPct=allMonths.map(m=>{cumSign+=(signC[m]||0);return +(cumSign/totalSigns*100).toFixed(1);});
+    new Chart(document.getElementById('chart-burndown'),{type:'bar',data:{labels:dLabels,datasets:[
+      {label:'Entregas no mês',data:allMonths.map(m=>dateC[m]||0),backgroundColor:'#264A7F33',borderColor:'#264A7F',borderWidth:1,borderRadius:2,yAxisID:'y',order:2},
+      {label:'% entregas acumuladas',data:cumDelPct,type:'line',borderColor:'#264A7F',borderWidth:2,tension:0.2,pointRadius:0,yAxisID:'y1',order:1},
+      {label:'% assinaturas acumuladas',data:cumSignPct,type:'line',borderColor:'#C0392B',borderDash:[5,3],borderWidth:2,tension:0.2,pointRadius:3,pointBackgroundColor:'#C0392B',yAxisID:'y1',order:0}
+    ]},options:{interaction:{mode:'index',intersect:false},plugins:{legend:{position:'bottom'},
+      tooltip:{callbacks:{label:ctx=>{if(ctx.datasetIndex===0)return ctx.dataset.label+': '+ctx.raw+' entregas';return ctx.dataset.label+': '+ctx.raw+'%';}}}},
       scales:{x:{grid:{display:false}},y:{beginAtZero:true,position:'left',title:{display:true,text:'Entregas/mês'},grid:{display:false}},
-      y1:{beginAtZero:true,position:'right',title:{display:true,text:'Acumulado'},grid:{drawOnChartArea:false}}}}});
+      y1:{beginAtZero:true,max:100,position:'right',title:{display:true,text:'% acumulado'},grid:{drawOnChartArea:false},ticks:{callback:v=>v+'%'}}}}});
   }
 
   // === Tech categories ===
@@ -1551,7 +1554,7 @@ function initVisualizations(){
   document.getElementById('tech-detail').innerHTML=`<div class="insight-card" style="border-left-color:#264A7F;cursor:default"><h4>Diagnóstico</h4><div class="summary"><strong>Governo como Plataforma</strong> domina: ${platCount?.count||0} entregas em ${platCount?.orgs||0} órgãos (Login Único, Design System, Pagtesouro). É a estratégia central de unificação.<br><br><strong>IA e automação</strong> são incipientes: apenas ${iaCount?.count||0} entregas explicitam uso de IA, chatbots ou automação — todas na ANAC e MAPA. Nenhum órgão pactuou RPA, analytics avançado ou machine learning como produto formal.<br><br><strong>Oportunidades</strong>: atendimento virtual com IA (chatbots para Gov.br), automação de back-office, análise preditiva de demandas, e interoperabilidade inteligente via APIs.</div></div>`;
 
   // === Fornecedores ===
-  const fornRisks=allRisk.filter(r=>(r.risco_texto||'').toLowerCase().includes('fornecedor'));
+  const fornRisks=allRisk.filter(r=>{const t=(r.risco_texto||'').toLowerCase();return t.includes('fornecedor')||t.includes('contrat')||t.includes('terceiriz');});
   const fornOrgs=_expandRiskOrgs(new Set(fornRisks.map(r=>r.orgao_sigla)));
   const fornCrit=fornRisks.filter(r=>['provável','muito provável','praticamente certo'].includes(r.probabilidade_normalizada)&&['alto','muito alto'].includes(r.impacto_normalizado));
   const fornTrat={};fornRisks.forEach(r=>{(r.tratamento_normalizado||'').split(';').forEach(t=>{t=t.trim().toLowerCase();if(t&&t.length<20)fornTrat[t]=(fornTrat[t]||0)+1;});});
