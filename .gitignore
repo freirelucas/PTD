@@ -36,3 +36,5 @@ Thumbs.db
 ptd_output/
 ptd_test_output/
 .claude/
+run_pipeline.py
+/tmp/pipeline.log
