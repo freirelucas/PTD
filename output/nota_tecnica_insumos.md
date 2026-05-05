@@ -41,7 +41,7 @@
 
 ### SINOPSE
 
-Esta nota técnica apresenta a construção e análise de um corpus abrangente dos Planos de Transformação Digital (PTDs) vigentes de 91 órgãos da administração pública federal brasileira. Os PTDs, instituídos pelo Decreto nº 12.198/2024 no âmbito da Estratégia Federal de Governo Digital (EFGD) 2024-2027, foram coletados automaticamente do portal gov.br, com extração estruturada de tabelas de entregas pactuadas (4.573 registros) e gestão de riscos (595 registros). Órgãos que compartilham um mesmo PTD ministerial são desduplicados por hash MD5, evitando dupla contagem. O corpus resultante permite análises transversais inéditas sobre o estado da transformação digital no governo federal, revelando padrões de concentração setorial, lacunas de governança de dados e características sistêmicas da gestão de riscos.
+Esta nota técnica apresenta a construção e análise de um corpus abrangente dos Planos de Transformação Digital (PTDs) vigentes de 91 órgãos da administração pública federal brasileira. Os PTDs, instituídos pelo Decreto nº 12.198/2024 no âmbito da Estratégia Federal de Governo Digital (EFGD) 2024-2027, foram coletados automaticamente do portal gov.br, com extração estruturada de tabelas de entregas pactuadas (4.574 registros) e gestão de riscos (619 registros). Órgãos que compartilham um mesmo PTD ministerial são desduplicados por hash MD5, evitando dupla contagem. O corpus resultante permite análises transversais inéditas sobre o estado da transformação digital no governo federal, revelando padrões de concentração setorial, lacunas de governança de dados e características sistêmicas da gestão de riscos.
 
 ---
 
@@ -67,8 +67,8 @@ Esta nota técnica apresenta a construção e análise de um corpus abrangente d
 |-------|--------|-----------|
 | Scraping da página gov.br | BeautifulSoup4 + requests | 91 órgãos, 177 URLs de PDFs |
 | Download dos PDFs | requests com rate-limiting (1.5s), verificação %PDF | 86 Diretivos + 91 Entregas = 177 PDFs |
-| Extração de tabelas de entregas | PyMuPDF `find_tables()` + matching fuzzy de produtos | 4.573 registros de 79 órgãos (57 próprios + 22 compartilhados) |
-| Extração de tabelas de riscos | PyMuPDF `find_tables()` com merge multi-página + recuperação header-as-data + resolução de ações numéricas | 595 registros de 71 órgãos (50 próprios + 21 compartilhados) |
+| Extração de tabelas de entregas | PyMuPDF `find_tables()` + matching fuzzy de produtos | 4.574 registros de 79 órgãos (57 próprios + 22 compartilhados) |
+| Extração de tabelas de riscos | PyMuPDF `find_tables()` com merge multi-página + recuperação header-as-data + detecção de tabelas órfãs + consolidação multi-linha + resolução de ações numéricas | 619 registros de 76 órgãos (51 próprios + 25 compartilhados) |
 | Desduplicação | Hash MD5 por arquivo PDF (mesmos PDFs de órgãos ministeriais compartilhados) | 177 PDFs → 98 únicos |
 | Resolução de ações numéricas | Parsing da lista "Referencial para ações de tratamento" | 35 órgãos com referências resolvidas |
 
@@ -113,17 +113,17 @@ O extrator PyMuPDF `find_tables()` apresentou cinco desafios técnicos específi
 
 4. **Resolução de ações numéricas**: 35 órgãos referenciam ações de tratamento como "1, 2, 9" ao invés do texto completo, remetendo a uma lista "Referencial para ações de tratamento" incluída no PDF. O extrator faz parsing dessa lista e resolve as referências numéricas para o texto integral.
 
-5. **Colunas deslocadas**: 156 riscos (26%) de 4 órgãos (CENSIPAM: 26, ANTAQ: 26, PRF: 14, SUSEP: 9) apresentam probabilidade e impacto em campos trocados — o texto do risco aparece na coluna de probabilidade e vice-versa. Essa limitação decorre de templates de tabela não-padrão nesses PDFs. Os 439 riscos canônicos (74%) possuem todas as dimensões corretamente mapeadas.
+5. **Templates não-padrão e colunas deslocadas**: 36 riscos (6%) permanecem com probabilidade e/ou impacto fora da escala canônica. Causas tratadas: (a) headers genéricos `Col0|Col1|...` recuperados via detecção de tabela órfã (IBGE, ANS, FUNARTE, MPO, MPS, MTUR); (b) tabelas onde cada risco ocupa múltiplas linhas, consolidadas heuristicamente (MMULHERES); (c) cabeçalhos parciais como `Col0|Probabilidade de|Col2|Opção de` resolvidos por fallback posicional (CENSIPAM); (d) escalas alternativas semanticamente mapeadas — ANTAQ (Baixa/Média/Alta → níveis 2/3/4), SUSEP (numérica 1-4 → raro/pouco provável/provável/muito provável), CADE (1-Alto → alto). Os 583 canônicos (94%) têm probabilidade e impacto na escala SGD. Os 36 residuais são genuinamente fragmentados (DNOCS com colunas trocadas, MPOR/CVM com células vazias, MJSP com texto rasgado).
 
 6. **Produto "Outros"**: 140 entregas que não correspondem a nenhum dos 44 produtos canônicos do template v4.0 são classificadas como produto "Outros" no eixo Projetos Especiais. Correspondem a projetos institucionais específicos de cada órgão (ex: "Modernização do SIAFI" no MF).
 
 **2.6 Estrutura do corpus**
 
-Entregas (`deliveries.csv` — 4.573 linhas × 9 colunas):
+Entregas (`deliveries.csv` — 4.574 linhas × 9 colunas):
 - orgao_sigla, servico_acao, produto_original, produto_normalizado, produto_score
 - eixo_original, eixo_normalizado, data_pactuada, confidence
 
-Riscos (`risks.csv` — 595 linhas × 11 colunas):
+Riscos (`risks.csv` — 619 linhas × 11 colunas):
 - orgao_sigla, id_risco, risco_texto
 - probabilidade_original, probabilidade_normalizada
 - impacto_original, impacto_normalizado
@@ -136,31 +136,31 @@ Riscos (`risks.csv` — 595 linhas × 11 colunas):
 
 **3.1 Panorama das entregas**
 
-- 4.573 entregas pactuadas por 79 órgãos (57 com dados próprios + 22 compartilhando PTD ministerial)
+- 4.574 entregas pactuadas por 79 órgãos (57 com dados próprios + 22 compartilhando PTD ministerial)
 - Distribuição por eixo:
-  - Serviços Digitais e Melhoria da Qualidade: 2.414 (52,8%)
+  - Serviços Digitais e Melhoria da Qualidade: 2.418 (52,9%)
   - Unificação de Canais Digitais: 1.241 (27,1%)
-  - Segurança e Privacidade: 654 (14,3%)
-  - Projetos Especiais: 140 (3,1%)
-  - Governança e Gestão de Dados: 124 (2,7%)
+  - Segurança e Privacidade: 644 (14,1%)
+  - Projetos Especiais: 148 (3,2%)
+  - Governança e Gestão de Dados: 123 (2,7%)
 - 20 dos 44 produtos canônicos aparecem no corpus; 24 têm zero pactuações
 - Top 3 produtos: Integração ao Login Único (694), Integração à ferramenta de avaliação da satisfação dos usuários (685), Evolução do Serviço (677)
-- 2 produtos legados concentram 458 entregas (10,0%): PPSI (348), Integração à base de dados (110)
+- 2 produtos legados concentram 453 entregas (9,9%): PPSI (343), Integração à base de dados (110)
 - Média: 80,2 entregas/órgão | Mediana: 57 | Máx: ANVISA (348) | Mín: CONAB (7)
-- 140 entregas em "Projetos Especiais" (produto Outros): projetos de órgão sem correspondência no catálogo canônico
+- 148 entregas em "Projetos Especiais" (produto Outros): projetos de órgão sem correspondência no catálogo canônico
 
 **3.2 Panorama dos riscos**
 
-- 595 riscos mapeados por 71 órgãos (50 com dados próprios + 21 compartilhando PTD ministerial)
-- Distribuição de probabilidade (canônica, 443/595): provável (182), pouco provável (173), muito provável (42), raro (26), praticamente certo (20)
-- Distribuição de impacto (canônica, 504/595): alto (205), médio (146), muito alto (108), baixo (45)
-- Tratamento (canônico): mitigar (79%), aceitar (13%), transferir (5%), eliminar (2%)
-- 160 riscos na zona crítica (probabilidade ≥ provável × impacto ≥ alto)
-- 11 riscos na severidade máxima (praticamente certo × muito alto): ANATEL, ANA, CAPES, INSS, MDHC, MME, MPO, MRE (2), SGPR (2)
-- 23% dos riscos sem ações de tratamento detalhadas
-- 52% dos textos de risco reproduzem fraseamento do referencial padrão (texto idêntico em ≥3 órgãos)
+- 619 riscos mapeados por 76 órgãos (51 com dados próprios + 25 compartilhando PTD ministerial)
+- Distribuição de probabilidade (canônica, 599/619): provável (244), pouco provável (234), muito provável (63), raro (37), praticamente certo (21)
+- Distribuição de impacto (canônica, 597/619): alto (262), médio (155), muito alto (134), baixo (46)
+- Tratamento (canônico, 582/619): mitigar (84%), aceitar (10%), transferir (4%), eliminar (2%)
+- 141 riscos na zona crítica (probabilidade ≥ provável × impacto ≥ alto)
+- 10 riscos na severidade máxima (praticamente certo × muito alto): ANA, ANATEL, CAPES, INSS, MESP, MME, MPO, MRE (2), SGPR
+- 30% dos riscos sem ações de tratamento detalhadas
+- 32% dos textos de risco reproduzem fraseamento do referencial padrão (texto idêntico em ≥3 órgãos)
 - 12 órgãos usam exclusivamente "mitigar" como estratégia
-- 156 riscos (26%) com probabilidade e/ou impacto não-canônicos (PDFs com templates variantes de CENSIPAM, ANTAQ, PRF, SUSEP)
+- 583 riscos (94%) totalmente canônicos em probabilidade × impacto. Os 36 restantes (6%) refletem casos genuinamente fragmentados ou colunas trocadas em PDFs específicos (DNOCS, MPOR, CVM, CADE, MMULHERES) — marcados como `needs_review`
 
 **3.3 Achados transversais**
 

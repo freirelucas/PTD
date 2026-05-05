@@ -26,6 +26,23 @@ def _map_risk_columns(df: pd.DataFrame) -> Dict[str, Optional[str]]:
                     ratio = difflib.SequenceMatcher(None, col_norm, strip_accents(kw)).ratio()
                     if ratio > best_score and ratio >= 0.65: best_score, best_col = ratio, col_name
         canonical[canon_key] = best_col
+
+    # Fallback posicional: quando o cabeçalho do PDF é genérico (Col0/Col2)
+    # ou fragmentado, usa a posição padrão do template SGD (5 colunas).
+    # Aplica somente se a coluna posicional estiver livre — não sobrescreve
+    # mapeamentos por keyword.
+    fallback_pos = {"risco": 0, "probabilidade": 1, "impacto": 2, "tratamento": 3, "acoes": 4}
+    used_cols = {v for v in canonical.values() if v is not None}
+    cols_list = [str(c) for c in df.columns]
+    # Detecta offset por id_risco quando ncols >= 6 e a primeira coluna parece ID
+    offset = 1 if len(cols_list) >= 6 and _normalize_header(cols_list[0]) in (
+        "id do risco", "id", "n", "no", "num", "numero", "col0") else 0
+    for field, pos in fallback_pos.items():
+        if canonical[field] is None and pos + offset < len(cols_list):
+            cand = cols_list[pos + offset]
+            if cand not in used_cols:
+                canonical[field] = cand
+                used_cols.add(cand)
     return canonical
 
 
@@ -59,12 +76,16 @@ def extract_risk_table(pdf_path: str, sigla: str) -> Tuple[List[RiskEntry], List
             if df is None or df.shape[1] < 4:
                 continue
 
+            df = _consolidate_multiline_cells(df)
+
             has_header = classify_diretivo_table(df) == "risk_table"
             data_as_header = _cols_are_data(df)
             is_continuation = (risk_ncols and df.shape[1] == risk_ncols
                                and not has_header and _is_risk_data(df))
+            is_orphan = (not has_header and not data_as_header and not is_continuation
+                         and _is_orphan_risk_data(df))
 
-            if not has_header and not data_as_header and not is_continuation:
+            if not has_header and not data_as_header and not is_continuation and not is_orphan:
                 continue
 
             if has_header:
@@ -115,6 +136,17 @@ def extract_risk_table(pdf_path: str, sigla: str) -> Tuple[List[RiskEntry], List
                 if len(df) > 0 and _is_subheader_row(df.iloc[0]):
                     df = df.iloc[1:].reset_index(drop=True)
 
+            elif is_orphan:
+                risk_ncols = len(df.columns)
+                if col_order is None:
+                    col_order = ["risco", "probabilidade", "impacto", "tratamento", "acoes"]
+                    if df.shape[1] >= 6:
+                        col_order = ["id_risco"] + col_order
+                if len(df) > 0 and _is_subheader_row(df.iloc[0]):
+                    df = df.iloc[1:].reset_index(drop=True)
+                if len(df) == 0:
+                    continue
+
             if col_order is None:
                 continue
 
@@ -122,7 +154,18 @@ def extract_risk_table(pdf_path: str, sigla: str) -> Tuple[List[RiskEntry], List
             if has_header:
                 active_map = col_map
             else:
-                active_map = {f: str(df.columns[i]) for i, f in enumerate(col_order) if i < len(df.columns)}
+                # Mapeamento posicional. Detecta offset de id_risco quando a
+                # tabela tem 1 coluna a mais que o col_order esperado e a 1ª
+                # coluna parece um identificador curto (single char/num).
+                cols_list = [str(c) for c in df.columns]
+                offset = 0
+                if len(cols_list) > len(col_order) and len(df) > 0:
+                    first_vals = [str(df.iloc[r, 0]).strip() for r in range(min(3, len(df)))]
+                    if all(len(v) <= 3 and v.lower() not in ("nan","none","") for v in first_vals if v):
+                        offset = 1
+                active_map = {f: cols_list[i + offset]
+                              for i, f in enumerate(col_order)
+                              if i + offset < len(cols_list)}
 
             for _, row in df.iterrows():
                 if _is_subheader_row(row):

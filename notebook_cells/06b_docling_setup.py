@@ -14,7 +14,7 @@ def _normalize_header(text: str) -> str:
 
 
 def classify_diretivo_table(df: pd.DataFrame) -> str:
-    if df is None or df.empty: return "unknown"
+    if df is None or len(df.columns) == 0: return "unknown"
     ncols = len(df.columns)
     headers = [_normalize_header(str(c)) for c in df.columns]
     first_row = [_normalize_header(str(v)) for v in df.iloc[0]] if len(df) > 0 else []
@@ -81,6 +81,79 @@ def _is_subheader_row(row) -> bool:
     text = strip_accents(" ".join(str(v) for v in row).lower())
     return any(kw in text for kw in ["certo]", "certo ]", "ocorrer", "muito alto]",
                "muito alto ]", "tratamento do risco", "escolher entre"])
+
+
+def _consolidate_multiline_cells(df: pd.DataFrame) -> pd.DataFrame:
+    """Consolida tabelas onde cada risco ocupa múltiplas linhas porque o
+    PDF usa células com texto quebrado em várias linhas internas.
+
+    Heurística: se col0 (ID do risco) está populado em <40% das linhas e
+    há ao menos 3 IDs distintos, agrupa as linhas entre IDs concatenando
+    os textos de cada coluna.
+    """
+    if df is None or df.empty or df.shape[1] < 4:
+        return df
+
+    n = len(df)
+
+    def _is_id(v):
+        s = str(v).strip()
+        return bool(s) and s.lower() not in ("nan", "none")
+
+    id_idx = [i for i in range(n) if _is_id(df.iloc[i, 0])]
+    if len(id_idx) < 3 or len(id_idx) >= 0.4 * n:
+        return df
+
+    # Cria blocos: [start : next_id_row]. start é a linha do ID exceto
+    # quando a linha imediatamente anterior contém texto em col1 sem ID
+    # (caso comum em PDFs onde a primeira linha do risco aparece visualmente
+    # acima do ID quando há quebra de página/coluna).
+    def _has_text(v):
+        s = str(v).strip()
+        return bool(s) and s.lower() not in ("nan", "none")
+
+    blocks = []
+    prev_end = 0
+    for k, id_pos in enumerate(id_idx):
+        start = id_pos
+        if (start > prev_end and not _is_id(df.iloc[start - 1, 0])
+                and _has_text(df.iloc[start - 1, 1])):
+            start -= 1
+        end = id_idx[k + 1] if k + 1 < len(id_idx) else n
+        blocks.append((start, end))
+        prev_end = end
+
+    consolidated_rows = []
+    for start, end in blocks:
+        merged = []
+        for ci in range(df.shape[1]):
+            parts = []
+            for ri in range(start, end):
+                v = str(df.iloc[ri, ci]).strip()
+                if v and v.lower() not in ("nan", "none"):
+                    parts.append(v)
+            merged.append(" ".join(parts))
+        consolidated_rows.append(merged)
+
+    return pd.DataFrame(consolidated_rows, columns=df.columns)
+
+
+def _is_orphan_risk_data(df: pd.DataFrame) -> bool:
+    """Detecta tabela cujo conteúdo é dado de risco mas find_tables não
+    associou a um cabeçalho identificável (retornou Col0/Col1/... ou
+    fragmentos do template como headers). Permite processar tabelas que
+    não foram precedidas por uma tabela com cabeçalho válido (caso em
+    que is_continuation não dispara por falta de risk_ncols)."""
+    if df is None or df.empty or df.shape[1] < 4 or df.shape[1] > 8:
+        return False
+    if not _is_risk_data(df):
+        return False
+    headers_norm = [_normalize_header(str(c)) for c in df.columns]
+    n_generic = sum(1 for h in headers_norm
+                    if (h.startswith("col") and len(h) <= 5)
+                    or any(kw in h for kw in ["escolher entre", "certo]", "certo ]",
+                                              "muito alto]", "muito alto ]", "ocorrer"]))
+    return n_generic >= max(2, len(headers_norm) // 2)
 
 
 def _extract_action_list(doc_text: str) -> dict:
