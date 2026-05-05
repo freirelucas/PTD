@@ -7,16 +7,25 @@
 def _map_risk_columns(df: pd.DataFrame) -> Dict[str, Optional[str]]:
     canonical = {"risco":None,"probabilidade":None,"impacto":None,"tratamento":None,"acoes":None}
     keyword_map = {
-        "risco": ["risco","evento","descricao do risco","descricao","id do risco"],
+        "risco": ["risco","evento","descricao do risco","descricao"],
         "probabilidade": ["probabilidade","probabilidade de ocorrer","prob","classificacao de probabilidade"],
         "impacto": ["impacto","severidade","classificacao de impacto"],
         "tratamento": ["opcao de tratamento","tratamento","resposta","tipo de tratamento","estrategia"],
         "acoes": ["acoes de tratamento","descrever acoes","acoes","acao","medidas","plano de acao"],
     }
     headers = {str(c): _normalize_header(str(c)) for c in df.columns}
+    cols_list = [str(c) for c in df.columns]
+
+    # ID column ("ID do risco", "Nº", etc) deve ser excluído do match para "risco"
+    id_cols = {c for c, n in headers.items() if n in (
+        "id do risco", "id risco", "id", "n", "no", "num", "numero", "codigo", "cod"
+    ) or n.startswith("id ")}
+
     for canon_key, keywords in keyword_map.items():
         best_col, best_score = None, 0.0
         for col_name, col_norm in headers.items():
+            if canon_key == "risco" and col_name in id_cols:
+                continue
             for kw in keywords:
                 if kw in col_norm:
                     score = max(len(kw)/max(len(col_norm),1), 0.85)
@@ -33,14 +42,15 @@ def _map_risk_columns(df: pd.DataFrame) -> Dict[str, Optional[str]]:
     # mapeamentos por keyword.
     fallback_pos = {"risco": 0, "probabilidade": 1, "impacto": 2, "tratamento": 3, "acoes": 4}
     used_cols = {v for v in canonical.values() if v is not None}
-    cols_list = [str(c) for c in df.columns]
     # Detecta offset por id_risco quando ncols >= 6 e a primeira coluna parece ID
-    offset = 1 if len(cols_list) >= 6 and _normalize_header(cols_list[0]) in (
-        "id do risco", "id", "n", "no", "num", "numero", "col0") else 0
+    has_id_col = bool(id_cols) and cols_list[0] in id_cols
+    offset = 1 if (len(cols_list) >= 6 and (
+        has_id_col or _normalize_header(cols_list[0]) == "col0"
+    )) else 0
     for field, pos in fallback_pos.items():
         if canonical[field] is None and pos + offset < len(cols_list):
             cand = cols_list[pos + offset]
-            if cand not in used_cols:
+            if cand not in used_cols and cand not in id_cols:
                 canonical[field] = cand
                 used_cols.add(cand)
     return canonical
