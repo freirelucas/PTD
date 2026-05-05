@@ -37,4 +37,6 @@ ptd_output/
 ptd_test_output/
 .claude/
 run_pipeline.py
+pipeline_combined.py
+dedup_check.py
 /tmp/pipeline.log

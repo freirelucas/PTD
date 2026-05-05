@@ -38,16 +38,43 @@ mantém Docling como alternativa (especialmente para OCR dos 12 PDFs escaneados)
 - **Fix:** extração automática da lista "Referencial para ações de tratamento" e
   substituição dos números pelo texto completo
 
-### 2.4 Desduplicação de órgãos agrupados
-- **Descoberta:** 7 grupos ministeriais compartilham PDFs. Replicar entregas inflava
-  o corpus de 7.664 para ~4.530 registros únicos
-- **Fix:** atribuir dados ao órgão-cabeça, marcar membros como "compartilhado" na
-  cobertura. Exceção: MF/PGFN (seções independentes no mesmo PDF)
+### 2.4 Desduplicação de órgãos agrupados (versionada no notebook)
+- **Descoberta:** 7 grupos ministeriais compartilham PDFs (mesmo conteúdo publicado por
+  múltiplas siglas). Sem dedup, o corpus inflava de 4.574 para 7.869 entregas
+- **Versão anterior:** dedup era aplicada manualmente nos outputs *após* a execução do
+  notebook, criando inconsistência entre código versionado e dados publicados
+- **Fix (célula `05c_dedup.py`):** após download, computa MD5 de cada PDF; para cada
+  hash duplicado, mantém como "owner" a sigla alfabeticamente menor e zera o `pdf_path`
+  dos demais. A extração ignora siglas sem path; a expansão para "compartilhado"
+  acontece via `ORGAN_GROUPS` no dashboard
 
 ### 2.5 Mapeamento de eixo incorreto
 - **Descoberta:** "Integração à base de dados" mapeada para "Projetos Especiais"
   em vez de "Governança e Gestão de Dados" (erro de posição no array)
 - **Fix:** mapeamento determinístico `CORRECT_EIXO` com validação cruzada produto→eixo
+
+### 2.6 Tabelas órfãs sem cabeçalho válido (fix de 6 PDFs)
+- **Descoberta:** PDFs como IBGE, ANS, FUNARTE, MPO, MPS, MTUR têm tabelas onde
+  `find_tables()` retorna headers genéricos `Col0|Col1|Col2|...` em vez do template
+  real. O extrator anterior descartava essas tabelas — perda de ~58 riscos
+- **Fix:** `_is_orphan_risk_data(df)` detecta tabelas com headers genéricos cujo
+  conteúdo passa em `_is_risk_data` (contém valores de escala). Mapeamento posicional
+  é aplicado, recuperando os riscos perdidos
+- **Bug correlato:** `classify_diretivo_table` retornava "unknown" para qualquer
+  `df.empty == True`, descartando templates vazios que serviam de header para a
+  continuação na próxima página. Corrigido para `len(df.columns) == 0`
+
+### 2.7 Tabelas multi-linha (consolidação heurística)
+- **Descoberta:** PDFs como MMULHERES estruturam cada risco em múltiplas linhas
+  visuais (texto quebrado em rows internas da célula). PyMuPDF expande em ~92 rows
+  para 18 riscos lógicos, gerando duplicatas
+- **Fix (`_consolidate_multiline_cells`):** se col0 (ID) está populado em <40% das
+  linhas e há ≥3 IDs distintos, agrupa rows entre IDs concatenando os valores. Inclui
+  uma row anterior ao ID quando ela tem texto sem ID (caso onde o texto do risco
+  aparece visualmente acima do identificador)
+- **Limitação:** o desalinhamento residual de células deixa o texto de
+  prob/impacto/tratamento misturado nesses casos. Os registros são marcados como
+  `needs_review=True` com `extraction_confidence=low`
 
 ## 3. Evolução dos números do corpus
 
@@ -56,11 +83,15 @@ mantém Docling como alternativa (especialmente para OCR dos 12 PDFs escaneados)
 | v0 (texto simples) | 5.968 | 10 | Extração por linha, PyMuPDF sem find_tables |
 | v1 (find_tables) | 6.292 | 670 | Tabelas estruturadas, merge multi-página parcial |
 | v2 (multi-page fix) | 7.664 | 929 | Fix completo multi-página + header-as-data |
-| v3 (desduplicado) | 4.530 | 931 | Remoção de duplicatas de órgãos agrupados |
-| **Release** | **4.530** | **931** | Versão final publicada |
+| v3 (dedup pós-output) | 4.573 | 595 | Dedup manual aplicada nos arquivos commitados |
+| **v4 (atual)** | **4.574** | **619** | Dedup MD5 versionada + detecção de tabelas órfãs + consolidação multi-linha |
 
-## 4. Branch experimental (deletado)
+A diferença entre v3 e v4 (+1 entrega, +24 riscos) decorre de 8 PDFs atualizados pelo
+portal gov.br em 17/abr/2026 (CODEVASF, COAF, MIDR/SUDAM/SUDECO/SUDENE, MPI, SGPR).
+CODEVASF, antes escaneado e ilegível, virou texto e contribuiu com +20 riscos.
 
-O branch `claude/scrape-gov-signatories-tnVQa` serviu como ambiente de desenvolvimento
-inicial. Todos os fixes e melhorias foram portados para `main`. O branch foi deletado
-com 0 commits exclusivos — nenhuma informação perdida.
+## 4. Branches experimentais (deletados)
+
+Os branches `claude/scrape-gov-signatories-tnVQa` e `claude/investigate-pdf-features-UiBwv`
+serviram como ambientes de desenvolvimento iniciais. Todos os fixes foram portados para
+`main`. Os branches foram deletados — nenhuma informação perdida.

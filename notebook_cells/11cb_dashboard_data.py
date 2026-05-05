@@ -97,12 +97,14 @@ def _read_pdf_metadata(organs: list) -> List[dict]:
 organs_with_risks = set(r.orgao_sigla for r in all_risks) if all_risks else set()
 organs_with_deliveries = set(d.orgao_sigla for d in all_deliveries) if all_deliveries else set()
 
-# Incluir membros de grupo cujo cabeça tem dados (cobertura compartilhada)
-for m, head in MEMBER_TO_GROUP.items():
-    if head in organs_with_deliveries:
-        organs_with_deliveries.add(m)
-    if head in organs_with_risks:
-        organs_with_risks.add(m)
+# Cobertura por grupo: se QUALQUER membro tem dados extraídos, considera
+# todos os membros do grupo como cobertos (compartilham o mesmo PDF).
+# Necessário porque o owner do dedup MD5 pode não ser o head nominal do grupo.
+for head, members in ORGAN_GROUPS.items():
+    if any(m in organs_with_deliveries for m in members):
+        organs_with_deliveries.update(members)
+    if any(m in organs_with_risks for m in members):
+        organs_with_risks.update(members)
 
 # Entregas por eixo
 eixo_counter = Counter(d.eixo_normalizado for d in all_deliveries if d.eixo_normalizado)
@@ -125,7 +127,7 @@ for r in all_risks:
 
 dist_prob = {p: prob_counter.get(p, 0) for p in PROBABILIDADE_SCALE}
 dist_imp = {i: imp_counter.get(i, 0) for i in IMPACTO_SCALE}
-dist_trat = {t: c for t, c in trat_counter.most_common()}
+dist_trat = {t: trat_counter.get(t, 0) for t in TRATAMENTO_OPTIONS if trat_counter.get(t, 0) > 0}
 
 # Riscos canônicos (com probabilidade e impacto em escalas canônicas)
 n_canonicos = sum(1 for r in all_risks
@@ -171,13 +173,13 @@ for e in all_errors:
     if key not in organ_status_map:
         organ_status_map[key] = e.error_type
 
-# Mapa inverso: para membros de grupo sem dados próprios, encontrar o cabeça
-# que detém os registros (usando MEMBER_TO_GROUP de 02_config.py)
-_head_for = {}
-for head_sigla, members in ORGAN_GROUPS.items():
-    for m in members:
-        if m != head_sigla:
-            _head_for[m] = head_sigla
+# Mapa: sigla → todos os membros de seu grupo (inclusive ela mesma).
+# Permite identificar membros sem dados próprios cuja cobertura vem de
+# qualquer outro membro do grupo (owner do dedup MD5).
+_group_peers = {}
+for _members in ORGAN_GROUPS.values():
+    for s in _members:
+        _group_peers[s] = _members
 
 ptd_organs = []
 for organ in sorted(all_organs, key=lambda o: o.sigla):
@@ -186,9 +188,11 @@ for organ in sorted(all_organs, key=lambda o: o.sigla):
     eixo_bd = dict(Counter(d.eixo_normalizado for d in organ_deliveries if d.eixo_normalizado))
     prod_bd = dict(Counter(d.produto_normalizado for d in organ_deliveries if d.produto_normalizado))
 
-    # Para membros de grupo sem dados próprios, referir ao cabeça
-    head = _head_for.get(organ.sigla)
-    shares_head = head and del_count.get(organ.sigla, 0) == 0 and del_count.get(head, 0) > 0
+    # Para membros de grupo sem dados próprios, marcar como compartilhado
+    # se qualquer outro membro do grupo (owner do dedup) tem dados.
+    peers = _group_peers.get(organ.sigla, [])
+    shares_head = (del_count.get(organ.sigla, 0) == 0
+                   and any(del_count.get(p, 0) > 0 for p in peers if p != organ.sigla))
 
     # Status
     if del_count.get(organ.sigla, 0) > 0:
@@ -201,7 +205,8 @@ for organ in sorted(all_organs, key=lambda o: o.sigla):
         err_key = (organ.sigla, "entregas")
         s_entregas = organ_status_map.get(err_key, "sem_dados")
 
-    shares_head_r = head and risk_count.get(organ.sigla, 0) == 0 and risk_count.get(head, 0) > 0
+    shares_head_r = (risk_count.get(organ.sigla, 0) == 0
+                     and any(risk_count.get(p, 0) > 0 for p in peers if p != organ.sigla))
     if risk_count.get(organ.sigla, 0) > 0:
         s_riscos = "ok"
     elif shares_head_r:

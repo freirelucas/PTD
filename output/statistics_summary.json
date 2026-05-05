@@ -1,45 +1,45 @@
 {
-  "data_execucao": "2026-04-16",
+  "data_execucao": "2026-05-05",
   "orgaos_total": 91,
-  "entregas_total": 4573,
+  "entregas_total": 4574,
   "entregas_orgaos": 79,
-  "riscos_total": 595,
-  "riscos_orgaos": 71,
-  "riscos_canonicos": 439,
-  "pdfs_escaneados_pendentes": 15,
+  "riscos_total": 619,
+  "riscos_orgaos": 76,
+  "riscos_canonicos": 355,
+  "pdfs_escaneados_pendentes": 0,
   "top5_produtos": {
     "Integração ao Login Único": 694,
     "Integração à ferramenta de avaliação da satisfação dos usuários": 685,
     "Evolução do Serviço": 677,
     "Disponibilização em Acesso Digital": 517,
-    "Implementação do PPSI": 348
+    "Implementação do PPSI": 343
   },
   "entregas_por_eixo": {
-    "Serviços Digitais e Melhoria da Qualidade": 2414,
+    "Serviços Digitais e Melhoria da Qualidade": 2418,
     "Unificação de Canais Digitais": 1241,
-    "Segurança e Privacidade": 654,
-    "Projetos Especiais": 140,
-    "Governança e Gestão de Dados": 124
+    "Governança e Gestão de Dados": 123,
+    "Segurança e Privacidade": 644,
+    "Projetos Especiais": 148
   },
   "distribuicao_probabilidade": {
-    "raro": 26,
-    "pouco provável": 173,
-    "provável": 182,
-    "muito provável": 42,
-    "praticamente certo": 20
+    "raro": 23,
+    "pouco provável": 138,
+    "provável": 161,
+    "muito provável": 45,
+    "praticamente certo": 17
   },
   "distribuicao_impacto": {
-    "baixo": 45,
-    "médio": 146,
-    "alto": 205,
-    "muito alto": 108
+    "muito baixo": 0,
+    "baixo": 30,
+    "médio": 94,
+    "alto": 162,
+    "muito alto": 94
   },
   "distribuicao_tratamento": {
-    "mitigar": 327,
-    "aceitar": 54,
-    "transferir": 22,
-    "eliminar": 9,
-    "compartilhar": 1
+    "mitigar": 268,
+    "eliminar": 7,
+    "transferir": 15,
+    "aceitar": 42
   },
   "media_entregas_por_orgao": 80.2,
   "mediana_entregas_por_orgao": 57

@@ -59,12 +59,16 @@ def extract_risk_table(pdf_path: str, sigla: str) -> Tuple[List[RiskEntry], List
             if df is None or df.shape[1] < 4:
                 continue
 
+            df = _consolidate_multiline_cells(df)
+
             has_header = classify_diretivo_table(df) == "risk_table"
             data_as_header = _cols_are_data(df)
             is_continuation = (risk_ncols and df.shape[1] == risk_ncols
                                and not has_header and _is_risk_data(df))
+            is_orphan = (not has_header and not data_as_header and not is_continuation
+                         and _is_orphan_risk_data(df))
 
-            if not has_header and not data_as_header and not is_continuation:
+            if not has_header and not data_as_header and not is_continuation and not is_orphan:
                 continue
 
             if has_header:
@@ -114,6 +118,17 @@ def extract_risk_table(pdf_path: str, sigla: str) -> Tuple[List[RiskEntry], List
             elif is_continuation and col_order:
                 if len(df) > 0 and _is_subheader_row(df.iloc[0]):
                     df = df.iloc[1:].reset_index(drop=True)
+
+            elif is_orphan:
+                risk_ncols = len(df.columns)
+                if col_order is None:
+                    col_order = ["risco", "probabilidade", "impacto", "tratamento", "acoes"]
+                    if df.shape[1] >= 6:
+                        col_order = ["id_risco"] + col_order
+                if len(df) > 0 and _is_subheader_row(df.iloc[0]):
+                    df = df.iloc[1:].reset_index(drop=True)
+                if len(df) == 0:
+                    continue
 
             if col_order is None:
                 continue
