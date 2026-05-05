@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "exported_at": "2026-05-05T15:14:23.854173",
+    "exported_at": "2026-05-05T19:29:55.312553",
     "total": 619,
     "groups": 51
   },
@@ -8,7 +8,7 @@
     "AEB": [
       {
         "orgao_sigla": "AEB",
-        "risco_texto": "A",
+        "risco_texto": "Perda de confiança das partes interessadas",
         "probabilidade_original": "Pouco provável",
         "probabilidade_normalizada": "pouco provável",
         "impacto_original": "Médio",
@@ -22,7 +22,7 @@
       },
       {
         "orgao_sigla": "AEB",
-        "risco_texto": "B",
+        "risco_texto": "Alteração na política pública",
         "probabilidade_original": "Pouco provável",
         "probabilidade_normalizada": "pouco provável",
         "impacto_original": "Alto",
@@ -36,7 +36,7 @@
       },
       {
         "orgao_sigla": "AEB",
-        "risco_texto": "C",
+        "risco_texto": "Disponibilidade dos sistemas de acesso para o cidadão",
         "probabilidade_original": "Pouco provável",
         "probabilidade_normalizada": "pouco provável",
         "impacto_original": "Alto",
@@ -50,7 +50,7 @@
       },
       {
         "orgao_sigla": "AEB",
-        "risco_texto": "D",
+        "risco_texto": "Perda de integridade de dados",
         "probabilidade_original": "Pouco provável",
         "probabilidade_normalizada": "pouco provável",
         "impacto_original": "Médio",
@@ -64,7 +64,7 @@
       },
       {
         "orgao_sigla": "AEB",
-        "risco_texto": "E",
+        "risco_texto": "Dependência de fornecedores",
         "probabilidade_original": "Raro",
         "probabilidade_normalizada": "raro",
         "impacto_original": "Baixo",
@@ -78,7 +78,7 @@
       },
       {
         "orgao_sigla": "AEB",
-        "risco_texto": "F",
+        "risco_texto": "Disponibilidade dos donos de serviço para atuação na transformação",
         "probabilidade_original": "Pouco provável",
         "probabilidade_normalizada": "pouco provável",
         "impacto_original": "Média",
@@ -92,7 +92,7 @@
       },
       {
         "orgao_sigla": "AEB",
-        "risco_texto": "G",
+        "risco_texto": "Disponibilidade das equipes de TI para executar a transformação digital",
         "probabilidade_original": "Pouco provável",
         "probabilidade_normalizada": "pouco provável",
         "impacto_original": "Alta",
@@ -106,7 +106,7 @@
       },
       {
         "orgao_sigla": "AEB",
-        "risco_texto": "H",
+        "risco_texto": "Despriorização do PTD pela alta administração",
         "probabilidade_original": "Pouco provável",
         "probabilidade_normalizada": "pouco provável",
         "impacto_original": "Alto",
@@ -120,7 +120,7 @@
       },
       {
         "orgao_sigla": "AEB",
-        "risco_texto": "I",
+        "risco_texto": "Atraso nos cronogramas pactuados",
         "probabilidade_original": "Pouco provável",
         "probabilidade_normalizada": "pouco provável",
         "impacto_original": "Médio",
@@ -134,7 +134,7 @@
       },
       {
         "orgao_sigla": "AEB",
-        "risco_texto": "J",
+        "risco_texto": "Rotatividades das equipes envolvidas na transformação digital",
         "probabilidade_original": "Pouco provável",
         "probabilidade_normalizada": "pouco provável",
         "impacto_original": "Média",
@@ -148,7 +148,7 @@
       },
       {
         "orgao_sigla": "AEB",
-        "risco_texto": "K",
+        "risco_texto": "A transformação digital de um serviço não gerar o resultado esperado",
         "probabilidade_original": "Raro",
         "probabilidade_normalizada": "raro",
         "impacto_original": "Média",
@@ -162,7 +162,7 @@
       },
       {
         "orgao_sigla": "AEB",
-        "risco_texto": "L",
+        "risco_texto": "A transformação digital de um serviço público não ser uma transformação propriamente dita",
         "probabilidade_original": "Raro",
         "probabilidade_normalizada": "raro",
         "impacto_original": "Baixo",
@@ -2854,7 +2854,7 @@
     "COAF": [
       {
         "orgao_sigla": "COAF",
-        "risco_texto": "A",
+        "risco_texto": "Alteração na política pública",
         "probabilidade_original": "Pouco provável",
         "probabilidade_normalizada": "pouco provável",
         "impacto_original": "Muito alto",
@@ -2868,7 +2868,7 @@
       },
       {
         "orgao_sigla": "COAF",
-        "risco_texto": "B",
+        "risco_texto": "Indisponibilidade dos sistemas de acesso para o cidadão",
         "probabilidade_original": "Pouco provável",
         "probabilidade_normalizada": "pouco provável",
         "impacto_original": "Muito alto",
@@ -2882,7 +2882,7 @@
       },
       {
         "orgao_sigla": "COAF",
-        "risco_texto": "C",
+        "risco_texto": "Indisponibilidade dos Sistemas relacionados aos serviços",
         "probabilidade_original": "Pouco provável",
         "probabilidade_normalizada": "pouco provável",
         "impacto_original": "Muito alto",
@@ -2896,7 +2896,7 @@
       },
       {
         "orgao_sigla": "COAF",
-        "risco_texto": "D",
+        "risco_texto": "Problemas com perda e / ou integridade de dados",
         "probabilidade_original": "Pouco provável",
         "probabilidade_normalizada": "pouco provável",
         "impacto_original": "Muito alto",
@@ -2910,7 +2910,7 @@
       },
       {
         "orgao_sigla": "COAF",
-        "risco_texto": "E",
+        "risco_texto": "Indisponibilidade das equipes de TI para executar a transformação digital",
         "probabilidade_original": "Provável",
         "probabilidade_normalizada": "provável",
         "impacto_original": "Médio",
@@ -2924,7 +2924,7 @@
       },
       {
         "orgao_sigla": "COAF",
-        "risco_texto": "F",
+        "risco_texto": "Falta de prioridade do PTD pela alta administração",
         "probabilidade_original": "Pouco provável",
         "probabilidade_normalizada": "pouco provável",
         "impacto_original": "Muito alto",
@@ -2938,7 +2938,7 @@
       },
       {
         "orgao_sigla": "COAF",
-        "risco_texto": "G",
+        "risco_texto": "Baixo comprometimento das áreas de negócio com as ações pactuadas",
         "probabilidade_original": "Pouco provável",
         "probabilidade_normalizada": "pouco provável",
         "impacto_original": "Muito alto",
@@ -2952,7 +2952,7 @@
       },
       {
         "orgao_sigla": "COAF",
-        "risco_texto": "H",
+        "risco_texto": "Atraso nos cronogramas pactuados",
         "probabilidade_original": "Provável",
         "probabilidade_normalizada": "provável",
         "impacto_original": "Médio",
@@ -2966,7 +2966,7 @@
       },
       {
         "orgao_sigla": "COAF",
-        "risco_texto": "I",
+        "risco_texto": "Corte no orçamento",
         "probabilidade_original": "Provável",
         "probabilidade_normalizada": "provável",
         "impacto_original": "Alto",
@@ -2980,7 +2980,7 @@
       },
       {
         "orgao_sigla": "COAF",
-        "risco_texto": "J",
+        "risco_texto": "Mudança da estratégia da área de negócio responsável pelo serviço",
         "probabilidade_original": "Pouco provável",
         "probabilidade_normalizada": "pouco provável",
         "impacto_original": "Alto",
@@ -2994,7 +2994,7 @@
       },
       {
         "orgao_sigla": "COAF",
-        "risco_texto": "K",
+        "risco_texto": "Falta de recursos humanos para implementação",
         "probabilidade_original": "Pouco provável",
         "probabilidade_normalizada": "pouco provável",
         "impacto_original": "Alto",
@@ -3008,7 +3008,7 @@
       },
       {
         "orgao_sigla": "COAF",
-        "risco_texto": "L",
+        "risco_texto": "Ataques cibernéticos",
         "probabilidade_original": "Pouco provável",
         "probabilidade_normalizada": "pouco provável",
         "impacto_original": "Muito alto",
@@ -4880,7 +4880,7 @@
     "INSS": [
       {
         "orgao_sigla": "INSS",
-        "risco_texto": "A",
+        "risco_texto": "Perda de confiança das partes interessadas",
         "probabilidade_original": "pouco provável",
         "probabilidade_normalizada": "pouco provável",
         "impacto_original": "alto",
@@ -4894,7 +4894,7 @@
       },
       {
         "orgao_sigla": "INSS",
-        "risco_texto": "B",
+        "risco_texto": "Alteração na política pública",
         "probabilidade_original": "provável",
         "probabilidade_normalizada": "provável",
         "impacto_original": "médio",
@@ -4908,7 +4908,7 @@
       },
       {
         "orgao_sigla": "INSS",
-        "risco_texto": "C",
+        "risco_texto": "Disponibilidade dos sistemas de acesso para o cidadão",
         "probabilidade_original": "raro",
         "probabilidade_normalizada": "raro",
         "impacto_original": "baixo",
@@ -4922,7 +4922,7 @@
       },
       {
         "orgao_sigla": "INSS",
-        "risco_texto": "D",
+        "risco_texto": "Perda de integridade de dados",
         "probabilidade_original": "raro",
         "probabilidade_normalizada": "raro",
         "impacto_original": "baixo",
@@ -4936,7 +4936,7 @@
       },
       {
         "orgao_sigla": "INSS",
-        "risco_texto": "E",
+        "risco_texto": "Capacidade de execução da transformação digital",
         "probabilidade_original": "pouco provável",
         "probabilidade_normalizada": "pouco provável",
         "impacto_original": "médio",
@@ -4950,7 +4950,7 @@
       },
       {
         "orgao_sigla": "INSS",
-        "risco_texto": "F",
+        "risco_texto": "Dependência de fornecedores",
         "probabilidade_original": "praticamente certo",
         "probabilidade_normalizada": "praticamente certo",
         "impacto_original": "alto",
@@ -4964,7 +4964,7 @@
       },
       {
         "orgao_sigla": "INSS",
-        "risco_texto": "G",
+        "risco_texto": "Disponibilidade dos donos de serviço para atuação na transformação",
         "probabilidade_original": "provável",
         "probabilidade_normalizada": "provável",
         "impacto_original": "alto",
@@ -4978,7 +4978,7 @@
       },
       {
         "orgao_sigla": "INSS",
-        "risco_texto": "H",
+        "risco_texto": "Disponibilidade das equipes de TI para executar a transformação digital",
         "probabilidade_original": "praticamente certo",
         "probabilidade_normalizada": "praticamente certo",
         "impacto_original": "muito alto",
@@ -4992,7 +4992,7 @@
       },
       {
         "orgao_sigla": "INSS",
-        "risco_texto": "I",
+        "risco_texto": "Despriorização do PTD pela alta administração",
         "probabilidade_original": "raro",
         "probabilidade_normalizada": "raro",
         "impacto_original": "baixo",
@@ -5006,7 +5006,7 @@
       },
       {
         "orgao_sigla": "INSS",
-        "risco_texto": "J",
+        "risco_texto": "Baixo comprometimento das áreas de negócio com as ações pactuadas",
         "probabilidade_original": "pouco provável",
         "probabilidade_normalizada": "pouco provável",
         "impacto_original": "alto",
@@ -5020,7 +5020,7 @@
       },
       {
         "orgao_sigla": "INSS",
-        "risco_texto": "K",
+        "risco_texto": "Atraso nos cronogramas pactuados",
         "probabilidade_original": "provável",
         "probabilidade_normalizada": "provável",
         "impacto_original": "médio",
@@ -5034,7 +5034,7 @@
       },
       {
         "orgao_sigla": "INSS",
-        "risco_texto": "L",
+        "risco_texto": "Rotatividades das equipes envolvidas na transformação digital",
         "probabilidade_original": "muito provável",
         "probabilidade_normalizada": "muito provável",
         "impacto_original": "alto",
@@ -5048,7 +5048,7 @@
       },
       {
         "orgao_sigla": "INSS",
-        "risco_texto": "M",
+        "risco_texto": "Incompatibilidade entre o tempo da transformação do serviço e necessidade de alteração normativa",
         "probabilidade_original": "provável",
         "probabilidade_normalizada": "provável",
         "impacto_original": "baixo",
@@ -5062,7 +5062,7 @@
       },
       {
         "orgao_sigla": "INSS",
-        "risco_texto": "N",
+        "risco_texto": "Corte no orçamento",
         "probabilidade_original": "muito provável",
         "probabilidade_normalizada": "muito provável",
         "impacto_original": "muito alto",
@@ -5076,7 +5076,7 @@
       },
       {
         "orgao_sigla": "INSS",
-        "risco_texto": "O",
+        "risco_texto": "Falta de apoio da SGD",
         "probabilidade_original": "raro",
         "probabilidade_normalizada": "raro",
         "impacto_original": "baixo",
@@ -5090,7 +5090,7 @@
       },
       {
         "orgao_sigla": "INSS",
-        "risco_texto": "P",
+        "risco_texto": "A transformação digital de um serviço não gerar o resultado esperado",
         "probabilidade_original": "raro",
         "probabilidade_normalizada": "raro",
         "impacto_original": "baixo",
@@ -5104,7 +5104,7 @@
       },
       {
         "orgao_sigla": "INSS",
-        "risco_texto": "Q",
+        "risco_texto": "A transformação digital de um serviço público não ser uma transformação propriamente dita",
         "probabilidade_original": "raro",
         "probabilidade_normalizada": "raro",
         "impacto_original": "baixo",
@@ -5118,7 +5118,7 @@
       },
       {
         "orgao_sigla": "INSS",
-        "risco_texto": "R",
+        "risco_texto": "O serviço público terminar sendo oferecido somente pela via digital (digital only)",
         "probabilidade_original": "provável",
         "probabilidade_normalizada": "provável",
         "impacto_original": "médio",
@@ -5132,7 +5132,7 @@
       },
       {
         "orgao_sigla": "INSS",
-        "risco_texto": "S",
+        "risco_texto": "Ocorrência de problemas de funcionamento do serviço público transformado digitalmente",
         "probabilidade_original": "pouco provável",
         "probabilidade_normalizada": "pouco provável",
         "impacto_original": "baixo",
@@ -5146,7 +5146,7 @@
       },
       {
         "orgao_sigla": "INSS",
-        "risco_texto": "T",
+        "risco_texto": "Ataques cibernéticos",
         "probabilidade_original": "Provável",
         "probabilidade_normalizada": "provável",
         "impacto_original": "médio",
@@ -5572,7 +5572,7 @@
     "MDHC": [
       {
         "orgao_sigla": "MDHC",
-        "risco_texto": "A",
+        "risco_texto": "Perda de confiança das partes interessadas",
         "probabilidade_original": "provável",
         "probabilidade_normalizada": "provável",
         "impacto_original": "alto",
@@ -5586,7 +5586,7 @@
       },
       {
         "orgao_sigla": "MDHC",
-        "risco_texto": "B",
+        "risco_texto": "Alteração na política pública",
         "probabilidade_original": "pouco provável",
         "probabilidade_normalizada": "pouco provável",
         "impacto_original": "alto",
