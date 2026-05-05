@@ -210,6 +210,70 @@ IMPACTO_SCALE = [
 ]
 TRATAMENTO_OPTIONS = ["mitigar", "eliminar", "transferir", "aceitar"]
 
+# Aliases de escala — mapeamento semântico de variações metodológicas
+# usadas por alguns órgãos para os 5 níveis canônicos da SGD.
+# - ANTAQ usa 3 pontos (Baixa/Média/Alta) → comprime para níveis intermediários
+# - SUSEP usa numérica 1-4 (omite o 5° nível) → aproxima ao final da escala
+# - CADE mistura numerada com label (1-Alto, 2-Alto)
+PROBABILIDADE_ALIASES: Dict[str, str] = {
+    # ANTAQ 3-pontos
+    "muito baixa": "raro",
+    "baixa": "pouco provável",
+    "media": "provável",
+    "média": "provável",
+    "alta": "muito provável",
+    "muito alta": "praticamente certo",
+    # SUSEP numérica
+    "1": "raro",
+    "2": "pouco provável",
+    "3": "provável",
+    "4": "muito provável",
+    "5": "praticamente certo",
+    # Variantes lexicais
+    "rara": "raro",
+    "raros": "raro",
+    "raras": "raro",
+    "praticamente certa": "praticamente certo",
+}
+IMPACTO_ALIASES: Dict[str, str] = {
+    # ANTAQ
+    "grande": "muito alto",
+    "moderado": "médio",
+    "moderada": "médio",
+    # CADE com prefixo numérico
+    "1-alto": "alto",
+    "2-alto": "alto",
+    "1-medio": "médio",
+    "1-médio": "médio",
+    "2-medio": "médio",
+    "2-médio": "médio",
+    # SUSEP numérica (mesmo mapping da probabilidade)
+    "1": "muito baixo",
+    "2": "baixo",
+    "3": "médio",
+    "4": "alto",
+    "5": "muito alto",
+    # Variantes lexicais
+    "baixa": "baixo",
+    "media": "médio",
+    "média": "médio",
+    "alta": "alto",
+    "muito baixa": "muito baixo",
+    "muito alta": "muito alto",
+}
+TRATAMENTO_ALIASES: Dict[str, str] = {
+    "mitigar o risco": "mitigar",
+    "reduzir": "mitigar",
+    "reduzir ou mitigar": "mitigar",
+    "reduzir ou mitigar o risco": "mitigar",
+    "tratar": "mitigar",
+    "monitorar": "mitigar",
+    "tolerar": "aceitar",
+    "compartilhar": "transferir",
+    "compartilhar o risco": "transferir",
+    "evitar": "eliminar",
+}
+
 # ---------- Órgãos que compartilham PDFs (grupos) ----------
 ORGAN_GROUPS: Dict[str, List[str]] = {
     "MD":   ["MD", "CEX", "CM", "COMAER", "CENSIPAM", "FOSORIO", "HFA"],

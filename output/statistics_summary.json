@@ -5,7 +5,7 @@
   "entregas_orgaos": 79,
   "riscos_total": 619,
   "riscos_orgaos": 76,
-  "riscos_canonicos": 355,
+  "riscos_canonicos": 583,
   "pdfs_escaneados_pendentes": 0,
   "top5_produtos": {
     "Integração ao Login Único": 694,
@@ -22,24 +22,24 @@
     "Projetos Especiais": 148
   },
   "distribuicao_probabilidade": {
-    "raro": 23,
-    "pouco provável": 138,
-    "provável": 161,
-    "muito provável": 45,
-    "praticamente certo": 17
+    "raro": 37,
+    "pouco provável": 234,
+    "provável": 244,
+    "muito provável": 63,
+    "praticamente certo": 21
   },
   "distribuicao_impacto": {
     "muito baixo": 0,
-    "baixo": 30,
-    "médio": 94,
-    "alto": 162,
-    "muito alto": 94
+    "baixo": 46,
+    "médio": 155,
+    "alto": 262,
+    "muito alto": 134
   },
   "distribuicao_tratamento": {
-    "mitigar": 268,
-    "eliminar": 7,
-    "transferir": 15,
-    "aceitar": 42
+    "mitigar": 487,
+    "eliminar": 11,
+    "transferir": 24,
+    "aceitar": 60
   },
   "media_entregas_por_orgao": 80.2,
   "mediana_entregas_por_orgao": 57

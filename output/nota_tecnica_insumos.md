@@ -113,7 +113,7 @@ O extrator PyMuPDF `find_tables()` apresentou cinco desafios técnicos específi
 
 4. **Resolução de ações numéricas**: 35 órgãos referenciam ações de tratamento como "1, 2, 9" ao invés do texto completo, remetendo a uma lista "Referencial para ações de tratamento" incluída no PDF. O extrator faz parsing dessa lista e resolve as referências numéricas para o texto integral.
 
-5. **Colunas deslocadas / tabelas multi-linha**: ~264 riscos (43%) de 6+ órgãos (CENSIPAM, ANTAQ, PRF, SUSEP, MMULHERES, IPHAN, ANM, IBGE...) apresentam probabilidade e impacto fora da escala canônica. Causas: (a) templates não-padrão com colunas trocadas; (b) tabelas onde cada risco ocupa múltiplas linhas no PDF, exigindo consolidação heurística (MMULHERES); (c) PDFs onde `find_tables()` retorna headers genéricos `Col0|Col1|...` (IBGE, ANS, FUNARTE, MPO, MPS, MTUR — recuperados pela detecção de tabela órfã). Os 355 riscos canônicos (57%) têm probabilidade e impacto em escala canônica simultaneamente.
+5. **Templates não-padrão e colunas deslocadas**: 36 riscos (6%) permanecem com probabilidade e/ou impacto fora da escala canônica. Causas tratadas: (a) headers genéricos `Col0|Col1|...` recuperados via detecção de tabela órfã (IBGE, ANS, FUNARTE, MPO, MPS, MTUR); (b) tabelas onde cada risco ocupa múltiplas linhas, consolidadas heuristicamente (MMULHERES); (c) cabeçalhos parciais como `Col0|Probabilidade de|Col2|Opção de` resolvidos por fallback posicional (CENSIPAM); (d) escalas alternativas semanticamente mapeadas — ANTAQ (Baixa/Média/Alta → níveis 2/3/4), SUSEP (numérica 1-4 → raro/pouco provável/provável/muito provável), CADE (1-Alto → alto). Os 583 canônicos (94%) têm probabilidade e impacto na escala SGD. Os 36 residuais são genuinamente fragmentados (DNOCS com colunas trocadas, MPOR/CVM com células vazias, MJSP com texto rasgado).
 
 6. **Produto "Outros"**: 140 entregas que não correspondem a nenhum dos 44 produtos canônicos do template v4.0 são classificadas como produto "Outros" no eixo Projetos Especiais. Correspondem a projetos institucionais específicos de cada órgão (ex: "Modernização do SIAFI" no MF).
 
@@ -152,15 +152,15 @@ Riscos (`risks.csv` — 619 linhas × 11 colunas):
 **3.2 Panorama dos riscos**
 
 - 619 riscos mapeados por 76 órgãos (51 com dados próprios + 25 compartilhando PTD ministerial)
-- Distribuição de probabilidade (canônica, 384/619): provável (161), pouco provável (138), muito provável (45), raro (23), praticamente certo (17)
-- Distribuição de impacto (canônica, 380/619): alto (162), muito alto (94), médio (94), baixo (30)
-- Tratamento (canônico): mitigar (81%), aceitar (13%), transferir (5%), eliminar (2%)
+- Distribuição de probabilidade (canônica, 599/619): provável (244), pouco provável (234), muito provável (63), raro (37), praticamente certo (21)
+- Distribuição de impacto (canônica, 597/619): alto (262), médio (155), muito alto (134), baixo (46)
+- Tratamento (canônico, 582/619): mitigar (84%), aceitar (10%), transferir (4%), eliminar (2%)
 - 141 riscos na zona crítica (probabilidade ≥ provável × impacto ≥ alto)
 - 10 riscos na severidade máxima (praticamente certo × muito alto): ANA, ANATEL, CAPES, INSS, MESP, MME, MPO, MRE (2), SGPR
 - 30% dos riscos sem ações de tratamento detalhadas
 - 32% dos textos de risco reproduzem fraseamento do referencial padrão (texto idêntico em ≥3 órgãos)
 - 12 órgãos usam exclusivamente "mitigar" como estratégia
-- Riscos com extração não-canônica refletem PDFs com templates variantes (CENSIPAM, ANTAQ, PRF, SUSEP) e tabelas multi-linha (MMULHERES) — marcados como `needs_review`
+- 583 riscos (94%) totalmente canônicos em probabilidade × impacto. Os 36 restantes (6%) refletem casos genuinamente fragmentados ou colunas trocadas em PDFs específicos (DNOCS, MPOR, CVM, CADE, MMULHERES) — marcados como `needs_review`
 
 **3.3 Achados transversais**
 

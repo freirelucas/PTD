@@ -76,6 +76,46 @@ mantém Docling como alternativa (especialmente para OCR dos 12 PDFs escaneados)
   prob/impacto/tratamento misturado nesses casos. Os registros são marcados como
   `needs_review=True` com `extraction_confidence=low`
 
+### 2.8 Cabeçalhos parciais e fallback posicional
+- **Descoberta:** PDFs como CENSIPAM retornam cabeçalhos fragmentados pelo
+  `find_tables()`: `["Col0", "Probabilidade de", "Col2", "Opção de", "Ações de"]`.
+  O `_map_risk_columns` mapeava por keyword e deixava `impacto`/`tratamento`
+  como `None` porque `Col2` e `Opção de` não casavam com nenhuma keyword.
+  Resultado: 28/28 riscos do CENSIPAM ficavam com `impacto_normalizado=""`.
+- **Fix:** fallback posicional em `_map_risk_columns` — quando um campo
+  (risco/probabilidade/impacto/tratamento/ações) não foi mapeado por keyword,
+  usa a posição padrão do template SGD (0, 1, 2, 3, 4). Detecta também offset
+  por `id_risco` quando ncols ≥ 6 e a 1ª coluna parece um ID. Recuperou
+  ~25 riscos do CENSIPAM e variantes.
+
+### 2.9 Continuation com 6 colunas (IBGE/AEB)
+- **Descoberta:** IBGE Page 7 tem 6 colunas `[A | Perda de confiança... |
+  Pouco provável | Muito alto | Mitigar | 1, 2, 9]` — a primeira é o ID, as
+  demais são os campos. `_cols_are_data()` retornava `False` porque "A" tem
+  só 1 caractere (`len < 10`). A tabela caía em `is_continuation` mas com
+  `col_order` de 5 elementos sem `id_risco`, deslocando todos os campos.
+  Resultado: `risco_texto="A"`, `prob_orig="Perda de confiança..."`, etc.
+- **Fix:** detecção de offset em `is_continuation` quando ncols > len(col_order)
+  e os primeiros valores da coluna 0 são curtos (≤3 chars como "A", "B", "1").
+  Aplica `offset=1` no mapeamento posicional. Recuperou os 19 riscos do IBGE
+  e similares de AEB.
+
+### 2.10 Escalas alternativas (ANTAQ, SUSEP, CADE)
+- **Descoberta:** três órgãos usam escalas próprias incompatíveis com o template
+  SGD de 5 níveis:
+  - ANTAQ: `Baixa/Média/Alta` (3 pontos) + `Grande/Moderado` para impacto
+  - SUSEP: numérica `1-4` em ambas dimensões
+  - CADE: mistura `1-Alto`, `2-Alto` com labels textuais
+- **Fix:** `PROBABILIDADE_ALIASES`, `IMPACTO_ALIASES`, `TRATAMENTO_ALIASES` em
+  `02_config.py` — mapeamento explícito documentado:
+  - `Baixa → pouco provável`, `Média → provável`, `Alta → muito provável`
+  - `1 → raro`, `2 → pouco provável`, `3 → provável`, `4 → muito provável`
+  - `Grande → muito alto`, `Moderado → médio`
+  - `1-Alto → alto`, `2-Alto → alto`
+- **Decisão metodológica:** o mapeamento ANTAQ comprime 3 níveis em 5 (perde
+  granularidade no extremo superior). É uma aproximação consciente para
+  permitir análise comparativa. O texto bruto fica em `*_original`.
+
 ## 3. Evolução dos números do corpus
 
 | Versão | Entregas | Riscos | Causa da mudança |
@@ -84,7 +124,8 @@ mantém Docling como alternativa (especialmente para OCR dos 12 PDFs escaneados)
 | v1 (find_tables) | 6.292 | 670 | Tabelas estruturadas, merge multi-página parcial |
 | v2 (multi-page fix) | 7.664 | 929 | Fix completo multi-página + header-as-data |
 | v3 (dedup pós-output) | 4.573 | 595 | Dedup manual aplicada nos arquivos commitados |
-| **v4 (atual)** | **4.574** | **619** | Dedup MD5 versionada + detecção de tabelas órfãs + consolidação multi-linha |
+| v4 | 4.574 | 619 | Dedup MD5 versionada + detecção de tabelas órfãs + consolidação multi-linha |
+| **v5 (atual)** | **4.574** | **619** | + fallback posicional, offset id_risco, aliases de escala — 583/619 (94%) totalmente canônicos |
 
 A diferença entre v3 e v4 (+1 entrega, +24 riscos) decorre de 8 PDFs atualizados pelo
 portal gov.br em 17/abr/2026 (CODEVASF, COAF, MIDR/SUDAM/SUDECO/SUDENE, MPI, SGPR).

@@ -96,6 +96,18 @@ def fuzzy_match_eixo(original: str) -> Tuple[str, float]:
     return fuzzy_match(original, CANONICAL_EIXOS, threshold=0.80)
 
 def fuzzy_match_scale(original: str, scale: list) -> Tuple[str, float]:
+    """Canoniza valores de escala (probabilidade/impacto/tratamento) com
+    suporte a escalas alternativas usadas por alguns órgãos (ANTAQ 3-pontos,
+    SUSEP numérica, CADE mista). Aliases têm prioridade sobre fuzzy match."""
+    if not original:
+        return ("", 0.0)
+    norm = strip_accents(normalize_text(original).lower().strip())
+    if scale is PROBABILIDADE_SCALE and norm in PROBABILIDADE_ALIASES:
+        return (PROBABILIDADE_ALIASES[norm], 0.95)
+    if scale is IMPACTO_SCALE and norm in IMPACTO_ALIASES:
+        return (IMPACTO_ALIASES[norm], 0.95)
+    if scale is TRATAMENTO_OPTIONS and norm in TRATAMENTO_ALIASES:
+        return (TRATAMENTO_ALIASES[norm], 0.95)
     return fuzzy_match(original, scale, threshold=0.70)
 
 # --------------- Parse de datas variadas --------------------

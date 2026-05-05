@@ -97,14 +97,17 @@ A extração de tabelas em PDFs governamentais não é trivial — cada órgão 
 | Tabela continua na página seguinte | mesmo nº de colunas + scale values | merge automático |
 | Primeira linha de continuação virou header | `_cols_are_data()` | recupera linha como dado |
 | Headers genéricos `Col0\|Col1\|...` | `_is_orphan_risk_data()` | mapeamento posicional |
+| Cabeçalhos parciais (`Col0\|Probabilidade de\|Col2\|...`) | falha em `_map_risk_columns` | fallback posicional |
+| Tabela 6-col com ID na 1ª coluna | offset detectado por valores curtos | mapeamento posicional com offset |
 | Cada risco ocupa múltiplas linhas | <40% rows com ID populado | consolida entre IDs |
+| Escalas alternativas (Baixa/Média/Alta, 1-4) | `PROBABILIDADE_ALIASES`, `IMPACTO_ALIASES` | mapeamento semântico para escala SGD |
 | Ações como referências numéricas (`"1, 2, 9"`) | parsing do `Referencial para ações` | substitui pelo texto integral |
 | PDF compartilhado entre órgãos do grupo | hash MD5 | um owner por hash |
 
-Casos não cobertos (resíduos marcados `needs_review=True`):
+Resíduos marcados `needs_review=True`:
 
 - 12 PDFs escaneados sem OCR (FBN, FCP, FUNAI, MAPA, ANVISA, AGU, INCRA, ITI, MCOM, PREVIC...)
-- ~264 riscos com probabilidade/impacto fora da escala canônica (templates não-padrão de CENSIPAM, ANTAQ, PRF, SUSEP) — texto bruto preservado em `*_original`
+- 36 riscos (6%) com probabilidade/impacto fora da escala canônica — casos genuinamente fragmentados em DNOCS, MPOR, CVM, CADE, MJSP. Texto bruto preservado em `*_original`
 
 Detalhes e histórico dos fixes em [`DECISIONS.md`](DECISIONS.md).
 
