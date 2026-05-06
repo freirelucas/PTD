@@ -152,7 +152,7 @@ tr:hover td{background:var(--light)}
 <div id="overview" class="section active">
   <h2>Visão Geral</h2>
   <div style="background:var(--dark);color:#fff;padding:20px 24px;border-radius:var(--radius);margin-bottom:20px;line-height:1.7;font-size:.92rem">
-    <strong>O corpus:</strong> Extração automatizada dos Planos de Transformação Digital (PTDs) de 91 órgãos da administração pública federal, conforme publicados no portal gov.br. De cada PTD foram extraídos o Anexo de Entregas (ações pactuadas com a SGD/MGI, classificadas por produto e eixo da EFGD 2024-2027) e o Documento Diretivo (tabela de gestão de riscos com probabilidade, impacto e ações de tratamento). O corpus totaliza <strong><span id="hc-del"></span> entregas</strong> e <strong><span id="hc-risk"></span> riscos</strong>, cobrindo <strong><span id="hc-cov"></span></strong> dos órgãos signatários (órgãos que compartilham um mesmo PTD ministerial são contados uma única vez).
+    <strong>O corpus:</strong> Extração automatizada dos Planos de Transformação Digital (PTDs) de <span data-stat="orgaos_total">91</span> órgãos da administração pública federal, conforme publicados no portal gov.br. De cada PTD foram extraídos o Anexo de Entregas (ações pactuadas com a SGD/MGI, classificadas por produto e eixo da EFGD 2024-2027) e o Documento Diretivo (tabela de gestão de riscos com probabilidade, impacto e ações de tratamento). O corpus totaliza <strong><span id="hc-del"></span> entregas</strong> e <strong><span id="hc-risk"></span> riscos</strong>, cobrindo <strong><span id="hc-cov"></span></strong> dos órgãos signatários (órgãos que compartilham um mesmo PTD ministerial são contados uma única vez).
   </div>
   <div class="kpi-row" id="kpi-cards"></div>
   <div class="chart-container"><h3>Cronologia Mensal das Assinaturas dos PTDs</h3><p class="desc" style="margin-bottom:8px">Data de criação do PDF como proxy da assinatura. Barras mostram quantos órgãos assinaram em cada mês; linha tracejada mostra o acumulado.</p><canvas id="chart-timeline"></canvas><div id="timeline-insight" style="margin-top:12px"></div></div>
@@ -214,7 +214,7 @@ tr:hover td{background:var(--light)}
 <!-- ===== ÓRGÃOS ===== -->
 <div id="organs" class="section">
   <h2>Órgãos Signatários</h2>
-  <p class="desc">Cada card representa um dos 91 órgãos signatários de PTD. A borda <strong style="color:var(--green)">verde</strong> indica dados completos, <strong style="color:var(--yellow)">amarela</strong> parcial e <strong style="color:var(--red)">vermelha</strong> sem dados extraídos. Clique em um órgão para ver seus detalhes, entregas e riscos.</p>
+  <p class="desc">Cada card representa um dos <span data-stat="orgaos_total">91</span> órgãos signatários de PTD. A borda <strong style="color:var(--green)">verde</strong> indica dados completos, <strong style="color:var(--yellow)">amarela</strong> parcial e <strong style="color:var(--red)">vermelha</strong> sem dados extraídos. Clique em um órgão para ver seus detalhes, entregas e riscos.</p>
   <div class="filters">
     <input id="organ-search" type="text" placeholder="Buscar sigla...">
     <select id="organ-group"><option value="">Todos os grupos</option></select>
@@ -260,7 +260,7 @@ tr:hover td{background:var(--light)}
 <!-- ===== INSIGHTS ===== -->
 <div id="insights" class="section">
   <h2>Insights</h2>
-  <p class="desc">Achados analíticos derivados do corpus de 91 órgãos. Os números são calculados dinamicamente a partir dos dados extraídos.</p>
+  <p class="desc">Achados analíticos derivados do corpus de <span data-stat="orgaos_total">91</span> órgãos. Os números são calculados dinamicamente a partir dos dados extraídos.</p>
   <div id="insights-content"></div>
 </div>
 
@@ -356,12 +356,12 @@ tr:hover td{background:var(--light)}
     </ul>
 
     <h3>5. Apreciação Crítica do Portal Gov.br</h3>
-    <p>Após a coleta e análise dos 177 PDFs de 91 órgãos, algumas observações sobre o ecossistema:</p>
+    <p>Após a coleta e análise dos <span data-stat="pdfs_total">177</span> PDFs de <span data-stat="orgaos_total">91</span> órgãos, algumas observações sobre o ecossistema:</p>
 
     <div class="insight-card" style="border-left-color:var(--green)"><h4>Pontos Positivos</h4><p>
       <strong>Transparência</strong>: todos os PTDs assinados estão publicados abertamente no portal, com links diretos para os PDFs — um bom exemplo de dados governamentais acessíveis.<br>
       <strong>Padronização crescente</strong>: a evolução dos templates (v2.1 → v4.0) mostra esforço real de uniformização do vocabulário e das categorias.<br>
-      <strong>Cobertura ampla</strong>: 91 órgãos signatários abrangem praticamente toda a administração federal direta, autarquias e fundações.
+      <strong>Cobertura ampla</strong>: <span data-stat="orgaos_total">91</span> órgãos signatários abrangem praticamente toda a administração federal direta, autarquias e fundações.
     </p></div>
 
     <div class="insight-card" style="border-left-color:var(--yellow)"><h4>Oportunidades de Melhoria</h4><p>
@@ -452,7 +452,7 @@ tr:hover td{background:var(--light)}
       <li><strong>Documento Diretivo</strong>: contém contexto institucional, escopo, cronograma e a <em>tabela de gestão de riscos</em> (5 colunas: risco, probabilidade, impacto, opção de tratamento, ações de tratamento)</li>
       <li><strong>Anexo de Entregas</strong>: contém as tabelas de entregas pactuadas, concluídas e canceladas (colunas: serviço/ação, produto, eixo, área responsável, data)</li>
     </ul>
-    <p>Foram identificados <strong>91 órgãos</strong> com PTD vigente, totalizando <strong>177 PDFs</strong> (86 diretivos + 91 entregas).</p>
+    <p>Foram identificados <strong><span data-stat="orgaos_total">91</span> órgãos</strong> com PTD vigente, totalizando <strong><span data-stat="pdfs_total">177</span> PDFs</strong> (<span data-stat="pdfs_diretivo">86</span> diretivos + <span data-stat="pdfs_entregas">91</span> entregas).</p>
 
     <h3>3. Pipeline de Coleta e Extração</h3>
     <ul>
@@ -498,7 +498,7 @@ tr:hover td{background:var(--light)}
         <tr><td><strong>PyMuPDF <code>find_tables()</code></strong></td><td>Rápido (~1s/PDF), detecta estrutura tabelar nativamente, disponível em v1.23+</td><td>Não faz OCR; interpreta 1ª linha de continuação como header</td><td><strong>Adotado</strong> com fixes para multi-página e header-as-data</td></tr>
       </tbody>
     </table>
-    <p>A escolha de PyMuPDF se justifica pela combinação de velocidade (177 PDFs em ~3 minutos), robustez na detecção de tabelas nativas, e independência de modelos pesados. Os dois bugs identificados — tabelas de continuação multi-página e primeira linha interpretada como header — foram corrigidos com heurísticas específicas (<code>_is_risk_data()</code> e <code>_cols_are_data()</code>).</p>
+    <p>A escolha de PyMuPDF se justifica pela combinação de velocidade (<span data-stat="pdfs_total">177</span> PDFs em ~3 minutos), robustez na detecção de tabelas nativas, e independência de modelos pesados. Os dois bugs identificados — tabelas de continuação multi-página e primeira linha interpretada como header — foram corrigidos com heurísticas específicas (<code>_is_risk_data()</code> e <code>_cols_are_data()</code>).</p>
 
     <h4 style="color:var(--dark);margin-top:16px">7.2 Por que matching fuzzy em camadas?</h4>
     <p>Os PDFs apresentam variabilidade significativa na grafia dos produtos e eixos:</p>
@@ -514,7 +514,7 @@ tr:hover td{background:var(--light)}
     <p>Sete grupos ministeriais (MD, MEC, MF, MMA, MT, MIDR, MDA) publicam um único PTD para múltiplos órgãos — por exemplo, o PTD do MEC serve a CAPES, EBSERH, FNDE, FUNDAJ, IBC, INEP e INES. Replicar as mesmas entregas para cada membro inflaria o corpus artificialmente. A decisão foi:</p>
     <ul>
       <li><strong>Dados desduplicados</strong>: cada entrega e risco conta uma vez, atribuído ao órgão-cabeça</li>
-      <li><strong>Cobertura contabiliza membros</strong>: os 22 membros compartilhados são contados como "cobertos" na estatística de cobertura (79/91 = 87%)</li>
+      <li><strong>Cobertura contabiliza membros</strong>: os membros compartilhados são contados como "cobertos" na estatística de cobertura (<span data-stat="entregas_orgaos">79</span>/<span data-stat="orgaos_total">91</span>)</li>
       <li><strong>Dashboard indica compartilhamento</strong>: membros mostram status "compartilhado" e herdam o perfil do cabeça para visualização</li>
     </ul>
     <p>Exceção: MF/PGFN — a PGFN tem seção própria no PDF do MF com entregas distintas, portanto conta como órgão independente.</p>
@@ -540,7 +540,7 @@ tr:hover td{background:var(--light)}
 
     <h3>8. Citação Sugerida</h3>
     <blockquote style="border-left:4px solid var(--primary);margin:12px 0;padding:16px 20px;background:var(--light);border-radius:0 var(--radius) var(--radius) 0;font-size:.88rem;line-height:1.7">
-      DIREITO, Denise; SILVA, Lucas; QUEIROZ, Sérgio. <em>Corpus dos Planos de Transformação Digital: extração, padronização e análise dos PTDs de 91 órgãos federais brasileiros</em>. Brasília: Ipea, 2026. (Nota Técnica). Disponível em: <a href="https://github.com/freirelucas/PTD" target="_blank">https://github.com/freirelucas/PTD</a>.
+      DIREITO, Denise; SILVA, Lucas; QUEIROZ, Sérgio. <em>Corpus dos Planos de Transformação Digital: extração, padronização e análise dos PTDs de <span data-stat="orgaos_total">91</span> órgãos federais brasileiros</em>. Brasília: Ipea, 2026. (Nota Técnica). Disponível em: <a href="https://github.com/freirelucas/PTD" target="_blank">https://github.com/freirelucas/PTD</a>.
     </blockquote>
   </div>
 </div>
@@ -732,7 +732,7 @@ function initOverview(){
      desc:`Matriz 5\u00D75 interativa, ${nRiskCanon} riscos com valores canônicos. Clique numa célula para ver riscos e ações de mitigação conectadas.`,
      color:'#C0392B'},
     {nav:'organs',icon:'\u2605',title:'\u00D3rgãos Signatários',
-     metric:'91',
+     metric:PTD_STATS.orgaos_total.toString(),
      desc:`${nOrgsDel} com entregas extraídas, ${nOrgsRisk} com riscos. Ordene por volume, filtre por grupo ministerial, abra fichas detalhadas.`,
      color:'#27AE60'},
     {nav:'compare',icon:'\u2194',title:'Similaridade',
@@ -1346,7 +1346,7 @@ function initInsights(){
 
   let html='<p style="font-size:.82rem;color:var(--muted);margin-bottom:16px">Clique em um card para expandir a fundamentação.</p>';
   html+='<h3 style="color:var(--dark);margin-bottom:12px">Corpus</h3>';
-  html+=card('#264A7F','Cobertura',nOrgsD+'/91',
+  html+=card('#264A7F','Cobertura',nOrgsD+'/'+PTD_STATS.orgaos_total,
     `${N.toLocaleString('pt-BR')} entregas e ${NR} riscos extraídos de ${nOrgsD} e ${nOrgsR} órgãos respectivamente.`,
     `Os ${PTD_STATS.pdfs_escaneados_pendentes} órgãos ausentes possuem PDFs escaneados como imagem. A cobertura de 87% confere representatividade substantiva, embora a confirmação definitiva requeira OCR. A extração usou abordagem híbrida: find_tables() para tabelas multi-página + fallback textual para PDFs sem estrutura tabelar detectável.`);
   html+=card('#264A7F','Homogeneidade','PPSI 90%',
@@ -1582,7 +1582,16 @@ function showSection(id) {
   if(id==='visualizations') initVisualizations();
 }
 
+function populateDataStats(){
+  document.querySelectorAll('[data-stat]').forEach(el=>{
+    const key=el.getAttribute('data-stat');
+    if(PTD_STATS && PTD_STATS[key]!==undefined && PTD_STATS[key]!==null){
+      el.textContent=PTD_STATS[key].toLocaleString('pt-BR');
+    }
+  });
+}
 document.addEventListener('DOMContentLoaded',()=>{
+  populateDataStats();
   const h=location.hash.replace('#','');
   showSection(h||'overview');
 });

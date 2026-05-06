@@ -138,8 +138,21 @@ n_canonicos = sum(1 for r in all_risks
 del_per_organ = Counter(d.orgao_sigla for d in all_deliveries)
 del_counts = [c for c in del_per_organ.values()] if del_per_organ else [0]
 
-# PDFs escaneados pendentes
-n_scan = sum(1 for e in all_errors if "scan" in e.error_type.lower() or "ocr" in e.error_message.lower())
+# PDFs com falha de extração registrada (provavelmente escaneados sem OCR
+# ou com template não suportado). Conta pares distintos (sigla, document_type)
+# em all_errors cujo error_type sinaliza extração vazia. A heurística anterior
+# (substring "scan"/"ocr") nunca casava com os error_types reais e retornava 0.
+_FAIL_TYPES = {"no_risk_table", "no_data", "empty_table", "scan", "ocr_required"}
+n_scan = len({
+    (e.orgao_sigla, e.document_type)
+    for e in all_errors
+    if e.error_type in _FAIL_TYPES
+})
+
+# Totais de PDFs (físicos): cada órgão pode ter até 2 (diretivo + entregas)
+n_pdfs_diretivo = sum(1 for o in all_organs if o.pdf_path_diretivo or o.url_diretivo)
+n_pdfs_entregas = sum(1 for o in all_organs if o.pdf_path_entregas or o.url_entregas)
+n_pdfs_total = n_pdfs_diretivo + n_pdfs_entregas
 
 ptd_stats = {
     "data_execucao": datetime.now().strftime("%Y-%m-%d"),
@@ -149,6 +162,9 @@ ptd_stats = {
     "riscos_total": len(all_risks),
     "riscos_orgaos": len(organs_with_risks),
     "riscos_canonicos": n_canonicos,
+    "pdfs_diretivo": n_pdfs_diretivo,
+    "pdfs_entregas": n_pdfs_entregas,
+    "pdfs_total": n_pdfs_total,
     "pdfs_escaneados_pendentes": n_scan,
     "top5_produtos": top5_produtos,
     "entregas_por_eixo": entregas_por_eixo,

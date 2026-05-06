@@ -6,7 +6,10 @@
   "riscos_total": 619,
   "riscos_orgaos": 76,
   "riscos_canonicos": 583,
-  "pdfs_escaneados_pendentes": 0,
+  "pdfs_diretivo": 86,
+  "pdfs_entregas": 91,
+  "pdfs_total": 177,
+  "pdfs_escaneados_pendentes": 10,
   "top5_produtos": {
     "Integração ao Login Único": 694,
     "Integração à ferramenta de avaliação da satisfação dos usuários": 685,
