@@ -143,7 +143,10 @@ As células do notebook ficam em `notebook_cells/` como arquivos `.py` e `.md` i
 
 ```bash
 python build_notebook.py
+# ou, equivalente: make build
 ```
+
+Atalho: `make commit` reconstrói o notebook, faz `git add -A` e abre o editor de commit. O CI (`.github/workflows/notebook-consistency.yml`) valida em todo push/PR que `ptd_scraper.ipynb` reflete `notebook_cells/` e bloqueia merge em caso de drift.
 
 Para validar consistência entre código e dados commitados, rode o notebook do zero e compare:
 
