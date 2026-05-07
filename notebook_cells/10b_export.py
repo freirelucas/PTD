@@ -17,7 +17,11 @@ def _file_size_str(path: str) -> str:
 
 
 def _build_nested_json(entries: list, key_field: str, metadata_extra: dict = None) -> dict:
-    """Agrupa entradas por key_field em um JSON com metadata."""
+    """Agrupa entradas por key_field em um JSON com metadata.
+
+    `entries` deve vir ordenado pelo chamador para que `grouped` resulte
+    determinístico (Python 3.7+ preserva ordem de inserção em dict).
+    """
     grouped = {}
     for entry in entries:
         d = asdict(entry)
@@ -37,7 +41,29 @@ def _build_nested_json(entries: list, key_field: str, metadata_extra: dict = Non
     return {"metadata": metadata, "data": grouped}
 
 
+def _sorted_stable(entries: list, *keys):
+    """Ordena por tuplas de chaves, tolerando None (vira string vazia).
+
+    Usa sort estável (Timsort) para preservar a ordem upstream entre
+    registros equivalentes.
+    """
+    def _key(e):
+        d = asdict(e) if hasattr(e, "__dataclass_fields__") else e
+        return tuple((d.get(k) or "") for k in keys)
+    return sorted(entries, key=_key)
+
+
 export_log = []  # (filename, rows, size_str)
+
+# Ordenação estável aplicada in-place para garantir reprodutibilidade
+# bit-a-bit dos CSVs/JSONs entre runs (sem depender da ordem upstream).
+all_deliveries = _sorted_stable(
+    all_deliveries, "orgao_sigla", "eixo_normalizado",
+    "produto_normalizado", "servico_acao",
+)
+all_risks = _sorted_stable(all_risks, "orgao_sigla", "risco_texto")
+all_organs = _sorted_stable(all_organs, "sigla")
+all_errors = _sorted_stable(all_errors, "orgao_sigla", "document_type", "stage")
 
 # ---- 1. Entregas: CSV e JSON ----
 if all_deliveries:
@@ -126,13 +152,19 @@ for field_key in ["probabilidade_mappings", "impacto_mappings", "tratamento_mapp
             "count": m["count"],
         })
 
-if vocab_rows:
-    df_vocab = pd.DataFrame(vocab_rows)
-    csv_path = os.path.join(DIRS["output"], "vocabulary_mapping.csv")
-    df_vocab.to_csv(csv_path, index=False, encoding="utf-8-sig")
-    export_log.append(("vocabulary_mapping.csv", len(df_vocab), _file_size_str(csv_path)))
-else:
-    print("Nenhum mapeamento de vocabulário para exportar.")
+# Sempre grava o arquivo (mesmo vazio com header) para alinhar com o
+# README e tornar a ausência de mapeamentos uma sentinela explícita.
+csv_path = os.path.join(DIRS["output"], "vocabulary_mapping.csv")
+vocab_cols = ["type", "original", "normalized", "score", "count"]
+df_vocab = pd.DataFrame(vocab_rows, columns=vocab_cols)
+if not df_vocab.empty:
+    df_vocab = df_vocab.sort_values(
+        ["type", "original"], kind="mergesort"
+    ).reset_index(drop=True)
+df_vocab.to_csv(csv_path, index=False, encoding="utf-8-sig")
+export_log.append(("vocabulary_mapping.csv", len(df_vocab), _file_size_str(csv_path)))
+if df_vocab.empty:
+    print("vocabulary_mapping.csv gravado vazio (nenhum mapeamento aplicado).")
 
 # ---- 6. Fila de revisão: CSV ----
 review_rows = []

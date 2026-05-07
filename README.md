@@ -22,7 +22,7 @@ Resultado consolidado (corpus atual):
 | Riscos identificados | **619** |
 | Cobertura entregas | 79/91 órgãos (57 próprios + 22 compartilhados) |
 | Cobertura riscos | 76/91 órgãos (51 próprios + 25 compartilhados) |
-| PDFs escaneados pendentes (sem texto extraível) | 12 |
+| PDFs escaneados pendentes (sem texto extraível) | 10 |
 
 Sete grupos ministeriais publicam um único PDF para múltiplos órgãos (MD/MEC/MF/MMA/MT/MIDR/MDA). O pipeline detecta isso por **hash MD5** e registra os dados uma única vez sob a sigla alfabeticamente menor; os demais membros são marcados como `compartilhado` na cobertura.
 
@@ -38,6 +38,7 @@ Sete grupos ministeriais publicam um único PDF para múltiplos órgãos (MD/MEC
 | `output/vocabulary_mapping.csv` | Mapeamento de normalização de vocabulário |
 | `output/data.js` | Dados consumidos pelo dashboard interativo |
 | `output/statistics_summary.json` | Estatísticas agregadas |
+| `output/manifest.json` | Manifesto da execução: commit do pipeline, contagens de PDFs e hash SHA-256 dos artefatos exportados |
 | `output/pdf_metadata.csv` | Metadados dos PDFs (datas, tamanhos) |
 | `output/figures/` | Visualizações estatísticas (PNG) |
 | `output/nota_tecnica_insumos.md` | Insumos para a nota técnica (estrutura, métricas, achados) |
@@ -106,7 +107,7 @@ A extração de tabelas em PDFs governamentais não é trivial — cada órgão 
 
 Resíduos marcados `needs_review=True`:
 
-- 12 PDFs escaneados sem OCR (FBN, FCP, FUNAI, MAPA, ANVISA, AGU, INCRA, ITI, MCOM, PREVIC...)
+- 10 PDFs escaneados sem OCR (AGU, ANVISA, FBN, FCP, FUNAI, INCRA, ITI, MAPA, MCOM, PREVIC), conforme `output/error_report.csv`
 - 36 riscos (6%) com probabilidade/impacto fora da escala canônica — casos genuinamente fragmentados em DNOCS, MPOR, CVM, CADE, MJSP. Texto bruto preservado em `*_original`
 
 Detalhes e histórico dos fixes em [`DECISIONS.md`](DECISIONS.md).

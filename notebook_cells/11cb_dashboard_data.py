@@ -12,7 +12,9 @@
 
 from collections import Counter, defaultdict
 from datetime import datetime
+import hashlib
 import statistics as stats_mod
+import subprocess
 
 # -----------------------------------------------------------------
 # Helpers
@@ -306,22 +308,19 @@ for organ in all_organs:
         ptd_dates[organ.sigla] = ""
 
 # -----------------------------------------------------------------
-# 6-7. PTD_TIMELINE / PTD_TIMELINE_ORGANS
+# 6. PTD_TIMELINE_ORGANS (sigla única por mês — único consumido pelo dashboard)
 # -----------------------------------------------------------------
-month_deliveries = defaultdict(int)
 month_organs = defaultdict(set)
 
 for d in all_deliveries:
     ym = _parse_year_month(d.data_pactuada or "")
     if ym:
-        month_deliveries[ym] += 1
         month_organs[ym].add(d.orgao_sigla)
 
-ptd_timeline = dict(sorted(month_deliveries.items()))
 ptd_timeline_organs = {k: len(v) for k, v in sorted(month_organs.items())}
 
 # -----------------------------------------------------------------
-# 8-9. PTD_JACCARD_ORGANS / PTD_JACCARD_MATRIX
+# 7-8. PTD_JACCARD_ORGANS / PTD_JACCARD_MATRIX
 # -----------------------------------------------------------------
 # Similaridade de Jaccard baseada em conjuntos de produtos por órgão
 organ_products = {}
@@ -345,6 +344,16 @@ for i in range(n):
         jaccard_matrix[i][j] = sim
         jaccard_matrix[j][i] = sim
 
+# -----------------------------------------------------------------
+# 9. PTD_EIXOS / PTD_SCALES — vocabulário canônico exposto ao dashboard
+# -----------------------------------------------------------------
+ptd_eixos = list(CANONICAL_EIXOS)
+ptd_scales = {
+    "probabilidade": list(PROBABILIDADE_SCALE),
+    "impacto": list(IMPACTO_SCALE),
+    "tratamento": list(TRATAMENTO_OPTIONS),
+}
+
 # =================================================================
 # Gravar arquivos
 # =================================================================
@@ -355,11 +364,12 @@ out_dir = DIRS["output"]
 js_path = os.path.join(out_dir, "data.js")
 with open(js_path, "w", encoding="utf-8") as f:
     f.write(f"const PTD_STATS = {json.dumps(ptd_stats, ensure_ascii=False)};\n")
+    f.write(f"const PTD_EIXOS = {json.dumps(ptd_eixos, ensure_ascii=False)};\n")
+    f.write(f"const PTD_SCALES = {json.dumps(ptd_scales, ensure_ascii=False)};\n")
     f.write(f"const PTD_ORGANS = {json.dumps(ptd_organs, ensure_ascii=False)};\n")
     f.write(f"const PTD_DELIVERIES = {json.dumps(ptd_deliveries, ensure_ascii=False)};\n")
     f.write(f"const PTD_RISKS = {json.dumps(ptd_risks, ensure_ascii=False)};\n")
     f.write(f"const PTD_DATES = {json.dumps(ptd_dates, ensure_ascii=False)};\n")
-    f.write(f"const PTD_TIMELINE = {json.dumps(ptd_timeline, ensure_ascii=False)};\n")
     f.write(f"const PTD_TIMELINE_ORGANS = {json.dumps(ptd_timeline_organs, ensure_ascii=False)};\n")
     f.write(f"const PTD_JACCARD_ORGANS = {json.dumps(jaccard_organs, ensure_ascii=False)};\n")
     f.write(f"const PTD_JACCARD_MATRIX = {json.dumps(jaccard_matrix)};\n")
@@ -395,5 +405,105 @@ if pdf_meta_rows:
     print(f"pdf_metadata.csv gravado ({len(pdf_meta_rows)} PDFs)")
 else:
     print("pdf_metadata.csv: nenhum PDF local encontrado (pular)")
+
+# =================================================================
+# Manifest + auto-verificação
+# =================================================================
+
+def _file_sha256(path: str, chunk: int = 1 << 16) -> str:
+    h = hashlib.sha256()
+    with open(path, "rb") as fh:
+        for blk in iter(lambda: fh.read(chunk), b""):
+            h.update(blk)
+    return h.hexdigest()
+
+
+def _git_head_commit() -> str:
+    try:
+        repo_root = os.path.dirname(os.path.abspath(DIRS["output"]))
+        out = subprocess.check_output(
+            ["git", "-C", repo_root, "rev-parse", "HEAD"],
+            stderr=subprocess.DEVNULL, timeout=5,
+        )
+        return out.decode().strip()
+    except Exception:
+        return "unknown"
+
+
+# Contagens auxiliares de PDFs
+n_pdf_diretivo = sum(1 for o in all_organs if o.pdf_path_diretivo)
+n_pdf_entregas = sum(1 for o in all_organs if o.pdf_path_entregas)
+n_pdf_total = n_pdf_diretivo + n_pdf_entregas
+n_pdf_com_texto = sum(
+    1 for r in pdf_meta_rows
+    if r.get("tamanho_kb", 0) > 0
+)
+n_pdf_dedup_owners = sum(
+    1 for o in all_organs
+    if (o.pdf_path_diretivo or o.pdf_path_entregas) and not o.grupo
+)
+n_pdf_compartilhados = sum(
+    1 for o in ptd_organs
+    if o["status_entregas"] == "compartilhado"
+    or o["status_riscos"] == "compartilhado"
+)
+
+# Hashes/contagens dos arquivos exportados (excluindo data.js auto-referencial e o
+# próprio manifest.json)
+manifest_outputs = {}
+for fname in sorted(os.listdir(out_dir)):
+    fpath = os.path.join(out_dir, fname)
+    if not os.path.isfile(fpath) or fname in ("data.js", "manifest.json"):
+        continue
+    try:
+        with open(fpath, "rb") as fh:
+            n_lines = sum(1 for _ in fh)
+    except Exception:
+        n_lines = None
+    manifest_outputs[fname] = {
+        "linhas": n_lines,
+        "bytes": os.path.getsize(fpath),
+        "sha256": _file_sha256(fpath),
+    }
+
+ptd_manifest = {
+    "pipeline_commit": _git_head_commit(),
+    "data_execucao": ptd_stats["data_execucao"],
+    "pdfs_baixados": n_pdf_total,
+    "pdfs_diretivo": n_pdf_diretivo,
+    "pdfs_entregas": n_pdf_entregas,
+    "pdfs_com_texto_extraido": n_pdf_com_texto,
+    "pdfs_escaneados_pendentes": ptd_stats["pdfs_escaneados_pendentes"],
+    "pdfs_dedup_owners": n_pdf_dedup_owners,
+    "pdfs_compartilhados": n_pdf_compartilhados,
+    "outputs": manifest_outputs,
+}
+
+# Acrescenta PTD_MANIFEST ao data.js (append) e grava manifest.json standalone
+with open(js_path, "a", encoding="utf-8") as f:
+    f.write(f"const PTD_MANIFEST = {json.dumps(ptd_manifest, ensure_ascii=False)};\n")
+
+manifest_path = os.path.join(out_dir, "manifest.json")
+with open(manifest_path, "w", encoding="utf-8") as f:
+    json.dump(ptd_manifest, f, ensure_ascii=False, indent=2)
+print(f"manifest.json gravado (commit={ptd_manifest['pipeline_commit'][:7]})")
+
+# Asserções de consistência: falham rápido se os agregados divergirem dos
+# CSVs/JSONs gerados nesta mesma execução.
+assert ptd_stats["entregas_total"] == len(all_deliveries), (
+    f"PTD_STATS.entregas_total={ptd_stats['entregas_total']} != len(all_deliveries)={len(all_deliveries)}"
+)
+assert ptd_stats["riscos_total"] == len(all_risks), (
+    f"PTD_STATS.riscos_total={ptd_stats['riscos_total']} != len(all_risks)={len(all_risks)}"
+)
+assert ptd_stats["orgaos_total"] == len(all_organs), (
+    f"PTD_STATS.orgaos_total={ptd_stats['orgaos_total']} != len(all_organs)={len(all_organs)}"
+)
+assert sum(len(v) for v in ptd_deliveries.values()) == len(all_deliveries), (
+    "Soma de PTD_DELIVERIES por sigla diverge de all_deliveries"
+)
+assert sum(len(v) for v in ptd_risks.values()) == len(all_risks), (
+    "Soma de PTD_RISKS por sigla diverge de all_risks"
+)
 
 print("\nArtefatos do dashboard gerados com sucesso.")

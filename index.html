@@ -559,10 +559,17 @@ tr:hover td{background:var(--light)}
 <script>
 // ==================== GLOBALS ====================
 let charts = {};
-const EIXOS = ["Serviços Digitais e Melhoria da Qualidade","Unificação de Canais Digitais","Governança e Gestão de Dados","Segurança e Privacidade","Projetos Especiais"];
-const PROB_ORDER = ["raro","pouco provável","provável","muito provável","praticamente certo"];
-const IMP_ORDER = ["muito baixo","baixo","médio","alto","muito alto"];
-const TRAT = ["mitigar","eliminar","transferir","aceitar"];
+// Vocabulário canônico vem de output/data.js (PTD_EIXOS, PTD_SCALES). Fallbacks
+// preservam compatibilidade com snapshots antigos do data.js que ainda não
+// expõem essas constantes.
+const EIXOS = (typeof PTD_EIXOS !== "undefined") ? PTD_EIXOS
+    : ["Serviços Digitais e Melhoria da Qualidade","Unificação de Canais Digitais","Governança e Gestão de Dados","Segurança e Privacidade","Projetos Especiais"];
+const PROB_ORDER = (typeof PTD_SCALES !== "undefined" && PTD_SCALES.probabilidade) ? PTD_SCALES.probabilidade
+    : ["raro","pouco provável","provável","muito provável","praticamente certo"];
+const IMP_ORDER = (typeof PTD_SCALES !== "undefined" && PTD_SCALES.impacto) ? PTD_SCALES.impacto
+    : ["muito baixo","baixo","médio","alto","muito alto"];
+const TRAT = (typeof PTD_SCALES !== "undefined" && PTD_SCALES.tratamento) ? PTD_SCALES.tratamento
+    : ["mitigar","eliminar","transferir","aceitar"];
 // Paleta ipeaplot — categórica institucional IPEA
 const COLORS = ["#264A7F","#C0392B","#27AE60","#E67E22","#8E44AD","#2980B9","#D35400","#16A085","#4D8AC9","#7F8C8D"];
 
