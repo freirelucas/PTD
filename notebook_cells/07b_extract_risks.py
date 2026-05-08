@@ -238,7 +238,12 @@ def extract_risk_table(pdf_path: str, sigla: str) -> Tuple[List[RiskEntry], List
 def extract_all_risks() -> None:
     global all_risks, all_errors
 
-    cached = load_checkpoint("risks_raw")
+    # Fingerprint do estado upstream (lista de siglas com PDF diretivo após dedup).
+    # Se 05c_dedup.py rodar e zerar paths, o fingerprint muda e o cache é
+    # invalidado automaticamente, evitando regressões silenciosas.
+    fp = state_fingerprint(sorted((o.sigla, bool(o.pdf_path_diretivo)) for o in all_organs))
+
+    cached = load_checkpoint("risks_raw", expected_fingerprint=fp)
     if cached is not None and len(cached[0]) > 0:
         cached_risks, cached_errors, processed_siglas = cached
         all_risks.extend(cached_risks)
@@ -290,9 +295,9 @@ def extract_all_risks() -> None:
 
         count += 1
         if count % 10 == 0:
-            save_checkpoint((cached_risks + batch_risks, cached_errors + batch_errors, processed_siglas), "risks_raw")
+            save_checkpoint((cached_risks + batch_risks, cached_errors + batch_errors, processed_siglas), "risks_raw", fingerprint=fp)
 
-    save_checkpoint((cached_risks + batch_risks, cached_errors + batch_errors, processed_siglas), "risks_raw")
+    save_checkpoint((cached_risks + batch_risks, cached_errors + batch_errors, processed_siglas), "risks_raw", fingerprint=fp)
     print(f"  Extração de riscos concluída.")
 
 

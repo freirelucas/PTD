@@ -200,6 +200,17 @@ for eixo, prods in LEGACY_PRODUTOS.items():
     for p in prods:
         PRODUTO_TO_EIXO[p] = eixo
 
+# Thresholds de qualidade — usados por 11b_statistics.py para detectar regressões
+# (ex: dedup pulado, checkpoint stale carregado, novo formato de PDF não suportado).
+# Bumpar conforme o corpus crescer ou o gov.br republicar com novos rótulos.
+QUALITY_THRESHOLDS = {
+    "max_entregas":               4700,   # 4574 baseline + margem para PDFs novos
+    "max_riscos":                  700,   # 619 baseline + margem
+    "min_prob_canonica_ratio":    0.85,
+    "min_imp_canonica_ratio":     0.85,
+    "min_trat_canonica_ratio":    0.80,
+}
+
 # Escalas do Documento Diretivo (tabela de riscos)
 PROBABILIDADE_SCALE = [
     "raro", "pouco provável", "provável",
@@ -320,7 +331,7 @@ class RiskEntry:
 @dataclass
 class DeliveryEntry:
     orgao_sigla: str
-    tabela_tipo: str = ""                  # pactuada / concluida / cancelada
+    tabela_tipo: str = "pactuada"          # default; "concluida" / "cancelada" quando os PTDs publicarem ciclos futuros
     servico_acao: str = ""
     produto_original: str = ""
     produto_normalizado: str = ""

@@ -350,9 +350,14 @@ print(f"  Entregas para revisão: {n_review_del}/{len(all_deliveries)}")
 print(f"  Riscos para revisão:   {n_review_risk}/{len(all_risks)}")
 print(f"{'='*60}")
 
-# Save checkpoints
-save_checkpoint(all_deliveries, "deliveries_standardized")
-save_checkpoint(all_risks, "risks_standardized")
+# Save checkpoints — fingerprints derivados das contagens permitem que cells
+# downstream (caso venham a ler estes pickles) detectem cache pré-dedup.
+_fp_del_std = state_fingerprint((len(all_deliveries),
+                                 sorted({d.orgao_sigla for d in all_deliveries})))
+_fp_risk_std = state_fingerprint((len(all_risks),
+                                  sorted({r.orgao_sigla for r in all_risks})))
+save_checkpoint(all_deliveries, "deliveries_standardized", fingerprint=_fp_del_std)
+save_checkpoint(all_risks, "risks_standardized", fingerprint=_fp_risk_std)
 save_checkpoint(vocab_report, "vocab_report")
 save_checkpoint(risk_report, "risk_report")
 print("\nCheckpoints de padronização salvos.")

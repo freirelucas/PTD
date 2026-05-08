@@ -143,20 +143,52 @@ def parse_date(text: str) -> Optional[str]:
     return text   # retorna original se não parsear
 
 # --------------- Checkpoint / Resume ------------------------
-def save_checkpoint(data: Any, name: str) -> None:
-    path = os.path.join(DIRS["checkpoints"], f"{name}.pkl")
-    with open(path, "wb") as f:
-        pickle.dump(data, f)
-    print(f"  Checkpoint salvo: {name}")
+# Fingerprint sidecar: detecta quando o estado upstream mudou (ex: 05c_dedup.py
+# zerou pdf_path de N órgãos) e invalida automaticamente o pickle, em vez de
+# carregar dados estagnados que não refletem o pipeline atual.
 
-def load_checkpoint(name: str) -> Optional[Any]:
-    path = os.path.join(DIRS["checkpoints"], f"{name}.pkl")
-    if os.path.exists(path):
-        with open(path, "rb") as f:
-            data = pickle.load(f)
-        print(f"  Checkpoint carregado: {name}")
-        return data
-    return None
+def state_fingerprint(state: Any) -> str:
+    """SHA-1 truncado de uma representação estável de `state`. Use uma estrutura
+    pequena e ordenada (ex: lista de tuplas) para que o fingerprint seja
+    determinístico entre runs."""
+    import hashlib
+    payload = repr(state).encode("utf-8")
+    return hashlib.sha1(payload).hexdigest()[:12]
+
+def save_checkpoint(data: Any, name: str, fingerprint: Optional[str] = None) -> None:
+    pkl_path = os.path.join(DIRS["checkpoints"], f"{name}.pkl")
+    with open(pkl_path, "wb") as f:
+        pickle.dump(data, f)
+    if fingerprint:
+        fp_path = os.path.join(DIRS["checkpoints"], f"{name}.fingerprint")
+        with open(fp_path, "w") as f:
+            f.write(fingerprint)
+    print(f"  Checkpoint salvo: {name}" + (f" [fp={fingerprint}]" if fingerprint else ""))
+
+def load_checkpoint(name: str, expected_fingerprint: Optional[str] = None) -> Optional[Any]:
+    pkl_path = os.path.join(DIRS["checkpoints"], f"{name}.pkl")
+    fp_path = os.path.join(DIRS["checkpoints"], f"{name}.fingerprint")
+    if not os.path.exists(pkl_path):
+        return None
+    if expected_fingerprint is not None:
+        actual = ""
+        if os.path.exists(fp_path):
+            with open(fp_path) as f:
+                actual = f.read().strip()
+        if actual != expected_fingerprint:
+            print(f"  Checkpoint {name}: fingerprint divergente "
+                  f"({actual or 'ausente'} != {expected_fingerprint}) — invalidando")
+            try:
+                os.remove(pkl_path)
+                if os.path.exists(fp_path):
+                    os.remove(fp_path)
+            except OSError:
+                pass
+            return None
+    with open(pkl_path, "rb") as f:
+        data = pickle.load(f)
+    print(f"  Checkpoint carregado: {name}")
+    return data
 
 # --------------- Logging ------------------------------------
 logging.basicConfig(level=logging.INFO,

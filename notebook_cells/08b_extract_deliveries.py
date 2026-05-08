@@ -228,7 +228,11 @@ def _extract_deliveries_text(pdf_path: str, sigla: str) -> List[DeliveryEntry]:
 def extract_all_deliveries() -> None:
     global all_deliveries, all_errors
 
-    cached = load_checkpoint("deliveries_raw")
+    # Fingerprint do estado upstream (siglas com PDF entregas após dedup MD5).
+    # Invalida o cache automaticamente quando 05c_dedup zera paths.
+    fp = state_fingerprint(sorted((o.sigla, bool(o.pdf_path_entregas)) for o in all_organs))
+
+    cached = load_checkpoint("deliveries_raw", expected_fingerprint=fp)
     if cached is not None and len(cached[0]) > 0:
         cached_del, cached_errors, processed_siglas = cached
         all_deliveries.extend(cached_del)
@@ -283,9 +287,9 @@ def extract_all_deliveries() -> None:
 
         count += 1
         if count % 10 == 0:
-            save_checkpoint((cached_del + batch_del, cached_errors + batch_errors, processed_siglas), "deliveries_raw")
+            save_checkpoint((cached_del + batch_del, cached_errors + batch_errors, processed_siglas), "deliveries_raw", fingerprint=fp)
 
-    save_checkpoint((cached_del + batch_del, cached_errors + batch_errors, processed_siglas), "deliveries_raw")
+    save_checkpoint((cached_del + batch_del, cached_errors + batch_errors, processed_siglas), "deliveries_raw", fingerprint=fp)
     print(f"  Extração de entregas concluída.")
 
 

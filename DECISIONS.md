@@ -116,6 +116,30 @@ mantém Docling como alternativa (especialmente para OCR dos 12 PDFs escaneados)
   granularidade no extremo superior). É uma aproximação consciente para
   permitir análise comparativa. O texto bruto fica em `*_original`.
 
+### 2.11 Campos opcionais nos PTDs (100% ausentes — esperado)
+
+Quatro campos do `DeliveryEntry` aparecem 100% vazios nos outputs atuais e
+**isso é correto**, não é bug:
+
+- `area_responsavel` — coluna existe em poucos templates; quando ausente,
+  inferível do próprio órgão.
+- `data_entrega` — só preenchida em tabelas de **entregas concluídas**, que
+  os PTDs ainda não publicaram (primeiro ciclo termina em 2027).
+- `pactuado` (Sim/Não) — exclusivo de tabelas de concluídas.
+- `justificativa` — exclusivo de tabelas de **canceladas**.
+
+O schema mantém os campos para que o pipeline absorva ciclos futuros sem
+mudança de modelo. O dataclass `DeliveryEntry` já trata todos como
+`Optional[str] = None`. O dashboard de qualidade (Célula 11) os exibe na
+lista de "campos com maior taxa de ausência" como sentinela — se em alguma
+rodada futura aparecerem populados, é sinal de que o gov.br começou a
+publicar ciclos completos.
+
+`tabela_tipo` recebeu default `"pactuada"` (era `""`) porque todos os
+registros nesta fase pertencem à tabela de pactuadas. Quando 08b detectar
+e extrair tabelas concluídas/canceladas, preencherá com `"concluida"` ou
+`"cancelada"` explicitamente.
+
 ## 3. Evolução dos números do corpus
 
 | Versão | Entregas | Riscos | Causa da mudança |

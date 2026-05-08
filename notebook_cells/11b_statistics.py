@@ -274,3 +274,53 @@ print(f"  Entregas: {int(n_review_del)}")
 print(f"  Riscos:   {int(n_review_risk)}")
 print(f"  Total:    {int(n_review_del + n_review_risk)}")
 print("=" * 60)
+
+# --- Asserções de regressão ---
+# Falham rápido com mensagem que aponta para causa provável (cache stale,
+# dedup pulado, novo formato de PDF). Thresholds em QUALITY_THRESHOLDS
+# (notebook_cells/02_config.py) — bumpar se o corpus crescer legitimamente.
+print("\n--- Verificação de invariantes ---")
+
+_n_del = len(all_deliveries)
+_n_risk = len(all_risks)
+_max_del = QUALITY_THRESHOLDS["max_entregas"]
+_max_risk = QUALITY_THRESHOLDS["max_riscos"]
+assert _n_del <= _max_del, (
+    f"Regressão: {_n_del} entregas excede threshold {_max_del}. "
+    f"Provável dedup MD5 pulado — limpar checkpoints/*_raw.pkl e re-executar a partir de 05c."
+)
+assert _n_risk <= _max_risk, (
+    f"Regressão: {_n_risk} riscos excede threshold {_max_risk}. "
+    f"Provável dedup MD5 pulado — limpar checkpoints/*_raw.pkl e re-executar a partir de 05c."
+)
+
+if all_risks:
+    _n_prob_ok = sum(1 for r in all_risks if r.probabilidade_normalizada in PROBABILIDADE_SCALE)
+    _n_imp_ok = sum(1 for r in all_risks if r.impacto_normalizado in IMPACTO_SCALE)
+    _n_trat_ok = sum(1 for r in all_risks
+                     if r.tratamento_normalizado
+                     and all(t.strip() in TRATAMENTO_OPTIONS
+                             for t in r.tratamento_normalizado.split(";") if t.strip()))
+
+    _r_prob = _n_prob_ok / _n_risk
+    _r_imp = _n_imp_ok / _n_risk
+    _r_trat = _n_trat_ok / _n_risk
+
+    print(f"  Canonização probabilidade: {_r_prob:.1%} (mín {QUALITY_THRESHOLDS['min_prob_canonica_ratio']:.0%})")
+    print(f"  Canonização impacto:       {_r_imp:.1%} (mín {QUALITY_THRESHOLDS['min_imp_canonica_ratio']:.0%})")
+    print(f"  Canonização tratamento:    {_r_trat:.1%} (mín {QUALITY_THRESHOLDS['min_trat_canonica_ratio']:.0%})")
+
+    assert _r_prob >= QUALITY_THRESHOLDS["min_prob_canonica_ratio"], (
+        f"Regressão: probabilidade canônica em {_r_prob:.1%} — "
+        f"verificar PROBABILIDADE_ALIASES e novos formatos de escala."
+    )
+    assert _r_imp >= QUALITY_THRESHOLDS["min_imp_canonica_ratio"], (
+        f"Regressão: impacto canônico em {_r_imp:.1%} — "
+        f"verificar IMPACTO_ALIASES."
+    )
+    assert _r_trat >= QUALITY_THRESHOLDS["min_trat_canonica_ratio"], (
+        f"Regressão: tratamento canônico em {_r_trat:.1%} — "
+        f"verificar TRATAMENTO_ALIASES."
+    )
+
+print("  Invariantes OK.")
