@@ -245,6 +245,10 @@ PROBABILIDADE_ALIASES: Dict[str, str] = {
     "raros": "raro",
     "raras": "raro",
     "praticamente certa": "praticamente certo",
+    # Observadas em PDFs gov.br 2024-2026
+    "pouca": "pouco provável",
+    "certo": "praticamente certo",
+    "baixo": "pouco provável",       # variante masculina ocasional
 }
 IMPACTO_ALIASES: Dict[str, str] = {
     # ANTAQ
@@ -271,6 +275,11 @@ IMPACTO_ALIASES: Dict[str, str] = {
     "alta": "alto",
     "muito baixa": "muito baixo",
     "muito alta": "muito alto",
+    # Observadas em PDFs gov.br 2024-2026
+    "crítico": "muito alto",
+    "critico": "muito alto",
+    "alto muito": "muito alto",       # ordem trocada por quebra de linha
+    "muito alto alto": "muito alto",  # duplicação por quebra de linha
 }
 TRATAMENTO_ALIASES: Dict[str, str] = {
     "mitigar o risco": "mitigar",
@@ -280,8 +289,11 @@ TRATAMENTO_ALIASES: Dict[str, str] = {
     "tratar": "mitigar",
     "monitorar": "mitigar",
     "tolerar": "aceitar",
+    "aceitar ou tolerar": "aceitar",
+    "aceitar ou tolerar o risco": "aceitar",
     "compartilhar": "transferir",
     "compartilhar o risco": "transferir",
+    "compartilh ar": "transferir",   # quebra de linha intra-palavra
     "evitar": "eliminar",
 }
 
