@@ -324,3 +324,37 @@ if all_risks:
     )
 
 print("  Invariantes OK.")
+
+# --- Residuais não-canônicos (auditoria por ciclo) -------------
+# Lista valores brutos que escaparam dos aliases para guiar a próxima
+# rodada de melhorias. Útil ao adicionar aliases (Camada 1.5) ou
+# investigar bugs de extração tabular (Categoria A: column-shift,
+# header capturado, fragmentação por quebra de linha).
+if all_risks:
+    from collections import Counter
+    _nc_prob = Counter(r.probabilidade_original for r in all_risks
+                       if r.probabilidade_normalizada not in PROBABILIDADE_SCALE
+                       and r.probabilidade_original)
+    _nc_imp = Counter(r.impacto_original for r in all_risks
+                      if r.impacto_normalizado not in IMPACTO_SCALE
+                      and r.impacto_original)
+    _nc_trat = Counter(r.tratamento_original for r in all_risks
+                       if r.tratamento_normalizado
+                       and not all(t.strip() in TRATAMENTO_OPTIONS
+                                   for t in r.tratamento_normalizado.split(";")
+                                   if t.strip())
+                       and r.tratamento_original)
+
+    if _nc_prob or _nc_imp or _nc_trat:
+        print("\n--- Residuais não-canônicos (top 10 por campo) ---")
+        for label, ctr in [("probabilidade", _nc_prob),
+                           ("impacto", _nc_imp),
+                           ("tratamento", _nc_trat)]:
+            if ctr:
+                print(f"\n  {label.upper()}:")
+                for val, cnt in ctr.most_common(10):
+                    print(f"    {cnt:3d}× {val!r}")
+        print("\n  Use esta lista para alimentar aliases em 02_config.py")
+        print("  ou identificar casos de extração tabular (Categoria A).")
+    else:
+        print("\n  Sem residuais não-canônicos — corpus 100% mapeado.")
