@@ -30,12 +30,18 @@ def safe_request(url: str, max_retries: int = MAX_RETRIES,
     return None
 
 # --------------- Normalização de texto ----------------------
+# Prefixo enumerativo de listas: "A) ", "1) ", "i) ", "II. ", "a- " etc.
+# Stripa o marcador para que aliases (e.g., "reduzir ou mitigar") casem
+# mesmo quando o PDF do órgão prefixa com letra/número (e.g. CADE: "B) Reduzir...").
+_ENUM_PREFIX = re.compile(r"^[A-Za-z0-9]{1,3}\s*[\)\.\-]\s+")
+
 def normalize_text(text: str) -> str:
     """Normaliza unicode, whitespace e caixa para comparação."""
     if not text:
         return ""
     text = unicodedata.normalize("NFC", str(text))
     text = re.sub(r"\s+", " ", text).strip()
+    text = _ENUM_PREFIX.sub("", text)
     return text
 
 def strip_accents(text: str) -> str:
