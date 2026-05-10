@@ -22,7 +22,7 @@ Resultado consolidado (corpus atual):
 | Riscos identificados | **619** |
 | Cobertura entregas | 79/91 órgãos (57 próprios + 22 compartilhados) |
 | Cobertura riscos | 76/91 órgãos (51 próprios + 25 compartilhados) |
-| PDFs escaneados pendentes (sem texto extraível) | 10 |
+| PDFs com falha de extração (provavelmente escaneados) | 10 |
 
 Sete grupos ministeriais publicam um único PDF para múltiplos órgãos (MD/MEC/MF/MMA/MT/MIDR/MDA). O pipeline detecta isso por **hash MD5** e registra os dados uma única vez sob a sigla alfabeticamente menor; os demais membros são marcados como `compartilhado` na cobertura.
 
@@ -35,7 +35,6 @@ Sete grupos ministeriais publicam um único PDF para múltiplos órgãos (MD/MEC
 | `output/organs.csv` | Lista de órgãos com URLs dos PDFs |
 | `output/coverage_summary.csv` | Cobertura de extração por órgão |
 | `output/error_report.csv` | Erros de processamento por órgão e estágio |
-| `output/vocabulary_mapping.csv` | Mapeamento de normalização de vocabulário |
 | `output/data.js` | Dados consumidos pelo dashboard interativo |
 | `output/statistics_summary.json` | Estatísticas agregadas |
 | `output/manifest.json` | Manifesto da execução: commit do pipeline, contagens de PDFs e hash SHA-256 dos artefatos exportados |
@@ -107,7 +106,7 @@ A extração de tabelas em PDFs governamentais não é trivial — cada órgão 
 
 Resíduos marcados `needs_review=True`:
 
-- 10 PDFs escaneados sem OCR (AGU, ANVISA, FBN, FCP, FUNAI, INCRA, ITI, MAPA, MCOM, PREVIC), conforme `output/error_report.csv`
+- 10 PDFs diretivos sem tabela de risco extraível (provavelmente escaneados sem OCR): AGU, ANVISA, FBN, FCP, FUNAI, INCRA, ITI, MAPA, MCOM, PREVIC. Lista completa em `output/error_report.csv`.
 - 36 riscos (6%) com probabilidade/impacto fora da escala canônica — casos genuinamente fragmentados em DNOCS, MPOR, CVM, CADE, MJSP. Texto bruto preservado em `*_original`
 
 Detalhes e histórico dos fixes em [`DECISIONS.md`](DECISIONS.md).
@@ -145,7 +144,10 @@ As células do notebook ficam em `notebook_cells/` como arquivos `.py` e `.md` i
 
 ```bash
 python build_notebook.py
+# ou, equivalente: make build
 ```
+
+Atalho: `make commit` reconstrói o notebook, faz `git add -A` e abre o editor de commit. O CI (`.github/workflows/notebook-consistency.yml`) valida em todo push/PR que `ptd_scraper.ipynb` reflete `notebook_cells/` e bloqueia merge em caso de drift.
 
 Para validar consistência entre código e dados commitados, rode o notebook do zero e compare:
 
