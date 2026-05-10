@@ -25,6 +25,8 @@ def standardize_deliveries(entries: List[DeliveryEntry]) -> Tuple[List[DeliveryE
             entry.produto_normalizado = cached["normalized"]
             cached["count"] += 1
             score = cached["score"]
+            entry.produto_score = round(score, 3)
+            entry.produto_method = cached["method"]
         else:
             matched, score = fuzzy_match_produto(entry.produto_original)
             if score >= 0.85:
@@ -40,9 +42,13 @@ def standardize_deliveries(entries: List[DeliveryEntry]) -> Tuple[List[DeliveryE
                 entry.review_reason = f"produto não reconhecido (melhor score: {score:.2f})"
                 entry.extraction_confidence = "low"
 
+            entry.produto_score = round(score, 3)
+            entry.produto_method = classify_match(entry.produto_original, score, PRODUTO_ALIASES)
+
             produto_mappings[prod_orig] = {
                 "normalized": entry.produto_normalizado,
                 "score": score,
+                "method": entry.produto_method,
                 "count": 1,
             }
 
@@ -61,15 +67,20 @@ def standardize_deliveries(entries: List[DeliveryEntry]) -> Tuple[List[DeliveryE
             cached_eixo = eixo_mappings[eixo_orig]
             entry.eixo_normalizado = cached_eixo["normalized"]
             cached_eixo["count"] += 1
+            entry.eixo_score = round(cached_eixo["score"], 3)
+            entry.eixo_method = cached_eixo["method"]
         else:
             matched_eixo, eixo_score = fuzzy_match_eixo(entry.eixo_original)
             if eixo_score >= 0.70:
                 entry.eixo_normalizado = matched_eixo
             else:
                 entry.eixo_normalizado = entry.eixo_original  # keep original
+            entry.eixo_score = round(eixo_score, 3)
+            entry.eixo_method = classify_match(entry.eixo_original, eixo_score, EIXO_ALIASES)
             eixo_mappings[eixo_orig] = {
                 "normalized": entry.eixo_normalizado,
                 "score": eixo_score,
+                "method": entry.eixo_method,
                 "count": 1,
             }
 
@@ -148,6 +159,8 @@ def standardize_risks(entries: List[RiskEntry]) -> Tuple[List[RiskEntry], Dict]:
             entry.probabilidade_normalizada = cached["normalized"]
             cached["count"] += 1
             p_score = cached["score"]
+            entry.probabilidade_score = round(p_score, 3)
+            entry.probabilidade_method = cached["method"]
         else:
             matched, p_score = fuzzy_match_scale(entry.probabilidade_original, PROBABILIDADE_SCALE)
             if p_score >= 0.85:
@@ -158,9 +171,13 @@ def standardize_risks(entries: List[RiskEntry]) -> Tuple[List[RiskEntry], Dict]:
             else:
                 entry.probabilidade_normalizada = entry.probabilidade_original
                 review_reasons.append(f"probabilidade não reconhecida (score: {p_score:.2f})")
+            entry.probabilidade_score = round(p_score, 3)
+            entry.probabilidade_method = classify_match(
+                entry.probabilidade_original, p_score, PROBABILIDADE_ALIASES)
             prob_mappings[prob_orig] = {
                 "normalized": entry.probabilidade_normalizada,
                 "score": p_score,
+                "method": entry.probabilidade_method,
                 "count": 1,
             }
 
@@ -178,6 +195,8 @@ def standardize_risks(entries: List[RiskEntry]) -> Tuple[List[RiskEntry], Dict]:
             entry.impacto_normalizado = cached["normalized"]
             cached["count"] += 1
             i_score = cached["score"]
+            entry.impacto_score = round(i_score, 3)
+            entry.impacto_method = cached["method"]
         else:
             matched, i_score = fuzzy_match_scale(entry.impacto_original, IMPACTO_SCALE)
             if i_score >= 0.85:
@@ -188,9 +207,13 @@ def standardize_risks(entries: List[RiskEntry]) -> Tuple[List[RiskEntry], Dict]:
             else:
                 entry.impacto_normalizado = entry.impacto_original
                 review_reasons.append(f"impacto não reconhecido (score: {i_score:.2f})")
+            entry.impacto_score = round(i_score, 3)
+            entry.impacto_method = classify_match(
+                entry.impacto_original, i_score, IMPACTO_ALIASES)
             imp_mappings[imp_orig] = {
                 "normalized": entry.impacto_normalizado,
                 "score": i_score,
+                "method": entry.impacto_method,
                 "count": 1,
             }
 
@@ -208,6 +231,8 @@ def standardize_risks(entries: List[RiskEntry]) -> Tuple[List[RiskEntry], Dict]:
             entry.tratamento_normalizado = cached["normalized"]
             cached["count"] += 1
             t_score = cached["score"]
+            entry.tratamento_score = round(t_score, 3)
+            entry.tratamento_method = cached["method"]
         else:
             # Split by multiple separators
             parts = re.split(r"\s*[;,/]\s*", trat_orig) if trat_orig else []
@@ -228,9 +253,15 @@ def standardize_risks(entries: List[RiskEntry]) -> Tuple[List[RiskEntry], Dict]:
 
             entry.tratamento_normalizado = "; ".join(normalized_parts) if normalized_parts else trat_orig
             t_score = worst_score if parts else 0.0
+            entry.tratamento_score = round(t_score, 3)
+            # Para tratamento multi-valor, classifica pelo PIOR caso (worst_score)
+            # contra o alias map de tratamento. O original aqui é a string completa.
+            entry.tratamento_method = classify_match(
+                entry.tratamento_original, t_score, TRATAMENTO_ALIASES)
             trat_mappings[trat_orig] = {
                 "normalized": entry.tratamento_normalizado,
                 "score": t_score,
+                "method": entry.tratamento_method,
                 "count": 1,
             }
 
