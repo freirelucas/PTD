@@ -50,6 +50,23 @@ O dashboard interativo está em [`index.html`](index.html). Ele consome `output/
 
 Clique no badge **Open in Colab** acima e execute as células sequencialmente. O ambiente detecta o Colab automaticamente e instala as dependências. Os PDFs são persistidos no Google Drive (`MyDrive/PTD_Scraper/`) para reutilização entre execuções.
 
+### Publicar os dados de um run no GitHub Pages
+
+Após qualquer Colab run produtiva, os outputs ficam no Drive — não voltam pro `main` automaticamente. Para que o dashboard em [freirelucas.github.io/PTD](https://freirelucas.github.io/PTD/) reflita os dados novos:
+
+1. **Execute o notebook até o fim**. A célula final (`13c_publish_helper.py`) empacota todos os 14 artefatos esperados em `output_TIMESTAMP.zip` e oferece download automático.
+2. **No clone local do repo**:
+   ```bash
+   cd PTD
+   unzip -o ~/Downloads/output_TIMESTAMP.zip   # substitui output/ inteira
+   git add output/
+   git commit -m "data: refresh output/ — run YYYY-MM-DD"
+   git push origin main
+   ```
+3. GitHub Pages reflete em ~1 minuto.
+
+**Por que substituir o `output/` inteiro**: o `validation_report.json` carrega `output_checksums_md5` de todos os arquivos. O CI (`notebook-consistency.yml`) valida que esses hashes batem — commits parciais são detectados e bloqueados.
+
 ### Execução local
 
 ```bash
