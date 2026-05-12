@@ -114,6 +114,15 @@ def classify_match(original: str, score: float, alias_map: Optional[dict] = None
 
     Sempre retorna um dos 5 valores; nunca cresce em cardinalidade.
     Usado para popular RiskEntry.*_method e DeliveryEntry.*_method.
+
+    `alias_map` pode ter keys de duas formas:
+    - normalizadas (lowercase + sem accent) — caso de PROBABILIDADE_ALIASES,
+      IMPACTO_ALIASES, TRATAMENTO_ALIASES.
+    - preservando case+accent — caso de PRODUTO_ALIASES, EIXO_ALIASES.
+
+    Para detectar 'alias' nos dois casos, normaliza-se cada key também.
+    Cacheia o set normalizado por id(alias_map) para amortizar custo entre
+    chamadas (alias_maps são módulo-level, vivem o run inteiro).
     """
     if not original or score <= 0.0:
         return "unmatched"
@@ -121,13 +130,23 @@ def classify_match(original: str, score: float, alias_map: Optional[dict] = None
         return "exact"
     if alias_map:
         norm = strip_accents(normalize_text(original).lower().strip())
-        if norm in alias_map:
+        cache_key = id(alias_map)
+        if cache_key not in _ALIAS_KEY_NORM_CACHE:
+            _ALIAS_KEY_NORM_CACHE[cache_key] = {
+                strip_accents(normalize_text(k).lower().strip()) for k in alias_map
+            }
+        if norm in _ALIAS_KEY_NORM_CACHE[cache_key]:
             return "alias"
     if score >= fuzzy_high_cut:
         return "fuzzy_high"
     if score >= fuzzy_low_cut:
         return "fuzzy_low"
     return "unmatched"
+
+
+# Cache de keys normalizadas dos alias_maps. Populado lazily em classify_match.
+# As keys do dict são id(alias_map); values são set[str] de keys normalizadas.
+_ALIAS_KEY_NORM_CACHE: Dict[int, set] = {}
 
 
 def fuzzy_match_scale(original: str, scale: list) -> Tuple[str, float]:

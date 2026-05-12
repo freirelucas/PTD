@@ -1,0 +1,78 @@
+{
+  "pipeline_commit": "6d682b42844dd173a61c05220566d91006cc2974",
+  "data_execucao": "2026-05-12",
+  "pdfs_baixados": 126,
+  "pdfs_diretivo": 61,
+  "pdfs_entregas": 65,
+  "pdfs_com_texto_extraido": 0,
+  "pdfs_escaneados_pendentes": 10,
+  "pdfs_dedup_owners": 58,
+  "pdfs_compartilhados": 27,
+  "outputs": {
+    "coverage_summary.csv": {
+      "linhas": 92,
+      "bytes": 3224,
+      "sha256": "6d87d6f19b76924f4f1a3f128b1a19d9e4694cf644280647740f03d1711879d2"
+    },
+    "deliveries.csv": {
+      "linhas": 4575,
+      "bytes": 1290978,
+      "sha256": "51c3a792a707ba120f9fbcd902af630956f43624ef7222bd39590c8673534fb1"
+    },
+    "deliveries.json": {
+      "linhas": 96177,
+      "bytes": 3845272,
+      "sha256": "e016e877dd621cf8ef2bd092b1805dc9f7de2fd7ae2ac339d571ff710f0b29d6"
+    },
+    "error_report.csv": {
+      "linhas": 11,
+      "bytes": 1308,
+      "sha256": "5a9d2884e4466a4367665fec91caa7211f2f3af86ac7896120c6dffbde318d04"
+    },
+    "nota_tecnica_insumos.md": {
+      "linhas": 269,
+      "bytes": 18093,
+      "sha256": "ed02175eafd93a45efbdafa0a5f2b05401f67e3b5d62642f549f155abe368ddd"
+    },
+    "organs.csv": {
+      "linhas": 92,
+      "bytes": 46492,
+      "sha256": "c4d6a4410e0c7a3d7159cff1ad869fb80e481a54b0f1aa0bda56b9ebce9ba974"
+    },
+    "pdf_metadata.csv": {
+      "linhas": 127,
+      "bytes": 5315,
+      "sha256": "61919c0f8547a358b5cad89586c87f75af4ba56ffed7d9cdf0e1885894b3c8bc"
+    },
+    "review_queue.csv": {
+      "linhas": 2766,
+      "bytes": 786580,
+      "sha256": "288f0559e4e8eb93ffcc4c438a2cc24498aa93d88d64953614de6753dbad2ee7"
+    },
+    "risks.csv": {
+      "linhas": 620,
+      "bytes": 197234,
+      "sha256": "3f2e3ffe2e6c1121c8d11f1e653667f921740a80b30727b7e10ed3e6f0c3e193"
+    },
+    "risks.json": {
+      "linhas": 12491,
+      "bytes": 560029,
+      "sha256": "e64603aa6828b5f10ca968a31fcae78df3b3e5e06a2a3a667ffdc06935263fa7"
+    },
+    "statistics_summary.json": {
+      "linhas": 49,
+      "bytes": 1273,
+      "sha256": "9a093aa56fd5d69ff01d907e9fafd4a85f6e88fa6bdf93343792d0f1a588334a"
+    },
+    "validation_report.json": {
+      "linhas": 316,
+      "bytes": 12651,
+      "sha256": "685e175053c431342abe3473ce9345d4e343d8f3287a4a34f4d8b2d103a036c7"
+    },
+    "vocabulary_mapping.csv": {
+      "linhas": 200,
+      "bytes": 20550,
+      "sha256": "f0383dd303fb45ee02a87dde8278fa1f0d608ff403098e56c98f2860dfcd4ca0"
+    }
+  }
+}
