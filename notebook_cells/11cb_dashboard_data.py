@@ -32,6 +32,8 @@ def _parse_year_month(date_str: str) -> Optional[str]:
     """Extrai 'YYYY-MM' de formatos variados de data_pactuada.
 
     Formatos suportados:
+      - 'YYYY-MM'          → 'YYYY-MM'           (ISO mês — dominante no corpus)
+      - 'YYYY-MM-DD'       → 'YYYY-MM'           (ISO dia)
       - 'mar. 2025 (v2)'   → '2025-03'
       - 'DD/MM/YYYY'       → 'YYYY-MM'
       - 'MM/YYYY'          → 'YYYY-MM'
@@ -39,6 +41,12 @@ def _parse_year_month(date_str: str) -> Optional[str]:
     if not date_str or not date_str.strip():
         return None
     s = date_str.strip().lower()
+
+    # Formato ISO 'YYYY-MM' ou 'YYYY-MM-DD' (dominante: ~95% dos data_pactuada
+    # não-vazios do corpus). Checa primeiro para não cair em fallbacks.
+    m = re.match(r"^(\d{4})-(\d{1,2})(?:-\d{1,2})?", s)
+    if m:
+        return f"{m.group(1)}-{m.group(2).zfill(2)}"
 
     # Formato 'mes. YYYY ...'
     for abbr, num in _MONTH_MAP.items():
