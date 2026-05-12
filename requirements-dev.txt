@@ -1,0 +1,3 @@
+# Dev-only deps. Não necessárias pra rodar o notebook no Colab —
+# usadas apenas para `pytest` localmente e na CI `tests.yml`.
+pytest>=7
