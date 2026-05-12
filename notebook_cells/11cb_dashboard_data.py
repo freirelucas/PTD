@@ -94,6 +94,38 @@ def _read_pdf_metadata(organs: list) -> List[dict]:
     return rows
 
 
+def _read_pdf_metadata_with_fallback(organs: list, output_dir: str) -> List[dict]:
+    """Lê metadados dos PDFs, com fallback para `output/pdf_metadata.csv`.
+
+    Caso de uso: rebuild local fora do Colab, sem acesso aos PDFs em Drive.
+    Sem fallback, `PTD_DATES` viria vazio e o gráfico de cronologia de
+    assinaturas no dashboard ficaria quebrado.
+    """
+    rows = _read_pdf_metadata(organs)
+    if rows:
+        return rows
+    fallback_path = os.path.join(output_dir, "pdf_metadata.csv")
+    if not os.path.exists(fallback_path):
+        return rows
+    try:
+        df_meta = pd.read_csv(fallback_path)
+    except Exception as exc:
+        print(f"  pdf_metadata.csv fallback falhou: {exc}")
+        return rows
+    print(f"  PDFs locais ausentes — usando {fallback_path} como fallback ({len(df_meta)} linhas)")
+    fallback_rows = []
+    for _, r in df_meta.iterrows():
+        fallback_rows.append({
+            "sigla": str(r.get("sigla", "")),
+            "tipo": str(r.get("tipo", "")),
+            "data_criacao_pdf": str(r.get("data_criacao_pdf", "")) if not pd.isna(r.get("data_criacao_pdf")) else "",
+            "data_modificacao_pdf": str(r.get("data_modificacao_pdf", "")) if not pd.isna(r.get("data_modificacao_pdf")) else "",
+            "vigencia": str(r.get("vigencia", "")) if not pd.isna(r.get("vigencia")) else "",
+            "tamanho_kb": int(r.get("tamanho_kb", 0)) if not pd.isna(r.get("tamanho_kb")) else 0,
+        })
+    return fallback_rows
+
+
 # -----------------------------------------------------------------
 # 1. PTD_STATS  (espelha statistics_summary.json)
 # -----------------------------------------------------------------
@@ -327,7 +359,7 @@ ptd_risks = dict(ptd_risks)
 # -----------------------------------------------------------------
 # 5. PTD_DATES  (sigla → data mais antiga do PDF)
 # -----------------------------------------------------------------
-pdf_meta_rows = _read_pdf_metadata(all_organs)
+pdf_meta_rows = _read_pdf_metadata_with_fallback(all_organs, DIRS["output"])
 
 ptd_dates = {}
 for row in pdf_meta_rows:
