@@ -401,6 +401,13 @@ for organ in all_organs:
 # buckets. Soma dava "soma órgãos-mês", não tinha leitura intuitiva.
 
 # 6a — Assinaturas (proxy: 1ª data_pactuada por órgão)
+#
+# Propagação por grupo ministerial: dedup MD5 faz com que apenas o owner
+# do PDF (e.g., MEC) tenha entries em all_deliveries. Membros do grupo
+# (CAPES, EBSERH, FNDE, FUNDAJ, IBC, INEP, INES) compartilham o mesmo PDF
+# e portanto a mesma 1ª data_pactuada — mas não aparecem em all_deliveries.
+# Propagamos a data do owner para todos os _group_peers para que o gráfico
+# reflita corretamente os 91 órgãos signatários, não os ~57 owners.
 first_pactuada_per_org: Dict[str, str] = {}
 for d in all_deliveries:
     ym = _parse_year_month(d.data_pactuada or "")
@@ -410,6 +417,17 @@ for d in all_deliveries:
     cur = first_pactuada_per_org.get(sigla)
     if cur is None or ym < cur:
         first_pactuada_per_org[sigla] = ym
+
+# Propaga 1ª data do owner para todos os membros do grupo
+for owner_sigla in list(first_pactuada_per_org.keys()):
+    ym = first_pactuada_per_org[owner_sigla]
+    peers = _group_peers.get(owner_sigla, [])
+    for member in peers:
+        if member == owner_sigla:
+            continue
+        cur = first_pactuada_per_org.get(member)
+        if cur is None or ym < cur:
+            first_pactuada_per_org[member] = ym
 
 ptd_timeline_signatures = dict(
     sorted(Counter(first_pactuada_per_org.values()).items())
