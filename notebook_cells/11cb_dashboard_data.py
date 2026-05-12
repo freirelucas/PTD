@@ -7,7 +7,8 @@
 #
 # Depende de: all_organs, all_deliveries, all_risks, all_errors,
 #             DIRS, CANONICAL_EIXOS, PROBABILIDADE_SCALE,
-#             IMPACTO_SCALE, fuzzy_match_produto
+#             IMPACTO_SCALE, fuzzy_match_produto, classify_match,
+#             PRODUTO_ALIASES
 # ============================================================
 
 from collections import Counter, defaultdict
@@ -253,21 +254,25 @@ for organ in sorted(all_organs, key=lambda o: o.sigla):
 # -----------------------------------------------------------------
 # 3. PTD_DELIVERIES  (agrupado por sigla)
 # -----------------------------------------------------------------
-# Cache de scores para evitar recomputar fuzzy match por entrega
+# Lê produto_score / produto_method já populados em 09b_standardization.py.
+# Fallback: recomputa via fuzzy_match_produto para pickles legados sem o campo.
 _score_cache = {}
-def _get_produto_score(original: str, normalizado: str) -> float:
+def _resolve_produto_score(entry) -> Tuple[float, str]:
+    if getattr(entry, "produto_method", "") or getattr(entry, "produto_score", 0.0) > 0.0:
+        return float(entry.produto_score or 0.0), entry.produto_method or ""
+    original = entry.produto_original or ""
     if not original:
-        return 0.0
-    if normalizado and normalizado == original:
-        return 1.0
+        return 0.0, "unmatched"
     if original not in _score_cache:
         _, s = fuzzy_match_produto(original)
-        _score_cache[original] = s
+        _score_cache[original] = (round(s, 3), classify_match(original, s, PRODUTO_ALIASES))
     return _score_cache[original]
 
 ptd_deliveries = defaultdict(list)
 for d in all_deliveries:
-    pscore = _get_produto_score(d.produto_original or "", d.produto_normalizado or "")
+    pscore, pmethod = _resolve_produto_score(d)
+    eixo_score = float(getattr(d, "eixo_score", 0.0) or 0.0)
+    eixo_method = getattr(d, "eixo_method", "") or ""
 
     ptd_deliveries[d.orgao_sigla].append({
         "orgao_sigla": d.orgao_sigla,
@@ -275,10 +280,15 @@ for d in all_deliveries:
         "produto_original": d.produto_original or "",
         "produto_normalizado": d.produto_normalizado or "",
         "produto_score": round(pscore, 2),
+        "produto_method": pmethod,
         "eixo_original": d.eixo_original or "",
         "eixo_normalizado": d.eixo_normalizado or "",
+        "eixo_score": round(eixo_score, 2),
+        "eixo_method": eixo_method,
         "data_pactuada": d.data_pactuada or "",
         "confidence": d.extraction_confidence or "high",
+        "needs_review": bool(getattr(d, "needs_review", False)),
+        "review_reason": d.review_reason or "",
     })
 ptd_deliveries = dict(ptd_deliveries)
 
@@ -297,12 +307,20 @@ for r in all_risks:
         "risco_texto": r.risco_texto or "",
         "probabilidade_original": r.probabilidade_original or "",
         "probabilidade_normalizada": r.probabilidade_normalizada or "",
+        "probabilidade_score": round(float(getattr(r, "probabilidade_score", 0.0) or 0.0), 2),
+        "probabilidade_method": getattr(r, "probabilidade_method", "") or "",
         "impacto_original": r.impacto_original or "",
         "impacto_normalizado": r.impacto_normalizado or "",
+        "impacto_score": round(float(getattr(r, "impacto_score", 0.0) or 0.0), 2),
+        "impacto_method": getattr(r, "impacto_method", "") or "",
         "tratamento_original": r.tratamento_original or "",
         "tratamento_normalizado": r.tratamento_normalizado or "",
+        "tratamento_score": round(float(getattr(r, "tratamento_score", 0.0) or 0.0), 2),
+        "tratamento_method": getattr(r, "tratamento_method", "") or "",
         "acoes_original": r.acoes_tratamento or "",
         "acoes_resolvidas": r.acoes_tratamento or "",
+        "needs_review": bool(getattr(r, "needs_review", False)),
+        "review_reason": r.review_reason or "",
     })
 ptd_risks = dict(ptd_risks)
 

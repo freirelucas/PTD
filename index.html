@@ -126,6 +126,57 @@ tr:hover td{background:var(--light)}
 .sidebar nav a{padding:12px;justify-content:center}.main{margin-left:60px;padding:16px}
 .chart-row{grid-template-columns:1fr}.kpi-row{grid-template-columns:repeat(2,1fr)}.organ-grid{grid-template-columns:repeat(2,1fr)}
 }
+/* === Review tab === */
+.chips{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.chip{padding:5px 12px;background:#fff;border:1px solid var(--border);border-radius:18px;cursor:pointer;font-size:.78rem;color:#444;user-select:none;transition:all .12s;text-transform:lowercase}
+.chip:hover{background:#F5F7F9}
+.chip.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.rv-table{width:100%;border-collapse:collapse;font-size:.86rem}
+.rv-table thead th{position:sticky;top:0;background:#F5F7F9;z-index:1;text-align:left;padding:10px 12px;font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;color:#666;border-bottom:1px solid var(--border);font-weight:600}
+.rv-table tbody tr.rv-row{border-bottom:1px solid #EEF1F4;cursor:pointer;transition:background .1s}
+.rv-table tbody tr.rv-row:hover{background:#FAFBFC}
+.rv-table tbody tr.rv-row.expanded{background:#F8FAFC}
+.rv-table tbody tr.rv-row.ignored{opacity:.42}
+.rv-table tbody td{padding:9px 12px;vertical-align:middle}
+.rv-table .col-original{font-family:'SF Mono','Monaco','Menlo',Consolas,monospace;font-size:.82rem;color:#1A2530;max-width:340px;overflow-wrap:anywhere;line-height:1.4}
+.rv-table .col-suggested{color:#1F5083;max-width:240px;overflow-wrap:anywhere}
+.rv-table .rv-expand{padding:4px 10px;border:1px solid var(--border);background:#fff;border-radius:4px;cursor:pointer;font-size:.78rem;color:#666}
+.rv-table .rv-expand:hover{border-color:var(--primary);color:var(--primary)}
+.rv-detail{background:#F8FAFC;padding:16px 22px;border-bottom:2px solid var(--border)}
+.rv-detail .meta{font-size:.78rem;color:#666;margin-bottom:8px}
+.rv-detail .meta strong{color:#333;font-weight:600}
+.rv-detail .examples{margin:8px 0 12px}
+.rv-detail .ex{padding:7px 12px;background:#fff;border:1px solid #EEF1F4;border-radius:4px;margin-bottom:4px;font-size:.82rem;line-height:1.45}
+.rv-detail .ex .sigla{display:inline-block;font-weight:700;color:#1F5083;margin-right:8px;font-family:'SF Mono','Monaco',monospace;font-size:.78rem}
+.rv-detail .snippet-label{font-size:.8rem;color:#444;margin:10px 0 4px}
+.rv-detail .snippet-label code{background:#EEF1F4;padding:1px 6px;border-radius:3px;font-size:.78rem;color:#1F5083}
+.rv-detail .snippet{display:flex;align-items:center;gap:10px;background:#1A2530;color:#D6E0EA;padding:11px 14px;border-radius:5px;font-family:'SF Mono','Monaco','Menlo',monospace;font-size:.82rem}
+.rv-detail .snippet code{flex:1;color:#D6E0EA;background:transparent;padding:0;white-space:pre;overflow-x:auto}
+.rv-detail .snippet button{background:#3F6B92;color:#fff;border:none;padding:6px 14px;border-radius:4px;cursor:pointer;font-size:.76rem;font-family:inherit;transition:background .12s;font-weight:600}
+.rv-detail .snippet button:hover{background:#4F7BA2}
+.rv-detail .snippet button.copied{background:var(--green)}
+.rv-detail .actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.rv-detail .actions button{padding:7px 14px;border:1px solid var(--border);background:#fff;border-radius:var(--radius);cursor:pointer;font-size:.8rem;color:#333;transition:all .12s}
+.rv-detail .actions button:hover{border-color:var(--primary)}
+.rv-detail .actions button.primary{background:var(--primary);color:#fff;border-color:var(--primary)}
+.rv-detail .actions button.primary:hover{background:#1F3D6A}
+.rv-detail .actions button.warning{border-color:#E67E22;color:#9C5410}
+.rv-detail .actions button.warning:hover{background:#FEF5DB}
+.method-badge{display:inline-block;padding:3px 8px;border-radius:4px;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.method-unmatched{background:#FCE8E6;color:#A92F1B}
+.method-fuzzy_low{background:#FEF5DB;color:#735015}
+.method-fuzzy_high{background:#E6F0FB;color:#1F5083}
+.method-alias{background:#E0F2E1;color:#1F6533}
+.method-exact{background:#E0F2E1;color:#1F6533}
+.score-bar{display:inline-block;width:48px;height:5px;background:#EEF1F4;border-radius:3px;overflow:hidden;vertical-align:middle;margin-right:6px}
+.score-bar i{display:block;height:100%;background:var(--primary)}
+.score-bar.lo i{background:var(--red)}
+.score-bar.med i{background:var(--yellow)}
+.score-bar.hi i{background:var(--green)}
+.field-tag{display:inline-block;padding:3px 8px;border-radius:4px;font-size:.68rem;background:#EEF1F4;color:#444;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.rv-empty{display:none;text-align:center;padding:60px 20px;color:#888;background:var(--card);border-radius:var(--radius);box-shadow:0 1px 2px rgba(0,0,0,.06)}
+.rv-orgs{font-size:.78rem;color:#555}
+.rv-orgs .more{color:#999}
 </style>
 </head>
 <body>
@@ -141,6 +192,7 @@ tr:hover td{background:var(--light)}
     <a href="#compare" onclick="showSection('compare')"><span class="icon">&#8596;</span><span>Comparação</span></a>
     <a href="#insights" onclick="showSection('insights')"><span class="icon">&#9881;</span><span>Insights</span></a>
     <a href="#visualizations" onclick="showSection('visualizations')"><span class="icon">&#9636;</span><span>Visualizações</span></a>
+    <a href="#review" onclick="showSection('review')"><span class="icon">&#9873;</span><span>Revisão</span></a>
     <a href="#methodology" onclick="showSection('methodology')"><span class="icon">&#9998;</span><span>Nota Técnica</span></a>
   </nav>
   <div class="info">Direito, D.; Silva, L.; Queiroz, S.<br>Ipea · 2026<br><br><em style="color:rgba(255,200,200,.7);font-size:.65rem">Documento preparatório. Não publicar ou citar sem consentimento dos autores.</em></div>
@@ -542,6 +594,75 @@ tr:hover td{background:var(--light)}
     <blockquote style="border-left:4px solid var(--primary);margin:12px 0;padding:16px 20px;background:var(--light);border-radius:0 var(--radius) var(--radius) 0;font-size:.88rem;line-height:1.7">
       DIREITO, Denise; SILVA, Lucas; QUEIROZ, Sérgio. <em>Corpus dos Planos de Transformação Digital: extração, padronização e análise dos PTDs de <span data-stat="orgaos_total">91</span> órgãos federais brasileiros</em>. Brasília: Ipea, 2026. (Nota Técnica). Disponível em: <a href="https://github.com/freirelucas/PTD" target="_blank">https://github.com/freirelucas/PTD</a>.
     </blockquote>
+  </div>
+</div>
+
+<!-- ===== REVISÃO HUMANA ===== -->
+<div id="review" class="section">
+  <h2>Fila de Revisão Humana</h2>
+  <p class="desc">Casos onde a canonização automática não resolveu (ou resolveu com baixa confiança). Cada linha agrupa um valor original único; expanda para ver os contextos, copiar o snippet de alias ou marcar como bug de extração. <strong>Estado por sessão</strong>: marcações como "bug" ficam no <code>localStorage</code> do navegador.</p>
+
+  <div class="kpi-row" id="review-kpis"></div>
+
+  <div class="chart-container" style="padding:14px 18px;margin-bottom:16px">
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+        <span style="font-size:.78rem;text-transform:uppercase;color:#777;letter-spacing:.04em;font-weight:600;min-width:60px">Campo</span>
+        <div class="chips" id="rv-field-chips"></div>
+      </div>
+      <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+        <span style="font-size:.78rem;text-transform:uppercase;color:#777;letter-spacing:.04em;font-weight:600;min-width:60px">Método</span>
+        <div class="chips" id="rv-method-chips"></div>
+      </div>
+    </div>
+    <div class="filters" style="margin-top:14px;align-items:center">
+      <input id="rv-search" type="text" placeholder="Buscar no texto original…" style="flex:1;min-width:200px">
+      <input id="rv-mincount" type="number" min="1" value="1" style="width:80px" title="Frequência mínima">
+      <select id="rv-sort">
+        <option value="impact">Ordenar: Maior impacto</option>
+        <option value="count">Ordenar: Mais frequentes</option>
+        <option value="score-asc">Ordenar: Score crescente</option>
+        <option value="score-desc">Ordenar: Score decrescente</option>
+        <option value="alpha">Ordenar: A &rarr; Z</option>
+      </select>
+      <label style="display:flex;align-items:center;gap:6px;font-size:.82rem;color:#555;white-space:nowrap">
+        <input type="checkbox" id="rv-show-ignored"> mostrar marcados como bug
+      </label>
+      <button onclick="resetReviewIgnored()" style="padding:8px 14px;border:1px solid var(--border);border-radius:var(--radius);background:#fff;cursor:pointer;font-size:.85rem">Limpar marcações</button>
+    </div>
+    <div class="result-count" id="rv-count" style="margin-top:10px"></div>
+  </div>
+
+  <div class="rv-empty" id="rv-empty">
+    <div style="font-size:2.5rem;line-height:1">&#9734;</div>
+    <div style="margin-top:10px;font-size:.95rem">Nada para revisar com esses filtros.</div>
+  </div>
+
+  <div class="table-wrap" id="rv-table-wrap" style="max-height:none;margin-bottom:16px">
+    <table class="rv-table">
+      <thead><tr>
+        <th style="width:90px">Campo</th>
+        <th>Original</th>
+        <th>Sugestão canônica</th>
+        <th style="width:96px">Score</th>
+        <th style="width:110px">Método</th>
+        <th style="width:60px">Casos</th>
+        <th style="width:160px">Órgãos</th>
+        <th style="width:64px"></th>
+      </tr></thead>
+      <tbody id="rv-tbody"></tbody>
+    </table>
+  </div>
+
+  <div class="chart-container" style="padding:16px 22px;background:#FAFBFC;border-left:3px solid var(--primary)">
+    <h3 style="margin-top:0">Como usar</h3>
+    <ol style="line-height:1.7;font-size:.9rem;color:#333;margin:8px 0 4px 18px">
+      <li><strong>Sugestão fechada (score &ge; 0.70)</strong>: o snippet pronto vira a linha do alias. Copie e cole no map correto em <code>notebook_cells/02_config.py</code>.</li>
+      <li><strong>Score muito baixo</strong>: provavelmente bug de extração (column-shift, header capturado pela primeira linha de dados, OCR fragmentado). Marque <em>É bug</em> e priorize fix em <code>06b_docling_setup.py</code> / <code>07b_extract_risks.py</code>.</li>
+      <li><strong>Multi-tratamento</strong>: o campo <em>tratamento</em> pode vir multi-valor ("evitar; mitigar"); o snippet usa a string original integral &mdash; geralmente os bugs aqui são alias-shaped.</li>
+      <li><strong>Ordene por impacto</strong>: o top-10 normalmente absorve a maior parte dos ganhos.</li>
+    </ol>
+    <p style="font-size:.8rem;color:#666;margin:10px 0 0">Após editar <code>02_config.py</code>: <code>python build_notebook.py</code> + commit + Colab run. O <code>output/validation_report.json</code> da próxima execução baixa <code>non_canonical_top20</code> conforme você converter casos. Os 5 buckets de <code>method</code> não crescem &mdash; só sua proporção muda.</p>
   </div>
 </div>
 
@@ -1587,6 +1708,7 @@ function showSection(id) {
   if(id==='compare') initCompare();
   if(id==='insights') initInsights();
   if(id==='visualizations') initVisualizations();
+  if(id==='review') initReview();
 }
 
 function populateDataStats(){
@@ -1602,6 +1724,240 @@ document.addEventListener('DOMContentLoaded',()=>{
   const h=location.hash.replace('#','');
   showSection(h||'overview');
 });
+
+/* ==================================================================
+   Fila de Revisão Humana
+   ================================================================== */
+const _rvFilters = { fields: new Set(), methods: new Set(), search: '', minCount: 1, sort: 'impact', showIgnored: false };
+let _rvIgnored;
+try { _rvIgnored = new Set(JSON.parse(localStorage.getItem('ptd-review-ignored') || '[]')); }
+catch(e) { _rvIgnored = new Set(); }
+let _rvInitialized = false;
+
+function _rvKey(item) { return item.field + '::' + item.original; }
+function _rvSafeId(s) { return s.replace(/[^a-z0-9]/gi, '_').slice(0, 80); }
+function _rvEscape(s) {
+  return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function initReview() {
+  if (typeof PTD_REVIEW === 'undefined' || !PTD_REVIEW) {
+    document.getElementById('rv-tbody').innerHTML = '';
+    document.getElementById('rv-count').textContent = 'PTD_REVIEW indisponível — execute o pipeline.';
+    return;
+  }
+  if (!_rvInitialized) {
+    _rvBindControls();
+    _rvRenderChips();
+    _rvInitialized = true;
+  }
+  _rvRenderKPIs();
+  _rvApply();
+}
+
+function _rvBindControls() {
+  document.getElementById('rv-search').addEventListener('input', e => { _rvFilters.search = e.target.value.toLowerCase(); _rvApply(); });
+  document.getElementById('rv-mincount').addEventListener('input', e => { _rvFilters.minCount = parseInt(e.target.value, 10) || 1; _rvApply(); });
+  document.getElementById('rv-sort').addEventListener('change', e => { _rvFilters.sort = e.target.value; _rvApply(); });
+  document.getElementById('rv-show-ignored').addEventListener('change', e => { _rvFilters.showIgnored = e.target.checked; _rvApply(); });
+}
+
+function _rvRenderChips() {
+  const fields = ['probabilidade', 'impacto', 'tratamento', 'produto', 'eixo'];
+  const methods = ['unmatched', 'fuzzy_low', 'fuzzy_high'];
+  const fEl = document.getElementById('rv-field-chips');
+  const mEl = document.getElementById('rv-method-chips');
+  fEl.innerHTML = fields.map(f => `<span class="chip" data-field="${f}">${f}</span>`).join('') +
+    `<span class="chip" data-field="" style="font-style:italic;opacity:.85">todos</span>`;
+  mEl.innerHTML = methods.map(m => `<span class="chip" data-method="${m}">${m}</span>`).join('') +
+    `<span class="chip" data-method="" style="font-style:italic;opacity:.85">todos</span>`;
+  fEl.querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => {
+    const v = c.dataset.field;
+    if (v === '') _rvFilters.fields.clear();
+    else if (_rvFilters.fields.has(v)) _rvFilters.fields.delete(v);
+    else _rvFilters.fields.add(v);
+    _rvSyncChips();
+    _rvApply();
+  }));
+  mEl.querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => {
+    const v = c.dataset.method;
+    if (v === '') _rvFilters.methods.clear();
+    else if (_rvFilters.methods.has(v)) _rvFilters.methods.delete(v);
+    else _rvFilters.methods.add(v);
+    _rvSyncChips();
+    _rvApply();
+  }));
+  _rvSyncChips();
+}
+
+function _rvSyncChips() {
+  document.querySelectorAll('#rv-field-chips .chip').forEach(c => {
+    const v = c.dataset.field;
+    c.classList.toggle('active', v ? _rvFilters.fields.has(v) : _rvFilters.fields.size === 0);
+  });
+  document.querySelectorAll('#rv-method-chips .chip').forEach(c => {
+    const v = c.dataset.method;
+    c.classList.toggle('active', v ? _rvFilters.methods.has(v) : _rvFilters.methods.size === 0);
+  });
+}
+
+function _rvRenderKPIs() {
+  const r = PTD_REVIEW;
+  const m = r.summary_by_method || {};
+  const get = k => m[k] || 0;
+  const sb = r.summary_by_field || {};
+  const topField = Object.entries(sb).sort((a,b)=>b[1].impact_total - a[1].impact_total)[0];
+  const topFieldText = topField ? `${topField[0]} (${topField[1].cases} casos)` : '—';
+  document.getElementById('review-kpis').innerHTML = [
+    {l:'Casos no tail', v:r.total_cases.toLocaleString('pt-BR'), s:`${r.total_uniques} originais únicos`},
+    {l:'Não-canonizados', v:get('unmatched'), s:'sem sugestão clara'},
+    {l:'Fuzzy baixa', v:get('fuzzy_low'), s:'score 0.70–0.85'},
+    {l:'Marcados como bug', v:_rvIgnored.size, s:'localStorage do navegador'},
+  ].map(k => `<div class="kpi"><div class="label">${k.l}</div><div class="value">${k.v}</div><div class="sub">${k.s}</div></div>`).join('') +
+    (topField ? `<div class="kpi" style="border-top-color:var(--accent)"><div class="label">Maior impacto por campo</div><div class="value" style="font-size:1.1rem;line-height:1.3">${topFieldText}</div><div class="sub">impact = count &times; (1 &minus; score)</div></div>` : '');
+}
+
+function _rvApply() {
+  const items = (PTD_REVIEW.items || []).filter(it => {
+    const isIgn = _rvIgnored.has(_rvKey(it));
+    if (_rvFilters.showIgnored && !isIgn) return false;
+    if (!_rvFilters.showIgnored && isIgn) return false;
+    if (_rvFilters.fields.size && !_rvFilters.fields.has(it.field)) return false;
+    if (_rvFilters.methods.size && !_rvFilters.methods.has(it.method)) return false;
+    if (it.count < _rvFilters.minCount) return false;
+    if (_rvFilters.search && !it.original.toLowerCase().includes(_rvFilters.search)) return false;
+    return true;
+  });
+  const cmp = {
+    impact: (a,b) => b.impact - a.impact || b.count - a.count,
+    count: (a,b) => b.count - a.count || b.impact - a.impact,
+    'score-asc': (a,b) => a.score - b.score || b.count - a.count,
+    'score-desc': (a,b) => b.score - a.score || b.count - a.count,
+    alpha: (a,b) => a.original.localeCompare(b.original, 'pt-BR'),
+  }[_rvFilters.sort] || ((a,b)=>b.impact - a.impact);
+  items.sort(cmp);
+
+  const totalCases = items.reduce((s,i)=>s+i.count, 0);
+  document.getElementById('rv-count').textContent =
+    items.length === 0 ? '' : `${items.length.toLocaleString('pt-BR')} originais agrupados · ${totalCases.toLocaleString('pt-BR')} casos`;
+  document.getElementById('rv-empty').style.display = items.length === 0 ? 'block' : 'none';
+  document.getElementById('rv-table-wrap').style.display = items.length === 0 ? 'none' : 'block';
+
+  const tbody = document.getElementById('rv-tbody');
+  tbody.innerHTML = '';
+  items.forEach((it, idx) => {
+    const row = document.createElement('tr');
+    row.className = 'rv-row';
+    if (_rvIgnored.has(_rvKey(it))) row.classList.add('ignored');
+    row.dataset.idx = idx;
+    const scoreClass = it.score >= 0.85 ? 'hi' : it.score >= 0.70 ? 'med' : 'lo';
+    const orgsShown = it.siglas.slice(0, 4).join(', ');
+    const orgsMore = it.siglas.length > 4 ? `<span class="more"> +${it.siglas.length - 4}</span>` : '';
+    row.innerHTML = `
+      <td><span class="field-tag">${_rvEscape(it.field)}</span></td>
+      <td class="col-original">${_rvEscape(it.original) || '<em style="color:#999">(vazio)</em>'}</td>
+      <td class="col-suggested">${_rvEscape(it.suggested || '—')}</td>
+      <td><span class="score-bar ${scoreClass}"><i style="width:${(it.score * 100).toFixed(0)}%"></i></span><span style="font-family:monospace;font-size:.78rem;color:#444">${it.score.toFixed(2)}</span></td>
+      <td><span class="method-badge method-${_rvEscape(it.method)}">${_rvEscape(it.method)}</span></td>
+      <td style="font-weight:700;color:#1A2530">${it.count}</td>
+      <td class="rv-orgs">${_rvEscape(orgsShown)}${orgsMore}</td>
+      <td><button class="rv-expand" onclick="event.stopPropagation();_rvToggle(${idx})">ver</button></td>
+    `;
+    row.addEventListener('click', () => _rvToggle(idx));
+    tbody.appendChild(row);
+
+    const detail = document.createElement('tr');
+    detail.id = 'rv-detail-' + idx;
+    detail.style.display = 'none';
+    detail.innerHTML = `<td colspan="8" style="padding:0;background:transparent">${_rvDetailHtml(it)}</td>`;
+    tbody.appendChild(detail);
+  });
+}
+
+function _rvToggle(idx) {
+  const detail = document.getElementById('rv-detail-' + idx);
+  if (!detail) return;
+  const isOpen = detail.style.display !== 'none';
+  document.querySelectorAll('#rv-tbody [id^="rv-detail-"]').forEach(d => d.style.display = 'none');
+  document.querySelectorAll('#rv-tbody .rv-row.expanded').forEach(r => r.classList.remove('expanded'));
+  if (!isOpen) {
+    detail.style.display = '';
+    const row = detail.previousElementSibling;
+    if (row) row.classList.add('expanded');
+    detail.scrollIntoView({block: 'nearest', behavior: 'smooth'});
+  }
+}
+
+function _rvDetailHtml(it) {
+  const targetMap = {
+    probabilidade: 'PROBABILIDADE_ALIASES',
+    impacto: 'IMPACTO_ALIASES',
+    tratamento: 'TRATAMENTO_ALIASES',
+    produto: 'PRODUTO_ALIASES',
+    eixo: 'EIXO_ALIASES',
+  };
+  const exHtml = (it.examples && it.examples.length)
+    ? it.examples.map(e => `<div class="ex"><span class="sigla">${_rvEscape(e.sigla)}</span>${_rvEscape(e.context) || '<span style="color:#999">(sem contexto)</span>'}</div>`).join('')
+    : '<div class="ex" style="color:#888;font-style:italic">Sem contextos registrados.</div>';
+  const isIgn = _rvIgnored.has(_rvKey(it));
+  const safeKey = _rvSafeId(_rvKey(it));
+  const snippetId = 'rv-snip-' + safeKey;
+  const snippetBlock = (it.alias_snippet && it.suggested_score >= 0.50)
+    ? `<div class="snippet-label">Adicionar a <code>${_rvEscape(targetMap[it.field] || '*_ALIASES')}</code> em <code>notebook_cells/02_config.py</code>:</div>
+       <div class="snippet"><code id="${snippetId}">${_rvEscape(it.alias_snippet)}</code><button onclick="event.stopPropagation();_rvCopy(this, '${snippetId}')">Copiar</button></div>`
+    : `<div style="margin:10px 0 4px;font-size:.84rem;color:#999;font-style:italic">Sem sugestão de alias com confiança suficiente. Provavelmente bug de extração.</div>`;
+  return `
+    <div class="rv-detail">
+      <div class="meta"><strong>${it.count}</strong> caso(s) em <strong>${it.siglas.length}</strong> órgão(s) · score min <strong>${it.score.toFixed(2)}</strong> · sugestão score <strong>${it.suggested_score.toFixed(2)}</strong> · método <strong>${_rvEscape(it.method)}</strong></div>
+      <div style="font-size:.78rem;color:#666;margin-bottom:6px;text-transform:uppercase;letter-spacing:.04em">Contextos (até 5)</div>
+      <div class="examples">${exHtml}</div>
+      ${snippetBlock}
+      <div class="actions">
+        ${(it.alias_snippet && it.suggested_score >= 0.50) ? `<button class="primary" onclick="event.stopPropagation();_rvCopy(this, '${snippetId}')">Copiar alias</button>` : ''}
+        <button class="warning" onclick="event.stopPropagation();_rvToggleIgnore('${_rvEscape(_rvKey(it)).replace(/'/g, "&#39;")}')">${isIgn ? '↺ desmarcar bug' : '⚠ é bug de extração'}</button>
+      </div>
+    </div>`;
+}
+
+function _rvCopy(btn, snipId) {
+  const el = document.getElementById(snipId);
+  if (!el) return;
+  const txt = el.textContent;
+  const after = (success) => {
+    const orig = btn.textContent;
+    btn.textContent = success ? '✓ copiado' : '✗ falhou';
+    btn.classList.toggle('copied', success);
+    setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 1500);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(txt).then(() => after(true), () => after(false));
+  } else {
+    // Fallback: textarea + execCommand
+    const ta = document.createElement('textarea');
+    ta.value = txt; document.body.appendChild(ta); ta.select();
+    let ok = false; try { ok = document.execCommand('copy'); } catch(e) {}
+    document.body.removeChild(ta); after(ok);
+  }
+}
+
+function _rvToggleIgnore(key) {
+  // key here is HTML-escaped; we restore raw before set ops
+  const raw = key.replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;/g,"'");
+  if (_rvIgnored.has(raw)) _rvIgnored.delete(raw);
+  else _rvIgnored.add(raw);
+  try { localStorage.setItem('ptd-review-ignored', JSON.stringify([..._rvIgnored])); } catch(e) {}
+  _rvRenderKPIs();
+  _rvApply();
+}
+
+function resetReviewIgnored() {
+  if (_rvIgnored.size === 0) return;
+  if (!confirm(`Limpar ${_rvIgnored.size} marcação(ões) de "bug de extração"?`)) return;
+  _rvIgnored.clear();
+  try { localStorage.removeItem('ptd-review-ignored'); } catch(e) {}
+  _rvRenderKPIs();
+  _rvApply();
+}
 </script>
 </body>
 </html>

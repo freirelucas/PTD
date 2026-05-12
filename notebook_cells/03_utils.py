@@ -101,6 +101,28 @@ def fuzzy_match_eixo(original: str) -> Tuple[str, float]:
             return (canonical_val, 0.93)
     return fuzzy_match(original, CANONICAL_EIXOS, threshold=0.80)
 
+def classify_match(original: str, score: float, alias_map: Optional[dict] = None,
+                   fuzzy_high_cut: float = 0.85, fuzzy_low_cut: float = 0.70) -> str:
+    """Classifica o resultado de um fuzzy_match em 5 buckets fixos.
+
+    Sempre retorna um dos 5 valores; nunca cresce em cardinalidade.
+    Usado para popular RiskEntry.*_method e DeliveryEntry.*_method.
+    """
+    if not original or score <= 0.0:
+        return "unmatched"
+    if score >= 0.999:
+        return "exact"
+    if alias_map:
+        norm = strip_accents(normalize_text(original).lower().strip())
+        if norm in alias_map:
+            return "alias"
+    if score >= fuzzy_high_cut:
+        return "fuzzy_high"
+    if score >= fuzzy_low_cut:
+        return "fuzzy_low"
+    return "unmatched"
+
+
 def fuzzy_match_scale(original: str, scale: list) -> Tuple[str, float]:
     """Canoniza valores de escala (probabilidade/impacto/tratamento) com
     suporte a escalas alternativas usadas por alguns órgãos (ANTAQ 3-pontos,
