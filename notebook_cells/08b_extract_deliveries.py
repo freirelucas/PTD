@@ -7,16 +7,50 @@
 
 def _id_col(col_name: str) -> Optional[str]:
     c = _normalize_header(str(col_name))
+    cs = c.strip()
+    # Match exato ANTES dos substring matches — "Situação" colide com "ação" via
+    # `"acao" in c` se for substring; checar status primeiro evita falso positivo.
+    if cs == "status" or cs == "situacao" or cs == "situação": return "status"
+    if cs == "pactuado" or cs == "pactuado?" or cs == "entregue" or cs == "entregue?": return "pactuado"
+    if cs == "justificativa" or ("motivo" in c and "cancel" in c): return "justificativa"
     if "servico" in c or "acao" in c: return "servico"
-    if c.strip() in ("produto", "produto ptd", "entrega"): return "produto"
+    if cs in ("produto", "produto ptd", "entrega"): return "produto"
     if "eixo" in c: return "eixo"
-    if "dtpactuada" in c.replace(" ","") or "data pactuada" in c or "prazo" in c: return "data"
-    if "dtentrega" in c.replace(" ","") or "data entrega" in c: return "data"
+    if "dtpactuada" in c.replace(" ","") or "data pactuada" in c or "prazo" in c: return "data_pactuada"
+    if "dtentrega" in c.replace(" ","") or "data entrega" in c or "data conclusao" in c: return "data_entrega"
     return None
 
 
 def _is_outros(text: str) -> bool:
     return normalize_text(text).lower().strip() in ("outros", "outro", "outros -", "outros –")
+
+
+def _classify_tabela_tipo(col_map: dict, row_status: Optional[str] = None) -> str:
+    """Classifica tabela como pactuada/concluida/cancelada por estrutura.
+
+    Estratégia (defensiva, exige sinais combinados pra reduzir falso positivo):
+    1. `row_status` (valor por linha de coluna 'status'/'situação') vence se vier
+       um termo claro: "concluído", "cancelado", "pactuada", "em andamento".
+    2. Concluida: precisa de `data_entrega` OU `pactuado` (qualquer um — colunas
+       inéditas no template de pactuadas).
+    3. Cancelada: precisa de `justificativa` E não pode ter `data_entrega`
+       (cancelada não tem data de entrega, mas pactuada pode ter coluna
+       "Justificativa" pra explicar produto "Outros").
+    4. Default: "pactuada" — comportamento histórico, todos os PTDs em main.
+
+    Especulativo: o template SGD para ciclos completos não está documentado.
+    Após Colab run, se aparecerem entries com tabela_tipo != pactuada,
+    inspecionar os PDFs de origem pra confirmar e ajustar.
+    """
+    if row_status:
+        s = normalize_text(str(row_status)).lower().strip()
+        if "conclu" in s or s in ("sim", "entregue", "finalizada"): return "concluida"
+        if "cancel" in s or s in ("nao", "não"): return "cancelada"
+        if "pactuada" in s or s == "em andamento": return "pactuada"
+    if "data_entrega" in col_map or "pactuado" in col_map: return "concluida"
+    if "justificativa" in col_map and "data_entrega" not in col_map and "pactuado" not in col_map:
+        return "cancelada"
+    return "pactuada"
 
 
 def _extract_deliveries_tables(pdf_path: str, sigla: str) -> List[DeliveryEntry]:
@@ -101,10 +135,10 @@ def _extract_deliveries_tables(pdf_path: str, sigla: str) -> List[DeliveryEntry]
                 test_col = col_map.get("produto", "")
                 if test_col and test_col not in df.columns:
                     # Nomes mudaram (continuação) — mapear por posição
-                    # Estrutura padrão: 0=servico, 1=produto, 2=eixo, 3=area, 4=data
+                    # Estrutura padrão: 0=servico, 1=produto, 2=eixo, 3=area, 4=data_pactuada
                     pos_map = {"servico": 0, "produto": 1, "eixo": 2}
-                    if df.shape[1] >= 5: pos_map["data"] = 4
-                    elif df.shape[1] >= 4: pos_map["data"] = 3
+                    if df.shape[1] >= 5: pos_map["data_pactuada"] = 4
+                    elif df.shape[1] >= 4: pos_map["data_pactuada"] = 3
 
             for _, row in df.iterrows():
                 prod_raw = ""
@@ -147,21 +181,38 @@ def _extract_deliveries_tables(pdf_path: str, sigla: str) -> List[DeliveryEntry]
                     if eixo_match[1] >= 0.80:
                         eixo_norm = eixo_match[0]
 
-                data = ""
-                if pos_map and "data" in pos_map:
-                    data = normalize_text(str(row.iloc[pos_map["data"]]))
-                elif "data" in col_map:
-                    data = normalize_text(str(row.get(col_map["data"], "")))
-                if data.lower() in ("nan", "none", "dtpactuada"): data = ""
+                # Datas: pactuada e entrega são agora separadas em col_map.
+                # Para retrocompat, "data" antiga vira "data_pactuada".
+                def _read_field(name):
+                    if pos_map and name in pos_map:
+                        return normalize_text(str(row.iloc[pos_map[name]]))
+                    if name in col_map:
+                        return normalize_text(str(row.get(col_map[name], "")))
+                    return ""
+
+                def _clean(v):
+                    return "" if v.lower() in ("nan", "none", "dtpactuada", "dtentrega") else v
+
+                data_pact = _clean(_read_field("data_pactuada"))
+                data_entr = _clean(_read_field("data_entrega"))
+                pactuado_val = _clean(_read_field("pactuado"))
+                justif_val = _clean(_read_field("justificativa"))
+                status_val = _clean(_read_field("status"))
+
+                tipo = _classify_tabela_tipo(col_map, status_val or None)
 
                 entries.append(DeliveryEntry(
                     orgao_sigla=sigla,
+                    tabela_tipo=tipo,
                     servico_acao=serv[:250],
                     produto_original=prod_raw[:250],
                     produto_normalizado=prod_norm,
                     eixo_original=eixo_raw,
                     eixo_normalizado=eixo_norm,
-                    data_pactuada=parse_date(data) if data else None,
+                    data_pactuada=parse_date(data_pact) if data_pact else None,
+                    data_entrega=parse_date(data_entr) if data_entr else None,
+                    pactuado=pactuado_val or None,
+                    justificativa=justif_val[:500] if justif_val else None,
                     extraction_confidence="high" if pm[1] >= 0.95 else ("medium" if pm[1] >= 0.85 else "low"),
                     needs_review=pm[1] < 0.95 or is_out,
                     review_reason="produto Outros" if is_out else (f"fuzzy={pm[1]:.2f}" if pm[1] < 0.95 else None),

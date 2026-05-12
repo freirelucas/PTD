@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "timestamp_utc": "2026-05-12T05:14:09+00:00",
+  "timestamp_utc": "2026-05-12T05:28:48+00:00",
   "counts": {
     "orgaos": 91,
     "entregas": 4574,
@@ -259,11 +259,11 @@
   },
   "all_thresholds_passed": true,
   "output_checksums_md5": {
-    "risks.csv": "cfc41463bb6d9b95414a04dfd5455ede",
+    "risks.csv": "d57b18b24f606f21713fedb27a6d9149",
     "deliveries.csv": "179c016830cd788838c5691eb3ee0997",
     "organs.csv": "00acdbf24799902960f36ed93c565f19",
-    "risks.json": "d7f6f865523ecfeecbd1969466740fea",
-    "deliveries.json": "651b68bd56d6a7e008508e3810f1307a",
+    "risks.json": "3605bf834c8ee6d53698b19946772007",
+    "deliveries.json": "d35b14826a57c06fa58b681295592225",
     "statistics_summary.json": "217fedeaf37b1a4b592ea77a6510e5fe",
     "error_report.csv": "61c3e36c454c3032411ebd61c0193f78"
   },
