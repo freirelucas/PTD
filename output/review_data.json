@@ -1,0 +1,2515 @@
+{
+  "items": [
+    {
+      "field": "probabilidade",
+      "scale_label": "probabilidade",
+      "original": "Médio",
+      "normalized": "Médio",
+      "suggested": "praticamente certo",
+      "suggested_score": 0.26,
+      "score": 0.26,
+      "method": "unmatched",
+      "count": 3,
+      "siglas": [
+        "CADE",
+        "IBAMA"
+      ],
+      "examples": [
+        {
+          "sigla": "CADE",
+          "context": "Baixo resultado das empresas contratadas relacionadas à Transformação Digital"
+        },
+        {
+          "sigla": "CADE",
+          "context": "Falta de acesso as bases e API de outros órgãos públicos"
+        },
+        {
+          "sigla": "IBAMA",
+          "context": "Projeto atualizado mesmo com a substituição de membro da equipe."
+        }
+      ],
+      "alias_snippet": "",
+      "impact": 2.22
+    },
+    {
+      "field": "impacto",
+      "scale_label": "impacto",
+      "original": "Impacto",
+      "normalized": "Impacto",
+      "suggested": "alto",
+      "suggested_score": 0.55,
+      "score": 0.55,
+      "method": "unmatched",
+      "count": 3,
+      "siglas": [
+        "CENSIPAM",
+        "MJSP"
+      ],
+      "examples": [
+        {
+          "sigla": "CENSIPAM",
+          "context": "Risco"
+        },
+        {
+          "sigla": "CENSIPAM",
+          "context": "Risco"
+        },
+        {
+          "sigla": "MJSP",
+          "context": "Risco"
+        }
+      ],
+      "alias_snippet": "\"impacto\": \"alto\",",
+      "impact": 1.36
+    },
+    {
+      "field": "impacto",
+      "scale_label": "impacto",
+      "original": "Prospecçã o de formas alternativas para viabilizar a composiçã o e a manutençã o da força de trabalho; Utilizar melhores práticas de gerenciame nto de projetos registrando as etapas.",
+      "normalized": "Prospecçã o de formas alternativas para viabilizar a composiçã o e a manutençã o da força de trabalho; Utilizar melhores práticas de gerenciame nto de projetos registrando as etapas.",
+      "suggested": "muito alto",
+      "suggested_score": 0.06,
+      "score": 0.06,
+      "method": "unmatched",
+      "count": 1,
+      "siglas": [
+        "MPOR"
+      ],
+      "examples": [
+        {
+          "sigla": "MPOR",
+          "context": "Carências de Recursos Humanos nas equipes de TI"
+        }
+      ],
+      "alias_snippet": "",
+      "impact": 0.94
+    },
+    {
+      "field": "impacto",
+      "scale_label": "impacto",
+      "original": "Identificaçã o de dependênci as com fornecedor es para o planejamen to preventivo para a contratação ou migração de soluções visando a continuidad e do negócio;",
+      "normalized": "Identificaçã o de dependênci as com fornecedor es para o planejamen to preventivo para a contratação ou migração de soluções visando a continuidad e do negócio;",
+      "suggested": "muito alto",
+      "suggested_score": 0.07,
+      "score": 0.07,
+      "method": "unmatched",
+      "count": 1,
+      "siglas": [
+        "MPOR"
+      ],
+      "examples": [
+        {
+          "sigla": "MPOR",
+          "context": "Dependência de fornecedores"
+        }
+      ],
+      "alias_snippet": "",
+      "impact": 0.93
+    },
+    {
+      "field": "impacto",
+      "scale_label": "impacto",
+      "original": "Negociar para minimizar os impactos; Identificaçã o de dependênci as com fornecedor es para o planejamen to preventivo para a contratação ou migração de soluções visando a",
+      "normalized": "Negociar para minimizar os impactos; Identificaçã o de dependênci as com fornecedor es para o planejamen to preventivo para a contratação ou migração de soluções visando a",
+      "suggested": "muito alto",
+      "suggested_score": 0.07,
+      "score": 0.07,
+      "method": "unmatched",
+      "count": 1,
+      "siglas": [
+        "MPOR"
+      ],
+      "examples": [
+        {
+          "sigla": "MPOR",
+          "context": "Indisponibilidade do serviço atraso no fornecimento de bens patrimoniais e/ou serviços"
+        }
+      ],
+      "alias_snippet": "",
+      "impact": 0.93
+    },
+    {
+      "field": "tratamento",
+      "scale_label": "tratamento",
+      "original": "Identificaçã o de dependênci as com fornecedor es para o planejamen to preventivo para a contratação ou migração de soluções visando a continuidad e do negócio;",
+      "normalized": "Identificaçã o de dependênci as com fornecedor es para o planejamen to preventivo para a contratação ou migração de soluções visando a continuidad e do negócio",
+      "suggested": "aceitar",
+      "suggested_score": 0.07,
+      "score": 0.07,
+      "method": "unmatched",
+      "count": 1,
+      "siglas": [
+        "MPOR"
+      ],
+      "examples": [
+        {
+          "sigla": "MPOR",
+          "context": "Dependência de fornecedores"
+        }
+      ],
+      "alias_snippet": "",
+      "impact": 0.93
+    },
+    {
+      "field": "impacto",
+      "scale_label": "impacto",
+      "original": "Desenvolver planos de contingência detalhados para lidar com falhas ou interrupções nos serviços dos",
+      "normalized": "Desenvolver planos de contingência detalhados para lidar com falhas ou interrupções nos serviços dos",
+      "suggested": "muito alto",
+      "suggested_score": 0.09,
+      "score": 0.09,
+      "method": "unmatched",
+      "count": 1,
+      "siglas": [
+        "DNOCS"
+      ],
+      "examples": [
+        {
+          "sigla": "DNOCS",
+          "context": "Dependência de fornecedores"
+        }
+      ],
+      "alias_snippet": "",
+      "impact": 0.91
+    },
+    {
+      "field": "impacto",
+      "scale_label": "impacto",
+      "original": "Implementar um sistema de gestão do conheciment o para documentar e compartilhar as melhores práticas, os",
+      "normalized": "Implementar um sistema de gestão do conheciment o para documentar e compartilhar as melhores práticas, os",
+      "suggested": "muito alto",
+      "suggested_score": 0.09,
+      "score": 0.09,
+      "method": "unmatched",
+      "count": 1,
+      "siglas": [
+        "DNOCS"
+      ],
+      "examples": [
+        {
+          "sigla": "DNOCS",
+          "context": "Rotatividade de recursos humanos na área de TI da autarquia"
+        }
+      ],
+      "alias_snippet": "",
+      "impact": 0.91
+    },
+    {
+      "field": "impacto",
+      "scale_label": "impacto",
+      "original": "Investir em programas de capacitação e treinamento para as equipes de TI existentes, aprimorando suas habilidades e conheciment os em tecnologias emergentes.",
+      "normalized": "Investir em programas de capacitação e treinamento para as equipes de TI existentes, aprimorando suas habilidades e conheciment os em tecnologias emergentes.",
+      "suggested": "muito baixo",
+      "suggested_score": 0.1,
+      "score": 0.1,
+      "method": "unmatched",
+      "count": 1,
+      "siglas": [
+        "DNOCS"
+      ],
+      "examples": [
+        {
+          "sigla": "DNOCS",
+          "context": "Carência de recursos humanos nas equipes de TI para executar a transformação digital"
+        }
+      ],
+      "alias_snippet": "",
+      "impact": 0.91
+    },
+    {
+      "field": "tratamento",
+      "scale_label": "tratamento",
+      "original": "- Desenvolvimento de plataformas adaptáveis a diferentes contextos socioculturais. - Sensibilização e capacitação das equipes;",
+      "normalized": "- Desenvolvimento de plataformas adaptáveis a diferentes contextos socioculturais. - Sensibilização e capacitação das equipes",
+      "suggested": "eliminar",
+      "suggested_score": 0.1,
+      "score": 0.1,
+      "method": "unmatched",
+      "count": 1,
+      "siglas": [
+        "MMULHERES"
+      ],
+      "examples": [
+        {
+          "sigla": "MMULHERES",
+          "context": "de populações tradicionais e rurais Resistência cultural à"
+        }
+      ],
+      "alias_snippet": "",
+      "impact": 0.9
+    },
+    {
+      "field": "tratamento",
+      "scale_label": "tratamento",
+      "original": "- Desenvolvimento de soluções internas; - Planejamento de migração tecnológica sustentável. - Reuniões estratégicas de alinhamento com a alta administração;",
+      "normalized": "- Desenvolvimento de soluções internas; - Planejamento de migração tecnológica sustentável. - Reuniões estratégicas de alinhamento com a alta administração",
+      "suggested": "aceitar",
+      "suggested_score": 0.09,
+      "score": 0.12,
+      "method": "unmatched",
+      "count": 1,
+      "siglas": [
+        "MMULHERES"
+      ],
+      "examples": [
+        {
+          "sigla": "MMULHERES",
+          "context": "de fornecedores de tecnologia Baixa priorização da"
+        }
+      ],
+      "alias_snippet": "",
+      "impact": 0.89
+    },
+    {
+      "field": "impacto",
+      "scale_label": "impacto",
+      "original": "Documentar e comunicar claramente o impacto de qualquer mudança estratégica no PTD, buscando soluções colaborativas para minimizar os efeitos adversos",
+      "normalized": "Documentar e comunicar claramente o impacto de qualquer mudança estratégica no PTD, buscando soluções colaborativas para minimizar os efeitos adversos",
+      "suggested": "muito alto",
+      "suggested_score": 0.12,
+      "score": 0.12,
+      "method": "unmatched",
+      "count": 1,
+      "siglas": [
+        "DNOCS"
+      ],
+      "examples": [
+        {
+          "sigla": "DNOCS",
+          "context": "Mudança da estratégia da área de negócio responsável pelo serviço"
+        }
+      ],
+      "alias_snippet": "",
+      "impact": 0.88
+    },
+    {
+      "field": "impacto",
+      "scale_label": "impacto",
+      "original": "Sensibiliza ção das áreas de negócio para a importância do plano digital; Prospecçã o de formas alternativas para viabilizar a composiçã",
+      "normalized": "Sensibiliza ção das áreas de negócio para a importância do plano digital; Prospecçã o de formas alternativas para viabilizar a composiçã",
+      "suggested": "muito alto",
+      "suggested_score": 0.12,
+      "score": 0.12,
+      "method": "unmatched",
+      "count": 1,
+      "siglas": [
+        "MPOR"
+      ],
+      "examples": [
+        {
+          "sigla": "MPOR",
+          "context": "Rotatividade das equipes envolvidas na transformação digital"
+        }
+      ],
+      "alias_snippet": "",
+      "impact": 0.88
+    },
+    {
+      "field": "tratamento",
+      "scale_label": "tratamento",
+      "original": "- Parcerias estratégicas para expansão da infraestrutura digital. - Criação de estratégias de acesso inclusivo;",
+      "normalized": "- Parcerias estratégicas para expansão da infraestrutura digital. - Criação de estratégias de acesso inclusivo",
+      "suggested": "aceitar",
+      "suggested_score": 0.12,
+      "score": 0.12,
+      "method": "unmatched",
+      "count": 1,
+      "siglas": [
+        "MMULHERES"
+      ],
+      "examples": [
+        {
+          "sigla": "MMULHERES",
+          "context": "adequada para implementação digital Risco de exclusão digital"
+        }
+      ],
+      "alias_snippet": "",
+      "impact": 0.88
+    },
+    {
+      "field": "tratamento",
+      "scale_label": "tratamento",
+      "original": "- Sensibilização para apoio da alta administração; - Alinhamento contínuo com as diretrizes do governo. - Monitoramento das propostas legislativas e participação",
+      "normalized": "- Sensibilização para apoio da alta administração; - Alinhamento contínuo com as diretrizes do governo. - Monitoramento das propostas legislativas e participação",
+      "suggested": "eliminar",
+      "suggested_score": 0.09,
+      "score": 0.12,
+      "method": "unmatched",
+      "count": 1,
+      "siglas": [
+        "MMULHERES"
+      ],
+      "examples": [
+        {
+          "sigla": "MMULHERES",
+          "context": "Falta de adesão das partes interessadas às iniciativas digitais Mudanças em políticas"
+        }
+      ],
+      "alias_snippet": "",
+      "impact": 0.88
+    },
+    {
+      "field": "tratamento",
+      "scale_label": "tratamento",
+      "original": "- Parcerias interministeriais para alinhamento técnico. - Documentação robusta dos processos e entregas;",
+      "normalized": "- Parcerias interministeriais para alinhamento técnico. - Documentação robusta dos processos e entregas",
+      "suggested": "eliminar",
+      "suggested_score": 0.12,
+      "score": 0.13,
+      "method": "unmatched",
+      "count": 1,
+      "siglas": [
+        "MMULHERES"
+      ],
+      "examples": [
+        {
+          "sigla": "MMULHERES",
+          "context": "interoperabilidade dos sistemas governamentais Descontinuidade de"
+        }
+      ],
+      "alias_snippet": "",
+      "impact": 0.87
+    },
+    {
+      "field": "tratamento",
+      "scale_label": "tratamento",
+      "original": "acessibilidade; - Campanhas de conscientização. - Aprimoramento das políticas de conformidade com a LGPD e ao PPSI;",
+      "normalized": "acessibilidade; - Campanhas de conscientização. - Aprimoramento das políticas de conformidade com a LGPD e ao PPSI",
+      "suggested": "aceitar",
+      "suggested_score": 0.11,
+      "score": 0.13,
+      "method": "unmatched",
+      "count": 1,
+      "siglas": [
+        "MMULHERES"
+      ],
+      "examples": [
+        {
+          "sigla": "MMULHERES",
+          "context": "beneficiários aos serviços digitais Problemas na segurança"
+        }
+      ],
+      "alias_snippet": "",
+      "impact": 0.87
+    },
+    {
+      "field": "tratamento",
+      "scale_label": "tratamento",
+      "original": "ativa em discussões estratégicas; - Reporte à alta administração. - Desenvolvimento de iniciativas de capacitação digital; - Criação de canais híbridos de atendimento para garantir",
+      "normalized": "ativa em discussões estratégicas; - Reporte à alta administração. - Desenvolvimento de iniciativas de capacitação digital; - Criação de canais híbridos de atendimento para garantir",
+      "suggested": "aceitar",
+      "suggested_score": 0.07,
+      "score": 0.13,
+      "method": "unmatched",
+      "count": 1,
+      "siglas": [
+        "MMULHERES"
+      ],
+      "examples": [
+        {
+          "sigla": "MMULHERES",
+          "context": "públicas que impactam os serviços digitais Baixa adesão dos"
+        }
+      ],
+      "alias_snippet": "",
+      "impact": 0.87
+    },
+    {
+      "field": "tratamento",
+      "scale_label": "tratamento",
+      "original": "- Fortalecimento da institucionalização das políticas digitais. - Mapeamento e priorização de investimentos;",
+      "normalized": "- Fortalecimento da institucionalização das políticas digitais. - Mapeamento e priorização de investimentos",
+      "suggested": "transferir",
+      "suggested_score": 0.14,
+      "score": 0.14,
+      "method": "unmatched",
+      "count": 1,
+      "siglas": [
+        "MMULHERES"
+      ],
+      "examples": [
+        {
+          "sigla": "MMULHERES",
+          "context": "projetos devido a mudanças de governo Falta de infraestrutura"
+        }
+      ],
+      "alias_snippet": "",
+      "impact": 0.86
+    },
+    {
+      "field": "impacto",
+      "scale_label": "impacto",
+      "original": "Implantar controles de acesso rigorosos, limitando o acesso a dados apenas a usuários autorizados",
+      "normalized": "Implantar controles de acesso rigorosos, limitando o acesso a dados apenas a usuários autorizados",
+      "suggested": "muito alto",
+      "suggested_score": 0.15,
+      "score": 0.15,
+      "method": "unmatched",
+      "count": 1,
+      "siglas": [
+        "DNOCS"
+      ],
+      "examples": [
+        {
+          "sigla": "DNOCS",
+          "context": "Problemas com perda e/ou integridade de dados"
+        }
+      ],
+      "alias_snippet": "",
+      "impact": 0.85
+    },
+    {
+      "field": "tratamento",
+      "scale_label": "tratamento",
+      "original": "- Relatórios periódicos demonstrando impacto e ganhos das iniciativas. - Adoção de padrões abertos de integração;",
+      "normalized": "- Relatórios periódicos demonstrando impacto e ganhos das iniciativas. - Adoção de padrões abertos de integração",
+      "suggested": "transferir",
+      "suggested_score": 0.15,
+      "score": 0.15,
+      "method": "unmatched",
+      "count": 1,
+      "siglas": [
+        "MMULHERES"
+      ],
+      "examples": [
+        {
+          "sigla": "MMULHERES",
+          "context": "transformação digital pela gestão Desafios na"
+        }
+      ],
+      "alias_snippet": "",
+      "impact": 0.85
+    },
+    {
+      "field": "tratamento",
+      "scale_label": "tratamento",
+      "original": "- Implementação de protocolos avançados de proteção; - Monitoramento contínuo de ameaças. - Sensibilização da alta administração para priorização de",
+      "normalized": "- Implementação de protocolos avançados de proteção; - Monitoramento contínuo de ameaças. - Sensibilização da alta administração para priorização de",
+      "suggested": "eliminar",
+      "suggested_score": 0.1,
+      "score": 0.15,
+      "method": "unmatched",
+      "count": 1,
+      "siglas": [
+        "MMULHERES"
+      ],
+      "examples": [
+        {
+          "sigla": "MMULHERES",
+          "context": "contra sistemas do Ministério"
+        }
+      ],
+      "alias_snippet": "",
+      "impact": 0.84
+    },
+    {
+      "field": "tratamento",
+      "scale_label": "tratamento",
+      "original": "orçamento digital. - Adoção de princípios de acessibilidade digital;",
+      "normalized": "orçamento digital. - Adoção de princípios de acessibilidade digital",
+      "suggested": "mitigar",
+      "suggested_score": 0.16,
+      "score": 0.16,
+      "method": "unmatched",
+      "count": 1,
+      "siglas": [
+        "MMULHERES"
+      ],
+      "examples": [
+        {
+          "sigla": "MMULHERES",
+          "context": "Falta de orçamento Baixa acessibilidade dos"
+        }
+      ],
+      "alias_snippet": "",
+      "impact": 0.84
+    },
+    {
+      "field": "impacto",
+      "scale_label": "impacto",
+      "original": "estabelecer canais de comunicação direta para garantir o alinhamento de expectativas e a troca de informações",
+      "normalized": "estabelecer canais de comunicação direta para garantir o alinhamento de expectativas e a troca de informações",
+      "suggested": "muito alto",
+      "suggested_score": 0.17,
+      "score": 0.17,
+      "method": "unmatched",
+      "count": 1,
+      "siglas": [
+        "DNOCS"
+      ],
+      "examples": [
+        {
+          "sigla": "DNOCS",
+          "context": "Falta de apoio da SGD/MGI"
+        }
+      ],
+      "alias_snippet": "",
+      "impact": 0.83
+    },
+    {
+      "field": "tratamento",
+      "scale_label": "tratamento",
+      "original": "- Estratégias de governança de dados eficazes; - Adoção de protocolos de segurança cibernética. - Capacitação contínua dos servidores;",
+      "normalized": "- Estratégias de governança de dados eficazes; - Adoção de protocolos de segurança cibernética. - Capacitação contínua dos servidores",
+      "suggested": "transferir",
+      "suggested_score": 0.11,
+      "score": 0.17,
+      "method": "unmatched",
+      "count": 1,
+      "siglas": [
+        "MMULHERES"
+      ],
+      "examples": [
+        {
+          "sigla": "MMULHERES",
+          "context": "e privacidade de dados sensíveis Falta de equipe"
+        }
+      ],
+      "alias_snippet": "",
+      "impact": 0.83
+    },
+    {
+      "field": "tratamento",
+      "scale_label": "tratamento",
+      "original": "- Governança bem definida; - Comunicação contínua. - Fortalecimento da segurança cibernética;",
+      "normalized": "- Governança bem definida; - Comunicação contínua. - Fortalecimento da segurança cibernética",
+      "suggested": "transferir",
+      "suggested_score": 0.14,
+      "score": 0.18,
+      "method": "unmatched",
+      "count": 1,
+      "siglas": [
+        "MMULHERES"
+      ],
+      "examples": [
+        {
+          "sigla": "MMULHERES",
+          "context": "transformação digital Ataques cibernéticos"
+        }
+      ],
+      "alias_snippet": "",
+      "impact": 0.82
+    },
+    {
+      "field": "tratamento",
+      "scale_label": "tratamento",
+      "original": "- Parcerias com instituições para oferta de treinamentos; - Planejamento de contratações estratégicas. - Diversificação de fornecedores;",
+      "normalized": "- Parcerias com instituições para oferta de treinamentos; - Planejamento de contratações estratégicas. - Diversificação de fornecedores",
+      "suggested": "eliminar",
+      "suggested_score": 0.1,
+      "score": 0.18,
+      "method": "unmatched",
+      "count": 1,
+      "siglas": [
+        "MMULHERES"
+      ],
+      "examples": [
+        {
+          "sigla": "MMULHERES",
+          "context": "qualificada para execução da transformação digital Dependência excessiva"
+        }
+      ],
+      "alias_snippet": "",
+      "impact": 0.82
+    },
+    {
+      "field": "impacto",
+      "scale_label": "impacto",
+      "original": "Governanç a bem definida, com alinhament o estratégico,",
+      "normalized": "Governanç a bem definida, com alinhament o estratégico,",
+      "suggested": "muito alto",
+      "suggested_score": 0.18,
+      "score": 0.18,
+      "method": "unmatched",
+      "count": 1,
+      "siglas": [
+        "MPOR"
+      ],
+      "examples": [
+        {
+          "sigla": "MPOR",
+          "context": "Despriorização do PTD pela da Alta Gestão"
+        }
+      ],
+      "alias_snippet": "",
+      "impact": 0.81
+    },
+    {
+      "field": "tratamento",
+      "scale_label": "tratamento",
+      "original": "Avaliar o impacto de cada cenário no Plano de",
+      "normalized": "Avaliar o impacto de cada cenário no Plano de",
+      "suggested": "eliminar",
+      "suggested_score": 0.23,
+      "score": 0.23,
+      "method": "unmatched",
+      "count": 1,
+      "siglas": [
+        "DNOCS"
+      ],
+      "examples": [
+        {
+          "sigla": "DNOCS",
+          "context": "Alteração da política pública relacionada ao PTD"
+        }
+      ],
+      "alias_snippet": "",
+      "impact": 0.77
+    },
+    {
+      "field": "tratamento",
+      "scale_label": "tratamento",
+      "original": "- Design inclusivo; - Testes com usuárias reais.",
+      "normalized": "- Design inclusivo; - Testes com usuárias reais.",
+      "suggested": "eliminar",
+      "suggested_score": 0.21,
+      "score": 0.26,
+      "method": "unmatched",
+      "count": 1,
+      "siglas": [
+        "MMULHERES"
+      ],
+      "examples": [
+        {
+          "sigla": "MMULHERES",
+          "context": "serviços digitais"
+        }
+      ],
+      "alias_snippet": "",
+      "impact": 0.74
+    },
+    {
+      "field": "probabilidade",
+      "scale_label": "probabilidade",
+      "original": "de de Ocor-",
+      "normalized": "de de Ocor-",
+      "suggested": "pouco provável",
+      "suggested_score": 0.32,
+      "score": 0.32,
+      "method": "unmatched",
+      "count": 1,
+      "siglas": [
+        "MJSP"
+      ],
+      "examples": [
+        {
+          "sigla": "MJSP",
+          "context": "Risco"
+        }
+      ],
+      "alias_snippet": "",
+      "impact": 0.68
+    },
+    {
+      "field": "probabilidade",
+      "scale_label": "probabilidade",
+      "original": "1-Alto",
+      "normalized": "1-Alto",
+      "suggested": "raro",
+      "suggested_score": 0.4,
+      "score": 0.4,
+      "method": "unmatched",
+      "count": 1,
+      "siglas": [
+        "CADE"
+      ],
+      "examples": [
+        {
+          "sigla": "CADE",
+          "context": "0-Não atendimento às expectativas dos usuários"
+        }
+      ],
+      "alias_snippet": "",
+      "impact": 0.6
+    },
+    {
+      "field": "probabilidade",
+      "scale_label": "probabilidade",
+      "original": "rência",
+      "normalized": "rência",
+      "suggested": "raro",
+      "suggested_score": 0.4,
+      "score": 0.4,
+      "method": "unmatched",
+      "count": 1,
+      "siglas": [
+        "MJSP"
+      ],
+      "examples": [
+        {
+          "sigla": "MJSP",
+          "context": ""
+        }
+      ],
+      "alias_snippet": "",
+      "impact": 0.6
+    },
+    {
+      "field": "impacto",
+      "scale_label": "impacto",
+      "original": "Médio Muito",
+      "normalized": "Médio Muito",
+      "suggested": "médio",
+      "suggested_score": 0.62,
+      "score": 0.62,
+      "method": "unmatched",
+      "count": 1,
+      "siglas": [
+        "MMULHERES"
+      ],
+      "examples": [
+        {
+          "sigla": "MMULHERES",
+          "context": "adequada para implementação digital Risco de exclusão digital"
+        }
+      ],
+      "alias_snippet": "\"medio muito\": \"médio\",",
+      "impact": 0.38
+    }
+  ],
+  "summary_by_field": {
+    "probabilidade": {
+      "cases": 6,
+      "uniques": 4,
+      "impact_total": 4.1
+    },
+    "impacto": {
+      "cases": 15,
+      "uniques": 13,
+      "impact_total": 11.52
+    },
+    "tratamento": {
+      "cases": 17,
+      "uniques": 17,
+      "impact_total": 14.46
+    }
+  },
+  "summary_by_method": {
+    "unmatched": 38
+  },
+  "total_cases": 38,
+  "total_uniques": 34,
+  "curation": {
+    "items": [
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "Integração à base de dados (OUTROS)",
+        "normalized": "Integração à base de dados",
+        "suggested": "Integração à base de dados",
+        "suggested_score": 0.85,
+        "score": 0.85,
+        "method": "fuzzy_high",
+        "count": 75,
+        "siglas": [
+          "ANAC",
+          "ANCINE",
+          "ANM",
+          "ANTT",
+          "CAPES",
+          "CENSIPAM",
+          "CVM",
+          "FCRB",
+          "IBAMA",
+          "IBGE",
+          "INSS",
+          "IPHAN",
+          "MDIC",
+          "MEMP",
+          "MGI",
+          "MINC",
+          "MJSP",
+          "MPI",
+          "MTUR",
+          "PREVIC",
+          "SUSEP"
+        ],
+        "examples": [
+          {
+            "sigla": "ANAC",
+            "context": ""
+          },
+          {
+            "sigla": "ANAC",
+            "context": ""
+          },
+          {
+            "sigla": "ANAC",
+            "context": "Interoperabilidade DECEA"
+          },
+          {
+            "sigla": "ANAC",
+            "context": "Interoperabilidade com ANATEL - LICENÇA DE ESTAÇÃO aeronaves (ANATEL)"
+          },
+          {
+            "sigla": "ANAC",
+            "context": "Interoperabilidade com ANATEL - RAB"
+          }
+        ],
+        "alias_snippet": "\"integracao a base de dados (outros)\": \"Integração à base de dados\",",
+        "impact": 11.1
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "Integração à ferramenta de avaliação da satisfação dos",
+        "normalized": "Integração à ferramenta de avaliação da satisfação dos usuários",
+        "suggested": "Integração à ferramenta de avaliação da satisfação dos usuários",
+        "suggested_score": 0.92,
+        "score": 0.92,
+        "method": "fuzzy_high",
+        "count": 81,
+        "siglas": [
+          "ANCINE",
+          "MDHC",
+          "MEMP",
+          "MTUR"
+        ],
+        "examples": [
+          {
+            "sigla": "ANCINE",
+            "context": "Ancine - Solicitar parcelamento de multa administrativa"
+          },
+          {
+            "sigla": "ANCINE",
+            "context": "Impetrar recurso relativo aos processos de prestação de contas concluídos"
+          },
+          {
+            "sigla": "ANCINE",
+            "context": "Obter novo valor de pagamento para CONDECINE em atraso - após emissão de NFL"
+          },
+          {
+            "sigla": "ANCINE",
+            "context": "Realizar entrega de objeto de projeto de desenvolvimento"
+          },
+          {
+            "sigla": "ANCINE",
+            "context": "Registrar mostras e festivais para fins de autorização de isenção de CONDECINE"
+          }
+        ],
+        "alias_snippet": "\"integracao a ferramenta de avaliacao da satisfacao dos\": \"Integração à ferramenta de avaliação da satisfação dos usuários\",",
+        "impact": 6.24
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "Integração à ferramenta de avaliação da satisfação dos u",
+        "normalized": "Integração à ferramenta de avaliação da satisfação dos usuários",
+        "suggested": "Integração à ferramenta de avaliação da satisfação dos usuários",
+        "suggested_score": 0.94,
+        "score": 0.94,
+        "method": "fuzzy_high",
+        "count": 66,
+        "siglas": [
+          "IBAMA"
+        ],
+        "examples": [
+          {
+            "sigla": "IBAMA",
+            "context": "*Realizar agendamento de visitas ecoturísticas em parques nacion"
+          },
+          {
+            "sigla": "IBAMA",
+            "context": "Acessar Cursos da Plataforma Saberes da Floresta"
+          },
+          {
+            "sigla": "IBAMA",
+            "context": "Análise Dinamizada do CAR"
+          },
+          {
+            "sigla": "IBAMA",
+            "context": "Cadastrar Concessionaria na Cadeia de Custodia"
+          },
+          {
+            "sigla": "IBAMA",
+            "context": "Cadastrar Determinação de Propriedades Relacionadas a Secagem"
+          }
+        ],
+        "alias_snippet": "\"integracao a ferramenta de avaliacao da satisfacao dos u\": \"Integração à ferramenta de avaliação da satisfação dos usuários\",",
+        "impact": 3.89
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "Integração à ferramenta de avaliação da satisfação do",
+        "normalized": "Integração à ferramenta de avaliação da satisfação dos usuários",
+        "suggested": "Integração à ferramenta de avaliação da satisfação dos usuários",
+        "suggested_score": 0.91,
+        "score": 0.91,
+        "method": "fuzzy_high",
+        "count": 35,
+        "siglas": [
+          "MRE"
+        ],
+        "examples": [
+          {
+            "sigla": "MRE",
+            "context": "Alistar-se no serviço militar no exterior"
+          },
+          {
+            "sigla": "MRE",
+            "context": "Autenticar cópias no exterior"
+          },
+          {
+            "sigla": "MRE",
+            "context": "Celebrar casamento em repartição consular no exterior"
+          },
+          {
+            "sigla": "MRE",
+            "context": "Consultar acervo da biblioteca Embaixador João Guimarães Rosa"
+          },
+          {
+            "sigla": "MRE",
+            "context": "Consultar acervo da biblioteca do Itamaraty (BAS)"
+          }
+        ],
+        "alias_snippet": "\"integracao a ferramenta de avaliacao da satisfacao do\": \"Integração à ferramenta de avaliação da satisfação dos usuários\",",
+        "impact": 3.01
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "Migração de Serviço para Plataforma",
+        "normalized": "Migração de Serviço para Plataforma Unificada",
+        "suggested": "Migração de Serviço para Plataforma Unificada",
+        "suggested_score": 0.88,
+        "score": 0.88,
+        "method": "fuzzy_high",
+        "count": 17,
+        "siglas": [
+          "CAPES"
+        ],
+        "examples": [
+          {
+            "sigla": "CAPES",
+            "context": "Acompanhar Lista de Espera SISU"
+          },
+          {
+            "sigla": "CAPES",
+            "context": "Articuladas (PAR5)."
+          },
+          {
+            "sigla": "CAPES",
+            "context": "Cadastrar usuário no SISPDDE"
+          },
+          {
+            "sigla": "CAPES",
+            "context": "Consultar Acervo Acadêmico"
+          },
+          {
+            "sigla": "CAPES",
+            "context": "Consultar Oferta de Vagas no SISU"
+          }
+        ],
+        "alias_snippet": "\"migracao de servico para plataforma\": \"Migração de Serviço para Plataforma Unificada\",",
+        "impact": 2.12
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "Auto-avaliação, análise de lacunas e planejamento",
+        "normalized": "Auto-avaliação, análise de lacunas e planejamento do PPSI",
+        "suggested": "Auto-avaliação, análise de lacunas e planejamento do PPSI",
+        "suggested_score": 0.92,
+        "score": 0.93,
+        "method": "fuzzy_high",
+        "count": 25,
+        "siglas": [
+          "ANA",
+          "CADE",
+          "FCRB",
+          "INSS",
+          "MMULHERES",
+          "MPOR"
+        ],
+        "examples": [
+          {
+            "sigla": "ANA",
+            "context": "PPSI Ciclo 5"
+          },
+          {
+            "sigla": "ANA",
+            "context": "PPSI Ciclo 6"
+          },
+          {
+            "sigla": "ANA",
+            "context": "PPSI Ciclo 7"
+          },
+          {
+            "sigla": "CADE",
+            "context": "PPSI Ciclo 1"
+          },
+          {
+            "sigla": "CADE",
+            "context": "PPSI Ciclo 2"
+          }
+        ],
+        "alias_snippet": "\"auto-avaliacao, analise de lacunas e planejamento\": \"Auto-avaliação, análise de lacunas e planejamento do PPSI\",",
+        "impact": 1.87
+      },
+      {
+        "field": "eixo",
+        "scale_label": "eixo",
+        "original": "iviços Digitais e Melhoria da Qualid",
+        "normalized": "Serviços Digitais e Melhoria da Qualidade",
+        "suggested": "Serviços Digitais e Melhoria da Qualidade",
+        "suggested_score": 0.91,
+        "score": 0.91,
+        "method": "fuzzy_high",
+        "count": 18,
+        "siglas": [
+          "ANAC"
+        ],
+        "examples": [
+          {
+            "sigla": "ANAC",
+            "context": ""
+          },
+          {
+            "sigla": "ANAC",
+            "context": ""
+          },
+          {
+            "sigla": "ANAC",
+            "context": ""
+          },
+          {
+            "sigla": "ANAC",
+            "context": ""
+          },
+          {
+            "sigla": "ANAC",
+            "context": ""
+          }
+        ],
+        "alias_snippet": "\"ivicos digitais e melhoria da qualid\": \"Serviços Digitais e Melhoria da Qualidade\",",
+        "impact": 1.64
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "Integração à ferramenta de avaliação da satisfação",
+        "normalized": "Integração à ferramenta de avaliação da satisfação dos usuários",
+        "suggested": "Integração à ferramenta de avaliação da satisfação dos usuários",
+        "suggested_score": 0.88,
+        "score": 0.89,
+        "method": "fuzzy_high",
+        "count": 13,
+        "siglas": [
+          "INSS"
+        ],
+        "examples": [
+          {
+            "sigla": "INSS",
+            "context": "Alterar Local ou Forma de Pagamento"
+          },
+          {
+            "sigla": "INSS",
+            "context": "Consultar Descontos de Entidades Associativas"
+          },
+          {
+            "sigla": "INSS",
+            "context": "Consultar Termo de Adesão"
+          },
+          {
+            "sigla": "INSS",
+            "context": "Realizar Inscrição no INSS"
+          },
+          {
+            "sigla": "INSS",
+            "context": "Solicitar Aposentadoria da Pessoa com Deficiência por Idade - Acordo Internacional"
+          }
+        ],
+        "alias_snippet": "\"integracao a ferramenta de avaliacao da satisfacao\": \"Integração à ferramenta de avaliação da satisfação dos usuários\",",
+        "impact": 1.49
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "Disponibilização em Acesso D",
+        "normalized": "Disponibilização em Acesso Digital",
+        "suggested": "Disponibilização em Acesso Digital",
+        "suggested_score": 0.9,
+        "score": 0.9,
+        "method": "fuzzy_high",
+        "count": 15,
+        "siglas": [
+          "PGFN"
+        ],
+        "examples": [
+          {
+            "sigla": "PGFN",
+            "context": "CADIN - Evoluções nas transações de Gestão"
+          },
+          {
+            "sigla": "PGFN",
+            "context": "Cadastrar usuários (as) do órgão/entidade/ente para uso do Cadin"
+          },
+          {
+            "sigla": "PGFN",
+            "context": "Emitir relatórios das consultas e transações realizadas no Cadin"
+          },
+          {
+            "sigla": "PGFN",
+            "context": "Emitir relatórios dos apontamentos enviados ao Cadin pelo órgão/entidade/ente cadastrado (total ou por situação)"
+          },
+          {
+            "sigla": "PGFN",
+            "context": "Incluir apontamentos no Cadin"
+          }
+        ],
+        "alias_snippet": "\"disponibilizacao em acesso d\": \"Disponibilização em Acesso Digital\",",
+        "impact": 1.45
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "Integração à base de dados (O",
+        "normalized": "Integração à base de dados",
+        "suggested": "Integração à base de dados",
+        "suggested_score": 0.95,
+        "score": 0.94,
+        "method": "fuzzy_high",
+        "count": 26,
+        "siglas": [
+          "PGFN"
+        ],
+        "examples": [
+          {
+            "sigla": "PGFN",
+            "context": "Averbação de Garantia em Execução Fiscal"
+          },
+          {
+            "sigla": "PGFN",
+            "context": "CNPJ Alfanumérico - ajustes nos Sistemas da PGFN"
+          },
+          {
+            "sigla": "PGFN",
+            "context": "COBRA - SCPC - Migração par novo sistema de Proteção ao Crédito - SCPC para SISPAC"
+          },
+          {
+            "sigla": "PGFN",
+            "context": "Emitir Darf - dívida ativa da União"
+          },
+          {
+            "sigla": "PGFN",
+            "context": "Emitir Darf - dívida ativa da União"
+          }
+        ],
+        "alias_snippet": "\"integracao a base de dados (o\": \"Integração à base de dados\",",
+        "impact": 1.43
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "Auto-avaliação, análise de lacunas e planejamento do",
+        "normalized": "Auto-avaliação, análise de lacunas e planejamento do PPSI",
+        "suggested": "Auto-avaliação, análise de lacunas e planejamento do PPSI",
+        "suggested_score": 0.95,
+        "score": 0.95,
+        "method": "fuzzy_high",
+        "count": 28,
+        "siglas": [
+          "MDHC",
+          "MEMP",
+          "MF",
+          "MRE",
+          "MTUR"
+        ],
+        "examples": [
+          {
+            "sigla": "MDHC",
+            "context": "(PPSI) - Ciclo 1"
+          },
+          {
+            "sigla": "MDHC",
+            "context": "(PPSI) - Ciclo 2"
+          },
+          {
+            "sigla": "MDHC",
+            "context": "(PPSI) - Ciclo 3"
+          },
+          {
+            "sigla": "MDHC",
+            "context": "(PPSI) - Ciclo 4"
+          },
+          {
+            "sigla": "MDHC",
+            "context": "(PPSI) - Ciclo 5"
+          }
+        ],
+        "alias_snippet": "\"auto-avaliacao, analise de lacunas e planejamento do\": \"Auto-avaliação, análise de lacunas e planejamento do PPSI\",",
+        "impact": 1.29
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "Implantação da Área Logada",
+        "normalized": "Implantação da Área Logada Gov.Br",
+        "suggested": "Implantação da Área Logada Gov.Br",
+        "suggested_score": 0.88,
+        "score": 0.88,
+        "method": "fuzzy_high",
+        "count": 10,
+        "siglas": [
+          "IPHAN",
+          "MJSP",
+          "MME",
+          "MMULHERES",
+          "MPI",
+          "PRF"
+        ],
+        "examples": [
+          {
+            "sigla": "IPHAN",
+            "context": ""
+          },
+          {
+            "sigla": "MJSP",
+            "context": ""
+          },
+          {
+            "sigla": "MME",
+            "context": "Criar canal de interação do MME - MEU MME"
+          },
+          {
+            "sigla": "MME",
+            "context": "Disponibilizar Sistema para Arrecadação para Pesquisa e Desenvolvimento - SAPED"
+          },
+          {
+            "sigla": "MME",
+            "context": "Orientar construção de Edificios Sustentáveis, com informação Bioclimáticas - PROJETEEE"
+          }
+        ],
+        "alias_snippet": "\"implantacao da area logada\": \"Implantação da Área Logada Gov.Br\",",
+        "impact": 1.19
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "Integração à ferramenta de avaliação da satisfação dos usuár",
+        "normalized": "Integração à ferramenta de avaliação da satisfação dos usuários",
+        "suggested": "Integração à ferramenta de avaliação da satisfação dos usuários",
+        "suggested_score": 0.98,
+        "score": 0.98,
+        "method": "fuzzy_high",
+        "count": 37,
+        "siglas": [
+          "ANAC",
+          "MCTI"
+        ],
+        "examples": [
+          {
+            "sigla": "ANAC",
+            "context": ""
+          },
+          {
+            "sigla": "ANAC",
+            "context": ""
+          },
+          {
+            "sigla": "ANAC",
+            "context": ""
+          },
+          {
+            "sigla": "ANAC",
+            "context": ""
+          },
+          {
+            "sigla": "ANAC",
+            "context": ""
+          }
+        ],
+        "alias_snippet": "\"integracao a ferramenta de avaliacao da satisfacao dos usuar\": \"Integração à ferramenta de avaliação da satisfação dos usuários\",",
+        "impact": 0.89
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "Auto-avaliação, análise de lacunas e planejamento do PP",
+        "normalized": "Auto-avaliação, análise de lacunas e planejamento do PPSI",
+        "suggested": "Auto-avaliação, análise de lacunas e planejamento do PPSI",
+        "suggested_score": 0.98,
+        "score": 0.98,
+        "method": "fuzzy_high",
+        "count": 28,
+        "siglas": [
+          "IBAMA"
+        ],
+        "examples": [
+          {
+            "sigla": "IBAMA",
+            "context": "Obter reconhecimento de propriedade como Reserva Particular do"
+          },
+          {
+            "sigla": "IBAMA",
+            "context": "PPSI Ciclo 1"
+          },
+          {
+            "sigla": "IBAMA",
+            "context": "PPSI Ciclo 2"
+          },
+          {
+            "sigla": "IBAMA",
+            "context": "PPSI Ciclo 2"
+          },
+          {
+            "sigla": "IBAMA",
+            "context": "PPSI Ciclo 3"
+          }
+        ],
+        "alias_snippet": "\"auto-avaliacao, analise de lacunas e planejamento do pp\": \"Auto-avaliação, análise de lacunas e planejamento do PPSI\",",
+        "impact": 0.5
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "Autoavaliação, análise de lacunas e planejamen",
+        "normalized": "Auto-avaliação, análise de lacunas e planejamento do PPSI",
+        "suggested": "Auto-avaliação, análise de lacunas e planejamento do PPSI",
+        "suggested_score": 0.89,
+        "score": 0.89,
+        "method": "fuzzy_high",
+        "count": 4,
+        "siglas": [
+          "CVM"
+        ],
+        "examples": [
+          {
+            "sigla": "CVM",
+            "context": ""
+          },
+          {
+            "sigla": "CVM",
+            "context": ""
+          },
+          {
+            "sigla": "CVM",
+            "context": ""
+          },
+          {
+            "sigla": "CVM",
+            "context": ""
+          }
+        ],
+        "alias_snippet": "\"autoavaliacao, analise de lacunas e planejamen\": \"Auto-avaliação, análise de lacunas e planejamento do PPSI\",",
+        "impact": 0.43
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "eIntegração à ferramenta de avaliação da satisfação dos u",
+        "normalized": "Integração à ferramenta de avaliação da satisfação dos usuários",
+        "suggested": "Integração à ferramenta de avaliação da satisfação dos usuários",
+        "suggested_score": 0.93,
+        "score": 0.93,
+        "method": "fuzzy_high",
+        "count": 6,
+        "siglas": [
+          "IBAMA"
+        ],
+        "examples": [
+          {
+            "sigla": "IBAMA",
+            "context": "Cadastrar Chamadas Públicas do Fundo Nacional de Desenvolvim"
+          },
+          {
+            "sigla": "IBAMA",
+            "context": "Cadastrar Determinação de Propriedades Mecânicas de Madeiras"
+          },
+          {
+            "sigla": "IBAMA",
+            "context": "Cadastrar Determinação dos Constituintes Químicos de Madeiras"
+          },
+          {
+            "sigla": "IBAMA",
+            "context": "Cadastrar Durabilidade de Madeiras e Performance de Produtos Pr"
+          },
+          {
+            "sigla": "IBAMA",
+            "context": "Obter certificado de serviço voluntário no Jardim Botânico do Rio d"
+          }
+        ],
+        "alias_snippet": "\"eintegracao a ferramenta de avaliacao da satisfacao dos u\": \"Integração à ferramenta de avaliação da satisfação dos usuários\",",
+        "impact": 0.4
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "Auto-avaliação, análise de lacunas e planeja",
+        "normalized": "Auto-avaliação, análise de lacunas e planejamento do PPSI",
+        "suggested": "Auto-avaliação, análise de lacunas e planejamento do PPSI",
+        "suggested_score": 0.87,
+        "score": 0.87,
+        "method": "fuzzy_high",
+        "count": 3,
+        "siglas": [
+          "MPO"
+        ],
+        "examples": [
+          {
+            "sigla": "MPO",
+            "context": ""
+          },
+          {
+            "sigla": "MPO",
+            "context": ""
+          },
+          {
+            "sigla": "MPO",
+            "context": ""
+          }
+        ],
+        "alias_snippet": "\"auto-avaliacao, analise de lacunas e planeja\": \"Auto-avaliação, análise de lacunas e planejamento do PPSI\",",
+        "impact": 0.39
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "Auto-avaliação, análise de lacunas e planejam",
+        "normalized": "Auto-avaliação, análise de lacunas e planejamento do PPSI",
+        "suggested": "Auto-avaliação, análise de lacunas e planejamento do PPSI",
+        "suggested_score": 0.88,
+        "score": 0.88,
+        "method": "fuzzy_high",
+        "count": 3,
+        "siglas": [
+          "ANS"
+        ],
+        "examples": [
+          {
+            "sigla": "ANS",
+            "context": "PPSI Ciclo 5"
+          },
+          {
+            "sigla": "ANS",
+            "context": "PPSI Ciclo 6"
+          },
+          {
+            "sigla": "ANS",
+            "context": "PPSI Ciclo 7"
+          }
+        ],
+        "alias_snippet": "\"auto-avaliacao, analise de lacunas e planejam\": \"Auto-avaliação, análise de lacunas e planejamento do PPSI\",",
+        "impact": 0.35
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "Integração à base de dados do",
+        "normalized": "Integração à base de dados",
+        "suggested": "Integração à base de dados",
+        "suggested_score": 0.95,
+        "score": 0.94,
+        "method": "fuzzy_high",
+        "count": 6,
+        "siglas": [
+          "FUNARTE"
+        ],
+        "examples": [
+          {
+            "sigla": "FUNARTE",
+            "context": "cultural por meio de seleção pública."
+          },
+          {
+            "sigla": "FUNARTE",
+            "context": "cultural por meio de seleção pública."
+          },
+          {
+            "sigla": "FUNARTE",
+            "context": "cultural por meio de seleção pública."
+          },
+          {
+            "sigla": "FUNARTE",
+            "context": "pública."
+          },
+          {
+            "sigla": "FUNARTE",
+            "context": "pública."
+          }
+        ],
+        "alias_snippet": "\"integracao a base de dados do\": \"Integração à base de dados\",",
+        "impact": 0.33
+      },
+      {
+        "field": "tratamento",
+        "scale_label": "tratamento",
+        "original": "Mitigar/Tra nsferir",
+        "normalized": "mitigar; transferir",
+        "suggested": "transferir",
+        "suggested_score": 0.69,
+        "score": 0.95,
+        "method": "fuzzy_high",
+        "count": 4,
+        "siglas": [
+          "AEB"
+        ],
+        "examples": [
+          {
+            "sigla": "AEB",
+            "context": "Ataques cibernéticos"
+          },
+          {
+            "sigla": "AEB",
+            "context": "Disponibilidade dos sistemas de acesso para o cidadão"
+          },
+          {
+            "sigla": "AEB",
+            "context": "Ocorrência de problemas de funcionamento do serviço público transformado digitalmente"
+          },
+          {
+            "sigla": "AEB",
+            "context": "Perda de integridade de dados"
+          }
+        ],
+        "alias_snippet": "\"mitigar/tra nsferir\": \"transferir\",",
+        "impact": 0.19
+      },
+      {
+        "field": "eixo",
+        "scale_label": "eixo",
+        "original": "PSegurança e Privacidade",
+        "normalized": "Segurança e Privacidade",
+        "suggested": "Segurança e Privacidade",
+        "suggested_score": 0.98,
+        "score": 0.98,
+        "method": "fuzzy_high",
+        "count": 7,
+        "siglas": [
+          "MTUR"
+        ],
+        "examples": [
+          {
+            "sigla": "MTUR",
+            "context": ""
+          },
+          {
+            "sigla": "MTUR",
+            "context": ""
+          },
+          {
+            "sigla": "MTUR",
+            "context": ""
+          },
+          {
+            "sigla": "MTUR",
+            "context": "PPSI Ciclo 4"
+          },
+          {
+            "sigla": "MTUR",
+            "context": "PPSI Ciclo 5"
+          }
+        ],
+        "alias_snippet": "\"pseguranca e privacidade\": \"Segurança e Privacidade\",",
+        "impact": 0.15
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "Evolução de Serviços",
+        "normalized": "Evolução do Serviço",
+        "suggested": "Evolução do Serviço",
+        "suggested_score": 0.92,
+        "score": 0.92,
+        "method": "fuzzy_high",
+        "count": 2,
+        "siglas": [
+          "FCP"
+        ],
+        "examples": [
+          {
+            "sigla": "FCP",
+            "context": "Obter certidão de autodefinição de comunidade remanescente de quilombo"
+          },
+          {
+            "sigla": "FCP",
+            "context": "Obter certidão de pertencimento a comunidade remanescente de quilombo"
+          }
+        ],
+        "alias_snippet": "\"evolucao de servicos\": \"Evolução do Serviço\",",
+        "impact": 0.15
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "sOutros",
+        "normalized": "Outros",
+        "suggested": "Outros",
+        "suggested_score": 0.92,
+        "score": 0.92,
+        "method": "fuzzy_high",
+        "count": 2,
+        "siglas": [
+          "ANAC"
+        ],
+        "examples": [
+          {
+            "sigla": "ANAC",
+            "context": "Assistência de IA para classificação de reportes de safety - Assistente para facilitar a clas"
+          },
+          {
+            "sigla": "ANAC",
+            "context": "Corsia - Criação de aplicação para monitorar e reportar, em base anual, os dados de emi"
+          }
+        ],
+        "alias_snippet": "\"soutros\": \"Outros\",",
+        "impact": 0.15
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "Integração à base de dados (OUTROS)",
+        "normalized": "Integração à base de dados",
+        "suggested": "Integração à base de dados",
+        "suggested_score": 0.85,
+        "score": 0.85,
+        "method": "fuzzy_high",
+        "count": 1,
+        "siglas": [
+          "FUNARTE"
+        ],
+        "examples": [
+          {
+            "sigla": "FUNARTE",
+            "context": ""
+          }
+        ],
+        "alias_snippet": "\"integracao a base de dados (outros)\": \"Integração à base de dados\",",
+        "impact": 0.15
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "Migração de APPs móveis para a loja do Go",
+        "normalized": "Migração de APPs móveis para a loja do Gov.br",
+        "suggested": "Migração de APPs móveis para a loja do Gov.br",
+        "suggested_score": 0.95,
+        "score": 0.95,
+        "method": "fuzzy_high",
+        "count": 3,
+        "siglas": [
+          "MAPA"
+        ],
+        "examples": [
+          {
+            "sigla": "MAPA",
+            "context": ""
+          },
+          {
+            "sigla": "MAPA",
+            "context": "Migrar APP OCDE na loja de aplicativos do gov.br"
+          },
+          {
+            "sigla": "MAPA",
+            "context": "Migrar APP PBC na loja de aplicativos do gov.br"
+          }
+        ],
+        "alias_snippet": "\"migracao de apps moveis para a loja do go\": \"Migração de APPs móveis para a loja do Gov.br\",",
+        "impact": 0.14
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "Realização de Autodiagnóstico de",
+        "normalized": "Realização de Autodiagnóstico de Qualidade",
+        "suggested": "Realização de Autodiagnóstico de Qualidade",
+        "suggested_score": 0.86,
+        "score": 0.86,
+        "method": "fuzzy_high",
+        "count": 1,
+        "siglas": [
+          "IPHAN"
+        ],
+        "examples": [
+          {
+            "sigla": "IPHAN",
+            "context": "Declaração de Saída de Bens Culturais) -IPHAN"
+          }
+        ],
+        "alias_snippet": "\"realizacao de autodiagnostico de\": \"Realização de Autodiagnóstico de Qualidade\",",
+        "impact": 0.14
+      },
+      {
+        "field": "eixo",
+        "scale_label": "eixo",
+        "original": "iServiços Digitais e Melhoria da Qualidade",
+        "normalized": "Serviços Digitais e Melhoria da Qualidade",
+        "suggested": "Serviços Digitais e Melhoria da Qualidade",
+        "suggested_score": 0.99,
+        "score": 0.99,
+        "method": "fuzzy_high",
+        "count": 11,
+        "siglas": [
+          "ANAC"
+        ],
+        "examples": [
+          {
+            "sigla": "ANAC",
+            "context": ""
+          },
+          {
+            "sigla": "ANAC",
+            "context": ""
+          },
+          {
+            "sigla": "ANAC",
+            "context": ""
+          },
+          {
+            "sigla": "ANAC",
+            "context": ""
+          },
+          {
+            "sigla": "ANAC",
+            "context": ""
+          }
+        ],
+        "alias_snippet": "\"iservicos digitais e melhoria da qualidade\": \"Serviços Digitais e Melhoria da Qualidade\",",
+        "impact": 0.13
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "dIntegração à ferramenta de avaliação da satisfação dos u",
+        "normalized": "Integração à ferramenta de avaliação da satisfação dos usuários",
+        "suggested": "Integração à ferramenta de avaliação da satisfação dos usuários",
+        "suggested_score": 0.93,
+        "score": 0.93,
+        "method": "fuzzy_high",
+        "count": 2,
+        "siglas": [
+          "IBAMA"
+        ],
+        "examples": [
+          {
+            "sigla": "IBAMA",
+            "context": "Capacitar-se para guiar seus alunos em visitas ao Jardim Botânico"
+          },
+          {
+            "sigla": "IBAMA",
+            "context": "Obter autorização para fazer fotos e gravações jornalísticas ou aca"
+          }
+        ],
+        "alias_snippet": "\"dintegracao a ferramenta de avaliacao da satisfacao dos u\": \"Integração à ferramenta de avaliação da satisfação dos usuários\",",
+        "impact": 0.13
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "oIntegração à ferramenta de avaliação da satisfação dos u",
+        "normalized": "Integração à ferramenta de avaliação da satisfação dos usuários",
+        "suggested": "Integração à ferramenta de avaliação da satisfação dos usuários",
+        "suggested_score": 0.93,
+        "score": 0.93,
+        "method": "fuzzy_high",
+        "count": 2,
+        "siglas": [
+          "IBAMA"
+        ],
+        "examples": [
+          {
+            "sigla": "IBAMA",
+            "context": "Integrar Áreas Sob Concessão de Volume Exploradas com Dados d"
+          },
+          {
+            "sigla": "IBAMA",
+            "context": "Solicitar determinação de propriedades mecânicas de madeiras e"
+          }
+        ],
+        "alias_snippet": "\"ointegracao a ferramenta de avaliacao da satisfacao dos u\": \"Integração à ferramenta de avaliação da satisfação dos usuários\",",
+        "impact": 0.13
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "tIntegração à ferramenta de avaliação da satisfação dos u",
+        "normalized": "Integração à ferramenta de avaliação da satisfação dos usuários",
+        "suggested": "Integração à ferramenta de avaliação da satisfação dos usuários",
+        "suggested_score": 0.93,
+        "score": 0.93,
+        "method": "fuzzy_high",
+        "count": 2,
+        "siglas": [
+          "IBAMA"
+        ],
+        "examples": [
+          {
+            "sigla": "IBAMA",
+            "context": "Cadastrar Determinação de Propriedades Físicas de Madeiras e ou"
+          },
+          {
+            "sigla": "IBAMA",
+            "context": "Coletar as avaliações de satisfação realizadas pelos usuários para"
+          }
+        ],
+        "alias_snippet": "\"tintegracao a ferramenta de avaliacao da satisfacao dos u\": \"Integração à ferramenta de avaliação da satisfação dos usuários\",",
+        "impact": 0.13
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "Integração à base de dados(OUTROS)",
+        "normalized": "Integração à base de dados",
+        "suggested": "Integração à base de dados",
+        "suggested_score": 0.87,
+        "score": 0.87,
+        "method": "fuzzy_high",
+        "count": 1,
+        "siglas": [
+          "ANTT"
+        ],
+        "examples": [
+          {
+            "sigla": "ANTT",
+            "context": "Fiscalização - Fiscalização Senatran - Boletim de Ocorrência de Roubo/Furto"
+          }
+        ],
+        "alias_snippet": "\"integracao a base de dados(outros)\": \"Integração à base de dados\",",
+        "impact": 0.13
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "Implantação da Área Logada",
+        "normalized": "Implantação da Área Logada Gov.Br",
+        "suggested": "Implantação da Área Logada Gov.Br",
+        "suggested_score": 0.88,
+        "score": 0.88,
+        "method": "fuzzy_high",
+        "count": 1,
+        "siglas": [
+          "FUNARTE"
+        ],
+        "examples": [
+          {
+            "sigla": "FUNARTE",
+            "context": ""
+          }
+        ],
+        "alias_snippet": "\"implantacao da area logada\": \"Implantação da Área Logada Gov.Br\",",
+        "impact": 0.12
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "do framework de Privacidade e Segurança da Informação.",
+        "normalized": "Adequação ao Framework de Privacidade e Segurança da Informação",
+        "suggested": "Adequação ao Framework de Privacidade e Segurança da Informação",
+        "suggested_score": 0.91,
+        "score": 0.91,
+        "method": "fuzzy_high",
+        "count": 1,
+        "siglas": [
+          "ANTT"
+        ],
+        "examples": [
+          {
+            "sigla": "ANTT",
+            "context": "de avaliação de maturidade e capacidade disponibilizado por meio da ferramenta"
+          }
+        ],
+        "alias_snippet": "\"do framework de privacidade e seguranca da informacao.\": \"Adequação ao Framework de Privacidade e Segurança da Informação\",",
+        "impact": 0.09
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "eIntegração ao Login Único",
+        "normalized": "Integração ao Login Único",
+        "suggested": "Integração ao Login Único",
+        "suggested_score": 0.98,
+        "score": 0.98,
+        "method": "fuzzy_high",
+        "count": 4,
+        "siglas": [
+          "IBAMA"
+        ],
+        "examples": [
+          {
+            "sigla": "IBAMA",
+            "context": "Cadastrar Chamadas Públicas do Fundo Nacional de Desenvolvim"
+          },
+          {
+            "sigla": "IBAMA",
+            "context": "Cadastrar Determinação de Propriedades Mecânicas de Madeiras"
+          },
+          {
+            "sigla": "IBAMA",
+            "context": "Cadastrar Determinação dos Constituintes Químicos de Madeiras"
+          },
+          {
+            "sigla": "IBAMA",
+            "context": "Cadastrar Durabilidade de Madeiras e Performance de Produtos Pr"
+          }
+        ],
+        "alias_snippet": "\"eintegracao ao login unico\": \"Integração ao Login Único\",",
+        "impact": 0.08
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "oEvolução do Serviço",
+        "normalized": "Evolução do Serviço",
+        "suggested": "Evolução do Serviço",
+        "suggested_score": 0.97,
+        "score": 0.97,
+        "method": "fuzzy_high",
+        "count": 3,
+        "siglas": [
+          "ANAC",
+          "INPI"
+        ],
+        "examples": [
+          {
+            "sigla": "ANAC",
+            "context": ""
+          },
+          {
+            "sigla": "INPI",
+            "context": "Apresentar recurso administrativo contra decisão de indeferimento de pedido de averbação ou de registr"
+          },
+          {
+            "sigla": "INPI",
+            "context": "Apresentar recurso administrativo contra decisão de indeferimento de pedido de averbação ou de registr"
+          }
+        ],
+        "alias_snippet": "\"oevolucao do servico\": \"Evolução do Serviço\",",
+        "impact": 0.08
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "eOutros",
+        "normalized": "Outros",
+        "suggested": "Outros",
+        "suggested_score": 0.92,
+        "score": 0.92,
+        "method": "fuzzy_high",
+        "count": 1,
+        "siglas": [
+          "ANAC"
+        ],
+        "examples": [
+          {
+            "sigla": "ANAC",
+            "context": "Safety Intelligence - Envio em lote de reportes de safety (facilitar o envio de reportes de s"
+          }
+        ],
+        "alias_snippet": "\"eoutros\": \"Outros\",",
+        "impact": 0.08
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "OIntegração à ferramenta de avaliação da satisfação dos u",
+        "normalized": "Integração à ferramenta de avaliação da satisfação dos usuários",
+        "suggested": "Integração à ferramenta de avaliação da satisfação dos usuários",
+        "suggested_score": 0.93,
+        "score": 0.93,
+        "method": "fuzzy_high",
+        "count": 1,
+        "siglas": [
+          "IBAMA"
+        ],
+        "examples": [
+          {
+            "sigla": "IBAMA",
+            "context": "Cadastrar Propriedades Energéticas de Madeira, Carvão Vegetal e"
+          }
+        ],
+        "alias_snippet": "\"ointegracao a ferramenta de avaliacao da satisfacao dos u\": \"Integração à ferramenta de avaliação da satisfação dos usuários\",",
+        "impact": 0.07
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "aIntegração à ferramenta de avaliação da satisfação dos u",
+        "normalized": "Integração à ferramenta de avaliação da satisfação dos usuários",
+        "suggested": "Integração à ferramenta de avaliação da satisfação dos usuários",
+        "suggested_score": 0.93,
+        "score": 0.93,
+        "method": "fuzzy_high",
+        "count": 1,
+        "siglas": [
+          "IBAMA"
+        ],
+        "examples": [
+          {
+            "sigla": "IBAMA",
+            "context": "Obter informações sobre as plantas do Jardim Botânico do Rio de J"
+          }
+        ],
+        "alias_snippet": "\"aintegracao a ferramenta de avaliacao da satisfacao dos u\": \"Integração à ferramenta de avaliação da satisfação dos usuários\",",
+        "impact": 0.07
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "pIntegração à ferramenta de avaliação da satisfação dos u",
+        "normalized": "Integração à ferramenta de avaliação da satisfação dos usuários",
+        "suggested": "Integração à ferramenta de avaliação da satisfação dos usuários",
+        "suggested_score": 0.93,
+        "score": 0.93,
+        "method": "fuzzy_high",
+        "count": 1,
+        "siglas": [
+          "IBAMA"
+        ],
+        "examples": [
+          {
+            "sigla": "IBAMA",
+            "context": "Informar Fichas Tecnológicas das Espécies de Madeiras Estudadas"
+          }
+        ],
+        "alias_snippet": "\"pintegracao a ferramenta de avaliacao da satisfacao dos u\": \"Integração à ferramenta de avaliação da satisfação dos usuários\",",
+        "impact": 0.07
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "eDisponibilização em Acesso Digital",
+        "normalized": "Disponibilização em Acesso Digital",
+        "suggested": "Disponibilização em Acesso Digital",
+        "suggested_score": 0.99,
+        "score": 0.99,
+        "method": "fuzzy_high",
+        "count": 4,
+        "siglas": [
+          "IBAMA"
+        ],
+        "examples": [
+          {
+            "sigla": "IBAMA",
+            "context": "Cadastrar Chamadas Públicas do Fundo Nacional de Desenvolvim"
+          },
+          {
+            "sigla": "IBAMA",
+            "context": "Cadastrar Determinação de Propriedades Mecânicas de Madeiras"
+          },
+          {
+            "sigla": "IBAMA",
+            "context": "Cadastrar Determinação dos Constituintes Químicos de Madeiras"
+          },
+          {
+            "sigla": "IBAMA",
+            "context": "Cadastrar Durabilidade de Madeiras e Performance de Produtos Pr"
+          }
+        ],
+        "alias_snippet": "\"edisponibilizacao em acesso digital\": \"Disponibilização em Acesso Digital\",",
+        "impact": 0.06
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "Revisão da descrição dos serv",
+        "normalized": "Revisão da descrição dos serviços",
+        "suggested": "Revisão da descrição dos serviços",
+        "suggested_score": 0.94,
+        "score": 0.94,
+        "method": "fuzzy_high",
+        "count": 1,
+        "siglas": [
+          "PGFN"
+        ],
+        "examples": [
+          {
+            "sigla": "PGFN",
+            "context": "Desativação sistema antigo de PROTESTO com 100% de migração para o sistema PUMA - Economia em sustentação e melhoria na qualidade do produto"
+          }
+        ],
+        "alias_snippet": "\"revisao da descricao dos serv\": \"Revisão da descrição dos serviços\",",
+        "impact": 0.06
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "Auto-avaliação, análise de lacunas e planejamento do P",
+        "normalized": "Auto-avaliação, análise de lacunas e planejamento do PPSI",
+        "suggested": "Auto-avaliação, análise de lacunas e planejamento do PPSI",
+        "suggested_score": 0.97,
+        "score": 0.97,
+        "method": "fuzzy_high",
+        "count": 2,
+        "siglas": [
+          "ANCINE"
+        ],
+        "examples": [
+          {
+            "sigla": "ANCINE",
+            "context": "PPSI CICLO2"
+          },
+          {
+            "sigla": "ANCINE",
+            "context": "PPSI CICLO3"
+          }
+        ],
+        "alias_snippet": "\"auto-avaliacao, analise de lacunas e planejamento do p\": \"Auto-avaliação, análise de lacunas e planejamento do PPSI\",",
+        "impact": 0.05
+      },
+      {
+        "field": "tratamento",
+        "scale_label": "tratamento",
+        "original": "Transferir/ Compartilhar",
+        "normalized": "transferir; transferir",
+        "suggested": "transferir",
+        "suggested_score": 0.59,
+        "score": 0.95,
+        "method": "fuzzy_high",
+        "count": 1,
+        "siglas": [
+          "ANA"
+        ],
+        "examples": [
+          {
+            "sigla": "ANA",
+            "context": "5.2 Indisponibilidade dos sistemas e soluções providos pela SGD"
+          }
+        ],
+        "alias_snippet": "\"transferir/ compartilhar\": \"transferir\",",
+        "impact": 0.05
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "oDisponibilização em Acesso Digital",
+        "normalized": "Disponibilização em Acesso Digital",
+        "suggested": "Disponibilização em Acesso Digital",
+        "suggested_score": 0.99,
+        "score": 0.99,
+        "method": "fuzzy_high",
+        "count": 3,
+        "siglas": [
+          "IBAMA"
+        ],
+        "examples": [
+          {
+            "sigla": "IBAMA",
+            "context": "Integrar Áreas Sob Concessão de Volume Exploradas com Dados d"
+          },
+          {
+            "sigla": "IBAMA",
+            "context": "Novo aplicativo para a Inscrição de candidatos ao processo seletiv"
+          },
+          {
+            "sigla": "IBAMA",
+            "context": "Solicitar determinação de propriedades mecânicas de madeiras e"
+          }
+        ],
+        "alias_snippet": "\"odisponibilizacao em acesso digital\": \"Disponibilização em Acesso Digital\",",
+        "impact": 0.04
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "oIntegração ao Login Único",
+        "normalized": "Integração ao Login Único",
+        "suggested": "Integração ao Login Único",
+        "suggested_score": 0.98,
+        "score": 0.98,
+        "method": "fuzzy_high",
+        "count": 2,
+        "siglas": [
+          "IBAMA"
+        ],
+        "examples": [
+          {
+            "sigla": "IBAMA",
+            "context": "Integrar Áreas Sob Concessão de Volume Exploradas com Dados d"
+          },
+          {
+            "sigla": "IBAMA",
+            "context": "Solicitar determinação de propriedades mecânicas de madeiras e"
+          }
+        ],
+        "alias_snippet": "\"ointegracao ao login unico\": \"Integração ao Login Único\",",
+        "impact": 0.04
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "eEvolução do Serviço",
+        "normalized": "Evolução do Serviço",
+        "suggested": "Evolução do Serviço",
+        "suggested_score": 0.97,
+        "score": 0.97,
+        "method": "fuzzy_high",
+        "count": 1,
+        "siglas": [
+          "ANAC"
+        ],
+        "examples": [
+          {
+            "sigla": "ANAC",
+            "context": ""
+          }
+        ],
+        "alias_snippet": "\"eevolucao do servico\": \"Evolução do Serviço\",",
+        "impact": 0.03
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "oI mplantação do Design System",
+        "normalized": "Implantação do Design System",
+        "suggested": "Implantação do Design System",
+        "suggested_score": 0.97,
+        "score": 0.97,
+        "method": "fuzzy_high",
+        "count": 1,
+        "siglas": [
+          "INPI"
+        ],
+        "examples": [
+          {
+            "sigla": "INPI",
+            "context": "Apresentar recurso administrativo contra decisão de indeferimento de pedido de patente ou de certificad de adição de invenção"
+          }
+        ],
+        "alias_snippet": "\"oi mplantacao do design system\": \"Implantação do Design System\",",
+        "impact": 0.03
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "vEvolução do Serviço",
+        "normalized": "Evolução do Serviço",
+        "suggested": "Evolução do Serviço",
+        "suggested_score": 0.97,
+        "score": 0.97,
+        "method": "fuzzy_high",
+        "count": 1,
+        "siglas": [
+          "IBAMA"
+        ],
+        "examples": [
+          {
+            "sigla": "IBAMA",
+            "context": "3. Atualizar a lista de usuários internos que podem atender aos ser"
+          }
+        ],
+        "alias_snippet": "\"vevolucao do servico\": \"Evolução do Serviço\",",
+        "impact": 0.03
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "OIntegração ao Login Único",
+        "normalized": "Integração ao Login Único",
+        "suggested": "Integração ao Login Único",
+        "suggested_score": 0.98,
+        "score": 0.98,
+        "method": "fuzzy_high",
+        "count": 1,
+        "siglas": [
+          "IBAMA"
+        ],
+        "examples": [
+          {
+            "sigla": "IBAMA",
+            "context": "Cadastrar Propriedades Energéticas de Madeira, Carvão Vegetal e"
+          }
+        ],
+        "alias_snippet": "\"ointegracao ao login unico\": \"Integração ao Login Único\",",
+        "impact": 0.02
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "pIntegração ao Login Único",
+        "normalized": "Integração ao Login Único",
+        "suggested": "Integração ao Login Único",
+        "suggested_score": 0.98,
+        "score": 0.98,
+        "method": "fuzzy_high",
+        "count": 1,
+        "siglas": [
+          "IBAMA"
+        ],
+        "examples": [
+          {
+            "sigla": "IBAMA",
+            "context": "Informar Fichas Tecnológicas das Espécies de Madeiras Estudadas"
+          }
+        ],
+        "alias_snippet": "\"pintegracao ao login unico\": \"Integração ao Login Único\",",
+        "impact": 0.02
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "tIntegração ao Login Único",
+        "normalized": "Integração ao Login Único",
+        "suggested": "Integração ao Login Único",
+        "suggested_score": 0.98,
+        "score": 0.98,
+        "method": "fuzzy_high",
+        "count": 1,
+        "siglas": [
+          "IBAMA"
+        ],
+        "examples": [
+          {
+            "sigla": "IBAMA",
+            "context": "Cadastrar Determinação de Propriedades Físicas de Madeiras e ou"
+          }
+        ],
+        "alias_snippet": "\"tintegracao ao login unico\": \"Integração ao Login Único\",",
+        "impact": 0.02
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "ODisponibilização em Acesso Digital",
+        "normalized": "Disponibilização em Acesso Digital",
+        "suggested": "Disponibilização em Acesso Digital",
+        "suggested_score": 0.99,
+        "score": 0.99,
+        "method": "fuzzy_high",
+        "count": 1,
+        "siglas": [
+          "IBAMA"
+        ],
+        "examples": [
+          {
+            "sigla": "IBAMA",
+            "context": "Cadastrar Propriedades Energéticas de Madeira, Carvão Vegetal e"
+          }
+        ],
+        "alias_snippet": "\"odisponibilizacao em acesso digital\": \"Disponibilização em Acesso Digital\",",
+        "impact": 0.01
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "oIntegração à ferramenta de avaliação da satisfação dos usuários",
+        "normalized": "Integração à ferramenta de avaliação da satisfação dos usuários",
+        "suggested": "Integração à ferramenta de avaliação da satisfação dos usuários",
+        "suggested_score": 0.99,
+        "score": 0.99,
+        "method": "fuzzy_high",
+        "count": 1,
+        "siglas": [
+          "INPI"
+        ],
+        "examples": [
+          {
+            "sigla": "INPI",
+            "context": "Apresentar recurso administrativo contra decisão de indeferimento de pedido de averbação ou de registr"
+          }
+        ],
+        "alias_snippet": "\"ointegracao a ferramenta de avaliacao da satisfacao dos usuarios\": \"Integração à ferramenta de avaliação da satisfação dos usuários\",",
+        "impact": 0.01
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "oMigração de Serviço para Plataforma Unificada",
+        "normalized": "Migração de Serviço para Plataforma Unificada",
+        "suggested": "Migração de Serviço para Plataforma Unificada",
+        "suggested_score": 0.99,
+        "score": 0.99,
+        "method": "fuzzy_high",
+        "count": 1,
+        "siglas": [
+          "ANAC"
+        ],
+        "examples": [
+          {
+            "sigla": "ANAC",
+            "context": ""
+          }
+        ],
+        "alias_snippet": "\"omigracao de servico para plataforma unificada\": \"Migração de Serviço para Plataforma Unificada\",",
+        "impact": 0.01
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "pDisponibilização em Acesso Digital",
+        "normalized": "Disponibilização em Acesso Digital",
+        "suggested": "Disponibilização em Acesso Digital",
+        "suggested_score": 0.99,
+        "score": 0.99,
+        "method": "fuzzy_high",
+        "count": 1,
+        "siglas": [
+          "IBAMA"
+        ],
+        "examples": [
+          {
+            "sigla": "IBAMA",
+            "context": "Informar Fichas Tecnológicas das Espécies de Madeiras Estudadas"
+          }
+        ],
+        "alias_snippet": "\"pdisponibilizacao em acesso digital\": \"Disponibilização em Acesso Digital\",",
+        "impact": 0.01
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "pMigração de Serviço para Plataforma Unificada",
+        "normalized": "Migração de Serviço para Plataforma Unificada",
+        "suggested": "Migração de Serviço para Plataforma Unificada",
+        "suggested_score": 0.99,
+        "score": 0.99,
+        "method": "fuzzy_high",
+        "count": 1,
+        "siglas": [
+          "ANAC"
+        ],
+        "examples": [
+          {
+            "sigla": "ANAC",
+            "context": "Obter licença para exercer a atividade de comissário de voo - disponibilização no Supera"
+          }
+        ],
+        "alias_snippet": "\"pmigracao de servico para plataforma unificada\": \"Migração de Serviço para Plataforma Unificada\",",
+        "impact": 0.01
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "tDisponibilização em Acesso Digital",
+        "normalized": "Disponibilização em Acesso Digital",
+        "suggested": "Disponibilização em Acesso Digital",
+        "suggested_score": 0.99,
+        "score": 0.99,
+        "method": "fuzzy_high",
+        "count": 1,
+        "siglas": [
+          "IBAMA"
+        ],
+        "examples": [
+          {
+            "sigla": "IBAMA",
+            "context": "Cadastrar Determinação de Propriedades Físicas de Madeiras e ou"
+          }
+        ],
+        "alias_snippet": "\"tdisponibilizacao em acesso digital\": \"Disponibilização em Acesso Digital\",",
+        "impact": 0.01
+      }
+    ],
+    "summary_by_field": {
+      "produto": {
+        "cases": 531,
+        "uniques": 52,
+        "impact_total": 40.74
+      },
+      "eixo": {
+        "cases": 36,
+        "uniques": 3,
+        "impact_total": 1.92
+      },
+      "tratamento": {
+        "cases": 5,
+        "uniques": 2,
+        "impact_total": 0.24
+      }
+    },
+    "summary_by_method": {
+      "fuzzy_high": 572
+    },
+    "total_cases": 572,
+    "total_uniques": 57
+  }
+}

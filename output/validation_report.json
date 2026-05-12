@@ -1,29 +1,29 @@
 {
   "schema_version": 1,
-  "timestamp_utc": "2026-05-09T14:20:03+00:00",
+  "timestamp_utc": "2026-05-12T04:54:01+00:00",
   "counts": {
     "orgaos": 91,
     "entregas": 4574,
     "riscos": 619,
-    "errors": 0,
+    "errors": 10,
     "needs_review_entregas": 2679,
     "needs_review_riscos": 86
   },
   "canonization": {
     "probabilidade": {
-      "ok": 599,
+      "ok": 604,
       "total": 619,
-      "rate": 0.9677
+      "rate": 0.9758
     },
     "impacto": {
-      "ok": 597,
+      "ok": 601,
       "total": 619,
-      "rate": 0.9645
+      "rate": 0.9709
     },
     "tratamento": {
-      "ok": 577,
+      "ok": 584,
       "total": 619,
-      "rate": 0.9321
+      "rate": 0.9435
     }
   },
   "non_canonical_top20": {
@@ -33,19 +33,7 @@
         "count": 3
       },
       {
-        "value": "Pouca",
-        "count": 3
-      },
-      {
-        "value": "Baixo",
-        "count": 1
-      },
-      {
         "value": "1-Alto",
-        "count": 1
-      },
-      {
-        "value": "de de Ocor-",
         "count": 1
       },
       {
@@ -53,7 +41,7 @@
         "count": 1
       },
       {
-        "value": "Certo",
+        "value": "de de Ocor-",
         "count": 1
       }
     ],
@@ -63,23 +51,7 @@
         "count": 3
       },
       {
-        "value": "Alto Muito",
-        "count": 2
-      },
-      {
-        "value": "Crítico",
-        "count": 1
-      },
-      {
-        "value": "estabelecer canais de comunicação direta para garantir o alinhamento de expectativas e a troca de informações",
-        "count": 1
-      },
-      {
-        "value": "Implantar controles de acesso rigorosos, limitando o acesso a dados apenas a usuários autorizados",
-        "count": 1
-      },
-      {
-        "value": "Documentar e comunicar claramente o impacto de qualquer mudança estratégica no PTD, buscando soluções colaborativas para minimizar os efeitos adversos",
+        "value": "Investir em programas de capacitação e treinamento para as equipes de TI existentes, aprimorando suas habilidades e conheciment os em tecnologias emergentes.",
         "count": 1
       },
       {
@@ -87,15 +59,19 @@
         "count": 1
       },
       {
-        "value": "Investir em programas de capacitação e treinamento para as equipes de TI existentes, aprimorando suas habilidades e conheciment os em tecnologias emergentes.",
+        "value": "estabelecer canais de comunicação direta para garantir o alinhamento de expectativas e a troca de informações",
+        "count": 1
+      },
+      {
+        "value": "Documentar e comunicar claramente o impacto de qualquer mudança estratégica no PTD, buscando soluções colaborativas para minimizar os efeitos adversos",
+        "count": 1
+      },
+      {
+        "value": "Implantar controles de acesso rigorosos, limitando o acesso a dados apenas a usuários autorizados",
         "count": 1
       },
       {
         "value": "Implementar um sistema de gestão do conheciment o para documentar e compartilhar as melhores práticas, os",
-        "count": 1
-      },
-      {
-        "value": "alto Muito",
         "count": 1
       },
       {
@@ -107,11 +83,7 @@
         "count": 1
       },
       {
-        "value": "Sensibiliza ção das áreas de negócio para a importância do plano digital; Prospecçã o de formas alternativas para viabilizar a composiçã",
-        "count": 1
-      },
-      {
-        "value": "Negociar para minimizar os impactos; Identificaçã o de dependênci as com fornecedor es para o planejamen to preventivo para a contratação ou migração de soluções visando a",
+        "value": "Identificaçã o de dependênci as com fornecedor es para o planejamen to preventivo para a contratação ou migração de soluções visando a continuidad e do negócio;",
         "count": 1
       },
       {
@@ -119,25 +91,17 @@
         "count": 1
       },
       {
-        "value": "Identificaçã o de dependênci as com fornecedor es para o planejamen to preventivo para a contratação ou migração de soluções visando a continuidad e do negócio;",
+        "value": "Negociar para minimizar os impactos; Identificaçã o de dependênci as com fornecedor es para o planejamen to preventivo para a contratação ou migração de soluções visando a",
+        "count": 1
+      },
+      {
+        "value": "Sensibiliza ção das áreas de negócio para a importância do plano digital; Prospecçã o de formas alternativas para viabilizar a composiçã",
         "count": 1
       }
     ],
     "tratamento": [
       {
-        "value": "B) Reduzir ou mitigar",
-        "count": 4
-      },
-      {
-        "value": "Aceitar ou tolerar o risco",
-        "count": 2
-      },
-      {
         "value": "Avaliar o impacto de cada cenário no Plano de",
-        "count": 1
-      },
-      {
-        "value": "Compartilh ar",
         "count": 1
       },
       {
@@ -145,7 +109,11 @@
         "count": 1
       },
       {
-        "value": "ativa em discussões estratégicas; - Reporte à alta administração. - Desenvolvimento de iniciativas de capacitação digital; - Criação de canais híbridos de atendimento para garantir",
+        "value": "orçamento digital. - Adoção de princípios de acessibilidade digital;",
+        "count": 1
+      },
+      {
+        "value": "- Parcerias estratégicas para expansão da infraestrutura digital. - Criação de estratégias de acesso inclusivo;",
         "count": 1
       },
       {
@@ -153,11 +121,7 @@
         "count": 1
       },
       {
-        "value": "- Estratégias de governança de dados eficazes; - Adoção de protocolos de segurança cibernética. - Capacitação contínua dos servidores;",
-        "count": 1
-      },
-      {
-        "value": "- Parcerias com instituições para oferta de treinamentos; - Planejamento de contratações estratégicas. - Diversificação de fornecedores;",
+        "value": "- Implementação de protocolos avançados de proteção; - Monitoramento contínuo de ameaças. - Sensibilização da alta administração para priorização de",
         "count": 1
       },
       {
@@ -165,7 +129,11 @@
         "count": 1
       },
       {
-        "value": "- Relatórios periódicos demonstrando impacto e ganhos das iniciativas. - Adoção de padrões abertos de integração;",
+        "value": "- Desenvolvimento de plataformas adaptáveis a diferentes contextos socioculturais. - Sensibilização e capacitação das equipes;",
+        "count": 1
+      },
+      {
+        "value": "- Estratégias de governança de dados eficazes; - Adoção de protocolos de segurança cibernética. - Capacitação contínua dos servidores;",
         "count": 1
       },
       {
@@ -177,11 +145,15 @@
         "count": 1
       },
       {
-        "value": "- Parcerias estratégicas para expansão da infraestrutura digital. - Criação de estratégias de acesso inclusivo;",
+        "value": "ativa em discussões estratégicas; - Reporte à alta administração. - Desenvolvimento de iniciativas de capacitação digital; - Criação de canais híbridos de atendimento para garantir",
         "count": 1
       },
       {
-        "value": "- Desenvolvimento de plataformas adaptáveis a diferentes contextos socioculturais. - Sensibilização e capacitação das equipes;",
+        "value": "- Parcerias com instituições para oferta de treinamentos; - Planejamento de contratações estratégicas. - Diversificação de fornecedores;",
+        "count": 1
+      },
+      {
+        "value": "- Design inclusivo; - Testes com usuárias reais.",
         "count": 1
       },
       {
@@ -189,15 +161,7 @@
         "count": 1
       },
       {
-        "value": "- Implementação de protocolos avançados de proteção; - Monitoramento contínuo de ameaças. - Sensibilização da alta administração para priorização de",
-        "count": 1
-      },
-      {
-        "value": "orçamento digital. - Adoção de princípios de acessibilidade digital;",
-        "count": 1
-      },
-      {
-        "value": "- Design inclusivo; - Testes com usuárias reais.",
+        "value": "- Relatórios periódicos demonstrando impacto e ganhos das iniciativas. - Adoção de padrões abertos de integração;",
         "count": 1
       },
       {
@@ -208,70 +172,61 @@
   },
   "distributions_normalized": {
     "probabilidade": {
-      "pouco provável": 234,
       "raro": 37,
-      "provável": 244,
-      "muito provável": 63,
-      "praticamente certo": 21,
-      "Baixo": 1,
-      "Médio": 3,
+      "pouco provável": 243,
+      "provável": 234,
+      "praticamente certo": 22,
+      "muito provável": 68,
       "1-Alto": 1,
+      "Médio": 3,
       "": 9,
-      "de de Ocor-": 1,
       "rência": 1,
-      "Certo": 1,
-      "Pouca": 3
+      "de de Ocor-": 1
     },
     "impacto": {
       "médio": 155,
-      "alto": 262,
       "baixo": 46,
-      "muito alto": 134,
-      "Crítico": 1,
+      "alto": 262,
+      "muito alto": 138,
       "Impacto": 3,
       "": 3,
-      "estabelecer canais de comunicação direta para garantir o alinhamento de expectativas e a troca de informações": 1,
-      "Implantar controles de acesso rigorosos, limitando o acesso a dados apenas a usuários autorizados": 1,
-      "Documentar e comunicar claramente o impacto de qualquer mudança estratégica no PTD, buscando soluções colaborativas para minimizar os efeitos adversos": 1,
-      "Desenvolver planos de contingência detalhados para lidar com falhas ou interrupções nos serviços dos": 1,
       "Investir em programas de capacitação e treinamento para as equipes de TI existentes, aprimorando suas habilidades e conheciment os em tecnologias emergentes.": 1,
+      "Desenvolver planos de contingência detalhados para lidar com falhas ou interrupções nos serviços dos": 1,
+      "estabelecer canais de comunicação direta para garantir o alinhamento de expectativas e a troca de informações": 1,
+      "Documentar e comunicar claramente o impacto de qualquer mudança estratégica no PTD, buscando soluções colaborativas para minimizar os efeitos adversos": 1,
+      "Implantar controles de acesso rigorosos, limitando o acesso a dados apenas a usuários autorizados": 1,
       "Implementar um sistema de gestão do conheciment o para documentar e compartilhar as melhores práticas, os": 1,
-      "Alto Muito": 2,
-      "alto Muito": 1,
       "Médio Muito": 1,
       "Prospecçã o de formas alternativas para viabilizar a composiçã o e a manutençã o da força de trabalho; Utilizar melhores práticas de gerenciame nto de projetos registrando as etapas.": 1,
-      "Sensibiliza ção das áreas de negócio para a importância do plano digital; Prospecçã o de formas alternativas para viabilizar a composiçã": 1,
-      "Negociar para minimizar os impactos; Identificaçã o de dependênci as com fornecedor es para o planejamen to preventivo para a contratação ou migração de soluções visando a": 1,
+      "Identificaçã o de dependênci as com fornecedor es para o planejamen to preventivo para a contratação ou migração de soluções visando a continuidad e do negócio;": 1,
       "Governanç a bem definida, com alinhament o estratégico,": 1,
-      "Identificaçã o de dependênci as com fornecedor es para o planejamen to preventivo para a contratação ou migração de soluções visando a continuidad e do negócio;": 1
+      "Negociar para minimizar os impactos; Identificaçã o de dependênci as com fornecedor es para o planejamen to preventivo para a contratação ou migração de soluções visando a": 1,
+      "Sensibiliza ção das áreas de negócio para a importância do plano digital; Prospecçã o de formas alternativas para viabilizar a composiçã": 1
     },
     "tratamento": {
-      "mitigar": 483,
+      "transferir": 19,
+      "mitigar": 487,
       "aceitar": 60,
       "mitigar; transferir": 4,
-      "transferir": 18,
       "transferir; transferir": 1,
-      "eliminar": 11,
+      "eliminar": 13,
       "": 18,
-      "Aceitar ou tolerar o risco": 2,
       "Avaliar o impacto de cada cenário no Plano de": 1,
-      "Compartilh ar": 1,
-      "B) Reduzir ou mitigar": 4,
       "- Sensibilização para apoio da alta administração; - Alinhamento contínuo com as diretrizes do governo. - Monitoramento das propostas legislativas e participação": 1,
-      "ativa em discussões estratégicas; - Reporte à alta administração. - Desenvolvimento de iniciativas de capacitação digital; - Criação de canais híbridos de atendimento para garantir": 1,
+      "orçamento digital. - Adoção de princípios de acessibilidade digital": 1,
+      "- Parcerias estratégicas para expansão da infraestrutura digital. - Criação de estratégias de acesso inclusivo": 1,
       "acessibilidade; - Campanhas de conscientização. - Aprimoramento das políticas de conformidade com a LGPD e ao PPSI": 1,
-      "- Estratégias de governança de dados eficazes; - Adoção de protocolos de segurança cibernética. - Capacitação contínua dos servidores": 1,
-      "- Parcerias com instituições para oferta de treinamentos; - Planejamento de contratações estratégicas. - Diversificação de fornecedores": 1,
+      "- Implementação de protocolos avançados de proteção; - Monitoramento contínuo de ameaças. - Sensibilização da alta administração para priorização de": 1,
       "- Desenvolvimento de soluções internas; - Planejamento de migração tecnológica sustentável. - Reuniões estratégicas de alinhamento com a alta administração": 1,
-      "- Relatórios periódicos demonstrando impacto e ganhos das iniciativas. - Adoção de padrões abertos de integração": 1,
+      "- Desenvolvimento de plataformas adaptáveis a diferentes contextos socioculturais. - Sensibilização e capacitação das equipes": 1,
+      "- Estratégias de governança de dados eficazes; - Adoção de protocolos de segurança cibernética. - Capacitação contínua dos servidores": 1,
       "- Parcerias interministeriais para alinhamento técnico. - Documentação robusta dos processos e entregas": 1,
       "- Fortalecimento da institucionalização das políticas digitais. - Mapeamento e priorização de investimentos": 1,
-      "- Parcerias estratégicas para expansão da infraestrutura digital. - Criação de estratégias de acesso inclusivo": 1,
-      "- Desenvolvimento de plataformas adaptáveis a diferentes contextos socioculturais. - Sensibilização e capacitação das equipes": 1,
-      "- Governança bem definida; - Comunicação contínua. - Fortalecimento da segurança cibernética": 1,
-      "- Implementação de protocolos avançados de proteção; - Monitoramento contínuo de ameaças. - Sensibilização da alta administração para priorização de": 1,
-      "orçamento digital. - Adoção de princípios de acessibilidade digital": 1,
+      "ativa em discussões estratégicas; - Reporte à alta administração. - Desenvolvimento de iniciativas de capacitação digital; - Criação de canais híbridos de atendimento para garantir": 1,
+      "- Parcerias com instituições para oferta de treinamentos; - Planejamento de contratações estratégicas. - Diversificação de fornecedores": 1,
       "- Design inclusivo; - Testes com usuárias reais.": 1,
+      "- Governança bem definida; - Comunicação contínua. - Fortalecimento da segurança cibernética": 1,
+      "- Relatórios periódicos demonstrando impacto e ganhos das iniciativas. - Adoção de padrões abertos de integração": 1,
       "Identificaçã o de dependênci as com fornecedor es para o planejamen to preventivo para a contratação ou migração de soluções visando a continuidad e do negócio": 1
     }
   },
@@ -288,29 +243,32 @@
     },
     "min_prob_canonica_ratio": {
       "limit": 0.85,
-      "actual": 0.9677,
+      "actual": 0.9758,
       "passed": true
     },
     "min_imp_canonica_ratio": {
       "limit": 0.85,
-      "actual": 0.9645,
+      "actual": 0.9709,
       "passed": true
     },
     "min_trat_canonica_ratio": {
       "limit": 0.8,
-      "actual": 0.9321,
+      "actual": 0.9435,
       "passed": true
     }
   },
   "all_thresholds_passed": true,
   "output_checksums_md5": {
-    "risks.csv": "0a032c3dce88c4968e533c68304f82f4",
-    "deliveries.csv": "085f0031346ca7695789b20a64c211da",
+    "risks.csv": "0bd6510501b7f141e49637a2f92e77df",
+    "deliveries.csv": "179c016830cd788838c5691eb3ee0997",
     "organs.csv": "00acdbf24799902960f36ed93c565f19",
-    "risks.json": "3ecc7ddfda9c4adad7960497f2bbd170",
-    "deliveries.json": "63cd03494fc4fc9c272d23258e0529bf",
-    "statistics_summary.json": "46d62629314501fded6422dbc64f5c36",
+    "risks.json": "05ea6d87e9d4f267e4ba1712a3daf206",
+    "deliveries.json": "ce7a90976518562ffd47921f913e706b",
+    "statistics_summary.json": "217fedeaf37b1a4b592ea77a6510e5fe",
     "error_report.csv": "61c3e36c454c3032411ebd61c0193f78"
   },
-  "checkpoint_fingerprints": {}
+  "checkpoint_fingerprints": {
+    "deliveries_standardized": "db96a042b922",
+    "risks_standardized": "06cb7deb611a"
+  }
 }
