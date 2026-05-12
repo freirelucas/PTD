@@ -16,6 +16,8 @@ files = sorted(glob.glob(os.path.join(cells_dir, "*")))
 
 cells = []
 for fpath in files:
+    if not os.path.isfile(fpath):
+        continue   # ignora diretórios como __pycache__
     fname = os.path.basename(fpath)
     # Pattern: NN_name.py  or  NN_name.md  or NNx_name.py (e.g. 01a_)
     with open(fpath, "r", encoding="utf-8") as f:

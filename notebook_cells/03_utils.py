@@ -39,7 +39,14 @@ def normalize_text(text: str) -> str:
     """Normaliza unicode, whitespace e caixa para comparação."""
     if not text:
         return ""
-    text = unicodedata.normalize("NFC", str(text))
+    text = str(text)
+    # Strip Unicode Cf (Format): ZWSP, ZWJ, soft hyphen, BOM, word joiner,
+    # variation selectors, etc. Esses chars vêm de extração PyMuPDF de PDFs
+    # com kerning custom e quebram fuzzy_match silenciosamente — strings
+    # visualmente idênticas comparam como diferentes, devolvendo ~0.98 via
+    # SequenceMatcher em vez de exact match 1.0.
+    text = "".join(c for c in text if unicodedata.category(c) != "Cf")
+    text = unicodedata.normalize("NFC", text)
     text = re.sub(r"\s+", " ", text).strip()
     text = _ENUM_PREFIX.sub("", text)
     return text

@@ -154,6 +154,9 @@ PRODUTO_ALIASES: Dict[str, str] = {
         "Disponibilização em Acesso Digital",
     "Revisão da descrição de serviços":
         "Revisão da descrição dos serviços",
+    # Variantes ortográficas observadas em PDFs gov.br 2024-2026
+    "Autoavaliação, análise de lacunas e planejamento do PPSI":
+        "Auto-avaliação, análise de lacunas e planejamento do PPSI",
     # Legacy / EGD 2020 mappings
     "Digitalização de Serviço":
         "Disponibilização em Acesso Digital",
@@ -185,6 +188,9 @@ EIXO_ALIASES: Dict[str, str] = {
         "Unificação de Canais Digitais",
     "Governo Inteligente":
         "Projetos Especiais",
+    # Typo observado em PDF do PGFN
+    "Governaça e Gestão de Dados":
+        "Governança e Gestão de Dados",
 }
 
 # Lista flat de todos os produtos (canônicos + legados)
@@ -249,6 +255,8 @@ PROBABILIDADE_ALIASES: Dict[str, str] = {
     "pouca": "pouco provável",
     "certo": "praticamente certo",
     "baixo": "pouco provável",       # variante masculina ocasional
+    "provavel muito": "muito provável",   # MMULHERES — ordem PT invertida
+    "provavel pouco": "pouco provável",   # MMULHERES — idem
 }
 IMPACTO_ALIASES: Dict[str, str] = {
     # ANTAQ
@@ -295,6 +303,9 @@ TRATAMENTO_ALIASES: Dict[str, str] = {
     "compartilhar o risco": "transferir",
     "compartilh ar": "transferir",   # quebra de linha intra-palavra
     "evitar": "eliminar",
+    "mitigar/transferir": "mitigar; transferir",  # AEB — separador "/"
+    "transferir/compartilhar": "transferir",      # ANA — variante "/"
+    "3-mitigar": "mitigar",                       # CADE — prefixo numérico
 }
 
 # ---------- Órgãos que compartilham PDFs (grupos) ----------
