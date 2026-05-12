@@ -1,5 +1,5 @@
 {
-  "pipeline_commit": "2e2c130ca150e0b1406ca6c29ddc06e37090d2f0",
+  "pipeline_commit": "0e090eb06a68145880765921ff5f195a89a55ca0",
   "data_execucao": "2026-05-12",
   "pdfs_baixados": 126,
   "pdfs_diretivo": 61,
@@ -22,7 +22,7 @@
     "deliveries.json": {
       "linhas": 96177,
       "bytes": 3845272,
-      "sha256": "29116bbe2b7ca7c43f24ef8e990894459b5eef3d3644b8abfc841e6f65d73adc"
+      "sha256": "7e6426cb2abb6ccf36fdb37ca0be086d490d52fc0a02b12f7ff60005bf0bcf3b"
     },
     "error_report.csv": {
       "linhas": 11,
@@ -51,18 +51,18 @@
     },
     "review_queue.csv": {
       "linhas": 2766,
-      "bytes": 794804,
-      "sha256": "757cee397bcde4d23eab7c3a445684acb6f2ff0a75104e434e96e7bdddf225bb"
+      "bytes": 798916,
+      "sha256": "d0db41d583b3ea75548c1a58e81010dca974cb70b55f7783840366d1762299d4"
     },
     "risks.csv": {
       "linhas": 620,
-      "bytes": 205458,
-      "sha256": "0afedeb5493c95509c957614e705085fa9844beb66a21cb0d0270e6f43bc3164"
+      "bytes": 209570,
+      "sha256": "46968873fa35f25e05acf1fa6a87427ff7e5f24324ed8c37faa3314407110c09"
     },
     "risks.json": {
       "linhas": 12491,
-      "bytes": 568253,
-      "sha256": "4699988426f59fb0a7eeb1a81c26d51686ccf8feeabc89edc72ca4a1853bece7"
+      "bytes": 572365,
+      "sha256": "b3716abf38eee76d5ff403dcc036f3338a47424f070115dc00ecba4814ef53df"
     },
     "statistics_summary.json": {
       "linhas": 49,
@@ -72,7 +72,7 @@
     "validation_report.json": {
       "linhas": 274,
       "bytes": 11907,
-      "sha256": "69709cec16118aa25263e0b3b3b73ac3269243b1907470812505c042df05451b"
+      "sha256": "d88e6b93d22a95a97905bb53250ef797585d16057b5a42a9db3c7c8ce7d17254"
     },
     "vocabulary_mapping.csv": {
       "linhas": 200,
