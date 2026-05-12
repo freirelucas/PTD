@@ -140,6 +140,25 @@ registros nesta fase pertencem à tabela de pactuadas. Quando 08b detectar
 e extrair tabelas concluídas/canceladas, preencherá com `"concluida"` ou
 `"cancelada"` explicitamente.
 
+**Detecção especulativa adicionada** (PR #14 desta sessão): `08b_extract_deliveries.py`
+agora detecta `tabela_tipo` via dois sinais combinados:
+
+1. **Estrutura de colunas**: se a tabela tem `data_entrega` ou `pactuado` →
+   `"concluida"`. Se tem `justificativa` **sem** `data_entrega`/`pactuado` →
+   `"cancelada"`. Default `"pactuada"`. `_id_col` reconhece variantes:
+   `Data Entrega`, `Data Conclusão`, `Pactuado?`, `Entregue?`,
+   `Justificativa` (match exato), `Motivo do Cancelamento`.
+
+2. **Coluna `status`/`situação` por linha** (vence o sinal estrutural): valores
+   normalizados `"concluído"/"sim"/"entregue"/"finalizada"` → concluida;
+   `"cancelado"/"não"` → cancelada; `"em andamento"/"pactuada"` → pactuada.
+
+A detecção é defensiva: PDFs no formato legacy (sem essas colunas) continuam
+produzindo entries com `tabela_tipo="pactuada"` — zero regressão. PDFs com
+estrutura nova começam a popular `data_entrega`/`pactuado`/`justificativa`
+automaticamente. Sem ver PDFs com ciclos completos, é possível ajustar a
+heurística pós-Colab se aparecerem falsos positivos.
+
 ## 3. Evolução dos números do corpus
 
 | Versão | Entregas | Riscos | Causa da mudança |
