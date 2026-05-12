@@ -100,6 +100,11 @@ tr:hover td{background:var(--light)}
 .organ-card .sigla{font-size:1.3rem;font-weight:700;color:var(--dark)}
 .organ-card .grupo{font-size:.7rem;background:var(--light);color:var(--primary);padding:2px 8px;border-radius:10px;display:inline-block;margin-top:4px}
 .organ-card .counts{display:flex;gap:12px;margin-top:8px;font-size:.8rem;color:var(--muted)}
+.organ-card .quality-tags{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap}
+.organ-card .qtag{font-size:.66rem;padding:2px 6px;border-radius:3px;font-weight:600;text-transform:uppercase;letter-spacing:.03em}
+.organ-card .qtag.shared{background:#E6F0FB;color:#1F5083}
+.organ-card .qtag.scan{background:#FCE8E6;color:#A92F1B}
+.organ-card .qtag.partial-data{background:#FEF5DB;color:#735015}
 /* Modal */
 .modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:200;justify-content:center;align-items:flex-start;padding:40px}
 .modal-overlay.active{display:flex}
@@ -126,7 +131,16 @@ tr:hover td{background:var(--light)}
 .sidebar nav a{padding:12px;justify-content:center}.main{margin-left:60px;padding:16px}
 .chart-row{grid-template-columns:1fr}.kpi-row{grid-template-columns:repeat(2,1fr)}.organ-grid{grid-template-columns:repeat(2,1fr)}
 }
-/* === Review tab === */
+/* Banner de versão preliminar — sinaliza estado do trabalho */
+.preview-banner{background:linear-gradient(90deg,#FEF5DB,#FFF8E1);border-bottom:2px solid #E67E22;padding:10px 24px;font-size:.84rem;color:#7A4A0F;display:flex;align-items:center;gap:14px;flex-wrap:wrap;line-height:1.4}
+.preview-banner strong{color:#9C5410}
+.preview-banner a{color:#1F5083;text-decoration:underline}
+.preview-banner a:hover{color:#264A7F}
+.preview-banner .tag{display:inline-block;background:#E67E22;color:#fff;padding:2px 8px;border-radius:3px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.main{margin-left:220px}
+.feedback-footer{margin-left:220px;padding:20px 24px;background:#FAFBFC;border-top:1px solid var(--border);font-size:.82rem;color:#666;text-align:center}
+.feedback-footer a{color:var(--primary);text-decoration:underline}
+.feedback-footer a:hover{color:var(--dark)}
 .chips{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
 .chip{padding:5px 12px;background:#fff;border:1px solid var(--border);border-radius:18px;cursor:pointer;font-size:.78rem;color:#444;user-select:none;transition:all .12s;text-transform:lowercase}
 .chip:hover{background:#F5F7F9}
@@ -180,6 +194,12 @@ tr:hover td{background:var(--light)}
 </style>
 </head>
 <body>
+
+<div class="preview-banner">
+  <span class="tag">Versão preliminar</span>
+  <span><strong>Documento preparatório.</strong> Dados extraídos automaticamente dos PTDs vigentes no portal SGD/MGI; <strong>~38 entries têm bugs de extração tabular conhecidos</strong> (DNOCS, MMULHERES, CADE) e <strong>11 PDFs não foram extraídos</strong> (escaneados sem OCR: AGU, ANVISA, CODEVASF, FBN, FCP, FUNAI, INCRA, ITI, MAPA, MCOM, PREVIC). Não publicar ou citar sem consentimento dos autores.</span>
+  <span style="margin-left:auto;white-space:nowrap"><a href="https://github.com/freirelucas/PTD/issues/new?title=Erro%20de%20extra%C3%A7%C3%A3o&body=%C3%93rg%C3%A3o%3A%20%0AField%3A%20%0AValor%20observado%3A%20%0AValor%20esperado%3A%20" target="_blank">Reportar erro &rarr;</a></span>
+</div>
 
 <aside class="sidebar">
   <h1>PTD<span>Transformação Digital</span></h1>
@@ -708,6 +728,13 @@ tr:hover td{background:var(--light)}
 </div>
 
 </main>
+
+<footer class="feedback-footer">
+  Encontrou erro de extração ou inconsistência?
+  <a href="https://github.com/freirelucas/PTD/issues/new?title=Erro%20de%20extra%C3%A7%C3%A3o&body=%C3%93rg%C3%A3o%3A%20%0AField%3A%20%0AValor%20observado%3A%20%0AValor%20esperado%3A%20" target="_blank">Reportar via GitHub Issues</a>
+  &nbsp;·&nbsp; Código: <a href="https://github.com/freirelucas/PTD" target="_blank">freirelucas/PTD</a>
+  &nbsp;·&nbsp; Licença: <a href="https://github.com/freirelucas/PTD/blob/main/LICENSE" target="_blank">CC BY 4.0</a>
+</footer>
 
 <!-- Modal -->
 <div class="modal-overlay" id="modal-overlay" onclick="if(event.target===this)closeModal()">
@@ -1266,10 +1293,26 @@ function renderOrganGrid(){
   else filtered.sort((a,b)=>a.sigla.localeCompare(b.sigla));
   document.getElementById('organ-grid').innerHTML=filtered.map(o=>{
     const _ok=s=>s==='ok'||s==='compartilhado'; const cls=_ok(o.status_entregas)&&_ok(o.status_riscos)?'':o.n_entregas>0||o.n_riscos>0||_ok(o.status_entregas)||_ok(o.status_riscos)?'partial':'failed';
+    // Quality tags visíveis ao gestor: PDF compartilhado (dedup MD5),
+    // extração falhada (escaneado/sem dados), dado parcial (1 dos 2 PDFs ok).
+    const tags = [];
+    if (o.status_entregas === 'compartilhado' || o.status_riscos === 'compartilhado') {
+      tags.push('<span class="qtag shared" title="Dados extraídos do PDF compartilhado do grupo ministerial — dedup por hash MD5">⫘ compartilhado</span>');
+    }
+    const failedDel = o.status_entregas === 'scan_ou_formato' || o.status_entregas === 'sem_dados';
+    const failedRisk = o.status_riscos === 'scan' || o.status_riscos === 'sem_dados' || o.status_riscos === 'no_risk_table';
+    if (failedDel || failedRisk) {
+      const what = failedDel && failedRisk ? 'entregas+riscos' : failedDel ? 'entregas' : 'riscos';
+      tags.push(`<span class="qtag scan" title="Extração de ${what} falhou — PDF provavelmente escaneado sem OCR ou template não reconhecido">⚠ extração falhou (${what})</span>`);
+    } else if ((o.pdf_diretivo && o.n_riscos === 0 && !_ok(o.status_riscos)) ||
+               (o.pdf_entregas && o.n_entregas === 0 && !_ok(o.status_entregas))) {
+      tags.push('<span class="qtag partial-data" title="Tem PDF mas zero entries extraídas — provável falha silenciosa">⚠ sem dados extraídos</span>');
+    }
     return `<div class="organ-card ${cls}" onclick="openOrganModal('${o.sigla}')">
       <div class="sigla">${o.sigla}</div>
       ${o.grupo?`<div class="grupo">${o.grupo}</div>`:''}
       <div class="counts"><span>&#9654; ${o.n_entregas} entregas</span><span>&#9888; ${o.n_riscos} riscos</span></div>
+      ${tags.length ? `<div class="quality-tags">${tags.join('')}</div>` : ''}
     </div>`;
   }).join('');
 }
