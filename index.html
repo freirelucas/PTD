@@ -664,6 +664,36 @@ tr:hover td{background:var(--light)}
     </ol>
     <p style="font-size:.8rem;color:#666;margin:10px 0 0">Após editar <code>02_config.py</code>: <code>python build_notebook.py</code> + commit + Colab run. O <code>output/validation_report.json</code> da próxima execução baixa <code>non_canonical_top20</code> conforme você converter casos. Os 5 buckets de <code>method</code> não crescem &mdash; só sua proporção muda.</p>
   </div>
+
+  <!-- Accordion: Curadoria opcional (fuzzy_high) -->
+  <details id="rv-curation-accordion" style="margin-top:18px;background:var(--card);border-radius:var(--radius);box-shadow:0 1px 2px rgba(0,0,0,.06);padding:0 18px">
+    <summary style="cursor:pointer;padding:16px 0;font-weight:600;color:var(--dark);font-size:.95rem;list-style:none;display:flex;align-items:center;gap:10px" id="rv-curation-summary">
+      <span style="font-size:1.1rem">▸</span>
+      <span>Sugestões de curadoria opcional</span>
+      <span id="rv-curation-count" style="margin-left:auto;font-size:.78rem;color:#666;font-weight:500"></span>
+    </summary>
+    <div style="padding:0 0 16px">
+      <p class="desc" style="margin-bottom:12px">Casos com <code>method = fuzzy_high</code>: já canonizaram com score &ge; 0.85 mas via fuzzy match. <strong>Não precisam de ação</strong> — listados aqui caso você queira convertê-los em alias determinístico (mais robusto a futuras mudanças). Muitos são bugs de extração travestidos (prefixo de char, truncamento de coluna) e <em>não</em> são alias-shaped.</p>
+      <div class="rv-empty" id="rv-curation-empty">
+        <div style="font-size:2rem;line-height:1">&#9734;</div>
+        <div style="margin-top:8px;font-size:.9rem">Sem candidatos de curadoria.</div>
+      </div>
+      <div class="table-wrap" id="rv-curation-table-wrap" style="max-height:none">
+        <table class="rv-table">
+          <thead><tr>
+            <th style="width:90px">Campo</th>
+            <th>Original</th>
+            <th>Canônico atribuído</th>
+            <th style="width:96px">Score</th>
+            <th style="width:60px">Casos</th>
+            <th style="width:160px">Órgãos</th>
+            <th style="width:64px"></th>
+          </tr></thead>
+          <tbody id="rv-curation-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </details>
 </div>
 
 </main>
@@ -1753,6 +1783,66 @@ function initReview() {
   }
   _rvRenderKPIs();
   _rvApply();
+  _rvRenderCuration();
+}
+
+function _rvRenderCuration() {
+  const cu = (PTD_REVIEW && PTD_REVIEW.curation) || null;
+  const tbody = document.getElementById('rv-curation-tbody');
+  const empty = document.getElementById('rv-curation-empty');
+  const wrap = document.getElementById('rv-curation-table-wrap');
+  const count = document.getElementById('rv-curation-count');
+  if (!tbody) return;
+  if (!cu || !cu.items || cu.items.length === 0) {
+    tbody.innerHTML = '';
+    if (empty) empty.style.display = 'block';
+    if (wrap) wrap.style.display = 'none';
+    if (count) count.textContent = '(nenhum candidato)';
+    return;
+  }
+  if (empty) empty.style.display = 'none';
+  if (wrap) wrap.style.display = 'block';
+  if (count) count.textContent = `${cu.total_uniques.toLocaleString('pt-BR')} originais · ${cu.total_cases.toLocaleString('pt-BR')} casos`;
+  tbody.innerHTML = '';
+  cu.items.forEach((it, idx) => {
+    const row = document.createElement('tr');
+    row.className = 'rv-row';
+    row.dataset.idx = 'cu-' + idx;
+    const scoreClass = it.score >= 0.85 ? 'hi' : it.score >= 0.70 ? 'med' : 'lo';
+    const orgsShown = it.siglas.slice(0, 4).join(', ');
+    const orgsMore = it.siglas.length > 4 ? `<span class="more"> +${it.siglas.length - 4}</span>` : '';
+    row.innerHTML = `
+      <td><span class="field-tag">${_rvEscape(it.field)}</span></td>
+      <td class="col-original">${_rvEscape(it.original) || '<em style="color:#999">(vazio)</em>'}</td>
+      <td class="col-suggested">${_rvEscape(it.suggested || it.normalized || '—')}</td>
+      <td><span class="score-bar ${scoreClass}"><i style="width:${(it.score * 100).toFixed(0)}%"></i></span><span style="font-family:monospace;font-size:.78rem;color:#444">${it.score.toFixed(2)}</span></td>
+      <td style="font-weight:700;color:#1A2530">${it.count}</td>
+      <td class="rv-orgs">${_rvEscape(orgsShown)}${orgsMore}</td>
+      <td><button class="rv-expand" onclick="event.stopPropagation();_rvCurationToggle(${idx})">ver</button></td>
+    `;
+    row.addEventListener('click', () => _rvCurationToggle(idx));
+    tbody.appendChild(row);
+
+    const detail = document.createElement('tr');
+    detail.id = 'rv-cu-detail-' + idx;
+    detail.style.display = 'none';
+    detail.innerHTML = `<td colspan="7" style="padding:0;background:transparent">${_rvDetailHtml(it)}</td>`;
+    tbody.appendChild(detail);
+  });
+}
+
+function _rvCurationToggle(idx) {
+  const detail = document.getElementById('rv-cu-detail-' + idx);
+  if (!detail) return;
+  const isOpen = detail.style.display !== 'none';
+  document.querySelectorAll('#rv-curation-tbody [id^="rv-cu-detail-"]').forEach(d => d.style.display = 'none');
+  document.querySelectorAll('#rv-curation-tbody .rv-row.expanded').forEach(r => r.classList.remove('expanded'));
+  if (!isOpen) {
+    detail.style.display = '';
+    const row = detail.previousElementSibling;
+    if (row) row.classList.add('expanded');
+    detail.scrollIntoView({block: 'nearest', behavior: 'smooth'});
+  }
 }
 
 function _rvBindControls() {
@@ -1764,7 +1854,7 @@ function _rvBindControls() {
 
 function _rvRenderChips() {
   const fields = ['probabilidade', 'impacto', 'tratamento', 'produto', 'eixo'];
-  const methods = ['unmatched', 'fuzzy_low', 'fuzzy_high'];
+  const methods = ['unmatched', 'fuzzy_low'];
   const fEl = document.getElementById('rv-field-chips');
   const mEl = document.getElementById('rv-method-chips');
   fEl.innerHTML = fields.map(f => `<span class="chip" data-field="${f}">${f}</span>`).join('') +
@@ -1808,13 +1898,15 @@ function _rvRenderKPIs() {
   const sb = r.summary_by_field || {};
   const topField = Object.entries(sb).sort((a,b)=>b[1].impact_total - a[1].impact_total)[0];
   const topFieldText = topField ? `${topField[0]} (${topField[1].cases} casos)` : '—';
+  const curationTotal = (r.curation && r.curation.total_cases) ? r.curation.total_cases : 0;
   document.getElementById('review-kpis').innerHTML = [
-    {l:'Casos no tail', v:r.total_cases.toLocaleString('pt-BR'), s:`${r.total_uniques} originais únicos`},
+    {l:'Casos críticos', v:r.total_cases.toLocaleString('pt-BR'), s:`${r.total_uniques} originais únicos`},
     {l:'Não-canonizados', v:get('unmatched'), s:'sem sugestão clara'},
     {l:'Fuzzy baixa', v:get('fuzzy_low'), s:'score 0.70–0.85'},
     {l:'Marcados como bug', v:_rvIgnored.size, s:'localStorage do navegador'},
   ].map(k => `<div class="kpi"><div class="label">${k.l}</div><div class="value">${k.v}</div><div class="sub">${k.s}</div></div>`).join('') +
-    (topField ? `<div class="kpi" style="border-top-color:var(--accent)"><div class="label">Maior impacto por campo</div><div class="value" style="font-size:1.1rem;line-height:1.3">${topFieldText}</div><div class="sub">impact = count &times; (1 &minus; score)</div></div>` : '');
+    (topField ? `<div class="kpi" style="border-top-color:var(--accent)"><div class="label">Maior impacto por campo</div><div class="value" style="font-size:1.1rem;line-height:1.3">${topFieldText}</div><div class="sub">impact = count &times; (1 &minus; score)</div></div>` : '') +
+    `<div class="kpi" style="border-top-color:#3F6B92"><div class="label">Curadoria opcional</div><div class="value">${curationTotal.toLocaleString('pt-BR')}</div><div class="sub">${r.curation ? r.curation.total_uniques : 0} originais (fuzzy_high)</div></div>`;
 }
 
 function _rvApply() {
