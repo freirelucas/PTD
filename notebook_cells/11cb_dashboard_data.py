@@ -382,16 +382,47 @@ for organ in all_organs:
         ptd_dates[organ.sigla] = ""
 
 # -----------------------------------------------------------------
-# 6. PTD_TIMELINE_ORGANS (sigla única por mês — único consumido pelo dashboard)
+# 6. Timelines — duas estruturas semanticamente distintas, sem inflação
 # -----------------------------------------------------------------
-month_organs = defaultdict(set)
+#
+# PTD_TIMELINE_SIGNATURES (mês → # órgãos novos):
+#   Para cada órgão, a PRIMEIRA data_pactuada conhecida é proxy da
+#   assinatura/adesão (não temos data de publicação real do PTD scraped).
+#   Cada órgão conta UMA vez. Acumulado bate em ≤ 91.
+#
+# PTD_TIMELINE_DELIVERIES (mês → # entregas pactuadas):
+#   Cada DeliveryEntry com data_pactuada conta uma vez. Reflete a
+#   distribuição de carga: quantas entregas estão prometidas para cada mês
+#   (independente de quantos órgãos). Acumulado vai até ~total de entregas
+#   com data parseada.
+#
+# A estrutura PTD_TIMELINE_ORGANS (mês → # órgãos com entrega no mês) foi
+# removida porque inflava: um órgão com entregas em 10 meses entrava em 10
+# buckets. Soma dava "soma órgãos-mês", não tinha leitura intuitiva.
 
+# 6a — Assinaturas (proxy: 1ª data_pactuada por órgão)
+first_pactuada_per_org: Dict[str, str] = {}
 for d in all_deliveries:
     ym = _parse_year_month(d.data_pactuada or "")
-    if ym:
-        month_organs[ym].add(d.orgao_sigla)
+    if not ym:
+        continue
+    sigla = d.orgao_sigla
+    cur = first_pactuada_per_org.get(sigla)
+    if cur is None or ym < cur:
+        first_pactuada_per_org[sigla] = ym
 
-ptd_timeline_organs = {k: len(v) for k, v in sorted(month_organs.items())}
+ptd_timeline_signatures = dict(
+    sorted(Counter(first_pactuada_per_org.values()).items())
+)
+
+# 6b — Entregas pactuadas (1 por DeliveryEntry, sem dedup por órgão)
+ptd_timeline_deliveries = dict(
+    sorted(Counter(
+        _parse_year_month(d.data_pactuada or "")
+        for d in all_deliveries
+        if _parse_year_month(d.data_pactuada or "")
+    ).items())
+)
 
 # -----------------------------------------------------------------
 # 7-8. PTD_JACCARD_ORGANS / PTD_JACCARD_MATRIX
@@ -444,7 +475,8 @@ with open(js_path, "w", encoding="utf-8") as f:
     f.write(f"const PTD_DELIVERIES = {json.dumps(ptd_deliveries, ensure_ascii=False)};\n")
     f.write(f"const PTD_RISKS = {json.dumps(ptd_risks, ensure_ascii=False)};\n")
     f.write(f"const PTD_DATES = {json.dumps(ptd_dates, ensure_ascii=False)};\n")
-    f.write(f"const PTD_TIMELINE_ORGANS = {json.dumps(ptd_timeline_organs, ensure_ascii=False)};\n")
+    f.write(f"const PTD_TIMELINE_SIGNATURES = {json.dumps(ptd_timeline_signatures, ensure_ascii=False)};\n")
+    f.write(f"const PTD_TIMELINE_DELIVERIES = {json.dumps(ptd_timeline_deliveries, ensure_ascii=False)};\n")
     f.write(f"const PTD_JACCARD_ORGANS = {json.dumps(jaccard_organs, ensure_ascii=False)};\n")
     f.write(f"const PTD_JACCARD_MATRIX = {json.dumps(jaccard_matrix)};\n")
 print(f"data.js gravado ({os.path.getsize(js_path) / 1024:.0f} KB)")
