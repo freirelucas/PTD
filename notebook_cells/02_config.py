@@ -288,6 +288,7 @@ IMPACTO_ALIASES: Dict[str, str] = {
     "critico": "muito alto",
     "alto muito": "muito alto",       # ordem trocada por quebra de linha
     "muito alto alto": "muito alto",  # duplicação por quebra de linha
+    "medio muito": "médio",           # MMULHERES — ordem trocada por quebra de linha
 }
 TRATAMENTO_ALIASES: Dict[str, str] = {
     "mitigar o risco": "mitigar",
