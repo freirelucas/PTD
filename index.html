@@ -229,7 +229,7 @@ tr:hover td{background:var(--light)}
   <div class="kpi-row" id="kpi-cards"></div>
   <div class="chart-container">
     <h3>Cronologia de Adesão dos Órgãos <small>(proxy: 1ª entrega pactuada conhecida)</small></h3>
-    <p class="desc" style="margin-bottom:8px">Cada órgão entra <strong>uma única vez</strong>, no mês da sua primeira entrega com <code>data_pactuada</code> parseável. Não é a data de assinatura do PTD (não scraped do portal gov.br nem extraída do texto do PDF). <strong>Datas pré-decreto (antes de set/2024)</strong> vêm de entregas legadas retroativamente incluídas: na maioria <em>"PPSI Ciclo 1"</em>, programa de privacidade que antecede o PTD. Acumulado bate em órgãos únicos (≤ 91, hoje 44 com data parseável).</p>
+    <p class="desc" style="margin-bottom:8px">Cada órgão entra <strong>uma única vez</strong>, no mês da sua primeira entrega com <code>data_pactuada</code> parseável. <strong>Propagação por grupo ministerial</strong>: como o dedup MD5 atribui o PDF compartilhado a um único owner alfabético, a 1ª data desse owner é propagada para todos os membros do grupo (MEC/MF/MD/MMA/MT/MIDR/MDA). Não é a data de assinatura do PTD (não scraped do portal gov.br nem extraída do texto do PDF). <strong>Datas pré-decreto (antes de set/2024)</strong> vêm de entregas legadas retroativamente incluídas: na maioria <em>"PPSI Ciclo 1"</em>, programa de privacidade que antecede o PTD. <strong>~57 de 91 órgãos</strong> aparecem aqui; os ~34 ausentes não têm nenhuma <code>data_pactuada</code> parseável nos PDFs (coluna vazia ou formato não reconhecido — limitação de extração).</p>
     <canvas id="chart-signatures"></canvas>
     <div id="signatures-insight" style="margin-top:12px"></div>
   </div>
