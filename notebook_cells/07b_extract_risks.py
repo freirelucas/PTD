@@ -304,6 +304,142 @@ def extract_all_risks() -> None:
 # --------------- Execução -------------------------------------
 extract_all_risks()
 
+
+# --------------- Auditoria pós-extração (Categoria A) ---------
+# Detecta padrões anômalos comuns na extração tabular e marca needs_review
+# com motivo explícito. Não descarta entry — preserva audit trail.
+#
+# Padrões detectados:
+#   (a) Header capturado como dado (valor == nome literal do campo)
+#   (b) Fragmento de hifenização (texto < 5 chars OU começa/termina com "-"
+#       sem letra ao lado)
+#   (c) Bleed de coluna em campo de escala (texto > 30 chars em
+#       prob/imp/trat, que deveria ser categoria curta)
+#   (d) Column-shift detectável (valor canoniza melhor em outra escala)
+
+_HEADER_LITERALS = {
+    "probabilidade", "impacto", "tratamento", "risco",
+    "probabilidade de ocorrencia", "probabilidade de ocorrência",
+    "nivel de impacto", "nível de impacto",
+}
+_SCALE_MAX_LEN = 30  # categorias de escala raramente passam de 25 chars
+
+
+def _is_header_capture(value: str) -> bool:
+    """Valor literal igual ao nome do campo."""
+    if not value:
+        return False
+    norm = strip_accents(normalize_text(value).lower().strip())
+    return norm in _HEADER_LITERALS
+
+
+def _is_fragment(value: str) -> bool:
+    """Texto fragmentado por hifenização ou quebra de página.
+
+    Detecção CONSERVADORA — só pega padrões inequívocos pra evitar
+    falsos positivos em valores válidos curtos ("raro", "alto", "3").
+
+    Padrões:
+    1. Termina com hífen sem palavra-seguinte (resto da hifenização perdido)
+       Ex: "de de Ocor-", "Probabilidade-"
+    2. Começa com hífen + lowercase (sufixo isolado)
+       Ex: "-rência", "-bilidade"
+    3. Repetição imediata de palavra curta (artefato OCR)
+       Ex: "de de Ocor-", "do do" — palavras de 2-3 chars duplicadas seguidas
+    """
+    if not value:
+        return False
+    s = value.strip()
+    # (1) hífen final solitário
+    if s.endswith("-") and len(s) > 1 and not s[-2].isspace():
+        return True
+    # (2) hífen inicial + lowercase
+    if re.match(r"^-[a-záéíóúâêôãõç]", s):
+        return True
+    # (3) repetição imediata de palavra curta
+    if re.search(r"\b(\w{1,3})\s+\1\b", s.lower()):
+        return True
+    return False
+
+
+def _is_column_bleed(value: str, scale: list) -> bool:
+    """Texto longo demais pra ser categoria de escala (provável bleed)."""
+    if not value:
+        return False
+    if len(value) <= _SCALE_MAX_LEN:
+        return False
+    # Verifica que não casa com nenhum canônico via fuzzy (se casasse alto,
+    # talvez fosse só prolixo mas correto)
+    _, score = fuzzy_match(value, scale, threshold=0.85)
+    return score < 0.70
+
+
+def _detect_column_shift(value: str, expected_scale: list, other_scales: list) -> Optional[str]:
+    """Se valor casa em outra escala melhor que na esperada → column-shift.
+
+    Retorna nome da escala onde casaria, ou None.
+    """
+    if not value:
+        return None
+    _, expected_score = fuzzy_match(value, expected_scale, threshold=0.85)
+    if expected_score >= 0.85:
+        return None  # casa onde deveria
+    for other_name, other_scale in other_scales:
+        _, other_score = fuzzy_match(value, other_scale, threshold=0.85)
+        if other_score >= 0.85 and other_score > expected_score + 0.10:
+            return other_name
+    return None
+
+
+def _audit_risk_entries(entries: List[RiskEntry]) -> Dict[str, int]:
+    """Marca needs_review por padrão anômalo. Retorna contagem por categoria."""
+    stats = Counter()
+    field_specs = [
+        ("probabilidade_original", PROBABILIDADE_SCALE, "probabilidade",
+         [("impacto", IMPACTO_SCALE)]),
+        ("impacto_original", IMPACTO_SCALE, "impacto",
+         [("probabilidade", PROBABILIDADE_SCALE)]),
+        ("tratamento_original", TRATAMENTO_OPTIONS, "tratamento", []),
+    ]
+    for e in entries:
+        reasons = []
+        for attr, scale, label, others in field_specs:
+            val = getattr(e, attr, "") or ""
+            if not val:
+                continue
+            if _is_header_capture(val):
+                reasons.append(f"{label}: header capturado ('{val[:30]}')")
+                stats["header_captured"] += 1
+                continue
+            if _is_fragment(val):
+                reasons.append(f"{label}: fragmento ('{val[:30]}')")
+                stats["fragment"] += 1
+                continue
+            if _is_column_bleed(val, scale):
+                reasons.append(f"{label}: bleed de coluna ({len(val)} chars)")
+                stats["column_bleed"] += 1
+                continue
+            shift = _detect_column_shift(val, scale, others)
+            if shift:
+                reasons.append(f"{label}: column-shift (casa em '{shift}')")
+                stats["column_shift"] += 1
+        if reasons:
+            e.needs_review = True
+            existing = (e.review_reason or "").strip()
+            new = "; ".join(reasons)
+            e.review_reason = f"{existing}; {new}".strip("; ") if existing else new
+            e.extraction_confidence = "low"
+    return dict(stats)
+
+
+_audit_stats = _audit_risk_entries(all_risks)
+if _audit_stats:
+    print("\n--- Auditoria de extração (Categoria A) ---")
+    for k, v in sorted(_audit_stats.items(), key=lambda kv: -kv[1]):
+        print(f"  {k:<20s} {v:>4d}")
+    print(f"  TOTAL marcado needs_review por extração: {sum(_audit_stats.values())}")
+
+
 organs_with_risks = set(r.orgao_sigla for r in all_risks)
 organs_without_risks = set(o.sigla for o in all_organs if o.pdf_path_diretivo) - organs_with_risks
 risk_errors = [e for e in all_errors if e.document_type == "diretivo" and e.stage == "extraction"]
