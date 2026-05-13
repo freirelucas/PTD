@@ -53,6 +53,21 @@ def _classify_tabela_tipo(col_map: dict, row_status: Optional[str] = None) -> st
     return "pactuada"
 
 
+_HEADER_LITERALS_DELIVERY = {
+    "servico", "serviço", "servico/acao", "servico/ação", "ação", "acao",
+    "produto", "produto ptd", "eixo", "data pactuada", "data entrega",
+    "area responsavel", "área responsável", "id", "id entrega",
+}
+
+
+def _is_header_literal_delivery(value: str) -> bool:
+    """True se valor é texto literal de header (capturado como dado em row)."""
+    if not value:
+        return False
+    norm = strip_accents(normalize_text(value).lower().strip())
+    return norm in _HEADER_LITERALS_DELIVERY
+
+
 def _extract_deliveries_tables(pdf_path: str, sigla: str) -> List[DeliveryEntry]:
     """Extrai entregas via find_tables() com matching de produtos."""
     entries = []
@@ -153,6 +168,12 @@ def _extract_deliveries_tables(pdf_path: str, sigla: str) -> List[DeliveryEntry]
                             prod_raw = normalize_text(str(val))
                             break
                 if not prod_raw or prod_raw.lower() in ("nan", "none"):
+                    continue
+
+                # FIX ESTRUTURAL — header capturado em produto: skip row.
+                # Acontece em PDFs onde find_tables pega header repetido em
+                # nova página como linha de dados.
+                if _is_header_literal_delivery(prod_raw):
                     continue
 
                 pm = fuzzy_match_produto(prod_raw)

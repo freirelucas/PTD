@@ -4,6 +4,46 @@
 # Inclui: merge multi-página, recuperação header-as-data,
 # resolução de referências numéricas de ações.
 
+_HEADER_LITERALS_RISK = {
+    "risco", "probabilidade", "impacto", "tratamento",
+    "acoes", "ações", "ação",
+    "probabilidade de ocorrencia", "probabilidade de ocorrência",
+    "nivel de impacto", "nível de impacto",
+    "id risco", "id do risco", "id",
+}
+
+
+def _is_header_literal(value: str) -> bool:
+    """True se valor é texto literal de header (capturado como dado)."""
+    if not value:
+        return False
+    norm = strip_accents(normalize_text(value).lower().strip())
+    return norm in _HEADER_LITERALS_RISK
+
+
+def _try_swap_prob_impacto(prob_raw: str, imp_raw: str,
+                           prob_m: Tuple[str, float],
+                           imp_m: Tuple[str, float]) -> Optional[Tuple[str, str, Tuple[str, float], Tuple[str, float]]]:
+    """Detecta column-shift prob↔impacto e retorna valores corrigidos.
+
+    Aciona se ambos casam mal nas escalas esperadas E casam bem se invertidos.
+    Conservador: requer score >= 0.85 nas escalas invertidas.
+
+    Retorna (prob_corrigido, imp_corrigido, prob_m_corrigido, imp_m_corrigido)
+    ou None se não houver evidência clara de shift.
+    """
+    if not prob_raw or not imp_raw:
+        return None
+    if prob_m[1] >= 0.70 and imp_m[1] >= 0.70:
+        return None  # ambos casam onde esperado — não precisa swap
+    alt_prob_in_imp = fuzzy_match_scale(prob_raw, IMPACTO_SCALE)
+    alt_imp_in_prob = fuzzy_match_scale(imp_raw, PROBABILIDADE_SCALE)
+    if alt_prob_in_imp[1] >= 0.85 and alt_imp_in_prob[1] >= 0.85:
+        # Swap evidente: prob_raw é valor de impacto, imp_raw é valor de prob
+        return (imp_raw, prob_raw, alt_imp_in_prob, alt_prob_in_imp)
+    return None
+
+
 def _map_risk_columns(df: pd.DataFrame) -> Dict[str, Optional[str]]:
     canonical = {"risco":None,"probabilidade":None,"impacto":None,"tratamento":None,"acoes":None}
     keyword_map = {
@@ -197,15 +237,43 @@ def extract_risk_table(pdf_path: str, sigla: str) -> Tuple[List[RiskEntry], List
                 if not risco and not prob and not imp:
                     continue
 
+                # FIX ESTRUTURAL 1 — Header capturado como dado: skip row inteira.
+                # Acontece em PDFs onde find_tables pega header repetido em
+                # página seguinte como primeira linha de dados (CENSIPAM, MJSP).
+                if (_is_header_literal(risco) or _is_header_literal(prob)
+                        or _is_header_literal(imp) or _is_header_literal(trat)):
+                    continue
+
                 prob_m = fuzzy_match_scale(prob, PROBABILIDADE_SCALE)
                 imp_m = fuzzy_match_scale(imp, IMPACTO_SCALE)
+
+                # FIX ESTRUTURAL 2 — Swap automático prob↔impacto.
+                # Detecta column-shift simétrico (CADE: "Médio"/"1-Alto" em
+                # prob, valor de prob em impacto). Conservador: só swap se
+                # ambos casam >=0.85 nas escalas INVERTIDAS.
+                swap_result = _try_swap_prob_impacto(prob, imp, prob_m, imp_m)
+                swap_applied = False
+                if swap_result:
+                    prob, imp, prob_m, imp_m = swap_result
+                    swap_applied = True
+
                 trat_m = fuzzy_match_scale(trat, TRATAMENTO_OPTIONS)
                 acoes_resolved = _resolve_action_refs(acoes, action_list)
 
                 review_reasons = []
-                if prob and prob_m[1] < 0.70: review_reasons.append(f"probabilidade: '{prob}'")
-                if imp and imp_m[1] < 0.70: review_reasons.append(f"impacto: '{imp}'")
+                if swap_applied:
+                    review_reasons.append("swap automático prob↔impacto (column-shift corrigido)")
+                if prob and prob_m[1] < 0.70: review_reasons.append(f"probabilidade: '{prob[:40]}'")
+                if imp and imp_m[1] < 0.70: review_reasons.append(f"impacto: '{imp[:40]}'")
                 if not risco: review_reasons.append("risco vazio")
+                # FIX ESTRUTURAL 3 — Column bleed em impacto/tratamento.
+                # Sinaliza vazamento sem corrigir (não dá pra recuperar dado
+                # original sem reprocessar PDF). Threshold: >100 chars E sem
+                # match canônico.
+                if imp and len(imp) > 100 and imp_m[1] < 0.70:
+                    review_reasons.append(f"impacto: bleed de coluna ({len(imp)} chars)")
+                if trat and len(trat) > 100 and trat_m[1] < 0.70:
+                    review_reasons.append(f"tratamento: bleed de coluna ({len(trat)} chars)")
 
                 confidence = ("high" if not review_reasons else
                               "medium" if len(review_reasons) <= 1 else "low")

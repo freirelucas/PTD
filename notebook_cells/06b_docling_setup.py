@@ -132,7 +132,13 @@ def _consolidate_multiline_cells(df: pd.DataFrame) -> pd.DataFrame:
                 v = str(df.iloc[ri, ci]).strip()
                 if v and v.lower() not in ("nan", "none"):
                     parts.append(v)
-            merged.append(" ".join(parts))
+            # Preserva semântica de bullets: se algum chunk começa com "-"
+            # ou contém ";", junta com " | " (mais legível downstream).
+            # Caso simples (texto contínuo): mantém join com espaço.
+            has_bullets = any(p.lstrip().startswith(("-", "•", "*")) for p in parts)
+            has_semicolons = any(";" in p for p in parts) and len(parts) > 1
+            sep = " | " if (has_bullets or has_semicolons) else " "
+            merged.append(sep.join(parts))
         consolidated_rows.append(merged)
 
     return pd.DataFrame(consolidated_rows, columns=df.columns)
