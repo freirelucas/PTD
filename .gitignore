@@ -35,7 +35,9 @@ Thumbs.db
 # Project — diretório de trabalho local
 ptd_output/
 ptd_test_output/
-.claude/
+# Ignore local Claude settings, but track committed skills (.claude/skills/)
+.claude/*
+!.claude/skills/
 run_pipeline.py
 pipeline_combined.py
 dedup_check.py
