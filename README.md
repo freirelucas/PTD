@@ -41,8 +41,12 @@ Sete grupos ministeriais publicam um único PDF para múltiplos órgãos (MD/MEC
 | `output/pdf_metadata.csv` | Metadados dos PDFs (datas, tamanhos) |
 | `output/figures/` | Visualizações estatísticas (PNG) |
 | `output/nota_tecnica_insumos.md` | Insumos para a nota técnica (estrutura, métricas, achados) |
+| `output/datapackage.json` | Descritor [Frictionless Data Package](https://specs.frictionlessdata.io/) (Table Schema dos CSVs) |
+| `output/metadata/` | Metadados em padrões abertos: schema.org/Dataset, DCAT-AP, SKOS, JSON Schema, PROV-O, payload CKAN |
 
 O dashboard interativo está em [`index.html`](index.html). Ele consome `output/data.js` dinamicamente — não há números hardcoded.
+
+Os descritores de dados abertos (Frictionless, schema.org, DCAT-AP, SKOS, JSON Schema, PROV-O) são gerados por [`build_metadata.py`](build_metadata.py) — ver [`METADATA.md`](METADATA.md).
 
 ## Como usar
 

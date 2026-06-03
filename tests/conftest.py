@@ -20,10 +20,15 @@ Dois modos de carregamento:
 """
 import ast
 import os
+import sys
 import pytest
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CELLS_DIR = os.path.join(REPO_ROOT, "notebook_cells")
+
+# Permite `import build_metadata` (script no topo do repo) a partir dos testes.
+if REPO_ROOT not in sys.path:
+    sys.path.insert(0, REPO_ROOT)
 
 # Cells carregados por inteiro (declarativos, exec seguro).
 _FULL_CELLS = ("02_config.py", "03_utils.py")
