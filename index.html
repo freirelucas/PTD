@@ -122,9 +122,9 @@ tr:hover td{background:var(--light)}
 .nav-card{background:var(--card);border-radius:var(--radius);padding:20px;box-shadow:0 1px 2px rgba(0,0,0,.06);cursor:pointer;transition:all .2s;border-top:4px solid var(--border);text-decoration:none;color:var(--text);display:block}
 .nav-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.12);transform:translateY(-2px);border-top-color:var(--primary)}
 .nav-card .nc-icon{font-size:1.8rem;margin-bottom:8px;display:block}
-.nav-card .nc-title{font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:4px}
+.nav-card .nc-title{display:block;font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:4px}
 .nav-card .nc-metric{font-size:1.5rem;font-weight:700;color:var(--primary);margin-bottom:4px}
-.nav-card .nc-desc{font-size:.82rem;color:var(--muted);line-height:1.5}
+.nav-card .nc-desc{display:block;font-size:.82rem;color:var(--muted);line-height:1.5}
 /* Mobile */
 @media(max-width:768px){
 .sidebar{width:60px}.sidebar h1 span,.sidebar nav a span:not(.icon),.sidebar .info{display:none}.sidebar h1{padding:16px 8px;font-size:.8rem;text-align:center}
@@ -374,6 +374,7 @@ tr:hover td{background:var(--light)}
     <a href="#visualizations" onclick="showSection('visualizations')"><span class="icon">&#9636;</span><span>Visualizações</span></a>
     <a href="#review" onclick="showSection('review')"><span class="icon">&#9873;</span><span>Revisão</span></a>
     <a href="#methodology" onclick="showSection('methodology')"><span class="icon">&#9998;</span><span>Nota Técnica</span></a>
+    <a href="#export" onclick="showSection('export')"><span class="icon">&#8681;</span><span>Exportar</span></a>
   </nav>
   <div class="info">Direito, D.; Silva, L.; Queiroz, S.<br>Ipea · 2026<br><br><em style="color:rgba(255,200,200,.7);font-size:.65rem">Documento preparatório. Não publicar ou citar sem consentimento dos autores.</em></div>
 </aside>
@@ -888,6 +889,68 @@ tr:hover td{background:var(--light)}
       </div>
     </div>
   </details>
+</div>
+
+<!-- ===== EXPORTAR / DADOS ABERTOS ===== -->
+<div id="export" class="section">
+  <h2>Exportar — Dados Abertos</h2>
+  <p class="desc">Todo o corpus é publicado em formatos abertos e auto-descritivos:
+  <strong><span data-stat="orgaos_total">91</span> órgãos</strong>,
+  <strong><span data-stat="entregas_total">4574</span> entregas</strong> e
+  <strong><span data-stat="riscos_total">619</span> riscos</strong>.
+  Licença <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank"><strong>CC-BY-4.0</strong></a>
+  — uso livre com atribuição (ver <a href="CITATION.cff" target="_blank">CITATION.cff</a>).
+  Documentação dos padrões em <a href="METADATA.md" target="_blank">METADATA.md</a>.</p>
+
+  <div class="chart-container">
+    <h3>Dados tabulares e estruturados</h3>
+    <div class="nav-cards">
+      <a class="nav-card" href="output/deliveries.csv" download><span class="nc-icon">&#128202;</span><span class="nc-title">Entregas — CSV</span><span class="nc-desc">Uma linha por entrega pactuada, com produto e eixo canônicos.</span></a>
+      <a class="nav-card" href="output/risks.csv" download><span class="nc-icon">&#9888;</span><span class="nc-title">Riscos — CSV</span><span class="nc-desc">Riscos das tabelas diretivas, normalizados contra as escalas SGD.</span></a>
+      <a class="nav-card" href="output/organs.csv" download><span class="nc-icon">&#127970;</span><span class="nc-title">Órgãos — CSV</span><span class="nc-desc">Órgãos signatários e URLs dos PDFs de origem.</span></a>
+      <a class="nav-card" href="output/deliveries.json"><span class="nc-icon">&#128230;</span><span class="nc-title">Entregas — JSON</span><span class="nc-desc">Mesmas entregas, aninhadas por órgão (metadata + data).</span></a>
+      <a class="nav-card" href="output/risks.json"><span class="nc-icon">&#128230;</span><span class="nc-title">Riscos — JSON</span><span class="nc-desc">Mesmos riscos, aninhados por órgão.</span></a>
+      <a class="nav-card" href="output/statistics_summary.json"><span class="nc-icon">&#128201;</span><span class="nc-title">Estatísticas — JSON</span><span class="nc-desc">Agregados: distribuições, top produtos, cobertura.</span></a>
+    </div>
+  </div>
+
+  <div class="chart-container" style="border-top:4px solid var(--primary)">
+    <h3>&#11088; Corpus harmonizado <small>(recomendado)</small></h3>
+    <p class="desc">Visão em que as colunas <code>*_normalizado</code> contêm <strong>apenas valores canônicos</strong>.
+    Artefatos de <em>column-bleed</em> e compostos são removidos da coluna normalizada (o valor cru permanece em <code>*_original</code>),
+    e toda alteração é auditável. O <code>datapackage.json</code> aqui usa <strong>enums estritos</strong> — validável com <code>frictionless validate</code>.</p>
+    <div class="nav-cards">
+      <a class="nav-card" href="output/harmonized/datapackage.json"><span class="nc-icon">&#128230;</span><span class="nc-title">Frictionless (estrito)</span><span class="nc-desc">Data Package harmonizado: CSVs + Table Schema com enums canônicos.</span></a>
+      <a class="nav-card" href="output/harmonized/harmonization_report.json"><span class="nc-icon">&#128221;</span><span class="nc-title">Relatório de harmonização</span><span class="nc-desc">Cada célula alterada: órgão, campo, valor original e motivo.</span></a>
+      <a class="nav-card" href="output/harmonized/README.md" target="_blank"><span class="nc-icon">&#128214;</span><span class="nc-title">Como funciona</span><span class="nc-desc">Regras de harmonização, reversibilidade e linhagem.</span></a>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <h3>Descritores em padrões abertos</h3>
+    <p class="desc">Metadados gerados por <code>build_metadata.py</code> que tornam o corpus validável e descobrível.</p>
+    <div class="nav-cards">
+      <a class="nav-card" href="output/datapackage.json"><span class="nc-icon">&#128203;</span><span class="nc-title">Frictionless Data Package</span><span class="nc-desc">Table Schema dos CSVs: tipos, chaves e integridade referencial.</span></a>
+      <a class="nav-card" href="output/metadata/schema_org_dataset.jsonld"><span class="nc-icon">&#128269;</span><span class="nc-title">schema.org/Dataset</span><span class="nc-desc">Descoberta pública (Google Dataset Search). Embutido nesta página.</span></a>
+      <a class="nav-card" href="output/metadata/dcat.jsonld"><span class="nc-icon">&#127963;</span><span class="nc-title">DCAT-AP + VCGE</span><span class="nc-desc">Interoperabilidade com o ecossistema gov.br / dados.gov.br.</span></a>
+      <a class="nav-card" href="output/metadata/vocabulary.skos.jsonld"><span class="nc-icon">&#128278;</span><span class="nc-title">Vocabulário SKOS</span><span class="nc-desc">Escalas e produtos canônicos como vocabulário linkável.</span></a>
+      <a class="nav-card" href="output/metadata/schemas/risks.schema.json"><span class="nc-icon">&#9989;</span><span class="nc-title">JSON Schema</span><span class="nc-desc">Contrato dos .json aninhados (riscos e entregas).</span></a>
+      <a class="nav-card" href="output/metadata/prov.jsonld"><span class="nc-icon">&#128279;</span><span class="nc-title">PROV-O</span><span class="nc-desc">Linhagem: portal SGD &rarr; pipeline &rarr; outputs (com sha256).</span></a>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <h3>Linhagem — da fonte ao dado aberto</h3>
+    <p class="desc">Cada artefato acima é o resultado de uma cadeia de transformações rastreável:</p>
+    <pre style="background:var(--dark);color:#e8eef4;padding:18px 20px;border-radius:var(--radius);overflow:auto;font-size:.82rem;line-height:1.6">PTDs (PDF, portal SGD/MGI)
+  &rarr; scraping de URLs                      <span style="color:#9ec5e8">(cell 04b)</span>
+  &rarr; download + dedup MD5                  <span style="color:#9ec5e8">(05b / 05c)</span>
+  &rarr; extração tabular PyMuPDF              <span style="color:#9ec5e8">(06b / 07b / 08b)</span>
+  &rarr; normalização + canonização (SGD)      <span style="color:#9ec5e8">(09b)</span>
+  &rarr; export CSV / JSON                     <span style="color:#9ec5e8">output/</span>
+  &rarr; descritores de dados abertos          <span style="color:#9ec5e8">build_metadata.py</span>
+  &rarr; <strong style="color:#fff">harmonização (estritamente canônica)</strong>  <span style="color:#9ec5e8">build_corpus.py &rarr; output/harmonized/</span></pre>
+  </div>
 </div>
 
 </main>

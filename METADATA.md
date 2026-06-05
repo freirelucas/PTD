@@ -52,17 +52,56 @@ separada:
 
 ## Nota de qualidade: o que a validação revelou
 
-Aplicar enums canônicos via Table Schema **expôs ~43 linhas** com valores não
-canônicos vazados para `*_normalizado` em riscos (artefatos de *column-bleed*:
-fragmentos como `de de Ocor-`, `1-Alto`, ou listas de ações inteiras). **Todas
-já estão marcadas com `needs_review=True`** — confirmando que a fila de revisão
-captura esses casos.
+Aplicar enums canônicos via Table Schema **expôs 43 valores** não canônicos
+vazados para `*_normalizado` em riscos — artefatos de *column-bleed* (fragmentos
+como `de de Ocor-`, `1-Alto`, listas de ações inteiras) e compostos
+(`transferir; transferir`). Distribuição: 6 em probabilidade, 15 em impacto,
+22 em tratamento.
 
-Por isso, os campos de escala de risco (`probabilidade_normalizada`,
-`impacto_normalizado`, `tratamento_normalizado`) documentam a escala canônica na
-descrição **sem** enum rígido: o contrato canônico vale para o subconjunto
-`needs_review=False`. Os campos limpos (`eixo_normalizado`, `tabela_tipo`,
-`*_method`, `extraction_confidence`) mantêm enum rígido.
+Achado relevante: probabilidade e impacto já estavam todos `needs_review=True`,
+**mas 17 dos 22 de `tratamento_normalizado` haviam escapado ao `needs_review`** —
+uma lacuna da fila de revisão que só apareceu sob a validação por enum.
+
+Por isso, no datapackage de `output/`, os campos de escala de risco
+(`probabilidade_normalizada`, `impacto_normalizado`, `tratamento_normalizado`)
+documentam a escala canônica na descrição **sem** enum rígido. Os campos limpos
+(`eixo_normalizado`, `tabela_tipo`, `*_method`, `extraction_confidence`) mantêm
+enum rígido. O contrato estritamente canônico é cumprido pela **versão
+harmonizada** (abaixo).
+
+## Corpus harmonizado (`output/harmonized/`)
+
+Gerado por [`build_corpus.py`](build_corpus.py) (`make corpus`) a partir de
+`output/*.csv`. Produz uma visão em que as colunas `*_normalizado` são
+**estritamente canônicas** — resolvendo os 43 valores acima de forma reversível:
+
+| Motivo | Ação na coluna normalizada | Nº |
+|---|---|---|
+| `column_bleed` | branqueada (valor cru fica em `*_original`) | 38 |
+| `multiplos_valores` (ex. `mitigar; transferir`) | branqueada + anotada | 4 |
+| `deduplicado` (ex. `transferir; transferir`) | colapsada para o token único | 1 |
+
+Garantias:
+- **Reversível** — o valor cru permanece em `*_original`; toda alteração está em
+  `harmonization_report.json` (órgão, campo, valor original, motivo).
+- **Re-sinalização** — linhas branqueadas por bleed/múltiplos recebem
+  `needs_review=True` e uma anotação `harmonizacao(...)` em `review_reason`,
+  fechando a lacuna de `tratamento`.
+- **Contrato estrito** — `output/harmonized/datapackage.json` usa enums
+  **estritos** e passa em `frictionless validate` (o de `output/` não passaria).
+
+### Linhagem (cadeia de transformações)
+
+```
+PTDs (PDF, portal SGD/MGI)
+  → scraping (04b) → download+dedup (05b/05c) → extração PyMuPDF (06b/07b/08b)
+  → normalização+canonização SGD (09b) → export CSV/JSON (10b) ......... output/
+  → descritores de dados abertos (build_metadata.py) .... output/datapackage.json, metadata/
+  → harmonização estrita (build_corpus.py) .............. output/harmonized/
+```
+
+A mesma linhagem está formalizada em `output/metadata/prov.jsonld` (PROV-O) e
+visível na aba **Exportar** do dashboard.
 
 ## Publicar no dados.gov.br (CKAN)
 

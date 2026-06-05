@@ -43,10 +43,11 @@ Sete grupos ministeriais publicam um único PDF para múltiplos órgãos (MD/MEC
 | `output/nota_tecnica_insumos.md` | Insumos para a nota técnica (estrutura, métricas, achados) |
 | `output/datapackage.json` | Descritor [Frictionless Data Package](https://specs.frictionlessdata.io/) (Table Schema dos CSVs) |
 | `output/metadata/` | Metadados em padrões abertos: schema.org/Dataset, DCAT-AP, SKOS, JSON Schema, PROV-O, payload CKAN |
+| `output/harmonized/` | Corpus harmonizado: colunas `*_normalizado` estritamente canônicas + datapackage com enums estritos + relatório auditável |
 
-O dashboard interativo está em [`index.html`](index.html). Ele consome `output/data.js` dinamicamente — não há números hardcoded.
+O dashboard interativo está em [`index.html`](index.html). Ele consome `output/data.js` dinamicamente — não há números hardcoded. A aba **Exportar** reúne todos os formatos (CSV, JSON, pacote harmonizado e descritores) para download.
 
-Os descritores de dados abertos (Frictionless, schema.org, DCAT-AP, SKOS, JSON Schema, PROV-O) são gerados por [`build_metadata.py`](build_metadata.py) — ver [`METADATA.md`](METADATA.md).
+Os descritores de dados abertos (Frictionless, schema.org, DCAT-AP, SKOS, JSON Schema, PROV-O) são gerados por [`build_metadata.py`](build_metadata.py); a versão harmonizada do corpus por [`build_corpus.py`](build_corpus.py). Documentação e linhagem em [`METADATA.md`](METADATA.md).
 
 ## Como usar
 
@@ -180,6 +181,17 @@ diff <(sort ptd_output/output/risks.csv) <(sort output/risks.csv)
 ```
 
 Os PDFs são cacheados em `ptd_output/pdfs/`; o segundo run reutiliza-os e termina em ~3-4 minutos.
+
+### Metadados e corpus harmonizado
+
+Os descritores de dados abertos e a visão harmonizada são derivados de `output/` (não exigem rodar o pipeline):
+
+```bash
+make metadata   # output/datapackage.json + output/metadata/  (build_metadata.py)
+make corpus     # output/harmonized/                          (build_corpus.py)
+```
+
+Ambos têm modo `--check` (usado no `pytest`) que falha se os artefatos commitados estão defasados. Detalhes e a cadeia de transformações em [`METADATA.md`](METADATA.md).
 
 ## Citação
 

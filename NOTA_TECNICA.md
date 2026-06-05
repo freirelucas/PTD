@@ -125,6 +125,27 @@ Valores atuais (snapshot maio/2026): 97.6% / 97.1% / 94.3% — folga confortáve
 
 > TODO: justificar a escolha de 0.85/0.70 como cutoffs. Mencionar sensitivity analysis como follow-up (Seção 6).
 
+### 4.5 Publicação em padrões abertos e harmonização
+
+Os artefatos de `output/` são publicados com descritores em padrões abertos,
+gerados de forma reprodutível por `build_metadata.py` a partir de `CITATION.cff`,
+`manifest.json` e os próprios CSVs: **Frictionless Data Package** (Table Schema
+com tipos, chaves e integridade referencial), **schema.org/Dataset** (descoberta
+via Google Dataset Search), **DCAT-AP** com tema **VCGE**, vocabulário **SKOS**
+(escalas e produtos canônicos), **JSON Schema** e **PROV-O** (linhagem). A
+validação roda no `pytest` (`frictionless` + `jsonschema` + checagem de
+consistência).
+
+Aplicar enums canônicos na validação revelou um resíduo de 43 valores não
+canônicos nas colunas `*_normalizado` de riscos (column-bleed e compostos), dos
+quais 17 (em `tratamento`) não haviam sido capturados pela fila de revisão. A
+**visão harmonizada** (`output/harmonized/`, via `build_corpus.py`) resolve esse
+resíduo de forma reversível: as colunas normalizadas ficam estritamente
+canônicas, o valor cru permanece em `*_original`, cada alteração é registrada em
+`harmonization_report.json`, e as linhas afetadas são re-sinalizadas. É uma
+camada de *post-processing* sobre os dados publicados — não substitui a correção
+na origem (Seção 6.2), que depende de re-execução do pipeline.
+
 ---
 
 ## 5. Reprodutibilidade
