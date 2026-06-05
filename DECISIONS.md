@@ -179,3 +179,36 @@ CODEVASF, antes escaneado e ilegível, virou texto e contribuiu com +20 riscos.
 Os branches `claude/scrape-gov-signatories-tnVQa` e `claude/investigate-pdf-features-UiBwv`
 serviram como ambientes de desenvolvimento iniciais. Todos os fixes foram portados para
 `main`. Os branches foram deletados — nenhuma informação perdida.
+
+## 5. Padrões de dados abertos e harmonização do corpus
+
+### 5.1 Descritores em padrões abertos (`build_metadata.py`)
+
+O corpus passou a ser publicado com descritores derivados de forma reprodutível
+de `CITATION.cff` + `manifest.json` + `output/*.csv` (sem duplicação manual):
+Frictionless Data Package (`output/datapackage.json`, com Table Schema, chaves e
+integridade referencial `orgao_sigla → organs.sigla`), schema.org/Dataset (também
+embutido no `<head>` do `index.html` para o Google Dataset Search), DCAT-AP com
+tema VCGE, vocabulário SKOS (escalas/produtos canônicos como `prefLabel`, variantes
+como `altLabel`), JSON Schema dos `.json` aninhados, PROV-O e payload CKAN para o
+dados.gov.br. Validação (consistência + `frictionless` + `jsonschema`) roda no
+`pytest`. Detalhes em [`METADATA.md`](METADATA.md).
+
+### 5.2 Achado: lacuna de `needs_review` em `tratamento`
+
+Aplicar enums canônicos via Table Schema expôs 43 valores não canônicos nas
+colunas `*_normalizado` de riscos (column-bleed + compostos). Probabilidade (6) e
+impacto (15) já estavam `needs_review=True`, **mas 17 dos 22 de
+`tratamento_normalizado` não estavam** — a fila de revisão não os capturava. O
+sinal só apareceu sob a validação por enum.
+
+### 5.3 Harmonização reversível (`build_corpus.py`)
+
+Para fechar essa lacuna sem re-rodar o pipeline (que exige Colab + PDFs), foi
+adicionada uma harmonização pós-processamento sobre `output/`, gerando
+`output/harmonized/`: as colunas `*_normalizado` ficam estritamente canônicas
+(bleed e múltiplos branqueados, compostos deduplicados), com o valor cru preservado
+em `*_original`, cada alteração registrada em `harmonization_report.json`, e as
+linhas afetadas re-sinalizadas com `needs_review=True`. O datapackage harmonizado
+usa enums **estritos** e passa em `frictionless validate`. A harmonização é
+reversível e auditável — nenhuma informação é perdida.
