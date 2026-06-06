@@ -20,3 +20,5 @@ jobs:
           pip install -r requirements.txt -r requirements-dev.txt
       - name: Run pytest
         run: pytest -v tests/
+      - name: Smoke test (offline)
+        run: python smoke_test.py
