@@ -38,8 +38,12 @@ _FULL_CELLS = ("02_config.py", "03_utils.py")
 _DEFS_CELLS = (
     "04b_scraping.py",
     "06b_docling_setup.py",
+    "07b_extract_risks.py",
     "08b_extract_deliveries.py",
+    "09b_standardization.py",
+    "10b_export.py",
     "11cb_dashboard_data.py",
+    "12b_iteration.py",
 )
 
 
