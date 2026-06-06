@@ -357,7 +357,7 @@ tr:hover td{background:var(--light)}
 
 <div class="preview-banner">
   <span class="tag">Versão preliminar</span>
-  <span><strong>Documento preparatório.</strong> Dados extraídos automaticamente dos PTDs vigentes no portal SGD/MGI; <strong>~38 entries têm bugs de extração tabular conhecidos</strong> (DNOCS, MMULHERES, CADE) e <strong>11 PDFs não foram extraídos</strong> (escaneados sem OCR: AGU, ANVISA, CODEVASF, FBN, FCP, FUNAI, INCRA, ITI, MAPA, MCOM, PREVIC). Não publicar ou citar sem consentimento dos autores.</span>
+  <span><strong>Documento preparatório.</strong> Dados extraídos automaticamente dos PTDs vigentes no portal SGD/MGI; <strong>~38 entries têm bugs de extração tabular conhecidos</strong> (DNOCS, MMULHERES, CADE) e <strong><span data-scanned-count>10</span> diretivos escaneados sem OCR</strong> não tiveram tabela de risco extraída (<span data-scanned-list>AGU, ANVISA, FBN, FCP, FUNAI, INCRA, ITI, MAPA, MCOM, PREVIC</span>). Não publicar ou citar sem consentimento dos autores.</span>
   <span style="margin-left:auto;white-space:nowrap"><a href="https://github.com/freirelucas/PTD/issues/new?title=Erro%20de%20extra%C3%A7%C3%A3o&body=%C3%93rg%C3%A3o%3A%20%0AField%3A%20%0AValor%20observado%3A%20%0AValor%20esperado%3A%20" target="_blank">Reportar erro &rarr;</a></span>
 </div>
 
@@ -716,8 +716,8 @@ tr:hover td{background:var(--light)}
 
     <h3>5. Cobertura e Limitações</h3>
     <ul>
-      <li><strong>Entregas</strong>: extração híbrida (find_tables + fallback texto), deduplicação por hash de arquivo. Órgãos que compartilham mesmo PTD ministerial contados uma vez. 12 órgãos com PDFs escaneados não processados</li>
-      <li><strong>Riscos</strong>: extração multi-página com merge de headers + recuperação de header-as-data + resolução de ações numéricas. Desduplicados por hash. 15 PDFs escaneados não processados</li>
+      <li><strong>Entregas</strong>: extração híbrida (find_tables + fallback texto), deduplicação por hash de arquivo. Órgãos que compartilham mesmo PTD ministerial contados uma vez.</li>
+      <li><strong>Riscos</strong>: extração multi-página com merge de headers + recuperação de header-as-data + resolução de ações numéricas. Desduplicados por hash. <span data-scanned-count>10</span> diretivos escaneados sem OCR não produziram tabela de risco extraível.</li>
       <li><strong>OCR pendente</strong>: a extração via Docling (IBM) com OCR habilitado no Google Colab pode recuperar os órgãos com PDFs escaneados</li>
       <li><strong>Texto original preservado</strong>: todas as classificações mantêm o campo original do PDF ao lado da versão normalizada</li>
     </ul>
@@ -779,7 +779,7 @@ tr:hover td{background:var(--light)}
 
     <h4 style="color:var(--dark);margin-top:16px">7.6 Limitações conhecidas e não resolvidas</h4>
     <ul>
-      <li><strong>12 órgãos com PDFs escaneados</strong> (AGU, CODEVASF, FUNAI, FUNDACENTRO, INCRA, ITI, MCOM, MIDR, SG-PR, SUDAM, SUDECO, SUDENE) não foram processados. Requer OCR — viável com Docling no Colab mas não executado na versão atual do corpus.</li>
+      <li><strong><span data-scanned-count>10</span> órgãos com diretivo escaneado</strong> (<span data-scanned-list>AGU, ANVISA, FBN, FCP, FUNAI, INCRA, ITI, MAPA, MCOM, PREVIC</span>) não tiveram a tabela de risco extraída. Requer OCR — viável com Docling no Colab mas não executado na versão atual do corpus.</li>
       <li><strong>Tabelas com formatação irregular</strong>: alguns PDFs (especialmente MMULHERES, com 86+ linhas) podem ter perdas parciais em tabelas muito longas que cruzam 3+ páginas.</li>
       <li><strong>Classificação autodeclarada de riscos</strong>: probabilidade e impacto são definidos pelo próprio órgão, sem validação externa. Possíveis vieses de sub ou superestimação.</li>
       <li><strong>Snapshot temporal</strong>: o corpus reflete os PTDs vigentes na data de coleta (abril/2026). Repactuações subsequentes não são capturadas automaticamente.</li>
@@ -2028,7 +2028,8 @@ function initVisualizations(){
 
   // === Fornecedores ===
   const fornRisks=allRisk.filter(r=>{const t=(r.risco_texto||'').toLowerCase();return t.includes('fornecedor')||t.includes('contrat')||t.includes('terceiriz');});
-  const fornOrgs=_expandRiskOrgs(new Set(fornRisks.map(r=>r.orgao_sigla)));
+  const fornOwners=new Set(fornRisks.map(r=>r.orgao_sigla)); // órgãos com diretivo próprio
+  const fornOrgs=_expandRiskOrgs(fornOwners);               // + membros de grupos ministeriais
   const fornCrit=fornRisks.filter(r=>['provável','muito provável','praticamente certo'].includes(r.probabilidade_normalizada)&&['alto','muito alto'].includes(r.impacto_normalizado));
   const fornTrat={};fornRisks.forEach(r=>{(r.tratamento_normalizado||'').split(';').forEach(t=>{t=t.trim().toLowerCase();if(t&&t.length<20)fornTrat[t]=(fornTrat[t]||0)+1;});});
 
@@ -2037,7 +2038,7 @@ function initVisualizations(){
     datasets:[{data:[fornCrit.length,fornRisks.length-fornCrit.length],backgroundColor:['#C0392B','#4D8AC9'],borderWidth:2,borderColor:'#fff'}]
   },options:{aspectRatio:1.5,cutout:'50%',plugins:{legend:{position:'bottom'}}}});
 
-  document.getElementById('fornecedor-detail').innerHTML=`<div class="insight-card" style="border-left-color:#C0392B;cursor:default"><h4>Dependência de Fornecedores</h4><div class="summary"><span class="num" style="color:#C0392B">${fornRisks.length}</span> riscos em <strong>${fornOrgs.size}</strong> órgãos mencionam dependência de fornecedores — o risco mais transversal do governo digital.<br><br><strong>${fornCrit.length}</strong> estão na zona crítica (${(fornCrit.length/Math.max(fornRisks.length,1)*100).toFixed(0)}%). O tratamento predominante é <strong>mitigar</strong> (${fornTrat['mitigar']||0}x), embora a literatura recomende <em>transferir</em> ou <em>compartilhar</em> esse tipo de risco.<br><br><strong>Paradoxo</strong>: órgãos que mais digitalizam são os mais dependentes de fornecedores externos para executar a transformação — criando um ciclo de vulnerabilidade estrutural.</div></div>`;
+  document.getElementById('fornecedor-detail').innerHTML=`<div class="insight-card" style="border-left-color:#C0392B;cursor:default"><h4>Dependência de Fornecedores</h4><div class="summary"><span class="num" style="color:#C0392B">${fornRisks.length}</span> riscos em <strong>${fornOrgs.size}</strong> órgãos mencionam dependência de fornecedores — o risco mais transversal do governo digital.<br><span style="font-size:.82em;color:#666">Os ${fornRisks.length} riscos vêm de ${fornOwners.size} órgãos com documento diretivo próprio; chega a ${fornOrgs.size} ao incluir os demais membros dos grupos ministeriais que compartilham o mesmo PTD.</span><br><br><strong>${fornCrit.length}</strong> estão na zona crítica (${(fornCrit.length/Math.max(fornRisks.length,1)*100).toFixed(0)}%). O tratamento predominante é <strong>mitigar</strong> (${fornTrat['mitigar']||0}x), embora a literatura recomende <em>transferir</em> ou <em>compartilhar</em> esse tipo de risco.<br><br><strong>Paradoxo</strong>: órgãos que mais digitalizam são os mais dependentes de fornecedores externos para executar a transformação — criando um ciclo de vulnerabilidade estrutural.</div></div>`;
 }
 
 // ==================== INIT ====================
@@ -2064,8 +2065,18 @@ function populateDataStats(){
     }
   });
 }
+// Órgãos cujo diretivo escaneado não produziu tabela de risco extraível.
+// Derivado de PTD_ORGANS (status_riscos==='no_risk_table') — fonte única,
+// nunca desatualiza. Preenche [data-scanned-count] (contagem) e
+// [data-scanned-list] (siglas) em qualquer lugar do documento.
+function populateScannedOrgs(){
+  const scanned=PTD_ORGANS.filter(o=>o.status_riscos==='no_risk_table').map(o=>o.sigla).sort();
+  document.querySelectorAll('[data-scanned-count]').forEach(el=>{el.textContent=scanned.length;});
+  document.querySelectorAll('[data-scanned-list]').forEach(el=>{el.textContent=scanned.join(', ');});
+}
 document.addEventListener('DOMContentLoaded',()=>{
   populateDataStats();
+  populateScannedOrgs();
   const h=location.hash.replace('#','');
   showSection(h||'overview');
 });
