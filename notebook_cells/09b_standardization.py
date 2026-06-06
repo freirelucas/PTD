@@ -272,6 +272,15 @@ def standardize_risks(entries: List[RiskEntry]) -> Tuple[List[RiskEntry], Dict]:
         else:
             stats["tratamento"]["unmatched"] += 1
 
+        # Tratamento composto/múltiplo (ex.: "mitigar; transferir"): o template SGD
+        # prevê UMA opção por risco. Múltiplas partes indicam bleed de coluna ou
+        # escolha ambígua e merecem revisão humana — mesmo quando cada parte casa
+        # bem (worst_score alto). Não altera tratamento_normalizado.
+        if "; " in (entry.tratamento_normalizado or ""):
+            entry.needs_review = True
+            review_reasons.append(
+                f"tratamento múltiplo/composto ('{entry.tratamento_normalizado[:40]}')")
+
         # --- Set confidence and review flags ---
         scores = [p_score, i_score, t_score]
         min_score = min(scores) if scores else 0.0
@@ -286,7 +295,10 @@ def standardize_risks(entries: List[RiskEntry]) -> Tuple[List[RiskEntry], Dict]:
             entry.extraction_confidence = "low"
             entry.needs_review = True
 
+        # Qualquer motivo de revisão registrado implica needs_review — fecha a
+        # lacuna em que um review_reason era anexado sem sinalizar a linha.
         if review_reasons:
+            entry.needs_review = True
             existing = entry.review_reason or ""
             new_reasons = "; ".join(review_reasons)
             entry.review_reason = f"{existing}; {new_reasons}".strip("; ") if existing else new_reasons

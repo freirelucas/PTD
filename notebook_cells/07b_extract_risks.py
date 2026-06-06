@@ -467,7 +467,11 @@ def _audit_risk_entries(entries: List[RiskEntry]) -> Dict[str, int]:
          [("impacto", IMPACTO_SCALE)]),
         ("impacto_original", IMPACTO_SCALE, "impacto",
          [("probabilidade", PROBABILIDADE_SCALE)]),
-        ("tratamento_original", TRATAMENTO_OPTIONS, "tratamento", []),
+        # Simetria: detecta tratamento que na verdade é valor de outra escala
+        # (column-shift). Seguro — _detect_column_shift retorna cedo quando o
+        # valor já casa bem em TRATAMENTO_OPTIONS.
+        ("tratamento_original", TRATAMENTO_OPTIONS, "tratamento",
+         [("probabilidade", PROBABILIDADE_SCALE), ("impacto", IMPACTO_SCALE)]),
     ]
     for e in entries:
         reasons = []
