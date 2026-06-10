@@ -35,6 +35,8 @@ Thumbs.db
 # Project — diretório de trabalho local
 ptd_output/
 ptd_test_output/
+# Bundle distribuível gerado por `make corpus-zip` (artefato, não fonte)
+/corpus_*.zip
 # Ignore local Claude settings, but track committed skills (.claude/skills/)
 .claude/*
 !.claude/skills/
