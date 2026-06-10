@@ -134,6 +134,30 @@ def standardize_deliveries(entries: List[DeliveryEntry]) -> Tuple[List[DeliveryE
     return entries, vocab_report
 
 
+def filter_fragment_deliveries(
+        entries: List[DeliveryEntry]) -> Tuple[List[DeliveryEntry], List[DeliveryEntry]]:
+    """Descarta fragmentos de extração: 'Outros' sem descrição substantiva.
+
+    Células quebradas por página/linha geram registros onde o produto não
+    casa com o catálogo (vira 'Outros') e servico_acao fica vazio ou com um
+    resto da célula anterior (ex.: 'Meu RPPS', 'rência'). Projetos Especiais
+    legítimos têm sempre descrição substantiva — o corte em <10 chars
+    preserva o texto livre validado pela curadoria (2026-06).
+
+    Retorna (mantidas, descartadas). Aplicar APÓS standardize_deliveries,
+    que é quem define produto_normalizado.
+    """
+    kept: List[DeliveryEntry] = []
+    dropped: List[DeliveryEntry] = []
+    for e in entries:
+        sa = (e.servico_acao or "").strip()
+        if e.produto_normalizado == "Outros" and len(sa) < 10:
+            dropped.append(e)
+        else:
+            kept.append(e)
+    return kept, dropped
+
+
 def standardize_risks(entries: List[RiskEntry]) -> Tuple[List[RiskEntry], Dict]:
     """
     Normaliza probabilidade, impacto e tratamento de cada RiskEntry.
@@ -350,6 +374,14 @@ if all_deliveries:
             print(f"    - '{p}'")
         if len(vocab_report["unmatched_produtos"]) > 20:
             print(f"    ... e mais {len(vocab_report['unmatched_produtos']) - 20}")
+
+    # Remoção de fragmentos de célula (depende de produto_normalizado)
+    all_deliveries, _fragmentos = filter_fragment_deliveries(all_deliveries)
+    if _fragmentos:
+        _frag_orgaos = Counter(e.orgao_sigla for e in _fragmentos)
+        print(f"\n  Fragmentos descartados ('Outros' + servico_acao <10 chars): "
+              f"{len(_fragmentos)}")
+        print("    " + ", ".join(f"{o} ({n})" for o, n in _frag_orgaos.most_common()))
 else:
     print("\nNenhuma entrega para padronizar.")
     vocab_report = {
