@@ -85,9 +85,11 @@ Sete grupos ministeriais publicam **um único PDF** para múltiplos órgãos: MD
 01 setup → 02 config → 03 utils → 04 scraping →
 05 download → 05c dedup MD5 → 06 PyMuPDF setup →
 07 extract risks → 08 extract deliveries →
-09 standardize (canonização) → 10 export CSV/JSON →
-11 statistics + dashboard data + review queue →
-13 validation report
+09 standardize (canonização + filtro de fragmentos) →
+10 export CSV/JSON →
+11 statistics + dashboard data + review queue +
+   insumos da NT (11e, gerador reproduzível) →
+13 validation report → 13c bundle de publicação
 ```
 
 Detalhes em [`DECISIONS.md`](DECISIONS.md).
@@ -108,7 +110,7 @@ Cardinalidade do bucket de método é **fixa em 5** — não cresce com adição
 
 ### 4.3 Cross-validation produto ↔ eixo
 
-Para entregas, se o produto canonizado existe em `PRODUTO_TO_EIXO` (mapa produto→eixo definido pela SGD), o eixo é **forçado** ao canônico desse produto, mesmo que a coluna eixo original diferisse. Cerca de 58% das entregas têm `needs_review=True` por essa correção — flag indica "eixo ajustado por cross-validation", não "entrega errada".
+Para entregas, se o produto canonizado existe em `PRODUTO_TO_EIXO` (mapa produto→eixo definido pela SGD), o eixo é **forçado** ao canônico desse produto, mesmo que a coluna eixo original diferisse. No snapshot 2026-05, 2.209 entregas (48,3%) carregam esse flag (needs_review total: 58,6%) — o flag indica "eixo ajustado por cross-validation", não "entrega errada". Em 49,8% dos registros a coluna de eixo nem existe no PDF e o eixo é derivado inteiramente do produto.
 
 > TODO: explicar por que aceitamos essa intervenção (confiabilidade do mapeamento SGD) e qual o risco (perda de eixos não-padrão usados por órgãos específicos).
 
@@ -156,20 +158,44 @@ na origem (Seção 6.2), que depende de re-execução do pipeline.
 - `output/validation_report.json` registra MD5 de todos os CSVs/JSONs publicáveis a cada execução.
 - `manifest.json` registra o commit hash do pipeline (`pipeline_commit`).
 - Re-execução em máquina diferente com mesmo commit + mesmos PDFs no Drive produz mesmo output.
+- Os **insumos da Nota Técnica** (`output/nota_tecnica_insumos.md`) são gerados
+  pela célula `11e` a partir dos CSVs, sem timestamp embutido (carimbo vem do
+  manifest) — regenerar sobre o mesmo snapshot produz bytes idênticos, e o
+  teste `test_insumos_commitado_consistente_com_csvs` falha se o arquivo
+  commitado divergir dos dados (proíbe edição manual de números).
+- O CI valida a cadeia inteira: notebook ≡ células, checksums de `output/`,
+  derivados (`build_metadata.py --check` / `build_corpus.py --check`) e a
+  paridade dos insumos.
 
 ### 5.2 Como reproduzir
 
-```bash
-# Opção A: Google Colab (recomendado)
-# 1. Abrir o link 1-clique no README → ptd_scraper.ipynb
-# 2. Run All → coleta tudo no MyDrive/PTD_Scraper/
-# 3. Cell 13c gera output_TIMESTAMP.zip pra download
+O projeto adota **uma única fonte de código** (`notebook_cells/*.py`); o
+notebook Colab é **gerado** dela (`build_notebook.py`) e o CI bloqueia
+qualquer divergência. As três vias abaixo executam exatamente o mesmo
+pipeline:
 
-# Opção B: Local
+```bash
+# Via A: Google Colab — transparência científica (auditável no navegador,
+# sem instalar nada; 1 clique no badge do README → Run All).
+# PDFs persistem em MyDrive/PTD_Scraper/; cell 13c gera o bundle.
+
+# Via B: Headless local — mesma execução, fora do Jupyter
 git clone https://github.com/freirelucas/PTD
 cd PTD
 pip install -r requirements.txt
-jupyter execute ptd_scraper.ipynb
+python run_pipeline.py --sync    # roda as células em sequência, aplica o
+                                 # gate de qualidade e regenera output/ +
+                                 # derivados + index.html
+
+# Via C: CI — o workflow monthly-refresh.yml executa a Via B num runner
+# do GitHub todo mês e abre PR com o diff de dados para revisão humana.
+```
+
+Métricas derivadas também são reproduzíveis isoladamente, sem rede:
+
+```bash
+python notebook_cells/11e_nt_insumos.py output   # insumos da NT ← CSVs
+python build_metadata.py && python build_corpus.py  # descritores e harmonizado
 ```
 
 ### 5.3 Versionamento
@@ -184,13 +210,33 @@ jupyter execute ptd_scraper.ipynb
 
 ### 6.1 Extração tabular incompleta
 
-**11 PDFs não foram extraídos** por estarem escaneados sem OCR ou usarem template não reconhecido: AGU, ANVISA, CODEVASF, FBN, FCP, FUNAI, INCRA, ITI, MAPA, MCOM, PREVIC. Equivale a ~12% dos diretivos. Esses órgãos aparecem no dashboard com tag `⚠ extração falhou (riscos)`.
+As lacunas diferem por dimensão (snapshot 2026-05, `coverage_summary.csv`):
+
+- **Entregas — 12 órgãos sem dados extraíveis** (PDF escaneado ou layout
+  não-padrão): AGU, CODEVASF, FUNAI, FUNDACENTRO, INCRA, ITI, MCOM, MIDR,
+  SGPR, SUDAM, SUDECO, SUDENE. Cobertura: 79/91 (86,8%).
+- **Riscos — 10 órgãos com Documento Diretivo sem tabela de riscos
+  extraível**: AGU, ANVISA, FBN, FCP, FUNAI, INCRA, ITI, MAPA, MCOM, PREVIC;
+  **5 sem Documento Diretivo publicado**: ABIN, ANTT, DNIT, MDIC, MT.
+  Cobertura: 76/91 (83,5%).
+
+Os casos aparecem no dashboard com a tag `⚠ extração falhou`. Note que as
+listas não coincidem (ANVISA tem o máximo de entregas do corpus e nenhuma
+tabela de riscos; CODEVASF tem riscos e nenhuma entrega).
 
 ### 6.2 Tail de canonização não-resolvido
 
-**~38 entries têm bugs de extração tabular conhecidos** (column-shift, header capturado, fragmentação por quebra de página) concentrados em DNOCS, MMULHERES, CADE. Visíveis na tab "Revisão" do dashboard, classificados como `method=unmatched`.
+**27 riscos (4,4%) sem probabilidade∧impacto canônicos** (column-shift,
+header capturado, fragmentação por quebra de página): DNOCS (6), MPOR (5),
+CVM (4), CADE (3), CENSIPAM (3), MJSP (2), IBAMA (1), IBGE (1),
+MMULHERES (1), PRF (1). Tratamento fora da escala em 17 registros. Visíveis
+na tab "Revisão" do dashboard.
 
-**~1262 entries têm canonização via `fuzzy_high`** — score alto mas não exato. Em geral são variações de redação ou pequenos truncamentos; ferramenta da tab "Revisão" → "Curadoria" permite converter em aliases determinísticos.
+**531 entregas (11,6%) têm produto canonizado via `fuzzy_high`** — score
+alto mas não exato, em geral truncamentos de célula do PDF. Os 12 aliases
+determinísticos adicionados em jun/2026 (`02_config.py`) cobrem ~430 desses
+casos a partir do próximo run; a ferramenta da tab "Revisão" → "Curadoria"
+permite converter os demais.
 
 ### 6.3 Tabela_tipo especulativa
 
@@ -253,6 +299,12 @@ Detalhes em [`DECISIONS.md`](DECISIONS.md):
 | `output/coverage_summary.csv` | Cobertura por sigla |
 | `output/pdf_metadata.csv` | Tamanho dos PDFs |
 | `output/vocabulary_mapping.csv` | Mapa original → canônico aprendido na execução |
+| `output/review_queue.csv` | Fila de revisão completa (todas as linhas sinalizadas) |
+| `output/statistics_summary.json` | Estatísticas agregadas |
+| `output/data.js` + `output/figures/` | Dados do dashboard e visualizações PNG |
+| `output/nota_tecnica_insumos.md` | Insumos da NT — **gerado** pela célula `11e` (números com definição e proveniência) |
+| `output/datapackage.json` + `output/metadata/` | Descritores em padrões abertos (`build_metadata.py`) |
+| `output/harmonized/` | Visão estritamente canônica (`build_corpus.py`) |
 
 Dashboard interativo: `https://freirelucas.github.io/PTD`
 
