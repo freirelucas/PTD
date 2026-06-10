@@ -40,7 +40,7 @@ Sete grupos ministeriais publicam um único PDF para múltiplos órgãos (MD/MEC
 | `output/manifest.json` | Manifesto da execução: commit do pipeline, contagens de PDFs e hash SHA-256 dos artefatos exportados |
 | `output/pdf_metadata.csv` | Metadados dos PDFs (datas, tamanhos) |
 | `output/figures/` | Visualizações estatísticas (PNG) |
-| `output/nota_tecnica_insumos.md` | Insumos para a nota técnica (estrutura, métricas, achados) |
+| `output/nota_tecnica_insumos.md` | Insumos para a nota técnica — **gerado** pela célula `11e_nt_insumos.py` (métricas com definição explícita e carimbo de snapshot; não editar à mão) |
 | `output/datapackage.json` | Descritor [Frictionless Data Package](https://specs.frictionlessdata.io/) (Table Schema dos CSVs) |
 | `output/metadata/` | Metadados em padrões abertos: schema.org/Dataset, DCAT-AP, SKOS, JSON Schema, PROV-O, payload CKAN |
 | `output/harmonized/` | Corpus harmonizado: colunas `*_normalizado` estritamente canônicas + datapackage com enums estritos + relatório auditável |
@@ -51,7 +51,23 @@ Os descritores de dados abertos (Frictionless, schema.org, DCAT-AP, SKOS, JSON S
 
 ## Como usar
 
-### Google Colab (recomendado)
+**Princípio do projeto — transparência e reprodutibilidade científicas.**
+Há uma única fonte de código (`notebook_cells/*.py`); o notebook Colab é
+**gerado** dela por `build_notebook.py`, e o CI bloqueia qualquer divergência
+(`notebook-consistency.yml`). Todo artefato publicado é derivável da fonte:
+os CSVs pelo pipeline, os insumos da Nota Técnica pela célula `11e`
+(números com definição e proveniência — editar à mão quebra um teste), os
+descritores por `build_metadata.py`/`build_corpus.py`, e o
+`validation_report.json` registra checksums de tudo. As três vias abaixo
+executam exatamente o mesmo pipeline:
+
+| Via | Para quê |
+|---|---|
+| **Colab** (badge acima) | Auditoria e reprodução por qualquer pessoa, no navegador, sem instalar nada |
+| **`run_pipeline.py`** | Mesma execução, headless, na sua máquina |
+| **CI mensal** (`monthly-refresh.yml`) | Mesma execução, agendada, com PR para revisão humana |
+
+### Google Colab
 
 Clique no badge **Open in Colab** acima e execute as células sequencialmente. O ambiente detecta o Colab automaticamente e instala as dependências. Os PDFs são persistidos no Google Drive (`MyDrive/PTD_Scraper/`) para reutilização entre execuções.
 
