@@ -59,18 +59,33 @@ Clique no badge **Open in Colab** acima e execute as células sequencialmente. O
 
 Após qualquer Colab run produtiva, os outputs ficam no Drive — não voltam pro `main` automaticamente. Para que o dashboard em [freirelucas.github.io/PTD](https://freirelucas.github.io/PTD/) reflita os dados novos:
 
-1. **Execute o notebook até o fim**. A célula final (`13c_publish_helper.py`) empacota todos os 14 artefatos esperados em `output_TIMESTAMP.zip` e oferece download automático.
+1. **Execute o notebook até o fim**. A célula final (`13c_publish_helper.py`) valida a presença dos 16 artefatos essenciais (falha listando os ausentes) e empacota **todo o conteúdo de `output/`** — inclusive `figures/` — em `output_TIMESTAMP.zip`, com download automático.
 2. **No clone local do repo**:
    ```bash
    cd PTD
-   unzip -o ~/Downloads/output_TIMESTAMP.zip   # substitui output/ inteira
-   git add output/
+   unzip -o ~/Downloads/output_TIMESTAMP.zip   # sobrescreve os arquivos de output/
+   python build_metadata.py                    # regenera output/datapackage.json,
+                                               # output/metadata/ e o schema.org de index.html
+   python build_corpus.py                      # regenera output/harmonized/
+   git add output/ index.html
    git commit -m "data: refresh output/ — run YYYY-MM-DD"
    git push origin main
    ```
 3. GitHub Pages reflete em ~1 minuto.
 
-**Por que substituir o `output/` inteiro**: o `validation_report.json` carrega `output_checksums_md5` de todos os arquivos. O CI (`notebook-consistency.yml`) valida que esses hashes batem — commits parciais são detectados e bloqueados.
+**Por que o conjunto completo**: o `validation_report.json` carrega `output_checksums_md5` dos artefatos principais e o CI (`notebook-consistency.yml`) valida que esses hashes batem — commits parciais são detectados e bloqueados. Além disso, o `pytest` exige que `output/datapackage.json`, `output/metadata/` e `output/harmonized/` estejam em dia com os CSVs (`build_metadata.py --check` / `build_corpus.py --check`) — por isso os dois scripts fazem parte do fluxo.
+
+**Notas**:
+- `output/datapackage.json`, `output/metadata/` e `output/harmonized/` **não são gerados pelo notebook** — são derivados localmente pelos scripts acima a partir de `output/*.csv` + `manifest.json`.
+- `unzip -o` sobrescreve, mas **não remove** arquivos que deixaram de ser gerados (e o Drive acumula artefatos de runs antigos). Confira `git status` após o unzip e remova órfãos evidentes — ou use `python run_pipeline.py --sync`, que faz a substituição completa.
+
+### Atualização mensal automatizada
+
+O workflow [`monthly-refresh.yml`](.github/workflows/monthly-refresh.yml) roda o pipeline completo todo dia 2 do mês (06:17 UTC) num runner do GitHub, via `run_pipeline.py --sync`, e abre um PR `data-refresh/YYYY-MM` com o `output/` renovado + `index.html`. O PR só é aberto se os dados (CSVs sem timestamp) mudaram de fato, e passa pelos mesmos checks de CI (testes, consistência do notebook, checksums) antes do merge — o diff de dados ganha um gate de revisão humana.
+
+- Para os checks rodarem automaticamente no PR, configure o secret `DATA_REFRESH_PAT` (fine-grained PAT com Contents + Pull requests RW); o `GITHUB_TOKEN` padrão não dispara workflows em PRs criados por ele mesmo.
+- Se o gov.br bloquear os IPs do runner, o job falha no preflight com mensagem clara — o fallback é o fluxo manual via Colab acima, que continua suportado.
+- Execução manual: aba Actions → "monthly data refresh" → Run workflow.
 
 ### Execução local
 
@@ -79,6 +94,13 @@ git clone https://github.com/freirelucas/PTD.git
 cd PTD
 pip install -r requirements.txt
 jupyter notebook ptd_scraper.ipynb
+```
+
+Para rodar o pipeline inteiro sem Jupyter (headless, mesmo fluxo do workflow mensal):
+
+```bash
+python run_pipeline.py          # executa as células em sequência; gate de qualidade no fim
+python run_pipeline.py --sync   # idem + substitui output/ do repo e regenera derivados
 ```
 
 Os PDFs ficam em `ptd_output/pdfs/{diretivo,entregas}/` e os outputs em `ptd_output/output/`.

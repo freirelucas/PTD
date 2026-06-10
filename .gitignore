@@ -38,7 +38,3 @@ ptd_test_output/
 # Ignore local Claude settings, but track committed skills (.claude/skills/)
 .claude/*
 !.claude/skills/
-run_pipeline.py
-pipeline_combined.py
-dedup_check.py
-/tmp/pipeline.log
