@@ -43,6 +43,7 @@ _DEFS_CELLS = (
     "09b_standardization.py",
     "10b_export.py",
     "11cb_dashboard_data.py",
+    "11e_nt_insumos.py",
     "12b_iteration.py",
 )
 

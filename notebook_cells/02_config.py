@@ -157,6 +157,28 @@ PRODUTO_ALIASES: Dict[str, str] = {
     # Variantes ortográficas observadas em PDFs gov.br 2024-2026
     "Autoavaliação, análise de lacunas e planejamento do PPSI":
         "Auto-avaliação, análise de lacunas e planejamento do PPSI",
+    # Truncamentos de célula PDF (largura fixa corta o fim do texto) —
+    # observados no snapshot 2026-05; cobrem ~430 dos 531 fuzzy_high.
+    "Integração à ferramenta de avaliação da":
+        "Integração à ferramenta de avaliação da satisfação dos usuários",
+    "Integração à base de dados (outros)":
+        "Integração à base de dados",
+    "Auto-avaliação, análise de lacunas e pla":
+        "Auto-avaliação, análise de lacunas e planejamento do PPSI",
+    "Migração de Serviço para Plataforma":
+        "Migração de Serviço para Plataforma Unificada",
+    "Disponibilização em Acesso D":
+        "Disponibilização em Acesso Digital",
+    "Implantação da Área Logada":
+        "Implantação da Área Logada Gov.Br",
+    # Artefato de quebra de linha: caractere da célula vizinha colado no
+    # início do produto (normalize_text não remove letra solta inicial).
+    "eIntegração ao Login Único":
+        "Integração ao Login Único",
+    "eDisponibilização em Acesso Digital":
+        "Disponibilização em Acesso Digital",
+    "eIntegração à ferramenta de avaliação da":
+        "Integração à ferramenta de avaliação da satisfação dos usuários",
     # Legacy / EGD 2020 mappings
     "Digitalização de Serviço":
         "Disponibilização em Acesso Digital",
@@ -191,6 +213,14 @@ EIXO_ALIASES: Dict[str, str] = {
     # Typo observado em PDF do PGFN
     "Governaça e Gestão de Dados":
         "Governança e Gestão de Dados",
+    # Artefatos de extração PDF: início truncado ('Ser' cortado) e/ou
+    # caractere da célula vizinha colado (quebra de linha).
+    "iviços Digitais e Melhoria da Qualidade":
+        "Serviços Digitais e Melhoria da Qualidade",
+    "iServiços Digitais e Melhoria da Qualidade":
+        "Serviços Digitais e Melhoria da Qualidade",
+    "pSegurança e Privacidade":
+        "Segurança e Privacidade",
 }
 
 # Lista flat de todos os produtos (canônicos + legados)

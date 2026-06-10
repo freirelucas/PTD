@@ -1,134 +1,85 @@
 # Insumos para Nota Técnica IPEA
 # Corpus dos Planos de Transformação Digital: coleta, padronização e análise
 
-## Formato padrão de Nota Técnica do IPEA
+<!-- GERADO por notebook_cells/11e_nt_insumos.py — não editar à mão.
+     Para atualizar: python notebook_cells/11e_nt_insumos.py [output_dir]
+     Snapshot: 2026-05-12 · commit do pipeline: 0d14ecd4d7e12a68a5c95d298fa6bc4da245e5f0 -->
 
-### Elementos de capa
-- Logotipo Ipea
-- Série: "NOTA TÉCNICA"
-- Número: Nº XX (Diretoria — ex: Diest)
-- Título completo
-- Autores com filiação
-- Mês/Ano (ex: Abril de 2026)
+## 0. PROVENIÊNCIA E DEFINIÇÕES
 
-### Estrutura típica (10-30 páginas)
-1. SINOPSE (parágrafo único, ~150 palavras)
-2. INTRODUÇÃO
-3. Seções numeradas de desenvolvimento (2-5 seções)
-4. CONSIDERAÇÕES FINAIS
-5. REFERÊNCIAS
-6. Apêndices (opcional)
+Todos os números deste documento são computados de `output/deliveries.csv`,
+`output/risks.csv` e `output/coverage_summary.csv` pelo gerador
+`notebook_cells/11e_nt_insumos.py`. Em caso de divergência com qualquer outra
+fonte (rascunhos, handouts, versões anteriores desta NT), **estes valores
+prevalecem** para o snapshot indicado acima.
 
-### Formatação
-- Fonte: Times New Roman 12pt (corpo), 10pt (notas de rodapé)
-- Espaçamento: 1,5
-- Margens: 3cm (sup/esq), 2cm (inf/dir)
-- Citações ABNT
-- Notas de rodapé numeradas
-- Tabelas e figuras numeradas e com fonte
+Definições usadas:
 
----
-
-## ESTRUTURA PROPOSTA PARA ESTA NT
-
-**NOTA TÉCNICA Nº XX/2026/Diest**
-
-**Título:** Corpus dos Planos de Transformação Digital: coleta automatizada, padronização e análise dos PTDs de 91 órgãos federais
-
-**Autores:** Denise Direito, Lucas Silva, Sérgio Queiroz
+- **Canônico (prob./impacto)**: valor normalizado pertence à escala SGD de 5
+  níveis. **Canônico (tratamento)**: valor é uma das 4 opções, ou composição
+  delas separada por ";" (ex.: "mitigar; transferir").
+- **Zona crítica**: probabilidade ≥ provável E impacto ≥ alto (matriz 3×2 do
+  canto superior). **Severidade máxima**: praticamente certo × muito alto.
+- **Sem ações de tratamento**: campo `acoes_tratamento` vazio.
+- **Texto repetido**: `risco_texto` normalizado idêntico em ≥3 órgãos distintos.
+- **Match determinístico**: `produto_method` ∈ {exact, alias};
+  **fuzzy**: `produto_method` ∈ {fuzzy_high (≥0,85), fuzzy_low (≥0,70)}.
+- **Dependência de fornecedor**: substring "fornecedor" em `risco_texto`.
+- **Risco de pessoal**: `risco_texto` contém pessoal/rotatividade/equipe/
+  servidor/capacita.
 
 ---
 
-### SINOPSE
+### SINOPSE (números para o parágrafo)
 
-Esta nota técnica apresenta a construção e análise de um corpus abrangente dos Planos de Transformação Digital (PTDs) vigentes de 91 órgãos da administração pública federal brasileira. Os PTDs, instituídos pelo Decreto nº 12.198/2024 no âmbito da Estratégia Federal de Governo Digital (EFGD) 2024-2027, foram coletados automaticamente do portal gov.br, com extração estruturada de tabelas de entregas pactuadas (4.574 registros) e gestão de riscos (619 registros). Órgãos que compartilham um mesmo PTD ministerial são desduplicados por hash MD5, evitando dupla contagem. O corpus resultante permite análises transversais inéditas sobre o estado da transformação digital no governo federal, revelando padrões de concentração setorial, lacunas de governança de dados e características sistêmicas da gestão de riscos.
-
----
-
-### 1 INTRODUÇÃO
-
-**Insumos para redigir:**
-
-- O Decreto nº 12.198/2024 institui a EFGD 2024-2027, estruturada em 6 princípios, 16 objetivos e 100 iniciativas
-- A Portaria SGD/MGI nº 6.618/2024 regulamenta a elaboração dos PTDs
-- 91 órgãos da administração federal direta e indireta publicaram PTDs vigentes no portal gov.br
-- Os PTDs são compostos por Documento Diretivo (contexto + riscos) e Anexo de Entregas (pactuações)
-- O template evoluiu ao longo do tempo: EGD 2020-2022 → transição v2.x → EFGD 2024 v4.0
-- Não existe, até o momento, análise transversal sistematizada desses documentos
-- **Gap de pesquisa:** os PTDs são publicados individualmente como PDFs; não há base consolidada que permita comparação entre órgãos
+- 91 órgãos signatários · entregas: 4.574 registros de 79 órgãos · riscos: 619 registros de 76 órgãos
+- Instituição: Decreto nº 12.198/2024 (EFGD 2024-2027); regulamentação dos
+  PTDs: Portaria SGD/MGI nº 6.618/2024
 
 ---
 
-### 2 METODOLOGIA
+### 2 METODOLOGIA — métricas
 
 **2.1 Coleta dos dados**
 
-| Etapa | Método | Resultado |
-|-------|--------|-----------|
-| Scraping da página gov.br | BeautifulSoup4 + requests | 91 órgãos, 177 URLs de PDFs |
-| Download dos PDFs | requests com rate-limiting (1.5s), verificação %PDF | 86 Diretivos + 91 Entregas = 177 PDFs |
-| Extração de tabelas de entregas | PyMuPDF `find_tables()` + matching fuzzy de produtos | 4.574 registros de 79 órgãos (57 próprios + 22 compartilhados) |
-| Extração de tabelas de riscos | PyMuPDF `find_tables()` com merge multi-página + recuperação header-as-data + detecção de tabelas órfãs + consolidação multi-linha + resolução de ações numéricas | 619 registros de 76 órgãos (51 próprios + 25 compartilhados) |
-| Desduplicação | Hash MD5 por arquivo PDF (mesmos PDFs de órgãos ministeriais compartilhados) | 177 PDFs → 98 únicos |
-| Resolução de ações numéricas | Parsing da lista "Referencial para ações de tratamento" | 35 órgãos com referências resolvidas |
+| Etapa | Resultado |
+|-------|-----------|
+| Scraping da página gov.br | 91 órgãos signatários |
+| Download dos PDFs | 61 Diretivos + 65 Entregas = 126 PDFs |
+| Desduplicação MD5 (grupos ministeriais) | 58 PDFs únicos |
+| Extração de entregas | 4.574 registros de 79 órgãos (57 próprios + 22 compartilhados) |
+| Extração de riscos | 619 registros de 76 órgãos (51 próprios + 25 compartilhados) |
 
-- 12 órgãos não processados (PDFs escaneados como imagem, sem camada de texto)
-- Taxa de cobertura: 87% para entregas, 83% para riscos
+- Cobertura de entregas: 86,8% (79/91);
+  12 órgãos sem dados extraíveis: AGU, CODEVASF, FUNAI, FUNDACENTRO, INCRA, ITI, MCOM, MIDR, SGPR, SUDAM, SUDECO, SUDENE
+- Cobertura de riscos: 83,5% (76/91);
+  10 com PDF Diretivo sem tabela de riscos extraível,
+  5 sem PDF Diretivo publicado
 
 **2.2 Padronização de vocabulário**
 
-- Template v4.0: 44 produtos canônicos em 5 eixos operacionais
-- 10 produtos legados adicionados (v1.x/v2.x: PPSI, Integração à base de dados, etc.)
-- 19 aliases de produto para variações de texto (truncamentos, acentuação)
-- 10 aliases de eixo para nomenclaturas da EGD 2020-2022
-- Matching em 4 camadas: alias determinístico → exato accent-insensitive → fuzzy (SequenceMatcher ≥0.85) → UNMATCHED
-- Campos preservados: produto_original + produto_normalizado (texto livre + canônico)
-- Match exato: 90.7% | Fuzzy: 9.3% (truncamentos do PDF)
+- Catálogo: 44 produtos canônicos (template v4.0, 5 eixos) +
+  11 legados (PPSI, Integração à base de dados, "Outros", etc.)
+- Aliases determinísticos: 29 de produto ·
+  14 de eixo
+- Resultado do matching de produto (4.574 registros):
+  exato 3.358 (73,4%) ·
+  alias 685 (15,0%) ·
+  fuzzy ≥0,85 531 (11,6%) ·
+  UNMATCHED 0
+- Determinístico (exato+alias): 88,4%
+  — nota: rascunhos anteriores citavam "90,7% exato"; esse valor não é
+  reprodutível a partir de `produto_method` e não deve ser usado
+- Eixo declarado ausente no PDF em 2.276
+  registros (49,8%) — nesses casos o
+  eixo é derivado do produto via cross-validation
 
-**2.4 Tratamento de órgãos agrupados**
+**2.6 Estrutura do corpus (schemas reais)**
 
-Sete grupos ministeriais publicam um único PTD para múltiplos órgãos. Os registros são desduplicados por hash MD5 do arquivo PDF, e a cobertura é expandida para todos os membros do grupo:
-
-| Grupo (cabeça) | Órgão com dados | Membros compartilhados |
-|----------------|-----------------|------------------------|
-| MD | CENSIPAM | MD, CEX, CM, COMAER, FOSORIO, HFA |
-| MEC | CAPES | MEC, EBSERH, FNDE, FUNDAJ, IBC, INEP, INES |
-| MF | MF, PGFN | RFB, STN |
-| MMA | IBAMA | MMA, ICMBIO, JBRJ, SFB |
-| MT | ANTT | MT, DNIT |
-| MDA | CONAB | MDA |
-| MIDR | — (sem dados) | CODEVASF, SUDAM, SUDECO, SUDENE |
-
-Regra: as entregas e riscos extraídos do PDF são registrados uma vez sob o órgão com dados próprios (`status=ok`). Os demais membros recebem `status=compartilhado` e são incluídos nas contagens de cobertura (ex: "79 órgãos com entregas" = 57 próprios + 22 compartilhados), mas sem duplicar os registros no corpus.
-
-**2.5 Desafios de extração e qualidade dos dados**
-
-O extrator PyMuPDF `find_tables()` apresentou cinco desafios técnicos específicos, cada um com tratamento programático:
-
-1. **Tabelas multi-página**: `find_tables()` trata cada página como tabela independente. O merge é feito via rastreamento de `col_order` e `risk_ncols` — quando uma tabela na página N+1 tem a mesma largura (número de colunas) que a tabela da página N e contém dados compatíveis (detecção por `_is_risk_data()`), as linhas são concatenadas à tabela principal.
-
-2. **Header-as-data**: em ~17 PDFs, `find_tables()` interpreta a primeira linha de dados como cabeçalho do DataFrame. A detecção é feita por `_cols_are_data()` (verifica se os supostos cabeçalhos contêm valores compatíveis com riscos ou produtos) e a linha é recuperada como dado.
-
-3. **Mapeamento posicional**: tabelas de continuação multi-página perdem os headers originais — os nomes de coluna são os valores da primeira linha. Um `pos_map` (dicionário posição→campo) permite acesso direto por índice: `{servico: 0, produto: 1, eixo: 2, data: 4}`.
-
-4. **Resolução de ações numéricas**: 35 órgãos referenciam ações de tratamento como "1, 2, 9" ao invés do texto completo, remetendo a uma lista "Referencial para ações de tratamento" incluída no PDF. O extrator faz parsing dessa lista e resolve as referências numéricas para o texto integral.
-
-5. **Templates não-padrão e colunas deslocadas**: 36 riscos (6%) permanecem com probabilidade e/ou impacto fora da escala canônica. Causas tratadas: (a) headers genéricos `Col0|Col1|...` recuperados via detecção de tabela órfã (IBGE, ANS, FUNARTE, MPO, MPS, MTUR); (b) tabelas onde cada risco ocupa múltiplas linhas, consolidadas heuristicamente (MMULHERES); (c) cabeçalhos parciais como `Col0|Probabilidade de|Col2|Opção de` resolvidos por fallback posicional (CENSIPAM); (d) escalas alternativas semanticamente mapeadas — ANTAQ (Baixa/Média/Alta → níveis 2/3/4), SUSEP (numérica 1-4 → raro/pouco provável/provável/muito provável), CADE (1-Alto → alto). Os 583 canônicos (94%) têm probabilidade e impacto na escala SGD. Os 36 residuais são genuinamente fragmentados (DNOCS com colunas trocadas, MPOR/CVM com células vazias, MJSP com texto rasgado).
-
-6. **Produto "Outros"**: 140 entregas que não correspondem a nenhum dos 44 produtos canônicos do template v4.0 são classificadas como produto "Outros" no eixo Projetos Especiais. Correspondem a projetos institucionais específicos de cada órgão (ex: "Modernização do SIAFI" no MF).
-
-**2.6 Estrutura do corpus**
-
-Entregas (`deliveries.csv` — 4.574 linhas × 9 colunas):
-- orgao_sigla, servico_acao, produto_original, produto_normalizado, produto_score
-- eixo_original, eixo_normalizado, data_pactuada, confidence
-
-Riscos (`risks.csv` — 619 linhas × 11 colunas):
-- orgao_sigla, id_risco, risco_texto
-- probabilidade_original, probabilidade_normalizada
-- impacto_original, impacto_normalizado
-- tratamento_original, tratamento_normalizado
-- acoes_original, acoes_resolvidas
+- `deliveries.csv` — 4.574 linhas × 19 colunas:
+  orgao_sigla, tabela_tipo, servico_acao, produto_original, produto_normalizado, produto_score, produto_method, eixo_original, eixo_normalizado, eixo_score, eixo_method, area_responsavel, data_pactuada, data_entrega, pactuado, justificativa, extraction_confidence, needs_review, review_reason
+- `risks.csv` — 619 linhas × 18 colunas:
+  orgao_sigla, risco_texto, probabilidade_original, probabilidade_normalizada, probabilidade_score, probabilidade_method, impacto_original, impacto_normalizado, impacto_score, impacto_method, tratamento_original, tratamento_normalizado, tratamento_score, tratamento_method, acoes_tratamento, extraction_confidence, needs_review, review_reason
 
 ---
 
@@ -136,134 +87,90 @@ Riscos (`risks.csv` — 619 linhas × 11 colunas):
 
 **3.1 Panorama das entregas**
 
-- 4.574 entregas pactuadas por 79 órgãos (57 com dados próprios + 22 compartilhando PTD ministerial)
+- 4.574 entregas pactuadas por 79 órgãos
+  (57 próprios + 22 via PTD ministerial)
 - Distribuição por eixo:
   - Serviços Digitais e Melhoria da Qualidade: 2.418 (52,9%)
   - Unificação de Canais Digitais: 1.241 (27,1%)
   - Segurança e Privacidade: 644 (14,1%)
   - Projetos Especiais: 148 (3,2%)
   - Governança e Gestão de Dados: 123 (2,7%)
-- 20 dos 44 produtos canônicos aparecem no corpus; 24 têm zero pactuações
+- Top 2 eixos concentram 3.659 entregas (80,0%)
+- 16 dos 44 produtos canônicos têm ≥1
+  pactuação; 28 têm zero. Produtos legados com pactuação:
+  - Implementação do PPSI: 343 (7,5%)
+  - Auto-avaliação, análise de lacunas e planejamento do PPSI: 300 (6,6%)
+  - Integração à base de dados: 109 (2,4%)
+  - Interoperabilidade de Sistemas: 14 (0,3%)
+  - Outros: 148 (3,2%)
 - Top 3 produtos: Integração ao Login Único (694), Integração à ferramenta de avaliação da satisfação dos usuários (685), Evolução do Serviço (677)
-- 2 produtos legados concentram 453 entregas (9,9%): PPSI (343), Integração à base de dados (110)
-- Média: 80,2 entregas/órgão | Mediana: 57 | Máx: ANVISA (348) | Mín: CONAB (7)
-- 148 entregas em "Projetos Especiais" (produto Outros): projetos de órgão sem correspondência no catálogo canônico
+- Média: 80,2 entregas/órgão · Mediana: 57 ·
+  Máx: ANVISA (348) · Mín: CONAB (7)
+- Concentração: os 11 maiores órgãos (20%) detêm
+  49,3% das entregas
+- Produto "Outros" (Projetos Especiais): 148 registros
+  (3,2%) — texto livre validado pela curadoria;
+  29 deles são fragmentos (servico_acao <10 chars) que o
+  pipeline passa a descartar no próximo run (filter_fragment_deliveries)
+- 27,6% das datas pactuadas parseáveis
+  (2.903) concentram-se em dezembro
+- needs_review: 2.679 (58,6%),
+  dos quais 2.209 são o flag informativo de cross-validation
+  produto↔eixo (não indicam erro)
 
 **3.2 Panorama dos riscos**
 
-- 619 riscos mapeados por 76 órgãos (51 com dados próprios + 25 compartilhando PTD ministerial)
-- Distribuição de probabilidade (canônica, 599/619): provável (244), pouco provável (234), muito provável (63), raro (37), praticamente certo (21)
-- Distribuição de impacto (canônica, 597/619): alto (262), médio (155), muito alto (134), baixo (46)
-- Tratamento (canônico, 582/619): mitigar (84%), aceitar (10%), transferir (4%), eliminar (2%)
-- 141 riscos na zona crítica (probabilidade ≥ provável × impacto ≥ alto)
-- 10 riscos na severidade máxima (praticamente certo × muito alto): ANA, ANATEL, CAPES, INSS, MESP, MME, MPO, MRE (2), SGPR
-- 30% dos riscos sem ações de tratamento detalhadas
-- 32% dos textos de risco reproduzem fraseamento do referencial padrão (texto idêntico em ≥3 órgãos)
-- 12 órgãos usam exclusivamente "mitigar" como estratégia
-- 583 riscos (94%) totalmente canônicos em probabilidade × impacto. Os 36 restantes (6%) refletem casos genuinamente fragmentados ou colunas trocadas em PDFs específicos (DNOCS, MPOR, CVM, CADE, MMULHERES) — marcados como `needs_review`
+- 619 riscos mapeados por 76 órgãos
+  (51 próprios + 25 via PTD ministerial)
+- Probabilidade canônica: 604/619
+  (97,6%) — raro (37), pouco provável (243), provável (234), muito provável (68), praticamente certo (22)
+- Impacto canônico: 601/619
+  (97,1%) — baixo (46), médio (155), alto (262), muito alto (138)
+- Probabilidade E impacto canônicos: 592
+  (95,6%); 27 residuais: CADE (3), CENSIPAM (3), CVM (4), DNOCS (6), IBAMA (1), IBGE (1), MJSP (2), MMULHERES (1), MPOR (5), PRF (1)
+- Tratamento canônico: 584/619 (94,3%),
+  sendo 579 simples + 5
+  compostos; 18 vazios ·
+  17 fora da escala
+- Distribuição (simples): mitigar 487 (84,1% das simples; 78,7% do total) · aceitar 60 (10,4% das simples; 9,7% do total) · transferir 19 (3,3% das simples; 3,1% do total) · eliminar 13 (2,2% das simples; 2,1% do total)
+- Zona crítica: 218 riscos (35,2%)
+- Severidade máxima: 13 riscos — ANA, ANATEL, CAPES, INSS, MDHC, MESP, MME, MPO (2), MRE (2), SGPR (2)
+- Sem ações de tratamento (campo vazio): 26
+  (4,2%)
+- Texto repetido em ≥3 órgãos: 311
+  (50,2%) — proxy de reprodução do referencial SGD
+- 22 órgãos usam exclusivamente "mitigar":
+  ANAC, ANATEL, ANM, ANS, BCB, CGU, CNPQ, CONAB, CVM, FIOCRUZ, FUNDACENTRO, INPI, IPHAN, MESP, MF, MJSP, MMULHERES, MPI, MRE, MTUR, PF, PRF
+- needs_review: 86 (13,9%)
 
-**3.3 Achados transversais**
+**3.3 Achados transversais (quantitativos)**
 
-**Governança de Dados como eixo residual:**
-- 20 dos 44 produtos canônicos pertencem ao eixo Governança e Gestão de Dados
-- Apenas 1 produto deste eixo aparece nas pactuações (Integração à base de dados, com 110 entregas)
-- 19 produtos — LGPD, PDTIC, dados abertos, interoperabilidade, inventário de dados — têm zero pactuações
-- Quando órgãos executam ações de governança (ex: adequação à LGPD), registram sob outros produtos (PPSI)
-- Ressalva: 12 órgãos com PDFs escaneados não foram processados; confirmação definitiva requer OCR
-
-**Tradução incompleta dos princípios da EFGD:**
-- O Decreto 12.198/2024 estabelece 6 princípios; o template PTD operacionaliza 5 eixos
-- Os princípios V (transparente/participativo) e VI (eficiente/sustentável) carecem de expressão operacional
-- Na prática, 3 princípios sustentam as pactuações: cidadão (I), integrado (II), seguro (IV)
-
-**Gestão de riscos como formalidade:**
-- 52% dos riscos reproduzem fraseamento do referencial padrão (texto idêntico em ≥3 órgãos)
-- 23% não têm ações de tratamento detalhadas
-- 24% dos órgãos não mencionam risco de pessoal/TI — o mais frequente no corpus
-- Dependência de fornecedores é o risco mais transversal: 23 riscos em 22 órgãos próprios (33 com compartilhados)
-
-**Concentração e homogeneidade:**
-- PPSI é o produto mais difundido (91% dos órgãos próprios), seguido de Login Único (81%)
-- Nenhum produto é universal (presente em todos os órgãos)
-- Top 2 eixos concentram 79,9% das entregas
-
-**3.4 Análises computadas no dashboard**
-
-O dashboard interativo (disponível em https://freirelucas.github.io/PTD/) implementa as seguintes análises, todas calculadas dinamicamente a partir do corpus:
-
-*Entregas — distribuição e concentração:*
-
-- **Curva de Lorenz e concentração**: mede a desigualdade na distribuição de entregas entre órgãos. Os 20% de órgãos com maior volume concentram mais da metade das entregas pactuadas.
-- **Cronologia assinatura × entrega**: cruza a data de criação do PDF (proxy da assinatura do PTD) com as datas pactuadas de entrega. Revela o lag entre adesão formal e execução planejada, e a concentração de entregas nos meses finais da vigência.
-- **Diversidade de produtos por órgão**: conta o número de produtos distintos pactuados por cada órgão. Revela que a maioria dos órgãos opera num subconjunto reduzido dos 44 produtos canônicos.
-- **Heatmap órgão × eixo**: matriz dos 30 maiores órgãos mostrando a concentração setorial de entregas por eixo estratégico.
-
-*Riscos — padrões e qualidade:*
-
-- **Matriz 5×5 interativa**: probabilidade × impacto com ações de mitigação agregadas por célula. Ao clicar numa célula, exibe as ações de tratamento dos riscos naquela combinação, com órgãos afetados (incluindo membros de grupos compartilhados).
-- **Bigramas**: frequência de pares de palavras consecutivas nos textos de risco. Mede a originalidade da redação vs reprodução do template padrão da SGD.
-- **Dependência de fornecedores**: 23 riscos em 22 órgãos próprios (36 com membros compartilhados) mencionam dependência de fornecedores — o risco mais transversal. 15 estão na zona crítica (probabilidade ≥ provável × impacto ≥ alto). O tratamento predominante é "mitigar" (32×), embora a literatura recomende "transferir" ou "compartilhar" para riscos de dependência externa.
-- **Risco de pessoal/TI**: rotatividade, indisponibilidade de equipes e dependência de fornecedores são mais frequentes que riscos orçamentários. 24% dos órgãos com riscos mapeados não mencionam riscos de pessoal.
-
-*Comparação entre órgãos:*
-
-- **Similaridade de Jaccard**: coeficiente calculado a partir dos perfis de produtos pactuados (conjunto de produtos distintos por órgão). Órgãos de um mesmo grupo ministerial apresentam similaridade 100% (mesmo PTD). Permite identificar clusters de órgãos com estratégias convergentes.
-- **Comparação multi-órgão**: seleção de até 3 órgãos para comparação direta de catálogos de produtos, com tabela de sobreposição.
-
-*Tecnologia e inovação:*
-
-- **Detecção por keyword**: busca de termos em textos livres de entregas (serviço/ação + produto original) para categorias: Plataforma Gov.br (login único, design system, pagtesouro), IA e chatbot, Acessibilidade (VLibras), Interoperabilidade, LGPD/Privacidade, Mobile/App, Dados/Analytics.
-- **Resultado**: "Governo como Plataforma" domina o portfólio digital federal. IA/automação é incipiente — nenhum órgão pactuou RPA, analytics avançado ou machine learning como produto formal.
+- **Governança de Dados residual**: dos 20 produtos
+  canônicos do eixo, com pactuação: nenhum. Os
+  123 registros
+  do eixo vêm de produtos LEGADOS (Integração à base de dados,
+  Interoperabilidade de Sistemas)
+- **Difusão**: PPSI presente em 52/57
+  órgãos próprios (91%),
+  Login Único em 46/57
+  (81%); nenhum produto é
+  universal
+- **Dependência de fornecedor**: 28 riscos em 26
+  órgãos próprios; 16 na zona crítica
+- **Risco de pessoal/TI**: 10 de
+  51 órgãos com riscos
+  (20%) não mencionam
+  risco de pessoal (ver definição na seção 0)
+- **Gap EFGD**: o Decreto 12.198/2024 estabelece 6 princípios; o template
+  operacionaliza 5 eixos. Princípios V (transparente/participativo) e VI
+  (eficiente/sustentável) sem expressão operacional nos produtos pactuados
 
 ---
 
-### 4 CONSIDERAÇÕES FINAIS
-
-**Pontos para a redação:**
-
-- O corpus construído constitui a primeira base consolidada de PTDs, permitindo análise transversal inédita
-- A transformação digital federal concentra-se na digitalização de serviços e unificação de canais, com lacunas significativas em governança de dados e inovação
-- A gestão de riscos, embora formalmente cumprida, apresenta características de conformidade mais do que de exercício analítico
-- O gap entre os 6 princípios da EFGD e os 5 eixos operacionais merece atenção normativa
-- A publicação de PDFs escaneados por 12 órgãos limita a acessibilidade e reprodutibilidade
-- Recomendações: publicação em formato aberto, API para dados de PTDs, padronização mais rigorosa do preenchimento de riscos
-
----
-
-### 5 REFERÊNCIAS
-
-- BRASIL. Decreto nº 12.198, de 24 de setembro de 2024. Institui a Estratégia Federal de Governo Digital para o período de 2024 a 2027.
-- BRASIL. Portaria SGD/MGI nº 6.618, de 25 de setembro de 2024. Regulamenta os Planos de Transformação Digital.
-- BRASIL. Ministério da Gestão e da Inovação em Serviços Públicos. Estratégia Federal de Governo Digital 2024-2027. Disponível em: https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/EFGD
-- BRASIL. SGD/MGI. Planos de Transformação Digital. Disponível em: https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital
-- BRASIL. SGD/MGI. Kit de Elaboração do PTD. Disponível em: https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/kit-de-elaboracao-ptd
-
----
-
-### APÊNDICE A — Dados e código
+### APÊNDICE — Dados e código
 
 - Repositório: https://github.com/freirelucas/PTD
 - Dashboard interativo: https://freirelucas.github.io/PTD/
-- Notebook Colab: https://colab.research.google.com/github/freirelucas/PTD/blob/main/ptd_scraper.ipynb
+- Notebook Colab:
+  https://colab.research.google.com/github/freirelucas/PTD/blob/main/ptd_scraper.ipynb
 - Dados (CSV/JSON): https://github.com/freirelucas/PTD/tree/main/output
-
-### APÊNDICE B — Órgãos não processados
-
-| Órgão | Motivo |
-|-------|--------|
-| AGU | PDF entregas escaneado |
-| CODEVASF | PDF entregas formato não-padrão |
-| FUNAI | PDF entregas escaneado |
-| FUNDACENTRO | PDF entregas escaneado |
-| INCRA | PDF entregas escaneado |
-| ITI | PDF entregas escaneado |
-| MCOM | PDF entregas escaneado |
-| MIDR | PDF entregas formato não-padrão |
-| SG-PR | PDF entregas escaneado |
-| SUDAM | PDF entregas formato não-padrão |
-| SUDECO | PDF entregas formato não-padrão |
-| SUDENE | PDF entregas formato não-padrão |
-
-### APÊNDICE C — Produtos canônicos vs pactuações
-
-(Tabela completa dos 44 produtos com contagem de entregas e órgãos — disponível no dashboard interativo)
