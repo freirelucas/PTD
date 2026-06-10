@@ -77,8 +77,7 @@ Dados entram na `main` por **pull request — nunca por push direto**. O PR de
 dados passa pelos mesmos checks que qualquer mudança de código (pytest,
 consistência do notebook, checksums do `validation_report.json`, derivados em
 dia), então um refresh parcial ou inconsistente é bloqueado antes de chegar ao
-site. Com o pipeline consistente, não há dado "carregado à mão": todo refresh
-é um run completo, revisado como diff.
+site.
 
 **Via canônica — CI mensal.** O workflow
 [`monthly-refresh.yml`](.github/workflows/monthly-refresh.yml) roda o pipeline
@@ -119,14 +118,6 @@ git push -u origin data-refresh/AAAA-MM     # e abrir PR para main
 ```
 
 Merge do PR → GitHub Pages reflete em ~1 minuto.
-
-**Notas**:
-- `output/datapackage.json`, `output/metadata/` e `output/harmonized/` **não
-  são gerados pelo notebook** — são derivados pelos builders a partir de
-  `output/*.csv` + `manifest.json` (no `--sync` isso é automático).
-- `unzip -o` sobrescreve, mas **não remove** órfãos de runs antigos (o Drive
-  acumula). `run_pipeline.py --sync` faz a substituição completa — por isso o
-  fallback é fallback. Confira `git status` após o unzip.
 
 ### Execução local
 
