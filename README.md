@@ -71,37 +71,62 @@ executam exatamente o mesmo pipeline:
 
 Clique no badge **Open in Colab** acima e execute as células sequencialmente. O ambiente detecta o Colab automaticamente e instala as dependências. Os PDFs são persistidos no Google Drive (`MyDrive/PTD_Scraper/`) para reutilização entre execuções.
 
-### Publicar os dados de um run no GitHub Pages
+### Publicar dados novos
 
-Após qualquer Colab run produtiva, os outputs ficam no Drive — não voltam pro `main` automaticamente. Para que o dashboard em [freirelucas.github.io/PTD](https://freirelucas.github.io/PTD/) reflita os dados novos:
+Dados entram na `main` por **pull request — nunca por push direto**. O PR de
+dados passa pelos mesmos checks que qualquer mudança de código (pytest,
+consistência do notebook, checksums do `validation_report.json`, derivados em
+dia), então um refresh parcial ou inconsistente é bloqueado antes de chegar ao
+site. Com o pipeline consistente, não há dado "carregado à mão": todo refresh
+é um run completo, revisado como diff.
 
-1. **Execute o notebook até o fim**. A célula final (`13c_publish_helper.py`) valida a presença dos 16 artefatos essenciais (falha listando os ausentes) e empacota **todo o conteúdo de `output/`** — inclusive `figures/` — em `output_TIMESTAMP.zip`, com download automático.
-2. **No clone local do repo**:
-   ```bash
-   cd PTD
-   unzip -o ~/Downloads/output_TIMESTAMP.zip   # sobrescreve os arquivos de output/
-   python build_metadata.py                    # regenera output/datapackage.json,
-                                               # output/metadata/ e o schema.org de index.html
-   python build_corpus.py                      # regenera output/harmonized/
-   git add output/ index.html
-   git commit -m "data: refresh output/ — run YYYY-MM-DD"
-   git push origin main
-   ```
-3. GitHub Pages reflete em ~1 minuto.
+**Via canônica — CI mensal.** O workflow
+[`monthly-refresh.yml`](.github/workflows/monthly-refresh.yml) roda o pipeline
+completo todo dia 2 do mês (06:17 UTC) num runner do GitHub, via
+`run_pipeline.py --sync`, e abre o PR `data-refresh/YYYY-MM` com `output/` +
+`index.html` — apenas se os CSVs sem timestamp mudaram de fato. Para um
+refresh fora do calendário: aba Actions → *monthly data refresh* → Run
+workflow. Não há passo manual.
 
-**Por que o conjunto completo**: o `validation_report.json` carrega `output_checksums_md5` dos artefatos principais e o CI (`notebook-consistency.yml`) valida que esses hashes batem — commits parciais são detectados e bloqueados. Além disso, o `pytest` exige que `output/datapackage.json`, `output/metadata/` e `output/harmonized/` estejam em dia com os CSVs (`build_metadata.py --check` / `build_corpus.py --check`) — por isso os dois scripts fazem parte do fluxo.
+- Configure o secret `DATA_REFRESH_PAT` (fine-grained PAT com Contents +
+  Pull requests RW) para os checks rodarem automaticamente no PR; o
+  `GITHUB_TOKEN` padrão não dispara workflows em PRs criados por ele mesmo.
+
+**Via local (headless)** — mesma execução, na sua máquina:
+
+```bash
+python run_pipeline.py --sync               # pipeline + output/ + index.html prontos
+git checkout -b data-refresh/AAAA-MM
+git add output/ index.html
+git commit -m "data: refresh output/ — run AAAA-MM-DD"
+git push -u origin data-refresh/AAAA-MM     # e abrir PR para main
+```
+
+**Fallback — Colab** (sem ambiente local, ou gov.br bloqueando os IPs dos
+runners): a célula final (`13c_publish_helper.py`) valida os 16 artefatos
+essenciais (falha listando os ausentes) e empacota **todo o `output/`** em
+`output_TIMESTAMP.zip`, com download automático. Num clone do repo:
+
+```bash
+unzip -o ~/Downloads/output_TIMESTAMP.zip   # sobrescreve os arquivos de output/
+python build_metadata.py                    # regenera datapackage/metadata/ e o
+                                            # schema.org de index.html
+python build_corpus.py                      # regenera output/harmonized/
+git checkout -b data-refresh/AAAA-MM
+git add output/ index.html
+git commit -m "data: refresh output/ — Colab run AAAA-MM-DD"
+git push -u origin data-refresh/AAAA-MM     # e abrir PR para main
+```
+
+Merge do PR → GitHub Pages reflete em ~1 minuto.
 
 **Notas**:
-- `output/datapackage.json`, `output/metadata/` e `output/harmonized/` **não são gerados pelo notebook** — são derivados localmente pelos scripts acima a partir de `output/*.csv` + `manifest.json`.
-- `unzip -o` sobrescreve, mas **não remove** arquivos que deixaram de ser gerados (e o Drive acumula artefatos de runs antigos). Confira `git status` após o unzip e remova órfãos evidentes — ou use `python run_pipeline.py --sync`, que faz a substituição completa.
-
-### Atualização mensal automatizada
-
-O workflow [`monthly-refresh.yml`](.github/workflows/monthly-refresh.yml) roda o pipeline completo todo dia 2 do mês (06:17 UTC) num runner do GitHub, via `run_pipeline.py --sync`, e abre um PR `data-refresh/YYYY-MM` com o `output/` renovado + `index.html`. O PR só é aberto se os dados (CSVs sem timestamp) mudaram de fato, e passa pelos mesmos checks de CI (testes, consistência do notebook, checksums) antes do merge — o diff de dados ganha um gate de revisão humana.
-
-- Para os checks rodarem automaticamente no PR, configure o secret `DATA_REFRESH_PAT` (fine-grained PAT com Contents + Pull requests RW); o `GITHUB_TOKEN` padrão não dispara workflows em PRs criados por ele mesmo.
-- Se o gov.br bloquear os IPs do runner, o job falha no preflight com mensagem clara — o fallback é o fluxo manual via Colab acima, que continua suportado.
-- Execução manual: aba Actions → "monthly data refresh" → Run workflow.
+- `output/datapackage.json`, `output/metadata/` e `output/harmonized/` **não
+  são gerados pelo notebook** — são derivados pelos builders a partir de
+  `output/*.csv` + `manifest.json` (no `--sync` isso é automático).
+- `unzip -o` sobrescreve, mas **não remove** órfãos de runs antigos (o Drive
+  acumula). `run_pipeline.py --sync` faz a substituição completa — por isso o
+  fallback é fallback. Confira `git status` após o unzip.
 
 ### Execução local
 

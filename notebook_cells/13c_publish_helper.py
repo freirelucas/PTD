@@ -8,11 +8,12 @@
 # Por que isso existe:
 # - GitHub Pages serve `index.html` + `output/data.js` direto do main.
 # - Colab executa o pipeline e escreve em MyDrive/PTD_Scraper/output/.
-# - Para Pages refletir dados novos é preciso copiar todo o `output/`
-#   para o repo e commitar. Commit parcial (só validation_report sem CSVs,
-#   por ex) cria inconsistência detectável pelo CI (ver
-#   .github/workflows/notebook-consistency.yml).
-# - Este helper valida o conjunto essencial e zipa tudo, sem seleção manual.
+# - O caminho CANÔNICO de publicação é o CI (monthly-refresh.yml), que roda
+#   o mesmo pipeline e abre PR revisado. Este bundle é o FALLBACK para runs
+#   Colab (sem ambiente local, ou gov.br bloqueando IPs de runner) — e
+#   também o artefato de transparência: o run inteiro num zip auditável.
+# - Dados entram na main por PR, nunca por push direto: commit parcial ou
+#   inconsistente é bloqueado pelo CI (notebook-consistency.yml + pytest).
 # ============================================================
 
 import os
@@ -77,15 +78,17 @@ print(f"  Arquivo: {zip_path}")
 print(f"  Conteúdo: {len(_entries)} arquivos (output/ completo)")
 for _fpath, _arc in _entries:
     print(f"    {_arc:<48s} {os.path.getsize(_fpath) / 1024:>8.1f} KB")
-print("\nPara publicar no GitHub Pages:")
+print("\nPara publicar (fallback — o caminho canônico é o CI mensal, que abre PR sozinho):")
 print("  1. Baixe o zip pelo painel de Files do Colab (ou aguarde o download automático)")
 print("  2. No seu clone local do repo PTD:")
 print(f"       unzip -o {zip_name} && \\")
 print("       python build_metadata.py && python build_corpus.py && \\")
+print("       git checkout -b data-refresh/$(date +%Y-%m) && \\")
 print("       git add output/ index.html && \\")
-print("       git commit -m 'data: refresh output/ pós-Colab run' && \\")
-print("       git push origin main")
-print("  3. GitHub Pages reflete em ~1 min em https://freirelucas.github.io/PTD/")
+print("       git commit -m 'data: refresh output/ — Colab run' && \\")
+print("       git push -u origin data-refresh/$(date +%Y-%m)")
+print("  3. Abra o PR para main — o CI valida o refresh (testes, checksums,")
+print("     derivados); Pages reflete ~1 min após o merge")
 print("=" * 60)
 
 # Em ambiente Colab, oferece o download programático.
