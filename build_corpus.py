@@ -290,13 +290,66 @@ def check(artifacts):
     return stale
 
 
+def bundle_zip(artifacts, out_path=None):
+    """Empacota SÓ o corpus num zip distribuível e autocontido.
+
+    Conteúdo: os artefatos de `output/harmonized/` (datapackage.json +
+    deliveries/risks/organs.csv + harmonization_report.json + README.md) mais
+    `manifest.json` para proveniência (commit do pipeline + data do snapshot),
+    sob a pasta `ptd-corpus-<snapshot>/`. É o dataset citável, sem o restante de
+    `output/` (dashboard, figuras, fila de revisão, estatísticas).
+
+    Determinístico: os timestamps das entradas são fixados na data do snapshot,
+    então o mesmo snapshot produz o mesmo zip (bit-exact).
+    """
+    import zipfile
+
+    manifest_path = os.path.join(OUTPUT_DIR, "manifest.json")
+    manifest_raw = None
+    snapshot = "snapshot"
+    if os.path.exists(manifest_path):
+        with open(manifest_path, encoding="utf-8") as fh:
+            manifest_raw = fh.read()
+        snapshot = json.loads(manifest_raw).get("data_execucao") or snapshot
+
+    members = {os.path.basename(rel): content for rel, content in artifacts.items()}
+    if manifest_raw is not None:
+        members["manifest.json"] = manifest_raw
+
+    try:
+        y, m, d = (int(x) for x in snapshot.split("-")[:3])
+        date_time = (y, m, d, 0, 0, 0)
+    except ValueError:
+        date_time = (1980, 1, 1, 0, 0, 0)
+
+    top = f"ptd-corpus-{snapshot}"
+    if out_path is None:
+        out_path = os.path.join(REPO_ROOT, f"corpus_{snapshot}.zip")
+
+    with zipfile.ZipFile(out_path, "w", zipfile.ZIP_DEFLATED) as zf:
+        for name in sorted(members):
+            info = zipfile.ZipInfo(f"{top}/{name}", date_time=date_time)
+            info.compress_type = zipfile.ZIP_DEFLATED
+            zf.writestr(info, members[name])
+    return out_path, sorted(members)
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--check", action="store_true",
                     help="Falha se output/harmonized/ commitado está defasado.")
+    ap.add_argument("--zip", action="store_true",
+                    help="Empacota só o corpus (harmonized/ + manifest.json) "
+                         "em corpus_<snapshot>.zip, sem o resto de output/.")
     args = ap.parse_args(argv)
 
     artifacts = generate()
+    if args.zip:
+        out_path, members = bundle_zip(artifacts)
+        print(f"Corpus empacotado: {out_path}")
+        for name in members:
+            print(f"  - {name}")
+        return 0
     if args.check:
         stale = check(artifacts)
         if stale:

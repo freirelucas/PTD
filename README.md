@@ -49,6 +49,8 @@ O dashboard interativo está em [`index.html`](index.html). Ele consome `output/
 
 Os descritores de dados abertos (Frictionless, schema.org, DCAT-AP, SKOS, JSON Schema, PROV-O) são gerados por [`build_metadata.py`](build_metadata.py); a versão harmonizada do corpus por [`build_corpus.py`](build_corpus.py). Documentação e linhagem em [`METADATA.md`](METADATA.md).
 
+Para baixar **só o corpus** (sem dashboard, figuras, fila de revisão), `make corpus-zip` empacota `corpus_<snapshot>.zip` — pacote Frictionless autocontido: `deliveries`/`risks`/`organs` canônicos + `datapackage.json` + `harmonization_report.json` + `manifest.json` (proveniência).
+
 ## Como usar
 
 **Princípio do projeto — transparência e reprodutibilidade científicas.**

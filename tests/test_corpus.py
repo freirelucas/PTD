@@ -117,3 +117,30 @@ def test_committed_harmonized_in_sync():
     """output/harmonized/ deve refletir build_corpus.py."""
     stale = bc.check(bc.generate())
     assert stale == [], f"Harmonizado defasado: {stale}"
+
+
+# ---------------------- bundle_zip (make corpus-zip) ----------------------
+
+def test_bundle_zip_conteudo_e_determinismo(tmp_path):
+    import os
+    import zipfile
+    arts = bc.generate()
+    z1 = tmp_path / "a.zip"
+    out, members = bc.bundle_zip(arts, out_path=str(z1))
+    assert out == str(z1)
+
+    names = zipfile.ZipFile(z1).namelist()
+    # tudo sob uma única pasta ptd-corpus-<snapshot>/, sem caminhos crus de output/
+    assert names and all(n.startswith("ptd-corpus-") and "/" in n for n in names)
+    base = {n.split("/", 1)[1] for n in names}
+    # o corpus e o descritor — não data.js, figures, statistics, review_queue…
+    assert {"deliveries.csv", "risks.csv", "organs.csv", "datapackage.json"} <= base
+    assert "data.js" not in base and "statistics_summary.json" not in base
+    # manifest.json entra se existir no output/ do repo (proveniência)
+    if os.path.exists(os.path.join(bc.OUTPUT_DIR, "manifest.json")):
+        assert "manifest.json" in base
+
+    # determinístico: regerar produz bytes idênticos (timestamps fixos)
+    z2 = tmp_path / "b.zip"
+    bc.bundle_zip(arts, out_path=str(z2))
+    assert z1.read_bytes() == z2.read_bytes()
