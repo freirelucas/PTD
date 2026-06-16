@@ -12,7 +12,7 @@ CELL_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file_
                          "notebook_cells", "13c_publish_helper.py")
 
 ESSENCIAIS = [
-    "manifest.json", "validation_report.json", "review_queue.csv",
+    "manifest.json", "validation_report.json",
     "coverage_summary.csv", "pdf_metadata.csv", "risks.csv", "risks.json",
     "deliveries.csv", "deliveries.json", "organs.csv", "error_report.csv",
     "vocabulary_mapping.csv",

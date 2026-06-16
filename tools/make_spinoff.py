@@ -28,17 +28,24 @@ SPINOFF_SRC = os.path.join(REPO_ROOT, "spinoff")
 STAGE = os.path.join(REPO_ROOT, "ptd_output", "spinoff", "ptd-corpus")
 ZIP_PATH = os.path.join(REPO_ROOT, "ptd_output", "ptd-corpus-handout.zip")
 
-# --- O que sai (analytics) -------------------------------------------------
-ANALYTICS_CELLS = {
+# --- O que sai: analytics + a fila de revisão/curadoria --------------------
+# A fila de revisão (worklist de itens needs_review, exportada por 10b) e a
+# célula de curadoria 12b saem por decisão do mantenedor — nunca foram
+# validadas. A incerteza por linha continua nos CSVs (coluna needs_review) e
+# nas contagens de validation_report.json.
+EXCLUDE_CELLS = {
     "11a_statistics_header.md", "11b_statistics.py",
     "11ca_dashboard_header.md", "11cb_dashboard_data.py",
     "11cc_review_header.md", "11cd_review_queue.py",
     "11e_nt_insumos.py",
+    "12a_iteration_header.md", "12b_iteration.py",
 }
-EXCLUDE_TESTS = {"test_nt_insumos.py", "test_parse_year_month.py"}
+EXCLUDE_TESTS = {"test_nt_insumos.py", "test_parse_year_month.py",
+                 "test_iteration.py"}
 EXCLUDE_OUTPUT_FILES = {
     "statistics_summary.json", "data.js",
     "nota_tecnica_insumos.md", "review_data.json",
+    "review_queue.csv", "review_queue_prioritized.csv",
 }
 EXCLUDE_OUTPUT_DIRS = {"figures"}
 
@@ -95,7 +102,7 @@ def copy_tree() -> None:
     dst = os.path.join(STAGE, "notebook_cells")
     os.makedirs(dst)
     for f in sorted(os.listdir(src)):
-        if f in ANALYTICS_CELLS:
+        if f in EXCLUDE_CELLS:
             continue
         shutil.copy2(os.path.join(src, f), os.path.join(dst, f))
 
@@ -167,7 +174,6 @@ def apply_patches() -> None:
           'EXPECTED_OUTPUTS = [\n'
           '    "manifest.json",\n'
           '    "validation_report.json",\n'
-          '    "review_queue.csv",\n'
           '    "coverage_summary.csv",\n'
           '    "pdf_metadata.csv",\n'
           '    "risks.csv",\n'
@@ -192,14 +198,60 @@ def apply_patches() -> None:
           '    return artifacts',
           '    return artifacts')
 
-    # conftest: tira as células de analytics do loader de testes
+    # 10b: remove a exportação da fila de revisão (review_queue.csv)
+    patch("notebook_cells/10b_export.py",
+          '# ---- 6. Fila de revisão: CSV ----\n'
+          'review_rows = []\n'
+          '\n'
+          'for entry in all_deliveries:\n'
+          '    if entry.needs_review:\n'
+          '        review_rows.append({\n'
+          '            "orgao_sigla": entry.orgao_sigla,\n'
+          '            "entry_type": "delivery",\n'
+          '            "field": "produto / eixo",\n'
+          '            "original_value": entry.produto_original,\n'
+          '            "current_value": entry.produto_normalizado,\n'
+          '            "eixo_original": entry.eixo_original,\n'
+          '            "eixo_normalizado": entry.eixo_normalizado,\n'
+          '            "confidence": entry.extraction_confidence,\n'
+          '            "review_reason": entry.review_reason or "",\n'
+          '            "servico_acao": entry.servico_acao,\n'
+          '            "tabela_tipo": entry.tabela_tipo,\n'
+          '        })\n'
+          '\n'
+          'for entry in all_risks:\n'
+          '    if entry.needs_review:\n'
+          '        review_rows.append({\n'
+          '            "orgao_sigla": entry.orgao_sigla,\n'
+          '            "entry_type": "risk",\n'
+          '            "field": "probabilidade / impacto / tratamento",\n'
+          '            "original_value": f"P:{entry.probabilidade_original} | I:{entry.impacto_original} | T:{entry.tratamento_original}",\n'
+          '            "current_value": f"P:{entry.probabilidade_normalizada} | I:{entry.impacto_normalizado} | T:{entry.tratamento_normalizado}",\n'
+          '            "eixo_original": "",\n'
+          '            "eixo_normalizado": "",\n'
+          '            "confidence": entry.extraction_confidence,\n'
+          '            "review_reason": entry.review_reason or "",\n'
+          '            "servico_acao": entry.risco_texto[:100] if entry.risco_texto else "",\n'
+          '            "tabela_tipo": "",\n'
+          '        })\n'
+          '\n'
+          'if review_rows:\n'
+          '    df_review = pd.DataFrame(review_rows)\n'
+          '    csv_path = os.path.join(DIRS["output"], "review_queue.csv")\n'
+          '    df_review.to_csv(csv_path, index=False, encoding="utf-8-sig")\n'
+          '    export_log.append(("review_queue.csv", len(df_review), _file_size_str(csv_path)))\n'
+          'else:\n'
+          '    print("Nenhum item pendente de revisão.")\n'
+          '\n',
+          '')
+
+    # conftest: tira as células de analytics + curadoria do loader de testes
     patch("tests/conftest.py",
           '    "10b_export.py",\n'
           '    "11cb_dashboard_data.py",\n'
           '    "11e_nt_insumos.py",\n'
           '    "12b_iteration.py",',
-          '    "10b_export.py",\n'
-          '    "12b_iteration.py",')
+          '    "10b_export.py",')
 
     # run_pipeline: comentário do MPLBACKEND + sync chama build_manifest
     patch("run_pipeline.py",
@@ -232,6 +284,9 @@ def apply_patches() -> None:
           '    "tqdm": "tqdm", "pandas": "pandas",\n'
           '}\n'
           '# pypdf é importado lazy dentro do pipeline → opcional para carga.')
+    patch("smoke_test.py",
+          '                "classify_diretivo_table", "generate_review_queue"]',
+          '                "classify_diretivo_table"]')
 
     # monthly-refresh: tira index.html do PR + comentário
     patch(".github/workflows/monthly-refresh.yml",
@@ -243,6 +298,9 @@ def apply_patches() -> None:
     patch(".github/workflows/monthly-refresh.yml",
           "          # data.js/manifest.json/*.json embutem timestamps e mudam SEMPRE.",
           "          # manifest.json/*.json embutem timestamps/hashes e mudam SEMPRE.")
+    patch(".github/workflows/monthly-refresh.yml",
+          "                      output/vocabulary_mapping.csv output/review_queue.csv\"",
+          "                      output/vocabulary_mapping.csv\"")
 
     # .gitignore: ignora o bundle de publicação do 13c
     patch(".gitignore",

@@ -14,4 +14,4 @@ dashboard, insumos da nota técnica) — ver `HANDOUT.md`.
 3. Extração de tabelas (PyMuPDF `find_tables()`)
 4. Padronização de vocabulário
 5. Exportação CSV/JSON + relatório de erros
-6. Fila de revisão (curadoria) + validação com checksums
+6. Validação com checksums + bundle de publicação

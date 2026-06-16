@@ -48,7 +48,6 @@ marcados como `compartilhado` na cobertura.
 | `output/organs.csv` | Lista de órgãos com URLs dos PDFs |
 | `output/coverage_summary.csv` | Cobertura de extração por órgão |
 | `output/error_report.csv` | Erros de processamento por órgão e estágio |
-| `output/review_queue.csv` | Fila de itens marcados para revisão manual (curadoria) |
 | `output/pdf_metadata.csv` | Metadados dos PDFs (datas, tamanhos) |
 | `output/validation_report.json` | Contagens, taxas de canonização e checksums MD5 dos artefatos |
 | `output/manifest.json` | Manifesto da execução: commit do pipeline, contagens de PDFs e hash SHA-256 dos artefatos exportados |
@@ -61,7 +60,12 @@ o `manifest.json` por [`build_manifest.py`](build_manifest.py); a versão
 harmonizada do corpus por [`build_corpus.py`](build_corpus.py). Documentação e
 linhagem em [`METADATA.md`](METADATA.md).
 
-Para baixar **só o corpus** (sem fila de revisão), `make corpus-zip` empacota
+Itens de extração incerta ficam marcados na coluna `needs_review` de
+`deliveries.csv`/`risks.csv` e somados em `validation_report.json`
+(`needs_review_entregas`/`needs_review_riscos`) — a transparência da incerteza é
+por linha, sem um worklist separado.
+
+Para baixar **só o corpus** (CSVs canônicos), `make corpus-zip` empacota
 `corpus_<snapshot>.zip` — pacote Frictionless autocontido:
 `deliveries`/`risks`/`organs` canônicos + `datapackage.json` +
 `harmonization_report.json` + `manifest.json` (proveniência).
@@ -139,8 +143,7 @@ O notebook executa as etapas sequenciais de engenharia do corpus:
 9. **Entregas** — Extrai tabelas de entregas com mapeamento posicional para multi-página
 10. **Padronização** — Normaliza vocabulário com fuzzy match contra produtos canônicos + legados
 11. **Exportação** — Gera CSVs e JSONs estruturados
-12. **Curadoria** — Fila de revisão para correções manuais
-13. **Validação** — `validation_report.json` (contagens, taxas, checksums) + bundle de publicação
+12. **Validação** — `validation_report.json` (contagens, taxas, checksums) + bundle de publicação
 
 O pipeline tem **checkpoint/resume**: se interrompido, retoma do último checkpoint salvo.
 

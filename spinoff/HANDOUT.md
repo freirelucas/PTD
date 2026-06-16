@@ -43,7 +43,6 @@ de manter, sem `index.html`, figuras, `data.js` nem os insumos da NT.
 | Componente | Arquivos |
 |---|---|
 | Pipeline de coleta/extração/padronização | `notebook_cells/00`→`10*` |
-| Curadoria (fila de revisão / correções) | `notebook_cells/12*_iteration` |
 | Validação + bundle de publicação | `notebook_cells/13*` |
 | Notebook gerado + builder | `ptd_scraper.ipynb`, `build_notebook.py` |
 | Pipeline headless | `run_pipeline.py` |
@@ -62,14 +61,18 @@ de manter, sem `index.html`, figuras, `data.js` nem os insumos da NT.
 | Dashboard interativo | `index.html`, `notebook_cells/11ca`/`11cb_dashboard_data.py`, `output/data.js` |
 | Resumo de revisão p/ dashboard | `notebook_cells/11cc`/`11cd_review_queue.py`, `output/review_data.json` |
 | Insumos da nota técnica | `notebook_cells/11e_nt_insumos.py`, `output/nota_tecnica_insumos.md` |
-| Testes de analytics | `tests/test_nt_insumos.py`, `tests/test_parse_year_month.py` |
+| Fila de revisão + curadoria | `notebook_cells/12*_iteration`, exportação de `review_queue.csv` no `10b`, `output/review_queue.csv`, `tests/test_iteration.py` |
+| Testes de analytics/curadoria | `tests/test_nt_insumos.py`, `tests/test_parse_year_month.py`, `tests/test_iteration.py` |
 | Documentos da NT/auditoria | `BALANCO_CONSISTENCIA.md`, `NOTA_TECNICA.md`, `NT_CORRECOES.md` |
 | Dependências de figuras | `matplotlib`, `seaborn` (de `requirements.txt`) |
 
-> **Curadoria foi mantida**, não removida. A fila de revisão (`12*_iteration`,
-> `output/review_queue.csv`) é controle de *qualidade do corpus*, não análise —
-> só o **resumo de revisão que alimentava o dashboard** (`11cd`,
-> `review_data.json`) saiu.
+> **A fila de revisão saiu** a pedido do mantenedor — nunca foi validada. Saíram
+> a célula de curadoria `12*`, a exportação de `review_queue.csv` no `10b` e o
+> resumo que alimentava o dashboard (`11cd`/`review_data.json`). A incerteza de
+> extração **continua** registrada por linha (coluna `needs_review` em
+> `deliveries.csv`/`risks.csv`) e agregada em `validation_report.json`
+> (`needs_review_entregas`/`needs_review_riscos`) — só não há mais o worklist
+> separado.
 
 ---
 
