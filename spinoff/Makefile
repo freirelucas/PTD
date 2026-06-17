@@ -6,6 +6,7 @@ help:
 	@echo "  make manifest   - (re)gera output/manifest.json (build_manifest.py)"
 	@echo "  make metadata   - (re)gera os descritores de dados abertos em output/"
 	@echo "  make corpus     - (re)gera o corpus harmonizado em output/harmonized/"
+	@echo "  make variations - (re)gera output/variations.csv (catálogo tipado de divergências)"
 	@echo "  make corpus-zip - empacota só o corpus (harmonized/ + manifest) em corpus_<snapshot>.zip"
 	@echo "  make test       - roda pytest sobre tests/"
 	@echo "  make smoke      - smoke test do notebook (sintaxe, deps, carga)"
@@ -23,6 +24,9 @@ metadata:
 
 corpus:
 	python build_corpus.py
+
+variations:
+	python build_variations.py
 
 corpus-zip:
 	python build_corpus.py --zip

@@ -63,10 +63,12 @@ TEMPLATES = {
     "Makefile": "Makefile",
     "requirements.txt": "requirements.txt",
     "build_manifest.py": "build_manifest.py",
+    "build_variations.py": "build_variations.py",
     "HANDOUT.md": "HANDOUT.md",
     "notebook_cells/00_title.md": "notebook_cells/00_title.md",
     "tests/test_publish_helper.py": "tests/test_publish_helper.py",
     "tests/test_manifest.py": "tests/test_manifest.py",
+    "tests/test_variations.py": "tests/test_variations.py",
 }
 
 
@@ -266,9 +268,10 @@ def apply_patches() -> None:
           "    import build_corpus\n"
           "    import build_manifest\n"
           "    import build_metadata\n"
+          "    import build_variations\n"
           "    if (build_manifest.main([]) != 0 or build_metadata.main([]) != 0\n"
-          "            or build_corpus.main([]) != 0):\n"
-          '        print("SYNC: regeneração de manifest/metadados/corpus falhou.")\n'
+          "            or build_corpus.main([]) != 0 or build_variations.main([]) != 0):\n"
+          '        print("SYNC: regeneração de manifest/metadados/corpus/variações falhou.")\n'
           "        sys.exit(1)")
 
     # smoke_test: deps obrigatórias sem matplotlib/seaborn
@@ -347,6 +350,7 @@ def regenerate(run_tests: bool) -> None:
     run([py, "build_manifest.py"], "build_manifest")
     run([py, "build_metadata.py"], "build_metadata")
     run([py, "build_corpus.py"], "build_corpus")
+    run([py, "build_variations.py"], "build_variations")
     if run_tests:
         run([py, "-m", "pytest", "-q", "tests/"], "pytest")
         run([py, "smoke_test.py"], "smoke_test")

@@ -54,7 +54,9 @@ PDF_METADATA = os.path.join(OUTPUT_DIR, "pdf_metadata.csv")
 #   data.js          artefato de dashboard (não existe no spin-off)
 #   manifest.json    auto-referência
 #   datapackage.json derivado por build_metadata.py (evita ciclo de hash)
-_OUTPUTS_EXCLUDE = {"data.js", "manifest.json", "datapackage.json"}
+#   variations.csv   derivado por build_variations.py (idem)
+_OUTPUTS_EXCLUDE = {"data.js", "manifest.json", "datapackage.json",
+                    "variations.csv"}
 
 # Telemetria de PDFs preservada do manifest anterior (não derivável dos CSVs).
 _PRESERVED_PDF_FIELDS = (

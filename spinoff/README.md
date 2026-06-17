@@ -54,16 +54,19 @@ marcados como `compartilhado` na cobertura.
 | `output/datapackage.json` | Descritor [Frictionless Data Package](https://specs.frictionlessdata.io/) (Table Schema dos CSVs) |
 | `output/metadata/` | Metadados em padrões abertos: schema.org/Dataset, DCAT-AP, SKOS, JSON Schema, PROV-O, payload CKAN |
 | `output/harmonized/` | Corpus harmonizado: colunas `*_normalizado` estritamente canônicas + datapackage com enums estritos + relatório auditável |
+| `output/variations.csv` | Catálogo **tipado** das divergências texto autoral × catálogo (`alias`/`aproximado`/`imputado`/`residual`), gerado por `build_variations.py` |
 
 Os descritores de dados abertos são gerados por [`build_metadata.py`](build_metadata.py);
 o `manifest.json` por [`build_manifest.py`](build_manifest.py); a versão
 harmonizada do corpus por [`build_corpus.py`](build_corpus.py). Documentação e
 linhagem em [`METADATA.md`](METADATA.md).
 
-Itens de extração incerta ficam marcados na coluna `needs_review` de
-`deliveries.csv`/`risks.csv` e somados em `validation_report.json`
-(`needs_review_entregas`/`needs_review_riscos`) — a transparência da incerteza é
-por linha, sem um worklist separado.
+Cada campo categórico guarda `_original` (texto autoral) + `_normalizado`
+(catálogo, p/ analytics) + `_method`/`_score` (como o autoral foi encaixado). O
+atrito entre os dois — onde o texto dos órgãos não coube no vocabulário — é
+consolidado e **tipado** em `output/variations.csv` (`build_variations.py`); a
+contagem por linha está nas colunas `needs_review` e agregada em
+`validation_report.json`.
 
 Para baixar **só o corpus** (CSVs canônicos), `make corpus-zip` empacota
 `corpus_<snapshot>.zip` — pacote Frictionless autocontido:
@@ -156,6 +159,7 @@ PTD-corpus/
   build_manifest.py            # (re)gera output/manifest.json (derivador standalone)
   build_metadata.py            # (re)gera descritores de dados abertos
   build_corpus.py              # (re)gera o corpus harmonizado
+  build_variations.py          # (re)gera variations.csv (catálogo tipado de divergências)
   run_pipeline.py              # Executa o pipeline headless (CI/local)
   notebook_cells/              # Células individuais (.py e .md)
   output/                      # Dados extraídos e descritores
@@ -186,6 +190,7 @@ Os derivados de `output/` não exigem rodar o pipeline:
 make manifest   # output/manifest.json                         (build_manifest.py)
 make metadata   # output/datapackage.json + output/metadata/   (build_metadata.py)
 make corpus     # output/harmonized/                            (build_corpus.py)
+make variations # output/variations.csv                        (build_variations.py)
 ```
 
 Os três têm modo `--check` (usado no `pytest`) que falha se os artefatos

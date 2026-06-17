@@ -47,6 +47,7 @@ de manter, sem `index.html`, figuras, `data.js` nem os insumos da NT.
 | Notebook gerado + builder | `ptd_scraper.ipynb`, `build_notebook.py` |
 | Pipeline headless | `run_pipeline.py` |
 | Manifesto (proveniência) | **`build_manifest.py`** (novo — ver §3) |
+| Catálogo tipado de variações | **`build_variations.py`** (novo — ver §3.5) |
 | Descritores de dados abertos | `build_metadata.py` (DCAT/PROV/CKAN/SKOS/schema.org/JSON Schema) |
 | Corpus harmonizado | `build_corpus.py` |
 | Dados do corpus | `output/*.csv|json`, `output/harmonized/`, `output/metadata/` |
@@ -66,13 +67,15 @@ de manter, sem `index.html`, figuras, `data.js` nem os insumos da NT.
 | Documentos da NT/auditoria | `BALANCO_CONSISTENCIA.md`, `NOTA_TECNICA.md`, `NT_CORRECOES.md` |
 | Dependências de figuras | `matplotlib`, `seaborn` (de `requirements.txt`) |
 
-> **A fila de revisão saiu** a pedido do mantenedor — nunca foi validada. Saíram
-> a célula de curadoria `12*`, a exportação de `review_queue.csv` no `10b` e o
-> resumo que alimentava o dashboard (`11cd`/`review_data.json`). A incerteza de
-> extração **continua** registrada por linha (coluna `needs_review` em
-> `deliveries.csv`/`risks.csv`) e agregada em `validation_report.json`
-> (`needs_review_entregas`/`needs_review_riscos`) — só não há mais o worklist
-> separado.
+> **A fila de revisão (worklist) saiu, mas o sinal foi preservado e melhorado.**
+> A `review_queue.csv` era um dump binário de `needs_review` que misturava
+> fenômenos distintos. Em vez dela, o corpus mantém — por linha — as colunas
+> `<campo>_original` / `_normalizado` / `_method` / `_score` (o atrito entre
+> texto autoral e catálogo, no detalhe) e ganha **`build_variations.py`**, que
+> deriva `output/variations.csv`: um catálogo TIPADO das divergências
+> (`alias` / `aproximado` / `imputado` / `residual`). Ver §3.5. Saíram só a
+> célula de curadoria `12*` e o resumo que alimentava o dashboard
+> (`11cd`/`review_data.json`).
 
 ---
 
@@ -117,6 +120,35 @@ de `_DEFS_CELLS`; `smoke_test.py` tirou matplotlib/seaborn das deps obrigatória
 
 ---
 
+## 3.5. needs_review = atrito texto autoral × catálogo (dois fatores)
+
+`needs_review` **não é "lixo a validar"**: é, em boa parte, o texto autoral dos
+órgãos que não coube no vocabulário controlado. Medido no snapshot, porém, ele
+mistura fenômenos distintos — e essa é a nuance que muda o tratamento:
+
+| Tipo | O que é | Quanto (snapshot) | É autoral "espremido"? |
+|---|---|---|---|
+| `imputado` | eixo vazio no original → inferido do produto (cross-validation) | 2.276 entregas | **não** — dado AUSENTE, inferido |
+| `aproximado` | produto fuzzy_high (autoral ≈ catálogo) | 531 entregas | em parte (variação real **+** ruído de PDF: `sOutros`, `oEvolução`…) |
+| `residual` | produto 'Outros' | 148 entregas | **sim** — o órgão usou categoria própria |
+| `residual` | escala de risco fora do padrão SGD (`1-Alto`, `Médio`…) | prob 15 · imp 18 · trat 35 | **sim** |
+
+Conclusão da veracidade: a tese está **certa para `aproximado` + `residual`**
+(o atrito real autoral×catálogo, ~700 entregas + os residuais de risco), mas o
+**grosso do `needs_review` é `imputado`** (eixo ausente preenchido) — fenômeno
+diferente. O flag binário antigo confundia os três.
+
+Impacto no conceito do código: **os dois fatores já convivem no nível da linha**
+— `_normalizado` (catálogo → analytics agregada) + `_original`/`_method`/`_score`
+(autoral → caracterização do desvio). `build_variations.py` só consolida e
+**tipa** esse atrito, sem descartar nenhum dos dois. É derivado (offline,
+`--check` no CI) e não toca o pipeline — fácil de clonar e refinar. Próximos
+passos naturais (seus, no clone): separar ruído de extração de variação autoral
+dentro de `aproximado` (ex.: detectar caractere colado), e cruzar `residual` com
+órgão/eixo para ver *quem* mais escapa do catálogo.
+
+---
+
 ## 4. Como rodar e validar (offline, sem o portal)
 
 O corpus já vem extraído em `output/` — não é preciso rodar o pipeline para usar
@@ -128,6 +160,7 @@ python build_notebook.py            # gera ptd_scraper.ipynb das células
 python build_manifest.py            # gera output/manifest.json
 python build_metadata.py            # gera datapackage.json + metadata/
 python build_corpus.py              # gera harmonized/
+python build_variations.py          # gera variations.csv (catálogo de divergências)
 python -m pytest -q tests/          # suíte (helpers puros + derivadores --check)
 python smoke_test.py                # sintaxe/deps/carga das células
 ```
