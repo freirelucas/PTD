@@ -259,10 +259,10 @@
   },
   "all_thresholds_passed": true,
   "output_checksums_md5": {
-    "risks.csv": "1de5866a9cd9e9f387affbc1b41da10d",
+    "risks.csv": "95a871f6f87956d7c770d2a8f92a19ef",
     "deliveries.csv": "179c016830cd788838c5691eb3ee0997",
     "organs.csv": "00acdbf24799902960f36ed93c565f19",
-    "risks.json": "27a6645ccfa8618514f3432624960039",
+    "risks.json": "7218382a05884c038ab37ae8645a53ed",
     "deliveries.json": "2ccab34ee53727677c187368a8f6eba0",
     "statistics_summary.json": "217fedeaf37b1a4b592ea77a6510e5fe",
     "error_report.csv": "61c3e36c454c3032411ebd61c0193f78"

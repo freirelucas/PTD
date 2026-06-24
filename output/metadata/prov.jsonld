@@ -185,7 +185,7 @@
       "prov:wasDerivedFrom": {
         "@id": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital"
       },
-      "ptd:sha256": "19c6e8119f01a34c2314b9dad1a8051e07903f454da8abc8f94ef0559fcae109"
+      "ptd:sha256": "95fd9715bbc59fbacc9bb9c3f34b8ca84ad622dd736c1090dbfd43b1d9253b2f"
     },
     {
       "@id": "https://freirelucas.github.io/PTD/output/vocabulary_mapping.csv",
