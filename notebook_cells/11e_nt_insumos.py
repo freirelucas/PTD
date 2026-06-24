@@ -14,6 +14,7 @@
 # vem de manifest.json (data_execucao/commit), então regenerar sobre o
 # mesmo snapshot produz bytes idênticos.
 import csv
+import difflib
 import hashlib
 import json
 import os
@@ -222,6 +223,85 @@ def compute_nt_metrics(output_dir, config):
     M["needs_review_ris"] = sum(
         1 for r in R if (r["needs_review"] or "").strip().lower() in ("true", "1"))
 
+    # ---------------- Exclusão digital (orientação distributiva, célula 09c) ----------------
+    # Lê os campos derivados pela 09c com .get (tolera snapshots/CSVs antigos
+    # sem as colunas — métricas ficam zeradas em vez de quebrar).
+    def _rg(r, k):
+        return (r.get(k) or "").strip()
+
+    orient_ct = Counter(_rg(r, "orientacao_risco") for r in R if _rg(r, "orientacao_risco"))
+    M["orient_dist"] = [(k, orient_ct.get(k, 0))
+                        for k in ("estado", "cidadao", "ambos", "indefinido")]
+    M["orient_estado"] = orient_ct.get("estado", 0)
+    M["orient_cidadao"] = orient_ct.get("cidadao", 0)
+    M["orient_classificados"] = sum(orient_ct.get(k, 0) for k in ("estado", "cidadao", "ambos"))
+
+    subt_ct = Counter(_rg(r, "subtipo_exclusao") for r in R if _rg(r, "subtipo_exclusao"))
+    M["subtipo_dist"] = [(k, subt_ct.get(k, 0)) for k in
+                         ("digital_only", "acessibilidade", "disponibilidade_uptime", "nenhum")]
+    M["uptime_n"] = subt_ct.get("disponibilidade_uptime", 0)
+
+    # Exibição defensiva: linhas com column-bleed (MMULHERES etc.) carregam
+    # impacto/tratamento não-canônicos — sinaliza "[nc]" e trunca em vez de
+    # despejar texto bruto na tabela da NT.
+    def _imp_disp(v):
+        return v if v in imp_scale else (f"{v[:16]} [nc]" if v else "—")
+
+    def _trat_disp(v):
+        parts = [p.strip() for p in v.split(";") if p.strip()]
+        if parts and all(p in trat_opts for p in parts):
+            return v
+        return f"{v[:16]}… [nc]" if v else "—"
+
+    def _cell(t):
+        return re.sub(r"\s+", " ", str(t or "")).strip().replace("|", "\\|")
+
+    excl = [r for r in R if _rg(r, "subtipo_exclusao") in ("digital_only", "acessibilidade")]
+    M["exclusao_n"] = len(excl)
+    M["exclusao_orgaos"] = sorted({r["orgao_sigla"] for r in excl})
+    M["exclusao_rows"] = [
+        (r["orgao_sigla"], _rg(r, "subtipo_exclusao"),
+         _rg(r, "probabilidade_normalizada") or "—",
+         _imp_disp(_rg(r, "impacto_normalizado")),
+         _cell(_trat_disp(_rg(r, "tratamento_normalizado"))),
+         _cell(r["risco_texto"])[:80])
+        for r in sorted(excl, key=lambda r: (r["orgao_sigla"], _rg(r, "subtipo_exclusao")))]
+
+    # Índice de incoerência: agrupa os digital_only por texto quase-idêntico
+    # (fuzzy ≥0,90) e reporta o leque de impacto/tratamento do maior cluster
+    # multi-órgão. É o número-chave da nota técnica.
+    dig = [r for r in R if _rg(r, "subtipo_exclusao") == "digital_only"]
+    clusters = []
+    for r in dig:
+        nt = _nt_norm(r["risco_texto"])
+        for cl in clusters:
+            if difflib.SequenceMatcher(None, nt, cl["rep"]).ratio() >= 0.90:
+                cl["rows"].append(r)
+                break
+        else:
+            clusters.append({"rep": nt, "rows": [r]})
+    M["incoer_template"] = None
+    for cl in sorted(clusters, key=lambda c: -len({x["orgao_sigla"] for x in c["rows"]})):
+        orgs = sorted({x["orgao_sigla"] for x in cl["rows"]})
+        if len(orgs) < 2:
+            continue
+        imp = [v for v in (_rg(x, "impacto_normalizado") for x in cl["rows"])
+               if v in imp_scale]
+        imp_ord = sorted(set(imp), key=lambda v: imp_scale.index(v))
+        trat = sorted({_rg(x, "tratamento_normalizado") for x in cl["rows"]
+                       if _rg(x, "tratamento_normalizado")})
+        M["incoer_template"] = {
+            "n_orgaos": len(orgs),
+            "orgaos": orgs,
+            "texto": _nt_norm(cl["rows"][0]["risco_texto"])[:100],
+            "impacto_range": imp_ord,
+            "tratamento_range": trat,
+            "por_orgao": sorted(
+                (x["orgao_sigla"], _rg(x, "impacto_normalizado") or "—",
+                 _rg(x, "tratamento_normalizado") or "—") for x in cl["rows"]),
+        }
+        break
+
     # Schemas reais (cabeçalhos dos CSVs)
     M["cols_deliveries"] = list(D[0].keys()) if D else []
     M["cols_risks"] = list(R[0].keys()) if R else []
@@ -254,6 +334,51 @@ def render_nt_insumos(M, manifest=None):
     pm = M["prod_method"]
     deterministico = pm.get("exact", 0) + pm.get("alias", 0)
     sem_entregas = ", ".join(M["orgaos_sem_entregas"])
+
+    # ---- Seção 3.4: risco de exclusão digital (tolera snapshot sem os campos) ----
+    od, sd = dict(M.get("orient_dist", [])), dict(M.get("subtipo_dist", []))
+    _ratio = (M.get("orient_estado", 0) / M["orient_cidadao"]) if M.get("orient_cidadao") else 0
+    if M.get("exclusao_n"):
+        excl_table = (
+            "\n| Órgão | Subtipo | Prob. | Impacto | Tratamento | Texto (trunc.) |\n"
+            "|---|---|---|---|---|---|\n"
+            + "\n".join(f"| {sig} | {sub} | {prob} | {imp} | {trat} | {txt} |"
+                       for sig, sub, prob, imp, trat, txt in M["exclusao_rows"]))
+        it = M.get("incoer_template")
+        if it:
+            incoer = (
+                f"- **Incoerência do template \"digital only\"** (número-chave): em "
+                f"{it['n_orgaos']} órgãos ({', '.join(it['orgaos'])}), o MESMO risco "
+                f"recebe impacto **{' → '.join(it['impacto_range']) or '(sem canônico)'}** "
+                f"e tratamento **{', '.join(it['tratamento_range']) or '(vazio)'}**:\n"
+                + "\n".join(f"  - {o}: impacto {i}, tratamento {t}"
+                            for o, i, t in it["por_orgao"]))
+        else:
+            incoer = ("- Incoerência do template: sem cluster multi-órgão de "
+                      "\"digital only\" neste snapshot.")
+        exclusao_corpo = f"""- Orientação dos riscos (sujeito afetado): estado {od.get('estado', 0)}, \
+cidadão {od.get('cidadao', 0)}, ambos {od.get('ambos', 0)}, indefinido {od.get('indefinido', 0)}. \
+Entre os {M.get('orient_classificados', 0)} classificáveis, o foco no Estado supera o foco no \
+cidadão em ~{_ratio:.0f}× — a matriz de risco é endógena ao aparato estatal (fornecedor, equipe, \
+orçamento, cronograma), não distributiva.
+- Subtipo de exclusão: digital_only {sd.get('digital_only', 0)}, acessibilidade \
+{sd.get('acessibilidade', 0)}, disponibilidade_uptime {sd.get('disponibilidade_uptime', 0)} \
+(FALSO-AMIGO — uptime técnico do sistema, frequentemente confundido com exclusão por mencionar o \
+cidadão, mas distributivamente distinto), nenhum {sd.get('nenhum', 0)}
+- **Exclusão distributiva real** (digital_only | acessibilidade): {M['exclusao_n']} riscos em \
+{len(M['exclusao_orgaos'])} órgãos ({', '.join(M['exclusao_orgaos'])}) — fração marginal de \
+{fi(nR)} riscos ({fp(M['exclusao_n'] / nR)}).
+{excl_table}
+{incoer}
+- **Gancho normativo**: o instrumento PTD PERMITE registrar exclusão, mas não a GOVERNA. O mesmo \
+risco-template recebe severidade e resposta divergentes conforme o órgão — falta norma de \
+preenchimento e escala de severidade padronizada. A EFGD/IN deveria exigir (i) linha OBRIGATÓRIA \
+de risco de exclusão digital em todo PTD, (ii) escala de severidade padronizada para essa linha e \
+(iii) tratamento default = manutenção de canal não-digital alternativo."""
+    else:
+        exclusao_corpo = ("- Sem riscos de exclusão classificados neste snapshot "
+                          "(colunas orientacao_risco/subtipo_exclusao ausentes ou vazias).")
+    exclusao_section = "**3.4 Risco de exclusão digital (dimensão distributiva)**\n\n" + exclusao_corpo
 
     return f"""# Insumos para Nota Técnica IPEA
 # Corpus dos Planos de Transformação Digital: coleta, padronização e análise
@@ -420,6 +545,8 @@ Mediana: {fi(int(M["ent_mediana"]))} ·
 - **Gap EFGD**: o Decreto 12.198/2024 estabelece 6 princípios; o template
   operacionaliza 5 eixos. Princípios V (transparente/participativo) e VI
   (eficiente/sustentável) sem expressão operacional nos produtos pactuados
+
+{exclusao_section}
 
 ---
 

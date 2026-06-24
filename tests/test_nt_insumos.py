@@ -169,6 +169,32 @@ def test_compute_nt_metrics_sintetico(cells, tmp_path):
     assert M["prob_canon"] == 2 and M["imp_canon"] == 2
     assert M["trat_canon"] == 2
     assert M["dez_pct"] == 1.0             # todas as datas em dezembro
+    # Corpus sintético sem as colunas da 09c → métricas de exclusão zeradas
+    # (caminho defensivo de compute_nt_metrics, sem KeyError).
+    assert M["exclusao_n"] == 0 and M["incoer_template"] is None
+    assert M["orient_estado"] == 0 and M["uptime_n"] == 0
+
+
+# ---------- Orientação do risco / exclusão digital (09c) ----------
+
+def test_classify_risk_orientation(cells):
+    classify = cells["classify_risk_orientation"]
+    # Template "digital only": exclusão digital, voltada ao cidadão, alta confiança.
+    o, s, c = classify(
+        "O serviço público terminar sendo oferecido somente pela via digital (digital only)")
+    assert s == "digital_only" and o in ("cidadao", "ambos") and c == "alta"
+    # Radical 'exclus' deve casar (MMULHERES "Risco de exclusão digital").
+    assert classify("Risco de exclusão digital")[1] == "digital_only"
+    assert classify("Baixa acessibilidade dos serviços")[1] == "acessibilidade"
+    # FALSO-AMIGO: uptime do sistema para o cidadão NÃO é exclusão.
+    assert classify(
+        "Indisponibilidade dos sistemas de acesso para o cidadão")[1] == "disponibilidade_uptime"
+    # Falso-positivo evitado: vulnerabilidade de SEGURANÇA não é acessibilidade.
+    assert classify("Vulnerabilidade de Segurança na solução")[1] == "nenhum"
+    # Risco endógeno ao Estado.
+    assert classify(
+        "Atraso no cronograma por dependência de fornecedor") == ("estado", "nenhum", "alta")
+    assert classify("") == ("indefinido", "nenhum", "baixa")
 
 
 def test_write_nt_insumos_gera_md_e_atualiza_manifest(cells, tmp_path):

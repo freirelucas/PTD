@@ -39,7 +39,7 @@ Sete grupos ministeriais publicam um único PDF para múltiplos órgãos (MD/MEC
 | `output/statistics_summary.json` | Estatísticas agregadas |
 | `output/manifest.json` | Manifesto da execução: commit do pipeline, contagens de PDFs e hash SHA-256 dos artefatos exportados |
 | `output/pdf_metadata.csv` | Metadados dos PDFs (datas, tamanhos) |
-| `output/figures/` | Visualizações estatísticas (PNG) |
+| `output/figures/` | Visualizações estatísticas (SVG) |
 | `output/nota_tecnica_insumos.md` | Insumos para a nota técnica — **gerado** pela célula `11e_nt_insumos.py` (métricas com definição explícita e carimbo de snapshot; não editar à mão) |
 | `output/datapackage.json` | Descritor [Frictionless Data Package](https://specs.frictionlessdata.io/) (Table Schema dos CSVs) |
 | `output/metadata/` | Metadados em padrões abertos: schema.org/Dataset, DCAT-AP, SKOS, JSON Schema, PROV-O, payload CKAN |

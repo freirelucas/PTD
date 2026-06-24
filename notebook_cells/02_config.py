@@ -387,6 +387,14 @@ class RiskEntry:
     extraction_confidence: str = "high"    # high / medium / low
     needs_review: bool = False
     review_reason: Optional[str] = None
+    # Camada de análise distributiva (célula 09c) — derivada de risco_texto,
+    # NÃO altera a extração. orientacao_risco: a quem o risco se refere
+    # (cidadao / estado / ambos / indefinido). subtipo_exclusao: digital_only /
+    # acessibilidade / disponibilidade_uptime (falso-amigo: uptime ≠ exclusão) /
+    # nenhum. orientacao_confidence: alta / baixa (baixa = match fraco/ambíguo).
+    orientacao_risco: str = ""
+    subtipo_exclusao: str = ""
+    orientacao_confidence: str = ""
 
 @dataclass
 class DeliveryEntry:

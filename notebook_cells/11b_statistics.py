@@ -12,6 +12,13 @@ sns.set_style("whitegrid")
 fig_dir = os.path.join(DIRS["output"], "figures")
 os.makedirs(fig_dir, exist_ok=True)
 
+
+def _save_fig(name):
+    """Salva a figura corrente em SVG (vetor, fontes do sistema). A NT do
+    corpus padroniza figuras em SVG — todas as figuras deste cell usam este
+    helper para manter o formato consistente."""
+    plt.savefig(os.path.join(fig_dir, name + ".svg"), bbox_inches="tight")
+
 # Build DataFrames for analysis (reuse if already created in export cell)
 if all_deliveries:
     df_del = pd.DataFrame([asdict(e) for e in all_deliveries])
@@ -81,7 +88,7 @@ if not df_del.empty and "eixo_normalizado" in df_del.columns:
     ax.set_title("Entregas por Eixo Estratégico")
     ax.bar_label(bars, padding=3)
     plt.tight_layout()
-    plt.savefig(os.path.join(fig_dir, "01_entregas_por_eixo.png"), dpi=150, bbox_inches="tight")
+    _save_fig("01_entregas_por_eixo")
     plt.show()
 else:
     print("Sem dados de entregas para gráfico de eixos.")
@@ -116,7 +123,7 @@ if not df_risk.empty and "probabilidade_normalizada" in df_risk.columns and "imp
         ax.set_ylabel("Probabilidade")
         ax.set_title("Matriz de Riscos: Probabilidade × Impacto")
         plt.tight_layout()
-        plt.savefig(os.path.join(fig_dir, "04_matriz_riscos.png"), dpi=150, bbox_inches="tight")
+        _save_fig("04_matriz_riscos")
         plt.show()
     else:
         print("Sem riscos com valores canônicos de probabilidade/impacto para heatmap.")
@@ -136,7 +143,7 @@ if not df_del.empty and "produto_normalizado" in df_del.columns:
     ax.set_title("Top 20 Produtos Mais Frequentes")
     ax.bar_label(bars, padding=3)
     plt.tight_layout()
-    plt.savefig(os.path.join(fig_dir, "02_top20_produtos.png"), dpi=150, bbox_inches="tight")
+    _save_fig("02_top20_produtos")
     plt.show()
 else:
     print("Sem dados de entregas para gráfico de produtos.")
@@ -163,7 +170,7 @@ if not df_del.empty and "tabela_tipo" in df_del.columns:
         )
         ax.set_title("Distribuição de Entregas por Tipo")
         plt.tight_layout()
-        plt.savefig(os.path.join(fig_dir, "05_distribuicao_tipos.png"), dpi=150, bbox_inches="tight")
+        _save_fig("05_distribuicao_tipos")
         plt.show()
     else:
         print("Sem dados de tipo de tabela para gráfico de pizza.")
@@ -183,7 +190,7 @@ if not df_del.empty and "orgao_sigla" in df_del.columns:
     ax.set_title("Top 30 Órgãos por Número de Entregas")
     ax.bar_label(bars, padding=3)
     plt.tight_layout()
-    plt.savefig(os.path.join(fig_dir, "03_top30_orgaos_entregas.png"), dpi=150, bbox_inches="tight")
+    _save_fig("03_top30_orgaos_entregas")
     plt.show()
 else:
     print("Sem dados de entregas para gráfico por órgão.")
@@ -210,7 +217,7 @@ if not df_risk.empty and "tratamento_normalizado" in df_risk.columns:
         ax.bar_label(bars, padding=3)
         plt.xticks(rotation=30, ha="right")
         plt.tight_layout()
-        plt.savefig(os.path.join(fig_dir, "06_tratamento_riscos.png"), dpi=150, bbox_inches="tight")
+        _save_fig("06_tratamento_riscos")
         plt.show()
     else:
         print("Sem dados de tratamento para gráfico.")
@@ -358,3 +365,131 @@ if all_risks:
         print("  ou identificar casos de extração tabular (Categoria A).")
     else:
         print("\n  Sem residuais não-canônicos — corpus 100% mapeado.")
+
+
+# =========================================================
+# 9. Risco de exclusão digital (orientação + subtipo — célula 09c)
+# =========================================================
+# Sub-análise distributiva: a matriz de risco do PTD é endógena ao Estado
+# (fornecedor/equipe/orçamento). Esta seção isola o risco de EXCLUSÃO do
+# cidadão e mede a (in)coerência com que o mesmo risco-template é avaliado.
+import re as _re_excl
+import difflib as _difflib_excl
+
+if not df_risk.empty and "subtipo_exclusao" in df_risk.columns:
+    print("\n" + "=" * 60)
+    print("RISCO DE EXCLUSÃO DIGITAL (orientação distributiva)")
+    print("=" * 60)
+
+    # --- Saída 1: contagem por orientacao_risco (esperado: estado ≫ cidadao) ---
+    _orient = df_risk["orientacao_risco"].value_counts()
+    print("\n--- (1) Riscos por orientação ---")
+    for _k in ["estado", "cidadao", "ambos", "indefinido"]:
+        _v = int(_orient.get(_k, 0))
+        print(f"    {_k:<12s} {_v:>4d} ({_v / len(df_risk) * 100:>4.1f}%)")
+    _est, _cid = int(_orient.get("estado", 0)), int(_orient.get("cidadao", 0))
+    print(f"    → estado/cidadao = {(_est / _cid):.1f}×" if _cid else "    → sem cidadao")
+
+    # --- Saída 2: contagem por subtipo_exclusao ---
+    _subt = df_risk["subtipo_exclusao"].value_counts()
+    print("\n--- (2) Riscos por subtipo de exclusão ---")
+    for _k in ["digital_only", "acessibilidade", "disponibilidade_uptime", "nenhum"]:
+        _v = int(_subt.get(_k, 0))
+        print(f"    {_k:<24s} {_v:>4d}")
+    print("    (disponibilidade_uptime é o FALSO-AMIGO: uptime técnico, não exclusão)")
+
+    # --- Saída 3: tabela dos órgãos com exclusão real (digital_only|acessibilidade) ---
+    _excl = df_risk[df_risk["subtipo_exclusao"].isin(["digital_only", "acessibilidade"])]
+    print(f"\n--- (3) Órgãos com risco de exclusão: "
+          f"{len(_excl)} riscos em {_excl['orgao_sigla'].nunique()} órgãos ---")
+    print(f"    {'SIGLA':<10}{'SUBTIPO':<15}{'PROB':<12}{'IMPACTO':<12}{'TRAT':<10}TEXTO")
+    for _, _r in _excl.sort_values(["orgao_sigla"]).iterrows():
+        _txt = (_r["risco_texto"] or "")[:48].replace("\n", " ")
+        print(f"    {_r['orgao_sigla']:<10}{_r['subtipo_exclusao']:<15}"
+              f"{(_r['probabilidade_normalizada'] or '-'):<12}"
+              f"{(_r['impacto_normalizado'] or '-'):<12}"
+              f"{(_r['tratamento_normalizado'] or '-'):<10}{_txt}")
+
+    # --- Saída 4: ÍNDICE DE INCOERÊNCIA do template "digital only" ---
+    # Agrupa os riscos digital_only por texto quase-idêntico (fuzzy ≥0,90) e
+    # reporta, por cluster com ≥2 órgãos, o leque de impacto e de tratamento
+    # atribuídos ao MESMO risco. É o número-chave da nota técnica.
+    def _norm_excl(t):
+        return _re_excl.sub(r"\s+", " ", str(t or "").strip().lower())
+
+    _dig = df_risk[df_risk["subtipo_exclusao"] == "digital_only"].to_dict("records")
+    _clusters = []
+    for _row in _dig:
+        _nt = _norm_excl(_row["risco_texto"])
+        for _cl in _clusters:
+            if _difflib_excl.SequenceMatcher(None, _nt, _cl["rep"]).ratio() >= 0.90:
+                _cl["rows"].append(_row)
+                break
+        else:
+            _clusters.append({"rep": _nt, "rows": [_row]})
+
+    print("\n--- (4) Índice de incoerência (mesmo risco-template, avaliações divergentes) ---")
+    for _cl in sorted(_clusters, key=lambda c: -len(c["rows"])):
+        _orgs = sorted({x["orgao_sigla"] for x in _cl["rows"]})
+        if len(_orgs) < 2:
+            continue
+        _imp = [x["impacto_normalizado"] for x in _cl["rows"]
+                if x["impacto_normalizado"] in IMPACTO_SCALE]
+        _trat = sorted({x["tratamento_normalizado"] for x in _cl["rows"]
+                        if x["tratamento_normalizado"]})
+        _imp_ord = sorted(set(_imp), key=lambda v: IMPACTO_SCALE.index(v))
+        print(f"    template em {len(_orgs)} órgãos ({', '.join(_orgs)}):")
+        print(f"      texto: \"{_cl['rows'][0]['risco_texto'][:70]}...\"")
+        print(f"      IMPACTO varia: {' → '.join(_imp_ord) or '(sem canônico)'}")
+        print(f"      TRATAMENTO varia: {', '.join(_trat) or '(vazio)'}")
+        for _x in sorted(_cl["rows"], key=lambda r: r["orgao_sigla"]):
+            print(f"        {_x['orgao_sigla']:<10} impacto={_x['impacto_normalizado'] or '-':<12}"
+                  f" tratamento={_x['tratamento_normalizado'] or '-'}")
+
+    # --- Figura 08: orientação do risco (barras horizontais) ---
+    _ord_orient = ["estado", "ambos", "cidadao", "indefinido"]
+    _vals = [int(_orient.get(k, 0)) for k in _ord_orient]
+    _pal = {"estado": "#34495E", "ambos": "#95A5A6", "cidadao": "#C0392B", "indefinido": "#D5DBDB"}
+    fig, ax = plt.subplots(figsize=(9, 4))
+    _bars = ax.barh(_ord_orient[::-1], _vals[::-1],
+                    color=[_pal[k] for k in _ord_orient[::-1]])
+    ax.set_xlabel("Número de riscos")
+    ax.set_title("Orientação do risco: a matriz do PTD é endógena ao Estado")
+    ax.bar_label(_bars, padding=3)
+    ax.margins(x=0.12)
+    plt.tight_layout()
+    _save_fig("08_orientacao_risco")
+    plt.show()
+
+    # --- Figura 09: incoerência do risco "digital only" (dot plot) ---
+    _dig_clean = [x for x in _dig if x["impacto_normalizado"] in IMPACTO_SCALE]
+    if _dig_clean:
+        _trat_colors = {"mitigar": "#27AE60", "aceitar": "#C0392B",
+                        "transferir": "#E67E22", "eliminar": "#2980B9"}
+        fig, ax = plt.subplots(figsize=(9, max(3, len(_dig_clean) * 0.5)))
+        _dig_sorted = sorted(_dig_clean,
+                             key=lambda r: IMPACTO_SCALE.index(r["impacto_normalizado"]))
+        _ylabels = []
+        for _i, _x in enumerate(_dig_sorted):
+            _xi = IMPACTO_SCALE.index(_x["impacto_normalizado"])
+            _t0 = (_x["tratamento_normalizado"] or "").split(";")[0].strip()
+            ax.scatter(_xi, _i, s=220, zorder=3,
+                       color=_trat_colors.get(_t0, "#7F8C8D"),
+                       edgecolor="white", linewidth=1.5)
+            _ylabels.append(_x["orgao_sigla"])
+        ax.set_yticks(range(len(_dig_sorted)))
+        ax.set_yticklabels(_ylabels)
+        ax.set_xticks(range(len(IMPACTO_SCALE)))
+        ax.set_xticklabels(IMPACTO_SCALE, rotation=20, ha="right")
+        ax.set_xlim(-0.5, len(IMPACTO_SCALE) - 0.5)
+        ax.set_xlabel("Impacto atribuído (escala ordinal SGD)")
+        ax.set_title('Mesmo risco "digital only", severidade e tratamento divergentes')
+        _handles = [plt.Line2D([0], [0], marker="o", linestyle="", markersize=10,
+                               markerfacecolor=_c, markeredgecolor="white", label=_t)
+                    for _t, _c in _trat_colors.items()]
+        ax.legend(handles=_handles, title="Tratamento", loc="lower right", framealpha=0.9)
+        ax.grid(axis="x", linestyle=":", alpha=0.5)
+        plt.tight_layout()
+        _save_fig("09_incoerencia_digital_only")
+        plt.show()
+    print("=" * 60)

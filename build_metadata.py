@@ -128,6 +128,20 @@ RISKS_FIELDS = [
     f("extraction_confidence", "string", "Confiança da extração", "Confiança qualitativa da linha.", enum=CONFIDENCE),
     f("needs_review", "boolean", "Requer revisão", "Sinaliza linha para a fila de revisão humana."),
     f("review_reason", "string", "Motivo da revisão", "Razão pela qual a linha foi sinalizada."),
+    # Camada de análise distributiva (célula 09c), derivada de risco_texto.
+    f("orientacao_risco", "string", "Orientação do risco",
+      "Sujeito afetado pelo risco: cidadao (usuário externo do serviço), estado "
+      "(órgão/fornecedor/equipe/orçamento), ambos ou indefinido.",
+      enum=["cidadao", "estado", "ambos", "indefinido"]),
+    f("subtipo_exclusao", "string", "Subtipo de exclusão",
+      "Marca risco de exclusão distributiva: digital_only (serviço só por canal "
+      "digital), acessibilidade (deficiência/idoso/letramento), "
+      "disponibilidade_uptime (falso-amigo: uptime técnico, não exclusão) ou nenhum.",
+      enum=["digital_only", "acessibilidade", "disponibilidade_uptime", "nenhum"]),
+    f("orientacao_confidence", "string", "Confiança da orientação",
+      "Confiança da classificação de orientação: alta (exclusão explícita ou um "
+      "único lado do léxico) ou baixa (ambíguo/sem sinal).",
+      enum=["alta", "baixa"]),
 ]
 
 DELIVERIES_FIELDS = [

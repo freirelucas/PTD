@@ -191,6 +191,46 @@ tr:hover td{background:var(--light)}
 .rv-empty{display:none;text-align:center;padding:60px 20px;color:#888;background:var(--card);border-radius:var(--radius);box-shadow:0 1px 2px rgba(0,0,0,.06)}
 .rv-orgs{font-size:.78rem;color:#555}
 .rv-orgs .more{color:#999}
+/* === Banho de loja — aba de Riscos (reusa tokens do :root) === */
+.btn{padding:8px 14px;border:1px solid var(--border);border-radius:var(--radius);background:#fff;color:var(--text);font-size:.85rem;cursor:pointer;transition:background .15s}
+.btn:hover{background:var(--light)}
+.btn.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.empty-state{text-align:center;padding:28px 16px;color:var(--muted);font-size:.88rem}
+.kpi.crit{border-top-color:var(--red)}
+.kpi.warn{border-top-color:var(--yellow)}
+/* Matriz: severidade por classe (substitui cor inline) */
+.risk-matrix .cell.sev-1{background:#C8E6C9}
+.risk-matrix .cell.sev-2{background:#FFF9C4}
+.risk-matrix .cell.sev-3{background:#FFE0B2}
+.risk-matrix .cell.sev-4{background:#FFCDD2}
+.risk-matrix .cell.is-empty{color:var(--muted);font-weight:400;opacity:.5}
+.risk-matrix .header,.risk-matrix .row-label{font-size:.78rem}
+/* Tabela: zebra + truncamento por CSS + rodapé */
+.table-wrap table tbody tr:nth-child(even) td{background:#FAFBFC}
+td.trunc{max-width:360px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tbl-foot td{text-align:center;color:var(--muted);font-size:.82rem;background:#F4F7FA}
+/* Exclusão digital */
+.excl-bar{display:flex;align-items:center;gap:10px;margin:5px 0}
+.excl-bar .lbl{width:185px;font-size:.83rem;color:var(--text)}
+.excl-bar .track{flex:1;max-width:260px;height:14px;background:var(--bg);border-radius:7px;overflow:hidden}
+.excl-bar .fill{height:100%;border-radius:7px}
+.excl-bar .val{font-size:.82rem;color:var(--muted);min-width:46px}
+.excl-bar.dimmed .lbl{color:var(--muted)}
+.orgchips{display:flex;flex-wrap:wrap;gap:5px;margin:6px 0 2px}
+.orgchip{font-size:.72rem;background:var(--light);color:var(--primary);padding:2px 9px;border-radius:10px;font-weight:600}
+/* Callout / caixa de destaque */
+.callout{background:var(--light);border-left:4px solid var(--primary);border-radius:var(--radius);padding:12px 14px;margin-top:12px}
+.callout.warn{background:#FBEEE9;border-left-color:var(--red)}
+.callout p{margin:0 0 8px;font-size:.86rem;line-height:1.5}
+.callout p:last-child{margin-bottom:0}
+/* Barra de frequência (top riscos) */
+.freq-bar{display:flex;align-items:center;gap:8px}
+.freq-bar .track{flex:1;background:var(--border);border-radius:3px;height:9px;overflow:hidden}
+.freq-bar .fill{height:100%;background:var(--primary);border-radius:3px}
+.freq-bar .n{font-weight:700;font-size:.8rem;color:var(--dark);min-width:22px;text-align:right}
+tr.freq-row:hover td{background:var(--light)}
+/* Ação destacada na célula da matriz */
+.action-bar--matrix{border-left-color:var(--yellow)}
 </style>
 <!-- BEGIN schema.org JSON-LD (gerado por build_metadata.py) -->
 <script type="application/ld+json">
@@ -322,13 +362,13 @@ tr:hover td{background:var(--light)}
       "@type": "DataDownload",
       "encodingFormat": "text/csv",
       "contentUrl": "https://freirelucas.github.io/PTD/output/risks.csv",
-      "sha256": "5e01d2e584cbb669088da4d121dedafb03d61db9d0593ff4f3a7702a6fe38b58"
+      "sha256": "f55a17d341ecb44fd0e691fef9b30488d67666d498893d214ecad0b4e86ddf6f"
     },
     {
       "@type": "DataDownload",
       "encodingFormat": "application/json",
       "contentUrl": "https://freirelucas.github.io/PTD/output/risks.json",
-      "sha256": "7a3465ab04beefb5cb613d8bd96bb12577b8b436e1b7baecf9319b8ea1e3802a"
+      "sha256": "8d55ace92bc043e7b864482a283712cdbc1b59a69e50c0479c195975996dc743"
     },
     {
       "@type": "DataDownload",
@@ -340,7 +380,7 @@ tr:hover td{background:var(--light)}
       "@type": "DataDownload",
       "encodingFormat": "application/json",
       "contentUrl": "https://freirelucas.github.io/PTD/output/validation_report.json",
-      "sha256": "0caa6c421208fc072709fd7a3a9fa2e1e8c29a8d939642605ee239e0023a72b4"
+      "sha256": "95fd9715bbc59fbacc9bb9c3f34b8ca84ad622dd736c1090dbfd43b1d9253b2f"
     },
     {
       "@type": "DataDownload",
@@ -436,12 +476,13 @@ tr:hover td{background:var(--light)}
 <div id="risks" class="section">
   <h2>Gestão de Riscos</h2>
   <p class="desc">Riscos identificados pelos órgãos em seus Documentos Diretivos, classificados por <strong>probabilidade</strong> (raro a praticamente certo), <strong>impacto</strong> (muito baixo a muito alto) e <strong>opção de tratamento</strong> (mitigar, eliminar, transferir, aceitar). A matriz abaixo mostra a concentração de riscos — clique em uma célula para ver os riscos daquela combinação.</p>
+  <div class="kpi-row" id="risk-kpis"></div>
   <div class="chart-container">
     <h3>Matriz de Riscos — Probabilidade × Impacto <small>(clique para filtrar)</small></h3>
     <div class="filters" style="margin-bottom:12px">
       <select id="r-orgao" onchange="matrixFilter=null;filterRisks()"><option value="">Todos os Órgãos</option></select>
       <select id="r-tratamento" onchange="matrixFilter=null;filterRisks()"><option value="">Todos os Tratamentos</option></select>
-      <button onclick="resetRiskFilters()" style="padding:8px 14px;border:1px solid var(--border);border-radius:var(--radius);background:#fff;cursor:pointer">Limpar</button>
+      <button id="r-clear" class="btn" onclick="resetRiskFilters()">Limpar</button>
     </div>
     <div class="risk-matrix" id="risk-matrix"></div>
     <div id="matrix-actions" style="margin-top:12px"></div>
@@ -452,7 +493,8 @@ tr:hover td{background:var(--light)}
     <div class="chart-container"><h3>Distribuição de Tratamento</h3><canvas id="chart-tratamento"></canvas></div>
     <div class="chart-container"><h3>Riscos Mais Frequentes</h3><div class="table-wrap" id="top-risks-table" style="max-height:300px"></div></div>
   </div>
-  <div class="chart-container"><h3>Ações de Mitigação — Referencial SGD <small>(clique para expandir)</small></h3><p class="desc" style="margin-bottom:12px">Ações padronizadas pela SGD. Cada risco referencia um subconjunto (ex: "1, 2, 9"). A barra indica frequência relativa.</p><div id="actions-list"></div></div>
+  <div class="chart-container"><h3>Risco de exclusão digital <small>(dimensão distributiva)</small></h3><p class="desc" style="margin-bottom:12px">A matriz de risco do PTD é majoritariamente endógena ao Estado (fornecedor, equipe, orçamento). Esta visão isola o risco de <strong>excluir o cidadão</strong> sem acesso, dispositivo ou letramento — e mostra a (in)coerência com que o mesmo risco-template é avaliado entre órgãos.</p><div id="exclusao-view"></div></div>
+  <div class="chart-container"><h3>Ações de mitigação mais recorrentes <small>(clique para expandir)</small></h3><p class="desc" style="margin-bottom:12px">Ações de tratamento agrupadas por texto (rótulo = forma mais comum), ordenadas por frequência. Base: riscos cujo plano de ação vem no formato numerado do modelo SGD. A barra indica frequência relativa.</p><div id="actions-list"></div></div>
 </div>
 
 <!-- ===== ÓRGÃOS ===== -->
@@ -988,34 +1030,61 @@ const TRAT = (typeof PTD_SCALES !== "undefined" && PTD_SCALES.tratamento) ? PTD_
 // Paleta ipeaplot — categórica institucional IPEA
 const COLORS = ["#264A7F","#C0392B","#27AE60","#E67E22","#8E44AD","#2980B9","#D35400","#16A085","#4D8AC9","#7F8C8D"];
 
-// Build action index: parse acoes_resolvidas to extract numbered actions
-const ACTION_INDEX = {}; // action_id -> {text, risks: [risk objects]}
-const RISK_TO_ACTIONS = new WeakMap(); // risk -> [action_ids]
+// Índice de ações de mitigação agrupadas por TEXTO normalizado.
+// O "1." de cada item é posição na lista do PDF do órgão, NÃO um id estável
+// de um catálogo SGD — agrupar por ele mistura ações distintas e rotula pela
+// mais longa (idiossincrática). Aqui agrupamos por texto (acento/caixa-
+// insensível) e rotulamos pela forma MODAL (mais frequente). O id exibido é
+// um ranking por frequência, não uma referência canônica.
+const ACTION_INDEX = {}; // rank_idx -> {id, text (modal), risks: [risk objects]}
+const RISK_TO_ACTIONS = new WeakMap(); // risk -> [rank_idx,...]
 
 // Flatten deliveries and risks into arrays
 let allDel = []; Object.values(PTD_DELIVERIES).forEach(arr => allDel.push(...arr));
 let allRisk = []; Object.values(PTD_RISKS).forEach(arr => allRisk.push(...arr));
 
-// Build action index from resolved references
+function _actNorm(t){
+  // agrupa por texto (sem o prefixo ordinal "N."), caixa e espaços normalizados.
+  // Acentos são consistentes nos textos-template em PT, então não os removemos.
+  return (t || '').replace(/^\s*\d+[.\)]\s*/, '').replace(/\s+/g, ' ').trim().toLowerCase();
+}
+
 (function buildActionIndex(){
+  const groups = {};           // normKey -> {forms:{surface:count}, risks:[]}
+  const riskKeys = new Map();  // risk -> Set(normKey)
+  let nWithFormat = 0;
   allRisk.forEach(r => {
     const res = r.acoes_resolvidas || '';
-    const actionIds = [];
-    if (res.includes('|')) {
-      res.split('|').forEach(part => {
-        part = part.trim();
-        const m = part.match(/^(\d+)\.\s*(.+)/);
-        if (m) {
-          const id = m[1], text = m[2].trim();
-          if (!ACTION_INDEX[id]) ACTION_INDEX[id] = {id, text, risks: []};
-          else if (text.length > ACTION_INDEX[id].text.length) ACTION_INDEX[id].text = text;
-          ACTION_INDEX[id].risks.push(r);
-          actionIds.push(id);
-        }
-      });
-    }
-    RISK_TO_ACTIONS.set(r, actionIds);
+    if (!res.includes('|')) return;        // só riscos com plano de ação numerado
+    nWithFormat++;
+    const keys = new Set();
+    res.split('|').forEach(part => {
+      const m = part.trim().match(/^\d+[.\)]\s*(.+)/);
+      if (!m) return;
+      const surface = m[1].trim();
+      const key = _actNorm(surface);
+      if (key.length < 8 || keys.has(key)) return;   // descarta fragmento / repetição no mesmo risco
+      keys.add(key);
+      if (!groups[key]) groups[key] = {forms: {}, risks: []};
+      groups[key].forms[surface] = (groups[key].forms[surface] || 0) + 1;
+      groups[key].risks.push(r);
+    });
+    riskKeys.set(r, keys);
   });
+  // Ranqueia por nº de riscos; rótulo = forma modal (mais frequente; desempate pela mais curta).
+  const ranked = Object.entries(groups).sort((a, b) => b[1].risks.length - a[1].risks.length);
+  const keyToId = {};
+  ranked.forEach(([key, g], i) => {
+    const modal = Object.entries(g.forms)
+      .sort((a, b) => b[1] - a[1] || a[0].length - b[0].length)[0][0];
+    ACTION_INDEX[i] = {id: i + 1, text: modal, risks: g.risks};
+    keyToId[key] = i;
+  });
+  allRisk.forEach(r => {
+    const ids = [...(riskKeys.get(r) || [])].map(k => keyToId[k]).filter(v => v !== undefined);
+    RISK_TO_ACTIONS.set(r, ids);
+  });
+  ACTION_INDEX._base = {nWithFormat, total: allRisk.length};
 })();
 
 // ==================== NAV ====================
@@ -1343,11 +1412,31 @@ function initRisks(){
     TRAT.forEach(t=>{ const op=document.createElement('option');op.value=t;op.textContent=t;document.getElementById('r-tratamento').appendChild(op); });
     [fO,document.getElementById('r-tratamento')].forEach(el=>el.addEventListener('change',()=>{matrixFilter=null;filterRisks();}));
   }
+  renderRiskKpis();
   buildRiskMatrix();
   filterRisks();
   renderTratamentoChart();
   renderTopRisks();
+  renderExclusao();
   renderActionsList();
+}
+
+function renderRiskKpis(){
+  const el=document.getElementById('risk-kpis'); if(!el) return;
+  const total=allRisk.length||1, orgs=new Set();
+  let crit=0, excl=0;
+  allRisk.forEach(r=>{
+    orgs.add(r.orgao_sigla);
+    if(PROB_ORDER.indexOf(r.probabilidade_normalizada)>=2 && IMP_ORDER.indexOf(r.impacto_normalizado)>=3) crit++;
+    const s=_subtipoExcl(r); if(s==='digital_only'||s==='acessibilidade') excl++;
+  });
+  const kpis=[
+    {l:'Riscos mapeados',v:allRisk.length,s:orgs.size+' órgãos'},
+    {l:'Zona crítica',v:crit,s:(crit/total*100).toFixed(0)+'% · prob≥provável × impacto≥alto',cls:'crit'},
+    {l:'Exclusão digital',v:excl,s:(excl/total*100).toFixed(1)+'% dos riscos',cls:'warn'},
+    {l:'Órgãos',v:orgs.size,s:'com riscos mapeados'},
+  ];
+  el.innerHTML=kpis.map(k=>`<div class="kpi ${k.cls||''}"><div class="label">${k.l}</div><div class="value">${k.v}</div><div class="sub">${k.s}</div></div>`).join('');
 }
 
 function buildRiskMatrix(){
@@ -1366,8 +1455,8 @@ function buildRiskMatrix(){
       const c=counts[p+'|'+i]||0;
       const pi=PROB_ORDER.indexOf(p), ii=IMP_ORDER.indexOf(i);
       const severity=pi+ii;
-      const bg=severity<=2?'#C8E6C9':severity<=4?'#FFF9C4':severity<=6?'#FFE0B2':'#FFCDD2';
-      html+=`<div class="cell" data-p="${p}" data-i="${i}" style="background:${bg}" onclick="matrixFilter={p:'${p}',i:'${i}'};highlightMatrixCell(this);filterRisks();updateMatrixActions()">${c||''}</div>`;
+      const sev=severity<=2?1:severity<=4?2:severity<=6?3:4;
+      html+=`<div class="cell sev-${sev}${c?'':' is-empty'}" data-p="${p}" data-i="${i}" onclick="matrixFilter={p:'${p}',i:'${i}'};highlightMatrixCell(this);filterRisks();updateMatrixActions()">${c||'·'}</div>`;
     });
   });
   document.getElementById('risk-matrix').innerHTML=html;
@@ -1386,12 +1475,14 @@ function filterRisks(){
   });
   const activeF=[(org?org:''),(trat?'trat: '+trat:''),(matrixFilter?matrixFilter.p+' × '+matrixFilter.i:'')].filter(Boolean).join(' · ');
   document.getElementById('risk-count').innerHTML=`<strong>${riskFiltered.length}</strong> riscos${activeF?' <span style="font-size:.8rem;color:var(--muted)">— '+activeF+'</span>':''}`;
+  const clearBtn=document.getElementById('r-clear'); if(clearBtn) clearBtn.classList.toggle('active', !!(org||trat||matrixFilter));
   let html='<table><thead><tr><th>Órgão</th><th>Risco</th><th>Prob.</th><th>Impacto</th><th>Tratamento</th><th>Ações</th></tr></thead><tbody>';
   riskFiltered.slice(0,50).forEach(r=>{
-    html+=`<tr><td><b>${r.orgao_sigla}</b></td><td>${(r.risco_texto||'').substring(0,80)}</td><td>${r.probabilidade_normalizada||''}</td><td>${r.impacto_normalizado||''}</td><td>${r.tratamento_normalizado||''}</td><td title="${(r.acoes_resolvidas||'').substring(0,500)}">${(r.acoes_resolvidas||'').substring(0,60)}${(r.acoes_resolvidas||'').length>60?'...':''}</td></tr>`;
+    const ac=r.acoes_resolvidas||'';
+    html+=`<tr><td><b>${r.orgao_sigla}</b></td><td class="trunc" title="${(r.risco_texto||'').replace(/"/g,'&quot;')}">${r.risco_texto||''}</td><td>${r.probabilidade_normalizada||''}</td><td>${r.impacto_normalizado||''}</td><td>${r.tratamento_normalizado||''}</td><td class="trunc" title="${ac.substring(0,500).replace(/"/g,'&quot;')}">${ac||'—'}</td></tr>`;
   });
-  if(!riskFiltered.length) html+='<tr><td colspan="6" style="text-align:center;color:var(--muted)">Nenhum risco encontrado</td></tr>';
-  if(riskFiltered.length>50) html+=`<tr><td colspan="6" style="text-align:center;color:var(--muted);font-size:.82rem">Mostrando 50 de ${riskFiltered.length} — refine os filtros</td></tr>`;
+  if(!riskFiltered.length) html+='<tr><td colspan="6" class="empty-state">Nenhum risco encontrado para este filtro.</td></tr>';
+  if(riskFiltered.length>50) html+=`<tr class="tbl-foot"><td colspan="6">Mostrando 50 de ${riskFiltered.length} — refine os filtros para ver os demais</td></tr>`;
   html+='</tbody></table>';
   document.getElementById('risk-table').innerHTML=html;
 }
@@ -1414,26 +1505,75 @@ function updateMatrixActions(){
   let html=`<p style="font-size:.83rem;color:var(--muted);margin-bottom:8px"><strong>Ações de mitigação para ${matrixFilter.p} × ${matrixFilter.i}</strong> (${cellRisks.length} riscos):</p>`;
   sorted.forEach(([id,count])=>{
     const a=ACTION_INDEX[id];
-    if(a) html+=`<div class="action-bar" style="border-left-color:#FF9800"><span class="num">${id}</span><span class="text">${a.text.substring(0,100)}</span><span class="count">${count}x</span></div>`;
+    if(a) html+=`<div class="action-bar action-bar--matrix"><span class="num">${a.id}</span><span class="text">${a.text.substring(0,100)}</span><span class="count">${count}x</span></div>`;
   });
+  el.innerHTML=html;
+}
+
+// Risco de exclusão digital — classificação client-side (espelha a célula 09c).
+// Usa r.subtipo_exclusao se data.js já o trouxer; senão, deriva de risco_texto.
+const _IMP_ORD=["muito baixo","baixo","médio","alto","muito alto"];
+function _exNorm(t){return (t||'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,' ').trim().toLowerCase();}
+const _EXCL_PAT=[
+  ['digital_only',/(somente|exclusivamente|apenas|unica)[^.]{0,20}\bdigital|digital[\s-]?only|exclusao\s+digital|barreira[^.]{0,35}(acesso|dispositivo|digital|internet)|nao\s+(possu|tem|teria|dispoe)[^.]{0,25}(acesso|dispositivo|internet|celular)/],
+  ['acessibilidade',/acessibilidade|\blibras\b|letrament|analfabet|inclusao\s+digital|pessoas?\s+com\s+defici|baixa\s+escolaridade|\bidos[oa]s?\b/],
+  ['disponibilidade_uptime',/(in)?disponibilidade[^.]{0,40}(sistema|plataforma|portal)|sistemas?\s+de\s+acesso\s+para\s+o\s+cidad/],
+];
+function _subtipoExcl(r){
+  if(r.subtipo_exclusao) return r.subtipo_exclusao;
+  const n=_exNorm(r.risco_texto);
+  for(const[name,re] of _EXCL_PAT){ if(re.test(n)) return name; }
+  return 'nenhum';
+}
+function renderExclusao(){
+  const el=document.getElementById('exclusao-view'); if(!el) return;
+  const ct={digital_only:0,acessibilidade:0,disponibilidade_uptime:0,nenhum:0};
+  const excl=[];
+  allRisk.forEach(r=>{const s=_subtipoExcl(r);ct[s]=(ct[s]||0)+1;if(s==='digital_only'||s==='acessibilidade')excl.push({r,s});});
+  const orgs=[...new Set(excl.map(x=>x.r.orgao_sigla))].sort();
+  const total=allRisk.length||1;
+  const bar=(label,val,color,dim)=>`<div class="excl-bar${dim?' dimmed':''}"><span class="lbl">${label}</span><span class="track"><span class="fill" style="width:${Math.max(2,val/total*100)}%;background:${color}"></span></span><span class="val">${val}</span></div>`;
+  let html='<div class="excl-bars">';
+  html+=bar('digital only',ct.digital_only,'var(--red)');
+  html+=bar('acessibilidade',ct.acessibilidade,'var(--yellow)');
+  html+=bar('uptime (falso-amigo)',ct.disponibilidade_uptime,'var(--muted)',true);
+  html+=bar('sem exclusão',ct.nenhum,'var(--border)',true);
+  html+='</div>';
+  if(!excl.length){el.innerHTML=html+'<p class="empty-state">Nenhum risco de exclusão distributiva neste recorte.</p>';return;}
+  html+=`<p style="font-size:.88rem"><strong>Exclusão distributiva real</strong> (digital only + acessibilidade): <strong>${excl.length}</strong> riscos em <strong>${orgs.length}</strong> órgãos — fração marginal de ${total} riscos (${(excl.length/total*100).toFixed(1)}%).</p>`;
+  html+='<div class="orgchips">'+orgs.map(o=>`<span class="orgchip">${o}</span>`).join('')+'</div>';
+  const tmpl=excl.filter(x=>x.s==='digital_only'
+    && /somente[^.]{0,18}(via|canal|forma|meio)?\s*digital/.test(_exNorm(x.r.risco_texto))
+    && _IMP_ORD.includes(x.r.impacto_normalizado));
+  tmpl.sort((a,b)=>_IMP_ORD.indexOf(a.r.impacto_normalizado)-_IMP_ORD.indexOf(b.r.impacto_normalizado));
+  if(tmpl.length>=2){
+    const imps=[...new Set(tmpl.map(x=>x.r.impacto_normalizado))];
+    const trats=[...new Set(tmpl.map(x=>x.r.tratamento_normalizado||'—'))];
+    html+='<div class="callout warn">';
+    html+=`<p><strong>Incoerência do template "digital only"</strong>: o mesmo risco, em ${tmpl.length} órgãos, recebe impacto de <strong>${imps[0]}</strong> a <strong>${imps[imps.length-1]}</strong> e tratamento (${trats.join(', ')}) — o instrumento permite registrar exclusão, mas não governa como avaliá-la.</p>`;
+    html+='<table><thead><tr><th>Órgão</th><th>Impacto</th><th>Tratamento</th></tr></thead><tbody>';
+    tmpl.forEach(x=>{html+=`<tr><td><b>${x.r.orgao_sigla}</b></td><td>${x.r.impacto_normalizado}</td><td>${x.r.tratamento_normalizado||'—'}</td></tr>`;});
+    html+='</tbody></table></div>';
+  }
   el.innerHTML=html;
 }
 
 function renderActionsList(){
   const el=document.getElementById('actions-list');
-  const ids=Object.keys(ACTION_INDEX).sort((a,b)=>parseInt(a)-parseInt(b));
-  if(!ids.length){el.innerHTML='<p style="color:var(--muted)">Nenhuma ação de mitigação padronizada encontrada nos PDFs.</p>';return;}
+  const ids=Object.keys(ACTION_INDEX).filter(k=>k!=='_base').sort((a,b)=>parseInt(a)-parseInt(b));
+  if(!ids.length){el.innerHTML='<p style="color:var(--muted)">Nenhum plano de ação no formato numerado encontrado nos PDFs.</p>';return;}
   const maxCount=Math.max(...ids.map(id=>ACTION_INDEX[id].risks.length));
+  const _base=ACTION_INDEX._base||{};
   let selectedAction=null;
 
   function render(){
-    let html='';
+    let html=_base.nWithFormat?`<p style="font-size:.8rem;color:var(--muted);margin-bottom:8px">Base: <strong>${_base.nWithFormat}</strong> de ${_base.total} riscos têm plano de ação no formato numerado do modelo SGD.</p>`:'';
     ids.forEach(id=>{
       const a=ACTION_INDEX[id];
       const pct=a.risks.length/maxCount*100;
       const sel=selectedAction===id?'selected':'';
       html+=`<div class="action-bar ${sel}" data-action="${id}">`;
-      html+=`<span class="num">${id}</span>`;
+      html+=`<span class="num">${a.id}</span>`;
       html+=`<span class="text">${a.text.substring(0,120)}</span>`;
       html+=`<span class="count">${a.risks.length} riscos</span>`;
       html+=`<div style="width:80px"><div class="bar-fill" style="width:${pct}%"></div></div>`;
@@ -1471,20 +1611,28 @@ function renderActionsList(){
 }
 
 function renderTratamentoChart(){
+  if(typeof Chart==='undefined') return;   // CDN do Chart.js indisponível: não derruba o resto da aba
   destroyChart('trat');
   const tc={};allRisk.forEach(r=>{(r.tratamento_normalizado||'').split(';').forEach(t=>{t=t.trim().toLowerCase();if(TRAT.includes(t))tc[t]=(tc[t]||0)+1;});});
   const labels=Object.keys(tc),vals=Object.values(tc);
-  charts.trat=new Chart(document.getElementById('chart-tratamento'),{type:'bar',data:{labels,datasets:[{data:vals,backgroundColor:['#264A7F','#C0392B','#4D8AC9','#27AE60'],borderRadius:4}]},options:{plugins:{legend:{display:false}}}});
+  const tcolor={mitigar:'#27AE60',eliminar:'#264A7F',transferir:'#4D8AC9',aceitar:'#C0392B'};
+  const bg=labels.map(l=>tcolor[l]||'#7F8C8D');
+  charts.trat=new Chart(document.getElementById('chart-tratamento'),{
+    type:'bar',
+    data:{labels,datasets:[{data:vals,backgroundColor:bg,borderRadius:4,maxBarThickness:96}]},
+    options:{plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.parsed.y} riscos`}}},scales:{y:{beginAtZero:true,ticks:{precision:0}}}},
+    plugins:[{afterDatasetsDraw(c){const ctx=c.ctx;ctx.save();ctx.fillStyle='#1B3A5C';ctx.font='600 11px "Source Sans 3",system-ui,sans-serif';ctx.textAlign='center';c.getDatasetMeta(0).data.forEach((b,i)=>ctx.fillText(vals[i],b.x,b.y-5));ctx.restore();}}]
+  });
 }
 
 function renderTopRisks(){
   const rc={};allRisk.forEach(r=>{const t=(r.risco_texto||'').substring(0,60);if(t.length>10)rc[t]=(rc[t]||0)+1;});
   const sorted=Object.entries(rc).sort((a,b)=>b[1]-a[1]).slice(0,10);
   const maxC=sorted[0]?.[1]||1;
-  let html='<table><thead><tr><th>Risco</th><th style="width:120px">Frequência</th></tr></thead><tbody>';
+  let html='<table><thead><tr><th>Risco</th><th style="width:130px">Frequência</th></tr></thead><tbody>';
   sorted.forEach(([t,c])=>{
     const w=c/maxC*100;
-    html+=`<tr><td style="font-size:.82rem">${t}...</td><td><div style="display:flex;align-items:center;gap:6px"><div style="flex:1;background:var(--bg);border-radius:2px;height:10px"><div style="width:${w}%;height:100%;background:var(--primary);border-radius:2px"></div></div><span style="font-weight:600;font-size:.8rem;min-width:20px">${c}</span></div></td></tr>`;
+    html+=`<tr class="freq-row"><td class="trunc" title="${t.replace(/"/g,'&quot;')}…">${t}…</td><td><div class="freq-bar"><span class="track"><span class="fill" style="width:${w}%"></span></span><span class="n">${c}</span></div></td></tr>`;
   });
   html+='</tbody></table>';
   document.getElementById('top-risks-table').innerHTML=html;
