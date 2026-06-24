@@ -41,6 +41,7 @@ _DEFS_CELLS = (
     "07b_extract_risks.py",
     "08b_extract_deliveries.py",
     "09b_standardization.py",
+    "09c_risk_orientation.py",
     "10b_export.py",
     "11cb_dashboard_data.py",
     "11e_nt_insumos.py",

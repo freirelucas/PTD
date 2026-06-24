@@ -212,6 +212,49 @@
               ],
               "title": "Motivo da revisão",
               "description": "Razão pela qual a linha foi sinalizada."
+            },
+            "orientacao_risco": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "Orientação do risco",
+              "description": "Sujeito afetado pelo risco: cidadao (usuário externo do serviço), estado (órgão/fornecedor/equipe/orçamento), ambos ou indefinido.",
+              "enum": [
+                "cidadao",
+                "estado",
+                "ambos",
+                "indefinido",
+                null
+              ]
+            },
+            "subtipo_exclusao": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "Subtipo de exclusão",
+              "description": "Marca risco de exclusão distributiva: digital_only (serviço só por canal digital), acessibilidade (deficiência/idoso/letramento), disponibilidade_uptime (falso-amigo: uptime técnico, não exclusão) ou nenhum.",
+              "enum": [
+                "digital_only",
+                "acessibilidade",
+                "disponibilidade_uptime",
+                "nenhum",
+                null
+              ]
+            },
+            "orientacao_confidence": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "title": "Confiança da orientação",
+              "description": "Confiança da classificação de orientação: alta (exclusão explícita ou um único lado do léxico) ou baixa (ambíguo/sem sinal).",
+              "enum": [
+                "alta",
+                "baixa",
+                null
+              ]
             }
           },
           "required": [

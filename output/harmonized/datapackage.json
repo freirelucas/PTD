@@ -269,6 +269,46 @@
             "type": "string",
             "title": "Motivo da revisão",
             "description": "Razão pela qual a linha foi sinalizada."
+          },
+          {
+            "name": "orientacao_risco",
+            "type": "string",
+            "title": "Orientação do risco",
+            "description": "Sujeito afetado pelo risco: cidadao (usuário externo do serviço), estado (órgão/fornecedor/equipe/orçamento), ambos ou indefinido.",
+            "constraints": {
+              "enum": [
+                "cidadao",
+                "estado",
+                "ambos",
+                "indefinido"
+              ]
+            }
+          },
+          {
+            "name": "subtipo_exclusao",
+            "type": "string",
+            "title": "Subtipo de exclusão",
+            "description": "Marca risco de exclusão distributiva: digital_only (serviço só por canal digital), acessibilidade (deficiência/idoso/letramento), disponibilidade_uptime (falso-amigo: uptime técnico, não exclusão) ou nenhum.",
+            "constraints": {
+              "enum": [
+                "digital_only",
+                "acessibilidade",
+                "disponibilidade_uptime",
+                "nenhum"
+              ]
+            }
+          },
+          {
+            "name": "orientacao_confidence",
+            "type": "string",
+            "title": "Confiança da orientação",
+            "description": "Confiança da classificação de orientação: alta (exclusão explícita ou um único lado do léxico) ou baixa (ambíguo/sem sinal).",
+            "constraints": {
+              "enum": [
+                "alta",
+                "baixa"
+              ]
+            }
           }
         ],
         "foreignKeys": [
@@ -281,7 +321,7 @@
           }
         ]
       },
-      "hash": "sha256:ddacd1f0a4c5e96e299b56ac108f4d548252ce71c7b1a22abc27faa4f530cd35"
+      "hash": "sha256:34a9176923d45b60acbe459dd079af8339de2662e6e5391ab2bf332ce85522fb"
     },
     {
       "name": "deliveries",

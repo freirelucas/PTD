@@ -89,7 +89,7 @@
       "prov:wasDerivedFrom": {
         "@id": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital"
       },
-      "ptd:sha256": "b47f9231be10956cafb7741488b0fb4b0f25afc67e002c4659a88ed220f6dbea"
+      "ptd:sha256": "c27ac8ba56871b22f56f06b881117805e40f9868019517973281f82f3363cfa6"
     },
     {
       "@id": "https://freirelucas.github.io/PTD/output/organs.csv",

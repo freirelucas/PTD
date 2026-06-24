@@ -78,8 +78,8 @@ Definições usadas:
 
 - `deliveries.csv` — 4.574 linhas × 19 colunas:
   orgao_sigla, tabela_tipo, servico_acao, produto_original, produto_normalizado, produto_score, produto_method, eixo_original, eixo_normalizado, eixo_score, eixo_method, area_responsavel, data_pactuada, data_entrega, pactuado, justificativa, extraction_confidence, needs_review, review_reason
-- `risks.csv` — 619 linhas × 18 colunas:
-  orgao_sigla, risco_texto, probabilidade_original, probabilidade_normalizada, probabilidade_score, probabilidade_method, impacto_original, impacto_normalizado, impacto_score, impacto_method, tratamento_original, tratamento_normalizado, tratamento_score, tratamento_method, acoes_tratamento, extraction_confidence, needs_review, review_reason
+- `risks.csv` — 619 linhas × 21 colunas:
+  orgao_sigla, risco_texto, probabilidade_original, probabilidade_normalizada, probabilidade_score, probabilidade_method, impacto_original, impacto_normalizado, impacto_score, impacto_method, tratamento_original, tratamento_normalizado, tratamento_score, tratamento_method, acoes_tratamento, extraction_confidence, needs_review, review_reason, orientacao_risco, subtipo_exclusao, orientacao_confidence
 
 ---
 
@@ -164,6 +164,32 @@ Definições usadas:
 - **Gap EFGD**: o Decreto 12.198/2024 estabelece 6 princípios; o template
   operacionaliza 5 eixos. Princípios V (transparente/participativo) e VI
   (eficiente/sustentável) sem expressão operacional nos produtos pactuados
+
+**3.4 Risco de exclusão digital (dimensão distributiva)**
+
+- Orientação dos riscos (sujeito afetado): estado 282, cidadão 30, ambos 2, indefinido 305. Entre os 314 classificáveis, o foco no Estado supera o foco no cidadão em ~9× — a matriz de risco é endógena ao aparato estatal (fornecedor, equipe, orçamento, cronograma), não distributiva.
+- Subtipo de exclusão: digital_only 8, acessibilidade 2, disponibilidade_uptime 29 (FALSO-AMIGO — uptime técnico do sistema, frequentemente confundido com exclusão por mencionar o cidadão, mas distributivamente distinto), nenhum 580
+- **Exclusão distributiva real** (digital_only | acessibilidade): 10 riscos em 7 órgãos (CODEVASF, IBGE, INSS, MDHC, MGI, MMULHERES, SGPR) — fração marginal de 619 riscos (1,6%).
+
+| Órgão | Subtipo | Prob. | Impacto | Tratamento | Texto (trunc.) |
+|---|---|---|---|---|---|
+| CODEVASF | digital_only | pouco provável | muito alto | mitigar | r) 0 serviço público terminar sendo oferecido somente pela via digital (digital  |
+| IBGE | digital_only | provável | baixo | mitigar | O serviço público terminar sendo oferecido somente pela via digital (digital onl |
+| INSS | digital_only | provável | médio | aceitar | O serviço público terminar sendo oferecido somente pela via digital (digital onl |
+| MDHC | digital_only | pouco provável | alto | mitigar | O serviço público terminar sendo oferecido somente pela via digital (digital onl |
+| MGI | digital_only | pouco provável | alto | mitigar | O serviço público terminar sendo oferecido somente pela via digital (digital onl |
+| MMULHERES | acessibilidade | muito provável | alto | orçamento digita… [nc] | Falta de orçamento Baixa acessibilidade dos |
+| MMULHERES | digital_only | muito provável | Médio Muito [nc] | - Parcerias estr… [nc] | adequada para implementação digital Risco de exclusão digital |
+| MMULHERES | digital_only | provável | alto | mitigar | pela via digital (digital only) |
+| SGPR | acessibilidade | pouco provável | médio | mitigar | O PTD gerar transformações que afetem negativamente a acessibilidade digital. |
+| SGPR | digital_only | provável | muito alto | mitigar | O modelo Digital Only ser uma barreira para jovens que não possuem acesso a disp |
+- **Incoerência do template "digital only"** (número-chave): em 5 órgãos (CODEVASF, IBGE, INSS, MDHC, MGI), o MESMO risco recebe impacto **baixo → médio → alto → muito alto** e tratamento **aceitar, mitigar**:
+  - CODEVASF: impacto muito alto, tratamento mitigar
+  - IBGE: impacto baixo, tratamento mitigar
+  - INSS: impacto médio, tratamento aceitar
+  - MDHC: impacto alto, tratamento mitigar
+  - MGI: impacto alto, tratamento mitigar
+- **Gancho normativo**: o instrumento PTD PERMITE registrar exclusão, mas não a GOVERNA. O mesmo risco-template recebe severidade e resposta divergentes conforme o órgão — falta norma de preenchimento e escala de severidade padronizada. A EFGD/IN deveria exigir (i) linha OBRIGATÓRIA de risco de exclusão digital em todo PTD, (ii) escala de severidade padronizada para essa linha e (iii) tratamento default = manutenção de canal não-digital alternativo.
 
 ---
 

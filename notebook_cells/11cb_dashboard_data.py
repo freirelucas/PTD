@@ -359,6 +359,8 @@ for r in all_risks:
         "tratamento_method": getattr(r, "tratamento_method", "") or "",
         "acoes_original": r.acoes_tratamento or "",
         "acoes_resolvidas": r.acoes_tratamento or "",
+        "orientacao_risco": getattr(r, "orientacao_risco", "") or "",
+        "subtipo_exclusao": getattr(r, "subtipo_exclusao", "") or "",
         "needs_review": bool(getattr(r, "needs_review", False)),
         "review_reason": r.review_reason or "",
     })

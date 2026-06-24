@@ -301,7 +301,7 @@ Detalhes em [`DECISIONS.md`](DECISIONS.md):
 | `output/vocabulary_mapping.csv` | Mapa original → canônico aprendido na execução |
 | `output/review_queue.csv` | Fila de revisão completa (todas as linhas sinalizadas) |
 | `output/statistics_summary.json` | Estatísticas agregadas |
-| `output/data.js` + `output/figures/` | Dados do dashboard e visualizações PNG |
+| `output/data.js` + `output/figures/` | Dados do dashboard e visualizações SVG |
 | `output/nota_tecnica_insumos.md` | Insumos da NT — **gerado** pela célula `11e` (números com definição e proveniência) |
 | `output/datapackage.json` + `output/metadata/` | Descritores em padrões abertos (`build_metadata.py`) |
 | `output/harmonized/` | Visão estritamente canônica (`build_corpus.py`) |
