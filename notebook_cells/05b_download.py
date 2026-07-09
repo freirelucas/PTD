@@ -96,6 +96,14 @@ def download_all_pdfs(organs: List[OrganInfo]) -> List[ProcessingError]:
                     continue
 
             err = _download_single_pdf(url, dest_path, organ.sigla, doc_type)
+            if err is not None and doc_type == "diretivo" and \
+                    _cache_fallback(organ.sigla, dest_path):
+                # Portal quebrou (defeso, arquivo renomeado, 404): usa o cache
+                # versionado do repo em vez de perder o órgão. Proveniência
+                # registrada em cache_fallbacks e reportada no resumo.
+                cache_fallbacks.append(organ.sigla)
+                setattr(organ, path_attr, dest_path)
+                err = None
             if err is not None:
                 errors.append(err)
             else:
@@ -106,6 +114,36 @@ def download_all_pdfs(organs: List[OrganInfo]) -> List[ProcessingError]:
 
     pbar.close()
     return errors
+
+
+# ------- Fallback do cache versionado (corpus_pdfs/) -------
+# Só diretivos têm cache. Mantém a análise textual viva quando o portal
+# muda (defeso eleitoral) ou renomeia PDFs; a proveniência fica visível.
+cache_fallbacks: List[str] = []
+
+
+def _cache_fallback(sigla: str, dest_path: str) -> bool:
+    """Copia o PDF diretivo do cache do repo. True se conseguiu."""
+    cache_dir = os.path.join(os.getcwd(), "corpus_pdfs")
+    manifest_path = os.path.join(cache_dir, "manifest.json")
+    if not os.path.exists(manifest_path):
+        return False
+    try:
+        with open(manifest_path, encoding="utf-8") as fh:
+            manifest = json.load(fh)
+        info = manifest.get("orgaos", {}).get(sigla)
+        if not info:
+            return False
+        src = os.path.join(cache_dir, info["file"])
+        if not os.path.exists(src):
+            return False
+        import shutil
+        os.makedirs(os.path.dirname(dest_path), exist_ok=True)
+        shutil.copy2(src, dest_path)
+        return True
+    except (OSError, json.JSONDecodeError, KeyError) as exc:
+        logger.warning(f"  cache_fallback {sigla}: {exc}")
+        return False
 
 
 # ---- Execução ----
@@ -138,6 +176,8 @@ print(f"Download concluído")
 print(f"  Documento Diretivo OK:    {_n_dir_ok}")
 print(f"  Anexo de Entregas OK:     {_n_ent_ok}")
 print(f"  Erros de download:        {len(download_errors)}")
+print(f"  Vindos do cache do repo:  {len(cache_fallbacks)}"
+      + (f" ({', '.join(sorted(cache_fallbacks))})" if cache_fallbacks else ""))
 print(f"  Tamanho total:            {_total_size / (1024*1024):.1f} MB")
 print(f"{'='*50}")
 

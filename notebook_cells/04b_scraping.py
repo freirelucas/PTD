@@ -143,7 +143,11 @@ def scrape_organ_listing(url: str) -> List[OrganInfo]:
                 }
 
     logger.info(f"Scraping direto: {len(organ_data)} siglas encontradas")
+    return _build_organ_list(organ_data)
 
+
+def _build_organ_list(organ_data: Dict[str, Dict[str, Optional[str]]]) -> List[OrganInfo]:
+    """Expande grupos ministeriais e materializa a lista final de OrganInfo."""
     # Expandir grupos: membros herdam PDFs do cabeça se não tiverem próprios
     expanded = dict(organ_data)
     for head_sigla, members in ORGAN_GROUPS.items():
@@ -180,9 +184,171 @@ def scrape_organ_listing(url: str) -> List[OrganInfo]:
     return organs
 
 
+# --------- Fallback do defeso eleitoral: listagem paginada -----------
+# Durante o defeso a página estruturada some; resta a listagem paginada de
+# arquivos em ptds-vigentes?b_start:int=N (20 itens/página), cujos títulos
+# são os NOMES DOS ARQUIVOS. Para não envenenar os dados com adivinhação,
+# a associação sigla/tipo ancora primeiro no snapshot anterior committado
+# (output/organs.csv); heurística de nome só para arquivos novos/renomeados.
+
+def _load_previous_url_map() -> Dict[str, Tuple[str, str]]:
+    """basename do PDF → (sigla, tipo) a partir do snapshot output/organs.csv."""
+    path = os.path.join(os.getcwd(), "output", "organs.csv")
+    mapping: Dict[str, Tuple[str, str]] = {}
+    if not os.path.exists(path):
+        return mapping
+    import csv as _csv
+    with open(path, encoding="utf-8-sig") as fh:
+        for row in _csv.DictReader(fh):
+            for tipo, col in (("diretivo", "url_diretivo"),
+                              ("entregas", "url_entregas")):
+                url = (row.get(col) or "").strip()
+                if url:
+                    mapping[url.rsplit("/", 1)[-1].lower()] = (row["sigla"], tipo)
+    return mapping
+
+
+# Tokens genéricos que aparecem como 1º token mas nunca são sigla
+_FILENAME_STOPWORDS = {"anexo", "ptd", "novo", "plano", "doc", "documento",
+                       "de", "do", "da", "transformacao", "digital"}
+
+
+def _sigla_tipo_from_filename(fname: str,
+                              known_siglas: set) -> Tuple[Optional[str], Optional[str]]:
+    """Heurística p/ arquivos fora do snapshot anterior.
+
+    Sigla: (1) qualquer token que seja sigla conhecida (ex.:
+    'anexo_de_entregas_-_mt_...' → MT); (2) 1º token que COMEÇA com sigla
+    conhecida (concatenações tipo 'mmulheresptd_...' → MMULHERES); (3) 1º
+    token plausível fora da stoplist (sigla inédita, vai p/ revisão).
+    Tipo: keyword no nome; sem keyword → None (não adivinha).
+    """
+    stem = fname.lower().replace(".pdf", "")
+    tokens = [t for t in re.split(r"[\-_.]+", stem) if t]
+
+    sigla = None
+    for t in tokens:
+        if t.upper() in known_siglas:
+            sigla = t.upper()
+            break
+    if sigla is None and tokens:
+        prefixes = [s for s in known_siglas
+                    if len(s) >= 3 and tokens[0].startswith(s.lower())]
+        if prefixes:
+            sigla = max(prefixes, key=len)
+    if sigla is None:
+        for t in tokens:
+            if t in _FILENAME_STOPWORDS:
+                continue
+            if re.match(r"^[a-z][a-z0-9]{1,13}$", t):
+                sigla = t.upper()
+            break
+
+    if "diretiv" in stem:
+        tipo = "diretivo"
+    elif "entrega" in stem or "anexo" in stem:
+        tipo = "entregas"
+    else:
+        tipo = None
+    return sigla, tipo
+
+
+def scrape_pdf_listing_paginated(base_url: str) -> List[OrganInfo]:
+    """Scraping da listagem paginada (modo defeso eleitoral)."""
+    prev_map = _load_previous_url_map()
+    known_siglas = set(s for s, _ in prev_map.values()) | set(MEMBER_TO_GROUP)
+    organ_data: Dict[str, Dict[str, Optional[str]]] = {}
+    review: List[str] = []
+    seen_hrefs = set()
+
+    for start in range(0, 600, 20):
+        page_url = f"{base_url}/ptds-vigentes?b_start:int={start}"
+        resp = safe_request(page_url)
+        if resp is None:
+            break
+        soup = BeautifulSoup(resp.content, "html.parser")
+        new_links = []
+        for a_tag in soup.select(".summary a[href], a.summary[href]"):
+            href = a_tag["href"]
+            clean = href[:-5] if href.endswith("/view") else href
+            if not clean.lower().endswith(".pdf") or "ptds-vigentes" not in clean:
+                continue
+            if clean in seen_hrefs:
+                continue
+            seen_hrefs.add(clean)
+            new_links.append(clean)
+        if not new_links:
+            break
+
+        for href in new_links:
+            basename = href.rsplit("/", 1)[-1].lower()
+            if basename in prev_map:
+                sigla, tipo = prev_map[basename]
+            else:
+                sigla, tipo = _sigla_tipo_from_filename(basename, known_siglas)
+                if not sigla or not tipo:
+                    review.append(basename)
+                    continue
+                if sigla not in known_siglas:
+                    # Órgão inédito é possível, mas fica sinalizado
+                    review.append(f"{basename} (sigla nova: {sigla})")
+            entry = organ_data.setdefault(sigla, {
+                "nome": f"Plano de Transformação Digital {sigla}",
+                "url_diretivo": None, "url_entregas": None,
+            })
+            key = f"url_{tipo}"
+            if entry[key] is None:
+                entry[key] = href
+
+    logger.info(f"Listagem paginada: {len(organ_data)} siglas, "
+                f"{len(seen_hrefs)} PDFs, {len(review)} p/ revisão")
+    if review:
+        print(f"  ⚠ {len(review)} arquivos não associados automaticamente:")
+        for r in review[:10]:
+            print(f"    - {r}")
+    return _build_organ_list(organ_data)
+
+
 # ---- Execução (sempre faz scraping fresco — leva ~3s) ----
-print("Fazendo scraping da página principal...")
-all_organs = scrape_organ_listing(BASE_URL)
+# Tenta os candidatos de URL em ordem (portal normal → defeso eleitoral).
+# Gate anti-envenenamento: um modo só é aceito com >=60 órgãos com URL;
+# se todos falharem, aborta SEM escrever nada (corpus anterior preservado).
+MIN_ORGAOS_SCRAPING = 60
+all_organs: List[OrganInfo] = []
+PORTAL_MODE = None
+for _base, _modo in BASE_URL_CANDIDATES:
+    print(f"Tentando portal ({_modo}): {_base}")
+    try:
+        # GET leve (stream, corpo não lido): o WAF do gov.br devolve 403
+        # para HEAD mesmo quando o recurso existe.
+        _probe = requests.get(_base, headers=HTTP_HEADERS, timeout=30,
+                              allow_redirects=True, stream=True)
+        _probe.close()
+        if _probe.status_code >= 400:
+            print(f"  HTTP {_probe.status_code} — próximo candidato")
+            continue
+    except requests.RequestException as _exc:
+        print(f"  {type(_exc).__name__} — próximo candidato")
+        continue
+    try:
+        _organs = (scrape_organ_listing(_base) if _modo == "estruturado"
+                   else scrape_pdf_listing_paginated(_base))
+    except Exception as _exc:
+        logger.warning(f"Modo {_modo} falhou: {_exc}")
+        continue
+    _com_url = sum(1 for o in _organs if o.url_diretivo or o.url_entregas)
+    if _com_url >= MIN_ORGAOS_SCRAPING:
+        all_organs, PORTAL_MODE = _organs, _modo
+        print(f"Portal em modo '{_modo}': {_com_url} órgãos com URL")
+        break
+    logger.warning(f"Modo {_modo}: só {_com_url} órgãos com URL "
+                   f"(mínimo {MIN_ORGAOS_SCRAPING}) — tentando próximo")
+
+if not all_organs:
+    raise RuntimeError(
+        "Scraping falhou em todos os candidatos de URL (portal fora do ar ou "
+        "estrutura mudou de novo). Abortando SEM escrever dados — o corpus "
+        "anterior permanece intacto.")
 
 # ---- Validação e Resumo ----
 _n_total = len(all_organs)

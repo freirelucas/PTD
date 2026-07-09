@@ -16,6 +16,19 @@ from tqdm.auto import tqdm
 BASE_URL = ("https://www.gov.br/governodigital/pt-br/"
             "estrategias-e-governanca-digital/"
             "planos-de-transformacao-digital")
+
+# Durante o defeso eleitoral (Lei 9.504/1997) o portal muda: o caminho perde
+# o "-de-" e a página estruturada some, restando só a listagem paginada de
+# arquivos em ptds-vigentes?b_start:int=N. Depois do defeso volta ao normal.
+# O scraping tenta os candidatos EM ORDEM e usa o primeiro que responder;
+# o segundo elemento indica o modo de parsing que aquela forma do portal exige.
+BASE_URL_DEFESO = ("https://www.gov.br/governodigital/pt-br/"
+                   "estrategias-e-governanca-digital/"
+                   "planos-transformacao-digital")
+BASE_URL_CANDIDATES = [
+    (BASE_URL, "estruturado"),        # página com <strong> + links rotulados
+    (BASE_URL_DEFESO, "listagem"),    # defeso: só listagem paginada de PDFs
+]
 REQUEST_DELAY = 2.0        # segundos entre requests ao gov.br
 MAX_RETRIES   = 4
 REQUEST_TIMEOUT = 90

@@ -42,24 +42,32 @@ FLOORS = {"orgaos": 80, "entregas": 3500, "riscos": 450}
 
 
 def preflight(ns: dict) -> None:
-    """HEAD no portal SGD; aborta com exit 2 (e mensagem clara) se inacessível."""
+    """HEAD nos candidatos de URL do portal SGD (forma normal e a do defeso
+    eleitoral); passa se QUALQUER um responder. Exit 2 se todos falharem."""
     import requests
-    url = ns["BASE_URL"]
-    exc_msg = ""
-    try:
-        resp = requests.head(url, headers=ns["HTTP_HEADERS"],
-                             timeout=30, allow_redirects=True)
-        code = resp.status_code
-    except requests.RequestException as exc:
-        code, exc_msg = None, f"{type(exc).__name__}: {exc}"
-    if code is None or code >= 400:
-        print("PREFLIGHT FALHOU: portal SGD inacessível "
-              f"({exc_msg if code is None else f'HTTP {code}'}) — {url}")
-        print("Causas prováveis: bloqueio do IP do runner pelo gov.br ou "
-              "indisponibilidade do portal.")
-        print("Fallback: fluxo manual via Colab (README §Publicar os dados).")
-        sys.exit(2)
-    print(f"PREFLIGHT ok: HTTP {code} em {url}")
+    candidates = ns.get("BASE_URL_CANDIDATES") or [(ns["BASE_URL"], "estruturado")]
+    failures = []
+    for url, modo in candidates:
+        try:
+            # GET leve (stream, corpo não lido): o WAF do gov.br devolve 403
+            # para HEAD mesmo quando o recurso existe.
+            resp = requests.get(url, headers=ns["HTTP_HEADERS"],
+                                timeout=30, allow_redirects=True, stream=True)
+            resp.close()
+            if resp.status_code < 400:
+                print(f"PREFLIGHT ok: HTTP {resp.status_code} em {url} "
+                      f"(modo {modo})")
+                return
+            failures.append(f"{url}: HTTP {resp.status_code}")
+        except requests.RequestException as exc:
+            failures.append(f"{url}: {type(exc).__name__}: {exc}")
+    print("PREFLIGHT FALHOU: portal SGD inacessível em todos os candidatos:")
+    for f in failures:
+        print(f"  - {f}")
+    print("Causas prováveis: bloqueio do IP do runner pelo gov.br ou "
+          "indisponibilidade do portal.")
+    print("Fallback: fluxo manual via Colab (README §Publicar os dados).")
+    sys.exit(2)
 
 
 def run_cells(skip_preflight: bool) -> None:
