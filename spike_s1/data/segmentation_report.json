@@ -14,13 +14,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 137,
         "escopo": 199,
-        "visao": 961,
+        "visao": 367,
+        "eixos": 588,
         "acompanhamento": 51,
         "riscos": 383,
         "papeis": 747
-      }
+      },
+      "headings_estranhos": []
     },
     "AGU": {
       "scanned": true,
@@ -40,13 +41,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 117,
         "escopo": 193,
-        "visao": 869,
+        "visao": 188,
+        "eixos": 675,
         "acompanhamento": 58,
         "riscos": 28,
         "papeis": 716
-      }
+      },
+      "headings_estranhos": []
     },
     "ANATEL": {
       "n_pages": 11,
@@ -62,13 +64,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 117,
         "escopo": 192,
-        "visao": 729,
+        "visao": 48,
+        "eixos": 675,
         "acompanhamento": 58,
         "riscos": 190,
         "papeis": 713
-      }
+      },
+      "headings_estranhos": []
     },
     "ANA": {
       "n_pages": 14,
@@ -84,13 +87,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 164,
         "escopo": 195,
-        "visao": 1332,
+        "visao": 592,
+        "eixos": 734,
         "acompanhamento": 58,
         "riscos": 722,
         "papeis": 699
-      }
+      },
+      "headings_estranhos": []
     },
     "ANCINE": {
       "n_pages": 11,
@@ -106,13 +110,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 140,
         "escopo": 193,
-        "visao": 762,
+        "visao": 81,
+        "eixos": 675,
         "acompanhamento": 58,
         "riscos": 259,
         "papeis": 723
-      }
+      },
+      "headings_estranhos": []
     },
     "ANEEL": {
       "n_pages": 14,
@@ -128,13 +133,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 122,
         "escopo": 192,
-        "visao": 1760,
+        "visao": 1138,
+        "eixos": 616,
         "acompanhamento": 51,
         "riscos": 402,
         "papeis": 710
-      }
+      },
+      "headings_estranhos": []
     },
     "ANM": {
       "n_pages": 13,
@@ -150,13 +156,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 137,
         "escopo": 193,
-        "visao": 1599,
+        "visao": 918,
+        "eixos": 675,
         "acompanhamento": 58,
         "riscos": 436,
         "papeis": 720
-      }
+      },
+      "headings_estranhos": []
     },
     "ANPD": {
       "n_pages": 10,
@@ -172,13 +179,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 128,
         "escopo": 193,
-        "visao": 759,
+        "visao": 61,
+        "eixos": 692,
         "acompanhamento": 58,
         "riscos": 350,
         "papeis": 732
-      }
+      },
+      "headings_estranhos": []
     },
     "ANS": {
       "n_pages": 12,
@@ -194,13 +202,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 133,
         "escopo": 193,
-        "visao": 796,
+        "visao": 115,
+        "eixos": 675,
         "acompanhamento": 58,
         "riscos": 605,
         "papeis": 726
-      }
+      },
+      "headings_estranhos": []
     },
     "ANTAQ": {
       "n_pages": 12,
@@ -216,13 +225,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 126,
         "escopo": 193,
-        "visao": 774,
+        "visao": 93,
+        "eixos": 675,
         "acompanhamento": 58,
         "riscos": 294,
         "papeis": 724
-      }
+      },
+      "headings_estranhos": []
     },
     "ANVISA": {
       "scanned": true,
@@ -242,13 +252,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 16,
         "escopo": 191,
-        "visao": 761,
+        "visao": 61,
+        "eixos": 694,
         "acompanhamento": 60,
         "riscos": 0,
         "papeis": 713
-      }
+      },
+      "headings_estranhos": []
     },
     "CADE": {
       "n_pages": 9,
@@ -264,13 +275,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 117,
         "escopo": 193,
-        "visao": 718,
+        "visao": 37,
+        "eixos": 675,
         "acompanhamento": 58,
         "riscos": 31,
         "papeis": 716
-      }
+      },
+      "headings_estranhos": []
     },
     "CAPES": {
       "n_pages": 12,
@@ -292,7 +304,8 @@
         "acompanhamento": 134,
         "riscos": 79,
         "papeis": 807
-      }
+      },
+      "headings_estranhos": []
     },
     "CENSIPAM": {
       "n_pages": 9,
@@ -308,13 +321,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 221,
         "escopo": 209,
-        "visao": 812,
+        "visao": 137,
+        "eixos": 670,
         "acompanhamento": 58,
         "riscos": 331,
         "papeis": 729
-      }
+      },
+      "headings_estranhos": []
     },
     "CEX": {
       "n_pages": 9,
@@ -330,13 +344,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 221,
         "escopo": 209,
-        "visao": 812,
+        "visao": 137,
+        "eixos": 670,
         "acompanhamento": 58,
         "riscos": 331,
         "papeis": 729
-      }
+      },
+      "headings_estranhos": []
     },
     "CGU": {
       "n_pages": 10,
@@ -352,13 +367,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 104,
         "escopo": 190,
-        "visao": 803,
+        "visao": 122,
+        "eixos": 675,
         "acompanhamento": 58,
         "riscos": 333,
         "papeis": 708
-      }
+      },
+      "headings_estranhos": []
     },
     "CM": {
       "n_pages": 9,
@@ -374,13 +390,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 221,
         "escopo": 209,
-        "visao": 812,
+        "visao": 137,
+        "eixos": 670,
         "acompanhamento": 58,
         "riscos": 331,
         "papeis": 729
-      }
+      },
+      "headings_estranhos": []
     },
     "CNPQ": {
       "n_pages": 10,
@@ -396,13 +413,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 148,
         "escopo": 207,
-        "visao": 761,
+        "visao": 80,
+        "eixos": 675,
         "acompanhamento": 58,
         "riscos": 246,
         "papeis": 734
-      }
+      },
+      "headings_estranhos": []
     },
     "COAF": {
       "n_pages": 13,
@@ -418,13 +436,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 125,
         "escopo": 195,
-        "visao": 1022,
+        "visao": 341,
+        "eixos": 675,
         "acompanhamento": 58,
         "riscos": 315,
         "papeis": 728
-      }
+      },
+      "headings_estranhos": []
     },
     "CODEVASF": {
       "n_pages": 14,
@@ -440,13 +459,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 199,
         "escopo": 220,
-        "visao": 812,
+        "visao": 131,
+        "eixos": 675,
         "acompanhamento": 56,
         "riscos": 834,
         "papeis": 716
-      }
+      },
+      "headings_estranhos": []
     },
     "COMAER": {
       "n_pages": 9,
@@ -462,13 +482,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 221,
         "escopo": 209,
-        "visao": 812,
+        "visao": 137,
+        "eixos": 670,
         "acompanhamento": 58,
         "riscos": 331,
         "papeis": 729
-      }
+      },
+      "headings_estranhos": []
     },
     "CONAB": {
       "n_pages": 9,
@@ -484,13 +505,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 171,
         "escopo": 197,
-        "visao": 709,
+        "visao": 28,
+        "eixos": 675,
         "acompanhamento": 58,
         "riscos": 103,
         "papeis": 735
-      }
+      },
+      "headings_estranhos": []
     },
     "CVM": {
       "n_pages": 11,
@@ -506,13 +528,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 139,
         "escopo": 189,
-        "visao": 756,
+        "visao": 79,
+        "eixos": 671,
         "acompanhamento": 41,
         "riscos": 0,
         "papeis": 689
-      }
+      },
+      "headings_estranhos": []
     },
     "DNOCS": {
       "n_pages": 16,
@@ -528,13 +551,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 111,
         "escopo": 188,
-        "visao": 1039,
+        "visao": 358,
+        "eixos": 675,
         "acompanhamento": 58,
         "riscos": 723,
         "papeis": 719
-      }
+      },
+      "headings_estranhos": []
     },
     "EBSERH": {
       "n_pages": 12,
@@ -556,7 +580,8 @@
         "acompanhamento": 134,
         "riscos": 79,
         "papeis": 807
-      }
+      },
+      "headings_estranhos": []
     },
     "FBN": {
       "scanned": true,
@@ -580,13 +605,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 130,
         "escopo": 192,
-        "visao": 769,
+        "visao": 88,
+        "eixos": 675,
         "acompanhamento": 58,
         "riscos": 14,
         "papeis": 722
-      }
+      },
+      "headings_estranhos": []
     },
     "FIOCRUZ": {
       "n_pages": 10,
@@ -602,13 +628,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 145,
         "escopo": 193,
-        "visao": 721,
+        "visao": 40,
+        "eixos": 675,
         "acompanhamento": 58,
         "riscos": 0,
         "papeis": 667
-      }
+      },
+      "headings_estranhos": []
     },
     "FNDE": {
       "n_pages": 12,
@@ -630,7 +657,8 @@
         "acompanhamento": 134,
         "riscos": 79,
         "papeis": 807
-      }
+      },
+      "headings_estranhos": []
     },
     "FOSORIO": {
       "n_pages": 9,
@@ -646,13 +674,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 221,
         "escopo": 209,
-        "visao": 812,
+        "visao": 137,
+        "eixos": 670,
         "acompanhamento": 58,
         "riscos": 331,
         "papeis": 729
-      }
+      },
+      "headings_estranhos": []
     },
     "FUNAI": {
       "scanned": true,
@@ -672,13 +701,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 110,
         "escopo": 191,
-        "visao": 866,
+        "visao": 185,
+        "eixos": 675,
         "acompanhamento": 58,
         "riscos": 306,
         "papeis": 716
-      }
+      },
+      "headings_estranhos": []
     },
     "FUNDACENTRO": {
       "n_pages": 9,
@@ -694,13 +724,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 115,
         "escopo": 198,
-        "visao": 700,
+        "visao": 34,
+        "eixos": 660,
         "acompanhamento": 58,
         "riscos": 3,
         "papeis": 710
-      }
+      },
+      "headings_estranhos": []
     },
     "FUNDAJ": {
       "n_pages": 12,
@@ -722,7 +753,8 @@
         "acompanhamento": 134,
         "riscos": 79,
         "papeis": 807
-      }
+      },
+      "headings_estranhos": []
     },
     "HFA": {
       "n_pages": 9,
@@ -738,13 +770,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 221,
         "escopo": 209,
-        "visao": 812,
+        "visao": 137,
+        "eixos": 670,
         "acompanhamento": 58,
         "riscos": 331,
         "papeis": 729
-      }
+      },
+      "headings_estranhos": []
     },
     "IBAMA": {
       "n_pages": 13,
@@ -760,13 +793,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 256,
         "escopo": 195,
-        "visao": 710,
+        "visao": 29,
+        "eixos": 675,
         "acompanhamento": 58,
         "riscos": 694,
         "papeis": 736
-      }
+      },
+      "headings_estranhos": []
     },
     "IBC": {
       "n_pages": 12,
@@ -788,7 +822,8 @@
         "acompanhamento": 134,
         "riscos": 79,
         "papeis": 807
-      }
+      },
+      "headings_estranhos": []
     },
     "IBGE": {
       "n_pages": 11,
@@ -804,13 +839,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 116,
         "escopo": 196,
-        "visao": 828,
+        "visao": 149,
+        "eixos": 673,
         "acompanhamento": 58,
         "riscos": 627,
         "papeis": 705
-      }
+      },
+      "headings_estranhos": []
     },
     "ICMBIO": {
       "n_pages": 13,
@@ -826,13 +862,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 256,
         "escopo": 195,
-        "visao": 710,
+        "visao": 29,
+        "eixos": 675,
         "acompanhamento": 58,
         "riscos": 694,
         "papeis": 736
-      }
+      },
+      "headings_estranhos": []
     },
     "INCRA": {
       "scanned": true,
@@ -858,7 +895,8 @@
         "acompanhamento": 134,
         "riscos": 79,
         "papeis": 807
-      }
+      },
+      "headings_estranhos": []
     },
     "INES": {
       "n_pages": 12,
@@ -880,7 +918,8 @@
         "acompanhamento": 134,
         "riscos": 79,
         "papeis": 807
-      }
+      },
+      "headings_estranhos": []
     },
     "INPI": {
       "n_pages": 11,
@@ -896,13 +935,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 144,
         "escopo": 192,
-        "visao": 907,
+        "visao": 226,
+        "eixos": 675,
         "acompanhamento": 58,
         "riscos": 238,
         "papeis": 737
-      }
+      },
+      "headings_estranhos": []
     },
     "INSS": {
       "n_pages": 14,
@@ -918,13 +958,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 118,
         "escopo": 194,
-        "visao": 1001,
+        "visao": 320,
+        "eixos": 675,
         "acompanhamento": 58,
         "riscos": 327,
         "papeis": 703
-      }
+      },
+      "headings_estranhos": []
     },
     "IPHAN": {
       "n_pages": 10,
@@ -940,13 +981,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 129,
         "escopo": 194,
-        "visao": 759,
+        "visao": 78,
+        "eixos": 675,
         "acompanhamento": 58,
         "riscos": 192,
         "papeis": 721
-      }
+      },
+      "headings_estranhos": []
     },
     "ITI": {
       "scanned": true,
@@ -966,13 +1008,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 256,
         "escopo": 195,
-        "visao": 710,
+        "visao": 29,
+        "eixos": 675,
         "acompanhamento": 58,
         "riscos": 694,
         "papeis": 736
-      }
+      },
+      "headings_estranhos": []
     },
     "MAPA": {
       "scanned": true,
@@ -996,13 +1039,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 133,
         "escopo": 193,
-        "visao": 863,
+        "visao": 182,
+        "eixos": 675,
         "acompanhamento": 58,
         "riscos": 327,
         "papeis": 747
-      }
+      },
+      "headings_estranhos": []
     },
     "MDA": {
       "n_pages": 9,
@@ -1018,13 +1062,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 171,
         "escopo": 197,
-        "visao": 709,
+        "visao": 28,
+        "eixos": 675,
         "acompanhamento": 58,
         "riscos": 103,
         "papeis": 735
-      }
+      },
+      "headings_estranhos": []
     },
     "MDHC": {
       "n_pages": 11,
@@ -1040,13 +1085,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 129,
         "escopo": 188,
-        "visao": 1188,
+        "visao": 346,
+        "eixos": 836,
         "acompanhamento": 104,
         "riscos": 454,
         "papeis": 683
-      }
+      },
+      "headings_estranhos": []
     },
     "MD": {
       "n_pages": 9,
@@ -1062,13 +1108,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 221,
         "escopo": 209,
-        "visao": 812,
+        "visao": 137,
+        "eixos": 670,
         "acompanhamento": 58,
         "riscos": 331,
         "papeis": 729
-      }
+      },
+      "headings_estranhos": []
     },
     "MEC": {
       "n_pages": 12,
@@ -1090,7 +1137,8 @@
         "acompanhamento": 134,
         "riscos": 79,
         "papeis": 807
-      }
+      },
+      "headings_estranhos": []
     },
     "MEMP": {
       "n_pages": 11,
@@ -1106,13 +1154,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 140,
         "escopo": 199,
-        "visao": 758,
+        "visao": 77,
+        "eixos": 675,
         "acompanhamento": 58,
         "riscos": 192,
         "papeis": 737
-      }
+      },
+      "headings_estranhos": []
     },
     "MESP": {
       "n_pages": 11,
@@ -1128,13 +1177,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 108,
         "escopo": 190,
-        "visao": 1084,
+        "visao": 403,
+        "eixos": 675,
         "acompanhamento": 58,
         "riscos": 149,
         "papeis": 715
-      }
+      },
+      "headings_estranhos": []
     },
     "MF": {
       "n_pages": 10,
@@ -1150,13 +1200,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 141,
         "escopo": 192,
-        "visao": 814,
+        "visao": 79,
+        "eixos": 729,
         "acompanhamento": 58,
         "riscos": 190,
         "papeis": 714
-      }
+      },
+      "headings_estranhos": []
     },
     "MGI": {
       "n_pages": 14,
@@ -1172,13 +1223,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 157,
         "escopo": 197,
-        "visao": 990,
+        "visao": 310,
+        "eixos": 674,
         "acompanhamento": 59,
         "riscos": 443,
         "papeis": 752
-      }
+      },
+      "headings_estranhos": []
     },
     "MIDR": {
       "n_pages": 14,
@@ -1194,13 +1246,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 199,
         "escopo": 220,
-        "visao": 812,
+        "visao": 131,
+        "eixos": 675,
         "acompanhamento": 56,
         "riscos": 834,
         "papeis": 716
-      }
+      },
+      "headings_estranhos": []
     },
     "MINC": {
       "n_pages": 12,
@@ -1216,13 +1269,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 224,
         "escopo": 191,
-        "visao": 796,
+        "visao": 115,
+        "eixos": 675,
         "acompanhamento": 58,
         "riscos": 305,
         "papeis": 719
-      }
+      },
+      "headings_estranhos": []
     },
     "MJSP": {
       "n_pages": 10,
@@ -1238,13 +1292,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 143,
         "escopo": 202,
-        "visao": 753,
+        "visao": 72,
+        "eixos": 675,
         "acompanhamento": 58,
         "riscos": 0,
         "papeis": 721
-      }
+      },
+      "headings_estranhos": []
     },
     "MMA": {
       "n_pages": 13,
@@ -1260,13 +1315,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 256,
         "escopo": 195,
-        "visao": 710,
+        "visao": 29,
+        "eixos": 675,
         "acompanhamento": 58,
         "riscos": 694,
         "papeis": 736
-      }
+      },
+      "headings_estranhos": []
     },
     "MME": {
       "n_pages": 11,
@@ -1282,13 +1338,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 121,
         "escopo": 193,
-        "visao": 1066,
+        "visao": 381,
+        "eixos": 679,
         "acompanhamento": 58,
         "riscos": 211,
         "papeis": 729
-      }
+      },
+      "headings_estranhos": []
     },
     "MMULHERES": {
       "n_pages": 12,
@@ -1304,13 +1361,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 118,
         "escopo": 191,
-        "visao": 875,
+        "visao": 303,
+        "eixos": 567,
         "acompanhamento": 58,
         "riscos": 462,
         "papeis": 713
-      }
+      },
+      "headings_estranhos": []
     },
     "MPI": {
       "n_pages": 10,
@@ -1326,13 +1384,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 120,
         "escopo": 193,
-        "visao": 768,
+        "visao": 87,
+        "eixos": 675,
         "acompanhamento": 58,
         "riscos": 0,
         "papeis": 718
-      }
+      },
+      "headings_estranhos": []
     },
     "MPOR": {
       "n_pages": 23,
@@ -1348,13 +1407,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 135,
         "escopo": 193,
-        "visao": 975,
+        "visao": 295,
+        "eixos": 674,
         "acompanhamento": 58,
         "riscos": 873,
         "papeis": 677
-      }
+      },
+      "headings_estranhos": []
     },
     "MPO": {
       "n_pages": 11,
@@ -1370,13 +1430,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 123,
         "escopo": 193,
-        "visao": 752,
+        "visao": 71,
+        "eixos": 675,
         "acompanhamento": 58,
         "riscos": 231,
         "papeis": 727
-      }
+      },
+      "headings_estranhos": []
     },
     "MPS": {
       "n_pages": 11,
@@ -1392,13 +1453,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 103,
         "escopo": 382,
-        "visao": 945,
+        "visao": 264,
+        "eixos": 675,
         "acompanhamento": 53,
         "riscos": 169,
         "papeis": 673
-      }
+      },
+      "headings_estranhos": []
     },
     "MRE": {
       "n_pages": 11,
@@ -1414,13 +1476,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 106,
         "escopo": 193,
-        "visao": 811,
+        "visao": 131,
+        "eixos": 674,
         "acompanhamento": 58,
         "riscos": 273,
         "papeis": 716
-      }
+      },
+      "headings_estranhos": []
     },
     "MTE": {
       "n_pages": 11,
@@ -1436,13 +1499,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 140,
         "escopo": 194,
-        "visao": 758,
+        "visao": 78,
+        "eixos": 674,
         "acompanhamento": 58,
         "riscos": 192,
         "papeis": 727
-      }
+      },
+      "headings_estranhos": []
     },
     "MTUR": {
       "n_pages": 10,
@@ -1458,13 +1522,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 120,
         "escopo": 192,
-        "visao": 793,
+        "visao": 112,
+        "eixos": 675,
         "acompanhamento": 58,
         "riscos": 95,
         "papeis": 743
-      }
+      },
+      "headings_estranhos": []
     },
     "PF": {
       "n_pages": 11,
@@ -1480,13 +1545,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 107,
         "escopo": 189,
-        "visao": 859,
+        "visao": 178,
+        "eixos": 675,
         "acompanhamento": 58,
         "riscos": 341,
         "papeis": 712
-      }
+      },
+      "headings_estranhos": []
     },
     "PGFN": {
       "n_pages": 10,
@@ -1502,13 +1568,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 141,
         "escopo": 192,
-        "visao": 814,
+        "visao": 79,
+        "eixos": 729,
         "acompanhamento": 58,
         "riscos": 190,
         "papeis": 714
-      }
+      },
+      "headings_estranhos": []
     },
     "PREVIC": {
       "scanned": true,
@@ -1528,13 +1595,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 125,
         "escopo": 198,
-        "visao": 489,
+        "visao": 236,
+        "eixos": 248,
         "acompanhamento": 58,
         "riscos": 477,
         "papeis": 717
-      }
+      },
+      "headings_estranhos": []
     },
     "RFB": {
       "n_pages": 10,
@@ -1550,13 +1618,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 141,
         "escopo": 192,
-        "visao": 814,
+        "visao": 79,
+        "eixos": 729,
         "acompanhamento": 58,
         "riscos": 190,
         "papeis": 714
-      }
+      },
+      "headings_estranhos": []
     },
     "SFB": {
       "n_pages": 13,
@@ -1572,13 +1641,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 256,
         "escopo": 195,
-        "visao": 710,
+        "visao": 29,
+        "eixos": 675,
         "acompanhamento": 58,
         "riscos": 694,
         "papeis": 736
-      }
+      },
+      "headings_estranhos": []
     },
     "SGPR": {
       "n_pages": 11,
@@ -1594,13 +1664,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 117,
         "escopo": 191,
-        "visao": 963,
+        "visao": 282,
+        "eixos": 675,
         "acompanhamento": 58,
         "riscos": 324,
         "papeis": 721
-      }
+      },
+      "headings_estranhos": []
     },
     "STN": {
       "n_pages": 10,
@@ -1616,13 +1687,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 141,
         "escopo": 192,
-        "visao": 814,
+        "visao": 79,
+        "eixos": 729,
         "acompanhamento": 58,
         "riscos": 190,
         "papeis": 714
-      }
+      },
+      "headings_estranhos": []
     },
     "SUDAM": {
       "n_pages": 14,
@@ -1638,13 +1710,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 199,
         "escopo": 220,
-        "visao": 812,
+        "visao": 131,
+        "eixos": 675,
         "acompanhamento": 56,
         "riscos": 834,
         "papeis": 716
-      }
+      },
+      "headings_estranhos": []
     },
     "SUDECO": {
       "n_pages": 14,
@@ -1660,13 +1733,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 199,
         "escopo": 220,
-        "visao": 812,
+        "visao": 131,
+        "eixos": 675,
         "acompanhamento": 56,
         "riscos": 834,
         "papeis": 716
-      }
+      },
+      "headings_estranhos": []
     },
     "SUDENE": {
       "n_pages": 14,
@@ -1682,13 +1756,14 @@
       ],
       "n_sections": 6,
       "words_per_section": {
-        "eixos": 199,
         "escopo": 220,
-        "visao": 812,
+        "visao": 131,
+        "eixos": 675,
         "acompanhamento": 56,
         "riscos": 834,
         "papeis": 716
-      }
+      },
+      "headings_estranhos": []
     }
   },
   "scanned": [
@@ -1710,6 +1785,7 @@
     "n_no_anchors": 0,
     "n_4plus_sections": 75,
     "n_6_sections": 75,
+    "n_com_headings_estranhos": 0,
     "coverage_por_secao": {
       "escopo": 75,
       "visao": 75,
