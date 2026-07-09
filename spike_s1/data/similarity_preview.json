@@ -1,0 +1,2239 @@
+{
+ "escopo": {
+  "AEB": {
+   "cosine_tpl": 0.8218,
+   "novelty": 0.0455,
+   "n_tokens": 110
+  },
+  "ANAC": {
+   "cosine_tpl": 0.7696,
+   "novelty": 0.0545,
+   "n_tokens": 110
+  },
+  "ANATEL": {
+   "cosine_tpl": 0.7984,
+   "novelty": 0.0459,
+   "n_tokens": 109
+  },
+  "ANA": {
+   "cosine_tpl": 0.7437,
+   "novelty": 0.0631,
+   "n_tokens": 111
+  },
+  "ANCINE": {
+   "cosine_tpl": 0.7984,
+   "novelty": 0.0459,
+   "n_tokens": 109
+  },
+  "ANEEL": {
+   "cosine_tpl": 0.8035,
+   "novelty": 0.0459,
+   "n_tokens": 109
+  },
+  "ANM": {
+   "cosine_tpl": 0.7984,
+   "novelty": 0.0459,
+   "n_tokens": 109
+  },
+  "ANPD": {
+   "cosine_tpl": 0.7992,
+   "novelty": 0.0459,
+   "n_tokens": 109
+  },
+  "ANS": {
+   "cosine_tpl": 0.7696,
+   "novelty": 0.0545,
+   "n_tokens": 110
+  },
+  "ANTAQ": {
+   "cosine_tpl": 0.8101,
+   "novelty": 0.0459,
+   "n_tokens": 109
+  },
+  "BCB": {
+   "cosine_tpl": 0.8235,
+   "novelty": 0.037,
+   "n_tokens": 108
+  },
+  "CADE": {
+   "cosine_tpl": 0.7554,
+   "novelty": 0.0545,
+   "n_tokens": 110
+  },
+  "CAPES": {
+   "cosine_tpl": 0.2877,
+   "novelty": 0.5924,
+   "n_tokens": 449
+  },
+  "CENSIPAM": {
+   "cosine_tpl": 0.8197,
+   "novelty": 0.0351,
+   "n_tokens": 114
+  },
+  "CEX": {
+   "cosine_tpl": 0.8197,
+   "novelty": 0.0351,
+   "n_tokens": 114
+  },
+  "CGU": {
+   "cosine_tpl": 0.7877,
+   "novelty": 0.037,
+   "n_tokens": 108
+  },
+  "CM": {
+   "cosine_tpl": 0.8197,
+   "novelty": 0.0351,
+   "n_tokens": 114
+  },
+  "CNPQ": {
+   "cosine_tpl": 0.758,
+   "novelty": 0.0684,
+   "n_tokens": 117
+  },
+  "COAF": {
+   "cosine_tpl": 0.7417,
+   "novelty": 0.0545,
+   "n_tokens": 110
+  },
+  "CODEVASF": {
+   "cosine_tpl": 0.4295,
+   "novelty": 0.1732,
+   "n_tokens": 127
+  },
+  "COMAER": {
+   "cosine_tpl": 0.8197,
+   "novelty": 0.0351,
+   "n_tokens": 114
+  },
+  "CONAB": {
+   "cosine_tpl": 0.7654,
+   "novelty": 0.0541,
+   "n_tokens": 111
+  },
+  "CVM": {
+   "cosine_tpl": 0.7327,
+   "novelty": 0.0561,
+   "n_tokens": 107
+  },
+  "DNOCS": {
+   "cosine_tpl": 0.8536,
+   "novelty": 0.0189,
+   "n_tokens": 106
+  },
+  "EBSERH": {
+   "cosine_tpl": 0.2877,
+   "novelty": 0.5924,
+   "n_tokens": 449
+  },
+  "FCRB": {
+   "cosine_tpl": 0.7712,
+   "novelty": 0.0459,
+   "n_tokens": 109
+  },
+  "FIOCRUZ": {
+   "cosine_tpl": 0.7736,
+   "novelty": 0.0455,
+   "n_tokens": 110
+  },
+  "FNDE": {
+   "cosine_tpl": 0.2877,
+   "novelty": 0.5924,
+   "n_tokens": 449
+  },
+  "FOSORIO": {
+   "cosine_tpl": 0.8197,
+   "novelty": 0.0351,
+   "n_tokens": 114
+  },
+  "FUNARTE": {
+   "cosine_tpl": 0.8254,
+   "novelty": 0.037,
+   "n_tokens": 108
+  },
+  "FUNDACENTRO": {
+   "cosine_tpl": 0.6993,
+   "novelty": 0.0796,
+   "n_tokens": 113
+  },
+  "FUNDAJ": {
+   "cosine_tpl": 0.2877,
+   "novelty": 0.5924,
+   "n_tokens": 449
+  },
+  "HFA": {
+   "cosine_tpl": 0.8197,
+   "novelty": 0.0351,
+   "n_tokens": 114
+  },
+  "IBAMA": {
+   "cosine_tpl": 0.8334,
+   "novelty": 0.0364,
+   "n_tokens": 110
+  },
+  "IBC": {
+   "cosine_tpl": 0.2877,
+   "novelty": 0.5924,
+   "n_tokens": 449
+  },
+  "IBGE": {
+   "cosine_tpl": 0.7435,
+   "novelty": 0.0631,
+   "n_tokens": 111
+  },
+  "ICMBIO": {
+   "cosine_tpl": 0.8334,
+   "novelty": 0.0364,
+   "n_tokens": 110
+  },
+  "INEP": {
+   "cosine_tpl": 0.2877,
+   "novelty": 0.5924,
+   "n_tokens": 449
+  },
+  "INES": {
+   "cosine_tpl": 0.2877,
+   "novelty": 0.5924,
+   "n_tokens": 449
+  },
+  "INPI": {
+   "cosine_tpl": 0.7919,
+   "novelty": 0.0459,
+   "n_tokens": 109
+  },
+  "INSS": {
+   "cosine_tpl": 0.8095,
+   "novelty": 0.0455,
+   "n_tokens": 110
+  },
+  "IPHAN": {
+   "cosine_tpl": 0.7638,
+   "novelty": 0.0545,
+   "n_tokens": 110
+  },
+  "JBRJ": {
+   "cosine_tpl": 0.8334,
+   "novelty": 0.0364,
+   "n_tokens": 110
+  },
+  "MCTI": {
+   "cosine_tpl": 0.7889,
+   "novelty": 0.0367,
+   "n_tokens": 109
+  },
+  "MDA": {
+   "cosine_tpl": 0.7654,
+   "novelty": 0.0541,
+   "n_tokens": 111
+  },
+  "MDHC": {
+   "cosine_tpl": 0.8536,
+   "novelty": 0.0189,
+   "n_tokens": 106
+  },
+  "MD": {
+   "cosine_tpl": 0.8197,
+   "novelty": 0.0351,
+   "n_tokens": 114
+  },
+  "MEC": {
+   "cosine_tpl": 0.2877,
+   "novelty": 0.5924,
+   "n_tokens": 449
+  },
+  "MEMP": {
+   "cosine_tpl": 0.7651,
+   "novelty": 0.0536,
+   "n_tokens": 112
+  },
+  "MESP": {
+   "cosine_tpl": 0.8523,
+   "novelty": 0.0187,
+   "n_tokens": 107
+  },
+  "MF": {
+   "cosine_tpl": 0.8413,
+   "novelty": 0.0275,
+   "n_tokens": 109
+  },
+  "MGI": {
+   "cosine_tpl": 0.8836,
+   "novelty": 0.009,
+   "n_tokens": 111
+  },
+  "MIDR": {
+   "cosine_tpl": 0.4295,
+   "novelty": 0.1732,
+   "n_tokens": 127
+  },
+  "MINC": {
+   "cosine_tpl": 0.8752,
+   "novelty": 0.0187,
+   "n_tokens": 107
+  },
+  "MJSP": {
+   "cosine_tpl": 0.7956,
+   "novelty": 0.0342,
+   "n_tokens": 117
+  },
+  "MMA": {
+   "cosine_tpl": 0.8334,
+   "novelty": 0.0364,
+   "n_tokens": 110
+  },
+  "MME": {
+   "cosine_tpl": 0.7743,
+   "novelty": 0.036,
+   "n_tokens": 111
+  },
+  "MMULHERES": {
+   "cosine_tpl": 0.8523,
+   "novelty": 0.0187,
+   "n_tokens": 107
+  },
+  "MPI": {
+   "cosine_tpl": 0.7872,
+   "novelty": 0.0367,
+   "n_tokens": 109
+  },
+  "MPOR": {
+   "cosine_tpl": 0.7921,
+   "novelty": 0.0367,
+   "n_tokens": 109
+  },
+  "MPO": {
+   "cosine_tpl": 0.8222,
+   "novelty": 0.0275,
+   "n_tokens": 109
+  },
+  "MPS": {
+   "cosine_tpl": 0.4445,
+   "novelty": 0.2972,
+   "n_tokens": 212
+  },
+  "MRE": {
+   "cosine_tpl": 0.8043,
+   "novelty": 0.0367,
+   "n_tokens": 109
+  },
+  "MTE": {
+   "cosine_tpl": 0.8052,
+   "novelty": 0.0367,
+   "n_tokens": 109
+  },
+  "MTUR": {
+   "cosine_tpl": 0.8178,
+   "novelty": 0.0278,
+   "n_tokens": 108
+  },
+  "PF": {
+   "cosine_tpl": 0.8596,
+   "novelty": 0.0187,
+   "n_tokens": 107
+  },
+  "PGFN": {
+   "cosine_tpl": 0.8413,
+   "novelty": 0.0275,
+   "n_tokens": 109
+  },
+  "PRF": {
+   "cosine_tpl": 0.8099,
+   "novelty": 0.0442,
+   "n_tokens": 113
+  },
+  "RFB": {
+   "cosine_tpl": 0.8413,
+   "novelty": 0.0275,
+   "n_tokens": 109
+  },
+  "SFB": {
+   "cosine_tpl": 0.8334,
+   "novelty": 0.0364,
+   "n_tokens": 110
+  },
+  "SGPR": {
+   "cosine_tpl": 0.845,
+   "novelty": 0.0278,
+   "n_tokens": 108
+  },
+  "STN": {
+   "cosine_tpl": 0.8413,
+   "novelty": 0.0275,
+   "n_tokens": 109
+  },
+  "SUDAM": {
+   "cosine_tpl": 0.4295,
+   "novelty": 0.1732,
+   "n_tokens": 127
+  },
+  "SUDECO": {
+   "cosine_tpl": 0.4295,
+   "novelty": 0.1732,
+   "n_tokens": 127
+  },
+  "SUDENE": {
+   "cosine_tpl": 0.4295,
+   "novelty": 0.1732,
+   "n_tokens": 127
+  }
+ },
+ "visao": {
+  "AEB": {
+   "cosine_tpl": 0.0204,
+   "novelty": 0.9892,
+   "n_tokens": 557
+  },
+  "ANAC": {
+   "cosine_tpl": 0.0219,
+   "novelty": 0.9903,
+   "n_tokens": 517
+  },
+  "ANATEL": {
+   "cosine_tpl": 0.0307,
+   "novelty": 0.9885,
+   "n_tokens": 433
+  },
+  "ANA": {
+   "cosine_tpl": 0.0278,
+   "novelty": 0.9845,
+   "n_tokens": 776
+  },
+  "ANCINE": {
+   "cosine_tpl": 0.0151,
+   "novelty": 0.9933,
+   "n_tokens": 449
+  },
+  "ANEEL": {
+   "cosine_tpl": 0.0252,
+   "novelty": 0.9876,
+   "n_tokens": 1049
+  },
+  "ANM": {
+   "cosine_tpl": 0.0248,
+   "novelty": 0.9869,
+   "n_tokens": 916
+  },
+  "ANPD": {
+   "cosine_tpl": 0.0341,
+   "novelty": 0.9868,
+   "n_tokens": 455
+  },
+  "ANS": {
+   "cosine_tpl": 0.0255,
+   "novelty": 0.9893,
+   "n_tokens": 468
+  },
+  "ANTAQ": {
+   "cosine_tpl": 0.0221,
+   "novelty": 0.9914,
+   "n_tokens": 463
+  },
+  "BCB": {
+   "cosine_tpl": 0.0281,
+   "novelty": 0.9889,
+   "n_tokens": 452
+  },
+  "CADE": {
+   "cosine_tpl": 0.018,
+   "novelty": 0.993,
+   "n_tokens": 426
+  },
+  "CAPES": {
+   "cosine_tpl": 0.0143,
+   "novelty": 0.9922,
+   "n_tokens": 645
+  },
+  "CENSIPAM": {
+   "cosine_tpl": 0.0263,
+   "novelty": 0.9898,
+   "n_tokens": 488
+  },
+  "CEX": {
+   "cosine_tpl": 0.0263,
+   "novelty": 0.9898,
+   "n_tokens": 488
+  },
+  "CGU": {
+   "cosine_tpl": 0.0151,
+   "novelty": 0.9937,
+   "n_tokens": 476
+  },
+  "CM": {
+   "cosine_tpl": 0.0263,
+   "novelty": 0.9898,
+   "n_tokens": 488
+  },
+  "CNPQ": {
+   "cosine_tpl": 0.0222,
+   "novelty": 0.9912,
+   "n_tokens": 453
+  },
+  "COAF": {
+   "cosine_tpl": 0.0161,
+   "novelty": 0.9915,
+   "n_tokens": 585
+  },
+  "CODEVASF": {
+   "cosine_tpl": 0.0039,
+   "novelty": 0.9979,
+   "n_tokens": 477
+  },
+  "COMAER": {
+   "cosine_tpl": 0.0263,
+   "novelty": 0.9898,
+   "n_tokens": 488
+  },
+  "CONAB": {
+   "cosine_tpl": 0.031,
+   "novelty": 0.9882,
+   "n_tokens": 422
+  },
+  "CVM": {
+   "cosine_tpl": 0.0256,
+   "novelty": 0.989,
+   "n_tokens": 453
+  },
+  "DNOCS": {
+   "cosine_tpl": 0.0231,
+   "novelty": 0.9904,
+   "n_tokens": 625
+  },
+  "EBSERH": {
+   "cosine_tpl": 0.0143,
+   "novelty": 0.9922,
+   "n_tokens": 645
+  },
+  "FCRB": {
+   "cosine_tpl": 0.0261,
+   "novelty": 0.9891,
+   "n_tokens": 460
+  },
+  "FIOCRUZ": {
+   "cosine_tpl": 0.0175,
+   "novelty": 0.993,
+   "n_tokens": 429
+  },
+  "FNDE": {
+   "cosine_tpl": 0.0143,
+   "novelty": 0.9922,
+   "n_tokens": 645
+  },
+  "FOSORIO": {
+   "cosine_tpl": 0.0263,
+   "novelty": 0.9898,
+   "n_tokens": 488
+  },
+  "FUNARTE": {
+   "cosine_tpl": 0.0074,
+   "novelty": 0.996,
+   "n_tokens": 504
+  },
+  "FUNDACENTRO": {
+   "cosine_tpl": 0.0235,
+   "novelty": 0.9906,
+   "n_tokens": 424
+  },
+  "FUNDAJ": {
+   "cosine_tpl": 0.0143,
+   "novelty": 0.9922,
+   "n_tokens": 645
+  },
+  "HFA": {
+   "cosine_tpl": 0.0263,
+   "novelty": 0.9898,
+   "n_tokens": 488
+  },
+  "IBAMA": {
+   "cosine_tpl": 0.0044,
+   "novelty": 0.9976,
+   "n_tokens": 420
+  },
+  "IBC": {
+   "cosine_tpl": 0.0143,
+   "novelty": 0.9922,
+   "n_tokens": 645
+  },
+  "IBGE": {
+   "cosine_tpl": 0.047,
+   "novelty": 0.9815,
+   "n_tokens": 487
+  },
+  "ICMBIO": {
+   "cosine_tpl": 0.0044,
+   "novelty": 0.9976,
+   "n_tokens": 420
+  },
+  "INEP": {
+   "cosine_tpl": 0.0143,
+   "novelty": 0.9922,
+   "n_tokens": 645
+  },
+  "INES": {
+   "cosine_tpl": 0.0143,
+   "novelty": 0.9922,
+   "n_tokens": 645
+  },
+  "INPI": {
+   "cosine_tpl": 0.015,
+   "novelty": 0.9928,
+   "n_tokens": 552
+  },
+  "INSS": {
+   "cosine_tpl": 0.0233,
+   "novelty": 0.9899,
+   "n_tokens": 594
+  },
+  "IPHAN": {
+   "cosine_tpl": 0.0283,
+   "novelty": 0.9889,
+   "n_tokens": 449
+  },
+  "JBRJ": {
+   "cosine_tpl": 0.0044,
+   "novelty": 0.9976,
+   "n_tokens": 420
+  },
+  "MCTI": {
+   "cosine_tpl": 0.0281,
+   "novelty": 0.9884,
+   "n_tokens": 516
+  },
+  "MDA": {
+   "cosine_tpl": 0.031,
+   "novelty": 0.9882,
+   "n_tokens": 422
+  },
+  "MDHC": {
+   "cosine_tpl": 0.0185,
+   "novelty": 0.9901,
+   "n_tokens": 708
+  },
+  "MD": {
+   "cosine_tpl": 0.0263,
+   "novelty": 0.9898,
+   "n_tokens": 488
+  },
+  "MEC": {
+   "cosine_tpl": 0.0143,
+   "novelty": 0.9922,
+   "n_tokens": 645
+  },
+  "MEMP": {
+   "cosine_tpl": 0.0163,
+   "novelty": 0.9934,
+   "n_tokens": 453
+  },
+  "MESP": {
+   "cosine_tpl": 0.0231,
+   "novelty": 0.9893,
+   "n_tokens": 652
+  },
+  "MF": {
+   "cosine_tpl": 0.0147,
+   "novelty": 0.9938,
+   "n_tokens": 483
+  },
+  "MGI": {
+   "cosine_tpl": 0.0212,
+   "novelty": 0.9915,
+   "n_tokens": 586
+  },
+  "MIDR": {
+   "cosine_tpl": 0.0039,
+   "novelty": 0.9979,
+   "n_tokens": 477
+  },
+  "MINC": {
+   "cosine_tpl": 0.0152,
+   "novelty": 0.9935,
+   "n_tokens": 465
+  },
+  "MJSP": {
+   "cosine_tpl": 0.0269,
+   "novelty": 0.9888,
+   "n_tokens": 445
+  },
+  "MMA": {
+   "cosine_tpl": 0.0044,
+   "novelty": 0.9976,
+   "n_tokens": 420
+  },
+  "MME": {
+   "cosine_tpl": 0.0212,
+   "novelty": 0.9902,
+   "n_tokens": 614
+  },
+  "MMULHERES": {
+   "cosine_tpl": 0.0187,
+   "novelty": 0.9907,
+   "n_tokens": 535
+  },
+  "MPI": {
+   "cosine_tpl": 0.0142,
+   "novelty": 0.9934,
+   "n_tokens": 458
+  },
+  "MPOR": {
+   "cosine_tpl": 0.0214,
+   "novelty": 0.9913,
+   "n_tokens": 577
+  },
+  "MPO": {
+   "cosine_tpl": 0.0166,
+   "novelty": 0.9932,
+   "n_tokens": 443
+  },
+  "MPS": {
+   "cosine_tpl": 0.0315,
+   "novelty": 0.9874,
+   "n_tokens": 556
+  },
+  "MRE": {
+   "cosine_tpl": 0.024,
+   "novelty": 0.9897,
+   "n_tokens": 484
+  },
+  "MTE": {
+   "cosine_tpl": 0.0039,
+   "novelty": 0.9978,
+   "n_tokens": 451
+  },
+  "MTUR": {
+   "cosine_tpl": 0.0255,
+   "novelty": 0.9893,
+   "n_tokens": 468
+  },
+  "PF": {
+   "cosine_tpl": 0.0251,
+   "novelty": 0.9902,
+   "n_tokens": 509
+  },
+  "PGFN": {
+   "cosine_tpl": 0.0147,
+   "novelty": 0.9938,
+   "n_tokens": 483
+  },
+  "PRF": {
+   "cosine_tpl": 0.0274,
+   "novelty": 0.9825,
+   "n_tokens": 285
+  },
+  "RFB": {
+   "cosine_tpl": 0.0147,
+   "novelty": 0.9938,
+   "n_tokens": 483
+  },
+  "SFB": {
+   "cosine_tpl": 0.0044,
+   "novelty": 0.9976,
+   "n_tokens": 420
+  },
+  "SGPR": {
+   "cosine_tpl": 0.021,
+   "novelty": 0.9897,
+   "n_tokens": 581
+  },
+  "STN": {
+   "cosine_tpl": 0.0147,
+   "novelty": 0.9938,
+   "n_tokens": 483
+  },
+  "SUDAM": {
+   "cosine_tpl": 0.0039,
+   "novelty": 0.9979,
+   "n_tokens": 477
+  },
+  "SUDECO": {
+   "cosine_tpl": 0.0039,
+   "novelty": 0.9979,
+   "n_tokens": 477
+  },
+  "SUDENE": {
+   "cosine_tpl": 0.0039,
+   "novelty": 0.9979,
+   "n_tokens": 477
+  }
+ },
+ "eixos": {
+  "AEB": {
+   "cosine_tpl": 0.0757,
+   "novelty": 0.7387,
+   "n_tokens": 111
+  },
+  "ANAC": {
+   "cosine_tpl": 0.0363,
+   "novelty": 0.7907,
+   "n_tokens": 86
+  },
+  "ANATEL": {
+   "cosine_tpl": 0.0383,
+   "novelty": 0.7931,
+   "n_tokens": 87
+  },
+  "ANA": {
+   "cosine_tpl": 0.0985,
+   "novelty": 0.7557,
+   "n_tokens": 131
+  },
+  "ANCINE": {
+   "cosine_tpl": 0.0668,
+   "novelty": 0.7434,
+   "n_tokens": 113
+  },
+  "ANEEL": {
+   "cosine_tpl": 0.0448,
+   "novelty": 0.7717,
+   "n_tokens": 92
+  },
+  "ANM": {
+   "cosine_tpl": 0.0461,
+   "novelty": 0.78,
+   "n_tokens": 100
+  },
+  "ANPD": {
+   "cosine_tpl": 0.1247,
+   "novelty": 0.7475,
+   "n_tokens": 99
+  },
+  "ANS": {
+   "cosine_tpl": 0.0713,
+   "novelty": 0.7568,
+   "n_tokens": 111
+  },
+  "ANTAQ": {
+   "cosine_tpl": 0.0429,
+   "novelty": 0.7872,
+   "n_tokens": 94
+  },
+  "BCB": {
+   "cosine_tpl": 0.0144,
+   "novelty": 0.6667,
+   "n_tokens": 9
+  },
+  "CADE": {
+   "cosine_tpl": 0.04,
+   "novelty": 0.7889,
+   "n_tokens": 90
+  },
+  "CAPES": {
+   "cosine_tpl": 0.8876,
+   "novelty": 0.0,
+   "n_tokens": 285
+  },
+  "CENSIPAM": {
+   "cosine_tpl": 0.0618,
+   "novelty": 0.8482,
+   "n_tokens": 191
+  },
+  "CEX": {
+   "cosine_tpl": 0.0618,
+   "novelty": 0.8482,
+   "n_tokens": 191
+  },
+  "CGU": {
+   "cosine_tpl": 0.044,
+   "novelty": 0.7692,
+   "n_tokens": 78
+  },
+  "CM": {
+   "cosine_tpl": 0.0618,
+   "novelty": 0.8482,
+   "n_tokens": 191
+  },
+  "CNPQ": {
+   "cosine_tpl": 0.0596,
+   "novelty": 0.7748,
+   "n_tokens": 111
+  },
+  "COAF": {
+   "cosine_tpl": 0.0334,
+   "novelty": 0.7957,
+   "n_tokens": 93
+  },
+  "CODEVASF": {
+   "cosine_tpl": 0.044,
+   "novelty": 0.8496,
+   "n_tokens": 133
+  },
+  "COMAER": {
+   "cosine_tpl": 0.0618,
+   "novelty": 0.8482,
+   "n_tokens": 191
+  },
+  "CONAB": {
+   "cosine_tpl": 0.0375,
+   "novelty": 0.811,
+   "n_tokens": 127
+  },
+  "CVM": {
+   "cosine_tpl": 0.0568,
+   "novelty": 0.7563,
+   "n_tokens": 119
+  },
+  "DNOCS": {
+   "cosine_tpl": 0.0413,
+   "novelty": 0.7857,
+   "n_tokens": 84
+  },
+  "EBSERH": {
+   "cosine_tpl": 0.8876,
+   "novelty": 0.0,
+   "n_tokens": 285
+  },
+  "FCRB": {
+   "cosine_tpl": 0.0319,
+   "novelty": 0.8021,
+   "n_tokens": 96
+  },
+  "FIOCRUZ": {
+   "cosine_tpl": 0.0663,
+   "novelty": 0.7798,
+   "n_tokens": 109
+  },
+  "FNDE": {
+   "cosine_tpl": 0.8876,
+   "novelty": 0.0,
+   "n_tokens": 285
+  },
+  "FOSORIO": {
+   "cosine_tpl": 0.0618,
+   "novelty": 0.8482,
+   "n_tokens": 191
+  },
+  "FUNARTE": {
+   "cosine_tpl": 0.0393,
+   "novelty": 0.7831,
+   "n_tokens": 83
+  },
+  "FUNDACENTRO": {
+   "cosine_tpl": 0.0662,
+   "novelty": 0.7647,
+   "n_tokens": 85
+  },
+  "FUNDAJ": {
+   "cosine_tpl": 0.8876,
+   "novelty": 0.0,
+   "n_tokens": 285
+  },
+  "HFA": {
+   "cosine_tpl": 0.0618,
+   "novelty": 0.8482,
+   "n_tokens": 191
+  },
+  "IBAMA": {
+   "cosine_tpl": 0.0313,
+   "novelty": 0.8656,
+   "n_tokens": 186
+  },
+  "IBC": {
+   "cosine_tpl": 0.8876,
+   "novelty": 0.0,
+   "n_tokens": 285
+  },
+  "IBGE": {
+   "cosine_tpl": 0.0392,
+   "novelty": 0.7647,
+   "n_tokens": 85
+  },
+  "ICMBIO": {
+   "cosine_tpl": 0.0313,
+   "novelty": 0.8656,
+   "n_tokens": 186
+  },
+  "INEP": {
+   "cosine_tpl": 0.8876,
+   "novelty": 0.0,
+   "n_tokens": 285
+  },
+  "INES": {
+   "cosine_tpl": 0.8876,
+   "novelty": 0.0,
+   "n_tokens": 285
+  },
+  "INPI": {
+   "cosine_tpl": 0.0604,
+   "novelty": 0.7456,
+   "n_tokens": 114
+  },
+  "INSS": {
+   "cosine_tpl": 0.043,
+   "novelty": 0.7727,
+   "n_tokens": 88
+  },
+  "IPHAN": {
+   "cosine_tpl": 0.0643,
+   "novelty": 0.79,
+   "n_tokens": 100
+  },
+  "JBRJ": {
+   "cosine_tpl": 0.0313,
+   "novelty": 0.8656,
+   "n_tokens": 186
+  },
+  "MCTI": {
+   "cosine_tpl": 0.031,
+   "novelty": 0.8019,
+   "n_tokens": 106
+  },
+  "MDA": {
+   "cosine_tpl": 0.0375,
+   "novelty": 0.811,
+   "n_tokens": 127
+  },
+  "MDHC": {
+   "cosine_tpl": 0.0291,
+   "novelty": 0.7872,
+   "n_tokens": 94
+  },
+  "MD": {
+   "cosine_tpl": 0.0618,
+   "novelty": 0.8482,
+   "n_tokens": 191
+  },
+  "MEC": {
+   "cosine_tpl": 0.8876,
+   "novelty": 0.0,
+   "n_tokens": 285
+  },
+  "MEMP": {
+   "cosine_tpl": 0.0231,
+   "novelty": 0.8235,
+   "n_tokens": 102
+  },
+  "MESP": {
+   "cosine_tpl": 0.0416,
+   "novelty": 0.7831,
+   "n_tokens": 83
+  },
+  "MF": {
+   "cosine_tpl": 0.0292,
+   "novelty": 0.8393,
+   "n_tokens": 112
+  },
+  "MGI": {
+   "cosine_tpl": 0.1052,
+   "novelty": 0.6618,
+   "n_tokens": 136
+  },
+  "MIDR": {
+   "cosine_tpl": 0.044,
+   "novelty": 0.8496,
+   "n_tokens": 133
+  },
+  "MINC": {
+   "cosine_tpl": 0.0351,
+   "novelty": 0.8786,
+   "n_tokens": 173
+  },
+  "MJSP": {
+   "cosine_tpl": 0.0887,
+   "novelty": 0.7593,
+   "n_tokens": 108
+  },
+  "MMA": {
+   "cosine_tpl": 0.0313,
+   "novelty": 0.8656,
+   "n_tokens": 186
+  },
+  "MME": {
+   "cosine_tpl": 0.0353,
+   "novelty": 0.7912,
+   "n_tokens": 91
+  },
+  "MMULHERES": {
+   "cosine_tpl": 0.0371,
+   "novelty": 0.7907,
+   "n_tokens": 86
+  },
+  "MPI": {
+   "cosine_tpl": 0.0326,
+   "novelty": 0.7931,
+   "n_tokens": 87
+  },
+  "MPOR": {
+   "cosine_tpl": 0.0432,
+   "novelty": 0.7684,
+   "n_tokens": 95
+  },
+  "MPO": {
+   "cosine_tpl": 0.0325,
+   "novelty": 0.7978,
+   "n_tokens": 89
+  },
+  "MPS": {
+   "cosine_tpl": 0.0366,
+   "novelty": 0.7692,
+   "n_tokens": 78
+  },
+  "MRE": {
+   "cosine_tpl": 0.0307,
+   "novelty": 0.8077,
+   "n_tokens": 78
+  },
+  "MTE": {
+   "cosine_tpl": 0.0492,
+   "novelty": 0.7879,
+   "n_tokens": 99
+  },
+  "MTUR": {
+   "cosine_tpl": 0.0343,
+   "novelty": 0.7978,
+   "n_tokens": 89
+  },
+  "PF": {
+   "cosine_tpl": 0.0546,
+   "novelty": 0.75,
+   "n_tokens": 84
+  },
+  "PGFN": {
+   "cosine_tpl": 0.0292,
+   "novelty": 0.8393,
+   "n_tokens": 112
+  },
+  "PRF": {
+   "cosine_tpl": 0.039,
+   "novelty": 0.8095,
+   "n_tokens": 105
+  },
+  "RFB": {
+   "cosine_tpl": 0.0292,
+   "novelty": 0.8393,
+   "n_tokens": 112
+  },
+  "SFB": {
+   "cosine_tpl": 0.0313,
+   "novelty": 0.8656,
+   "n_tokens": 186
+  },
+  "SGPR": {
+   "cosine_tpl": 0.0323,
+   "novelty": 0.7978,
+   "n_tokens": 89
+  },
+  "STN": {
+   "cosine_tpl": 0.0292,
+   "novelty": 0.8393,
+   "n_tokens": 112
+  },
+  "SUDAM": {
+   "cosine_tpl": 0.044,
+   "novelty": 0.8496,
+   "n_tokens": 133
+  },
+  "SUDECO": {
+   "cosine_tpl": 0.044,
+   "novelty": 0.8496,
+   "n_tokens": 133
+  },
+  "SUDENE": {
+   "cosine_tpl": 0.044,
+   "novelty": 0.8496,
+   "n_tokens": 133
+  }
+ },
+ "acompanhamento": {
+  "AEB": {
+   "cosine_tpl": 0.955,
+   "novelty": 0.0,
+   "n_tokens": 32
+  },
+  "ANAC": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "ANATEL": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "ANA": {
+   "cosine_tpl": 0.618,
+   "novelty": 0.1111,
+   "n_tokens": 36
+  },
+  "ANCINE": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "ANEEL": {
+   "cosine_tpl": 0.955,
+   "novelty": 0.0,
+   "n_tokens": 32
+  },
+  "ANM": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "ANPD": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "ANS": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "ANTAQ": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "BCB": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "CADE": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "CAPES": {
+   "cosine_tpl": 0.1371,
+   "novelty": 0.8243,
+   "n_tokens": 74
+  },
+  "CENSIPAM": {
+   "cosine_tpl": 0.8111,
+   "novelty": 0.0588,
+   "n_tokens": 34
+  },
+  "CEX": {
+   "cosine_tpl": 0.8111,
+   "novelty": 0.0588,
+   "n_tokens": 34
+  },
+  "CGU": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "CM": {
+   "cosine_tpl": 0.8111,
+   "novelty": 0.0588,
+   "n_tokens": 34
+  },
+  "CNPQ": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "COAF": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "CODEVASF": {
+   "cosine_tpl": 0.9849,
+   "novelty": 0.0,
+   "n_tokens": 35
+  },
+  "COMAER": {
+   "cosine_tpl": 0.8111,
+   "novelty": 0.0588,
+   "n_tokens": 34
+  },
+  "CONAB": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "CVM": {
+   "cosine_tpl": 0.3321,
+   "novelty": 0.1667,
+   "n_tokens": 24
+  },
+  "DNOCS": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "EBSERH": {
+   "cosine_tpl": 0.1371,
+   "novelty": 0.8243,
+   "n_tokens": 74
+  },
+  "FCRB": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "FIOCRUZ": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "FNDE": {
+   "cosine_tpl": 0.1371,
+   "novelty": 0.8243,
+   "n_tokens": 74
+  },
+  "FOSORIO": {
+   "cosine_tpl": 0.8111,
+   "novelty": 0.0588,
+   "n_tokens": 34
+  },
+  "FUNARTE": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "FUNDACENTRO": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "FUNDAJ": {
+   "cosine_tpl": 0.1371,
+   "novelty": 0.8243,
+   "n_tokens": 74
+  },
+  "HFA": {
+   "cosine_tpl": 0.8111,
+   "novelty": 0.0588,
+   "n_tokens": 34
+  },
+  "IBAMA": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "IBC": {
+   "cosine_tpl": 0.1371,
+   "novelty": 0.8243,
+   "n_tokens": 74
+  },
+  "IBGE": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "ICMBIO": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "INEP": {
+   "cosine_tpl": 0.1371,
+   "novelty": 0.8243,
+   "n_tokens": 74
+  },
+  "INES": {
+   "cosine_tpl": 0.1371,
+   "novelty": 0.8243,
+   "n_tokens": 74
+  },
+  "INPI": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "INSS": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "IPHAN": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "JBRJ": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "MCTI": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "MDA": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "MDHC": {
+   "cosine_tpl": 0.1909,
+   "novelty": 0.629,
+   "n_tokens": 62
+  },
+  "MD": {
+   "cosine_tpl": 0.8111,
+   "novelty": 0.0588,
+   "n_tokens": 34
+  },
+  "MEC": {
+   "cosine_tpl": 0.1371,
+   "novelty": 0.8243,
+   "n_tokens": 74
+  },
+  "MEMP": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "MESP": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "MF": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "MGI": {
+   "cosine_tpl": 0.9666,
+   "novelty": 0.0,
+   "n_tokens": 35
+  },
+  "MIDR": {
+   "cosine_tpl": 0.9849,
+   "novelty": 0.0,
+   "n_tokens": 35
+  },
+  "MINC": {
+   "cosine_tpl": 0.8572,
+   "novelty": 0.0278,
+   "n_tokens": 36
+  },
+  "MJSP": {
+   "cosine_tpl": 0.9872,
+   "novelty": 0.0,
+   "n_tokens": 35
+  },
+  "MMA": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "MME": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "MMULHERES": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "MPI": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "MPOR": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "MPO": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "MPS": {
+   "cosine_tpl": 0.9416,
+   "novelty": 0.0,
+   "n_tokens": 31
+  },
+  "MRE": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "MTE": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "MTUR": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "PF": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "PGFN": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "PRF": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "RFB": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "SFB": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "SGPR": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "STN": {
+   "cosine_tpl": 1.0,
+   "novelty": 0.0,
+   "n_tokens": 36
+  },
+  "SUDAM": {
+   "cosine_tpl": 0.9849,
+   "novelty": 0.0,
+   "n_tokens": 35
+  },
+  "SUDECO": {
+   "cosine_tpl": 0.9849,
+   "novelty": 0.0,
+   "n_tokens": 35
+  },
+  "SUDENE": {
+   "cosine_tpl": 0.9849,
+   "novelty": 0.0,
+   "n_tokens": 35
+  }
+ },
+ "riscos": {
+  "AEB": {
+   "cosine_tpl": 0.042,
+   "novelty": 0.9209,
+   "n_tokens": 215
+  },
+  "ANAC": {
+   "cosine_tpl": 0.0049,
+   "novelty": 0.95,
+   "n_tokens": 20
+  },
+  "ANATEL": {
+   "cosine_tpl": 0.0,
+   "novelty": 1.0,
+   "n_tokens": 120
+  },
+  "ANA": {
+   "cosine_tpl": 0.0406,
+   "novelty": 0.9393,
+   "n_tokens": 428
+  },
+  "ANCINE": {
+   "cosine_tpl": 0.06,
+   "novelty": 0.9014,
+   "n_tokens": 142
+  },
+  "ANEEL": {
+   "cosine_tpl": 0.0582,
+   "novelty": 0.9152,
+   "n_tokens": 224
+  },
+  "ANM": {
+   "cosine_tpl": 0.0344,
+   "novelty": 0.918,
+   "n_tokens": 244
+  },
+  "ANPD": {
+   "cosine_tpl": 0.0546,
+   "novelty": 0.9045,
+   "n_tokens": 199
+  },
+  "ANS": {
+   "cosine_tpl": 0.0578,
+   "novelty": 0.9016,
+   "n_tokens": 366
+  },
+  "ANTAQ": {
+   "cosine_tpl": 0.0024,
+   "novelty": 0.9803,
+   "n_tokens": 203
+  },
+  "CADE": {
+   "cosine_tpl": 0.0056,
+   "novelty": 0.9444,
+   "n_tokens": 18
+  },
+  "CAPES": {
+   "cosine_tpl": 0.0043,
+   "novelty": 0.9787,
+   "n_tokens": 47
+  },
+  "CENSIPAM": {
+   "cosine_tpl": 0.0542,
+   "novelty": 0.9121,
+   "n_tokens": 182
+  },
+  "CEX": {
+   "cosine_tpl": 0.0542,
+   "novelty": 0.9121,
+   "n_tokens": 182
+  },
+  "CGU": {
+   "cosine_tpl": 0.0589,
+   "novelty": 0.905,
+   "n_tokens": 179
+  },
+  "CM": {
+   "cosine_tpl": 0.0542,
+   "novelty": 0.9121,
+   "n_tokens": 182
+  },
+  "CNPQ": {
+   "cosine_tpl": 0.0423,
+   "novelty": 0.9245,
+   "n_tokens": 159
+  },
+  "COAF": {
+   "cosine_tpl": 0.0833,
+   "novelty": 0.904,
+   "n_tokens": 177
+  },
+  "CODEVASF": {
+   "cosine_tpl": 0.0635,
+   "novelty": 0.9117,
+   "n_tokens": 487
+  },
+  "COMAER": {
+   "cosine_tpl": 0.0542,
+   "novelty": 0.9121,
+   "n_tokens": 182
+  },
+  "CONAB": {
+   "cosine_tpl": 0.1382,
+   "novelty": 0.7541,
+   "n_tokens": 61
+  },
+  "DNOCS": {
+   "cosine_tpl": 0.0467,
+   "novelty": 0.9438,
+   "n_tokens": 445
+  },
+  "EBSERH": {
+   "cosine_tpl": 0.0043,
+   "novelty": 0.9787,
+   "n_tokens": 47
+  },
+  "FCRB": {
+   "cosine_tpl": 0.0,
+   "novelty": 1.0,
+   "n_tokens": 8
+  },
+  "FNDE": {
+   "cosine_tpl": 0.0043,
+   "novelty": 0.9787,
+   "n_tokens": 47
+  },
+  "FOSORIO": {
+   "cosine_tpl": 0.0542,
+   "novelty": 0.9121,
+   "n_tokens": 182
+  },
+  "FUNARTE": {
+   "cosine_tpl": 0.065,
+   "novelty": 0.9,
+   "n_tokens": 170
+  },
+  "FUNDACENTRO": {
+   "cosine_tpl": 0.0,
+   "novelty": 1.0,
+   "n_tokens": 2
+  },
+  "FUNDAJ": {
+   "cosine_tpl": 0.0043,
+   "novelty": 0.9787,
+   "n_tokens": 47
+  },
+  "HFA": {
+   "cosine_tpl": 0.0542,
+   "novelty": 0.9121,
+   "n_tokens": 182
+  },
+  "IBAMA": {
+   "cosine_tpl": 0.0668,
+   "novelty": 0.9155,
+   "n_tokens": 414
+  },
+  "IBC": {
+   "cosine_tpl": 0.0043,
+   "novelty": 0.9787,
+   "n_tokens": 47
+  },
+  "IBGE": {
+   "cosine_tpl": 0.0834,
+   "novelty": 0.8991,
+   "n_tokens": 327
+  },
+  "ICMBIO": {
+   "cosine_tpl": 0.0668,
+   "novelty": 0.9155,
+   "n_tokens": 414
+  },
+  "INEP": {
+   "cosine_tpl": 0.0043,
+   "novelty": 0.9787,
+   "n_tokens": 47
+  },
+  "INES": {
+   "cosine_tpl": 0.0043,
+   "novelty": 0.9787,
+   "n_tokens": 47
+  },
+  "INPI": {
+   "cosine_tpl": 0.0605,
+   "novelty": 0.8881,
+   "n_tokens": 134
+  },
+  "INSS": {
+   "cosine_tpl": 0.042,
+   "novelty": 0.9213,
+   "n_tokens": 178
+  },
+  "IPHAN": {
+   "cosine_tpl": 0.0464,
+   "novelty": 0.8962,
+   "n_tokens": 106
+  },
+  "JBRJ": {
+   "cosine_tpl": 0.0668,
+   "novelty": 0.9155,
+   "n_tokens": 414
+  },
+  "MCTI": {
+   "cosine_tpl": 0.0896,
+   "novelty": 0.9157,
+   "n_tokens": 178
+  },
+  "MDA": {
+   "cosine_tpl": 0.1382,
+   "novelty": 0.7541,
+   "n_tokens": 61
+  },
+  "MDHC": {
+   "cosine_tpl": 0.0605,
+   "novelty": 0.9029,
+   "n_tokens": 278
+  },
+  "MD": {
+   "cosine_tpl": 0.0542,
+   "novelty": 0.9121,
+   "n_tokens": 182
+  },
+  "MEC": {
+   "cosine_tpl": 0.0043,
+   "novelty": 0.9787,
+   "n_tokens": 47
+  },
+  "MEMP": {
+   "cosine_tpl": 0.0464,
+   "novelty": 0.8962,
+   "n_tokens": 106
+  },
+  "MESP": {
+   "cosine_tpl": 0.0086,
+   "novelty": 0.9485,
+   "n_tokens": 97
+  },
+  "MF": {
+   "cosine_tpl": 0.047,
+   "novelty": 0.8952,
+   "n_tokens": 105
+  },
+  "MGI": {
+   "cosine_tpl": 0.0563,
+   "novelty": 0.9212,
+   "n_tokens": 241
+  },
+  "MIDR": {
+   "cosine_tpl": 0.0635,
+   "novelty": 0.9117,
+   "n_tokens": 487
+  },
+  "MINC": {
+   "cosine_tpl": 0.0417,
+   "novelty": 0.913,
+   "n_tokens": 161
+  },
+  "MMA": {
+   "cosine_tpl": 0.0668,
+   "novelty": 0.9155,
+   "n_tokens": 414
+  },
+  "MME": {
+   "cosine_tpl": 0.0016,
+   "novelty": 0.9926,
+   "n_tokens": 136
+  },
+  "MMULHERES": {
+   "cosine_tpl": 0.1727,
+   "novelty": 0.8978,
+   "n_tokens": 274
+  },
+  "MPOR": {
+   "cosine_tpl": 0.0287,
+   "novelty": 0.9435,
+   "n_tokens": 602
+  },
+  "MPO": {
+   "cosine_tpl": 0.0076,
+   "novelty": 0.9669,
+   "n_tokens": 151
+  },
+  "MPS": {
+   "cosine_tpl": 0.0403,
+   "novelty": 0.9346,
+   "n_tokens": 107
+  },
+  "MRE": {
+   "cosine_tpl": 0.0505,
+   "novelty": 0.875,
+   "n_tokens": 152
+  },
+  "MTE": {
+   "cosine_tpl": 0.0464,
+   "novelty": 0.8962,
+   "n_tokens": 106
+  },
+  "MTUR": {
+   "cosine_tpl": 0.0104,
+   "novelty": 0.9275,
+   "n_tokens": 69
+  },
+  "PF": {
+   "cosine_tpl": 0.0404,
+   "novelty": 0.9255,
+   "n_tokens": 188
+  },
+  "PGFN": {
+   "cosine_tpl": 0.047,
+   "novelty": 0.8952,
+   "n_tokens": 105
+  },
+  "PRF": {
+   "cosine_tpl": 0.077,
+   "novelty": 0.9124,
+   "n_tokens": 251
+  },
+  "RFB": {
+   "cosine_tpl": 0.047,
+   "novelty": 0.8952,
+   "n_tokens": 105
+  },
+  "SFB": {
+   "cosine_tpl": 0.0668,
+   "novelty": 0.9155,
+   "n_tokens": 414
+  },
+  "SGPR": {
+   "cosine_tpl": 0.0388,
+   "novelty": 0.9257,
+   "n_tokens": 175
+  },
+  "STN": {
+   "cosine_tpl": 0.047,
+   "novelty": 0.8952,
+   "n_tokens": 105
+  },
+  "SUDAM": {
+   "cosine_tpl": 0.0635,
+   "novelty": 0.9117,
+   "n_tokens": 487
+  },
+  "SUDECO": {
+   "cosine_tpl": 0.0635,
+   "novelty": 0.9117,
+   "n_tokens": 487
+  },
+  "SUDENE": {
+   "cosine_tpl": 0.0635,
+   "novelty": 0.9117,
+   "n_tokens": 487
+  }
+ },
+ "papeis": {
+  "AEB": {
+   "cosine_tpl": 0.875,
+   "novelty": 0.0473,
+   "n_tokens": 423
+  },
+  "ANAC": {
+   "cosine_tpl": 0.8984,
+   "novelty": 0.0495,
+   "n_tokens": 424
+  },
+  "ANATEL": {
+   "cosine_tpl": 0.9069,
+   "novelty": 0.0405,
+   "n_tokens": 420
+  },
+  "ANA": {
+   "cosine_tpl": 0.7952,
+   "novelty": 0.0676,
+   "n_tokens": 414
+  },
+  "ANCINE": {
+   "cosine_tpl": 0.8499,
+   "novelty": 0.0562,
+   "n_tokens": 427
+  },
+  "ANEEL": {
+   "cosine_tpl": 0.8995,
+   "novelty": 0.0455,
+   "n_tokens": 418
+  },
+  "ANM": {
+   "cosine_tpl": 0.8794,
+   "novelty": 0.054,
+   "n_tokens": 426
+  },
+  "ANPD": {
+   "cosine_tpl": 0.8284,
+   "novelty": 0.0674,
+   "n_tokens": 430
+  },
+  "ANS": {
+   "cosine_tpl": 0.8327,
+   "novelty": 0.0628,
+   "n_tokens": 430
+  },
+  "ANTAQ": {
+   "cosine_tpl": 0.8361,
+   "novelty": 0.0606,
+   "n_tokens": 429
+  },
+  "BCB": {
+   "cosine_tpl": 0.8716,
+   "novelty": 0.0546,
+   "n_tokens": 421
+  },
+  "CADE": {
+   "cosine_tpl": 0.8817,
+   "novelty": 0.0495,
+   "n_tokens": 424
+  },
+  "CAPES": {
+   "cosine_tpl": 0.7566,
+   "novelty": 0.1568,
+   "n_tokens": 491
+  },
+  "CENSIPAM": {
+   "cosine_tpl": 0.9158,
+   "novelty": 0.0566,
+   "n_tokens": 424
+  },
+  "CEX": {
+   "cosine_tpl": 0.9158,
+   "novelty": 0.0566,
+   "n_tokens": 424
+  },
+  "CGU": {
+   "cosine_tpl": 0.9057,
+   "novelty": 0.0405,
+   "n_tokens": 420
+  },
+  "CM": {
+   "cosine_tpl": 0.9158,
+   "novelty": 0.0566,
+   "n_tokens": 424
+  },
+  "CNPQ": {
+   "cosine_tpl": 0.7984,
+   "novelty": 0.0693,
+   "n_tokens": 433
+  },
+  "COAF": {
+   "cosine_tpl": 0.8129,
+   "novelty": 0.0605,
+   "n_tokens": 430
+  },
+  "CODEVASF": {
+   "cosine_tpl": 0.8764,
+   "novelty": 0.0665,
+   "n_tokens": 421
+  },
+  "COMAER": {
+   "cosine_tpl": 0.9158,
+   "novelty": 0.0566,
+   "n_tokens": 424
+  },
+  "CONAB": {
+   "cosine_tpl": 0.8271,
+   "novelty": 0.0622,
+   "n_tokens": 434
+  },
+  "CVM": {
+   "cosine_tpl": 0.5547,
+   "novelty": 0.1055,
+   "n_tokens": 417
+  },
+  "DNOCS": {
+   "cosine_tpl": 0.8921,
+   "novelty": 0.0495,
+   "n_tokens": 424
+  },
+  "EBSERH": {
+   "cosine_tpl": 0.7566,
+   "novelty": 0.1568,
+   "n_tokens": 491
+  },
+  "FCRB": {
+   "cosine_tpl": 0.828,
+   "novelty": 0.0587,
+   "n_tokens": 426
+  },
+  "FIOCRUZ": {
+   "cosine_tpl": 0.7041,
+   "novelty": 0.0887,
+   "n_tokens": 406
+  },
+  "FNDE": {
+   "cosine_tpl": 0.7566,
+   "novelty": 0.1568,
+   "n_tokens": 491
+  },
+  "FOSORIO": {
+   "cosine_tpl": 0.9158,
+   "novelty": 0.0566,
+   "n_tokens": 424
+  },
+  "FUNARTE": {
+   "cosine_tpl": 0.9152,
+   "novelty": 0.045,
+   "n_tokens": 422
+  },
+  "FUNDACENTRO": {
+   "cosine_tpl": 0.853,
+   "novelty": 0.0546,
+   "n_tokens": 421
+  },
+  "FUNDAJ": {
+   "cosine_tpl": 0.7566,
+   "novelty": 0.1568,
+   "n_tokens": 491
+  },
+  "HFA": {
+   "cosine_tpl": 0.9158,
+   "novelty": 0.0566,
+   "n_tokens": 424
+  },
+  "IBAMA": {
+   "cosine_tpl": 0.8641,
+   "novelty": 0.0576,
+   "n_tokens": 434
+  },
+  "IBC": {
+   "cosine_tpl": 0.7566,
+   "novelty": 0.1568,
+   "n_tokens": 491
+  },
+  "IBGE": {
+   "cosine_tpl": 0.916,
+   "novelty": 0.0314,
+   "n_tokens": 414
+  },
+  "ICMBIO": {
+   "cosine_tpl": 0.8641,
+   "novelty": 0.0576,
+   "n_tokens": 434
+  },
+  "INEP": {
+   "cosine_tpl": 0.7566,
+   "novelty": 0.1568,
+   "n_tokens": 491
+  },
+  "INES": {
+   "cosine_tpl": 0.7566,
+   "novelty": 0.1568,
+   "n_tokens": 491
+  },
+  "INPI": {
+   "cosine_tpl": 0.7716,
+   "novelty": 0.0801,
+   "n_tokens": 437
+  },
+  "INSS": {
+   "cosine_tpl": 0.8955,
+   "novelty": 0.0481,
+   "n_tokens": 416
+  },
+  "IPHAN": {
+   "cosine_tpl": 0.8775,
+   "novelty": 0.054,
+   "n_tokens": 426
+  },
+  "JBRJ": {
+   "cosine_tpl": 0.8641,
+   "novelty": 0.0576,
+   "n_tokens": 434
+  },
+  "MCTI": {
+   "cosine_tpl": 0.7772,
+   "novelty": 0.0677,
+   "n_tokens": 443
+  },
+  "MDA": {
+   "cosine_tpl": 0.8271,
+   "novelty": 0.0622,
+   "n_tokens": 434
+  },
+  "MDHC": {
+   "cosine_tpl": 0.8065,
+   "novelty": 0.0525,
+   "n_tokens": 400
+  },
+  "MD": {
+   "cosine_tpl": 0.9158,
+   "novelty": 0.0566,
+   "n_tokens": 424
+  },
+  "MEC": {
+   "cosine_tpl": 0.7566,
+   "novelty": 0.1568,
+   "n_tokens": 491
+  },
+  "MEMP": {
+   "cosine_tpl": 0.7806,
+   "novelty": 0.0668,
+   "n_tokens": 434
+  },
+  "MESP": {
+   "cosine_tpl": 0.9306,
+   "novelty": 0.0356,
+   "n_tokens": 421
+  },
+  "MF": {
+   "cosine_tpl": 0.8404,
+   "novelty": 0.0687,
+   "n_tokens": 422
+  },
+  "MGI": {
+   "cosine_tpl": 0.8771,
+   "novelty": 0.043,
+   "n_tokens": 442
+  },
+  "MIDR": {
+   "cosine_tpl": 0.8764,
+   "novelty": 0.0665,
+   "n_tokens": 421
+  },
+  "MINC": {
+   "cosine_tpl": 0.9079,
+   "novelty": 0.0378,
+   "n_tokens": 423
+  },
+  "MJSP": {
+   "cosine_tpl": 0.8631,
+   "novelty": 0.0516,
+   "n_tokens": 426
+  },
+  "MMA": {
+   "cosine_tpl": 0.8641,
+   "novelty": 0.0576,
+   "n_tokens": 434
+  },
+  "MME": {
+   "cosine_tpl": 0.8755,
+   "novelty": 0.0443,
+   "n_tokens": 429
+  },
+  "MMULHERES": {
+   "cosine_tpl": 0.9027,
+   "novelty": 0.0359,
+   "n_tokens": 418
+  },
+  "MPI": {
+   "cosine_tpl": 0.8645,
+   "novelty": 0.0474,
+   "n_tokens": 422
+  },
+  "MPOR": {
+   "cosine_tpl": 0.8138,
+   "novelty": 0.0546,
+   "n_tokens": 403
+  },
+  "MPO": {
+   "cosine_tpl": 0.8356,
+   "novelty": 0.0539,
+   "n_tokens": 427
+  },
+  "MPS": {
+   "cosine_tpl": 0.8591,
+   "novelty": 0.0453,
+   "n_tokens": 397
+  },
+  "MRE": {
+   "cosine_tpl": 0.8746,
+   "novelty": 0.0402,
+   "n_tokens": 423
+  },
+  "MTE": {
+   "cosine_tpl": 0.846,
+   "novelty": 0.0493,
+   "n_tokens": 426
+  },
+  "MTUR": {
+   "cosine_tpl": 0.8721,
+   "novelty": 0.0415,
+   "n_tokens": 434
+  },
+  "PF": {
+   "cosine_tpl": 0.9083,
+   "novelty": 0.0404,
+   "n_tokens": 421
+  },
+  "PGFN": {
+   "cosine_tpl": 0.8404,
+   "novelty": 0.0687,
+   "n_tokens": 422
+  },
+  "PRF": {
+   "cosine_tpl": 0.8525,
+   "novelty": 0.0585,
+   "n_tokens": 427
+  },
+  "RFB": {
+   "cosine_tpl": 0.8404,
+   "novelty": 0.0687,
+   "n_tokens": 422
+  },
+  "SFB": {
+   "cosine_tpl": 0.8641,
+   "novelty": 0.0576,
+   "n_tokens": 434
+  },
+  "SGPR": {
+   "cosine_tpl": 0.8997,
+   "novelty": 0.0561,
+   "n_tokens": 428
+  },
+  "STN": {
+   "cosine_tpl": 0.8404,
+   "novelty": 0.0687,
+   "n_tokens": 422
+  },
+  "SUDAM": {
+   "cosine_tpl": 0.8764,
+   "novelty": 0.0665,
+   "n_tokens": 421
+  },
+  "SUDECO": {
+   "cosine_tpl": 0.8764,
+   "novelty": 0.0665,
+   "n_tokens": 421
+  },
+  "SUDENE": {
+   "cosine_tpl": 0.8764,
+   "novelty": 0.0665,
+   "n_tokens": 421
+  }
+ }
+}
