@@ -47,7 +47,14 @@ def main() -> None:
 
     rc = 0
     with sync_playwright() as p:
-        browser = p.chromium.launch()
+        # Sandboxes de agente trazem um Chromium pré-instalado cuja revisão
+        # pode não bater com a que o pip do Playwright espera — cai para o
+        # binário do ambiente antes de desistir.
+        try:
+            browser = p.chromium.launch()
+        except Exception:
+            browser = p.chromium.launch(
+                executable_path="/opt/pw-browsers/chromium")
         for w in widths:
             # ignore_https_errors: some sandboxes route egress through a proxy
             # whose TLS cert Chromium won't trust (ERR_CERT_AUTHORITY_INVALID),

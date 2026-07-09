@@ -81,6 +81,16 @@ def strip_accents(s: str) -> str:
                    if unicodedata.category(c) != "Mn")
 
 
+# Bullets de PDFs (Wingdings/Symbol) chegam como Private Use Area e viram
+# tofu no navegador. Trocamos por bullet real ANTES de tokenizar/diffar,
+# para que os índices dos opcodes correspondam ao texto exibido.
+_PUA_RE = re.compile(r"[-￼�]")
+
+
+def clean_pdf_text(s: str) -> str:
+    return _PUA_RE.sub("•", s)
+
+
 def tokenize(s: str) -> list:
     """Tokens minúsculos sem acento, sem stopwords, sem números puros."""
     s = strip_accents(s.lower())
@@ -190,7 +200,7 @@ def analyze():
     for key, tpl_sec in tpl_sections.items():
         tpl_tokens = tokenize(tpl_sec["text"])
         # blocos canônicos presentes nesta seção
-        sec_blocks = {s: blocks[s][key] for s in canonical
+        sec_blocks = {s: clean_pdf_text(blocks[s][key]) for s in canonical
                       if blocks.get(s, {}).get(key)}
         sec_tokens = {s: tokenize(t) for s, t in sec_blocks.items()}
         sec_tokens = {s: t for s, t in sec_tokens.items()
