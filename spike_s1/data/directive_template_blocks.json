@@ -1,0 +1,74 @@
+{
+  "template_version": "2.2",
+  "source": "docdiretivo_minuta_v2-2.docx",
+  "sections": [
+    {
+      "key": "escopo",
+      "num": 1,
+      "title": "Escopo do Instrumento",
+      "anchors": [
+        "escopo do instrumento"
+      ],
+      "text": "O Plano de Transformação Digital (PTD) do órgão XX, em parceria com a Secretaria de Governo Digital e a Secretaria-Executiva, ambas do Ministério da Gestão e da Inovação em Serviços Públicos (MGI), visa implementar ações relacionadas à Estratégia Federal de Governo Digital (EFGD) na Administração Pública Federal, conforme estabelecido no Decreto nº 12.198, 24 de setembro de 2024, que institui a Estratégia Federal de Governo Digital para o período de 2024 a 2027.\nA Estratégia de Governo Digital está baseada nos seguintesprincípios:\ncentrado no cidadão e inclusivo;\nintegrado e colaborativo;\ninteligente e inovador;\nconfiável e seguro;\ntransparente, aberto e participativo; e\neficiente e sustentável.\nEsses princípios nortearão a transformação do governo por meio do uso de tecnologias digitais, bem como o fortalecimento de ações e políticas já em curso, buscando promover a efetividade das políticas, a qualidade dos serviços públicos, a inclusão e participação de todas as pessoas.\nO Plano de Transformação Digital (PTD) é um instrumento de planejamento que, em sua essência, estabelece um conjunto de ações para que os órgãos e entidades busquem atingir os objetivos e iniciativas definidos na Estratégia Federal de Governo Digital (EFGD).",
+      "n_words": 188
+    },
+    {
+      "key": "visao",
+      "num": 2,
+      "title": "Visão Estratégica do Órgão",
+      "anchors": [
+        "visao estrategica do orgao relacionada a transformacao digital",
+        "visao estrategica do orgao",
+        "visao estrategica"
+      ],
+      "text": "OBJETIVO GERAL:\nOBJETIVOS ESPECÍFICOS: (se couber)",
+      "n_words": 6
+    },
+    {
+      "key": "eixos",
+      "num": 3,
+      "title": "Eixos da Transformação Digital",
+      "anchors": [
+        "eixos da transformacao digital",
+        "eixos de transformacao digital"
+      ],
+      "text": "O Plano de Transformação Digital conterá, no mínimo, as ações de:\nserviços digitais e melhoria da qualidade;\nunificação de canais digitais;\ngovernança e gestão de dados; e\nsegurança e privacidade.\nCabe ao órgão propor, em seu PTD, a pactuação de entregas relacionadas a ações e serviços públicos digitais voltados aos usuários, que comporão, de forma detalhada o Anexo de Entregas, consignando as áreas responsáveis e as datas de previsão para o seu alcance.\nA seguir temos um referencial para os Eixos e uma respectiva lista de produtos relacionados.\nEixo 1 - Serviços Digitais e Melhoria da Qualidade\nAs entregas relacionadas a este eixo buscam:\nA ampliação do acesso a serviços públicos, oferecendo às pessoas opções de acesso digital aos serviços demandados por elas;\nA promoção da transformação digital de modo a aumentar a qualidade dos serviços públicos e a satisfação das pessoas, por meio da simplificação, facilidade e acessibilidade, aprimorando a experiência dos usuários de serviços públicos em canais digitais.\nProduto(s) relacionado(s) a este eixo:\nRevisão da descrição dos serviços\nDisponibilização em Acesso Digital\nEvolução do Serviço Digital\nIntegração à ferramenta de avaliação da satisfação dos usuários\nRealização de Autodiagnóstico de Qualidade\nImplementação das recomendações do Autodiagnóstico de Qualidade\nImplantação da Experiência LabQ\nImplementação do VLIBRAS\nEixo 2 - Unificação de Canais Digitais\nAs entregas relacionadas a este eixo buscam:\nCriar uma experiência única de navegação pelos canais digitais de governo, promovendo uma jornada agradável, simples, ágil, acessível, coerente e consistente para o usuário;\nPossibilitar que qualquer brasileiro possa acessar serviços digitais por meio da identificação digital única;\nSimplificar os pagamentos de valores devidos à Administração Pública em decorrência da prestação de serviços específicos.\nProduto(s) relacionado(s) a este eixo:\nImplementação da autenticação única para acesso aos serviços públicos;\nImplementação do Design System GOV.BR\nIntegração à plataforma oficial de pagamento do Governo Federal\nMigração de portais e APPs móveis institucionais para as plataformas centralizadas GOV.BR\nEixo 3 – Governança e Gestão de Dados\nAs entregas relacionadas a este eixo buscam:\nFomento da governança e da integração de dados nos Órgãos e Entidades da Administração Pública Federal, possibilitando os serviços proativos;\nAmpliação da análise de dados na gestão de políticas públicas, facilitando a descoberta de dados e promovendo o reuso para a melhoria dos serviços públicos;\nEmpoderamento do cidadão na gestão de seus dados.\nProduto(s) relacionado(s) a este eixo:\nDisponibilização de Base de Dados\nIntegração entre sistemas\nIntegração às bases de dados disponível no Conecta: https://www.gov.br/conecta/catalogo/\nEixo 4 – Segurança e Privacidade\nAs entregas relacionadas a este eixo buscam:\nGarantia de um governo digital seguro, aumentando a confiança nos serviços públicos;\nAmpliação das ações de educação nas temáticas de privacidade e segurança da informação, promovendo uma maior conscientização institucional;\nConsolidação da atuação do CISC gov.br no âmbito do SISP, fortalecendo a governança e a cooperação entre os órgãos para uma abordagem unificada e robusta de proteção de dados;\nAumento do número de publicações que apoiam a implementação do Framework de Privacidade e Segurança da Informação, oferecendo diretrizes claras e práticas;\nVisibilidade à alta administração sobre mecanismos de liderança, estratégia e controles, visando maximizar as ações do Plano de Proteção e Segurança da Informação (PPSI) e garantir alinhamento com as melhores práticas de segurança cibernética.\nProduto(s) relacionado(s) a este eixo:\nImplementações relacionadas ao Plano de Proteção e Segurança da Informação (PPSI)\nProjetos Especiais (facultativo)\nOs Projetos Especiais buscam impulsionar a inovação e a eficácia dos serviços públicos, transformando a maneira como o governo opera e interage com os cidadãos. Esses projetos visam criar soluções governamentais mais eficientes e responsivas às necessidades da população, promovendo uma cultura de inovação contínua dentro do setor público.\nEnglobam iniciativas de amplo espectro, visando resolver, com apoio da transformação digital, problemas complexos que afetam ao seu público-alvo, melhorando a qualidade de vida dos cidadãos e aumentando a transparência e a eficiência governamental, inclusive com aplicação de tecnologias emergentes.\nTais iniciativas podem ser desenvolvidas de forma autônoma ou com o apoio de programas, como o Startup Gov.br.",
+      "n_words": 658
+    },
+    {
+      "key": "acompanhamento",
+      "num": 4,
+      "title": "Estratégia de Acompanhamento",
+      "anchors": [
+        "estrategia de acompanhamento",
+        "estrategia de monitoramento"
+      ],
+      "text": "O Plano de Transformação Digital incluirá sua estratégia de acompanhamento com a realização de Pontos de Controle bimestrais entre Líder(es) do Plano de Transformação Digital do órgão e Gerente de Relacionamento da SGD/MGI e pontos focais das vinculadas (quando houver).\nA periodicidade das reuniões de acompanhamento pode sofrer ajustes conforme andamento e cronograma do Plano de Transformação Digital.",
+      "n_words": 58
+    },
+    {
+      "key": "riscos",
+      "num": 5,
+      "title": "Gestão de Riscos",
+      "anchors": [
+        "gestao de riscos",
+        "gestao de risco",
+        "gerenciamento de riscos"
+      ],
+      "text": "*Para facilitar o preenchimento desta seção, consulte as Orientações para preenchimento do Capítulo de “Gestão de Riscos” do documento diretivo do Plano de Transformação Digital (PTD), que faz parte do Kit de Elaboração do PTD e traz alguns exemplos de riscos e ações de tratamento de riscos comuns em processos de transformação digital na Administração Pública. A redação desse parágrafo poderá ser retirada quando da pactuação do PTD.",
+      "n_words": 68
+    },
+    {
+      "key": "papeis",
+      "num": 6,
+      "title": "Papéis e Responsabilidades",
+      "anchors": [
+        "papeis e responsabilidades",
+        "papeis e responsabilidade"
+      ],
+      "text": "6.1 ÓRGÃOS COMPONENTES\nÓrgão Proponente (NOME DO ÓRGÃO)\nDefinir diretrizes de atuação do seu PTD alinhado com suas políticas públicas, voltada para o cidadão, sempre que couber;\nPropor e submeter para pactuação o Plano de Transformação Digital e deliberar sobre recursos e riscos estruturantes;\nObservar os prazos previstos no Decreto EFGD;\nApoiar e acompanhar a execução das entregas pactuadas no respectivo PTD;\nIndicar o Líder do Plano de Transformação Digital;\nIndicar o Ponto focal (quando houver); e\nIndicar o representante da ouvidoria (caso necessário).\nSecretaria-Executiva do Ministério da Gestão e Inovação em Serviços Público - SE/MGI\nGarantir apoio institucional do MGI à pauta de transformação digital;\nAcompanhar (em alto nível) as entregas estratégicas aderentes aos objetivos e iniciativas da Estratégia Federal de Governo Digital;\nAprovar o PTD do órgão; e\nIndicar um representante para a repactuação das ações constantes do Anexo de Entregas durante a vigência do PTD (caso necessário).\nSecretaria de Governo Digital do Ministério da Gestão e Inovação em Serviços Públicos - SGD/MGI\nResponsável pela promoção, pesquisa, apoio e acompanhamento de TD dos serviços voltados aos cidadãos em articulação com os Órgãos;\nGarantir a observância das diretrizes e objetivos emanados no Decreto da EFGD quando da implementação e acompanhamento do Plano de Transformação Digital;\nAprovar o PTD do órgão;\nEstratégia de comunicação, apoio e articulação de ações transversais de transformação digital de serviços;\nOrganizar e convocar os Líderes dos Planos de Transformação Digital dos órgãos para os Fóruns de Transformação Digital de serviços voltados aos cidadãos; e\nIndicar um representante para a repactuação das ações constantes do Anexo de Entregas durante a vigência do PTD (caso necessário).\nOs órgãos componentes poderão:\nConvocar, se entender necessário, reunião conjunta de avaliação das ações relacionadas ao cumprimento do PTD; e\nRepactuar o PTD quando, de forma justificada, entender conveniente ou oportuno.\n6.2 ATORES E ATRIBUIÇÕES PARA EXECUÇÃO DO PLANO DE TRANSFORMAÇÃO DIGITAL\nLíder do Plano de Transformação Digital\nElaborar e propor o Plano de Transformação Digital para pactuação entre os signatários;\nArticular as ações do PTD com o Gerente de Relacionamento da SGD e com os atores dentro do Órgão, e pelo acompanhamento do plano com SGD, Secretarias e órgãos vinculados;\nParticipar das reuniões de acompanhamento e prestação de informações sobre a execução do plano de forma sistemática e regular;\nRepresentar o órgão de atuação nos Fóruns de transformação digital de Líderes dos Planos de Transformação Digital;\nPropor atualizações para o Anexo de Entregas, para fins de alteração, inclusão ou supressão de ações, e para reajustamento de prazos de entrega, desde que devidamente justificado e com novos prazos dentro do período de vigência do PTD; e\nAssinar a versão atualizada do Anexo de Entregas quando as alterações forem aprovadas pelos demais signatários (representantes da SGD e da SE/MGI).\nPonto focal (e para os casos de PTDs com órgãos vinculados)\nRepresentar órgão ou entidade vinculada nas ações que são relacionadas à transformação digital; e\nApoiar o Líder do Plano de Transformação Digital nas atividades referentes à elaboração, execução e monitoramento do PTD.\nOuvidoria dos órgãos proponentes (RECOMENDÁVEL)\nZelar pelo conteúdo dos serviços do órgão no portal único gov.br.\nGerente de Relacionamento – CGREP/SGD/MGI\nOrientar os órgãos sobre as ações relacionadas à transformação digital;\nFazer a articulação entre o Órgão Proponente e as áreas técnicas da SGD;\nAtualizar os status das ações do Órgão junto à SGD para fins de cumprimento das metas da EFGD; e\nAgendar e conduzir as reuniões periódicas de acompanhamento.\nTermos:\nO [Nome_do_Órgão] se compromete a concentrar esforços e recursos de tecnologia da informação para o cumprimento das metas estabelecidas no documento Anexo de Entregas, inclusive das que estiverem sob responsabilidade de seu(s) vinculado(s).\nA SGD apoiará os esforços de transformação digital do órgão, por meio da oferta, mediante disponibilidade, de ferramentas, tecnologias e metodologias para acelerar a transformação digital.\nA SGD irá acompanhar e monitorar o cumprimento das metas estabelecidas.\nHavendo variação nos recursos que se fazem necessários para a execução do plano, por qualquer motivo, poderá haver repactuação das metas por iniciativa das partes, desde que aprovadas pelos representantes dos órgãos signatários.",
+      "n_words": 675
+    }
+  ],
+  "preambulo_n_words": 28
+}
