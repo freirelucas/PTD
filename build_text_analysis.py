@@ -108,11 +108,14 @@ def build_idf(docs: list) -> dict:
 
 
 def cosine(c1: Counter, c2: Counter, idf: dict) -> float:
+    # Somas em ordem LEXICOGRÁFICA: a ordem de iteração de sets/dicts varia
+    # com o hash seed e mudaria o arredondamento float entre execuções —
+    # quebraria o modo --check (determinismo bit a bit).
     v1 = {t: n * idf.get(t, 0.0) for t, n in c1.items()}
     v2 = {t: n * idf.get(t, 0.0) for t, n in c2.items()}
-    dot = sum(v1[t] * v2[t] for t in v1.keys() & v2.keys())
-    n1 = math.sqrt(sum(x * x for x in v1.values()))
-    n2 = math.sqrt(sum(x * x for x in v2.values()))
+    dot = sum(v1[t] * v2[t] for t in sorted(v1.keys() & v2.keys()))
+    n1 = math.sqrt(sum(v1[t] * v1[t] for t in sorted(v1)))
+    n2 = math.sqrt(sum(v2[t] * v2[t] for t in sorted(v2)))
     return dot / (n1 * n2) if n1 and n2 else 0.0
 
 
@@ -264,6 +267,11 @@ def analyze():
                 "ref": ref_sigla,
                 "local_terms": [t for _, t in distinct],
             }
+            if is_ref:
+                # O medoide É a referência: cosine_ref=1/novelty=0 são por
+                # construção, não medida — o dashboard exibe "REF" e exclui
+                # o bloco dos rankings para não inflar o "mais pro forma".
+                m["is_ref"] = True
             if use_template:
                 m["cosine_tpl"] = round(cosine(c, tpl_counter, idf), 4)
             if emb:
@@ -281,18 +289,23 @@ def analyze():
             result["textos"].setdefault(s, {})[key] = sec_blocks[s]
 
     # ----- agregados por seção (pro forma vs contextualizado) -----
+    def _median(sorted_vals):
+        n = len(sorted_vals)
+        if n % 2:
+            return round(sorted_vals[n // 2], 4)
+        return round((sorted_vals[n // 2 - 1] + sorted_vals[n // 2]) / 2, 4)
+
     aggregates = {}
     for key in tpl_sections:
-        vals = [m[key] for m in result["metricas"].values() if key in m]
+        # exclui o medoide: seus 1.0/0.0 são por construção, não medida
+        vals = [m[key] for m in result["metricas"].values()
+                if key in m and not m[key].get("is_ref")]
         if not vals:
             continue
-        n = len(vals)
-        cos_r = sorted(v["cosine_ref"] for v in vals)
-        nov = sorted(v["novelty"] for v in vals)
         aggregates[key] = {
-            "n_orgaos": n,
-            "cosine_ref_mediana": round(cos_r[n // 2], 4),
-            "novelty_mediana": round(nov[n // 2], 4),
+            "n_orgaos": len(vals),
+            "cosine_ref_mediana": _median(sorted(v["cosine_ref"] for v in vals)),
+            "novelty_mediana": _median(sorted(v["novelty"] for v in vals)),
         }
     result["agregados"] = aggregates
     result["provenance"] = {
@@ -311,12 +324,51 @@ def render_js(result: dict) -> str:
             f"const PTD_TEXT = {payload};\n")
 
 
+def _warn_if_corpus_drifted() -> None:
+    """Avisa quando há um corpus RECÉM-BAIXADO (ptd_output/) cujos PDFs
+    divergem do snapshot que alimenta esta análise (spike_s1/data/).
+
+    A análise é determinística sobre o snapshot committado — um refresh
+    mensal não a atualiza sozinho. Este aviso dispara no fluxo de sync
+    (run_pipeline --sync roda este script após baixar PDFs novos) para a
+    defasagem nunca passar silenciosa.
+    """
+    import hashlib
+    pdf_dir = os.path.join(REPO, "ptd_output", "pdfs", "diretivo")
+    if not os.path.isdir(pdf_dir):
+        return
+    try:
+        with open(os.path.join(DATA, "download_report.json"),
+                  encoding="utf-8") as fh:
+            known = set(json.load(fh).get("md5", {}).values())
+    except (OSError, json.JSONDecodeError):
+        return
+    fresh = set()
+    for f in os.listdir(pdf_dir):
+        if not f.endswith("_diretivo.pdf"):
+            continue
+        h = hashlib.md5()
+        with open(os.path.join(pdf_dir, f), "rb") as fh:
+            for chunk in iter(lambda: fh.read(1 << 20), b""):
+                h.update(chunk)
+        fresh.add(h.hexdigest())
+    novos = fresh - known
+    if novos:
+        print(f"AVISO: {len(novos)} PDF(s) diretivos em ptd_output/ não "
+              "constam do snapshot da análise textual (spike_s1/data/). "
+              "A aba 'Texto Diretivo' está DEFASADA em relação ao corpus "
+              "novo — re-rode spike_s1/extract_and_segment.py e "
+              "build_text_analysis.py/build_text_embeddings.py.")
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--check", action="store_true",
                     help="Não escreve; falha (exit 1) se as saídas commitadas "
                          "diferem do que seria gerado.")
     args = ap.parse_args(argv)
+
+    _warn_if_corpus_drifted()
 
     result = analyze()
     out_json = json.dumps(result, ensure_ascii=False, indent=1)

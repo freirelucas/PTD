@@ -214,6 +214,10 @@ PTD/
     12*_iteration.*            # Review queue
   index.html                   # Dashboard interativo (consome output/data.js)
   output/                      # Dados extraídos e visualizações
+  build_text_analysis.py       # Análise textual do diretivo (aba Texto Diretivo)
+  build_text_embeddings.py     # Camada semântica offline (embeddings commitados)
+  corpus_pdfs/                 # Cache versionado dos PDFs diretivos + minuta v2.2
+  spike_s1/                    # Extração/segmentação da prosa do diretivo + dados
   DECISIONS.md                 # Histórico de decisões técnicas e bugs corrigidos
   requirements.txt             # Dependências Python
 ```

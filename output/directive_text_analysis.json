@@ -528,6 +528,7 @@
     "n_tokens": 402,
     "ref": "ANAC",
     "local_terms": [],
+    "is_ref": true,
     "cosine_tpl": 1.0,
     "cosine_emb": 0.9934
    },
@@ -537,6 +538,7 @@
     "n_tokens": 36,
     "ref": "ANAC",
     "local_terms": [],
+    "is_ref": true,
     "cosine_tpl": 1.0,
     "cosine_emb": 1.0
    },
@@ -842,6 +844,7 @@
      "negocio",
      "manutencao"
     ],
+    "is_ref": true,
     "cosine_emb": 1.0
    },
    "papeis": {
@@ -1325,8 +1328,9 @@
     "cosine_ref": 1.0,
     "novelty": 0.0,
     "n_tokens": 36,
-    "ref": "COAF",
+    "ref": "BCB",
     "local_terms": [],
+    "is_ref": true,
     "cosine_tpl": 1.0,
     "cosine_emb": 0.9951
    },
@@ -1397,6 +1401,7 @@
     "n_tokens": 402,
     "ref": "CADE",
     "local_terms": [],
+    "is_ref": true,
     "cosine_tpl": 1.0,
     "cosine_emb": 0.9934
    },
@@ -1404,7 +1409,7 @@
     "cosine_ref": 1.0,
     "novelty": 0.0,
     "n_tokens": 36,
-    "ref": "COAF",
+    "ref": "BCB",
     "local_terms": [],
     "cosine_tpl": 1.0,
     "cosine_emb": 1.0
@@ -1506,7 +1511,7 @@
     "cosine_ref": 0.1083,
     "novelty": 0.8243,
     "n_tokens": 74,
-    "ref": "COAF",
+    "ref": "BCB",
     "local_terms": [
      "secretaria",
      "monitorar",
@@ -1613,7 +1618,7 @@
     "cosine_ref": 0.7421,
     "novelty": 0.0588,
     "n_tokens": 34,
-    "ref": "COAF",
+    "ref": "BCB",
     "local_terms": [
      "vinculados",
      "orgaos"
@@ -1909,7 +1914,7 @@
     "cosine_ref": 1.0,
     "novelty": 0.0,
     "n_tokens": 36,
-    "ref": "COAF",
+    "ref": "BCB",
     "local_terms": [],
     "cosine_tpl": 1.0,
     "cosine_emb": 1.0
@@ -2211,7 +2216,7 @@
     "cosine_ref": 0.2814,
     "novelty": 0.1667,
     "n_tokens": 24,
-    "ref": "COAF",
+    "ref": "BCB",
     "local_terms": [
      "ptd",
      "cvm",
@@ -2290,7 +2295,7 @@
     "cosine_ref": 1.0,
     "novelty": 0.0,
     "n_tokens": 36,
-    "ref": "COAF",
+    "ref": "BCB",
     "local_terms": [],
     "cosine_tpl": 1.0,
     "cosine_emb": 1.0
@@ -2640,7 +2645,7 @@
     "cosine_ref": 1.0,
     "novelty": 0.0,
     "n_tokens": 36,
-    "ref": "COAF",
+    "ref": "BCB",
     "local_terms": [],
     "cosine_tpl": 1.0,
     "cosine_emb": 1.0
@@ -3162,6 +3167,7 @@
      "gestao",
      "plataformas"
     ],
+    "is_ref": true,
     "cosine_tpl": 0.0448,
     "cosine_emb": 0.3777
    },
@@ -3275,7 +3281,7 @@
     "cosine_ref": 0.1918,
     "novelty": 0.629,
     "n_tokens": 62,
-    "ref": "COAF",
+    "ref": "BCB",
     "local_terms": [
      "governanca",
      "acoes",
@@ -3514,6 +3520,7 @@
      "souza",
      "rogerio"
     ],
+    "is_ref": true,
     "cosine_tpl": 0.9378,
     "cosine_emb": 0.8483
    }
@@ -3579,7 +3586,7 @@
     "cosine_ref": 1.0,
     "novelty": 0.0,
     "n_tokens": 36,
-    "ref": "COAF",
+    "ref": "BCB",
     "local_terms": [],
     "cosine_tpl": 1.0,
     "cosine_emb": 1.0
@@ -3627,6 +3634,7 @@
     "local_terms": [
      "seguintes"
     ],
+    "is_ref": true,
     "cosine_tpl": 0.8981,
     "cosine_emb": 0.9765
    },
@@ -3660,7 +3668,7 @@
     "cosine_ref": 0.9716,
     "novelty": 0.0,
     "n_tokens": 35,
-    "ref": "COAF",
+    "ref": "BCB",
     "local_terms": [],
     "cosine_tpl": 0.9716,
     "cosine_emb": 0.9797
@@ -3755,7 +3763,7 @@
     "cosine_ref": 0.8669,
     "novelty": 0.0278,
     "n_tokens": 36,
-    "ref": "COAF",
+    "ref": "BCB",
     "local_terms": [
      "trimestrais"
     ],
@@ -3781,6 +3789,7 @@
      "empresa",
      "manutencao"
     ],
+    "is_ref": true,
     "cosine_emb": 1.0
    },
    "papeis": {
@@ -3802,6 +3811,7 @@
      "souza",
      "rogerio"
     ],
+    "is_ref": true,
     "cosine_tpl": 0.9191,
     "cosine_emb": 0.9319
    }
@@ -4021,7 +4031,7 @@
     "cosine_ref": 1.0,
     "novelty": 0.0,
     "n_tokens": 36,
-    "ref": "COAF",
+    "ref": "BCB",
     "local_terms": [],
     "cosine_tpl": 1.0,
     "cosine_emb": 1.0
@@ -4185,7 +4195,7 @@
     "cosine_ref": 1.0,
     "novelty": 0.0,
     "n_tokens": 36,
-    "ref": "COAF",
+    "ref": "BCB",
     "local_terms": [],
     "cosine_tpl": 1.0,
     "cosine_emb": 1.0
@@ -4262,6 +4272,7 @@
      "entregues",
      "demandas"
     ],
+    "is_ref": true,
     "cosine_tpl": 0.029,
     "cosine_emb": 0.3304
    },
@@ -4278,7 +4289,7 @@
     "cosine_ref": 1.0,
     "novelty": 0.0,
     "n_tokens": 36,
-    "ref": "COAF",
+    "ref": "BCB",
     "local_terms": [],
     "cosine_tpl": 1.0,
     "cosine_emb": 1.0
@@ -4471,7 +4482,7 @@
     "cosine_ref": 1.0,
     "novelty": 0.0,
     "n_tokens": 36,
-    "ref": "COAF",
+    "ref": "BCB",
     "local_terms": [],
     "cosine_tpl": 1.0,
     "cosine_emb": 1.0
@@ -4700,6 +4711,7 @@
      "policia",
      "seguintes"
     ],
+    "is_ref": true,
     "cosine_tpl": 0.8788,
     "cosine_emb": 0.9533
    },
@@ -4842,7 +4854,7 @@
     "cosine_ref": 1.0,
     "novelty": 0.0,
     "n_tokens": 36,
-    "ref": "COAF",
+    "ref": "BCB",
     "local_terms": [],
     "cosine_tpl": 1.0,
     "cosine_emb": 1.0
@@ -4939,7 +4951,7 @@
     "cosine_ref": 1.0,
     "novelty": 0.0,
     "n_tokens": 36,
-    "ref": "COAF",
+    "ref": "BCB",
     "local_terms": [],
     "cosine_tpl": 1.0,
     "cosine_emb": 1.0
@@ -5014,7 +5026,7 @@
   "acompanhamento": {
    "consenso_por_versao": {
     "2.1": "ANAC",
-    "sem_versao": "COAF"
+    "sem_versao": "BCB"
    },
    "medoide_global": "ANAC"
   },
@@ -41380,7 +41392,7 @@
   "acompanhamento": {
    "template": "O Plano de Transformação Digital incluirá sua estratégia de acompanhamento com a realização de Pontos de Controle bimestrais entre Líder(es) do Plano de Transformação Digital do órgão e Gerente de Relacionamento da SGD/MGI e pontos focais das vinculadas (quando houver).\nA periodicidade das reuniões de acompanhamento pode sofrer ajustes conforme andamento e cronograma do Plano de Transformação Digital.",
    "consenso:ANAC": "O Plano de Transformação Digital incluirá sua estratégia de acompanhamento com a\nrealização de Pontos de Controle bimestrais entre Líder(es) do Plano de Transformação Digital do\nórgão e Gerente de Relacionamento da SGD/MGI e pontos focais das vinculadas (quando\nhouver).\nA periodicidade das reuniões de acompanhamento pode sofrer ajustes conforme\nandamento e cronograma do Plano de Transformação Digital.",
-   "consenso:COAF": "O Plano de Transformação Digital incluirá sua estratégia de acompanhamento com a\nrealização de Pontos de Controle bimestrais entre Líder(es) do Plano de Transformação Digital do\nórgão e Gerente de Relacionamento da SGD/MGI e pontos focais das vinculadas (quando houver).\nA periodicidade das reuniões de acompanhamento pode sofrer ajustes conforme andamento\ne cronograma do Plano de Transformação Digital."
+   "consenso:BCB": "O Plano de Transformação Digital incluirá sua estratégia de acompanhamento com a\nrealização de Pontos de Controle bimestrais entre o(s) Líder(es) do Plano de Transformação Digital\ndo órgão, o Gerente de Relacionamento da SGD/MGI e os pontos focais das vinculadas (quando\nhouver).\nA periodicidade das reuniões de acompanhamento pode sofrer ajustes conforme andamento\ne cronograma do Plano de Transformação Digital."
   },
   "riscos": {
    "template": "*Para facilitar o preenchimento desta seção, consulte as Orientações para preenchimento do Capítulo de “Gestão de Riscos” do documento diretivo do Plano de Transformação Digital (PTD), que faz parte do Kit de Elaboração do PTD e traz alguns exemplos de riscos e ações de tratamento de riscos comuns em processos de transformação digital na Administração Pública. A redação desse parágrafo poderá ser retirada quando da pactuação do PTD.",
@@ -41395,34 +41407,34 @@
  },
  "agregados": {
   "escopo": {
-   "n_orgaos": 50,
-   "cosine_ref_mediana": 0.8701,
+   "n_orgaos": 48,
+   "cosine_ref_mediana": 0.8688,
    "novelty_mediana": 0.0367
   },
   "visao": {
-   "n_orgaos": 50,
-   "cosine_ref_mediana": 0.1359,
-   "novelty_mediana": 0.6842
+   "n_orgaos": 48,
+   "cosine_ref_mediana": 0.1319,
+   "novelty_mediana": 0.6869
   },
   "eixos": {
-   "n_orgaos": 50,
+   "n_orgaos": 48,
    "cosine_ref_mediana": 1.0,
    "novelty_mediana": 0.0
   },
   "acompanhamento": {
-   "n_orgaos": 50,
+   "n_orgaos": 48,
    "cosine_ref_mediana": 1.0,
    "novelty_mediana": 0.0
   },
   "riscos": {
-   "n_orgaos": 43,
-   "cosine_ref_mediana": 0.5101,
-   "novelty_mediana": 0.25
+   "n_orgaos": 41,
+   "cosine_ref_mediana": 0.4943,
+   "novelty_mediana": 0.3696
   },
   "papeis": {
-   "n_orgaos": 50,
-   "cosine_ref_mediana": 0.865,
-   "novelty_mediana": 0.037
+   "n_orgaos": 48,
+   "cosine_ref_mediana": 0.8618,
+   "novelty_mediana": 0.0372
   }
  },
  "provenance": {

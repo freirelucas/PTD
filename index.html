@@ -2280,10 +2280,11 @@ function _txtOrgs(){return Object.keys(PTD_TEXT.metricas).sort();}
 function _txtSecs(){return PTD_TEXT.secoes.map(s=>s.key);}
 
 // média de uma métrica ponderada pelo tamanho do bloco
+// (blocos-medoide ficam de fora: seus valores são por construção)
 function _txtAvg(sigla,field){
   let num=0,den=0;
   const m=PTD_TEXT.metricas[sigla]||{};
-  Object.values(m).forEach(v=>{num+=v[field]*v.n_tokens;den+=v.n_tokens;});
+  Object.values(m).forEach(v=>{if(v.is_ref)return;num+=v[field]*v.n_tokens;den+=v.n_tokens;});
   return den?num/den:0;
 }
 
@@ -2321,9 +2322,13 @@ function _txtHeatmap(){
     secs.forEach(k=>{
       const m=PTD_TEXT.metricas[o]?.[k];
       if(!m){html+='<div class="cell empty">—</div>';return;}
+      if(m.is_ref){
+        html+=`<div class="cell" style="background:#FDF6E3;color:#8a6d1a;border:1px dashed #D4B85A" title="${o} · ${TXT_SEC_LABELS[k]}\nEste bloco É a referência de consenso do seu grupo de versão — sem métrica própria." onclick="txtOpenDiff('${o}','${k}')">REF</div>`;
+        return;
+      }
       const nov=m.novelty,bg=_txtHeatColor(nov);
       const fg=nov>0.45?'#fff':'#1A2530';
-      const tip=`${o} · ${TXT_SEC_LABELS[k]}\nvocabulário próprio: ${(nov*100).toFixed(0)}%\ncosseno vs referência: ${(m.cosine_ref*100).toFixed(0)}%`+(m.cosine_tpl!==undefined?`\ncosseno vs template: ${(m.cosine_tpl*100).toFixed(0)}%`:'')+(m.cosine_emb!==undefined?`\nsemântico (embeddings): ${(m.cosine_emb*100).toFixed(0)}%`:'');
+      const tip=`${o} · ${TXT_SEC_LABELS[k]}\nvocabulário próprio: ${(nov*100).toFixed(0)}%\ncosseno vs referência: ${(m.cosine_ref*100).toFixed(0)}%`+(m.cosine_tpl!==undefined?`\ncosseno vs template: ${(m.cosine_tpl*100).toFixed(0)}%`:'')+(m.cosine_emb!==undefined?`\nsemântico vs ${k==='riscos'?'consenso':'template'}: ${(m.cosine_emb*100).toFixed(0)}%`:'');
       html+=`<div class="cell" style="background:${bg};color:${fg}" title="${tip}" onclick="txtOpenDiff('${o}','${k}')">${(nov*100).toFixed(0)}</div>`;
     });
   });
@@ -2340,7 +2345,7 @@ function _txtScatterInit(){
 function _txtScatter(){
   const key=document.getElementById('txt-scatter-sec').value;
   const pts=_txtOrgs().map(o=>{const m=PTD_TEXT.metricas[o]?.[key];
-    return m?{x:+(m.cosine_ref*100).toFixed(1),y:+(m.novelty*100).toFixed(1),sigla:o}:null;}).filter(Boolean);
+    return m&&!m.is_ref?{x:+(m.cosine_ref*100).toFixed(1),y:+(m.novelty*100).toFixed(1),sigla:o}:null;}).filter(Boolean);
   destroyChart('txtScatter');
   charts.txtScatter=new Chart(document.getElementById('chart-txt-scatter'),{
     type:'scatter',
@@ -2394,9 +2399,10 @@ function _txtDiffRender(){
   const info=PTD_TEXT.orgaos[org]||{};
   const isRiscos=key==='riscos';
   const refLabel=isRiscos?`consenso do corpus (${m.ref})`:'template oficial v'+PTD_TEXT.template_version;
-  const chips=[`cos. léxico vs referência: <b>${(m.cosine_ref*100).toFixed(0)}%</b>`]
+  const chips=(m.is_ref?['<b style="color:#8a6d1a">bloco de referência (medoide do consenso)</b>']:[])
+    .concat([`cos. léxico vs referência: <b>${(m.cosine_ref*100).toFixed(0)}%</b>`])
     .concat(m.cosine_tpl!==undefined?[`vs template: <b>${(m.cosine_tpl*100).toFixed(0)}%</b>`]:[])
-    .concat(m.cosine_emb!==undefined?[`semântico: <b>${(m.cosine_emb*100).toFixed(0)}%</b>`]:[])
+    .concat(m.cosine_emb!==undefined?[`semântico (vs ${isRiscos?'consenso':'template'}): <b>${(m.cosine_emb*100).toFixed(0)}%</b>`]:[])
     .concat([`vocabulário próprio: <b>${(m.novelty*100).toFixed(0)}%</b>`,`${m.n_tokens} tokens`,
              `referência do diff: <b>${refLabel}</b>`]
     .concat(info.versao_modelo?[`modelo v${info.versao_modelo}`]:[])
@@ -2405,7 +2411,10 @@ function _txtDiffRender(){
     (m.local_terms.length?`<div style="margin-top:6px">${m.local_terms.map(t=>`<span class="term-chip">${_rvEscape(t)}</span>`).join('')}</div>`:'');
 
   const refText=isRiscos?(PTD_TEXT.textos_ref[key]['consenso:'+m.ref]||''):PTD_TEXT.textos_ref[key].template;
-  const refW=refText.split(/\s+/),orgW=(PTD_TEXT.textos[org][key]||'').split(/\s+/);
+  // Split idêntico ao str.split() do Python (os opcodes foram computados
+  // contra ele): trim antes, senão espaço inicial desloca todos os índices.
+  const pySplit=t=>{const s=(t||'').trim();return s?s.split(/\s+/):[];};
+  const refW=pySplit(refText),orgW=pySplit(PTD_TEXT.textos[org][key]);
   const ops=PTD_TEXT.diffs[org][key];
   const CTX=8;
   let html='';

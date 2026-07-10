@@ -49,9 +49,15 @@ def main() -> int:
                 for s in blocks}
     tpl_sections = {s["key"]: s for s in template["sections"]}
 
-    # Reusa exatamente a mesma escolha de referências do build_text_analysis
-    analysis = bta.analyze()
-    refs = analysis["referencias"]
+    # Reusa exatamente a mesma escolha de referências do build_text_analysis.
+    # Lê do JSON commitado quando existe (evita recomputar métricas+diffs só
+    # para obter os medoides); analyze() é o fallback de primeira execução.
+    analysis_path = os.path.join(REPO, "output", "directive_text_analysis.json")
+    if os.path.exists(analysis_path):
+        with open(analysis_path, encoding="utf-8") as fh:
+            refs = json.load(fh)["referencias"]
+    else:
+        refs = bta.analyze()["referencias"]
 
     model = SentenceTransformer(MODEL_NAME)
 

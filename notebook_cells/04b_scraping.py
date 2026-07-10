@@ -191,21 +191,51 @@ def _build_organ_list(organ_data: Dict[str, Dict[str, Optional[str]]]) -> List[O
 # a associação sigla/tipo ancora primeiro no snapshot anterior committado
 # (output/organs.csv); heurística de nome só para arquivos novos/renomeados.
 
-def _load_previous_url_map() -> Dict[str, Tuple[str, str]]:
-    """basename do PDF → (sigla, tipo) a partir do snapshot output/organs.csv."""
-    path = os.path.join(os.getcwd(), "output", "organs.csv")
-    mapping: Dict[str, Tuple[str, str]] = {}
+def _repo_root() -> str:
+    """Raiz do repo p/ snapshot e cache. run_pipeline faz chdir(REPO_ROOT);
+    no Colab o cwd é outro — defina PTD_REPO_ROOT apontando pro clone."""
+    return os.environ.get("PTD_REPO_ROOT", os.getcwd())
+
+
+def _load_previous_url_map() -> Dict[str, Tuple[str, frozenset]]:
+    """basename do PDF → (sigla, {tipos}) a partir do snapshot output/organs.csv.
+
+    Dois cuidados obrigatórios:
+    - Grupos ministeriais compartilham o MESMO basename entre várias siglas;
+      a sigla-CABEÇA do grupo (chave de ORGAN_GROUPS) tem prioridade — sem
+      isso o "último ganha" mapearia MMA→SFB e a expansão de grupo nunca
+      dispararia, sumindo com 8 órgãos silenciosamente.
+    - Um mesmo arquivo pode servir de diretivo E de entregas (caso MDA):
+      o valor carrega o CONJUNTO de tipos, não um só.
+    """
+    path = os.path.join(_repo_root(), "output", "organs.csv")
     if not os.path.exists(path):
-        return mapping
+        logger.warning(f"Snapshot {path} não encontrado (cwd={os.getcwd()}; "
+                       "defina PTD_REPO_ROOT no Colab) — associação de "
+                       "arquivos só por heurística de nome.")
+        return {}
     import csv as _csv
+
+    def _prio(sigla: str) -> Tuple[int, str]:
+        return (0 if sigla in ORGAN_GROUPS else 1, sigla)
+
+    acc: Dict[str, Tuple[str, set]] = {}
     with open(path, encoding="utf-8-sig") as fh:
         for row in _csv.DictReader(fh):
             for tipo, col in (("diretivo", "url_diretivo"),
                               ("entregas", "url_entregas")):
                 url = (row.get(col) or "").strip()
-                if url:
-                    mapping[url.rsplit("/", 1)[-1].lower()] = (row["sigla"], tipo)
-    return mapping
+                if not url:
+                    continue
+                base = url.rsplit("/", 1)[-1].lower()
+                if base not in acc:
+                    acc[base] = (row["sigla"], {tipo})
+                else:
+                    sig0, tipos = acc[base]
+                    best = (row["sigla"]
+                            if _prio(row["sigla"]) < _prio(sig0) else sig0)
+                    acc[base] = (best, tipos | {tipo})
+    return {b: (s, frozenset(t)) for b, (s, t) in acc.items()}
 
 
 # Tokens genéricos que aparecem como 1º token mas nunca são sigla
@@ -261,15 +291,31 @@ def scrape_pdf_listing_paginated(base_url: str) -> List[OrganInfo]:
     review: List[str] = []
     seen_hrefs = set()
 
-    for start in range(0, 600, 20):
+    start = 0
+    for _page_n in range(100):        # guarda anti-loop; listagem tem ~11 págs
         page_url = f"{base_url}/ptds-vigentes?b_start:int={start}"
         resp = safe_request(page_url)
         if resp is None:
-            break
+            # Falha NO MEIO da paginação não pode virar fim-de-lista: um
+            # corpus truncado passaria no gate e publicaria menos órgãos.
+            raise RuntimeError(
+                f"Listagem paginada interrompida por falha de rede em "
+                f"b_start={start} — abortando sem escrever dados.")
         soup = BeautifulSoup(resp.content, "html.parser")
+        # Links derivados DOS itens (um por item): usar um seletor mais
+        # largo para links e outro para itens dessincronizaria a contagem
+        # de página e pularia arquivos.
+        items = soup.select(".summary")
         new_links = []
-        for a_tag in soup.select(".summary a[href], a.summary[href]"):
+        for it in items:
+            a_tag = (it if it.name == "a" and it.has_attr("href")
+                     else it.find("a", href=True))
+            if a_tag is None:
+                continue
             href = a_tag["href"]
+            # Normaliza relativo → absoluto (paridade com o modo estruturado)
+            if href.startswith("/"):
+                href = "https://www.gov.br" + href
             clean = href[:-5] if href.endswith("/view") else href
             if not clean.lower().endswith(".pdf") or "ptds-vigentes" not in clean:
                 continue
@@ -277,13 +323,18 @@ def scrape_pdf_listing_paginated(base_url: str) -> List[OrganInfo]:
                 continue
             seen_hrefs.add(clean)
             new_links.append(clean)
+        if not items:
+            break                      # página vazia = fim da listagem
+        # Avança pelo nº REAL de itens da página (b_size do Plone é
+        # configurável no servidor; passo fixo de 20 pularia itens).
+        start += len(items)
         if not new_links:
-            break
+            continue
 
         for href in new_links:
             basename = href.rsplit("/", 1)[-1].lower()
             if basename in prev_map:
-                sigla, tipo = prev_map[basename]
+                sigla, tipos = prev_map[basename]
             else:
                 sigla, tipo = _sigla_tipo_from_filename(basename, known_siglas)
                 if not sigla or not tipo:
@@ -292,13 +343,15 @@ def scrape_pdf_listing_paginated(base_url: str) -> List[OrganInfo]:
                 if sigla not in known_siglas:
                     # Órgão inédito é possível, mas fica sinalizado
                     review.append(f"{basename} (sigla nova: {sigla})")
+                tipos = frozenset({tipo})
             entry = organ_data.setdefault(sigla, {
                 "nome": f"Plano de Transformação Digital {sigla}",
                 "url_diretivo": None, "url_entregas": None,
             })
-            key = f"url_{tipo}"
-            if entry[key] is None:
-                entry[key] = href
+            for tipo in sorted(tipos):
+                key = f"url_{tipo}"
+                if entry[key] is None:
+                    entry[key] = href
 
     logger.info(f"Listagem paginada: {len(organ_data)} siglas, "
                 f"{len(seen_hrefs)} PDFs, {len(review)} p/ revisão")
@@ -318,17 +371,12 @@ all_organs: List[OrganInfo] = []
 PORTAL_MODE = None
 for _base, _modo in BASE_URL_CANDIDATES:
     print(f"Tentando portal ({_modo}): {_base}")
-    try:
-        # GET leve (stream, corpo não lido): o WAF do gov.br devolve 403
-        # para HEAD mesmo quando o recurso existe.
-        _probe = requests.get(_base, headers=HTTP_HEADERS, timeout=30,
-                              allow_redirects=True, stream=True)
-        _probe.close()
-        if _probe.status_code >= 400:
-            print(f"  HTTP {_probe.status_code} — próximo candidato")
-            continue
-    except requests.RequestException as _exc:
-        print(f"  {type(_exc).__name__} — próximo candidato")
+    # Probe COM retry (safe_request): um blip transitório no candidato
+    # normal não pode demotar o run para o modo listagem/defeso — a
+    # associação por heurística de nome é mais fraca. GET, nunca HEAD:
+    # o WAF do gov.br devolve 403 a HEAD mesmo com o recurso no ar.
+    if safe_request(_base, max_retries=2, delay=1.0) is None:
+        print("  inacessível após retries — próximo candidato")
         continue
     try:
         _organs = (scrape_organ_listing(_base) if _modo == "estruturado"

@@ -20,6 +20,7 @@ Exit code is 1 if the page raised an uncaught JS error (e.g. Chart.js CDN
 blocked, or output/data.js missing), else 0.
 """
 import argparse
+import os
 import pathlib
 import sys
 
@@ -49,12 +50,16 @@ def main() -> None:
     with sync_playwright() as p:
         # Sandboxes de agente trazem um Chromium pré-instalado cuja revisão
         # pode não bater com a que o pip do Playwright espera — cai para o
-        # binário do ambiente antes de desistir.
+        # binário do ambiente SE ele existir; senão re-levanta o erro
+        # original (com a instrução 'playwright install' do Playwright).
         try:
             browser = p.chromium.launch()
         except Exception:
-            browser = p.chromium.launch(
-                executable_path="/opt/pw-browsers/chromium")
+            fallback = os.environ.get("PTD_CHROMIUM_PATH",
+                                      "/opt/pw-browsers/chromium")
+            if not os.path.exists(fallback):
+                raise
+            browser = p.chromium.launch(executable_path=fallback)
         for w in widths:
             # ignore_https_errors: some sandboxes route egress through a proxy
             # whose TLS cert Chromium won't trust (ERR_CERT_AUTHORITY_INVALID),

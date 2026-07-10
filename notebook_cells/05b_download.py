@@ -99,10 +99,19 @@ def download_all_pdfs(organs: List[OrganInfo]) -> List[ProcessingError]:
             if err is not None and doc_type == "diretivo" and \
                     _cache_fallback(organ.sigla, dest_path):
                 # Portal quebrou (defeso, arquivo renomeado, 404): usa o cache
-                # versionado do repo em vez de perder o órgão. Proveniência
-                # registrada em cache_fallbacks e reportada no resumo.
+                # versionado do repo em vez de perder o órgão. A proveniência
+                # fica machine-readable no error_report (não é falha: o órgão
+                # segue no corpus, mas o PDF pode ser de snapshot anterior).
                 cache_fallbacks.append(organ.sigla)
                 setattr(organ, path_attr, dest_path)
+                errors.append(ProcessingError(
+                    orgao_sigla=organ.sigla, document_type=doc_type,
+                    stage="download", error_type="cache_fallback",
+                    error_message="Download falhou; PDF servido do cache "
+                                  "versionado corpus_pdfs/ (pode ser de "
+                                  "snapshot anterior).",
+                    url=url,
+                ))
                 err = None
             if err is not None:
                 errors.append(err)
@@ -118,30 +127,49 @@ def download_all_pdfs(organs: List[OrganInfo]) -> List[ProcessingError]:
 
 # ------- Fallback do cache versionado (corpus_pdfs/) -------
 # Só diretivos têm cache. Mantém a análise textual viva quando o portal
-# muda (defeso eleitoral) ou renomeia PDFs; a proveniência fica visível.
+# muda (defeso eleitoral) ou renomeia PDFs; a proveniência fica visível
+# no resumo E em error_report.csv (error_type="cache_fallback").
 cache_fallbacks: List[str] = []
+_cache_manifest = None  # carregado uma vez (memoizado)
+
+
+def _load_cache_manifest():
+    global _cache_manifest
+    if _cache_manifest is not None:
+        return _cache_manifest
+    cache_dir = os.path.join(
+        os.environ.get("PTD_REPO_ROOT", os.getcwd()), "corpus_pdfs")
+    manifest_path = os.path.join(cache_dir, "manifest.json")
+    if not os.path.exists(manifest_path):
+        logger.warning(f"Cache {manifest_path} não encontrado "
+                       f"(cwd={os.getcwd()}; defina PTD_REPO_ROOT no Colab) "
+                       "— fallback de cache desativado.")
+        _cache_manifest = {}
+        return _cache_manifest
+    try:
+        with open(manifest_path, encoding="utf-8") as fh:
+            _cache_manifest = {"dir": cache_dir, **json.load(fh)}
+    except (OSError, json.JSONDecodeError) as exc:
+        logger.warning(f"Cache manifest ilegível: {exc}")
+        _cache_manifest = {}
+    return _cache_manifest
 
 
 def _cache_fallback(sigla: str, dest_path: str) -> bool:
     """Copia o PDF diretivo do cache do repo. True se conseguiu."""
-    cache_dir = os.path.join(os.getcwd(), "corpus_pdfs")
-    manifest_path = os.path.join(cache_dir, "manifest.json")
-    if not os.path.exists(manifest_path):
+    manifest = _load_cache_manifest()
+    info = manifest.get("orgaos", {}).get(sigla) if manifest else None
+    if not info:
+        return False
+    src = os.path.join(manifest["dir"], info["file"])
+    if not os.path.exists(src):
         return False
     try:
-        with open(manifest_path, encoding="utf-8") as fh:
-            manifest = json.load(fh)
-        info = manifest.get("orgaos", {}).get(sigla)
-        if not info:
-            return False
-        src = os.path.join(cache_dir, info["file"])
-        if not os.path.exists(src):
-            return False
         import shutil
         os.makedirs(os.path.dirname(dest_path), exist_ok=True)
         shutil.copy2(src, dest_path)
         return True
-    except (OSError, json.JSONDecodeError, KeyError) as exc:
+    except OSError as exc:
         logger.warning(f"  cache_fallback {sigla}: {exc}")
         return False
 

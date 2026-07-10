@@ -125,6 +125,13 @@ def quality_gate() -> dict:
     return report
 
 
+# Artefatos de output/ que NÃO nascem do notebook: o delete-then-copy os
+# apagaria e a cadeia de derivados abaixo precisa deles de volta.
+#   - embeddings: computados offline (torch), commitados como dado;
+#   - análise textual: regenerada por build_text_analysis (determinística).
+SYNC_PRESERVE = ["directive_text_embeddings.json"]
+
+
 def sync_repo() -> None:
     """ptd_output/output → output/ do repo + regeneração dos derivados.
 
@@ -132,17 +139,28 @@ def sync_repo() -> None:
     artefatos órfãos de runs antigos (o Drive acumula; o repo não deve).
     """
     print("\nSYNC: substituindo output/ do repo pelo run novo…")
+    preserved = {}
+    for name in SYNC_PRESERVE:
+        p = os.path.join(REPO_OUTPUT, name)
+        if os.path.exists(p):
+            with open(p, "rb") as fh:
+                preserved[name] = fh.read()
     for entry in os.listdir(REPO_OUTPUT):
         p = os.path.join(REPO_OUTPUT, entry)
         shutil.rmtree(p) if os.path.isdir(p) else os.remove(p)
     shutil.copytree(RUN_OUTPUT, REPO_OUTPUT, dirs_exist_ok=True)
+    for name, data in preserved.items():
+        with open(os.path.join(REPO_OUTPUT, name), "wb") as fh:
+            fh.write(data)
 
     if REPO_ROOT not in sys.path:
         sys.path.insert(0, REPO_ROOT)
     import build_corpus
     import build_metadata
-    if build_metadata.main([]) != 0 or build_corpus.main([]) != 0:
-        print("SYNC: regeneração de metadados/corpus falhou.")
+    import build_text_analysis
+    if build_metadata.main([]) != 0 or build_corpus.main([]) != 0 \
+            or build_text_analysis.main([]) != 0:
+        print("SYNC: regeneração de metadados/corpus/análise textual falhou.")
         sys.exit(1)
     print("SYNC ok: output/ + index.html prontos para commit.")
 

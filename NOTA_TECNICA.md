@@ -148,6 +148,48 @@ canônicas, o valor cru permanece em `*_original`, cada alteração é registrad
 camada de *post-processing* sobre os dados publicados — não substitui a correção
 na origem (Seção 6.2), que depende de re-execução do pipeline.
 
+
+### 4.6 Análise textual do corpo do Documento Diretivo (prosa)
+
+Além das tabelas, o corpo em prosa do Documento Diretivo é analisado contra o
+**template oficial da SGD** (minuta DocDiretivo v2.2, Kit de Elaboração PTD) e
+contra o **consenso do corpus**, medindo onde cada órgão copiou o padrão (pro
+forma) e onde contextualizou com conteúdo próprio.
+
+**Pipeline** (`spike_s1/` + `build_text_analysis.py` + `build_text_embeddings.py`):
+
+1. **Extração de prosa** — PyMuPDF por linha com bbox; tabelas de risco e de
+   contato são excluídas geometricamente (com guardas contra falsos positivos
+   de `find_tables` que engolem a página); cabeçalhos/rodapés repetidos são
+   removidos; a "Versão do modelo" declarada no rodapé vira metadado.
+2. **Segmentação temática** — os headings da minuta v2.2 são âncoras
+   (fuzzy-match difflib ≥0,82 com guarda de primeiro token; seleção gulosa na
+   ordem do template; detecção de sumário). Seções: Escopo, Visão Estratégica,
+   Eixos, Acompanhamento, Gestão de Riscos, Papéis. Cobertura: 75/75
+   diretivos não escaneados com as 6 seções; sanidade `headings_estranhos`=0.
+3. **Métricas por (órgão, seção)** — cosseno TF-IDF vs template
+   (`cosine_tpl`) e vs consenso do grupo de versão do modelo (`cosine_ref`,
+   medoide; para Gestão de Riscos apenas consenso, pois no template a seção é
+   instrução); novidade lexical (`novelty` = fração de tokens fora da
+   referência); termos locais distintivos; diff palavra-a-palavra (opcodes
+   difflib — estável a inserções, sem a fragilidade da distância de
+   Levenshtein caractere-a-caractere). Dedup por MD5: análise única por PDF
+   compartilhado (menor sigla).
+4. **Camada semântica offline** — cossenos de embeddings
+   (`paraphrase-multilingual-MiniLM-L12-v2`) computados uma única vez por
+   snapshot e commitados (`output/directive_text_embeddings.json`); fora do
+   caminho reprodutível-do-zero, com modelo e versões registrados no artefato.
+
+**Assinatura do corpus** (medianas): Eixos e Acompanhamento são cópia do
+template (cos≈1,0); Escopo e Papéis são pro forma (≈0,86-0,87); **Visão
+Estratégica é o espaço de voz própria** (cos≈0,14; novidade lexical ≈0,68) —
+no template ela contém apenas rótulos, então todo conteúdo é do órgão.
+
+**Limitações**: 10 diretivos escaneados sem OCR ficam fora; a prosa dos PDFs
+carrega ruído residual de layout; TF-IDF é léxico (a camada de embeddings
+mitiga); o consenso por versão usa a versão declarada no rodapé (34 diretivos
+não a declaram e caem no grupo "sem_versao").
+
 ---
 
 ## 5. Reprodutibilidade
@@ -305,6 +347,9 @@ Detalhes em [`DECISIONS.md`](DECISIONS.md):
 | `output/nota_tecnica_insumos.md` | Insumos da NT — **gerado** pela célula `11e` (números com definição e proveniência) |
 | `output/datapackage.json` + `output/metadata/` | Descritores em padrões abertos (`build_metadata.py`) |
 | `output/harmonized/` | Visão estritamente canônica (`build_corpus.py`) |
+| `output/directive_text_analysis.json` + `output/text_data.js` | Análise textual do diretivo: similaridade ao template/consenso, novidade lexical, diffs (`build_text_analysis.py`) |
+| `output/directive_text_embeddings.json` | Cossenos semânticos offline (modelo registrado no artefato) |
+| `corpus_pdfs/` | Cache versionado dos PDFs diretivos (60 únicos, manifest MD5) + minuta oficial v2.2 |
 
 Dashboard interativo: `https://freirelucas.github.io/PTD`
 
