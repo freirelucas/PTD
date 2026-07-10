@@ -1,4 +1,4 @@
-.PHONY: build metadata corpus corpus-zip text test smoke commit clean help
+.PHONY: build metadata corpus corpus-zip text audit test smoke commit clean help
 
 help:
 	@echo "Targets:"
@@ -7,6 +7,7 @@ help:
 	@echo "  make corpus     - (re)gera o corpus harmonizado em output/harmonized/"
 	@echo "  make corpus-zip - empacota só o corpus (harmonized/ + manifest) em corpus_<snapshot>.zip"
 	@echo "  make text       - (re)gera a análise textual do diretivo (output/text_data.js)"
+	@echo "  make audit      - audita consistência dos números citados nos docs"
 	@echo "  make test       - roda pytest sobre tests/"
 	@echo "  make smoke      - smoke test do notebook (sintaxe, deps, carga; --live p/ scraper)"
 	@echo "  make commit     - build + git add -A + git commit"
@@ -26,6 +27,9 @@ corpus-zip:
 
 text:
 	python build_text_analysis.py
+
+audit:
+	python audit_numbers.py
 
 test:
 	python -m pytest -v tests/

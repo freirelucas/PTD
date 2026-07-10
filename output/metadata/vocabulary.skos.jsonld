@@ -198,10 +198,6 @@
         },
         {
           "@language": "pt",
-          "@value": "Auto-avaliação, análise de lacunas e planejam"
-        },
-        {
-          "@language": "pt",
           "@value": "Auto-avaliação, análise de lacunas e planejamento"
         },
         {
@@ -215,6 +211,10 @@
         {
           "@language": "pt",
           "@value": "Auto-avaliação, análise de lacunas e planejamento do PP"
+        },
+        {
+          "@language": "pt",
+          "@value": "Auto-avaliação, análise de lacunas e planejamento do PPS"
         },
         {
           "@language": "pt",
@@ -237,6 +237,10 @@
         "@value": "Disponibilização em Acesso Digital"
       },
       "skos:altLabel": [
+        {
+          "@language": "pt",
+          "@value": "Disponibilidade em acesso digital"
+        },
         {
           "@language": "pt",
           "@value": "Disponibilização em Acesso D"
@@ -396,6 +400,10 @@
         },
         {
           "@language": "pt",
+          "@value": "integração ao Login único"
+        },
+        {
+          "@language": "pt",
           "@value": "oIntegração ao Login Único"
         },
         {
@@ -434,7 +442,13 @@
       "skos:prefLabel": {
         "@language": "pt",
         "@value": "Integração com Assinatura Digital Gov.br"
-      }
+      },
+      "skos:altLabel": [
+        {
+          "@language": "pt",
+          "@value": "Integração com Assinatura Digital GOV.BR"
+        }
+      ]
     },
     {
       "@id": "https://freirelucas.github.io/PTD/vocab/produto#integração-à-base-de-dados",
@@ -461,6 +475,10 @@
         },
         {
           "@language": "pt",
+          "@value": "Integração à base de dados do SNCR"
+        },
+        {
+          "@language": "pt",
           "@value": "Integração à base de dados(OUTROS)"
         }
       ]
@@ -476,6 +494,10 @@
         "@value": "Integração à ferramenta de avaliação da satisfação dos usuários"
       },
       "skos:altLabel": [
+        {
+          "@language": "pt",
+          "@value": "Integração à ferramenta de avaliação da"
+        },
         {
           "@language": "pt",
           "@value": "Integração à ferramenta de avaliação da satisfação"
@@ -552,6 +574,10 @@
         "@value": "Migração de APPs móveis para a loja do Gov.br"
       },
       "skos:altLabel": [
+        {
+          "@language": "pt",
+          "@value": "Migração de APPs móveis para a loja do"
+        },
         {
           "@language": "pt",
           "@value": "Migração de APPs móveis para a loja do Go"
@@ -733,6 +759,10 @@
         },
         {
           "@language": "pt",
+          "@value": "pouco provável;"
+        },
+        {
+          "@language": "pt",
           "@value": "provável Pouco"
         }
       ]
@@ -768,6 +798,10 @@
         {
           "@language": "pt",
           "@value": "Provável"
+        },
+        {
+          "@language": "pt",
+          "@value": "provável;"
         }
       ]
     },
@@ -802,6 +836,10 @@
         {
           "@language": "pt",
           "@value": "Provável Muito"
+        },
+        {
+          "@language": "pt",
+          "@value": "muito provável;"
         },
         {
           "@language": "pt",
@@ -841,7 +879,13 @@
         "@language": "pt",
         "@value": "muito baixo"
       },
-      "skos:notation": 1
+      "skos:notation": 1,
+      "skos:altLabel": [
+        {
+          "@language": "pt",
+          "@value": "muito baixo;"
+        }
+      ]
     },
     {
       "@id": "https://freirelucas.github.io/PTD/vocab/impacto#baixo",
@@ -858,6 +902,10 @@
         {
           "@language": "pt",
           "@value": "Baixo"
+        },
+        {
+          "@language": "pt",
+          "@value": "baixo;"
         }
       ]
     },
@@ -892,6 +940,14 @@
         {
           "@language": "pt",
           "@value": "Médio"
+        },
+        {
+          "@language": "pt",
+          "@value": "Médio Muito"
+        },
+        {
+          "@language": "pt",
+          "@value": "médio;"
         }
       ]
     },
@@ -926,6 +982,10 @@
         {
           "@language": "pt",
           "@value": "Alto"
+        },
+        {
+          "@language": "pt",
+          "@value": "alto;"
         }
       ]
     },

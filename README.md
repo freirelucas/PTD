@@ -8,7 +8,7 @@ Pipeline para coleta, extração e análise dos **Planos de Transformação Digi
 
 ## O que o corpus contém
 
-91 órgãos federais signatários (decreto 12.198/2024). Para cada órgão são extraídos dois documentos do portal:
+95 órgãos federais signatários (decreto 12.198/2024). Para cada órgão são extraídos dois documentos do portal:
 
 - **Anexo de Entregas** — tabela de produtos pactuados com a SGD/MGI, classificados por eixo da EFGD 2024-2027
 - **Documento Diretivo** — tabela de gestão de riscos com probabilidade, impacto e ações de tratamento
@@ -17,11 +17,11 @@ Resultado consolidado (corpus atual):
 
 | Métrica | Valor |
 |---|---|
-| Órgãos signatários | 91 |
-| Entregas pactuadas | **4.574** |
-| Riscos identificados | **619** |
-| Cobertura entregas | 79/91 órgãos (57 próprios + 22 compartilhados) |
-| Cobertura riscos | 76/91 órgãos (51 próprios + 25 compartilhados) |
+| Órgãos signatários | 95 |
+| Entregas pactuadas | **5.168** |
+| Riscos identificados | **704** |
+| Cobertura entregas | 84/95 órgãos (62 próprios + 22 compartilhados) |
+| Cobertura riscos | 79/95 órgãos (56 próprios + 23 compartilhados) |
 | PDFs com falha de extração (provavelmente escaneados) | 10 |
 
 Sete grupos ministeriais publicam um único PDF para múltiplos órgãos (MD/MEC/MF/MMA/MT/MIDR/MDA). O pipeline detecta isso por **hash MD5** e registra os dados uma única vez sob a sigla alfabeticamente menor; os demais membros são marcados como `compartilhado` na cobertura.
@@ -51,7 +51,7 @@ Os descritores de dados abertos (Frictionless, schema.org, DCAT-AP, SKOS, JSON S
 
 Para baixar **só o corpus** (sem dashboard, figuras, fila de revisão), `make corpus-zip` empacota `corpus_<snapshot>.zip` — pacote Frictionless autocontido: `deliveries`/`risks`/`organs` canônicos + `datapackage.json` + `harmonization_report.json` + `manifest.json` (proveniência).
 
-**PDFs-fonte em cache** — os PDFs do Documento Diretivo (60 únicos, 85 órgãos) e a minuta oficial do template estão versionados em [`corpus_pdfs/`](corpus_pdfs/), com manifest de MD5 e proveniência. Download com um clique: [**main.zip**](https://github.com/freirelucas/PTD/archive/refs/heads/main.zip) (repo completo, inclui o cache). Isso torna a análise textual reprodutível mesmo quando o portal gov.br muda de estrutura (ex.: defeso eleitoral) ou renomeia arquivos — detalhes em [`corpus_pdfs/README.md`](corpus_pdfs/README.md).
+**PDFs-fonte em cache** — os PDFs do Documento Diretivo (66 únicos, 93 órgãos) e a minuta oficial do template estão versionados em [`corpus_pdfs/`](corpus_pdfs/), com manifest de MD5 e proveniência. Download com um clique: [**main.zip**](https://github.com/freirelucas/PTD/archive/refs/heads/main.zip) (repo completo, inclui o cache). Isso torna a análise textual reprodutível mesmo quando o portal gov.br muda de estrutura (ex.: defeso eleitoral) ou renomeia arquivos — detalhes em [`corpus_pdfs/README.md`](corpus_pdfs/README.md).
 
 ## Como usar
 
@@ -257,7 +257,7 @@ Ambos têm modo `--check` (usado no `pytest`) que falha se os artefatos commitad
 
 ## Citação
 
-DIREITO, Denise; SILVA, Lucas; QUEIROZ, Sérgio. *Corpus dos Planos de Transformação Digital: extração, padronização e análise dos PTDs de 91 órgãos federais brasileiros*. Brasília: Ipea, 2026. (Nota Técnica).
+DIREITO, Denise; SILVA, Lucas; QUEIROZ, Sérgio. *Corpus dos Planos de Transformação Digital: extração, padronização e análise dos PTDs de 95 órgãos federais brasileiros*. Brasília: Ipea, 2026. (Nota Técnica).
 
 ## Licença
 

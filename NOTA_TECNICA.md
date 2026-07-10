@@ -31,7 +31,7 @@ A SGD/MGI publica os PTDs vigentes no portal `gov.br/governodigital/pt-br/estrat
 
 **Procedimento de coleta**: censo, não amostragem. O pipeline busca todos os PTDs listados no portal na data de execução, sem critério de exclusão a priori.
 
-**Data de referência da coleta**: registrada no `output/manifest.json` (campo `data_execucao`). O snapshot atual cobre **91 órgãos** signatários.
+**Data de referência da coleta**: registrada no `output/manifest.json` (campo `data_execucao`). O snapshot atual cobre **95 órgãos** signatários (jul/2026; entraram ANP, INMETRO, MPA e MS em relação ao snapshot de mai/2026).
 
 **Estabilidade temporal**: alguns PDFs no portal têm sufixos de versão (`(v2)`, `(v3)`). O pipeline pega a versão atualmente linkada — re-execuções futuras podem capturar versões diferentes. Limitação documentada na Seção 6.
 
@@ -96,7 +96,7 @@ Detalhes em [`DECISIONS.md`](DECISIONS.md).
 
 ### 4.2 Canonização em camadas
 
-Para reduzir a heterogeneidade do vocabulário usado pelos 91 órgãos, cada campo categórico passa por:
+Para reduzir a heterogeneidade do vocabulário usado pelos 95 órgãos, cada campo categórico passa por:
 
 1. **Match exato** (score 1.0) — texto normalizado bate com canônico
 2. **Alias determinístico** (score 0.95–0.98) — texto bate com chave conhecida em `*_ALIASES` (mapas em `02_config.py`)
@@ -165,8 +165,9 @@ forma) e onde contextualizou com conteúdo próprio.
 2. **Segmentação temática** — os headings da minuta v2.2 são âncoras
    (fuzzy-match difflib ≥0,82 com guarda de primeiro token; seleção gulosa na
    ordem do template; detecção de sumário). Seções: Escopo, Visão Estratégica,
-   Eixos, Acompanhamento, Gestão de Riscos, Papéis. Cobertura: 75/75
-   diretivos não escaneados com as 6 seções; sanidade `headings_estranhos`=0.
+   Eixos, Acompanhamento, Gestão de Riscos, Papéis. Cobertura (jul/2026):
+   79/79 diretivos não escaneados segmentados, 76 com as 6 seções completas;
+   sanidade `headings_estranhos`=0.
 3. **Métricas por (órgão, seção)** — cosseno TF-IDF vs template
    (`cosine_tpl`) e vs consenso do grupo de versão do modelo (`cosine_ref`,
    medoide; para Gestão de Riscos apenas consenso, pois no template a seção é
@@ -185,10 +186,12 @@ template (cos≈1,0); Escopo e Papéis são pro forma (≈0,86-0,87); **Visão
 Estratégica é o espaço de voz própria** (cos≈0,14; novidade lexical ≈0,68) —
 no template ela contém apenas rótulos, então todo conteúdo é do órgão.
 
-**Limitações**: 10 diretivos escaneados sem OCR ficam fora; a prosa dos PDFs
-carrega ruído residual de layout; TF-IDF é léxico (a camada de embeddings
-mitiga); o consenso por versão usa a versão declarada no rodapé (34 diretivos
-não a declaram e caem no grupo "sem_versao").
+**Limitações**: 14 diretivos escaneados sem OCR ficam fora (o grupo MIDR
+re-publicou o diretivo como digitalização em jul/2026; a FUNAI saiu da lista
+com um PDF novo pesquisável); a prosa dos PDFs carrega ruído residual de
+layout; TF-IDF é léxico (a camada de embeddings mitiga); o consenso por
+versão usa a versão declarada no rodapé (40 declaram v2.1, 3 declaram v2.2 e
+os demais caem no grupo "sem_versao").
 
 ---
 
@@ -252,15 +255,18 @@ python build_metadata.py && python build_corpus.py  # descritores e harmonizado
 
 ### 6.1 Extração tabular incompleta
 
-As lacunas diferem por dimensão (snapshot 2026-05, `coverage_summary.csv`):
+As lacunas diferem por dimensão (snapshot 2026-07, `coverage_summary.csv`):
 
-- **Entregas — 12 órgãos sem dados extraíveis** (PDF escaneado ou layout
-  não-padrão): AGU, CODEVASF, FUNAI, FUNDACENTRO, INCRA, ITI, MCOM, MIDR,
-  SGPR, SUDAM, SUDECO, SUDENE. Cobertura: 79/91 (86,8%).
+- **Entregas — 11 órgãos sem dados extraíveis** (PDF escaneado ou layout
+  não-padrão): AGU, CODEVASF, FUNDACENTRO, INCRA, ITI, MCOM, MIDR, SGPR,
+  SUDAM, SUDECO, SUDENE (a FUNAI saiu da lista em jul/2026 com PDF novo).
+  Cobertura: 84/95 (88,4%).
 - **Riscos — 10 órgãos com Documento Diretivo sem tabela de riscos
-  extraível**: AGU, ANVISA, FBN, FCP, FUNAI, INCRA, ITI, MAPA, MCOM, PREVIC;
-  **5 sem Documento Diretivo publicado**: ABIN, ANTT, DNIT, MDIC, MT.
-  Cobertura: 76/91 (83,5%).
+  extraível**: AGU, ANVISA, CODEVASF, FBN, FCP, INCRA, ITI, MAPA, MCOM,
+  PREVIC; **4 do grupo MIDR sem dados** (diretivo re-publicado como
+  digitalização); **2 sem Documento Diretivo publicado**: ABIN, MDIC
+  (ANTT/DNIT/MT passaram a herdar dos grupos MT/MIDR).
+  Cobertura: 79/95 (83,2%).
 
 Os casos aparecem no dashboard com a tag `⚠ extração falhou`. Note que as
 listas não coincidem (ANVISA tem o máximo de entregas do corpus e nenhuma
@@ -288,7 +294,7 @@ Detector de `concluida` / `cancelada` (`_classify_tabela_tipo` em `08b`) foi adi
 
 O pipeline **não captura data de assinatura real do PTD** — o portal gov.br não expõe data de publicação no scraping atual, e `pypdf` falha em ler `creation_date` da metadata dos PDFs gov.br. O gráfico "Cronologia de Adesão" usa **1ª `data_pactuada` parseável por órgão** como proxy. Limitações:
 
-- Apenas **57 de 91 órgãos** têm 1ª data parseável após propagação por grupo. Os outros 34 têm PDF mas zero entries com `data_pactuada` populada — coluna vazia no PDF original.
+- Apenas **61 de 95 órgãos** têm 1ª data parseável após propagação por grupo. Os outros 34 têm PDF mas zero entries com `data_pactuada` populada — coluna vazia no PDF original.
 - 30 órgãos têm 1ª pactuação **anterior ao decreto** (24/09/2024). Investigação caso a caso mostra que vêm de entregas legadas retroativamente incluídas (predominantemente "PPSI Ciclo 1", política que antecede o PTD). Out/2023 tem cluster anômalo de 11 órgãos pela mesma razão.
 
 > TODO: discutir o impacto disso pra interpretação do gráfico. Sugerir como mitigar em v2 (scraping da data de publicação do portal).
@@ -309,7 +315,7 @@ Os thresholds de canonização (0.85 / 0.70) e os limites de regressão em `QUAL
 
 ### 6.7 Texto livre subutilizado
 
-`risco_texto` (619 instâncias) e `servico_acao` (4574 instâncias) têm conteúdo qualitativo. **Hoje não há análise de NLP, clustering, ou topic modeling** desse texto. A análise é puramente estrutural sobre campos categóricos.
+`risco_texto` (704 instâncias) e `servico_acao` (5168 instâncias) têm conteúdo qualitativo. A prosa do Documento Diretivo é analisada na §4.6 (similaridade ao template, novidade lexical, embeddings); **não há ainda clustering ou topic modeling** do texto livre das tabelas.
 
 ---
 
@@ -331,9 +337,9 @@ Detalhes em [`DECISIONS.md`](DECISIONS.md):
 
 | Arquivo | Conteúdo |
 |---|---|
-| `output/deliveries.csv` / `.json` | 4574 entregas com produto+eixo canonizados + scores |
-| `output/risks.csv` / `.json` | 619 riscos com prob/impacto/tratamento canonizados |
-| `output/organs.csv` | 91 órgãos signatários com URLs e paths de PDF |
+| `output/deliveries.csv` / `.json` | 5168 entregas com produto+eixo canonizados + scores |
+| `output/risks.csv` / `.json` | 704 riscos com prob/impacto/tratamento canonizados |
+| `output/organs.csv` | 95 órgãos signatários com URLs e paths de PDF |
 | `output/error_report.csv` | Falhas de extração registradas |
 | `output/validation_report.json` | Métricas de qualidade, MD5 dos outputs, fingerprints de checkpoint |
 | `output/review_data.json` | Fila de revisão humana (críticos + curadoria) |
@@ -361,7 +367,7 @@ Ver [`CITATION.cff`](CITATION.cff) para formato estruturado (compatível com Git
 
 Sugerida (versão preliminar):
 
-> DIREITO, Denise; SILVA, Lucas; QUEIROZ, Sérgio. *Corpus dos Planos de Transformação Digital: extração, padronização e análise dos PTDs de 91 órgãos federais brasileiros*. Brasília: Ipea, 2026. Nota técnica versão preliminar. Disponível em: https://github.com/freirelucas/PTD
+> DIREITO, Denise; SILVA, Lucas; QUEIROZ, Sérgio. *Corpus dos Planos de Transformação Digital: extração, padronização e análise dos PTDs de 95 órgãos federais brasileiros*. Brasília: Ipea, 2026. Nota técnica versão preliminar. Disponível em: https://github.com/freirelucas/PTD
 
 Após release v1.0 + DOI Zenodo, atualizar para a forma definitiva.
 

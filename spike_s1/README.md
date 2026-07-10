@@ -1,5 +1,10 @@
 # Spike S1 — Texto Diretivo: extração, segmentação e viabilidade
 
+> **Nota histórica**: os NÚMEROS deste README descrevem o spike original
+> (jul/2026, corpus de 85 diretivos do snapshot mai/2026). Os dados em
+> `data/` são re-gerados a cada refresh do corpus — os números correntes
+> canônicos estão em `data/segmentation_report.json` (campo `summary`).
+
 Primeira sessão do plano de análise de **similaridade & discrepância do corpo
 em prosa do Documento Diretivo** contra o template oficial da SGD. Este spike
 prova a viabilidade da camada de dados; as métricas definitivas, a integração

@@ -9,10 +9,11 @@
       "suggested_score": 0.26,
       "score": 0.26,
       "method": "unmatched",
-      "count": 3,
+      "count": 7,
       "siglas": [
         "CADE",
-        "IBAMA"
+        "IBAMA",
+        "INMETRO"
       ],
       "examples": [
         {
@@ -26,41 +27,40 @@
         {
           "sigla": "IBAMA",
           "context": "Projeto atualizado mesmo com a substituição de membro da equipe."
+        },
+        {
+          "sigla": "INMETRO",
+          "context": "Alto volume de demandas direcionadas pelo cliente para manutenção e desenvolvimento de processos"
+        },
+        {
+          "sigla": "INMETRO",
+          "context": "Atraso nas entregas das melhorias dos serviços"
         }
       ],
       "alias_snippet": "",
-      "impact": 2.22
+      "impact": 5.17
     },
     {
-      "field": "impacto",
-      "scale_label": "impacto",
-      "original": "Impacto",
-      "normalized": "Impacto",
-      "suggested": "alto",
-      "suggested_score": 0.55,
-      "score": 0.55,
+      "field": "tratamento",
+      "scale_label": "tratamento",
+      "original": "Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. 4. Prospecção de formas alternativas para a composição da força de trabalho. 7. Alinhamento com as estratégias e planos de Governo. 9. Reuniões periódicas de divulgação de informações do Plano e entregas realizadas.",
+      "normalized": "Reuniões periódicas de acompanhamento e reportar continuamente a alta gestão. 4. Prospecção de formas alternativas para a composição da força de trabalho. 7. Alinhamento com as estratégias e planos de Governo. 9. Reuniões periódicas de divulgação de informações do Plano e entregas realizadas.",
+      "suggested": "transferir",
+      "suggested_score": 0.05,
+      "score": 0.05,
       "method": "unmatched",
-      "count": 3,
+      "count": 1,
       "siglas": [
-        "CENSIPAM",
-        "MJSP"
+        "MPA"
       ],
       "examples": [
         {
-          "sigla": "CENSIPAM",
-          "context": "Risco"
-        },
-        {
-          "sigla": "CENSIPAM",
-          "context": "Risco"
-        },
-        {
-          "sigla": "MJSP",
-          "context": "Risco"
+          "sigla": "MPA",
+          "context": "Adesão de sistemas externos em desenvolvimento às plataformas e necessidades do órgão."
         }
       ],
-      "alias_snippet": "\"impacto\": \"alto\",",
-      "impact": 1.36
+      "alias_snippet": "",
+      "impact": 0.95
     },
     {
       "field": "impacto",
@@ -79,6 +79,28 @@
         {
           "sigla": "MPOR",
           "context": "Carências de Recursos Humanos nas equipes de TI"
+        }
+      ],
+      "alias_snippet": "",
+      "impact": 0.94
+    },
+    {
+      "field": "tratamento",
+      "scale_label": "tratamento",
+      "original": "Fortalecer a conformidade com a LGPD e a melhoria contínua do fluxo de tratamento dos dados. 15. Implementação dos controles previstos nos frameworks do PPSI. 16. Alinhamento com os princípios, objetivos e iniciativas da EFGD e com a legislação relativa ao atendimento aos usuários dos serviços públicos.",
+      "normalized": "Fortalecer a conformidade com a LGPD e a melhoria contínua do fluxo de tratamento dos dados. 15. Implementação dos controles previstos nos frameworks do PPSI. 16. Alinhamento com os princípios; objetivos e iniciativas da EFGD e com a legislação relativa ao atendimento aos usuários dos serviços públicos.",
+      "suggested": "mitigar",
+      "suggested_score": 0.05,
+      "score": 0.06,
+      "method": "unmatched",
+      "count": 1,
+      "siglas": [
+        "MPA"
+      ],
+      "examples": [
+        {
+          "sigla": "MPA",
+          "context": "Não conformidade com regulamentações de proteção de dados (LGPD, PPSI) nas novas soluções digitais."
         }
       ],
       "alias_snippet": "",
@@ -219,8 +241,8 @@
     {
       "field": "tratamento",
       "scale_label": "tratamento",
-      "original": "- Desenvolvimento de plataformas adaptáveis a diferentes contextos socioculturais. - Sensibilização e capacitação das equipes;",
-      "normalized": "- Desenvolvimento de plataformas adaptáveis a diferentes contextos socioculturais. - Sensibilização e capacitação das equipes",
+      "original": "- Desenvolvimento de plataformas adaptáveis a diferentes | contextos socioculturais. | - Sensibilização e capacitação das equipes;",
+      "normalized": "- Desenvolvimento de plataformas adaptáveis a diferentes | contextos socioculturais. | - Sensibilização e capacitação das equipes",
       "suggested": "eliminar",
       "suggested_score": 0.1,
       "score": 0.1,
@@ -241,9 +263,31 @@
     {
       "field": "tratamento",
       "scale_label": "tratamento",
-      "original": "- Desenvolvimento de soluções internas; - Planejamento de migração tecnológica sustentável. - Reuniões estratégicas de alinhamento com a alta administração;",
-      "normalized": "- Desenvolvimento de soluções internas; - Planejamento de migração tecnológica sustentável. - Reuniões estratégicas de alinhamento com a alta administração",
+      "original": "- Desenvolvimento de soluções internas; | - Planejamento de migração tecnológica sustentável. | - Reuniões estratégicas de alinhamento com a alta | administração;",
+      "normalized": "- Desenvolvimento de soluções internas; | - Planejamento de migração tecnológica sustentável. | - Reuniões estratégicas de alinhamento com a alta | administração",
       "suggested": "aceitar",
+      "suggested_score": 0.08,
+      "score": 0.11,
+      "method": "unmatched",
+      "count": 1,
+      "siglas": [
+        "MMULHERES"
+      ],
+      "examples": [
+        {
+          "sigla": "MMULHERES",
+          "context": "de fornecedores de tecnologia Baixa priorização da"
+        }
+      ],
+      "alias_snippet": "",
+      "impact": 0.89
+    },
+    {
+      "field": "tratamento",
+      "scale_label": "tratamento",
+      "original": "- Sensibilização para apoio da alta administração; | - Alinhamento contínuo com as diretrizes do governo. | - Monitoramento das propostas legislativas e participação",
+      "normalized": "- Sensibilização para apoio da alta administração; | - Alinhamento contínuo com as diretrizes do governo. | - Monitoramento das propostas legislativas e participação",
+      "suggested": "eliminar",
       "suggested_score": 0.09,
       "score": 0.12,
       "method": "unmatched",
@@ -254,7 +298,7 @@
       "examples": [
         {
           "sigla": "MMULHERES",
-          "context": "de fornecedores de tecnologia Baixa priorização da"
+          "context": "Falta de adesão das partes interessadas às iniciativas digitais Mudanças em políticas"
         }
       ],
       "alias_snippet": "",
@@ -307,10 +351,10 @@
     {
       "field": "tratamento",
       "scale_label": "tratamento",
-      "original": "- Parcerias estratégicas para expansão da infraestrutura digital. - Criação de estratégias de acesso inclusivo;",
-      "normalized": "- Parcerias estratégicas para expansão da infraestrutura digital. - Criação de estratégias de acesso inclusivo",
+      "original": "- Parcerias estratégicas para expansão da infraestrutura | digital. | - Criação de estratégias de acesso inclusivo;",
+      "normalized": "- Parcerias estratégicas para expansão da infraestrutura | digital. | - Criação de estratégias de acesso inclusivo",
       "suggested": "aceitar",
-      "suggested_score": 0.12,
+      "suggested_score": 0.11,
       "score": 0.12,
       "method": "unmatched",
       "count": 1,
@@ -329,33 +373,11 @@
     {
       "field": "tratamento",
       "scale_label": "tratamento",
-      "original": "- Sensibilização para apoio da alta administração; - Alinhamento contínuo com as diretrizes do governo. - Monitoramento das propostas legislativas e participação",
-      "normalized": "- Sensibilização para apoio da alta administração; - Alinhamento contínuo com as diretrizes do governo. - Monitoramento das propostas legislativas e participação",
-      "suggested": "eliminar",
-      "suggested_score": 0.09,
-      "score": 0.12,
-      "method": "unmatched",
-      "count": 1,
-      "siglas": [
-        "MMULHERES"
-      ],
-      "examples": [
-        {
-          "sigla": "MMULHERES",
-          "context": "Falta de adesão das partes interessadas às iniciativas digitais Mudanças em políticas"
-        }
-      ],
-      "alias_snippet": "",
-      "impact": 0.88
-    },
-    {
-      "field": "tratamento",
-      "scale_label": "tratamento",
-      "original": "- Parcerias interministeriais para alinhamento técnico. - Documentação robusta dos processos e entregas;",
-      "normalized": "- Parcerias interministeriais para alinhamento técnico. - Documentação robusta dos processos e entregas",
+      "original": "- Parcerias interministeriais para alinhamento técnico. | - Documentação robusta dos processos e entregas;",
+      "normalized": "- Parcerias interministeriais para alinhamento técnico. | - Documentação robusta dos processos e entregas",
       "suggested": "eliminar",
       "suggested_score": 0.12,
-      "score": 0.13,
+      "score": 0.12,
       "method": "unmatched",
       "count": 1,
       "siglas": [
@@ -368,13 +390,57 @@
         }
       ],
       "alias_snippet": "",
+      "impact": 0.88
+    },
+    {
+      "field": "tratamento",
+      "scale_label": "tratamento",
+      "original": "ativa em discussões estratégicas; | - Reporte à alta administração. | - Desenvolvimento de iniciativas de capacitação digital; | - Criação de canais híbridos de atendimento para garantir",
+      "normalized": "ativa em discussões estratégicas; | - Reporte à alta administração. | - Desenvolvimento de iniciativas de capacitação digital; | - Criação de canais híbridos de atendimento para garantir",
+      "suggested": "aceitar",
+      "suggested_score": 0.07,
+      "score": 0.12,
+      "method": "unmatched",
+      "count": 1,
+      "siglas": [
+        "MMULHERES"
+      ],
+      "examples": [
+        {
+          "sigla": "MMULHERES",
+          "context": "públicas que impactam os serviços digitais Baixa adesão dos"
+        }
+      ],
+      "alias_snippet": "",
+      "impact": 0.88
+    },
+    {
+      "field": "tratamento",
+      "scale_label": "tratamento",
+      "original": "- Fortalecimento da institucionalização das políticas | digitais. | - Mapeamento e priorização de investimentos;",
+      "normalized": "- Fortalecimento da institucionalização das políticas | digitais. | - Mapeamento e priorização de investimentos",
+      "suggested": "transferir",
+      "suggested_score": 0.13,
+      "score": 0.13,
+      "method": "unmatched",
+      "count": 1,
+      "siglas": [
+        "MMULHERES"
+      ],
+      "examples": [
+        {
+          "sigla": "MMULHERES",
+          "context": "projetos devido a mudanças de governo Falta de infraestrutura"
+        }
+      ],
+      "alias_snippet": "",
       "impact": 0.87
     },
     {
       "field": "tratamento",
       "scale_label": "tratamento",
-      "original": "acessibilidade; - Campanhas de conscientização. - Aprimoramento das políticas de conformidade com a LGPD e ao PPSI;",
-      "normalized": "acessibilidade; - Campanhas de conscientização. - Aprimoramento das políticas de conformidade com a LGPD e ao PPSI",
+      "original": "acessibilidade; | - Campanhas de conscientização. | - Aprimoramento das políticas de conformidade com a | LGPD e ao PPSI;",
+      "normalized": "acessibilidade; | - Campanhas de conscientização. | - Aprimoramento das políticas de conformidade com a | LGPD e ao PPSI",
       "suggested": "aceitar",
       "suggested_score": 0.11,
       "score": 0.13,
@@ -395,30 +461,8 @@
     {
       "field": "tratamento",
       "scale_label": "tratamento",
-      "original": "ativa em discussões estratégicas; - Reporte à alta administração. - Desenvolvimento de iniciativas de capacitação digital; - Criação de canais híbridos de atendimento para garantir",
-      "normalized": "ativa em discussões estratégicas; - Reporte à alta administração. - Desenvolvimento de iniciativas de capacitação digital; - Criação de canais híbridos de atendimento para garantir",
-      "suggested": "aceitar",
-      "suggested_score": 0.07,
-      "score": 0.13,
-      "method": "unmatched",
-      "count": 1,
-      "siglas": [
-        "MMULHERES"
-      ],
-      "examples": [
-        {
-          "sigla": "MMULHERES",
-          "context": "públicas que impactam os serviços digitais Baixa adesão dos"
-        }
-      ],
-      "alias_snippet": "",
-      "impact": 0.87
-    },
-    {
-      "field": "tratamento",
-      "scale_label": "tratamento",
-      "original": "- Fortalecimento da institucionalização das políticas digitais. - Mapeamento e priorização de investimentos;",
-      "normalized": "- Fortalecimento da institucionalização das políticas digitais. - Mapeamento e priorização de investimentos",
+      "original": "- Relatórios periódicos demonstrando impacto e ganhos | das iniciativas. | - Adoção de padrões abertos de integração;",
+      "normalized": "- Relatórios periódicos demonstrando impacto e ganhos | das iniciativas. | - Adoção de padrões abertos de integração",
       "suggested": "transferir",
       "suggested_score": 0.14,
       "score": 0.14,
@@ -430,7 +474,7 @@
       "examples": [
         {
           "sigla": "MMULHERES",
-          "context": "projetos devido a mudanças de governo Falta de infraestrutura"
+          "context": "transformação digital pela gestão Desafios na"
         }
       ],
       "alias_snippet": "",
@@ -461,30 +505,8 @@
     {
       "field": "tratamento",
       "scale_label": "tratamento",
-      "original": "- Relatórios periódicos demonstrando impacto e ganhos das iniciativas. - Adoção de padrões abertos de integração;",
-      "normalized": "- Relatórios periódicos demonstrando impacto e ganhos das iniciativas. - Adoção de padrões abertos de integração",
-      "suggested": "transferir",
-      "suggested_score": 0.15,
-      "score": 0.15,
-      "method": "unmatched",
-      "count": 1,
-      "siglas": [
-        "MMULHERES"
-      ],
-      "examples": [
-        {
-          "sigla": "MMULHERES",
-          "context": "transformação digital pela gestão Desafios na"
-        }
-      ],
-      "alias_snippet": "",
-      "impact": 0.85
-    },
-    {
-      "field": "tratamento",
-      "scale_label": "tratamento",
-      "original": "- Implementação de protocolos avançados de proteção; - Monitoramento contínuo de ameaças. - Sensibilização da alta administração para priorização de",
-      "normalized": "- Implementação de protocolos avançados de proteção; - Monitoramento contínuo de ameaças. - Sensibilização da alta administração para priorização de",
+      "original": "- Implementação de protocolos avançados de proteção; | - Monitoramento contínuo de ameaças. | - Sensibilização da alta administração para priorização de",
+      "normalized": "- Implementação de protocolos avançados de proteção; | - Monitoramento contínuo de ameaças. | - Sensibilização da alta administração para priorização de",
       "suggested": "eliminar",
       "suggested_score": 0.1,
       "score": 0.15,
@@ -500,13 +522,35 @@
         }
       ],
       "alias_snippet": "",
+      "impact": 0.85
+    },
+    {
+      "field": "tratamento",
+      "scale_label": "tratamento",
+      "original": "- Estratégias de governança de dados eficazes; | - Adoção de protocolos de segurança cibernética. | - Capacitação contínua dos servidores;",
+      "normalized": "- Estratégias de governança de dados eficazes; | - Adoção de protocolos de segurança cibernética. | - Capacitação contínua dos servidores",
+      "suggested": "transferir",
+      "suggested_score": 0.11,
+      "score": 0.16,
+      "method": "unmatched",
+      "count": 1,
+      "siglas": [
+        "MMULHERES"
+      ],
+      "examples": [
+        {
+          "sigla": "MMULHERES",
+          "context": "e privacidade de dados sensíveis Falta de equipe"
+        }
+      ],
+      "alias_snippet": "",
       "impact": 0.84
     },
     {
       "field": "tratamento",
       "scale_label": "tratamento",
-      "original": "orçamento digital. - Adoção de princípios de acessibilidade digital;",
-      "normalized": "orçamento digital. - Adoção de princípios de acessibilidade digital",
+      "original": "orçamento digital. | - Adoção de princípios de acessibilidade digital;",
+      "normalized": "orçamento digital. | - Adoção de princípios de acessibilidade digital",
       "suggested": "mitigar",
       "suggested_score": 0.16,
       "score": 0.16,
@@ -549,32 +593,10 @@
     {
       "field": "tratamento",
       "scale_label": "tratamento",
-      "original": "- Estratégias de governança de dados eficazes; - Adoção de protocolos de segurança cibernética. - Capacitação contínua dos servidores;",
-      "normalized": "- Estratégias de governança de dados eficazes; - Adoção de protocolos de segurança cibernética. - Capacitação contínua dos servidores",
+      "original": "- Governança bem definida; | - Comunicação contínua. | - Fortalecimento da segurança cibernética;",
+      "normalized": "- Governança bem definida; | - Comunicação contínua. | - Fortalecimento da segurança cibernética",
       "suggested": "transferir",
-      "suggested_score": 0.11,
-      "score": 0.17,
-      "method": "unmatched",
-      "count": 1,
-      "siglas": [
-        "MMULHERES"
-      ],
-      "examples": [
-        {
-          "sigla": "MMULHERES",
-          "context": "e privacidade de dados sensíveis Falta de equipe"
-        }
-      ],
-      "alias_snippet": "",
-      "impact": 0.83
-    },
-    {
-      "field": "tratamento",
-      "scale_label": "tratamento",
-      "original": "- Governança bem definida; - Comunicação contínua. - Fortalecimento da segurança cibernética;",
-      "normalized": "- Governança bem definida; - Comunicação contínua. - Fortalecimento da segurança cibernética",
-      "suggested": "transferir",
-      "suggested_score": 0.14,
+      "suggested_score": 0.13,
       "score": 0.18,
       "method": "unmatched",
       "count": 1,
@@ -593,10 +615,10 @@
     {
       "field": "tratamento",
       "scale_label": "tratamento",
-      "original": "- Parcerias com instituições para oferta de treinamentos; - Planejamento de contratações estratégicas. - Diversificação de fornecedores;",
-      "normalized": "- Parcerias com instituições para oferta de treinamentos; - Planejamento de contratações estratégicas. - Diversificação de fornecedores",
+      "original": "- Parcerias com instituições para oferta de treinamentos; | - Planejamento de contratações estratégicas. | - Diversificação de fornecedores;",
+      "normalized": "- Parcerias com instituições para oferta de treinamentos; | - Planejamento de contratações estratégicas. | - Diversificação de fornecedores",
       "suggested": "eliminar",
-      "suggested_score": 0.1,
+      "suggested_score": 0.09,
       "score": 0.18,
       "method": "unmatched",
       "count": 1,
@@ -659,11 +681,11 @@
     {
       "field": "tratamento",
       "scale_label": "tratamento",
-      "original": "- Design inclusivo; - Testes com usuárias reais.",
-      "normalized": "- Design inclusivo; - Testes com usuárias reais.",
+      "original": "- Design inclusivo; | - Testes com usuárias reais.",
+      "normalized": "- Design inclusivo; | - Testes com usuárias reais.",
       "suggested": "eliminar",
       "suggested_score": 0.21,
-      "score": 0.26,
+      "score": 0.25,
       "method": "unmatched",
       "count": 1,
       "siglas": [
@@ -676,29 +698,29 @@
         }
       ],
       "alias_snippet": "",
-      "impact": 0.74
+      "impact": 0.75
     },
     {
       "field": "probabilidade",
       "scale_label": "probabilidade",
-      "original": "de de Ocor-",
-      "normalized": "de de Ocor-",
-      "suggested": "pouco provável",
-      "suggested_score": 0.32,
-      "score": 0.32,
+      "original": "Medio",
+      "normalized": "Medio",
+      "suggested": "praticamente certo",
+      "suggested_score": 0.26,
+      "score": 0.26,
       "method": "unmatched",
       "count": 1,
       "siglas": [
-        "MJSP"
+        "INMETRO"
       ],
       "examples": [
         {
-          "sigla": "MJSP",
-          "context": "Risco"
+          "sigla": "INMETRO",
+          "context": "Mudanças em níveis estratégicos que gerem a repriorização de projetos impactando entrega de demandas importantes"
         }
       ],
       "alias_snippet": "",
-      "impact": 0.68
+      "impact": 0.74
     },
     {
       "field": "probabilidade",
@@ -743,112 +765,32 @@
       ],
       "alias_snippet": "",
       "impact": 0.6
-    },
-    {
-      "field": "impacto",
-      "scale_label": "impacto",
-      "original": "Médio Muito",
-      "normalized": "Médio Muito",
-      "suggested": "médio",
-      "suggested_score": 0.62,
-      "score": 0.62,
-      "method": "unmatched",
-      "count": 1,
-      "siglas": [
-        "MMULHERES"
-      ],
-      "examples": [
-        {
-          "sigla": "MMULHERES",
-          "context": "adequada para implementação digital Risco de exclusão digital"
-        }
-      ],
-      "alias_snippet": "\"medio muito\": \"médio\",",
-      "impact": 0.38
     }
   ],
   "summary_by_field": {
     "probabilidade": {
-      "cases": 6,
+      "cases": 10,
       "uniques": 4,
-      "impact_total": 4.1
-    },
-    "impacto": {
-      "cases": 15,
-      "uniques": 13,
-      "impact_total": 11.52
+      "impact_total": 7.11
     },
     "tratamento": {
-      "cases": 17,
-      "uniques": 17,
-      "impact_total": 14.46
+      "cases": 19,
+      "uniques": 19,
+      "impact_total": 16.43
+    },
+    "impacto": {
+      "cases": 11,
+      "uniques": 11,
+      "impact_total": 9.78
     }
   },
   "summary_by_method": {
-    "unmatched": 38
+    "unmatched": 40
   },
-  "total_cases": 38,
+  "total_cases": 40,
   "total_uniques": 34,
   "curation": {
     "items": [
-      {
-        "field": "produto",
-        "scale_label": "produto",
-        "original": "Integração à base de dados (OUTROS)",
-        "normalized": "Integração à base de dados",
-        "suggested": "Integração à base de dados",
-        "suggested_score": 0.85,
-        "score": 0.85,
-        "method": "fuzzy_high",
-        "count": 75,
-        "siglas": [
-          "ANAC",
-          "ANCINE",
-          "ANM",
-          "ANTT",
-          "CAPES",
-          "CENSIPAM",
-          "CVM",
-          "FCRB",
-          "IBAMA",
-          "IBGE",
-          "INSS",
-          "IPHAN",
-          "MDIC",
-          "MEMP",
-          "MGI",
-          "MINC",
-          "MJSP",
-          "MPI",
-          "MTUR",
-          "PREVIC",
-          "SUSEP"
-        ],
-        "examples": [
-          {
-            "sigla": "ANAC",
-            "context": ""
-          },
-          {
-            "sigla": "ANAC",
-            "context": ""
-          },
-          {
-            "sigla": "ANAC",
-            "context": "Interoperabilidade DECEA"
-          },
-          {
-            "sigla": "ANAC",
-            "context": "Interoperabilidade com ANATEL - LICENÇA DE ESTAÇÃO aeronaves (ANATEL)"
-          },
-          {
-            "sigla": "ANAC",
-            "context": "Interoperabilidade com ANATEL - RAB"
-          }
-        ],
-        "alias_snippet": "\"integracao a base de dados (outros)\": \"Integração à base de dados\",",
-        "impact": 11.1
-      },
       {
         "field": "produto",
         "scale_label": "produto",
@@ -858,9 +800,11 @@
         "suggested_score": 0.92,
         "score": 0.92,
         "method": "fuzzy_high",
-        "count": 81,
+        "count": 100,
         "siglas": [
           "ANCINE",
+          "ANS",
+          "DNOCS",
           "MDHC",
           "MEMP",
           "MTUR"
@@ -888,7 +832,7 @@
           }
         ],
         "alias_snippet": "\"integracao a ferramenta de avaliacao da satisfacao dos\": \"Integração à ferramenta de avaliação da satisfação dos usuários\",",
-        "impact": 6.24
+        "impact": 7.7
       },
       {
         "field": "produto",
@@ -969,55 +913,19 @@
       {
         "field": "produto",
         "scale_label": "produto",
-        "original": "Migração de Serviço para Plataforma",
-        "normalized": "Migração de Serviço para Plataforma Unificada",
-        "suggested": "Migração de Serviço para Plataforma Unificada",
-        "suggested_score": 0.88,
-        "score": 0.88,
-        "method": "fuzzy_high",
-        "count": 17,
-        "siglas": [
-          "CAPES"
-        ],
-        "examples": [
-          {
-            "sigla": "CAPES",
-            "context": "Acompanhar Lista de Espera SISU"
-          },
-          {
-            "sigla": "CAPES",
-            "context": "Articuladas (PAR5)."
-          },
-          {
-            "sigla": "CAPES",
-            "context": "Cadastrar usuário no SISPDDE"
-          },
-          {
-            "sigla": "CAPES",
-            "context": "Consultar Acervo Acadêmico"
-          },
-          {
-            "sigla": "CAPES",
-            "context": "Consultar Oferta de Vagas no SISU"
-          }
-        ],
-        "alias_snippet": "\"migracao de servico para plataforma\": \"Migração de Serviço para Plataforma Unificada\",",
-        "impact": 2.12
-      },
-      {
-        "field": "produto",
-        "scale_label": "produto",
         "original": "Auto-avaliação, análise de lacunas e planejamento",
         "normalized": "Auto-avaliação, análise de lacunas e planejamento do PPSI",
         "suggested": "Auto-avaliação, análise de lacunas e planejamento do PPSI",
         "suggested_score": 0.92,
         "score": 0.93,
         "method": "fuzzy_high",
-        "count": 25,
+        "count": 35,
         "siglas": [
           "ANA",
           "CADE",
+          "DNOCS",
           "FCRB",
+          "INMETRO",
           "INSS",
           "MMULHERES",
           "MPOR"
@@ -1045,7 +953,46 @@
           }
         ],
         "alias_snippet": "\"auto-avaliacao, analise de lacunas e planejamento\": \"Auto-avaliação, análise de lacunas e planejamento do PPSI\",",
-        "impact": 1.87
+        "impact": 2.62
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "Integração à ferramenta de avaliação da satisfação",
+        "normalized": "Integração à ferramenta de avaliação da satisfação dos usuários",
+        "suggested": "Integração à ferramenta de avaliação da satisfação dos usuários",
+        "suggested_score": 0.88,
+        "score": 0.89,
+        "method": "fuzzy_high",
+        "count": 15,
+        "siglas": [
+          "INMETRO",
+          "INSS"
+        ],
+        "examples": [
+          {
+            "sigla": "INMETRO",
+            "context": "Solicitar Acreditação de Laboratórios"
+          },
+          {
+            "sigla": "INMETRO",
+            "context": "Verificação"
+          },
+          {
+            "sigla": "INSS",
+            "context": "Alterar Local ou Forma de Pagamento"
+          },
+          {
+            "sigla": "INSS",
+            "context": "Consultar Descontos de Entidades Associativas"
+          },
+          {
+            "sigla": "INSS",
+            "context": "Consultar Termo de Adesão"
+          }
+        ],
+        "alias_snippet": "\"integracao a ferramenta de avaliacao da satisfacao\": \"Integração à ferramenta de avaliação da satisfação dos usuários\",",
+        "impact": 1.72
       },
       {
         "field": "eixo",
@@ -1088,78 +1035,45 @@
       {
         "field": "produto",
         "scale_label": "produto",
-        "original": "Integração à ferramenta de avaliação da satisfação",
-        "normalized": "Integração à ferramenta de avaliação da satisfação dos usuários",
-        "suggested": "Integração à ferramenta de avaliação da satisfação dos usuários",
-        "suggested_score": 0.88,
-        "score": 0.89,
+        "original": "Auto-avaliação, análise de lacunas e planejamento do",
+        "normalized": "Auto-avaliação, análise de lacunas e planejamento do PPSI",
+        "suggested": "Auto-avaliação, análise de lacunas e planejamento do PPSI",
+        "suggested_score": 0.95,
+        "score": 0.95,
         "method": "fuzzy_high",
-        "count": 13,
+        "count": 31,
         "siglas": [
-          "INSS"
+          "DNOCS",
+          "MDHC",
+          "MEMP",
+          "MF",
+          "MRE",
+          "MTUR"
         ],
         "examples": [
           {
-            "sigla": "INSS",
-            "context": "Alterar Local ou Forma de Pagamento"
+            "sigla": "DNOCS",
+            "context": "PPSI Ciclo 5"
           },
           {
-            "sigla": "INSS",
-            "context": "Consultar Descontos de Entidades Associativas"
+            "sigla": "DNOCS",
+            "context": "PPSI Ciclo 6"
           },
           {
-            "sigla": "INSS",
-            "context": "Consultar Termo de Adesão"
+            "sigla": "DNOCS",
+            "context": "PPSI Ciclo 7"
           },
           {
-            "sigla": "INSS",
-            "context": "Realizar Inscrição no INSS"
+            "sigla": "MDHC",
+            "context": "(PPSI) - Ciclo 1"
           },
           {
-            "sigla": "INSS",
-            "context": "Solicitar Aposentadoria da Pessoa com Deficiência por Idade - Acordo Internacional"
+            "sigla": "MDHC",
+            "context": "(PPSI) - Ciclo 2"
           }
         ],
-        "alias_snippet": "\"integracao a ferramenta de avaliacao da satisfacao\": \"Integração à ferramenta de avaliação da satisfação dos usuários\",",
-        "impact": 1.49
-      },
-      {
-        "field": "produto",
-        "scale_label": "produto",
-        "original": "Disponibilização em Acesso D",
-        "normalized": "Disponibilização em Acesso Digital",
-        "suggested": "Disponibilização em Acesso Digital",
-        "suggested_score": 0.9,
-        "score": 0.9,
-        "method": "fuzzy_high",
-        "count": 15,
-        "siglas": [
-          "PGFN"
-        ],
-        "examples": [
-          {
-            "sigla": "PGFN",
-            "context": "CADIN - Evoluções nas transações de Gestão"
-          },
-          {
-            "sigla": "PGFN",
-            "context": "Cadastrar usuários (as) do órgão/entidade/ente para uso do Cadin"
-          },
-          {
-            "sigla": "PGFN",
-            "context": "Emitir relatórios das consultas e transações realizadas no Cadin"
-          },
-          {
-            "sigla": "PGFN",
-            "context": "Emitir relatórios dos apontamentos enviados ao Cadin pelo órgão/entidade/ente cadastrado (total ou por situação)"
-          },
-          {
-            "sigla": "PGFN",
-            "context": "Incluir apontamentos no Cadin"
-          }
-        ],
-        "alias_snippet": "\"disponibilizacao em acesso d\": \"Disponibilização em Acesso Digital\",",
-        "impact": 1.45
+        "alias_snippet": "\"auto-avaliacao, analise de lacunas e planejamento do\": \"Auto-avaliação, análise de lacunas e planejamento do PPSI\",",
+        "impact": 1.43
       },
       {
         "field": "produto",
@@ -1202,91 +1116,6 @@
       {
         "field": "produto",
         "scale_label": "produto",
-        "original": "Auto-avaliação, análise de lacunas e planejamento do",
-        "normalized": "Auto-avaliação, análise de lacunas e planejamento do PPSI",
-        "suggested": "Auto-avaliação, análise de lacunas e planejamento do PPSI",
-        "suggested_score": 0.95,
-        "score": 0.95,
-        "method": "fuzzy_high",
-        "count": 28,
-        "siglas": [
-          "MDHC",
-          "MEMP",
-          "MF",
-          "MRE",
-          "MTUR"
-        ],
-        "examples": [
-          {
-            "sigla": "MDHC",
-            "context": "(PPSI) - Ciclo 1"
-          },
-          {
-            "sigla": "MDHC",
-            "context": "(PPSI) - Ciclo 2"
-          },
-          {
-            "sigla": "MDHC",
-            "context": "(PPSI) - Ciclo 3"
-          },
-          {
-            "sigla": "MDHC",
-            "context": "(PPSI) - Ciclo 4"
-          },
-          {
-            "sigla": "MDHC",
-            "context": "(PPSI) - Ciclo 5"
-          }
-        ],
-        "alias_snippet": "\"auto-avaliacao, analise de lacunas e planejamento do\": \"Auto-avaliação, análise de lacunas e planejamento do PPSI\",",
-        "impact": 1.29
-      },
-      {
-        "field": "produto",
-        "scale_label": "produto",
-        "original": "Implantação da Área Logada",
-        "normalized": "Implantação da Área Logada Gov.Br",
-        "suggested": "Implantação da Área Logada Gov.Br",
-        "suggested_score": 0.88,
-        "score": 0.88,
-        "method": "fuzzy_high",
-        "count": 10,
-        "siglas": [
-          "IPHAN",
-          "MJSP",
-          "MME",
-          "MMULHERES",
-          "MPI",
-          "PRF"
-        ],
-        "examples": [
-          {
-            "sigla": "IPHAN",
-            "context": ""
-          },
-          {
-            "sigla": "MJSP",
-            "context": ""
-          },
-          {
-            "sigla": "MME",
-            "context": "Criar canal de interação do MME - MEU MME"
-          },
-          {
-            "sigla": "MME",
-            "context": "Disponibilizar Sistema para Arrecadação para Pesquisa e Desenvolvimento - SAPED"
-          },
-          {
-            "sigla": "MME",
-            "context": "Orientar construção de Edificios Sustentáveis, com informação Bioclimáticas - PROJETEEE"
-          }
-        ],
-        "alias_snippet": "\"implantacao da area logada\": \"Implantação da Área Logada Gov.Br\",",
-        "impact": 1.19
-      },
-      {
-        "field": "produto",
-        "scale_label": "produto",
         "original": "Integração à ferramenta de avaliação da satisfação dos usuár",
         "normalized": "Integração à ferramenta de avaliação da satisfação dos usuários",
         "suggested": "Integração à ferramenta de avaliação da satisfação dos usuários",
@@ -1322,6 +1151,44 @@
         ],
         "alias_snippet": "\"integracao a ferramenta de avaliacao da satisfacao dos usuar\": \"Integração à ferramenta de avaliação da satisfação dos usuários\",",
         "impact": 0.89
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "Disponibilidade em acesso digital",
+        "normalized": "Disponibilização em Acesso Digital",
+        "suggested": "Disponibilização em Acesso Digital",
+        "suggested_score": 0.9,
+        "score": 0.9,
+        "method": "fuzzy_high",
+        "count": 7,
+        "siglas": [
+          "FUNAI"
+        ],
+        "examples": [
+          {
+            "sigla": "FUNAI",
+            "context": "Aprovar projetos de visitação turística em Terra Indígena"
+          },
+          {
+            "sigla": "FUNAI",
+            "context": "Consultar documentos do acervo arquivístico da Fundação Nacional do Índio;"
+          },
+          {
+            "sigla": "FUNAI",
+            "context": "Declaração de produtor indígena"
+          },
+          {
+            "sigla": "FUNAI",
+            "context": "Emitir Certidão de Exercício de Atividade Rural - CEAR;"
+          },
+          {
+            "sigla": "FUNAI",
+            "context": "Solicitar análise e emissão de Declaração de Reconhecimento de Limite"
+          }
+        ],
+        "alias_snippet": "\"disponibilidade em acesso digital\": \"Disponibilização em Acesso Digital\",",
+        "impact": 0.73
       },
       {
         "field": "produto",
@@ -1385,11 +1252,11 @@
           },
           {
             "sigla": "CVM",
-            "context": ""
+            "context": "N/A"
           },
           {
             "sigla": "CVM",
-            "context": ""
+            "context": "N/A"
           }
         ],
         "alias_snippet": "\"autoavaliacao, analise de lacunas e planejamen\": \"Auto-avaliação, análise de lacunas e planejamento do PPSI\",",
@@ -1466,36 +1333,6 @@
       {
         "field": "produto",
         "scale_label": "produto",
-        "original": "Auto-avaliação, análise de lacunas e planejam",
-        "normalized": "Auto-avaliação, análise de lacunas e planejamento do PPSI",
-        "suggested": "Auto-avaliação, análise de lacunas e planejamento do PPSI",
-        "suggested_score": 0.88,
-        "score": 0.88,
-        "method": "fuzzy_high",
-        "count": 3,
-        "siglas": [
-          "ANS"
-        ],
-        "examples": [
-          {
-            "sigla": "ANS",
-            "context": "PPSI Ciclo 5"
-          },
-          {
-            "sigla": "ANS",
-            "context": "PPSI Ciclo 6"
-          },
-          {
-            "sigla": "ANS",
-            "context": "PPSI Ciclo 7"
-          }
-        ],
-        "alias_snippet": "\"auto-avaliacao, analise de lacunas e planejam\": \"Auto-avaliação, análise de lacunas e planejamento do PPSI\",",
-        "impact": 0.35
-      },
-      {
-        "field": "produto",
-        "scale_label": "produto",
         "original": "Integração à base de dados do",
         "normalized": "Integração à base de dados",
         "suggested": "Integração à base de dados",
@@ -1532,6 +1369,37 @@
         "impact": 0.33
       },
       {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "Migração de APPs móveis para a loja do",
+        "normalized": "Migração de APPs móveis para a loja do Gov.br",
+        "suggested": "Migração de APPs móveis para a loja do Gov.br",
+        "suggested_score": 0.92,
+        "score": 0.92,
+        "method": "fuzzy_high",
+        "count": 3,
+        "siglas": [
+          "ABIN",
+          "CONAB"
+        ],
+        "examples": [
+          {
+            "sigla": "ABIN",
+            "context": "Governo do Brasil"
+          },
+          {
+            "sigla": "CONAB",
+            "context": "Disponibilizar o App “Prohort” para a plataforma Gov.Br"
+          },
+          {
+            "sigla": "CONAB",
+            "context": "plataforma Gov.Br"
+          }
+        ],
+        "alias_snippet": "\"migracao de apps moveis para a loja do\": \"Migração de APPs móveis para a loja do Gov.br\",",
+        "impact": 0.25
+      },
+      {
         "field": "tratamento",
         "scale_label": "tratamento",
         "original": "Mitigar/Tra nsferir",
@@ -1564,44 +1432,6 @@
         ],
         "alias_snippet": "\"mitigar/tra nsferir\": \"transferir\",",
         "impact": 0.19
-      },
-      {
-        "field": "eixo",
-        "scale_label": "eixo",
-        "original": "PSegurança e Privacidade",
-        "normalized": "Segurança e Privacidade",
-        "suggested": "Segurança e Privacidade",
-        "suggested_score": 0.98,
-        "score": 0.98,
-        "method": "fuzzy_high",
-        "count": 7,
-        "siglas": [
-          "MTUR"
-        ],
-        "examples": [
-          {
-            "sigla": "MTUR",
-            "context": ""
-          },
-          {
-            "sigla": "MTUR",
-            "context": ""
-          },
-          {
-            "sigla": "MTUR",
-            "context": ""
-          },
-          {
-            "sigla": "MTUR",
-            "context": "PPSI Ciclo 4"
-          },
-          {
-            "sigla": "MTUR",
-            "context": "PPSI Ciclo 5"
-          }
-        ],
-        "alias_snippet": "\"pseguranca e privacidade\": \"Segurança e Privacidade\",",
-        "impact": 0.15
       },
       {
         "field": "produto",
@@ -1658,28 +1488,6 @@
       {
         "field": "produto",
         "scale_label": "produto",
-        "original": "Integração à base de dados (OUTROS)",
-        "normalized": "Integração à base de dados",
-        "suggested": "Integração à base de dados",
-        "suggested_score": 0.85,
-        "score": 0.85,
-        "method": "fuzzy_high",
-        "count": 1,
-        "siglas": [
-          "FUNARTE"
-        ],
-        "examples": [
-          {
-            "sigla": "FUNARTE",
-            "context": ""
-          }
-        ],
-        "alias_snippet": "\"integracao a base de dados (outros)\": \"Integração à base de dados\",",
-        "impact": 0.15
-      },
-      {
-        "field": "produto",
-        "scale_label": "produto",
         "original": "Migração de APPs móveis para a loja do Go",
         "normalized": "Migração de APPs móveis para a loja do Gov.br",
         "suggested": "Migração de APPs móveis para a loja do Gov.br",
@@ -1728,44 +1536,6 @@
         ],
         "alias_snippet": "\"realizacao de autodiagnostico de\": \"Realização de Autodiagnóstico de Qualidade\",",
         "impact": 0.14
-      },
-      {
-        "field": "eixo",
-        "scale_label": "eixo",
-        "original": "iServiços Digitais e Melhoria da Qualidade",
-        "normalized": "Serviços Digitais e Melhoria da Qualidade",
-        "suggested": "Serviços Digitais e Melhoria da Qualidade",
-        "suggested_score": 0.99,
-        "score": 0.99,
-        "method": "fuzzy_high",
-        "count": 11,
-        "siglas": [
-          "ANAC"
-        ],
-        "examples": [
-          {
-            "sigla": "ANAC",
-            "context": ""
-          },
-          {
-            "sigla": "ANAC",
-            "context": ""
-          },
-          {
-            "sigla": "ANAC",
-            "context": ""
-          },
-          {
-            "sigla": "ANAC",
-            "context": ""
-          },
-          {
-            "sigla": "ANAC",
-            "context": ""
-          }
-        ],
-        "alias_snippet": "\"iservicos digitais e melhoria da qualidade\": \"Serviços Digitais e Melhoria da Qualidade\",",
-        "impact": 0.13
       },
       {
         "field": "produto",
@@ -1848,6 +1618,28 @@
       {
         "field": "produto",
         "scale_label": "produto",
+        "original": "Integração à base de dados do SNCR",
+        "normalized": "Integração à base de dados",
+        "suggested": "Integração à base de dados",
+        "suggested_score": 0.87,
+        "score": 0.87,
+        "method": "fuzzy_high",
+        "count": 1,
+        "siglas": [
+          "CONAB"
+        ],
+        "examples": [
+          {
+            "sigla": "CONAB",
+            "context": "Sistema CAF"
+          }
+        ],
+        "alias_snippet": "\"integracao a base de dados do sncr\": \"Integração à base de dados\",",
+        "impact": 0.13
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
         "original": "Integração à base de dados(OUTROS)",
         "normalized": "Integração à base de dados",
         "suggested": "Integração à base de dados",
@@ -1868,26 +1660,70 @@
         "impact": 0.13
       },
       {
-        "field": "produto",
-        "scale_label": "produto",
-        "original": "Implantação da Área Logada",
-        "normalized": "Implantação da Área Logada Gov.Br",
-        "suggested": "Implantação da Área Logada Gov.Br",
-        "suggested_score": 0.88,
-        "score": 0.88,
+        "field": "impacto",
+        "scale_label": "impacto",
+        "original": "alto;",
+        "normalized": "alto",
+        "suggested": "alto",
+        "suggested_score": 0.89,
+        "score": 0.89,
         "method": "fuzzy_high",
         "count": 1,
         "siglas": [
-          "FUNARTE"
+          "CAPES"
         ],
         "examples": [
           {
-            "sigla": "FUNARTE",
+            "sigla": "CAPES",
             "context": ""
           }
         ],
-        "alias_snippet": "\"implantacao da area logada\": \"Implantação da Área Logada Gov.Br\",",
-        "impact": 0.12
+        "alias_snippet": "\"alto;\": \"alto\",",
+        "impact": 0.11
+      },
+      {
+        "field": "impacto",
+        "scale_label": "impacto",
+        "original": "baixo;",
+        "normalized": "baixo",
+        "suggested": "baixo",
+        "suggested_score": 0.91,
+        "score": 0.91,
+        "method": "fuzzy_high",
+        "count": 1,
+        "siglas": [
+          "CAPES"
+        ],
+        "examples": [
+          {
+            "sigla": "CAPES",
+            "context": ""
+          }
+        ],
+        "alias_snippet": "\"baixo;\": \"baixo\",",
+        "impact": 0.09
+      },
+      {
+        "field": "impacto",
+        "scale_label": "impacto",
+        "original": "médio;",
+        "normalized": "médio",
+        "suggested": "médio",
+        "suggested_score": 0.91,
+        "score": 0.91,
+        "method": "fuzzy_high",
+        "count": 1,
+        "siglas": [
+          "CAPES"
+        ],
+        "examples": [
+          {
+            "sigla": "CAPES",
+            "context": ""
+          }
+        ],
+        "alias_snippet": "\"medio;\": \"médio\",",
+        "impact": 0.09
       },
       {
         "field": "produto",
@@ -1910,40 +1746,6 @@
         ],
         "alias_snippet": "\"do framework de privacidade e seguranca da informacao.\": \"Adequação ao Framework de Privacidade e Segurança da Informação\",",
         "impact": 0.09
-      },
-      {
-        "field": "produto",
-        "scale_label": "produto",
-        "original": "eIntegração ao Login Único",
-        "normalized": "Integração ao Login Único",
-        "suggested": "Integração ao Login Único",
-        "suggested_score": 0.98,
-        "score": 0.98,
-        "method": "fuzzy_high",
-        "count": 4,
-        "siglas": [
-          "IBAMA"
-        ],
-        "examples": [
-          {
-            "sigla": "IBAMA",
-            "context": "Cadastrar Chamadas Públicas do Fundo Nacional de Desenvolvim"
-          },
-          {
-            "sigla": "IBAMA",
-            "context": "Cadastrar Determinação de Propriedades Mecânicas de Madeiras"
-          },
-          {
-            "sigla": "IBAMA",
-            "context": "Cadastrar Determinação dos Constituintes Químicos de Madeiras"
-          },
-          {
-            "sigla": "IBAMA",
-            "context": "Cadastrar Durabilidade de Madeiras e Performance de Produtos Pr"
-          }
-        ],
-        "alias_snippet": "\"eintegracao ao login unico\": \"Integração ao Login Único\",",
-        "impact": 0.08
       },
       {
         "field": "produto",
@@ -2065,37 +1867,25 @@
         "impact": 0.07
       },
       {
-        "field": "produto",
-        "scale_label": "produto",
-        "original": "eDisponibilização em Acesso Digital",
-        "normalized": "Disponibilização em Acesso Digital",
-        "suggested": "Disponibilização em Acesso Digital",
-        "suggested_score": 0.99,
-        "score": 0.99,
+        "field": "probabilidade",
+        "scale_label": "probabilidade",
+        "original": "provável;",
+        "normalized": "provável",
+        "suggested": "provável",
+        "suggested_score": 0.94,
+        "score": 0.94,
         "method": "fuzzy_high",
-        "count": 4,
+        "count": 1,
         "siglas": [
-          "IBAMA"
+          "CAPES"
         ],
         "examples": [
           {
-            "sigla": "IBAMA",
-            "context": "Cadastrar Chamadas Públicas do Fundo Nacional de Desenvolvim"
-          },
-          {
-            "sigla": "IBAMA",
-            "context": "Cadastrar Determinação de Propriedades Mecânicas de Madeiras"
-          },
-          {
-            "sigla": "IBAMA",
-            "context": "Cadastrar Determinação dos Constituintes Químicos de Madeiras"
-          },
-          {
-            "sigla": "IBAMA",
-            "context": "Cadastrar Durabilidade de Madeiras e Performance de Produtos Pr"
+            "sigla": "CAPES",
+            "context": ""
           }
         ],
-        "alias_snippet": "\"edisponibilizacao em acesso digital\": \"Disponibilização em Acesso Digital\",",
+        "alias_snippet": "\"provavel;\": \"provável\",",
         "impact": 0.06
       },
       {
@@ -2119,6 +1909,44 @@
         ],
         "alias_snippet": "\"revisao da descricao dos serv\": \"Revisão da descrição dos serviços\",",
         "impact": 0.06
+      },
+      {
+        "field": "produto",
+        "scale_label": "produto",
+        "original": "Auto-avaliação, análise de lacunas e planejamento do PPS",
+        "normalized": "Auto-avaliação, análise de lacunas e planejamento do PPSI",
+        "suggested": "Auto-avaliação, análise de lacunas e planejamento do PPSI",
+        "suggested_score": 0.99,
+        "score": 0.99,
+        "method": "fuzzy_high",
+        "count": 5,
+        "siglas": [
+          "MS"
+        ],
+        "examples": [
+          {
+            "sigla": "MS",
+            "context": ""
+          },
+          {
+            "sigla": "MS",
+            "context": ""
+          },
+          {
+            "sigla": "MS",
+            "context": ""
+          },
+          {
+            "sigla": "MS",
+            "context": ""
+          },
+          {
+            "sigla": "MS",
+            "context": ""
+          }
+        ],
+        "alias_snippet": "\"auto-avaliacao, analise de lacunas e planejamento do pps\": \"Auto-avaliação, análise de lacunas e planejamento do PPSI\",",
+        "impact": 0.05
       },
       {
         "field": "produto",
@@ -2225,6 +2053,72 @@
         "impact": 0.04
       },
       {
+        "field": "impacto",
+        "scale_label": "impacto",
+        "original": "muito baixo;",
+        "normalized": "muito baixo",
+        "suggested": "muito baixo",
+        "suggested_score": 0.96,
+        "score": 0.96,
+        "method": "fuzzy_high",
+        "count": 1,
+        "siglas": [
+          "CAPES"
+        ],
+        "examples": [
+          {
+            "sigla": "CAPES",
+            "context": ""
+          }
+        ],
+        "alias_snippet": "\"muito baixo;\": \"muito baixo\",",
+        "impact": 0.04
+      },
+      {
+        "field": "probabilidade",
+        "scale_label": "probabilidade",
+        "original": "muito provável;",
+        "normalized": "muito provável",
+        "suggested": "muito provável",
+        "suggested_score": 0.97,
+        "score": 0.97,
+        "method": "fuzzy_high",
+        "count": 1,
+        "siglas": [
+          "CAPES"
+        ],
+        "examples": [
+          {
+            "sigla": "CAPES",
+            "context": ""
+          }
+        ],
+        "alias_snippet": "\"muito provavel;\": \"muito provável\",",
+        "impact": 0.03
+      },
+      {
+        "field": "probabilidade",
+        "scale_label": "probabilidade",
+        "original": "pouco provável;",
+        "normalized": "pouco provável",
+        "suggested": "pouco provável",
+        "suggested_score": 0.97,
+        "score": 0.97,
+        "method": "fuzzy_high",
+        "count": 1,
+        "siglas": [
+          "CAPES"
+        ],
+        "examples": [
+          {
+            "sigla": "CAPES",
+            "context": ""
+          }
+        ],
+        "alias_snippet": "\"pouco provavel;\": \"pouco provável\",",
+        "impact": 0.03
+      },
+      {
         "field": "produto",
         "scale_label": "produto",
         "original": "eEvolução do Serviço",
@@ -2284,7 +2178,7 @@
         "examples": [
           {
             "sigla": "IBAMA",
-            "context": "3. Atualizar a lista de usuários internos que podem atender aos ser"
+            "context": "Atualizar a lista de usuários internos que podem atender aos ser"
           }
         ],
         "alias_snippet": "\"vevolucao do servico\": \"Evolução do Serviço\",",
@@ -2491,25 +2385,35 @@
     ],
     "summary_by_field": {
       "produto": {
-        "cases": 531,
-        "uniques": 52,
-        "impact_total": 40.74
+        "cases": 451,
+        "uniques": 47,
+        "impact_total": 27.86
       },
       "eixo": {
-        "cases": 36,
-        "uniques": 3,
-        "impact_total": 1.92
+        "cases": 18,
+        "uniques": 1,
+        "impact_total": 1.64
       },
       "tratamento": {
         "cases": 5,
         "uniques": 2,
         "impact_total": 0.24
+      },
+      "impacto": {
+        "cases": 4,
+        "uniques": 4,
+        "impact_total": 0.33
+      },
+      "probabilidade": {
+        "cases": 3,
+        "uniques": 3,
+        "impact_total": 0.12
       }
     },
     "summary_by_method": {
-      "fuzzy_high": 572
+      "fuzzy_high": 481
     },
-    "total_cases": 572,
+    "total_cases": 481,
     "total_uniques": 57
   }
 }

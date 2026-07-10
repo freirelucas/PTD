@@ -1,7 +1,7 @@
 {
   "name": "corpus-ptd-planos-transformacao-digital",
   "title": "PTD — Corpus dos Planos de Transformação Digital",
-  "notes": "Pipeline de extração automatizada e corpus dos Planos de Transformação Digital (PTDs) instituídos pelo Decreto 12.198/2024 e pela Estratégia Federal de Governo Digital (EFGD) 2024-2027. Coleta os PTDs publicados no portal SGD/MGI (gov.br), extrai tabelas de entregas pactuadas e tabelas diretivas de gestão de riscos via PyMuPDF, padroniza vocabulário contra escalas e produtos canônicos definidos pela SGD, e disponibiliza os dados estruturados (CSV, JSON) e visualizações interativas para 91 órgãos signatários, ~4.5k entregas e ~600 riscos mapeados.",
+  "notes": "Pipeline de extração automatizada e corpus dos Planos de Transformação Digital (PTDs) instituídos pelo Decreto 12.198/2024 e pela Estratégia Federal de Governo Digital (EFGD) 2024-2027. Coleta os PTDs publicados no portal SGD/MGI (gov.br), extrai tabelas de entregas pactuadas e tabelas diretivas de gestão de riscos via PyMuPDF, padroniza vocabulário contra escalas e produtos canônicos definidos pela SGD, e disponibiliza os dados estruturados (CSV, JSON) e visualizações interativas para 95 órgãos signatários, ~5.2k entregas e ~700 riscos mapeados.",
   "owner_org": "ipea",
   "license_id": "cc-by",
   "url": "https://freirelucas.github.io/PTD",
@@ -55,11 +55,11 @@
     },
     {
       "key": "pipeline_commit",
-      "value": "0d14ecd4d7e12a68a5c95d298fa6bc4da245e5f0"
+      "value": "1fe31ba717a46db3c802d5b079140181b54d0f1b"
     },
     {
       "key": "data_execucao",
-      "value": "2026-05-12"
+      "value": "2026-07-10"
     },
     {
       "key": "frequencia_atualizacao",
@@ -72,104 +72,88 @@
       "url": "https://freirelucas.github.io/PTD/output/coverage_summary.csv",
       "format": "CSV",
       "mimetype": "text/csv",
-      "hash": "sha256:6d87d6f19b76924f4f1a3f128b1a19d9e4694cf644280647740f03d1711879d2",
-      "size": 3224
+      "hash": "sha256:f9b8028c7007aebf993de028b9e082447055ed3ed88a3b28d1e5d47409afe880",
+      "size": 3316
     },
     {
       "name": "deliveries.csv",
       "url": "https://freirelucas.github.io/PTD/output/deliveries.csv",
       "format": "CSV",
       "mimetype": "text/csv",
-      "hash": "sha256:51c3a792a707ba120f9fbcd902af630956f43624ef7222bd39590c8673534fb1",
-      "size": 1290978
+      "hash": "sha256:cfb5fc0f463c7c8f352797e1306fe82858de36fd8ecdfb6fd36961a5d2bfa75c",
+      "size": 1476524
     },
     {
       "name": "deliveries.json",
       "url": "https://freirelucas.github.io/PTD/output/deliveries.json",
       "format": "JSON",
       "mimetype": "application/json",
-      "hash": "sha256:27e4ac1b29aa88ee67de30dd3610e6c346ccf79bd223b58af683c33f31dff8ca",
-      "size": 3845272
+      "hash": "sha256:1e5e7973a2c7a76a3fc514f1db7ea00ca23b90c064710e6b449ed622372be278",
+      "size": 4362160
     },
     {
       "name": "error_report.csv",
       "url": "https://freirelucas.github.io/PTD/output/error_report.csv",
       "format": "CSV",
       "mimetype": "text/csv",
-      "hash": "sha256:5a9d2884e4466a4367665fec91caa7211f2f3af86ac7896120c6dffbde318d04",
-      "size": 1308
+      "hash": "sha256:c2df9473c671c75f1d3c07168b03f06cece9d5a338e83bd2103bb770db38c682",
+      "size": 1314
     },
     {
       "name": "organs.csv",
       "url": "https://freirelucas.github.io/PTD/output/organs.csv",
       "format": "CSV",
       "mimetype": "text/csv",
-      "hash": "sha256:c4d6a4410e0c7a3d7159cff1ad869fb80e481a54b0f1aa0bda56b9ebce9ba974",
-      "size": 46492
+      "hash": "sha256:6b640e366f35409f1cd072ab25fb7c9454df25bc539decc5e1920e0a3807952d",
+      "size": 46370
     },
     {
       "name": "pdf_metadata.csv",
       "url": "https://freirelucas.github.io/PTD/output/pdf_metadata.csv",
       "format": "CSV",
       "mimetype": "text/csv",
-      "hash": "sha256:61919c0f8547a358b5cad89586c87f75af4ba56ffed7d9cdf0e1885894b3c8bc",
-      "size": 5315
-    },
-    {
-      "name": "review_data.json",
-      "url": "https://freirelucas.github.io/PTD/output/review_data.json",
-      "format": "JSON",
-      "mimetype": "application/json",
-      "hash": "sha256:916de75baf7d99542cbc900f28f8f7061de4a7c866aaaac338ecd8ee8bc4ffc9",
-      "size": 80711
+      "hash": "sha256:637e8dea7f162389dca7957f0bd1aaf24cf3c00aee91abcb7e477eb4370f5776",
+      "size": 5680
     },
     {
       "name": "review_queue.csv",
       "url": "https://freirelucas.github.io/PTD/output/review_queue.csv",
       "format": "CSV",
       "mimetype": "text/csv",
-      "hash": "sha256:6b420c07453964c9bc9ff75e15168086683275637e8f6eaba58bf2e5bd10564f",
-      "size": 819476
+      "hash": "sha256:45aadc8eff71e2adc2ced2d9fa7bbb21da0c54148bc571ea7963bcf21238c82d",
+      "size": 934075
     },
     {
       "name": "risks.csv",
       "url": "https://freirelucas.github.io/PTD/output/risks.csv",
       "format": "CSV",
       "mimetype": "text/csv",
-      "hash": "sha256:f55a17d341ecb44fd0e691fef9b30488d67666d498893d214ecad0b4e86ddf6f",
-      "size": 244029
+      "hash": "sha256:6d31344d3de8726928a9d3ffb61b18d7c4d058481b551a890f77caf72f0cdc97",
+      "size": 233269
     },
     {
       "name": "risks.json",
       "url": "https://freirelucas.github.io/PTD/output/risks.json",
       "format": "JSON",
       "mimetype": "application/json",
-      "hash": "sha256:8d55ace92bc043e7b864482a283712cdbc1b59a69e50c0479c195975996dc743",
-      "size": 667430
+      "hash": "sha256:4361cd99a9265bace2bc8537b38c3b301467613aaebfc736a12d1474b2fd8e9f",
+      "size": 714818
     },
     {
       "name": "statistics_summary.json",
       "url": "https://freirelucas.github.io/PTD/output/statistics_summary.json",
       "format": "JSON",
       "mimetype": "application/json",
-      "hash": "sha256:9a093aa56fd5d69ff01d907e9fafd4a85f6e88fa6bdf93343792d0f1a588334a",
+      "hash": "sha256:43d71b157fc30bd216214eb0e8eab6d0b903fa22018375de340a4d2c083a9682",
       "size": 1273
-    },
-    {
-      "name": "validation_report.json",
-      "url": "https://freirelucas.github.io/PTD/output/validation_report.json",
-      "format": "JSON",
-      "mimetype": "application/json",
-      "hash": "sha256:95fd9715bbc59fbacc9bb9c3f34b8ca84ad622dd736c1090dbfd43b1d9253b2f",
-      "size": 11907
     },
     {
       "name": "vocabulary_mapping.csv",
       "url": "https://freirelucas.github.io/PTD/output/vocabulary_mapping.csv",
       "format": "CSV",
       "mimetype": "text/csv",
-      "hash": "sha256:f0383dd303fb45ee02a87dde8278fa1f0d608ff403098e56c98f2860dfcd4ca0",
-      "size": 20550
+      "hash": "sha256:36332f375d2550d4ca3f26b1592496da025dfcca58fb41235c401fb3fc532774",
+      "size": 22911
     }
   ]
 }
