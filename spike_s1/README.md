@@ -46,6 +46,16 @@ não dependerem de rede.
 - `similarity_preview.json` — cosseno TF-IDF + novidade por (órgão, seção).
 - `download_report.json` — status por órgão + MD5 (dedup de grupos ministeriais).
 
+## Errata (corrigida na S2)
+
+A primeira versão da segmentação ancorava `eixos` na CAPA (o título "PLANO DE
+TRANSFORMAÇÃO DIGITAL DA..." casa fuzzy 0,83 com "EIXOS DA TRANSFORMAÇÃO
+DIGITAL" pelo miolo compartilhado), deslocando os blocos. Correção dupla em
+`extract_and_segment.py`: o primeiro token do heading precisa casar com o da
+âncora, e a seleção de âncoras é gulosa na ordem do template. O relatório
+agora inclui a checagem `headings_estranhos` (bloco contendo heading de outra
+seção) — 0 ocorrências após o fix.
+
 ## Achados que orientam a S2
 
 1. **Assinatura pro forma clara**: `acompanhamento` (cosseno médio 0,86) e

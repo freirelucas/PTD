@@ -156,6 +156,23 @@ def strip_furniture(pages):
     return clean, model_version
 
 
+def _match_anchor(h: str, anchor: str) -> bool:
+    """Heading normalizado casa com a âncora?
+
+    Além do ratio difflib da linha inteira, o PRIMEIRO token precisa casar:
+    a capa 'PLANO DE TRANSFORMAÇÃO DIGITAL DA' tem ratio 0.83 contra
+    'eixos da transformacao digital' só pelo miolo compartilhado — sem o
+    guarda de primeiro token, a âncora de eixos gruda na capa e desloca a
+    segmentação inteira.
+    """
+    if h == anchor or h.startswith(anchor):
+        return True
+    if difflib.SequenceMatcher(None, h, anchor).ratio() < FUZZY_HEADING:
+        return False
+    h0, a0 = h.split()[0], anchor.split()[0]
+    return h0 == a0 or difflib.SequenceMatcher(None, h0, a0).ratio() >= 0.8
+
+
 def find_anchors(pages, sections):
     per_page = []       # (pi, li, key, raw_line)
     for pi, lines in enumerate(pages):
@@ -166,13 +183,7 @@ def find_anchors(pages, sections):
             if len(h) < 8:
                 continue
             for sec in sections:
-                hit = False
-                for anchor in sec["anchors"]:
-                    if h == anchor or h.startswith(anchor) or \
-                       difflib.SequenceMatcher(None, h, anchor).ratio() >= FUZZY_HEADING:
-                        hit = True
-                        break
-                if hit:
+                if any(_match_anchor(h, a) for a in sec["anchors"]):
                     per_page.append((pi, li, sec["key"], line))
                     break
 
@@ -194,12 +205,20 @@ def find_anchors(pages, sections):
         page_words = sum(len(l.split()) for l in pages[pi])
         if n_toclike >= len(raws) / 2 or page_words < 150:
             toc_pages.add(pi)
-    anchors = [(pi, li, k) for pi, li, k, _ in per_page if pi not in toc_pages]
+    anchors = sorted((pi, li, k) for pi, li, k, _ in per_page
+                     if pi not in toc_pages)
 
+    # Seleção GULOSA na ordem do template: cada seção só pode ancorar
+    # DEPOIS da anterior. Bloqueia matches espúrios fora de ordem (ex.:
+    # menção a outra seção dentro de um bloco anterior).
     seen = {}
-    for pi, li, key in sorted(anchors):
-        if key not in seen:
-            seen[key] = (pi, li)
+    cursor = (-1, -1)
+    for sec in sections:
+        cands = [(pi, li) for pi, li, k in anchors
+                 if k == sec["key"] and (pi, li) > cursor]
+        if cands:
+            seen[sec["key"]] = cands[0]
+            cursor = cands[0]
     return seen, toc_pages
 
 
@@ -252,6 +271,21 @@ def main() -> int:
 
         blocks, toc_pages = segment(pages, sections)
         all_blocks[sigla] = blocks
+
+        # Sanidade: um bloco NÃO deve conter o heading de outra seção —
+        # se contém, a âncora daquela seção casou no lugar errado.
+        foreign = []
+        for key, btext in blocks.items():
+            for line in btext.split("\n"):
+                h = norm_heading(line.strip())
+                if len(h) < 8 or len(line) > MAX_HEADING_LEN:
+                    continue
+                for sec in sections:
+                    if sec["key"] != key and \
+                            any(_match_anchor(h, a) for a in sec["anchors"]):
+                        foreign.append(f"{key}⊃{sec['key']}")
+                        break
+
         report["orgaos"][sigla] = {
             "n_pages": len(page_texts),
             "model_version": model_version,
@@ -259,6 +293,7 @@ def main() -> int:
             "sections_found": sorted(blocks.keys()),
             "n_sections": len(blocks),
             "words_per_section": {k: len(v.split()) for k, v in blocks.items()},
+            "headings_estranhos": foreign,
         }
         if not blocks:
             report["no_anchors"].append(sigla)
@@ -271,6 +306,8 @@ def main() -> int:
         "n_no_anchors": len(report["no_anchors"]),
         "n_4plus_sections": sum(1 for b in all_blocks.values() if len(b) >= 4),
         "n_6_sections": sum(1 for b in all_blocks.values() if len(b) == 6),
+        "n_com_headings_estranhos": sum(
+            1 for v in report["orgaos"].values() if v.get("headings_estranhos")),
         "coverage_por_secao": coverage,
         "model_versions": dict(Counter(
             v["model_version"] for v in all_text.values()

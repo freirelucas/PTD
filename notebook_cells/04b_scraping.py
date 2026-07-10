@@ -143,7 +143,11 @@ def scrape_organ_listing(url: str) -> List[OrganInfo]:
                 }
 
     logger.info(f"Scraping direto: {len(organ_data)} siglas encontradas")
+    return _build_organ_list(organ_data)
 
+
+def _build_organ_list(organ_data: Dict[str, Dict[str, Optional[str]]]) -> List[OrganInfo]:
+    """Expande grupos ministeriais e materializa a lista final de OrganInfo."""
     # Expandir grupos: membros herdam PDFs do cabeça se não tiverem próprios
     expanded = dict(organ_data)
     for head_sigla, members in ORGAN_GROUPS.items():
@@ -180,9 +184,219 @@ def scrape_organ_listing(url: str) -> List[OrganInfo]:
     return organs
 
 
+# --------- Fallback do defeso eleitoral: listagem paginada -----------
+# Durante o defeso a página estruturada some; resta a listagem paginada de
+# arquivos em ptds-vigentes?b_start:int=N (20 itens/página), cujos títulos
+# são os NOMES DOS ARQUIVOS. Para não envenenar os dados com adivinhação,
+# a associação sigla/tipo ancora primeiro no snapshot anterior committado
+# (output/organs.csv); heurística de nome só para arquivos novos/renomeados.
+
+def _repo_root() -> str:
+    """Raiz do repo p/ snapshot e cache. run_pipeline faz chdir(REPO_ROOT);
+    no Colab o cwd é outro — defina PTD_REPO_ROOT apontando pro clone."""
+    return os.environ.get("PTD_REPO_ROOT", os.getcwd())
+
+
+def _load_previous_url_map() -> Dict[str, Tuple[str, frozenset]]:
+    """basename do PDF → (sigla, {tipos}) a partir do snapshot output/organs.csv.
+
+    Dois cuidados obrigatórios:
+    - Grupos ministeriais compartilham o MESMO basename entre várias siglas;
+      a sigla-CABEÇA do grupo (chave de ORGAN_GROUPS) tem prioridade — sem
+      isso o "último ganha" mapearia MMA→SFB e a expansão de grupo nunca
+      dispararia, sumindo com 8 órgãos silenciosamente.
+    - Um mesmo arquivo pode servir de diretivo E de entregas (caso MDA):
+      o valor carrega o CONJUNTO de tipos, não um só.
+    """
+    path = os.path.join(_repo_root(), "output", "organs.csv")
+    if not os.path.exists(path):
+        logger.warning(f"Snapshot {path} não encontrado (cwd={os.getcwd()}; "
+                       "defina PTD_REPO_ROOT no Colab) — associação de "
+                       "arquivos só por heurística de nome.")
+        return {}
+    import csv as _csv
+
+    def _prio(sigla: str) -> Tuple[int, str]:
+        return (0 if sigla in ORGAN_GROUPS else 1, sigla)
+
+    acc: Dict[str, Tuple[str, set]] = {}
+    with open(path, encoding="utf-8-sig") as fh:
+        for row in _csv.DictReader(fh):
+            for tipo, col in (("diretivo", "url_diretivo"),
+                              ("entregas", "url_entregas")):
+                url = (row.get(col) or "").strip()
+                if not url:
+                    continue
+                base = url.rsplit("/", 1)[-1].lower()
+                if base not in acc:
+                    acc[base] = (row["sigla"], {tipo})
+                else:
+                    sig0, tipos = acc[base]
+                    best = (row["sigla"]
+                            if _prio(row["sigla"]) < _prio(sig0) else sig0)
+                    acc[base] = (best, tipos | {tipo})
+    return {b: (s, frozenset(t)) for b, (s, t) in acc.items()}
+
+
+# Tokens genéricos que aparecem como 1º token mas nunca são sigla
+_FILENAME_STOPWORDS = {"anexo", "ptd", "novo", "plano", "doc", "documento",
+                       "de", "do", "da", "transformacao", "digital"}
+
+
+def _sigla_tipo_from_filename(fname: str,
+                              known_siglas: set) -> Tuple[Optional[str], Optional[str]]:
+    """Heurística p/ arquivos fora do snapshot anterior.
+
+    Sigla: (1) qualquer token que seja sigla conhecida (ex.:
+    'anexo_de_entregas_-_mt_...' → MT); (2) 1º token que COMEÇA com sigla
+    conhecida (concatenações tipo 'mmulheresptd_...' → MMULHERES); (3) 1º
+    token plausível fora da stoplist (sigla inédita, vai p/ revisão).
+    Tipo: keyword no nome; sem keyword → None (não adivinha).
+    """
+    stem = fname.lower().replace(".pdf", "")
+    tokens = [t for t in re.split(r"[\-_.]+", stem) if t]
+
+    sigla = None
+    for t in tokens:
+        if t.upper() in known_siglas:
+            sigla = t.upper()
+            break
+    if sigla is None and tokens:
+        prefixes = [s for s in known_siglas
+                    if len(s) >= 3 and tokens[0].startswith(s.lower())]
+        if prefixes:
+            sigla = max(prefixes, key=len)
+    if sigla is None:
+        for t in tokens:
+            if t in _FILENAME_STOPWORDS:
+                continue
+            if re.match(r"^[a-z][a-z0-9]{1,13}$", t):
+                sigla = t.upper()
+            break
+
+    if "diretiv" in stem:
+        tipo = "diretivo"
+    elif "entrega" in stem or "anexo" in stem:
+        tipo = "entregas"
+    else:
+        tipo = None
+    return sigla, tipo
+
+
+def scrape_pdf_listing_paginated(base_url: str) -> List[OrganInfo]:
+    """Scraping da listagem paginada (modo defeso eleitoral)."""
+    prev_map = _load_previous_url_map()
+    known_siglas = set(s for s, _ in prev_map.values()) | set(MEMBER_TO_GROUP)
+    organ_data: Dict[str, Dict[str, Optional[str]]] = {}
+    review: List[str] = []
+    seen_hrefs = set()
+
+    start = 0
+    for _page_n in range(100):        # guarda anti-loop; listagem tem ~11 págs
+        page_url = f"{base_url}/ptds-vigentes?b_start:int={start}"
+        resp = safe_request(page_url)
+        if resp is None:
+            # Falha NO MEIO da paginação não pode virar fim-de-lista: um
+            # corpus truncado passaria no gate e publicaria menos órgãos.
+            raise RuntimeError(
+                f"Listagem paginada interrompida por falha de rede em "
+                f"b_start={start} — abortando sem escrever dados.")
+        soup = BeautifulSoup(resp.content, "html.parser")
+        # Links derivados DOS itens (um por item): usar um seletor mais
+        # largo para links e outro para itens dessincronizaria a contagem
+        # de página e pularia arquivos.
+        items = soup.select(".summary")
+        new_links = []
+        for it in items:
+            a_tag = (it if it.name == "a" and it.has_attr("href")
+                     else it.find("a", href=True))
+            if a_tag is None:
+                continue
+            href = a_tag["href"]
+            # Normaliza relativo → absoluto (paridade com o modo estruturado)
+            if href.startswith("/"):
+                href = "https://www.gov.br" + href
+            clean = href[:-5] if href.endswith("/view") else href
+            if not clean.lower().endswith(".pdf") or "ptds-vigentes" not in clean:
+                continue
+            if clean in seen_hrefs:
+                continue
+            seen_hrefs.add(clean)
+            new_links.append(clean)
+        if not items:
+            break                      # página vazia = fim da listagem
+        # Avança pelo nº REAL de itens da página (b_size do Plone é
+        # configurável no servidor; passo fixo de 20 pularia itens).
+        start += len(items)
+        if not new_links:
+            continue
+
+        for href in new_links:
+            basename = href.rsplit("/", 1)[-1].lower()
+            if basename in prev_map:
+                sigla, tipos = prev_map[basename]
+            else:
+                sigla, tipo = _sigla_tipo_from_filename(basename, known_siglas)
+                if not sigla or not tipo:
+                    review.append(basename)
+                    continue
+                if sigla not in known_siglas:
+                    # Órgão inédito é possível, mas fica sinalizado
+                    review.append(f"{basename} (sigla nova: {sigla})")
+                tipos = frozenset({tipo})
+            entry = organ_data.setdefault(sigla, {
+                "nome": f"Plano de Transformação Digital {sigla}",
+                "url_diretivo": None, "url_entregas": None,
+            })
+            for tipo in sorted(tipos):
+                key = f"url_{tipo}"
+                if entry[key] is None:
+                    entry[key] = href
+
+    logger.info(f"Listagem paginada: {len(organ_data)} siglas, "
+                f"{len(seen_hrefs)} PDFs, {len(review)} p/ revisão")
+    if review:
+        print(f"  ⚠ {len(review)} arquivos não associados automaticamente:")
+        for r in review[:10]:
+            print(f"    - {r}")
+    return _build_organ_list(organ_data)
+
+
 # ---- Execução (sempre faz scraping fresco — leva ~3s) ----
-print("Fazendo scraping da página principal...")
-all_organs = scrape_organ_listing(BASE_URL)
+# Tenta os candidatos de URL em ordem (portal normal → defeso eleitoral).
+# Gate anti-envenenamento: um modo só é aceito com >=60 órgãos com URL;
+# se todos falharem, aborta SEM escrever nada (corpus anterior preservado).
+MIN_ORGAOS_SCRAPING = 60
+all_organs: List[OrganInfo] = []
+PORTAL_MODE = None
+for _base, _modo in BASE_URL_CANDIDATES:
+    print(f"Tentando portal ({_modo}): {_base}")
+    # Probe COM retry (safe_request): um blip transitório no candidato
+    # normal não pode demotar o run para o modo listagem/defeso — a
+    # associação por heurística de nome é mais fraca. GET, nunca HEAD:
+    # o WAF do gov.br devolve 403 a HEAD mesmo com o recurso no ar.
+    if safe_request(_base, max_retries=2, delay=1.0) is None:
+        print("  inacessível após retries — próximo candidato")
+        continue
+    try:
+        _organs = (scrape_organ_listing(_base) if _modo == "estruturado"
+                   else scrape_pdf_listing_paginated(_base))
+    except Exception as _exc:
+        logger.warning(f"Modo {_modo} falhou: {_exc}")
+        continue
+    _com_url = sum(1 for o in _organs if o.url_diretivo or o.url_entregas)
+    if _com_url >= MIN_ORGAOS_SCRAPING:
+        all_organs, PORTAL_MODE = _organs, _modo
+        print(f"Portal em modo '{_modo}': {_com_url} órgãos com URL")
+        break
+    logger.warning(f"Modo {_modo}: só {_com_url} órgãos com URL "
+                   f"(mínimo {MIN_ORGAOS_SCRAPING}) — tentando próximo")
+
+if not all_organs:
+    raise RuntimeError(
+        "Scraping falhou em todos os candidatos de URL (portal fora do ar ou "
+        "estrutura mudou de novo). Abortando SEM escrever dados — o corpus "
+        "anterior permanece intacto.")
 
 # ---- Validação e Resumo ----
 _n_total = len(all_organs)

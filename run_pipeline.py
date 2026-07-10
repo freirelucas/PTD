@@ -42,24 +42,32 @@ FLOORS = {"orgaos": 80, "entregas": 3500, "riscos": 450}
 
 
 def preflight(ns: dict) -> None:
-    """HEAD no portal SGD; aborta com exit 2 (e mensagem clara) se inacessível."""
+    """HEAD nos candidatos de URL do portal SGD (forma normal e a do defeso
+    eleitoral); passa se QUALQUER um responder. Exit 2 se todos falharem."""
     import requests
-    url = ns["BASE_URL"]
-    exc_msg = ""
-    try:
-        resp = requests.head(url, headers=ns["HTTP_HEADERS"],
-                             timeout=30, allow_redirects=True)
-        code = resp.status_code
-    except requests.RequestException as exc:
-        code, exc_msg = None, f"{type(exc).__name__}: {exc}"
-    if code is None or code >= 400:
-        print("PREFLIGHT FALHOU: portal SGD inacessível "
-              f"({exc_msg if code is None else f'HTTP {code}'}) — {url}")
-        print("Causas prováveis: bloqueio do IP do runner pelo gov.br ou "
-              "indisponibilidade do portal.")
-        print("Fallback: fluxo manual via Colab (README §Publicar os dados).")
-        sys.exit(2)
-    print(f"PREFLIGHT ok: HTTP {code} em {url}")
+    candidates = ns.get("BASE_URL_CANDIDATES") or [(ns["BASE_URL"], "estruturado")]
+    failures = []
+    for url, modo in candidates:
+        try:
+            # GET leve (stream, corpo não lido): o WAF do gov.br devolve 403
+            # para HEAD mesmo quando o recurso existe.
+            resp = requests.get(url, headers=ns["HTTP_HEADERS"],
+                                timeout=30, allow_redirects=True, stream=True)
+            resp.close()
+            if resp.status_code < 400:
+                print(f"PREFLIGHT ok: HTTP {resp.status_code} em {url} "
+                      f"(modo {modo})")
+                return
+            failures.append(f"{url}: HTTP {resp.status_code}")
+        except requests.RequestException as exc:
+            failures.append(f"{url}: {type(exc).__name__}: {exc}")
+    print("PREFLIGHT FALHOU: portal SGD inacessível em todos os candidatos:")
+    for f in failures:
+        print(f"  - {f}")
+    print("Causas prováveis: bloqueio do IP do runner pelo gov.br ou "
+          "indisponibilidade do portal.")
+    print("Fallback: fluxo manual via Colab (README §Publicar os dados).")
+    sys.exit(2)
 
 
 def run_cells(skip_preflight: bool) -> None:
@@ -117,6 +125,13 @@ def quality_gate() -> dict:
     return report
 
 
+# Artefatos de output/ que NÃO nascem do notebook: o delete-then-copy os
+# apagaria e a cadeia de derivados abaixo precisa deles de volta.
+#   - embeddings: computados offline (torch), commitados como dado;
+#   - análise textual: regenerada por build_text_analysis (determinística).
+SYNC_PRESERVE = ["directive_text_embeddings.json"]
+
+
 def sync_repo() -> None:
     """ptd_output/output → output/ do repo + regeneração dos derivados.
 
@@ -124,17 +139,28 @@ def sync_repo() -> None:
     artefatos órfãos de runs antigos (o Drive acumula; o repo não deve).
     """
     print("\nSYNC: substituindo output/ do repo pelo run novo…")
+    preserved = {}
+    for name in SYNC_PRESERVE:
+        p = os.path.join(REPO_OUTPUT, name)
+        if os.path.exists(p):
+            with open(p, "rb") as fh:
+                preserved[name] = fh.read()
     for entry in os.listdir(REPO_OUTPUT):
         p = os.path.join(REPO_OUTPUT, entry)
         shutil.rmtree(p) if os.path.isdir(p) else os.remove(p)
     shutil.copytree(RUN_OUTPUT, REPO_OUTPUT, dirs_exist_ok=True)
+    for name, data in preserved.items():
+        with open(os.path.join(REPO_OUTPUT, name), "wb") as fh:
+            fh.write(data)
 
     if REPO_ROOT not in sys.path:
         sys.path.insert(0, REPO_ROOT)
     import build_corpus
     import build_metadata
-    if build_metadata.main([]) != 0 or build_corpus.main([]) != 0:
-        print("SYNC: regeneração de metadados/corpus falhou.")
+    import build_text_analysis
+    if build_metadata.main([]) != 0 or build_corpus.main([]) != 0 \
+            or build_text_analysis.main([]) != 0:
+        print("SYNC: regeneração de metadados/corpus/análise textual falhou.")
         sys.exit(1)
     print("SYNC ok: output/ + index.html prontos para commit.")
 

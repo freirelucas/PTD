@@ -51,6 +51,8 @@ Os descritores de dados abertos (Frictionless, schema.org, DCAT-AP, SKOS, JSON S
 
 Para baixar **só o corpus** (sem dashboard, figuras, fila de revisão), `make corpus-zip` empacota `corpus_<snapshot>.zip` — pacote Frictionless autocontido: `deliveries`/`risks`/`organs` canônicos + `datapackage.json` + `harmonization_report.json` + `manifest.json` (proveniência).
 
+**PDFs-fonte em cache** — os PDFs do Documento Diretivo (60 únicos, 85 órgãos) e a minuta oficial do template estão versionados em [`corpus_pdfs/`](corpus_pdfs/), com manifest de MD5 e proveniência. Download com um clique: [**main.zip**](https://github.com/freirelucas/PTD/archive/refs/heads/main.zip) (repo completo, inclui o cache). Isso torna a análise textual reprodutível mesmo quando o portal gov.br muda de estrutura (ex.: defeso eleitoral) ou renomeia arquivos — detalhes em [`corpus_pdfs/README.md`](corpus_pdfs/README.md).
+
 ## Como usar
 
 **Princípio do projeto — transparência e reprodutibilidade científicas.**
@@ -212,6 +214,10 @@ PTD/
     12*_iteration.*            # Review queue
   index.html                   # Dashboard interativo (consome output/data.js)
   output/                      # Dados extraídos e visualizações
+  build_text_analysis.py       # Análise textual do diretivo (aba Texto Diretivo)
+  build_text_embeddings.py     # Camada semântica offline (embeddings commitados)
+  corpus_pdfs/                 # Cache versionado dos PDFs diretivos + minuta v2.2
+  spike_s1/                    # Extração/segmentação da prosa do diretivo + dados
   DECISIONS.md                 # Histórico de decisões técnicas e bugs corrigidos
   requirements.txt             # Dependências Python
 ```

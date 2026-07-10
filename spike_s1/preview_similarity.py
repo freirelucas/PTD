@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 """S1 spike — prévia da métrica: cosseno TF-IDF de cada bloco vs template.
 
+SUPERSEDIDO por build_text_analysis.py (raiz do repo), que é a implementação
+canônica: stopwords ampliadas, somas ordenadas (determinismo bit a bit),
+consenso por versão e diffs. Este script fica como registro histórico do
+spike; não compare os números daqui com os do dashboard.
+
 TF-IDF implementado em Python puro (corpus pequeno: ~75 órgãos × 6 seções).
 Também computa 'novidade' = fração de tokens do órgão ausentes no template.
 Saída: ptd_output/text/similarity_preview.json + resumo no stdout.

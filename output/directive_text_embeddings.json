@@ -1,0 +1,402 @@
+{
+ "model": "paraphrase-multilingual-MiniLM-L12-v2",
+ "sentence_transformers": "5.6.0",
+ "torch": "2.13.0+cpu",
+ "cosine": {
+  "AEB": {
+   "escopo": 0.9326,
+   "visao": 0.2999,
+   "eixos": 0.9893,
+   "acompanhamento": 0.9912,
+   "riscos": 0.6738,
+   "papeis": 0.7235
+  },
+  "ANA": {
+   "escopo": 0.9722,
+   "visao": 0.2147,
+   "eixos": 0.987,
+   "acompanhamento": 0.9845,
+   "riscos": 0.7157,
+   "papeis": 0.8652
+  },
+  "ANAC": {
+   "escopo": 0.9429,
+   "visao": 0.4812,
+   "eixos": 0.9934,
+   "acompanhamento": 1.0,
+   "riscos": 0.4047,
+   "papeis": 0.8711
+  },
+  "ANATEL": {
+   "escopo": 0.9714,
+   "visao": 0.5195,
+   "eixos": 0.9934,
+   "acompanhamento": 1.0,
+   "riscos": 0.5497,
+   "papeis": 0.8939
+  },
+  "ANCINE": {
+   "escopo": 0.9335,
+   "visao": 0.2557,
+   "eixos": 0.9934,
+   "acompanhamento": 1.0,
+   "riscos": 0.7271,
+   "papeis": 0.7918
+  },
+  "ANEEL": {
+   "escopo": 0.9783,
+   "visao": 0.2637,
+   "eixos": 0.9527,
+   "acompanhamento": 0.9912,
+   "riscos": 1.0,
+   "papeis": 0.903
+  },
+  "ANM": {
+   "escopo": 0.9632,
+   "visao": 0.3321,
+   "eixos": 0.9934,
+   "acompanhamento": 1.0,
+   "riscos": 0.7143,
+   "papeis": 0.8878
+  },
+  "ANPD": {
+   "escopo": 0.9867,
+   "visao": 0.4348,
+   "eixos": 0.9934,
+   "acompanhamento": 1.0,
+   "riscos": 0.6369,
+   "papeis": 0.9203
+  },
+  "ANS": {
+   "escopo": 0.9713,
+   "visao": 0.2655,
+   "eixos": 0.9934,
+   "acompanhamento": 1.0,
+   "riscos": 0.6228,
+   "papeis": 0.9267
+  },
+  "ANTAQ": {
+   "escopo": 0.9672,
+   "visao": 0.382,
+   "eixos": 0.9934,
+   "acompanhamento": 1.0,
+   "riscos": 0.5974,
+   "papeis": 0.8263
+  },
+  "BCB": {
+   "escopo": 0.9406,
+   "visao": 0.4458,
+   "eixos": 0.9934,
+   "acompanhamento": 0.9951,
+   "papeis": 0.8124
+  },
+  "CADE": {
+   "escopo": 0.9882,
+   "visao": 0.2377,
+   "eixos": 0.9934,
+   "acompanhamento": 1.0,
+   "riscos": 0.3526,
+   "papeis": 0.9299
+  },
+  "CAPES": {
+   "escopo": 0.953,
+   "visao": 0.3181,
+   "eixos": 0.8339,
+   "acompanhamento": 0.7855,
+   "riscos": 0.6109,
+   "papeis": 0.8902
+  },
+  "CENSIPAM": {
+   "escopo": 0.9567,
+   "visao": 0.4245,
+   "eixos": 0.9934,
+   "acompanhamento": 0.9438,
+   "riscos": 0.4883,
+   "papeis": 0.8485
+  },
+  "CGU": {
+   "escopo": 0.989,
+   "visao": 0.3325,
+   "eixos": 0.9934,
+   "acompanhamento": 1.0,
+   "riscos": 0.6255,
+   "papeis": 0.8754
+  },
+  "CNPQ": {
+   "escopo": 0.9778,
+   "visao": 0.3715,
+   "eixos": 0.9934,
+   "acompanhamento": 1.0,
+   "riscos": 0.5893,
+   "papeis": 0.9398
+  },
+  "COAF": {
+   "escopo": 0.9605,
+   "visao": 0.427,
+   "eixos": 0.9948,
+   "acompanhamento": 1.0,
+   "riscos": 0.5552,
+   "papeis": 0.8384
+  },
+  "CODEVASF": {
+   "escopo": 0.931,
+   "visao": 0.3482,
+   "eixos": 0.9934,
+   "acompanhamento": 0.9876,
+   "riscos": 0.5681,
+   "papeis": 0.9254
+  },
+  "CONAB": {
+   "escopo": 0.9735,
+   "visao": 0.3699,
+   "eixos": 0.9934,
+   "acompanhamento": 1.0,
+   "riscos": 0.6933,
+   "papeis": 0.8336
+  },
+  "CVM": {
+   "escopo": 0.9811,
+   "visao": 0.4328,
+   "eixos": 1.0,
+   "acompanhamento": 0.6317,
+   "papeis": 0.8547
+  },
+  "DNOCS": {
+   "escopo": 0.9886,
+   "visao": 0.3757,
+   "eixos": 0.9934,
+   "acompanhamento": 1.0,
+   "riscos": 0.5876,
+   "papeis": 0.9155
+  },
+  "FCRB": {
+   "escopo": 0.9838,
+   "visao": 0.4378,
+   "eixos": 0.9934,
+   "acompanhamento": 1.0,
+   "riscos": 0.5372,
+   "papeis": 0.9217
+  },
+  "FIOCRUZ": {
+   "escopo": 0.9768,
+   "visao": 0.3153,
+   "eixos": 0.9934,
+   "acompanhamento": 1.0,
+   "papeis": 0.8428
+  },
+  "FUNARTE": {
+   "escopo": 0.9811,
+   "visao": 0.2734,
+   "eixos": 0.9934,
+   "acompanhamento": 1.0,
+   "riscos": 0.6714,
+   "papeis": 0.8866
+  },
+  "FUNDACENTRO": {
+   "escopo": 0.9705,
+   "visao": 0.4185,
+   "eixos": 0.9934,
+   "acompanhamento": 1.0,
+   "riscos": 0.3131,
+   "papeis": 0.974
+  },
+  "IBAMA": {
+   "escopo": 0.9707,
+   "visao": 0.4054,
+   "eixos": 0.9934,
+   "acompanhamento": 1.0,
+   "riscos": 0.7006,
+   "papeis": 0.8268
+  },
+  "IBGE": {
+   "escopo": 0.9353,
+   "visao": 0.3619,
+   "eixos": 0.9934,
+   "acompanhamento": 1.0,
+   "riscos": 0.5997,
+   "papeis": 0.9431
+  },
+  "INPI": {
+   "escopo": 0.9874,
+   "visao": 0.2831,
+   "eixos": 0.9934,
+   "acompanhamento": 1.0,
+   "riscos": 0.5551,
+   "papeis": 0.882
+  },
+  "INSS": {
+   "escopo": 0.9752,
+   "visao": 0.3519,
+   "eixos": 0.9934,
+   "acompanhamento": 1.0,
+   "riscos": 0.5401,
+   "papeis": 0.9524
+  },
+  "IPHAN": {
+   "escopo": 0.9837,
+   "visao": 0.4001,
+   "eixos": 0.9934,
+   "acompanhamento": 1.0,
+   "riscos": 0.553,
+   "papeis": 0.8869
+  },
+  "MCTI": {
+   "escopo": 0.9915,
+   "visao": 0.3777,
+   "eixos": 0.9926,
+   "acompanhamento": 1.0,
+   "riscos": 0.5288,
+   "papeis": 0.7936
+  },
+  "MDHC": {
+   "escopo": 0.9618,
+   "visao": 0.2142,
+   "eixos": 0.9846,
+   "acompanhamento": 0.8037,
+   "riscos": 0.6385,
+   "papeis": 0.9161
+  },
+  "MEMP": {
+   "escopo": 0.9889,
+   "visao": 0.3539,
+   "eixos": 0.9934,
+   "acompanhamento": 1.0,
+   "riscos": 0.553,
+   "papeis": 0.8393
+  },
+  "MESP": {
+   "escopo": 0.9632,
+   "visao": 0.4151,
+   "eixos": 0.9934,
+   "acompanhamento": 1.0,
+   "riscos": 0.5902,
+   "papeis": 0.8483
+  },
+  "MF": {
+   "escopo": 0.9539,
+   "visao": 0.3738,
+   "eixos": 0.9901,
+   "acompanhamento": 1.0,
+   "riscos": 0.5806,
+   "papeis": 0.9281
+  },
+  "MGI": {
+   "escopo": 0.9765,
+   "visao": 0.3428,
+   "eixos": 0.9926,
+   "acompanhamento": 0.9797,
+   "riscos": 0.448,
+   "papeis": 0.8111
+  },
+  "MINC": {
+   "escopo": 0.9819,
+   "visao": 0.4516,
+   "eixos": 0.9934,
+   "acompanhamento": 0.9873,
+   "riscos": 1.0,
+   "papeis": 0.9319
+  },
+  "MJSP": {
+   "escopo": 0.9786,
+   "visao": 0.4051,
+   "eixos": 0.9934,
+   "acompanhamento": 0.9971,
+   "papeis": 0.9218
+  },
+  "MME": {
+   "escopo": 0.9695,
+   "visao": 0.2641,
+   "eixos": 0.9933,
+   "acompanhamento": 1.0,
+   "riscos": 0.6339,
+   "papeis": 0.9059
+  },
+  "MMULHERES": {
+   "escopo": 0.9782,
+   "visao": 0.2816,
+   "eixos": 0.9934,
+   "acompanhamento": 1.0,
+   "riscos": 0.4999,
+   "papeis": 0.9145
+  },
+  "MPI": {
+   "escopo": 0.9619,
+   "visao": 0.3158,
+   "eixos": 0.9934,
+   "acompanhamento": 1.0,
+   "papeis": 0.8893
+  },
+  "MPO": {
+   "escopo": 0.9813,
+   "visao": 0.417,
+   "eixos": 0.9934,
+   "acompanhamento": 1.0,
+   "riscos": 0.6701,
+   "papeis": 0.9301
+  },
+  "MPOR": {
+   "escopo": 0.9732,
+   "visao": 0.3304,
+   "eixos": 0.9934,
+   "acompanhamento": 1.0,
+   "riscos": 0.5323,
+   "papeis": 0.8661
+  },
+  "MPS": {
+   "escopo": 0.992,
+   "visao": 0.4172,
+   "eixos": 0.9934,
+   "acompanhamento": 0.988,
+   "riscos": 0.6913,
+   "papeis": 0.958
+  },
+  "MRE": {
+   "escopo": 0.9626,
+   "visao": 0.4386,
+   "eixos": 0.9934,
+   "acompanhamento": 1.0,
+   "riscos": 0.5993,
+   "papeis": 0.9223
+  },
+  "MTE": {
+   "escopo": 0.9749,
+   "visao": 0.174,
+   "eixos": 0.9934,
+   "acompanhamento": 1.0,
+   "riscos": 0.553,
+   "papeis": 0.9486
+  },
+  "MTUR": {
+   "escopo": 0.9201,
+   "visao": 0.3317,
+   "eixos": 0.9934,
+   "acompanhamento": 1.0,
+   "riscos": 0.6335,
+   "papeis": 0.7951
+  },
+  "PF": {
+   "escopo": 0.9533,
+   "visao": 0.3353,
+   "eixos": 0.9934,
+   "acompanhamento": 1.0,
+   "riscos": 0.6338,
+   "papeis": 0.8256
+  },
+  "PRF": {
+   "escopo": 0.9716,
+   "visao": 0.3687,
+   "eixos": 0.9905,
+   "acompanhamento": 1.0,
+   "riscos": 0.6263,
+   "papeis": 0.8408
+  },
+  "SGPR": {
+   "escopo": 0.9819,
+   "visao": 0.3362,
+   "eixos": 0.9934,
+   "acompanhamento": 1.0,
+   "riscos": 0.6521,
+   "papeis": 0.9116
+  }
+ }
+}

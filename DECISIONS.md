@@ -212,3 +212,50 @@ em `*_original`, cada alteração registrada em `harmonization_report.json`, e a
 linhas afetadas re-sinalizadas com `needs_review=True`. O datapackage harmonizado
 usa enums **estritos** e passa em `frictionless validate`. A harmonização é
 reversível e auditável — nenhuma informação é perdida.
+
+## 6. Resiliência ao defeso eleitoral e cache de PDFs (jul/2026)
+
+### 6.1 O problema
+
+Durante o defeso eleitoral (Lei 9.504/1997), o portal SGD/MGI muda: o caminho
+perde o `-de-` (`planos-transformacao-digital`) e a página estruturada
+(`<strong>SIGLA</strong>` + links rotulados "Documento Diretivo"/"Anexo de
+Entregas") **deixa de existir**, restando apenas uma listagem paginada de
+arquivos (`ptds-vigentes?b_start:int=N`, 20 itens/página) cujos títulos são os
+nomes crus dos PDFs. Passado o defeso, o portal volta ao normal. Confirmado ao
+vivo em jul/2026: além da mudança de URL, vários PDFs foram re-publicados com
+nomes novos (ex.: BCB virou `bcb_ptd_temp_...`) e o PTD do MMA sumiu da
+listagem. Detalhe adicional: o WAF do gov.br responde **403 a requisições
+HEAD** mesmo quando o recurso existe — o preflight passou a usar GET leve
+(stream, corpo não lido).
+
+### 6.2 Decisão: candidatos de URL + modo de parsing por candidato
+
+`BASE_URL_CANDIDATES` (02_config) tenta em ordem: forma normal (parsing
+estruturado, código original) → forma do defeso (novo
+`scrape_pdf_listing_paginated`). No modo listagem, a associação sigla/tipo
+NUNCA é adivinhada às cegas: primeiro casa o basename contra o snapshot
+anterior commitado (`output/organs.csv`); para arquivos novos/renomeados usa
+heurística conservadora (sigla conhecida em qualquer token do nome, prefixo
+de sigla conhecida, stoplist de tokens genéricos) e **tipo só por keyword**
+("diretiv"/"entrega|anexo") — arquivo ambíguo vai para a lista de revisão em
+vez de ser atribuído.
+
+### 6.3 Invariantes anti-envenenamento
+
+1. **Scraping**: modo só é aceito com ≥60 órgãos com URL; se todos os
+   candidatos falharem → `RuntimeError` (pipeline aborta sem escrever nada).
+2. **Download**: magic bytes `%PDF` obrigatórios; falha de download de
+   diretivo cai para o **cache versionado** `corpus_pdfs/` (proveniência
+   registrada e impressa no resumo) em vez de perder o órgão ou aceitar lixo.
+3. **Gate final**: `run_pipeline.py` já bloqueia `--sync` se
+   orgaos<80/entregas<3500/riscos<450 — um run parcial nunca substitui
+   `output/`. Dados só entram na main via PR.
+
+### 6.4 Cache versionado de PDFs (`corpus_pdfs/`)
+
+60 PDFs diretivos únicos (dedup MD5; grupos ministeriais compartilham
+arquivo) + minuta oficial DOCX v2.2 do template, com `manifest.json` (MD5,
+siglas compartilhadas, URL original). Torna a análise textual reprodutível
+sem rede e dá download de um clique (main.zip) no README. Trade-off aceito:
+~86 MB no repo em troca de reprodutibilidade independente do portal.

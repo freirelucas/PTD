@@ -1,0 +1,707 @@
+{
+  "_descricao": "Cache dos PDFs 'Documento Diretivo' dos PTDs, dedupado por MD5 (grupos ministeriais compartilham o mesmo PDF).",
+  "template": {
+    "file": "template/docdiretivo_minuta_v2-2.docx",
+    "md5": "c006541a0465e31de8655092c7b36ab0"
+  },
+  "orgaos": {
+    "AEB": {
+      "file": "diretivo/AEB_diretivo.pdf",
+      "md5": "3f7361dacfaffdad9721f4df18232f32",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/aeb_ptd_2025_2027_docdiretivo_aprovado_assinado-1_assinado_assinado-copia_tarjada.pdf"
+    },
+    "AGU": {
+      "file": "diretivo/AGU_diretivo.pdf",
+      "md5": "2bf72ae2d5aee65f7ed1c99095f2f799",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/agu_ptd_2025_2027_docdiretivo_assinado_assinado_assinado-copia_tarjada.pdf"
+    },
+    "ANA": {
+      "file": "diretivo/ANA_diretivo.pdf",
+      "md5": "65e6400a35255507b8a3f2a1a5ee0079",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/ana_ptd_2025_2027_docdiretivo_assinado_assinado_assinado_tarjado.pdf"
+    },
+    "ANAC": {
+      "file": "diretivo/ANAC_diretivo.pdf",
+      "md5": "0c618999862c26370316ee24fd470ba3",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/anac_ptd_2025_2026_docdiretivo_se_assinado_tarjado.pdf"
+    },
+    "ANATEL": {
+      "file": "diretivo/ANATEL_diretivo.pdf",
+      "md5": "76c3c2a855a5a8660020940d8a0cdf6b",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/anatel_ptd_docdiretivo_assinado_2025_2026_assinado_assinado-copia_tarjada.pdf"
+    },
+    "ANCINE": {
+      "file": "diretivo/ANCINE_diretivo.pdf",
+      "md5": "fca994475f730f1e687994f26857ff2b",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/ancine_ptd_2024_2026_docdiretivo_assinado-2_assinado_assinado-copia_tarjada.pdf"
+    },
+    "ANEEL": {
+      "file": "diretivo/ANEEL_diretivo.pdf",
+      "md5": "7f7f6ea5fe77ab65177babc2cd4266dc",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/ptd_aneel_2025-2027_docdiretivo_assinado_tarjado.pdf"
+    },
+    "ANM": {
+      "file": "diretivo/ANM_diretivo.pdf",
+      "md5": "4b301f26d8b00cfde111220b1b1aaab7",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/anm_ptd_2025_2027_docdiretivo_assinadopeloorgao_tarjado.pdf"
+    },
+    "ANPD": {
+      "file": "diretivo/ANPD_diretivo.pdf",
+      "md5": "ad9e98260a1bd9e6b263a5803af3b49d",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/anpd_ptd_2025_2027_docdiretivo_assinado_assinado_assinado-copia_tarjada.pdf"
+    },
+    "ANS": {
+      "file": "diretivo/ANS_diretivo.pdf",
+      "md5": "cf4e0d045ff4f80854f0670c958a8f61",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/ans-plano_de_transformacao_digital_assinado-copia_tarjada.pdf"
+    },
+    "ANTAQ": {
+      "file": "diretivo/ANTAQ_diretivo.pdf",
+      "md5": "c5ecf14599e8b20de17cb3b50d2618ff",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/antaq_ptd_2025_2027_docdiretivo_assinado_assinado_assinado-copia_tarjada.pdf"
+    },
+    "ANVISA": {
+      "file": "diretivo/ANVISA_diretivo.pdf",
+      "md5": "130c275464656be16506cc20b83081aa",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/anvisa_ptd_docdiretivo_2025-2026_assinado_assinado_assinado-copia_tarjada.pdf"
+    },
+    "BCB": {
+      "file": "diretivo/BCB_diretivo.pdf",
+      "md5": "3d5b2fb67aedad578fdc96b1db1737f4",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/bcb_documento_diretivo_assinado_assinado_assinado-copia_tarjada.pdf"
+    },
+    "CADE": {
+      "file": "diretivo/CADE_diretivo.pdf",
+      "md5": "898145d2f09eade3619cfe87f149e373",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/cade_ptd_docdiretivo_2025_2026_assinado-2_assinado_assinado-copia_tarjada.pdf"
+    },
+    "CAPES": {
+      "file": "diretivo/CAPES_diretivo.pdf",
+      "md5": "09e5262c22a9b5f81790654c6a6c778b",
+      "compartilhado_com": [
+        "EBSERH",
+        "FNDE",
+        "FUNDAJ",
+        "IBC",
+        "INEP",
+        "INES",
+        "MEC"
+      ],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/mec_ptd_docdiretivo_2025-2026_sei_mec-5566673_copia_tarjada.pdf"
+    },
+    "EBSERH": {
+      "file": "diretivo/CAPES_diretivo.pdf",
+      "md5": "09e5262c22a9b5f81790654c6a6c778b",
+      "compartilhado_com": [
+        "CAPES",
+        "FNDE",
+        "FUNDAJ",
+        "IBC",
+        "INEP",
+        "INES",
+        "MEC"
+      ],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/mec_ptd_docdiretivo_2025-2026_sei_mec-5566673_copia_tarjada.pdf"
+    },
+    "FNDE": {
+      "file": "diretivo/CAPES_diretivo.pdf",
+      "md5": "09e5262c22a9b5f81790654c6a6c778b",
+      "compartilhado_com": [
+        "CAPES",
+        "EBSERH",
+        "FUNDAJ",
+        "IBC",
+        "INEP",
+        "INES",
+        "MEC"
+      ],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/mec_ptd_docdiretivo_2025-2026_sei_mec-5566673_copia_tarjada.pdf"
+    },
+    "FUNDAJ": {
+      "file": "diretivo/CAPES_diretivo.pdf",
+      "md5": "09e5262c22a9b5f81790654c6a6c778b",
+      "compartilhado_com": [
+        "CAPES",
+        "EBSERH",
+        "FNDE",
+        "IBC",
+        "INEP",
+        "INES",
+        "MEC"
+      ],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/mec_ptd_docdiretivo_2025-2026_sei_mec-5566673_copia_tarjada.pdf"
+    },
+    "IBC": {
+      "file": "diretivo/CAPES_diretivo.pdf",
+      "md5": "09e5262c22a9b5f81790654c6a6c778b",
+      "compartilhado_com": [
+        "CAPES",
+        "EBSERH",
+        "FNDE",
+        "FUNDAJ",
+        "INEP",
+        "INES",
+        "MEC"
+      ],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/mec_ptd_docdiretivo_2025-2026_sei_mec-5566673_copia_tarjada.pdf"
+    },
+    "INEP": {
+      "file": "diretivo/CAPES_diretivo.pdf",
+      "md5": "09e5262c22a9b5f81790654c6a6c778b",
+      "compartilhado_com": [
+        "CAPES",
+        "EBSERH",
+        "FNDE",
+        "FUNDAJ",
+        "IBC",
+        "INES",
+        "MEC"
+      ],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/mec_ptd_docdiretivo_2025-2026_sei_mec-5566673_copia_tarjada.pdf"
+    },
+    "INES": {
+      "file": "diretivo/CAPES_diretivo.pdf",
+      "md5": "09e5262c22a9b5f81790654c6a6c778b",
+      "compartilhado_com": [
+        "CAPES",
+        "EBSERH",
+        "FNDE",
+        "FUNDAJ",
+        "IBC",
+        "INEP",
+        "MEC"
+      ],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/mec_ptd_docdiretivo_2025-2026_sei_mec-5566673_copia_tarjada.pdf"
+    },
+    "MEC": {
+      "file": "diretivo/CAPES_diretivo.pdf",
+      "md5": "09e5262c22a9b5f81790654c6a6c778b",
+      "compartilhado_com": [
+        "CAPES",
+        "EBSERH",
+        "FNDE",
+        "FUNDAJ",
+        "IBC",
+        "INEP",
+        "INES"
+      ],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/mec_ptd_docdiretivo_2025-2026_sei_mec-5566673_copia_tarjada.pdf"
+    },
+    "CENSIPAM": {
+      "file": "diretivo/CENSIPAM_diretivo.pdf",
+      "md5": "2e1a03136db01369ae4402b4275bfd7a",
+      "compartilhado_com": [
+        "CEX",
+        "CM",
+        "COMAER",
+        "FOSORIO",
+        "HFA",
+        "MD"
+      ],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/md_ptd_2026_2027_anexo_de_entregas_assinado_assinado_assinado_tarjado.pdf"
+    },
+    "CEX": {
+      "file": "diretivo/CENSIPAM_diretivo.pdf",
+      "md5": "2e1a03136db01369ae4402b4275bfd7a",
+      "compartilhado_com": [
+        "CENSIPAM",
+        "CM",
+        "COMAER",
+        "FOSORIO",
+        "HFA",
+        "MD"
+      ],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/md_ptd_2026_2027_anexo_de_entregas_assinado_assinado_assinado_tarjado.pdf"
+    },
+    "CM": {
+      "file": "diretivo/CENSIPAM_diretivo.pdf",
+      "md5": "2e1a03136db01369ae4402b4275bfd7a",
+      "compartilhado_com": [
+        "CENSIPAM",
+        "CEX",
+        "COMAER",
+        "FOSORIO",
+        "HFA",
+        "MD"
+      ],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/md_ptd_2026_2027_anexo_de_entregas_assinado_assinado_assinado_tarjado.pdf"
+    },
+    "COMAER": {
+      "file": "diretivo/CENSIPAM_diretivo.pdf",
+      "md5": "2e1a03136db01369ae4402b4275bfd7a",
+      "compartilhado_com": [
+        "CENSIPAM",
+        "CEX",
+        "CM",
+        "FOSORIO",
+        "HFA",
+        "MD"
+      ],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/md_ptd_2026_2027_anexo_de_entregas_assinado_assinado_assinado_tarjado.pdf"
+    },
+    "FOSORIO": {
+      "file": "diretivo/CENSIPAM_diretivo.pdf",
+      "md5": "2e1a03136db01369ae4402b4275bfd7a",
+      "compartilhado_com": [
+        "CENSIPAM",
+        "CEX",
+        "CM",
+        "COMAER",
+        "HFA",
+        "MD"
+      ],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/md_ptd_2026_2027_anexo_de_entregas_assinado_assinado_assinado_tarjado.pdf"
+    },
+    "HFA": {
+      "file": "diretivo/CENSIPAM_diretivo.pdf",
+      "md5": "2e1a03136db01369ae4402b4275bfd7a",
+      "compartilhado_com": [
+        "CENSIPAM",
+        "CEX",
+        "CM",
+        "COMAER",
+        "FOSORIO",
+        "MD"
+      ],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/md_ptd_2026_2027_anexo_de_entregas_assinado_assinado_assinado_tarjado.pdf"
+    },
+    "MD": {
+      "file": "diretivo/CENSIPAM_diretivo.pdf",
+      "md5": "2e1a03136db01369ae4402b4275bfd7a",
+      "compartilhado_com": [
+        "CENSIPAM",
+        "CEX",
+        "CM",
+        "COMAER",
+        "FOSORIO",
+        "HFA"
+      ],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/md_ptd_2026_2027_anexo_de_entregas_assinado_assinado_assinado_tarjado.pdf"
+    },
+    "CGU": {
+      "file": "diretivo/CGU_diretivo.pdf",
+      "md5": "47e05c5264fe47f4fe22316ee26c9c35",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/cgu_ptd_docdiretivo_assinado_assinado_assinado-copia_tarjada.pdf"
+    },
+    "CNPQ": {
+      "file": "diretivo/CNPQ_diretivo.pdf",
+      "md5": "fd9bd146defee695b57521b7bfde2752",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/cnpq_ptd_2025_2027_docdiretivo_assinado_assinado_assinado-1-1.pdf"
+    },
+    "COAF": {
+      "file": "diretivo/COAF_diretivo.pdf",
+      "md5": "d717f295b52e1c7814b44d2f26528740",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/coaf_ptd_2026_2027_docdiretivo_assinado_tarjado.pdf"
+    },
+    "CODEVASF": {
+      "file": "diretivo/CODEVASF_diretivo.pdf",
+      "md5": "583a41f9306dd2c5dd8cee3e9b7446b7",
+      "compartilhado_com": [
+        "MIDR",
+        "SUDAM",
+        "SUDECO",
+        "SUDENE"
+      ],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/midr_ptd_2025_2027_docdiretivo_assinado_assinado_assinado_tarjado.pdf"
+    },
+    "MIDR": {
+      "file": "diretivo/CODEVASF_diretivo.pdf",
+      "md5": "583a41f9306dd2c5dd8cee3e9b7446b7",
+      "compartilhado_com": [
+        "CODEVASF",
+        "SUDAM",
+        "SUDECO",
+        "SUDENE"
+      ],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/midr_ptd_2025_2027_docdiretivo_assinado_assinado_assinado_tarjado.pdf"
+    },
+    "SUDAM": {
+      "file": "diretivo/CODEVASF_diretivo.pdf",
+      "md5": "583a41f9306dd2c5dd8cee3e9b7446b7",
+      "compartilhado_com": [
+        "CODEVASF",
+        "MIDR",
+        "SUDECO",
+        "SUDENE"
+      ],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/midr_ptd_2025_2027_docdiretivo_assinado_assinado_assinado_tarjado.pdf"
+    },
+    "SUDECO": {
+      "file": "diretivo/CODEVASF_diretivo.pdf",
+      "md5": "583a41f9306dd2c5dd8cee3e9b7446b7",
+      "compartilhado_com": [
+        "CODEVASF",
+        "MIDR",
+        "SUDAM",
+        "SUDENE"
+      ],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/midr_ptd_2025_2027_docdiretivo_assinado_assinado_assinado_tarjado.pdf"
+    },
+    "SUDENE": {
+      "file": "diretivo/CODEVASF_diretivo.pdf",
+      "md5": "583a41f9306dd2c5dd8cee3e9b7446b7",
+      "compartilhado_com": [
+        "CODEVASF",
+        "MIDR",
+        "SUDAM",
+        "SUDECO"
+      ],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/midr_ptd_2025_2027_docdiretivo_assinado_assinado_assinado_tarjado.pdf"
+    },
+    "CONAB": {
+      "file": "diretivo/CONAB_diretivo.pdf",
+      "md5": "16db9c2c6649852acecf3d3e1e1ea7a6",
+      "compartilhado_com": [
+        "MDA"
+      ],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/mda-documento-diretivo-assinado_ptd-2025-207-copia-tarjada.pdf"
+    },
+    "MDA": {
+      "file": "diretivo/CONAB_diretivo.pdf",
+      "md5": "16db9c2c6649852acecf3d3e1e1ea7a6",
+      "compartilhado_com": [
+        "CONAB"
+      ],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/mda-documento-diretivo-assinado_ptd-2025-207-copia-tarjada.pdf"
+    },
+    "CVM": {
+      "file": "diretivo/CVM_diretivo.pdf",
+      "md5": "158b293ccb71181de73682a363e73989",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/cvm_ptd_2025_2027_docdiretivo_assinado_assinado_assinado_tarjado.pdf"
+    },
+    "DNOCS": {
+      "file": "diretivo/DNOCS_diretivo.pdf",
+      "md5": "6f0d31db3a1ce59afa89f32200ff48f7",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/dnocs_ptd_doc_diretivo_2025_2026_assinado_orgao-2_assinado_assinado-copia_tarjada.pdf"
+    },
+    "FBN": {
+      "file": "diretivo/FBN_diretivo.pdf",
+      "md5": "9f4ebe58b0c436c04847ae23440d8726",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/fbn_ptd_2025_2027_docdiretivo_assinado-1_tarjado.pdf"
+    },
+    "FCP": {
+      "file": "diretivo/FCP_diretivo.pdf",
+      "md5": "28aaeced32203a025934b044d64650a8",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/fcp_ptd_2025_2027_docdiretivo_assinado-1_tarjado.pdf"
+    },
+    "FCRB": {
+      "file": "diretivo/FCRB_diretivo.pdf",
+      "md5": "356c9b3f923ab144ed04d6476c392f94",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/fcrb_ptd_2025_2026_docdiretivo_aprovado_assinado-1_assinado_assinado-copia_tarjada.pdf"
+    },
+    "FIOCRUZ": {
+      "file": "diretivo/FIOCRUZ_diretivo.pdf",
+      "md5": "82349246aece938f1c47abeba63cd10e",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/fiocruz_novo-ptd_2-1_docdiretivo_repactuacao_2024-2026_assinado_assinado-copia_tarjada.pdf"
+    },
+    "FUNAI": {
+      "file": "diretivo/FUNAI_diretivo.pdf",
+      "md5": "477308dca1ae6119e4e91c4245814986",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/funai_ptd_2025_2027_docdiretivo_assinado-1_tarjado.pdf"
+    },
+    "FUNARTE": {
+      "file": "diretivo/FUNARTE_diretivo.pdf",
+      "md5": "f544198b2dbd53db73fccb2ef48892a2",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/funarte_ptd_docdiretivo_assinado_21_01_2025_assinado_assinado-copia_tarjada.pdf"
+    },
+    "FUNDACENTRO": {
+      "file": "diretivo/FUNDACENTRO_diretivo.pdf",
+      "md5": "7e07e70a89ecdd4a1169aeb7d93b5404",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/fundacentro_ptd_2025_2027_docdiretivo_assinado_assinado_assinado-copia_tarjada.pdf"
+    },
+    "IBAMA": {
+      "file": "diretivo/IBAMA_diretivo.pdf",
+      "md5": "d774adf307274b7c7c6bad27b70b51db",
+      "compartilhado_com": [
+        "ICMBIO",
+        "JBRJ",
+        "MMA",
+        "SFB"
+      ],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/mma_ptd_docdiretivo_assinado_2025_2026-1_assinado_assinado-copia_tarjada.pdf"
+    },
+    "ICMBIO": {
+      "file": "diretivo/IBAMA_diretivo.pdf",
+      "md5": "d774adf307274b7c7c6bad27b70b51db",
+      "compartilhado_com": [
+        "IBAMA",
+        "JBRJ",
+        "MMA",
+        "SFB"
+      ],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/mma_ptd_docdiretivo_assinado_2025_2026-1_assinado_assinado-copia_tarjada.pdf"
+    },
+    "JBRJ": {
+      "file": "diretivo/IBAMA_diretivo.pdf",
+      "md5": "d774adf307274b7c7c6bad27b70b51db",
+      "compartilhado_com": [
+        "IBAMA",
+        "ICMBIO",
+        "MMA",
+        "SFB"
+      ],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/mma_ptd_docdiretivo_assinado_2025_2026-1_assinado_assinado-copia_tarjada.pdf"
+    },
+    "MMA": {
+      "file": "diretivo/IBAMA_diretivo.pdf",
+      "md5": "d774adf307274b7c7c6bad27b70b51db",
+      "compartilhado_com": [
+        "IBAMA",
+        "ICMBIO",
+        "JBRJ",
+        "SFB"
+      ],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/mma_ptd_docdiretivo_assinado_2025_2026-1_assinado_assinado-copia_tarjada.pdf"
+    },
+    "SFB": {
+      "file": "diretivo/IBAMA_diretivo.pdf",
+      "md5": "d774adf307274b7c7c6bad27b70b51db",
+      "compartilhado_com": [
+        "IBAMA",
+        "ICMBIO",
+        "JBRJ",
+        "MMA"
+      ],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/mma_ptd_docdiretivo_assinado_2025_2026-1_assinado_assinado-copia_tarjada.pdf"
+    },
+    "IBGE": {
+      "file": "diretivo/IBGE_diretivo.pdf",
+      "md5": "6e305f831385c378c2fdd00208f0e9df",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/ibge_docdiretivo_2025_assinado_assinado_assinado-copia_tarjada.pdf"
+    },
+    "INCRA": {
+      "file": "diretivo/INCRA_diretivo.pdf",
+      "md5": "c74cf1298098b8eb32e70baff8902e7c",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/incra_ptd_docdiretivo__assinado-1_assinado_assinado-copia_tarjada.pdf"
+    },
+    "INPI": {
+      "file": "diretivo/INPI_diretivo.pdf",
+      "md5": "73782b38aa7f9fa7bcae461c6cb767f3",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/inpi_ptd_docdiretivo_assinado_2025_2026_assinado_assinado.pdf"
+    },
+    "INSS": {
+      "file": "diretivo/INSS_diretivo.pdf",
+      "md5": "1649fdf15952a697ce0bc89a0fd622d9",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/inss_ptd_2025_2027_docdiretivo-assinado-copia_tarjada.pdf"
+    },
+    "IPHAN": {
+      "file": "diretivo/IPHAN_diretivo.pdf",
+      "md5": "c3b5ffbe254273dc0768c262770c307e",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/iphan_ptd_docdiretivo_assinado_2025_2026_assinado_assinado-copia_tarjada.pdf"
+    },
+    "ITI": {
+      "file": "diretivo/ITI_diretivo.pdf",
+      "md5": "8a5876d50be1f177a04aa198b3df037f",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/iti_doc_diretivo_assinado-1_tarjado.pdf"
+    },
+    "MAPA": {
+      "file": "diretivo/MAPA_diretivo.pdf",
+      "md5": "f0dd3c4074bb95f7217911db659125b4",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/mapa_ptd_2025_2027_docdiretivo_assinado-1_tarjado.pdf"
+    },
+    "MCOM": {
+      "file": "diretivo/MCOM_diretivo.pdf",
+      "md5": "6baf62c662a710eac93d8378bec5b394",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/documento-diretivo-mcom-_-ptd-25_27-copia_tarjada.pdf"
+    },
+    "MCTI": {
+      "file": "diretivo/MCTI_diretivo.pdf",
+      "md5": "2d9b333ff796d8e4adc560bfa53c7a45",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/mcti_ptd_2025-2027_docdiretivo_assinado-copia_tarjada.pdf"
+    },
+    "MDHC": {
+      "file": "diretivo/MDHC_diretivo.pdf",
+      "md5": "0bd16de0ac32c583300e903469fa690c",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/mdhc_ptd_2025_2027_docdiretivo_assinado_assinado_assinado-copia_tarjada.pdf"
+    },
+    "MEMP": {
+      "file": "diretivo/MEMP_diretivo.pdf",
+      "md5": "66cf91d1a3c6a1450ef4befdc15a220c",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/memp_ptd_2025_2026_docdiretivo_assinado_assinado_assinado-copia_tarjada.pdf"
+    },
+    "MESP": {
+      "file": "diretivo/MESP_diretivo.pdf",
+      "md5": "9e56924e4a4ab3b8e8bcd30b6abbf64a",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/mesp_ptd_2025_2027_docdiretivo_assinado_assinado_29_assinado-copia_tarjada.pdf"
+    },
+    "MF": {
+      "file": "diretivo/MF_diretivo.pdf",
+      "md5": "3c209cbd26d7b2019cf253bc00065c8b",
+      "compartilhado_com": [
+        "PGFN",
+        "RFB",
+        "STN"
+      ],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/mf_ptd_2026_2027_documentodiretivo_assinado_assinado_assinado_tarjado.pdf"
+    },
+    "PGFN": {
+      "file": "diretivo/MF_diretivo.pdf",
+      "md5": "3c209cbd26d7b2019cf253bc00065c8b",
+      "compartilhado_com": [
+        "MF",
+        "RFB",
+        "STN"
+      ],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/mf_ptd_2026_2027_documentodiretivo_assinado_assinado_assinado_tarjado.pdf"
+    },
+    "RFB": {
+      "file": "diretivo/MF_diretivo.pdf",
+      "md5": "3c209cbd26d7b2019cf253bc00065c8b",
+      "compartilhado_com": [
+        "MF",
+        "PGFN",
+        "STN"
+      ],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/mf_ptd_2026_2027_documentodiretivo_assinado_assinado_assinado_tarjado.pdf"
+    },
+    "STN": {
+      "file": "diretivo/MF_diretivo.pdf",
+      "md5": "3c209cbd26d7b2019cf253bc00065c8b",
+      "compartilhado_com": [
+        "MF",
+        "PGFN",
+        "RFB"
+      ],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/mf_ptd_2026_2027_documentodiretivo_assinado_assinado_assinado_tarjado.pdf"
+    },
+    "MGI": {
+      "file": "diretivo/MGI_diretivo.pdf",
+      "md5": "7051c3b5daf9414c38189f96257e3cf6",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/mgi_ptd_2025_2027_docdiretivo_assinado_assinado_assinado_pdf_tarjado.pdf"
+    },
+    "MINC": {
+      "file": "diretivo/MINC_diretivo.pdf",
+      "md5": "f222472d0be8fbfa4d6c701a9ae9eebb",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/minc_ptd_2025_2027_docdiretivo_assinado-1_assinado_assinado-copia_tarjada.pdf"
+    },
+    "MJSP": {
+      "file": "diretivo/MJSP_diretivo.pdf",
+      "md5": "041f15954be3160c5863e89460f6669f",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/mjsp_ptd_docdiretivo_assinado_2025_2026_assinado_assinado-copia_tarjada.pdf"
+    },
+    "MME": {
+      "file": "diretivo/MME_diretivo.pdf",
+      "md5": "db277ec0e865d28508aca443cf9c85ea",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/mme_ptd_2025_2027_docdiretivo_assinado-copia_tarjada.pdf"
+    },
+    "MMULHERES": {
+      "file": "diretivo/MMULHERES_diretivo.pdf",
+      "md5": "2bcf9179ef038f72a4dc378c8922b649",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/mmulheres_ptd_2025_2027_docdiretivo_assinado_assinado_assinado-copia_tarjada.pdf"
+    },
+    "MPI": {
+      "file": "diretivo/MPI_diretivo.pdf",
+      "md5": "b1c8272a906c668e176d00b4270563fe",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/mpi_ptd_2025_2027_docdiretivo_assinado_assinado_assinado_tarjado.pdf"
+    },
+    "MPO": {
+      "file": "diretivo/MPO_diretivo.pdf",
+      "md5": "606e82f00f169592b16ee520499db8f0",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/mpo_ptd_docdiretivo_assinado_2025_2026_assinado_assinado-copia_tarjada.pdf"
+    },
+    "MPOR": {
+      "file": "diretivo/MPOR_diretivo.pdf",
+      "md5": "b37784616c16a74b9e6e36c537641faa",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/mpor_ptd_2025_2027_docdiretivo_assinado_assinado_assinado_tarjado.pdf"
+    },
+    "MPS": {
+      "file": "diretivo/MPS_diretivo.pdf",
+      "md5": "de63c2bd6e77b5567633717b81c8b086",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/mps_ptd_2025-2026_docdiretivo_final_assinado-1_assinado_assinado-copia_tarjada.pdf"
+    },
+    "MRE": {
+      "file": "diretivo/MRE_diretivo.pdf",
+      "md5": "c8570a7e38d30530613fadafd84c0c72",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/mre_ptd_docdiretivo_assinado_2025_2026_assinado_assinado-copia_tarjada.pdf"
+    },
+    "MTE": {
+      "file": "diretivo/MTE_diretivo.pdf",
+      "md5": "7af518265c0310a57b8b02d97c3fc953",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/mte_ptd_2025_2026_docdiretivo_assinado_assinado_assinado-copia_tarjada.pdf"
+    },
+    "MTUR": {
+      "file": "diretivo/MTUR_diretivo.pdf",
+      "md5": "df577371c46e4b7150c2bd317de15799",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/mtur_ptd_docdiretiv_assinado_30_01_2025_assinado_assinado-copia_tarjada.pdf"
+    },
+    "PF": {
+      "file": "diretivo/PF_diretivo.pdf",
+      "md5": "5e50a94ab9ae22a307f2962b3729cfc0",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/pf_ptd_docdiretivo_2025_2027_assinado-copia_tarjada.pdf"
+    },
+    "PREVIC": {
+      "file": "diretivo/PREVIC_diretivo.pdf",
+      "md5": "3484949a1bbeb0788bc1fb8c76899145",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/previc_plano_de_transformacao_digital_2025_2026_29abr2025_assinado_29_assinado_assinado-copia_tarjada.pdf"
+    },
+    "PRF": {
+      "file": "diretivo/PRF_diretivo.pdf",
+      "md5": "fc6e703c88b1fefd4c86ffe32ad9cb6c",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/prf_documentodiretivo_ptd_2026-2027_assinado_tarjado.pdf"
+    },
+    "SGPR": {
+      "file": "diretivo/SGPR_diretivo.pdf",
+      "md5": "bf16abb600070c78c4b28d91114b71db",
+      "compartilhado_com": [],
+      "url_original": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital/ptds-vigentes/sg-pr_ptd_2026_2027_docdiretivo_assinado_assinado_assinado_tarjado.pdf"
+    }
+  },
+  "_stats": {
+    "orgaos": 85,
+    "arquivos_unicos": 60,
+    "bytes": 89483461
+  }
+}

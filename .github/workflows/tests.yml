@@ -22,3 +22,5 @@ jobs:
         run: pytest -v tests/
       - name: Smoke test (offline)
         run: python smoke_test.py
+      - name: Análise textual em dia (build_text_analysis --check)
+        run: python build_text_analysis.py --check

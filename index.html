@@ -231,6 +231,22 @@ td.trunc{max-width:360px;white-space:nowrap;overflow:hidden;text-overflow:ellips
 tr.freq-row:hover td{background:var(--light)}
 /* Ação destacada na célula da matriz */
 .action-bar--matrix{border-left-color:var(--yellow)}
+/* === Aba Texto Diretivo === */
+.txt-heat{display:grid;gap:2px;font-size:.7rem;min-width:560px}
+.txt-heat .th{background:var(--dark);color:#fff;padding:6px 4px;text-align:center;font-weight:600;border-radius:3px;display:flex;align-items:center;justify-content:center}
+.txt-heat .rl{background:var(--primary);color:#fff;padding:4px 6px;font-weight:600;border-radius:3px;display:flex;align-items:center;font-size:.68rem}
+.txt-heat .cell{padding:6px 4px;text-align:center;border-radius:3px;cursor:pointer;font-weight:600;transition:transform .1s}
+.txt-heat .cell:hover{transform:scale(1.12);box-shadow:0 2px 8px rgba(0,0,0,.25);z-index:2}
+.txt-heat .cell.empty{background:#F0F2F5;color:#BBB;cursor:default;font-weight:400}
+.txt-heat .cell.empty:hover{transform:none;box-shadow:none}
+.diff-view{font-size:.85rem;line-height:1.9;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;max-height:480px;overflow-y:auto;overflow-wrap:anywhere}
+.diff-view .d-eq{color:#8A94A0}
+.diff-view .d-ins{background:#DCFCE7;color:#14532D;border-radius:3px;padding:1px 3px}
+.diff-view .d-del{background:#FEE2E2;color:#7F1D1D;text-decoration:line-through;border-radius:3px;padding:1px 3px;opacity:.75}
+.diff-view .d-skip{color:#AAB2BC;font-style:italic;background:#F5F7F9;border-radius:3px;padding:1px 8px}
+.term-chip{display:inline-block;background:#E6F0FB;color:#1F5083;border-radius:10px;padding:2px 10px;margin:2px 3px;font-size:.75rem;font-weight:600}
+.txt-legend{display:flex;gap:14px;flex-wrap:wrap;font-size:.75rem;color:var(--muted);margin:8px 0 4px}
+.txt-legend .sw{display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:-2px;margin-right:4px}
 </style>
 <!-- BEGIN schema.org JSON-LD (gerado por build_metadata.py) -->
 <script type="application/ld+json">
@@ -410,6 +426,7 @@ tr.freq-row:hover td{background:var(--light)}
     <a href="#risks" onclick="showSection('risks')"><span class="icon">&#9888;</span><span>Riscos</span></a>
     <a href="#organs" onclick="showSection('organs')"><span class="icon">&#9733;</span><span>Órgãos</span></a>
     <a href="#compare" onclick="showSection('compare')"><span class="icon">&#8596;</span><span>Comparação</span></a>
+    <a href="#texto" onclick="showSection('texto')"><span class="icon">&#182;</span><span>Texto Diretivo</span></a>
     <a href="#insights" onclick="showSection('insights')"><span class="icon">&#9881;</span><span>Insights</span></a>
     <a href="#visualizations" onclick="showSection('visualizations')"><span class="icon">&#9636;</span><span>Visualizações</span></a>
     <a href="#review" onclick="showSection('review')"><span class="icon">&#9873;</span><span>Revisão</span></a>
@@ -540,6 +557,39 @@ tr.freq-row:hover td{background:var(--light)}
       <div class="chart-container" style="box-shadow:none;padding:0"><canvas id="chart-compare-bar"></canvas></div>
       <div class="table-wrap" id="compare-table"></div>
     </div>
+  </div>
+</div>
+
+<!-- ===== TEXTO DIRETIVO ===== -->
+<div id="texto" class="section">
+  <h2>Texto Diretivo — Pro Forma × Contextualizado</h2>
+  <p class="desc">O corpo em prosa do <strong>Documento Diretivo</strong> comparado ao <strong>template oficial da SGD</strong> (minuta v2.2 do Kit de Elaboração) e ao <strong>consenso do corpus</strong>. Seções onde os órgãos copiam o padrão têm similaridade alta (pro forma); onde inserem ideias próprias, o vocabulário local dispara. A seção <em>Visão Estratégica</em> é o espaço de preenchimento livre — é onde cada ministério fala com voz própria. Órgãos que compartilham um mesmo PTD ministerial aparecem uma única vez (menor sigla). Métricas: cosseno TF-IDF (léxico, determinístico), cosseno de embeddings multilíngues (semântico, offline) e novidade lexical (fração do vocabulário ausente da referência).</p>
+  <div class="kpi-row" id="txt-kpis"></div>
+  <div class="chart-container">
+    <h3>Mapa órgão × seção <small>(cor = vocabulário próprio; clique para abrir o comparador)</small></h3>
+    <div class="txt-legend"><span><span class="sw" style="background:#EAF1F8"></span>copiou o padrão</span><span><span class="sw" style="background:#7AAFDB"></span>adaptou</span><span><span class="sw" style="background:#264A7F"></span>contextualizou (voz própria)</span><span><span class="sw" style="background:#F0F2F5"></span>sem prosa extraível</span></div>
+    <div style="overflow-x:auto"><div class="txt-heat" id="txt-heatmap"></div></div>
+  </div>
+  <div class="chart-row">
+    <div class="chart-container">
+      <h3>Quadrante — similaridade × contextualização</h3>
+      <div class="filters" style="margin-bottom:8px"><select id="txt-scatter-sec"></select></div>
+      <canvas id="chart-txt-scatter" height="300"></canvas>
+    </div>
+    <div class="chart-container">
+      <h3>Rankings <small>(média ponderada por tamanho do bloco)</small></h3>
+      <div class="table-wrap" id="txt-rankings" style="max-height:380px"></div>
+    </div>
+  </div>
+  <div class="chart-container">
+    <h3>Comparador palavra a palavra <small>(bloco do órgão vs referência)</small></h3>
+    <div class="filters" style="margin-bottom:10px">
+      <select id="txt-diff-org"><option value="">Selecione um órgão...</option></select>
+      <select id="txt-diff-sec"></select>
+    </div>
+    <div id="txt-diff-meta" style="margin-bottom:10px"></div>
+    <div class="txt-legend"><span><span class="sw" style="background:#DCFCE7"></span>texto próprio do órgão</span><span><span class="sw" style="background:#FEE2E2"></span>trecho do padrão omitido</span><span style="color:#8A94A0">texto igual ao padrão</span></div>
+    <div id="txt-diff-view" class="diff-view"></div>
   </div>
 </div>
 
@@ -1265,6 +1315,10 @@ function initOverview(){
      metric:'Jaccard',
      desc:`Quais órgãos têm perfis de pactuação parecidos? Selecione um de referência e veja o ranking de similaridade com barras interativas.`,
      color:'#8E44AD'},
+    {nav:'texto',icon:'\u00B6',title:'Texto Diretivo',
+     metric:'pro forma?',
+     desc:`Onde os ministérios copiaram o template SGD e onde colocaram ideias próprias? Similaridade léxica/semântica ao padrão + diff palavra a palavra por seção.`,
+     color:'#16A085'},
     {nav:'insights',icon:'\u2699',title:'Insights',
      metric:'12',
      desc:`Achados analíticos em 4 seções: corpus, entregas, riscos e análise transversal. Cards expansíveis com fundamentação.`,
@@ -2189,6 +2243,195 @@ function initVisualizations(){
   document.getElementById('fornecedor-detail').innerHTML=`<div class="insight-card" style="border-left-color:#C0392B;cursor:default"><h4>Dependência de Fornecedores</h4><div class="summary"><span class="num" style="color:#C0392B">${fornRisks.length}</span> riscos em <strong>${fornOrgs.size}</strong> órgãos mencionam dependência de fornecedores — o risco mais transversal do governo digital.<br><span style="font-size:.82em;color:#666">Os ${fornRisks.length} riscos vêm de ${fornOwners.size} órgãos com documento diretivo próprio; chega a ${fornOrgs.size} ao incluir os demais membros dos grupos ministeriais que compartilham o mesmo PTD.</span><br><br><strong>${fornCrit.length}</strong> estão na zona crítica (${(fornCrit.length/Math.max(fornRisks.length,1)*100).toFixed(0)}%). O tratamento predominante é <strong>mitigar</strong> (${fornTrat['mitigar']||0}x), embora a literatura recomende <em>transferir</em> ou <em>compartilhar</em> esse tipo de risco.<br><br><strong>Paradoxo</strong>: órgãos que mais digitalizam são os mais dependentes de fornecedores externos para executar a transformação — criando um ciclo de vulnerabilidade estrutural.</div></div>`;
 }
 
+/* ==================================================================
+   Aba Texto Diretivo — similaridade/discrepância vs template SGD.
+   Dados em output/text_data.js (const PTD_TEXT), lazy-load no 1º acesso.
+   ================================================================== */
+let _txtInit=false,_txtLoading=false;
+const TXT_SEC_LABELS={escopo:'Escopo',visao:'Visão Estratégica',eixos:'Eixos',
+  acompanhamento:'Acompanhamento',riscos:'Gestão de Riscos',papeis:'Papéis e Resp.'};
+
+function initTexto(){
+  if(typeof PTD_TEXT==='undefined'){
+    if(_txtLoading)return;
+    _txtLoading=true;
+    const s=document.createElement('script');
+    s.src='output/text_data.js';
+    s.onload=()=>{_txtLoading=false;renderTexto();};
+    s.onerror=()=>{_txtLoading=false;
+      document.getElementById('txt-kpis').innerHTML='<div class="kpi"><div class="label">Dados indisponíveis</div><div class="sub">output/text_data.js não encontrado — rode <code>python build_text_analysis.py</code>.</div></div>';};
+    document.head.appendChild(s);
+    return;
+  }
+  renderTexto();
+}
+
+function renderTexto(){
+  if(_txtInit)return;
+  _txtInit=true;
+  // Renderizadores isolados: se o Chart.js do CDN não carregar, o scatter
+  // falha sozinho — heatmap, rankings e comparador continuam funcionais.
+  [_txtKpis,_txtHeatmap,_txtScatterInit,_txtRankings,_txtDiffInit].forEach(f=>{
+    try{f();}catch(e){console.warn('texto:',e);}
+  });
+}
+
+function _txtOrgs(){return Object.keys(PTD_TEXT.metricas).sort();}
+function _txtSecs(){return PTD_TEXT.secoes.map(s=>s.key);}
+
+// média de uma métrica ponderada pelo tamanho do bloco
+// (blocos-medoide ficam de fora: seus valores são por construção)
+function _txtAvg(sigla,field){
+  let num=0,den=0;
+  const m=PTD_TEXT.metricas[sigla]||{};
+  Object.values(m).forEach(v=>{if(v.is_ref)return;num+=v[field]*v.n_tokens;den+=v.n_tokens;});
+  return den?num/den:0;
+}
+
+function _txtKpis(){
+  const orgs=_txtOrgs();
+  const nShared=Object.values(PTD_TEXT.orgaos).reduce((a,o)=>a+o.compartilhado_com.length,0);
+  const ag=PTD_TEXT.agregados||{};
+  const proForma=Object.entries(ag).filter(([,v])=>v.cosine_ref_mediana>=0.8).map(([k])=>TXT_SEC_LABELS[k]||k);
+  const livre=Object.entries(ag).sort((a,b)=>b[1].novelty_mediana-a[1].novelty_mediana)[0];
+  document.getElementById('txt-kpis').innerHTML=
+    `<div class="kpi"><div class="label">Diretivos analisados</div><div class="value">${orgs.length}</div><div class="sub">PDFs únicos; +${nShared} órgãos via PTD compartilhado</div></div>`+
+    `<div class="kpi"><div class="label">Referência</div><div class="value">v${PTD_TEXT.template_version}</div><div class="sub">minuta oficial SGD + consenso por versão do modelo</div></div>`+
+    `<div class="kpi"><div class="label">Seções pro forma</div><div class="value">${proForma.length}/6</div><div class="sub">${proForma.join(', ')||'—'} (mediana cos ≥ 0,80)</div></div>`+
+    `<div class="kpi"><div class="label">Seção com mais voz própria</div><div class="value" style="font-size:1.3rem">${livre?TXT_SEC_LABELS[livre[0]]:'—'}</div><div class="sub">novidade lexical mediana ${livre?(livre[1].novelty_mediana*100).toFixed(0):0}%</div></div>`;
+}
+
+function _txtHeatColor(nov){
+  // 0 → quase branco (copiou), 1 → azul escuro (voz própria). Paleta primary.
+  const stops=[[0,[234,241,248]],[0.35,[122,175,219]],[1,[38,74,127]]];
+  let lo=stops[0],hi=stops[stops.length-1];
+  for(let i=0;i<stops.length-1;i++)if(nov>=stops[i][0]&&nov<=stops[i+1][0]){lo=stops[i];hi=stops[i+1];break;}
+  const t=(nov-lo[0])/((hi[0]-lo[0])||1);
+  const c=lo[1].map((v,i)=>Math.round(v+(hi[1][i]-v)*t));
+  return `rgb(${c[0]},${c[1]},${c[2]})`;
+}
+
+function _txtHeatmap(){
+  const orgs=_txtOrgs(),secs=_txtSecs();
+  const el=document.getElementById('txt-heatmap');
+  el.style.gridTemplateColumns=`90px repeat(${secs.length},1fr)`;
+  let html='<div class="th">Órgão</div>'+secs.map(k=>`<div class="th">${TXT_SEC_LABELS[k]||k}</div>`).join('');
+  orgs.forEach(o=>{
+    const shared=PTD_TEXT.orgaos[o]?.compartilhado_com||[];
+    html+=`<div class="rl" title="${shared.length?'PTD compartilhado com: '+shared.join(', '):''}">${o}${shared.length?' <span style="opacity:.7">+'+shared.length+'</span>':''}</div>`;
+    secs.forEach(k=>{
+      const m=PTD_TEXT.metricas[o]?.[k];
+      if(!m){html+='<div class="cell empty">—</div>';return;}
+      if(m.is_ref){
+        html+=`<div class="cell" style="background:#FDF6E3;color:#8a6d1a;border:1px dashed #D4B85A" title="${o} · ${TXT_SEC_LABELS[k]}\nEste bloco É a referência de consenso do seu grupo de versão — sem métrica própria." onclick="txtOpenDiff('${o}','${k}')">REF</div>`;
+        return;
+      }
+      const nov=m.novelty,bg=_txtHeatColor(nov);
+      const fg=nov>0.45?'#fff':'#1A2530';
+      const tip=`${o} · ${TXT_SEC_LABELS[k]}\nvocabulário próprio: ${(nov*100).toFixed(0)}%\ncosseno vs referência: ${(m.cosine_ref*100).toFixed(0)}%`+(m.cosine_tpl!==undefined?`\ncosseno vs template: ${(m.cosine_tpl*100).toFixed(0)}%`:'')+(m.cosine_emb!==undefined?`\nsemântico vs ${k==='riscos'?'consenso':'template'}: ${(m.cosine_emb*100).toFixed(0)}%`:'');
+      html+=`<div class="cell" style="background:${bg};color:${fg}" title="${tip}" onclick="txtOpenDiff('${o}','${k}')">${(nov*100).toFixed(0)}</div>`;
+    });
+  });
+  el.innerHTML=html;
+}
+
+function _txtScatterInit(){
+  const sel=document.getElementById('txt-scatter-sec');
+  sel.innerHTML=_txtSecs().map(k=>`<option value="${k}" ${k==='visao'?'selected':''}>${TXT_SEC_LABELS[k]||k}</option>`).join('');
+  sel.addEventListener('change',_txtScatter);
+  _txtScatter();
+}
+
+function _txtScatter(){
+  const key=document.getElementById('txt-scatter-sec').value;
+  const pts=_txtOrgs().map(o=>{const m=PTD_TEXT.metricas[o]?.[key];
+    return m&&!m.is_ref?{x:+(m.cosine_ref*100).toFixed(1),y:+(m.novelty*100).toFixed(1),sigla:o}:null;}).filter(Boolean);
+  destroyChart('txtScatter');
+  charts.txtScatter=new Chart(document.getElementById('chart-txt-scatter'),{
+    type:'scatter',
+    data:{datasets:[{data:pts,pointRadius:5,pointHoverRadius:7,
+      backgroundColor:pts.map(p=>p.y>=50?'#16A085':(p.x>=70?'#7F8C8D':'#4D8AC9'))}]},
+    options:{animation:{duration:400},
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>{
+        const p=ctx.raw;return `${p.sigla}: ${p.x}% similar à referência, ${p.y}% vocabulário próprio`;}}}},
+      onClick:(e,els)=>{if(els.length){const p=pts[els[0].index];txtOpenDiff(p.sigla,key);}},
+      scales:{x:{min:0,max:100,title:{display:true,text:'similaridade à referência (%) — pro forma →'},grid:{display:false}},
+              y:{min:0,max:100,title:{display:true,text:'vocabulário próprio (%) — contextualizou ↑'},grid:{display:false}}}}});
+}
+
+function _txtRankings(){
+  const orgs=_txtOrgs();
+  const byNov=orgs.map(o=>({o,v:_txtAvg(o,'novelty')})).sort((a,b)=>b.v-a.v);
+  const byCos=orgs.map(o=>({o,v:_txtAvg(o,'cosine_ref')})).sort((a,b)=>b.v-a.v);
+  const row=(r,i,cls)=>`<tr><td style="width:24px;color:var(--muted)">${i+1}</td><td><b>${r.o}</b></td><td style="text-align:right;font-weight:700;color:${cls}">${(r.v*100).toFixed(0)}%</td></tr>`;
+  document.getElementById('txt-rankings').innerHTML=
+    `<table><thead><tr><th colspan="3">Mais contextualizados (vocabulário próprio)</th></tr></thead><tbody>`+
+    byNov.slice(0,8).map((r,i)=>row(r,i,'#16A085')).join('')+
+    `</tbody><thead><tr><th colspan="3">Mais pro forma (colados na referência)</th></tr></thead><tbody>`+
+    byCos.slice(0,8).map((r,i)=>row(r,i,'#7F8C8D')).join('')+`</tbody></table>`;
+}
+
+function _txtDiffInit(){
+  const orgSel=document.getElementById('txt-diff-org'),secSel=document.getElementById('txt-diff-sec');
+  orgSel.innerHTML='<option value="">Selecione um órgão...</option>'+
+    _txtOrgs().map(o=>{const sh=PTD_TEXT.orgaos[o]?.compartilhado_com||[];
+      return `<option value="${o}">${o}${sh.length?' (+'+sh.length+')':''}</option>`;}).join('');
+  secSel.innerHTML=_txtSecs().map(k=>`<option value="${k}" ${k==='visao'?'selected':''}>${TXT_SEC_LABELS[k]||k}</option>`).join('');
+  orgSel.addEventListener('change',_txtDiffRender);
+  secSel.addEventListener('change',_txtDiffRender);
+  _txtDiffRender();
+}
+
+function txtOpenDiff(org,sec){
+  document.getElementById('txt-diff-org').value=org;
+  document.getElementById('txt-diff-sec').value=sec;
+  _txtDiffRender();
+  document.getElementById('txt-diff-view').scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function _txtDiffRender(){
+  const org=document.getElementById('txt-diff-org').value;
+  const key=document.getElementById('txt-diff-sec').value;
+  const meta=document.getElementById('txt-diff-meta'),view=document.getElementById('txt-diff-view');
+  const m=org&&PTD_TEXT.metricas[org]?.[key];
+  if(!m){meta.innerHTML='';view.innerHTML='<p style="color:var(--muted);font-size:.85rem">Selecione um órgão e uma seção acima — ou clique numa célula do mapa.</p>';return;}
+
+  const info=PTD_TEXT.orgaos[org]||{};
+  const isRiscos=key==='riscos';
+  const refLabel=isRiscos?`consenso do corpus (${m.ref})`:'template oficial v'+PTD_TEXT.template_version;
+  const chips=(m.is_ref?['<b style="color:#8a6d1a">bloco de referência (medoide do consenso)</b>']:[])
+    .concat([`cos. léxico vs referência: <b>${(m.cosine_ref*100).toFixed(0)}%</b>`])
+    .concat(m.cosine_tpl!==undefined?[`vs template: <b>${(m.cosine_tpl*100).toFixed(0)}%</b>`]:[])
+    .concat(m.cosine_emb!==undefined?[`semântico (vs ${isRiscos?'consenso':'template'}): <b>${(m.cosine_emb*100).toFixed(0)}%</b>`]:[])
+    .concat([`vocabulário próprio: <b>${(m.novelty*100).toFixed(0)}%</b>`,`${m.n_tokens} tokens`,
+             `referência do diff: <b>${refLabel}</b>`]
+    .concat(info.versao_modelo?[`modelo v${info.versao_modelo}`]:[])
+    .concat(info.compartilhado_com.length?[`compartilhado com ${info.compartilhado_com.join(', ')}`]:[]));
+  meta.innerHTML=`<div style="font-size:.8rem;color:var(--muted)">${chips.join(' &nbsp;·&nbsp; ')}</div>`+
+    (m.local_terms.length?`<div style="margin-top:6px">${m.local_terms.map(t=>`<span class="term-chip">${_rvEscape(t)}</span>`).join('')}</div>`:'');
+
+  const refText=isRiscos?(PTD_TEXT.textos_ref[key]['consenso:'+m.ref]||''):PTD_TEXT.textos_ref[key].template;
+  // Split idêntico ao str.split() do Python (os opcodes foram computados
+  // contra ele): trim antes, senão espaço inicial desloca todos os índices.
+  const pySplit=t=>{const s=(t||'').trim();return s?s.split(/\s+/):[];};
+  const refW=pySplit(refText),orgW=pySplit(PTD_TEXT.textos[org][key]);
+  const ops=PTD_TEXT.diffs[org][key];
+  const CTX=8;
+  let html='';
+  ops.forEach(([op,i1,i2,j1,j2])=>{
+    if(op==='equal'){
+      const w=orgW.slice(j1,j2);
+      if(w.length>CTX*2+6){
+        html+=`<span class="d-eq">${_rvEscape(w.slice(0,CTX).join(' '))}</span> <span class="d-skip">⋯ ${w.length-CTX*2} palavras iguais ⋯</span> <span class="d-eq">${_rvEscape(w.slice(-CTX).join(' '))}</span> `;
+      }else html+=`<span class="d-eq">${_rvEscape(w.join(' '))}</span> `;
+    }else{
+      if(op!=='insert')html+=`<span class="d-del">${_rvEscape(refW.slice(i1,i2).join(' '))}</span> `;
+      if(op!=='delete')html+=`<span class="d-ins">${_rvEscape(orgW.slice(j1,j2).join(' '))}</span> `;
+    }
+  });
+  view.innerHTML=html||'<p style="color:var(--muted)">Sem texto.</p>';
+}
+
 // ==================== INIT ====================
 function showSection(id) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
@@ -2200,6 +2443,7 @@ function showSection(id) {
   if(id==='risks') initRisks();
   if(id==='organs') initOrgans();
   if(id==='compare') initCompare();
+  if(id==='texto') initTexto();
   if(id==='insights') initInsights();
   if(id==='visualizations') initVisualizations();
   if(id==='review') initReview();
