@@ -24,3 +24,5 @@ jobs:
         run: python smoke_test.py
       - name: Análise textual em dia (build_text_analysis --check)
         run: python build_text_analysis.py --check
+      - name: Consistência numérica dos docs (audit_numbers)
+        run: python audit_numbers.py

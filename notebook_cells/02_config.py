@@ -253,8 +253,12 @@ for eixo, prods in LEGACY_PRODUTOS.items():
 # (ex: dedup pulado, checkpoint stale carregado, novo formato de PDF não suportado).
 # Bumpar conforme o corpus crescer ou o gov.br republicar com novos rótulos.
 QUALITY_THRESHOLDS = {
-    "max_entregas":               4700,   # 4574 baseline + margem para PDFs novos
-    "max_riscos":                  700,   # 619 baseline + margem
+    # Baseline jul/2026: 5168 entregas / 704 riscos em 95 órgãos (entraram
+    # ANP, INMETRO, MPA e MS; CONAB/FUNAI/CENSIPAM re-publicaram anexos
+    # maiores). Tetos = baseline + ~10% de margem para PDFs novos; um salto
+    # acima disso indica dedup pulado ou extração dupla, não crescimento.
+    "max_entregas":               5700,   # 5168 baseline jul/2026 + margem
+    "max_riscos":                  780,   # 704 baseline jul/2026 + margem
     "min_prob_canonica_ratio":    0.85,
     "min_imp_canonica_ratio":     0.85,
     "min_trat_canonica_ratio":    0.80,

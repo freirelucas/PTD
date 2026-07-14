@@ -461,6 +461,7 @@ def _detect_column_shift(value: str, expected_scale: list, other_scales: list) -
 
 def _audit_risk_entries(entries: List[RiskEntry]) -> Dict[str, int]:
     """Marca needs_review por padrão anômalo. Retorna contagem por categoria."""
+    from collections import Counter
     stats = Counter()
     field_specs = [
         ("probabilidade_original", PROBABILIDADE_SCALE, "probabilidade",

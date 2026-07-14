@@ -168,7 +168,8 @@ heurística pós-Colab se aparecerem falsos positivos.
 | v2 (multi-page fix) | 7.664 | 929 | Fix completo multi-página + header-as-data |
 | v3 (dedup pós-output) | 4.573 | 595 | Dedup manual aplicada nos arquivos commitados |
 | v4 | 4.574 | 619 | Dedup MD5 versionada + detecção de tabelas órfãs + consolidação multi-linha |
-| **v5 (atual)** | **4.574** | **619** | + fallback posicional, offset id_risco, aliases de escala — 583/619 (94%) totalmente canônicos |
+| v5 | 4.574 | 619 | + fallback posicional, offset id_risco, aliases de escala — 583/619 (94%) totalmente canônicos |
+| **v6 (atual, jul/2026)** | **5.168** | **704** | Refresh com portal em defeso (95 órgãos: +ANP, INMETRO, MPA, MS); CONAB/FUNAI/CENSIPAM re-publicaram anexos maiores |
 
 A diferença entre v3 e v4 (+1 entrega, +24 riscos) decorre de 8 PDFs atualizados pelo
 portal gov.br em 17/abr/2026 (CODEVASF, COAF, MIDR/SUDAM/SUDECO/SUDENE, MPI, SGPR).
@@ -254,8 +255,8 @@ vez de ser atribuído.
 
 ### 6.4 Cache versionado de PDFs (`corpus_pdfs/`)
 
-60 PDFs diretivos únicos (dedup MD5; grupos ministeriais compartilham
-arquivo) + minuta oficial DOCX v2.2 do template, com `manifest.json` (MD5,
+PDFs diretivos únicos por MD5 (60 no snapshot mai/2026; 66 no de jul/2026 —
+grupos ministeriais compartilham arquivo) + minuta oficial DOCX v2.2 do template, com `manifest.json` (MD5,
 siglas compartilhadas, URL original). Torna a análise textual reprodutível
 sem rede e dá download de um clique (main.zip) no README. Trade-off aceito:
 ~86 MB no repo em troca de reprodutibilidade independente do portal.

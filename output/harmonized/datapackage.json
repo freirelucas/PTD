@@ -77,7 +77,7 @@
         ],
         "primaryKey": "sigla"
       },
-      "hash": "sha256:08039e08b24a430a5a4143ebf83e734c347faa0ea9b4fc0415ee4882f72bea6d"
+      "hash": "sha256:6494d0923b7877648bd4055d888a34dbf2c5a7b0c3df70a083e360778ea4fa98"
     },
     {
       "name": "risks",
@@ -321,7 +321,7 @@
           }
         ]
       },
-      "hash": "sha256:34a9176923d45b60acbe459dd079af8339de2662e6e5391ab2bf332ce85522fb"
+      "hash": "sha256:0334ff44fc1e9886d2300377237416201cc673d8d8753f815d399a63c4538c03"
     },
     {
       "name": "deliveries",
@@ -508,7 +508,7 @@
           }
         ]
       },
-      "hash": "sha256:0bd022a892a0e0aa4ca6eb5d3184a7784d15c720037036065eb6c5be41aa8a69"
+      "hash": "sha256:962fc6adbd3f22901d7ff48d082d643c9e1129b9ed0275727bf56c3eb0b65a42"
     }
   ]
 }

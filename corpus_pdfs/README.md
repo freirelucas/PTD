@@ -14,8 +14,8 @@ portal** — que muda de estrutura (ex.: defeso eleitoral) e renomeia arquivos.
 
 ## Conteúdo
 
-- `diretivo/<SIGLA>_diretivo.pdf` — 60 PDFs únicos (dedup por MD5) cobrindo
-  85 órgãos. Grupos ministeriais (MEC, MD, MF, MMA, MIDR, MDA…) publicam um
+- `diretivo/<SIGLA>_diretivo.pdf` — 66 PDFs únicos (dedup por MD5) cobrindo
+  93 órgãos. Grupos ministeriais (MEC, MD, MF, MMA, MIDR, MDA…) publicam um
   único PDF compartilhado: o arquivo fica sob a **menor sigla** do grupo
   (mesma política do pipeline) e o `manifest.json` mapeia todas as siglas.
 - `template/docdiretivo_minuta_v2-2.docx` — minuta oficial v2.2 do Documento
@@ -23,22 +23,22 @@ portal** — que muda de estrutura (ex.: defeso eleitoral) e renomeia arquivos.
 - `manifest.json` — por órgão: arquivo canônico, MD5, siglas que compartilham
   o PDF e URL original no portal.
 
-## Lacunas conhecidas (snapshot jul/2026)
+## Lacunas conhecidas (snapshot 2026-07-10)
 
-- **SUSEP**: PDF renomeado no portal durante o defeso eleitoral → 404 na URL
-  registrada; re-scrape futuro deve recuperá-lo.
-- **ABIN, ANTT, DNIT, MDIC, MT**: sem URL de Documento Diretivo no portal
-  (ANTT/DNIT/MT usam o PTD dos ministérios MT/MIDR; ABIN/MDIC sem diretivo
-  publicado).
-- 10 diretivos são digitalizações sem OCR (AGU, ANVISA, FBN, FCP, FUNAI,
-  INCRA, ITI, MAPA, MCOM, PREVIC) — presentes no cache, mas sem prosa
-  extraível.
+- **ABIN e MDIC**: sem Documento Diretivo publicado no portal (só Anexo de
+  Entregas). ANTT/DNIT/MT herdam o PTD dos grupos ministeriais.
+- 14 diretivos são digitalizações sem OCR (AGU, ANVISA, CODEVASF, FBN, FCP,
+  INCRA, ITI, MAPA, MCOM, MIDR, PREVIC, SUDAM, SUDECO, SUDENE) — presentes
+  no cache, mas sem prosa extraível. O grupo MIDR re-publicou o diretivo
+  como digitalização em jul/2026; a FUNAI saiu da lista com PDF pesquisável.
+- **SUSEP**: o PDF renomeado no defeso foi recuperado pelo scraper de
+  listagem — está no cache normalmente.
 
 ## Proveniência e integridade
 
-Baixados em 2026-07-09 das URLs em `output/organs.csv` (reescritas para a
-forma do portal em defeso eleitoral: `planos-transformacao-digital`, sem
-`-de-`). Verifique a integridade com os MD5 do `manifest.json`:
+Baixados em 2026-07-10 pelo pipeline (`run_pipeline.py`), com o portal em
+defeso eleitoral (modo listagem paginada; URLs na forma
+`planos-transformacao-digital`, sem `-de-`). Verifique a integridade com os MD5 do `manifest.json`:
 
 ```bash
 python3 - <<'EOF'

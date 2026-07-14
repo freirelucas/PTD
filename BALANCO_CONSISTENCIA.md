@@ -1,5 +1,9 @@
 # Balanço de Consistência — Corpus PTD-BR
 
+> **Documento histórico** — auditoria feita sobre o snapshot **mai/2026**
+> (91 órgãos / 4.574 entregas / 619 riscos). Números correntes: ver
+> `output/statistics_summary.json` e `python audit_numbers.py`.
+
 **Data da auditoria:** 2026-06-10 · **Snapshot auditado:** `manifest.json`
 `data_execucao=2026-05-12`, commit do pipeline `0d14ecd4` · **Branch:**
 `claude/focused-keller-rsptib`

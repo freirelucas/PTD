@@ -86,6 +86,15 @@ def run_cells(skip_preflight: bool) -> None:
             traceback.print_exc()
             print(f"\nFALHA na cell {name} — abortando.", flush=True)
             sys.exit(1)
+        # As dataclasses das células nascem com __module__ == "__main__" (o
+        # ns finge ser o Jupyter), mas o pickle dos checkpoints resolve o
+        # nome no __main__ REAL (este arquivo) — sem o registro abaixo,
+        # save_checkpoint morre com PicklingError no caminho headless.
+        _mm = sys.modules["__main__"]
+        for k, v in ns.items():
+            if isinstance(v, type) and getattr(v, "__module__", "") == "__main__" \
+                    and not hasattr(_mm, k):
+                setattr(_mm, k, v)
         print(f"--- {name} ok em {time.time() - t0:.1f}s", flush=True)
         if name == PREFLIGHT_AFTER and not skip_preflight:
             preflight(ns)

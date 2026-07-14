@@ -1,49 +1,49 @@
 {
-  "data_execucao": "2026-05-12",
-  "orgaos_total": 91,
-  "entregas_total": 4574,
-  "entregas_orgaos": 79,
-  "riscos_total": 619,
-  "riscos_orgaos": 76,
-  "riscos_canonicos": 592,
-  "pdfs_diretivo": 86,
-  "pdfs_entregas": 91,
-  "pdfs_total": 177,
+  "data_execucao": "2026-07-10",
+  "orgaos_total": 95,
+  "entregas_total": 5168,
+  "entregas_orgaos": 84,
+  "riscos_total": 704,
+  "riscos_orgaos": 79,
+  "riscos_canonicos": 659,
+  "pdfs_diretivo": 93,
+  "pdfs_entregas": 95,
+  "pdfs_total": 188,
   "pdfs_escaneados_pendentes": 10,
   "top5_produtos": {
-    "Integração ao Login Único": 694,
-    "Integração à ferramenta de avaliação da satisfação dos usuários": 685,
-    "Evolução do Serviço": 677,
-    "Disponibilização em Acesso Digital": 517,
-    "Implementação do PPSI": 343
+    "Integração à ferramenta de avaliação da satisfação dos usuários": 816,
+    "Integração ao Login Único": 809,
+    "Evolução do Serviço": 709,
+    "Disponibilização em Acesso Digital": 671,
+    "Implementação do PPSI": 401
   },
   "entregas_por_eixo": {
-    "Serviços Digitais e Melhoria da Qualidade": 2418,
-    "Unificação de Canais Digitais": 1241,
-    "Governança e Gestão de Dados": 123,
-    "Segurança e Privacidade": 644,
-    "Projetos Especiais": 148
+    "Serviços Digitais e Melhoria da Qualidade": 2783,
+    "Unificação de Canais Digitais": 1374,
+    "Governança e Gestão de Dados": 146,
+    "Segurança e Privacidade": 746,
+    "Projetos Especiais": 119
   },
   "distribuicao_probabilidade": {
-    "raro": 37,
-    "pouco provável": 243,
-    "provável": 234,
-    "muito provável": 68,
-    "praticamente certo": 22
+    "raro": 38,
+    "pouco provável": 271,
+    "provável": 265,
+    "muito provável": 71,
+    "praticamente certo": 25
   },
   "distribuicao_impacto": {
-    "muito baixo": 0,
-    "baixo": 46,
-    "médio": 155,
-    "alto": 262,
-    "muito alto": 138
+    "muito baixo": 1,
+    "baixo": 56,
+    "médio": 183,
+    "alto": 288,
+    "muito alto": 146
   },
   "distribuicao_tratamento": {
-    "mitigar": 491,
-    "eliminar": 13,
-    "transferir": 25,
-    "aceitar": 60
+    "mitigar": 547,
+    "eliminar": 14,
+    "transferir": 28,
+    "aceitar": 69
   },
-  "media_entregas_por_orgao": 80.2,
-  "mediana_entregas_por_orgao": 57
+  "media_entregas_por_orgao": 83.4,
+  "mediana_entregas_por_orgao": 59
 }
