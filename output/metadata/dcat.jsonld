@@ -11,7 +11,7 @@
   "dct:title": "PTD — Corpus dos Planos de Transformação Digital",
   "dct:description": "Pipeline de extração automatizada e corpus dos Planos de Transformação Digital (PTDs) instituídos pelo Decreto 12.198/2024 e pela Estratégia Federal de Governo Digital (EFGD) 2024-2027. Coleta os PTDs publicados no portal SGD/MGI (gov.br), extrai tabelas de entregas pactuadas e tabelas diretivas de gestão de riscos via PyMuPDF, padroniza vocabulário contra escalas e produtos canônicos definidos pela SGD, e disponibiliza os dados estruturados (CSV, JSON) e visualizações interativas para 95 órgãos signatários, ~5.2k entregas e ~700 riscos mapeados.",
   "dct:issued": "2026-05-12",
-  "dct:modified": "2026-07-10",
+  "dct:modified": "2026-08-02",
   "dcat:version": "0.1.0-preview",
   "dct:language": "pt-BR",
   "dct:accrualPeriodicity": "http://purl.org/cld/freq/irregular",
@@ -66,7 +66,7 @@
   ],
   "dct:provenance": {
     "@type": "dct:ProvenanceStatement",
-    "rdfs:label": "Extraído automaticamente dos PTDs publicados no portal SGD/MGI via pipeline PyMuPDF (commit 1fe31ba717), execução de 2026-07-10."
+    "rdfs:label": "Extraído automaticamente dos PTDs publicados no portal SGD/MGI via pipeline PyMuPDF (commit 9f51b7cd81), execução de 2026-08-02."
   },
   "dct:source": {
     "@id": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital"
@@ -117,7 +117,7 @@
       "spdx:checksum": {
         "@type": "spdx:Checksum",
         "spdx:algorithm": "spdx:checksumAlgorithm_sha256",
-        "spdx:checksumValue": "1e5e7973a2c7a76a3fc514f1db7ea00ca23b90c064710e6b449ed622372be278"
+        "spdx:checksumValue": "6985d6bd1bb9ca61c9028fb065857ce674b57dc6fcab4b96cbf5ba43696785d5"
       }
     },
     {
@@ -133,7 +133,7 @@
       "spdx:checksum": {
         "@type": "spdx:Checksum",
         "spdx:algorithm": "spdx:checksumAlgorithm_sha256",
-        "spdx:checksumValue": "c2df9473c671c75f1d3c07168b03f06cece9d5a338e83bd2103bb770db38c682"
+        "spdx:checksumValue": "b23fd6c3b5f8bcbaf581b4dd431637fb568c5eb36857fd3e14b397be5cc8492e"
       }
     },
     {
@@ -149,7 +149,7 @@
       "spdx:checksum": {
         "@type": "spdx:Checksum",
         "spdx:algorithm": "spdx:checksumAlgorithm_sha256",
-        "spdx:checksumValue": "6b640e366f35409f1cd072ab25fb7c9454df25bc539decc5e1920e0a3807952d"
+        "spdx:checksumValue": "607d1a0b1224f81506d69ac9b9754ebdd7bd7a1a1b106768b8411cd16b71a0af"
       }
     },
     {
@@ -165,7 +165,7 @@
       "spdx:checksum": {
         "@type": "spdx:Checksum",
         "spdx:algorithm": "spdx:checksumAlgorithm_sha256",
-        "spdx:checksumValue": "637e8dea7f162389dca7957f0bd1aaf24cf3c00aee91abcb7e477eb4370f5776"
+        "spdx:checksumValue": "2c5b3434638077265e9a43c2aca77b2c0930d065f294ea74420a173f895433c7"
       }
     },
     {
@@ -213,7 +213,7 @@
       "spdx:checksum": {
         "@type": "spdx:Checksum",
         "spdx:algorithm": "spdx:checksumAlgorithm_sha256",
-        "spdx:checksumValue": "4361cd99a9265bace2bc8537b38c3b301467613aaebfc736a12d1474b2fd8e9f"
+        "spdx:checksumValue": "8e817804981bcdb5e0e0132e60760cf53a3db01da4e48362e3c5cadada00d4ca"
       }
     },
     {
@@ -229,7 +229,7 @@
       "spdx:checksum": {
         "@type": "spdx:Checksum",
         "spdx:algorithm": "spdx:checksumAlgorithm_sha256",
-        "spdx:checksumValue": "43d71b157fc30bd216214eb0e8eab6d0b903fa22018375de340a4d2c083a9682"
+        "spdx:checksumValue": "c6273def70956326521503424bc0ebadb6df255400996d86a8e67aa8e47de98f"
       }
     },
     {

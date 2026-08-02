@@ -19,24 +19,24 @@
       "prov:label": "PTDs publicados no portal SGD/MGI"
     },
     {
-      "@id": "https://freirelucas.github.io/PTD#execucao-2026-07-10",
+      "@id": "https://freirelucas.github.io/PTD#execucao-2026-08-02",
       "@type": "prov:Activity",
       "prov:label": "Extração, padronização e exportação do corpus",
-      "prov:endedAtTime": "2026-07-10",
+      "prov:endedAtTime": "2026-08-02",
       "prov:wasAssociatedWith": {
         "@id": "https://freirelucas.github.io/PTD#pipeline"
       },
       "prov:used": {
         "@id": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital"
       },
-      "ptd:commit": "1fe31ba717a46db3c802d5b079140181b54d0f1b"
+      "ptd:commit": "9f51b7cd812a525a0a60be52fbbd4788c3e7bded"
     },
     {
       "@id": "https://freirelucas.github.io/PTD/output/coverage_summary.csv",
       "@type": "prov:Entity",
       "prov:label": "coverage_summary.csv",
       "prov:wasGeneratedBy": {
-        "@id": "https://freirelucas.github.io/PTD#execucao-2026-07-10"
+        "@id": "https://freirelucas.github.io/PTD#execucao-2026-08-02"
       },
       "prov:wasDerivedFrom": {
         "@id": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital"
@@ -48,7 +48,7 @@
       "@type": "prov:Entity",
       "prov:label": "deliveries.csv",
       "prov:wasGeneratedBy": {
-        "@id": "https://freirelucas.github.io/PTD#execucao-2026-07-10"
+        "@id": "https://freirelucas.github.io/PTD#execucao-2026-08-02"
       },
       "prov:wasDerivedFrom": {
         "@id": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital"
@@ -60,55 +60,55 @@
       "@type": "prov:Entity",
       "prov:label": "deliveries.json",
       "prov:wasGeneratedBy": {
-        "@id": "https://freirelucas.github.io/PTD#execucao-2026-07-10"
+        "@id": "https://freirelucas.github.io/PTD#execucao-2026-08-02"
       },
       "prov:wasDerivedFrom": {
         "@id": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital"
       },
-      "ptd:sha256": "1e5e7973a2c7a76a3fc514f1db7ea00ca23b90c064710e6b449ed622372be278"
+      "ptd:sha256": "6985d6bd1bb9ca61c9028fb065857ce674b57dc6fcab4b96cbf5ba43696785d5"
     },
     {
       "@id": "https://freirelucas.github.io/PTD/output/error_report.csv",
       "@type": "prov:Entity",
       "prov:label": "error_report.csv",
       "prov:wasGeneratedBy": {
-        "@id": "https://freirelucas.github.io/PTD#execucao-2026-07-10"
+        "@id": "https://freirelucas.github.io/PTD#execucao-2026-08-02"
       },
       "prov:wasDerivedFrom": {
         "@id": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital"
       },
-      "ptd:sha256": "c2df9473c671c75f1d3c07168b03f06cece9d5a338e83bd2103bb770db38c682"
+      "ptd:sha256": "b23fd6c3b5f8bcbaf581b4dd431637fb568c5eb36857fd3e14b397be5cc8492e"
     },
     {
       "@id": "https://freirelucas.github.io/PTD/output/organs.csv",
       "@type": "prov:Entity",
       "prov:label": "organs.csv",
       "prov:wasGeneratedBy": {
-        "@id": "https://freirelucas.github.io/PTD#execucao-2026-07-10"
+        "@id": "https://freirelucas.github.io/PTD#execucao-2026-08-02"
       },
       "prov:wasDerivedFrom": {
         "@id": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital"
       },
-      "ptd:sha256": "6b640e366f35409f1cd072ab25fb7c9454df25bc539decc5e1920e0a3807952d"
+      "ptd:sha256": "607d1a0b1224f81506d69ac9b9754ebdd7bd7a1a1b106768b8411cd16b71a0af"
     },
     {
       "@id": "https://freirelucas.github.io/PTD/output/pdf_metadata.csv",
       "@type": "prov:Entity",
       "prov:label": "pdf_metadata.csv",
       "prov:wasGeneratedBy": {
-        "@id": "https://freirelucas.github.io/PTD#execucao-2026-07-10"
+        "@id": "https://freirelucas.github.io/PTD#execucao-2026-08-02"
       },
       "prov:wasDerivedFrom": {
         "@id": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital"
       },
-      "ptd:sha256": "637e8dea7f162389dca7957f0bd1aaf24cf3c00aee91abcb7e477eb4370f5776"
+      "ptd:sha256": "2c5b3434638077265e9a43c2aca77b2c0930d065f294ea74420a173f895433c7"
     },
     {
       "@id": "https://freirelucas.github.io/PTD/output/review_queue.csv",
       "@type": "prov:Entity",
       "prov:label": "review_queue.csv",
       "prov:wasGeneratedBy": {
-        "@id": "https://freirelucas.github.io/PTD#execucao-2026-07-10"
+        "@id": "https://freirelucas.github.io/PTD#execucao-2026-08-02"
       },
       "prov:wasDerivedFrom": {
         "@id": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital"
@@ -120,7 +120,7 @@
       "@type": "prov:Entity",
       "prov:label": "risks.csv",
       "prov:wasGeneratedBy": {
-        "@id": "https://freirelucas.github.io/PTD#execucao-2026-07-10"
+        "@id": "https://freirelucas.github.io/PTD#execucao-2026-08-02"
       },
       "prov:wasDerivedFrom": {
         "@id": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital"
@@ -132,31 +132,31 @@
       "@type": "prov:Entity",
       "prov:label": "risks.json",
       "prov:wasGeneratedBy": {
-        "@id": "https://freirelucas.github.io/PTD#execucao-2026-07-10"
+        "@id": "https://freirelucas.github.io/PTD#execucao-2026-08-02"
       },
       "prov:wasDerivedFrom": {
         "@id": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital"
       },
-      "ptd:sha256": "4361cd99a9265bace2bc8537b38c3b301467613aaebfc736a12d1474b2fd8e9f"
+      "ptd:sha256": "8e817804981bcdb5e0e0132e60760cf53a3db01da4e48362e3c5cadada00d4ca"
     },
     {
       "@id": "https://freirelucas.github.io/PTD/output/statistics_summary.json",
       "@type": "prov:Entity",
       "prov:label": "statistics_summary.json",
       "prov:wasGeneratedBy": {
-        "@id": "https://freirelucas.github.io/PTD#execucao-2026-07-10"
+        "@id": "https://freirelucas.github.io/PTD#execucao-2026-08-02"
       },
       "prov:wasDerivedFrom": {
         "@id": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital"
       },
-      "ptd:sha256": "43d71b157fc30bd216214eb0e8eab6d0b903fa22018375de340a4d2c083a9682"
+      "ptd:sha256": "c6273def70956326521503424bc0ebadb6df255400996d86a8e67aa8e47de98f"
     },
     {
       "@id": "https://freirelucas.github.io/PTD/output/vocabulary_mapping.csv",
       "@type": "prov:Entity",
       "prov:label": "vocabulary_mapping.csv",
       "prov:wasGeneratedBy": {
-        "@id": "https://freirelucas.github.io/PTD#execucao-2026-07-10"
+        "@id": "https://freirelucas.github.io/PTD#execucao-2026-08-02"
       },
       "prov:wasDerivedFrom": {
         "@id": "https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/planos-de-transformacao-digital"

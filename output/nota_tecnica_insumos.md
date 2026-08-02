@@ -3,7 +3,7 @@
 
 <!-- GERADO por notebook_cells/11e_nt_insumos.py — não editar à mão.
      Para atualizar: python notebook_cells/11e_nt_insumos.py [output_dir]
-     Snapshot: 2026-07-10 · commit do pipeline: 1fe31ba717a46db3c802d5b079140181b54d0f1b -->
+     Snapshot: 2026-08-02 · commit do pipeline: 9f51b7cd812a525a0a60be52fbbd4788c3e7bded -->
 
 ## 0. PROVENIÊNCIA E DEFINIÇÕES
 
