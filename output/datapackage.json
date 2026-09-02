@@ -110,8 +110,8 @@
         ],
         "primaryKey": "sigla"
       },
-      "bytes": 46370,
-      "hash": "sha256:6b640e366f35409f1cd072ab25fb7c9454df25bc539decc5e1920e0a3807952d"
+      "bytes": 47855,
+      "hash": "sha256:607d1a0b1224f81506d69ac9b9754ebdd7bd7a1a1b106768b8411cd16b71a0af"
     },
     {
       "name": "risks",
@@ -604,7 +604,7 @@
         ]
       },
       "bytes": 5680,
-      "hash": "sha256:637e8dea7f162389dca7957f0bd1aaf24cf3c00aee91abcb7e477eb4370f5776"
+      "hash": "sha256:1e20fa0728e121e7bd6f0257670fea774579e22b72c6facb9e37ae406aca4386"
     },
     {
       "name": "vocabulary_mapping",
@@ -678,7 +678,7 @@
         ]
       },
       "bytes": 1314,
-      "hash": "sha256:c2df9473c671c75f1d3c07168b03f06cece9d5a338e83bd2103bb770db38c682"
+      "hash": "sha256:31b8bf82ed226abd1cdda7ccf316efd35d9e258f691e475d589feb2f648c541b"
     }
   ]
 }
